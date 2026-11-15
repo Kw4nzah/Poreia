@@ -2,10 +2,13 @@
 
 import * as Application from 'expo-application';
 import { useRouter } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
+import { requestPermission } from '../notifications/schedule';
+import { NOTIFICATION_HOURS } from '../settings/model';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
@@ -22,6 +25,18 @@ export function Settings() {
   const styles = makeStyles(theme);
   const updates = useUpdateCheck();
   const apk = useApkUpdate();
+  const [notificationsDenied, setNotificationsDenied] = useState(false);
+
+  async function toggleNotifications(on: boolean) {
+    setNotificationsDenied(false);
+    if (!on) {
+      update({ notifications: false });
+      return;
+    }
+    const granted = await requestPermission(m.settings.notificationsChannel).catch(() => false);
+    if (granted) update({ notifications: true });
+    else setNotificationsDenied(true);
+  }
 
   return (
     <ScrollView
@@ -75,6 +90,44 @@ export function Settings() {
             onPress={() => update({ language })}
           />
         ))}
+      </View>
+
+      <Text style={styles.label}>{m.settings.notificationsTitle}</Text>
+      <View style={styles.card}>
+        <View style={styles.switchRow}>
+          <Text style={[styles.cardText, styles.switchText]}>{m.settings.notificationsToggle}</Text>
+          <Switch
+            value={settings.notifications}
+            onValueChange={toggleNotifications}
+            trackColor={{ false: theme.line, true: theme.accent }}
+            thumbColor={theme.surface}
+            accessibilityLabel={m.settings.notificationsToggle}
+          />
+        </View>
+        {notificationsDenied && <Text style={styles.status}>{m.settings.notificationsDenied}</Text>}
+        {settings.notifications && (
+          <View style={styles.apk}>
+            <Text style={styles.status}>{m.settings.notificationsTime}</Text>
+            <View style={styles.hours} accessibilityRole="radiogroup">
+              {NOTIFICATION_HOURS.map((hour) => {
+                const selected = hour === settings.notificationHour;
+                return (
+                  <Pressable
+                    key={hour}
+                    onPress={() => update({ notificationHour: hour })}
+                    style={[styles.hour, selected && styles.hourSelected]}
+                    accessibilityRole="radio"
+                    accessibilityState={{ selected }}
+                  >
+                    <Text style={[styles.hourText, selected && styles.hourTextSelected]}>
+                      {String(hour).padStart(2, '0')}:00
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+          </View>
+        )}
       </View>
 
       <Text style={styles.label}>{m.settings.updatesTitle}</Text>
@@ -156,6 +209,21 @@ function makeStyles(t: Theme) {
     buttonFilled: { backgroundColor: t.accent },
     buttonFilledText: { fontSize: 16, fontWeight: '600', color: t.onAccent },
     disabled: { opacity: 0.6 },
+    switchRow: { flexDirection: 'row', alignItems: 'center', minHeight: 44, gap: 12 },
+    switchText: { flex: 1 },
+    hours: { flexDirection: 'row', gap: space.sm, marginTop: space.sm },
+    hour: {
+      flex: 1,
+      height: 44,
+      borderRadius: 12,
+      borderWidth: 1,
+      borderColor: t.line,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    hourSelected: { borderColor: t.accent, backgroundColor: t.accent },
+    hourText: { fontSize: 16, color: t.ink, fontVariant: ['tabular-nums'] },
+    hourTextSelected: { color: t.onAccent, fontWeight: '600' },
     apk: { marginTop: space.md, paddingTop: space.md, borderTopWidth: 1, borderTopColor: t.line },
   });
 }

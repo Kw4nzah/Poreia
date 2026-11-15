@@ -65,6 +65,12 @@ export const tr: Messages = {
     apkInstall: (megabytes) => `İndir ve kur (${megabytes} MB)`,
     apkDownloading: 'İndiriliyor…',
     apkFailed: 'İndirilemedi. Daha sonra yeniden dene.',
+    notificationsTitle: 'Günlük bildirim',
+    notificationsToggle: 'Her sabah günün orucu',
+    notificationsTime: 'Saat',
+    notificationsDenied:
+      'Poreia için bildirimler kapalı. Telefon ayarlarından izin ver, sonra burayı yeniden aç.',
+    notificationsChannel: 'Günlük oruç',
   },
 
   period: {

@@ -8,8 +8,26 @@ describe('parseSettings', () => {
   });
 
   it('round-trips stored settings', () => {
-    const stored = { language: 'ru', name: 'Samuel', churchId: 'russian', onboarded: true };
+    const stored = {
+      language: 'ru',
+      name: 'Samuel',
+      churchId: 'russian',
+      onboarded: true,
+      notifications: true,
+      notificationHour: 12,
+    };
     expect(parseSettings(JSON.stringify(stored), 'en')).toEqual(stored);
+  });
+
+  it('keeps notifications off for settings saved before they existed', () => {
+    const old = { language: 'ru', name: 'Samuel', churchId: 'russian', onboarded: true };
+    const parsed = parseSettings(JSON.stringify(old), 'en');
+    expect(parsed).toMatchObject({ ...old, notifications: false, notificationHour: 8 });
+  });
+
+  it('rejects an hour that is not offered', () => {
+    const raw = JSON.stringify({ notifications: true, notificationHour: 3 });
+    expect(parseSettings(raw, 'en').notificationHour).toBe(8);
   });
 
   it('survives corrupt data', () => {

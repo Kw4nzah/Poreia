@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
+import { DailyNotifications } from '../notifications/DailyNotifications';
 import { SettingsProvider } from '../settings/SettingsProvider';
 import { useTheme } from '../ui/theme';
 
@@ -11,6 +12,7 @@ export default function RootLayout() {
     <View style={{ flex: 1, backgroundColor: theme.background }}>
       <StatusBar style="auto" />
       <SettingsProvider>
+        <DailyNotifications />
         <Stack
           screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.background } }}
         />

@@ -76,6 +76,12 @@ export const ru: Messages = {
     apkInstall: (megabytes) => `Скачать и установить (${megabytes} МБ)`,
     apkDownloading: 'Загрузка…',
     apkFailed: 'Не удалось скачать. Попробуйте позже.',
+    notificationsTitle: 'Ежедневное уведомление',
+    notificationsToggle: 'Пост на сегодня, каждое утро',
+    notificationsTime: 'Время',
+    notificationsDenied:
+      'Уведомления для Poreia запрещены. Разрешите их в настройках телефона и включите снова.',
+    notificationsChannel: 'Пост на день',
   },
 
   period: {

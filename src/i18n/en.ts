@@ -63,6 +63,12 @@ export interface Messages {
     apkInstall: (megabytes: number) => string;
     apkDownloading: string;
     apkFailed: string;
+    notificationsTitle: string;
+    notificationsToggle: string;
+    notificationsTime: string;
+    notificationsDenied: string;
+    /** Name of the notification category in the phone's settings. */
+    notificationsChannel: string;
   };
 
   period: Record<PeriodId, string>;
@@ -152,6 +158,12 @@ export const en: Messages = {
     apkInstall: (megabytes) => `Download and install (${megabytes} MB)`,
     apkDownloading: 'Downloading…',
     apkFailed: 'Download failed. Try again later.',
+    notificationsTitle: 'Daily notification',
+    notificationsToggle: "Today's fast, every morning",
+    notificationsTime: 'Time',
+    notificationsDenied:
+      'Notifications are blocked for Poreia. Allow them in the phone settings, then turn this on again.',
+    notificationsChannel: 'Daily fast',
   },
 
   period: {

@@ -3,22 +3,41 @@
 import { CHURCHES, ChurchId } from '../calendar';
 import { Language, isLanguage } from '../i18n';
 
+export const NOTIFICATION_HOURS = [7, 8, 9, 12] as const;
+
+export type NotificationHour = (typeof NOTIFICATION_HOURS)[number];
+
 export interface Settings {
   language: Language;
   name: string;
   churchId: ChurchId;
   /** False until the user finishes the first-run questions. */
   onboarded: boolean;
+  /** Daily notification with the day's fasting rule. */
+  notifications: boolean;
+  /** Local hour (0-23) at which it is shown. */
+  notificationHour: NotificationHour;
 }
 
 export const STORAGE_KEY = 'poreia.settings.v1';
 
 export function defaultSettings(language: Language): Settings {
-  return { language, name: '', churchId: 'greek', onboarded: false };
+  return {
+    language,
+    name: '',
+    churchId: 'greek',
+    onboarded: false,
+    notifications: false,
+    notificationHour: 8,
+  };
 }
 
 function isChurchId(value: unknown): value is ChurchId {
   return typeof value === 'string' && value in CHURCHES;
+}
+
+function isNotificationHour(value: unknown): value is NotificationHour {
+  return NOTIFICATION_HOURS.includes(value as NotificationHour);
 }
 
 /** Reads stored settings, replacing anything missing or invalid with defaults. */
@@ -38,5 +57,9 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
     name: typeof s.name === 'string' ? s.name : fallback.name,
     churchId: isChurchId(s.churchId) ? s.churchId : fallback.churchId,
     onboarded: s.onboarded === true && isChurchId(s.churchId),
+    notifications: s.notifications === true,
+    notificationHour: isNotificationHour(s.notificationHour)
+      ? s.notificationHour
+      : fallback.notificationHour,
   };
 }
