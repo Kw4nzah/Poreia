@@ -1,0 +1,234 @@
+// First-run questions: language, name, church. Also reopened from the Today screen to
+// change them, so every step starts from the current settings.
+
+import { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { CHURCHES, ChurchId } from '../calendar';
+import { LANGUAGES, MESSAGES } from '../i18n';
+import { useSettings } from '../settings/SettingsProvider';
+import { SERIF, Theme, space, useTheme } from '../ui/theme';
+
+const STEPS = ['language', 'name', 'church'] as const;
+const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
+
+export function Onboarding() {
+  const { settings, messages: m, update } = useSettings();
+  const theme = useTheme();
+  const insets = useSafeAreaInsets();
+  const styles = makeStyles(theme);
+
+  const [stepIndex, setStepIndex] = useState(0);
+  const [name, setName] = useState(settings.name);
+  const [churchId, setChurchId] = useState<ChurchId>(settings.churchId);
+
+  const step = STEPS[stepIndex];
+  const isLast = stepIndex === STEPS.length - 1;
+
+  function goNext() {
+    if (isLast) {
+      update({ name: name.trim(), churchId, onboarded: true });
+    } else {
+      setStepIndex(stepIndex + 1);
+    }
+  }
+
+  return (
+    <View
+      style={[
+        styles.screen,
+        { paddingTop: insets.top + space.xl, paddingBottom: insets.bottom + space.md },
+      ]}
+    >
+      <ScrollView
+        contentContainerStyle={styles.content}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <Text style={styles.brand}>Poreia</Text>
+        <Text style={styles.tagline}>{m.onboarding.tagline}</Text>
+
+        <View style={styles.dots}>
+          {STEPS.map((id, index) => (
+            <View key={id} style={[styles.dot, index <= stepIndex && styles.dotActive]} />
+          ))}
+        </View>
+
+        {step === 'language' && (
+          <>
+            <Text style={styles.title}>{m.onboarding.languageTitle}</Text>
+            <View style={styles.options}>
+              {LANGUAGES.map((language) => (
+                <Option
+                  key={language}
+                  styles={styles}
+                  selected={language === settings.language}
+                  title={MESSAGES[language].languageName}
+                  onPress={() => update({ language })}
+                />
+              ))}
+            </View>
+          </>
+        )}
+
+        {step === 'name' && (
+          <>
+            <Text style={styles.title}>{m.onboarding.nameTitle}</Text>
+            <Text style={styles.hint}>{m.onboarding.nameHint}</Text>
+            <TextInput
+              value={name}
+              onChangeText={setName}
+              placeholder={m.onboarding.namePlaceholder}
+              placeholderTextColor={theme.muted}
+              style={styles.input}
+              autoCapitalize="words"
+              autoCorrect={false}
+              maxLength={40}
+              returnKeyType="next"
+              onSubmitEditing={goNext}
+            />
+          </>
+        )}
+
+        {step === 'church' && (
+          <>
+            <Text style={styles.title}>{m.onboarding.churchTitle}</Text>
+            <Text style={styles.hint}>{m.onboarding.churchHint}</Text>
+            <View style={styles.options}>
+              {CHURCH_IDS.map((id) => (
+                <Option
+                  key={id}
+                  styles={styles}
+                  selected={id === churchId}
+                  title={m.church[id].name}
+                  subtitle={m.church[id].calendar}
+                  onPress={() => setChurchId(id)}
+                />
+              ))}
+            </View>
+          </>
+        )}
+      </ScrollView>
+
+      <View style={styles.actions}>
+        {stepIndex > 0 && (
+          <Pressable
+            onPress={() => setStepIndex(stepIndex - 1)}
+            style={styles.secondary}
+            accessibilityRole="button"
+          >
+            <Text style={styles.secondaryText}>{m.onboarding.back}</Text>
+          </Pressable>
+        )}
+        <Pressable
+          onPress={goNext}
+          style={({ pressed }) => [styles.primary, pressed && styles.pressed]}
+          accessibilityRole="button"
+        >
+          <Text style={styles.primaryText}>{isLast ? m.onboarding.start : m.onboarding.next}</Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+}
+
+interface OptionProps {
+  styles: ReturnType<typeof makeStyles>;
+  selected: boolean;
+  title: string;
+  subtitle?: string;
+  onPress: () => void;
+}
+
+function Option({ styles, selected, title, subtitle, onPress }: OptionProps) {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={[styles.option, selected && styles.optionSelected]}
+      accessibilityRole="radio"
+      accessibilityState={{ selected }}
+    >
+      <View style={styles.optionText}>
+        <Text style={styles.optionTitle}>{title}</Text>
+        {subtitle && <Text style={styles.optionSubtitle}>{subtitle}</Text>}
+      </View>
+      <View style={[styles.radio, selected && styles.radioSelected]}>
+        {selected && <View style={styles.radioDot} />}
+      </View>
+    </Pressable>
+  );
+}
+
+function makeStyles(t: Theme) {
+  return StyleSheet.create({
+    screen: { flex: 1, backgroundColor: t.background, paddingHorizontal: space.lg },
+    content: { paddingBottom: space.lg },
+    brand: { fontFamily: SERIF, fontSize: 40, color: t.accent },
+    tagline: { fontSize: 15, lineHeight: 22, color: t.muted, marginTop: space.xs },
+    dots: { flexDirection: 'row', gap: 6, marginTop: space.xl, marginBottom: space.lg },
+    dot: { width: 28, height: 3, borderRadius: 2, backgroundColor: t.line },
+    dotActive: { backgroundColor: t.accent },
+    title: { fontFamily: SERIF, fontSize: 24, lineHeight: 32, color: t.ink },
+    hint: { fontSize: 15, lineHeight: 22, color: t.muted, marginTop: space.sm },
+    options: { gap: 12, marginTop: space.lg },
+    option: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      minHeight: 64,
+      paddingHorizontal: space.md,
+      paddingVertical: 12,
+      borderRadius: 14,
+      borderWidth: 1,
+      borderColor: t.line,
+      backgroundColor: t.surface,
+    },
+    optionSelected: { borderColor: t.accent },
+    optionText: { flex: 1, gap: 2 },
+    optionTitle: { fontSize: 17, color: t.ink },
+    optionSubtitle: { fontSize: 14, color: t.muted },
+    radio: {
+      width: 22,
+      height: 22,
+      borderRadius: 11,
+      borderWidth: 1.5,
+      borderColor: t.line,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginLeft: 12,
+    },
+    radioSelected: { borderColor: t.accent },
+    radioDot: { width: 10, height: 10, borderRadius: 5, backgroundColor: t.accent },
+    input: {
+      marginTop: space.lg,
+      height: 56,
+      paddingHorizontal: space.md,
+      borderRadius: 14,
+      borderWidth: 1,
+      borderColor: t.line,
+      backgroundColor: t.surface,
+      fontSize: 17,
+      color: t.ink,
+    },
+    actions: { flexDirection: 'row', gap: 12, paddingTop: space.sm },
+    primary: {
+      flex: 1,
+      height: 54,
+      borderRadius: 14,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: t.accent,
+    },
+    pressed: { opacity: 0.85 },
+    primaryText: { fontSize: 17, fontWeight: '600', color: t.onAccent },
+    secondary: {
+      height: 54,
+      paddingHorizontal: space.lg,
+      borderRadius: 14,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 1,
+      borderColor: t.line,
+    },
+    secondaryText: { fontSize: 17, color: t.ink },
+  });
+}
