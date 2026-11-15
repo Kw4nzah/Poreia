@@ -60,7 +60,22 @@ export const ru: Messages = {
     daysToPascha: (n) => `До Пасхи ${days(n)}`,
     disclaimer:
       'Это общие указания церковных календарей. Местный обычай и совет духовника важнее.',
-    editProfile: 'Имя, церковь и язык',
+    settings: 'Настройки',
+    newVersion: 'Новая версия готова к установке',
+  },
+
+  settings: {
+    title: 'Настройки',
+    back: 'Назад',
+    name: 'Имя',
+    church: 'Традиция',
+    language: 'Язык',
+    updatesTitle: 'Обновления',
+    version: (version) => `Версия ${version}`,
+    apkAvailable: (version) => `Доступна версия ${version}`,
+    apkInstall: (megabytes) => `Скачать и установить (${megabytes} МБ)`,
+    apkDownloading: 'Загрузка…',
+    apkFailed: 'Не удалось скачать. Попробуйте позже.',
   },
 
   period: {

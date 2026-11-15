@@ -47,7 +47,22 @@ export interface Messages {
     startsIn: (days: number) => string;
     daysToPascha: (days: number) => string;
     disclaimer: string;
-    editProfile: string;
+    settings: string;
+    newVersion: string;
+  };
+
+  settings: {
+    title: string;
+    back: string;
+    name: string;
+    church: string;
+    language: string;
+    updatesTitle: string;
+    version: (version: string) => string;
+    apkAvailable: (version: string) => string;
+    apkInstall: (megabytes: number) => string;
+    apkDownloading: string;
+    apkFailed: string;
   };
 
   period: Record<PeriodId, string>;
@@ -121,7 +136,22 @@ export const en: Messages = {
     daysToPascha: (days) => `${days} ${plural(days, 'day', 'days')} to Pascha`,
     disclaimer:
       'General guidance from the parish calendars. Local custom and the advice of your spiritual father come first.',
-    editProfile: 'Name, church and language',
+    settings: 'Settings',
+    newVersion: 'A new version is ready to install',
+  },
+
+  settings: {
+    title: 'Settings',
+    back: 'Back',
+    name: 'Name',
+    church: 'Tradition',
+    language: 'Language',
+    updatesTitle: 'Updates',
+    version: (version) => `Version ${version}`,
+    apkAvailable: (version) => `Version ${version} is available`,
+    apkInstall: (megabytes) => `Download and install (${megabytes} MB)`,
+    apkDownloading: 'Downloading…',
+    apkFailed: 'Download failed. Try again later.',
   },
 
   period: {

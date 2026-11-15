@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
+import { Option } from '../ui/Option';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 
 const STEPS = ['language', 'name', 'church'] as const;
@@ -61,7 +62,6 @@ export function Onboarding() {
               {LANGUAGES.map((language) => (
                 <Option
                   key={language}
-                  styles={styles}
                   selected={language === settings.language}
                   title={MESSAGES[language].languageName}
                   onPress={() => update({ language })}
@@ -98,7 +98,6 @@ export function Onboarding() {
               {CHURCH_IDS.map((id) => (
                 <Option
                   key={id}
-                  styles={styles}
                   selected={id === churchId}
                   title={m.church[id].name}
                   subtitle={m.church[id].calendar}
@@ -132,33 +131,6 @@ export function Onboarding() {
   );
 }
 
-interface OptionProps {
-  styles: ReturnType<typeof makeStyles>;
-  selected: boolean;
-  title: string;
-  subtitle?: string;
-  onPress: () => void;
-}
-
-function Option({ styles, selected, title, subtitle, onPress }: OptionProps) {
-  return (
-    <Pressable
-      onPress={onPress}
-      style={[styles.option, selected && styles.optionSelected]}
-      accessibilityRole="radio"
-      accessibilityState={{ selected }}
-    >
-      <View style={styles.optionText}>
-        <Text style={styles.optionTitle}>{title}</Text>
-        {subtitle && <Text style={styles.optionSubtitle}>{subtitle}</Text>}
-      </View>
-      <View style={[styles.radio, selected && styles.radioSelected]}>
-        {selected && <View style={styles.radioDot} />}
-      </View>
-    </Pressable>
-  );
-}
-
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background, paddingHorizontal: space.lg },
@@ -171,33 +143,6 @@ function makeStyles(t: Theme) {
     title: { fontFamily: SERIF, fontSize: 24, lineHeight: 32, color: t.ink },
     hint: { fontSize: 15, lineHeight: 22, color: t.muted, marginTop: space.sm },
     options: { gap: 12, marginTop: space.lg },
-    option: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      minHeight: 64,
-      paddingHorizontal: space.md,
-      paddingVertical: 12,
-      borderRadius: 14,
-      borderWidth: 1,
-      borderColor: t.line,
-      backgroundColor: t.surface,
-    },
-    optionSelected: { borderColor: t.accent },
-    optionText: { flex: 1, gap: 2 },
-    optionTitle: { fontSize: 17, color: t.ink },
-    optionSubtitle: { fontSize: 14, color: t.muted },
-    radio: {
-      width: 22,
-      height: 22,
-      borderRadius: 11,
-      borderWidth: 1.5,
-      borderColor: t.line,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginLeft: 12,
-    },
-    radioSelected: { borderColor: t.accent },
-    radioDot: { width: 10, height: 10, borderRadius: 5, backgroundColor: t.accent },
     input: {
       marginTop: space.lg,
       height: 56,

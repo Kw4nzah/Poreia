@@ -49,7 +49,22 @@ export const tr: Messages = {
     daysToPascha: (days) => `Paskalya'ya ${days} gün`,
     disclaimer:
       'Kilise takvimlerine dayanan genel bir rehberdir. Yerel âdet ve ruhani babanın öğüdü önce gelir.',
-    editProfile: 'Ad, kilise ve dil',
+    settings: 'Ayarlar',
+    newVersion: 'Yeni sürüm kurulmaya hazır',
+  },
+
+  settings: {
+    title: 'Ayarlar',
+    back: 'Geri',
+    name: 'Ad',
+    church: 'Gelenek',
+    language: 'Dil',
+    updatesTitle: 'Güncellemeler',
+    version: (version) => `Sürüm ${version}`,
+    apkAvailable: (version) => `${version} sürümü yayında`,
+    apkInstall: (megabytes) => `İndir ve kur (${megabytes} MB)`,
+    apkDownloading: 'İndiriliyor…',
+    apkFailed: 'İndirilemedi. Daha sonra yeniden dene.',
   },
 
   period: {

@@ -1,6 +1,6 @@
 // The daily view: today's date, feast, fasting rule and the next fast.
 
-import * as Application from 'expo-application';
+import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '../calendar';
@@ -8,15 +8,16 @@ import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
-import { useUpdateCheck } from '../updates/useUpdateCheck';
+import { useApkUpdate } from '../updates/useApkUpdate';
 
 export function Today() {
-  const { settings, messages: m, update } = useSettings();
+  const { settings, messages: m } = useSettings();
+  const router = useRouter();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const styles = makeStyles(theme);
   const today = useToday();
-  const updates = useUpdateCheck();
+  const apk = useApkUpdate();
 
   const church = CHURCHES[settings.churchId];
   const info = getDayInfo(today, church);
@@ -141,26 +142,13 @@ export function Today() {
 
       <View style={styles.footer}>
         <Pressable
-          onPress={() => update({ onboarded: false })}
+          onPress={() => router.push('/settings')}
           style={styles.link}
           accessibilityRole="button"
         >
-          <Text style={styles.linkText}>{m.today.editProfile}</Text>
+          <Text style={styles.linkText}>{m.today.settings}</Text>
+          {apk.release && <Text style={styles.small}>{m.today.newVersion}</Text>}
         </Pressable>
-        <Pressable
-          onPress={updates.check}
-          disabled={updates.busy}
-          style={styles.link}
-          accessibilityRole="button"
-        >
-          <Text style={styles.linkText}>{m.updates.check}</Text>
-        </Pressable>
-        {updates.status !== 'idle' && (
-          <Text style={styles.small}>{m.updates[updates.status]}</Text>
-        )}
-        <Text style={styles.small}>
-          Poreia {Application.nativeApplicationVersion ?? ''}
-        </Text>
       </View>
     </ScrollView>
   );
