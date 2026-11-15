@@ -1,15 +1,22 @@
 {
   "expo": {
     "name": "Poreia",
-    "slug": "Poreia",
-    "version": "1.0.0",
+    "slug": "poreia",
+    "scheme": "poreia",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "ios": {
-      "supportsTablet": true
+    "userInterfaceStyle": "automatic",
+    "runtimeVersion": "1",
+    "updates": {
+      "url": "https://kw4nzah.github.io/Poreia/updates/android/1/manifest.json",
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
     },
     "android": {
+      "package": "com.kw4nzah.poreia",
+      "versionCode": 1,
+      "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -18,8 +25,11 @@
       },
       "predictiveBackGestureEnabled": false
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      "expo-notifications",
+      "expo-updates"
+    ]
   }
 }
