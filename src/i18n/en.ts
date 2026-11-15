@@ -1,0 +1,204 @@
+// English is the reference dictionary: its shape defines `Messages`, so a key missing
+// from another language is a type error.
+
+import type {
+  ChurchId,
+  FastDayId,
+  FastLevel,
+  FeastId,
+  FoodId,
+  MajorFastId,
+  NoteId,
+  PeriodId,
+} from '../calendar';
+
+export interface Messages {
+  /** Name of the language in the language itself. */
+  languageName: string;
+  /** Sunday first, matching the engine's `Weekday`. */
+  weekdays: readonly string[];
+  /** Month names in the form used after a day number. */
+  months: readonly string[];
+  date: (day: number, month: string, year: number) => string;
+  dayMonth: (day: number, month: string) => string;
+
+  onboarding: {
+    tagline: string;
+    languageTitle: string;
+    nameTitle: string;
+    nameHint: string;
+    namePlaceholder: string;
+    churchTitle: string;
+    churchHint: string;
+    next: string;
+    back: string;
+    start: string;
+  };
+  church: Record<ChurchId, { name: string; calendar: string }>;
+
+  today: {
+    greeting: (name: string) => string;
+    churchDate: (date: string) => string;
+    feast: string;
+    dayOf: (day: number, total: number) => string;
+    daysLeft: (days: number) => string;
+    lastDay: string;
+    upcomingTitle: string;
+    startsIn: (days: number) => string;
+    daysToPascha: (days: number) => string;
+    disclaimer: string;
+    editProfile: string;
+  };
+
+  period: Record<PeriodId, string>;
+  majorFast: Record<MajorFastId, string>;
+  fastDay: Record<FastDayId, string>;
+  feast: Record<FeastId, string>;
+  level: Record<FastLevel, { title: string; detail: string }>;
+  food: Record<FoodId, string>;
+  note: Record<NoteId, string>;
+
+  updates: {
+    check: string;
+    disabled: string;
+    checking: string;
+    upToDate: string;
+    downloading: string;
+    failed: string;
+  };
+}
+
+function plural(n: number, one: string, many: string): string {
+  return n === 1 ? one : many;
+}
+
+export const en: Messages = {
+  languageName: 'English',
+  weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  months: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  date: (day, month, year) => `${day} ${month} ${year}`,
+  dayMonth: (day, month) => `${day} ${month}`,
+
+  onboarding: {
+    tagline: 'A companion for the fasts of the Church',
+    languageTitle: 'Choose your language',
+    nameTitle: 'What should we call you?',
+    nameHint: 'Only used to greet you. It stays on this phone.',
+    namePlaceholder: 'Your name',
+    churchTitle: 'Which tradition do you follow?',
+    churchHint: 'This sets the calendar and the fasting customs.',
+    next: 'Continue',
+    back: 'Back',
+    start: 'Begin',
+  },
+  church: {
+    greek: { name: 'Greek tradition', calendar: 'New calendar' },
+    russian: { name: 'Russian tradition', calendar: 'Old (Julian) calendar' },
+  },
+
+  today: {
+    greeting: (name) => (name ? `Peace to you, ${name}` : 'Peace to you'),
+    churchDate: (date) => `Church calendar: ${date}`,
+    feast: 'Feast',
+    dayOf: (day, total) => `Day ${day} of ${total}`,
+    daysLeft: (days) => `${days} ${plural(days, 'day', 'days')} left`,
+    lastDay: 'Last day',
+    upcomingTitle: 'Next fast',
+    startsIn: (days) => (days === 1 ? 'Starts tomorrow' : `Starts in ${days} days`),
+    daysToPascha: (days) => `${days} ${plural(days, 'day', 'days')} to Pascha`,
+    disclaimer:
+      'General guidance from the parish calendars. Local custom and the advice of your spiritual father come first.',
+    editProfile: 'Name, church and language',
+  },
+
+  period: {
+    publicanWeek: 'Week of the Publican and the Pharisee',
+    cheesefareWeek: 'Cheesefare Week',
+    greatLent: 'Great Lent',
+    holyWeek: 'Holy Week',
+    brightWeek: 'Bright Week',
+    trinityWeek: 'Week after Pentecost',
+    apostlesFast: "Apostles' Fast",
+    dormitionFast: 'Dormition Fast',
+    nativityFast: 'Nativity Fast',
+    christmastide: 'Christmastide',
+  },
+  majorFast: {
+    greatLent: 'Great Lent',
+    apostlesFast: "Apostles' Fast",
+    dormitionFast: 'Dormition Fast',
+    nativityFast: 'Nativity Fast',
+  },
+  fastDay: {
+    wednesday: 'Wednesday fast',
+    friday: 'Friday fast',
+    theophanyEve: 'Eve of Theophany',
+    beheadingOfJohn: 'Fast of the Beheading of St John',
+    exaltationOfCross: 'Fast of the Exaltation of the Cross',
+  },
+  feast: {
+    pascha: 'Holy Pascha',
+    palmSunday: 'Palm Sunday',
+    lazarusSaturday: 'Lazarus Saturday',
+    ascension: 'Ascension of the Lord',
+    pentecost: 'Pentecost',
+    nativityOfTheotokos: 'Nativity of the Theotokos',
+    exaltationOfCross: 'Exaltation of the Holy Cross',
+    protectionOfTheotokos: 'Protection of the Theotokos',
+    entryOfTheotokos: 'Entry of the Theotokos into the Temple',
+    nativityOfChrist: 'Nativity of Christ',
+    circumcision: 'Circumcision of the Lord',
+    theophany: 'Holy Theophany',
+    meetingOfTheLord: 'Meeting of the Lord',
+    annunciation: 'Annunciation',
+    nativityOfForerunner: 'Nativity of St John the Forerunner',
+    peterAndPaul: 'Holy Apostles Peter and Paul',
+    transfiguration: 'Transfiguration of the Lord',
+    dormition: 'Dormition of the Theotokos',
+    beheadingOfJohn: 'Beheading of St John the Forerunner',
+  },
+  level: {
+    none: { title: 'No fasting', detail: 'All foods are allowed today.' },
+    noMeat: { title: 'No meat', detail: 'Dairy, eggs and fish are allowed.' },
+    fish: { title: 'Fish allowed', detail: 'Fish, wine and oil are allowed.' },
+    oil: { title: 'Wine and oil allowed', detail: 'No fish today.' },
+    noOil: { title: 'No oil', detail: 'Cooked food prepared without oil.' },
+    xerophagy: {
+      title: 'Dry eating',
+      detail: 'Bread, fruit, vegetables and nuts, without oil.',
+    },
+  },
+  food: {
+    meat: 'Meat',
+    dairy: 'Dairy and eggs',
+    fish: 'Fish',
+    oil: 'Wine and oil',
+  },
+  note: {
+    totalAbstinence: 'Those who are able keep a complete fast today.',
+    caviarAllowed: 'Fish roe is allowed today.',
+    feastRelaxation: 'The fast is lightened for the feast.',
+  },
+
+  updates: {
+    check: 'Check for updates',
+    disabled: 'Updates are off in this build.',
+    checking: 'Checking…',
+    upToDate: 'You have the latest version.',
+    downloading: 'Downloading…',
+    failed: 'Update failed. Try again later.',
+  },
+};
