@@ -2,6 +2,7 @@
 
 import { CHURCHES, ChurchId } from '../calendar';
 import { Language, isLanguage } from '../i18n';
+import { DEFAULT_PRAYER_TEXT_SIZE, PrayerTextSize, isPrayerTextSize } from '../prayers';
 
 export const NOTIFICATION_HOURS = [7, 8, 9, 12] as const;
 
@@ -17,6 +18,8 @@ export interface Settings {
   notifications: boolean;
   /** Local hour (0-23) at which it is shown. */
   notificationHour: NotificationHour;
+  /** Index into PRAYER_TEXT_SIZES. */
+  prayerTextSize: PrayerTextSize;
 }
 
 export const STORAGE_KEY = 'poreia.settings.v1';
@@ -29,6 +32,7 @@ export function defaultSettings(language: Language): Settings {
     onboarded: false,
     notifications: false,
     notificationHour: 8,
+    prayerTextSize: DEFAULT_PRAYER_TEXT_SIZE,
   };
 }
 
@@ -61,5 +65,8 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
     notificationHour: isNotificationHour(s.notificationHour)
       ? s.notificationHour
       : fallback.notificationHour,
+    prayerTextSize: isPrayerTextSize(s.prayerTextSize)
+      ? s.prayerTextSize
+      : fallback.prayerTextSize,
   };
 }

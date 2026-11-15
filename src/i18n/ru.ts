@@ -1,4 +1,5 @@
 import type { Messages } from './en';
+import { prayerTexts } from './prayers/ru';
 
 /** Russian plural forms: 1 день, 2 дня, 5 дней. */
 export function pluralRu(n: number, one: string, few: string, many: string): string {
@@ -151,6 +152,15 @@ export const ru: Messages = {
     totalAbstinence: 'Кто в силах, сегодня полностью воздерживается от пищи.',
     caviarAllowed: 'Сегодня разрешена рыбная икра.',
     feastRelaxation: 'Ради праздника пост ослабляется.',
+  },
+
+  prayers: {
+    title: 'Молитвы',
+    summary: 'Отче наш, Символ веры, утренние и вечерние молитвы',
+    smaller: 'Уменьшить текст',
+    larger: 'Увеличить текст',
+    group: { basic: 'Основные молитвы', daily: 'Молитвы дня' },
+    text: prayerTexts,
   },
 
   updates: {

@@ -11,6 +11,8 @@ import type {
   NoteId,
   PeriodId,
 } from '../calendar';
+import type { PrayerGroupId, PrayerId, PrayerText } from '../prayers';
+import { prayerTexts } from './prayers/en';
 
 export interface Messages {
   /** Name of the language in the language itself. */
@@ -78,6 +80,16 @@ export interface Messages {
   level: Record<FastLevel, { title: string; detail: string }>;
   food: Record<FoodId, string>;
   note: Record<NoteId, string>;
+
+  prayers: {
+    title: string;
+    /** One line under the title on the Today card. */
+    summary: string;
+    smaller: string;
+    larger: string;
+    group: Record<PrayerGroupId, string>;
+    text: Record<PrayerId, PrayerText>;
+  };
 
   updates: {
     check: string;
@@ -233,6 +245,15 @@ export const en: Messages = {
     totalAbstinence: 'Those who are able keep a complete fast today.',
     caviarAllowed: 'Fish roe is allowed today.',
     feastRelaxation: 'The fast is lightened for the feast.',
+  },
+
+  prayers: {
+    title: 'Prayers',
+    summary: 'The Lord’s Prayer, the Creed, morning and evening prayers',
+    smaller: 'Smaller text',
+    larger: 'Larger text',
+    group: { basic: 'Basic prayers', daily: 'Prayers of the day' },
+    text: prayerTexts,
   },
 
   updates: {

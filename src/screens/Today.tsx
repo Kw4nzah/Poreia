@@ -138,6 +138,18 @@ export function Today() {
         )}
       </View>
 
+      <Pressable
+        onPress={() => router.push('/prayers')}
+        style={({ pressed }) => [styles.card, styles.prayers, pressed && styles.pressed]}
+        accessibilityRole="button"
+      >
+        <View style={styles.prayersText}>
+          <Text style={styles.upcomingName}>{m.prayers.title}</Text>
+          <Text style={styles.range}>{m.prayers.summary}</Text>
+        </View>
+        <Text style={styles.chevron}>›</Text>
+      </Pressable>
+
       <Text style={styles.disclaimer}>{m.today.disclaimer}</Text>
 
       <View style={styles.footer}>
@@ -220,6 +232,11 @@ function makeStyles(t: Theme) {
       borderTopWidth: 1,
       borderTopColor: t.line,
     },
+
+    prayers: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+    prayersText: { flex: 1 },
+    pressed: { backgroundColor: t.background },
+    chevron: { fontSize: 22, lineHeight: 25, color: t.muted },
 
     disclaimer: { fontSize: 13, lineHeight: 19, color: t.muted, marginTop: space.lg },
     footer: { marginTop: space.lg, alignItems: 'flex-start' },

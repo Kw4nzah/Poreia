@@ -1,4 +1,5 @@
 import type { Messages } from './en';
+import { prayerTexts } from './prayers/tr';
 
 export const tr: Messages = {
   languageName: 'Türkçe',
@@ -38,7 +39,7 @@ export const tr: Messages = {
   },
 
   today: {
-    greeting: (name) => (name ? `Esenlik olsun, ${name}` : 'Esenlik olsun'),
+    greeting: (name) => (name ? `Hoş geldin, ${name}` : 'Hoş geldin'),
     churchDate: (date) => `Kilise takvimi: ${date}`,
     feast: 'Bayram',
     dayOf: (day, total) => `${total} günün ${day}. günü`,
@@ -140,6 +141,15 @@ export const tr: Messages = {
     totalAbstinence: 'Gücü yetenler bugün hiçbir şey yemeden oruç tutar.',
     caviarAllowed: 'Bugün balık yumurtası serbest.',
     feastRelaxation: 'Bayram nedeniyle oruç hafifletilir.',
+  },
+
+  prayers: {
+    title: 'Dualar',
+    summary: 'Göklerdeki Pederimiz, İman İkrarı, sabah ve akşam duaları',
+    smaller: 'Yazıyı küçült',
+    larger: 'Yazıyı büyüt',
+    group: { basic: 'Temel dualar', daily: 'Günün duaları' },
+    text: prayerTexts,
   },
 
   updates: {

@@ -15,6 +15,7 @@ describe('parseSettings', () => {
       onboarded: true,
       notifications: true,
       notificationHour: 12,
+      prayerTextSize: 2,
     };
     expect(parseSettings(JSON.stringify(stored), 'en')).toEqual(stored);
   });
@@ -28,6 +29,11 @@ describe('parseSettings', () => {
   it('rejects an hour that is not offered', () => {
     const raw = JSON.stringify({ notifications: true, notificationHour: 3 });
     expect(parseSettings(raw, 'en').notificationHour).toBe(8);
+  });
+
+  it('falls back to the middle prayer text size when the stored one is invalid', () => {
+    expect(parseSettings(JSON.stringify({ prayerTextSize: 7 }), 'en').prayerTextSize).toBe(1);
+    expect(parseSettings(JSON.stringify({ prayerTextSize: 0 }), 'en').prayerTextSize).toBe(0);
   });
 
   it('survives corrupt data', () => {
