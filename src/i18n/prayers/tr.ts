@@ -1,16 +1,20 @@
-// Turkish prayer texts. Orthodox liturgical vocabulary (Peder, İisus Hristos,
-// hükümranlık), not the wording of the Protestant Bible translations.
+// Turkish prayer texts.
+//
+// lordsPrayer and creed follow the Turkish Divine Liturgy of St John Chrysostom printed in
+// The Canadian Journal of Orthodox Christianity XVII/3 (2022). The other prayers have no
+// published Turkish source yet: they are our own translations and keep that liturgy's
+// vocabulary (Baba, Allah, İsa Mesih, yücelik, "sonsuzluklar boyunca").
 
 import type { PrayerId, PrayerText } from '../../prayers';
 
 export const prayerTexts: Record<PrayerId, PrayerText> = {
   lordsPrayer: {
-    title: 'Göklerdeki Pederimiz',
+    title: 'Göklerdeki Babamız',
     sections: [
       {
         paragraphs: [
-          'Göklerdeki Pederimiz, adın aziz olsun, hükümranlığın gelsin; gökte olduğu gibi yeryüzünde de senin isteğin olsun.',
-          'Gündelik ekmeğimizi bize bugün ver; bize borçlu olanları bağışladığımız gibi sen de bizim borçlarımızı bağışla; bizi ayartılmaya bırakma, bizi kötü olandan kurtar.',
+          'Göklerdeki Babamız, adın yüceltilsin, hükümdarlığın gelsin, gökte olduğu gibi yeryüzünde de Sen’in isteğin olsun.',
+          'Günlük ekmeğimizi bugün de bize ver, bize karşı suç işleyenleri bağışladığımız gibi Sen de bağışla suçlarımızı. Bizi suç işlemekten koru ve kötülükten kurtar.',
         ],
       },
     ],
@@ -20,18 +24,18 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
     sections: [
       {
         paragraphs: [
-          'Bir tek Tanrı’ya inanıyorum: her şeye gücü yeten Peder’e, göğün ve yerin, görünen ve görünmeyen her şeyin Yaratıcısı’na.',
-          'Ve bir tek Rab’be, İisus Hristos’a, Tanrı’nın biricik Oğlu’na, bütün çağlardan önce Peder’den doğmuş olana; Işık’tan Işık, gerçek Tanrı’dan gerçek Tanrı; doğmuş, yaratılmamış, Peder’le aynı özden olan ve her şeyin kendisi aracılığıyla var olduğu Rab’be.',
-          'O, biz insanlar için ve bizim kurtuluşumuz için göklerden indi, Kutsal Ruh’tan ve Bakire Meryem’den beden aldı ve insan oldu.',
-          'Pontius Pilatus zamanında bizim için çarmıha gerildi, acı çekti ve gömüldü.',
-          'Kutsal Yazılar uyarınca üçüncü gün dirildi.',
-          'Göklere yükseldi ve Peder’in sağında oturdu.',
-          'Dirileri ve ölüleri yargılamak üzere şanla yeniden gelecektir; O’nun hükümranlığının sonu olmayacaktır.',
-          'Ve Kutsal Ruh’a inanıyorum: Rab olan, hayat veren, Peder’den çıkan, Peder ve Oğul’la birlikte tapınılan ve yüceltilen, peygamberler aracılığıyla konuşmuş olana.',
-          'Bir tek, kutsal, katholik ve havarisel Kilise’ye inanıyorum.',
-          'Günahların bağışlanması için bir tek vaftizi ikrar ediyorum.',
-          'Ölülerin dirilişini',
-          've gelecek çağın hayatını bekliyorum. Amin.',
+          'İnanırım Bir Allah’a, her şeye gücü yeten Baba’ya, göğün ve yerin, tüm görünen ve görünmeyenlerin Yaradanına.',
+          'Tek Rab İsa Mesih’e, Allah’ın Oğluna, Tek doğana, tüm çağlardan önce Baba’dan doğana, Işık’tan Işık, Gerçek Allah’tan Gerçek Allah’a, Doğan’a, yaratılmayana, Baba ile Bir özde olana, tüm şeylerin O’nunla yaratıldığına.',
+          'Biz insanlar ve kurtuluşumuz için göklerden aşağıya inene, Kutsal Ruh ve bakire Meryem’den beden alana ve insan olana.',
+          'Üstelik bizler için Pontus’lu Pilatus zamanında çarmıha gerilene, acı çekene ve gömülene,',
+          'Kutsal Yazılara göre üçüncü günde dirilene.',
+          'Göklere yükselene ve Baba’nın sağında oturana.',
+          'Görkemle yine gelecek olana, dirileri ve ölüleri yargılamaya. O’nun ki Krallığının sonu olmayana.',
+          'Kutsal Ruh’a, Rab’be, yaşam verene, Baba’dan çıkana, Baba ve Oğul ile birlikte tapılana ve onurlandırılana, peygamberler aracılığıyla konuşmuş olana.',
+          'Bir, Kutsal, Evrensel ve elçisel Kilise’ye.',
+          'Onaylarım günahların bağışlanması için olan tek vaftizi.',
+          'Beklerim ölülerin dirilişini',
+          've gelecek çağ yaşamını. Amin.',
         ],
       },
     ],
@@ -41,7 +45,7 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
     sections: [
       {
         paragraphs: [
-          'Ey Göksel Kral, Teselli Eden, Hakikat Ruhu; her yerde hazır olan ve her şeyi dolduran, iyiliklerin Hazinesi ve hayatın Bağışlayıcısı: gel ve içimizde mesken tut, bizi her kirden arındır ve canlarımızı kurtar, ey İyi Olan.',
+          'Ey Göksel Kral, Teselli Eden, Hakikat Ruhu; her yerde olan ve her şeyi dolduran, iyiliklerin Hazinesi ve yaşam Veren: gel ve içimizde yaşa, bizi her kirden arındır ve canlarımızı kurtar, ey İyi Olan.',
         ],
       },
     ],
@@ -51,10 +55,10 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
     sections: [
       {
         paragraphs: [
-          'Peder’in, Oğul’un ve Kutsal Ruh’un adıyla. Amin.',
-          'Şan sana, Tanrımız, şan sana.',
-          'Uykudan kalkmış olarak sana şükrediyorum, ey Kutsal Teslis; çünkü büyük iyiliğin ve sabrınla ben tembel ve günahkâr kuluna öfkelenmedin, beni günahlarımla birlikte yok etmedin; her zamanki insanseverliğini gösterdin ve umutsuzluk içinde yatarken beni kaldırdın ki erkenden kalkıp kudretini yücelteyim.',
-          'Şimdi de aklımın gözlerini aydınlat ve ağzımı aç ki sözlerini öğreneyim, buyruklarını anlayayım, isteğini yerine getireyim, yürekten ikrarla sana ilahi söyleyeyim ve en kutsal adını, Peder’in, Oğul’un ve Kutsal Ruh’un adını öveyim; şimdi, her zaman ve çağlar çağınca. Amin.',
+          'Baba’nın, Oğul’un ve Kutsal Ruh’un adıyla. Amin.',
+          'Yücelik Sana, Allah’ımız, yücelik Sana.',
+          'Uykudan kalkmış olarak Sana şükrediyorum, ey Kutsal Üçleme; çünkü büyük iyiliğin ve sabrınla ben tembel ve günahkâr kuluna öfkelenmedin, beni günahlarımla birlikte yok etmedin; her zamanki insan sevginle, umutsuzluk içinde yatarken beni kaldırdın ki erkenden kalkıp Sen’in gücünü yücelteyim.',
+          'Şimdi de aklımın gözlerini aydınlat ve ağzımı aç ki sözlerini öğreneyim, buyruklarını anlayayım, isteğini yerine getireyim, yürekten ikrarla Sana ilahi söyleyeyim ve tamamen kutsal adını, Baba’nın, Oğul’un ve Kutsal Ruh’un adını öveyim; şimdi ve her zaman ve sonsuzluklar boyunca. Amin.',
         ],
       },
     ],
@@ -64,9 +68,9 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
     sections: [
       {
         paragraphs: [
-          'Rab Tanrımız, bugün sözle, işle ve düşünceyle işlediğim günahları, iyi ve insansever olduğun için bağışla. Bana sakin ve rahat bir uyku ver. Koruyucu meleğini gönder ki beni her kötülükten sakınsın ve korusun.',
-          'Çünkü canlarımızın ve bedenlerimizin koruyucusu sensin ve sana şan sunarız: Peder’e, Oğul’a ve Kutsal Ruh’a; şimdi, her zaman ve çağlar çağınca. Amin.',
-          'Ellerine, ey Rab İisus Hristos, Tanrım, ruhumu teslim ediyorum. Beni kutsa, bana merhamet eyle ve bana sonsuz hayat bağışla. Amin.',
+          'Rab Allah’ımız, bugün sözle, işle ve düşünceyle işlediğim günahları bağışla, çünkü Sen iyisin ve insanları seversin. Bana sakin ve rahat bir uyku ver. Koruyucu meleğini gönder ki beni her kötülükten korusun.',
+          'Çünkü canlarımızın ve bedenlerimizin koruyucusu Sen’sin ve Sana yücelik sunarız, Baba’ya, Oğul’a ve Kutsal Ruh’a, şimdi ve her zaman ve sonsuzluklar boyunca. Amin.',
+          'Ellerine, ey Rab İsa Mesih, Allah’ım, ruhumu teslim ediyorum. Beni kutsa, bana merhamet eyle ve bana sonsuz yaşam bağışla. Amin.',
         ],
       },
     ],
@@ -77,13 +81,13 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       {
         heading: 'Yemekten önce',
         paragraphs: [
-          'Herkesin gözü umutla sana bakar, ya Rab; sen de onlara yiyeceklerini vaktinde verirsin. Cömert elini açar, her canlıyı lütfunla doyurursun.',
+          'Ey Mesih Allah’ımız, kullarının yiyeceğini ve içeceğini kutsa; çünkü Sen kutsalsın, şimdi ve her zaman ve sonsuzluklar boyunca. Amin.',
         ],
       },
       {
         heading: 'Yemekten sonra',
         paragraphs: [
-          'Sana şükrederiz, ey Hristos Tanrımız, bizi yeryüzü nimetlerinle doyurdun. Bizi göksel hükümranlığından da yoksun bırakma; öğrencilerinin arasına gelip onlara barış verdiğin gibi, ey Kurtarıcı, bize de gel ve bizi kurtar.',
+          'Sana şükrederiz, ey Mesih Allah’ımız, bizi yeryüzü nimetlerinle doyurdun. Bizi göksel Krallığından da yoksun bırakma; öğrencilerinin arasına gelip onlara barış verdiğin gibi, ey Kurtarıcı, bize de gel ve bizi kurtar.',
         ],
       },
     ],

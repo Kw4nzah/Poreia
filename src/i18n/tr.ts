@@ -145,7 +145,7 @@ export const tr: Messages = {
 
   prayers: {
     title: 'Dualar',
-    summary: 'Göklerdeki Pederimiz, İman İkrarı, sabah ve akşam duaları',
+    summary: 'Göklerdeki Babamız, İman İkrarı, sabah ve akşam duaları',
     smaller: 'Yazıyı küçült',
     larger: 'Yazıyı büyüt',
     group: { basic: 'Temel dualar', daily: 'Günün duaları' },
