@@ -153,7 +153,7 @@ export const en: Messages = {
     startsIn: (days) => (days === 1 ? 'Starts tomorrow' : `Starts in ${days} days`),
     daysToPascha: (days) => `${days} ${plural(days, 'day', 'days')} to Pascha`,
     disclaimer:
-      'General guidance from the parish calendars. Local custom and the advice of your spiritual father come first.',
+      'General guidance from the parish calendars. Local custom and the advice of your spiritual father come first. Allowances on saints’ days are only partly included.',
     settings: 'Settings',
     newVersion: 'A new version is ready to install',
   },
@@ -245,6 +245,9 @@ export const en: Messages = {
     totalAbstinence: 'Those who are able keep a complete fast today.',
     caviarAllowed: 'Fish roe is allowed today.',
     feastRelaxation: 'The fast is lightened for the feast.',
+    fishDisputed:
+      'Traditions differ on fish today: some allow it, stricter ones do not. Ask your spiritual father.',
+    wineOnly: 'Wine is allowed today, but not oil.',
   },
 
   prayers: {

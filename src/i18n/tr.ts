@@ -49,7 +49,7 @@ export const tr: Messages = {
     startsIn: (days) => (days === 1 ? 'Yarın başlıyor' : `${days} gün sonra başlıyor`),
     daysToPascha: (days) => `Paskalya'ya ${days} gün`,
     disclaimer:
-      'Kilise takvimlerine dayanan genel bir rehberdir. Yerel âdet ve ruhani babanın öğüdü önce gelir.',
+      'Kilise takvimlerine dayanan genel bir rehberdir. Yerel âdet ve ruhani babanın öğüdü önce gelir. Azizlerin anma günlerinde verilen izinlerin yalnızca bir kısmı yer alır.',
     settings: 'Ayarlar',
     newVersion: 'Yeni sürüm kurulmaya hazır',
   },
@@ -141,6 +141,9 @@ export const tr: Messages = {
     totalAbstinence: 'Gücü yetenler bugün hiçbir şey yemeden oruç tutar.',
     caviarAllowed: 'Bugün balık yumurtası serbest.',
     feastRelaxation: 'Bayram nedeniyle oruç hafifletilir.',
+    fishDisputed:
+      'Balık konusunda gelenekler ayrışıyor: bazıları bugün balığa izin verir, daha katı olanlar vermez. Ruhani babana danış.',
+    wineOnly: 'Bugün yalnızca şarap serbest, zeytinyağı değil.',
   },
 
   prayers: {

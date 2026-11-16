@@ -38,14 +38,18 @@ describe('Nativity Fast', () => {
     expect(info.level).toBe('oil');
   });
 
-  it('allows no fish in the first week or on Mondays (Greek)', () => {
-    // 16 Nov 2026 is a Monday (St Matthew): wine and oil, but no fish.
-    expect(getDayInfo(d(2026, 11, 16), greek).level).toBe('oil');
-    expect(getDayInfo(d(2026, 11, 17), greek).level).toBe('oil'); // Tuesday, first week
-    expect(getDayInfo(d(2026, 11, 21), greek).level).toBe('fish'); // Entry, a Saturday
-    expect(getDayInfo(d(2026, 11, 22), greek).level).toBe('fish'); // Sunday
-    expect(getDayInfo(d(2026, 11, 23), greek).level).toBe('oil'); // Monday
-    expect(getDayInfo(d(2026, 11, 24), greek).level).toBe('fish'); // Tuesday
+  it('shows fish only where the Greek sources agree, and flags the days they dispute', () => {
+    const day = (m: number, dd: number) => getDayInfo(d(2026, m, dd), greek);
+    // 16 Nov 2026 is a Monday: wine and oil; fish is disputed (Church of Greece vs Typikon).
+    expect(day(11, 16)).toMatchObject({ level: 'oil', notes: ['fishDisputed'] });
+    expect(day(11, 15)).toMatchObject({ level: 'oil', notes: ['fishDisputed'] }); // Sunday, week 1
+    expect(day(11, 17)).toMatchObject({ level: 'oil', notes: ['fishDisputed'] }); // Tuesday
+    expect(day(11, 21).level).toBe('fish'); // Entry, a Saturday
+    expect(day(11, 22)).toMatchObject({ level: 'fish', notes: [] }); // Sunday
+    expect(day(11, 23)).toMatchObject({ level: 'oil', notes: ['fishDisputed'] }); // Monday
+    expect(day(12, 13)).toMatchObject({ level: 'fish', notes: [] }); // Sunday
+    expect(day(12, 15)).toMatchObject({ level: 'oil', notes: ['fishDisputed'] }); // Tuesday
+    expect(day(12, 19)).toMatchObject({ level: 'oil', notes: [] }); // Saturday, no fish at all
   });
 
   it('gives wine and oil on a feast of a saint on a Wednesday or Friday (Greek)', () => {
@@ -84,7 +88,7 @@ describe('Nativity Fast', () => {
   });
 
   it('tightens before the feast (Greek)', () => {
-    expect(getDayInfo(d(2026, 12, 15), greek).level).toBe('fish'); // Tuesday
+    expect(getDayInfo(d(2026, 12, 15), greek).level).toBe('oil'); // Tuesday
     expect(getDayInfo(d(2026, 12, 16), greek).level).toBe('noOil'); // Wednesday
     expect(getDayInfo(d(2026, 12, 22), greek).level).toBe('oil'); // Tuesday
     expect(getDayInfo(d(2026, 12, 24), greek).level).toBe('noOil'); // Thursday
@@ -117,11 +121,18 @@ describe('Great Lent and Holy Week', () => {
 
   it('handles the Annunciation on both calendars', () => {
     expect(getDayInfo(d(2026, 3, 25), greek).level).toBe('fish');
-    // 7 Apr 2026 is Holy Tuesday on the old calendar: oil, no fish.
+    // 7 Apr 2026 is Holy Tuesday on the old calendar: wine only, no oil, no fish.
     const r = getDayInfo(d(2026, 4, 7), russian);
     expect(r.feasts).toEqual(['annunciation']);
     expect(r.period?.id).toBe('holyWeek');
-    expect(r.level).toBe('oil');
+    expect(r.level).toBe('xerophagy');
+    expect(r.notes).toEqual(['wineOnly']);
+  });
+
+  it('allows wine on Great Saturday and wine and oil on Holy Thursday', () => {
+    expect(getDayInfo(d(2026, 4, 11), greek)).toMatchObject({ level: 'noOil', notes: ['wineOnly'] });
+    expect(getDayInfo(d(2026, 4, 11), russian)).toMatchObject({ level: 'xerophagy', notes: ['wineOnly'] });
+    expect(getDayInfo(d(2026, 4, 9), greek).level).toBe('oil');
   });
 
   it('keeps Great Friday as the strictest day', () => {
@@ -202,7 +213,7 @@ describe('single fast days', () => {
   it('gives wine and oil on Tuesday and Thursday of the Apostles Fast (Russian)', () => {
     expect(getDayInfo(d(2026, 6, 9), russian).level).toBe('oil'); // Tuesday
     expect(getDayInfo(d(2026, 6, 13), russian).level).toBe('fish'); // Saturday
-    expect(getDayInfo(d(2026, 6, 8), greek).level).toBe('oil'); // Monday
+    expect(getDayInfo(d(2026, 6, 8), greek)).toMatchObject({ level: 'oil', notes: ['fishDisputed'] });
     expect(getDayInfo(d(2026, 6, 9), greek).level).toBe('fish'); // Tuesday
   });
 
@@ -214,10 +225,14 @@ describe('single fast days', () => {
     expect(getDayInfo(d(2026, 1, 6), greek).level).toBe('none');
   });
 
-  it('keeps the Beheading and the Exaltation on any weekday', () => {
+  it('keeps the Beheading and the Exaltation strict on weekdays and gives oil at weekends', () => {
     expect(getDayInfo(d(2026, 8, 29), greek).level).toBe('oil'); // Saturday
-    expect(getDayInfo(d(2026, 9, 14), greek).fastDay).toBe('exaltationOfCross');
+    const exaltation = getDayInfo(d(2026, 9, 14), greek); // Monday
+    expect(exaltation.fastDay).toBe('exaltationOfCross');
+    expect(exaltation.level).toBe('noOil');
     expect(getDayInfo(d(2026, 9, 27), russian).level).toBe('oil'); // Sunday
+    expect(getDayInfo(d(2026, 9, 11), russian).level).toBe('xerophagy'); // Friday, Beheading
+    expect(getDayInfo(d(2027, 9, 11), russian).level).toBe('oil'); // Saturday, Beheading
   });
 });
 
