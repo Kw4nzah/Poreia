@@ -85,7 +85,7 @@ describe('readingVerses', () => {
     expect(verses.map((v) => v.chapter)).toContain(2);
   });
 
-  it('has Old Testament and deuterocanon text in en (LXX numbering) but not in ru', () => {
+  it('has Old Testament text in en (LXX numbering) and in ru where chapters match, deuterocanon only in en', () => {
     const isaiah = { kind: 'other', source: 'x', runs: [['ISA', 35, 1, 35, 10]] } as const;
     const en = readingVerses(isaiah, 'en')!;
     expect(en).toHaveLength(10);
@@ -93,7 +93,9 @@ describe('readingVerses', () => {
     expect(translationName(isaiah, 'en')).toBe('LXX2012 (Septuagint)');
     const wisdom = readingVerses({ kind: 'other', source: 'x', runs: [['WIS', 3, 1, 3, 9]] }, 'en')!;
     expect(wisdom[0].text).toMatch(/righteous/i);
-    expect(readingVerses(isaiah, 'ru')).toBeNull();
+    const ruIsaiah = readingVerses(isaiah, 'ru')!;
+    expect(ruIsaiah).toHaveLength(10);
+    expect(ruIsaiah[0].text).toMatch(/пустын/i);
     expect(readingVerses({ kind: 'other', source: 'x', runs: [['WIS', 3, 1, 3, 9]] }, 'ru')).toBeNull();
   });
 

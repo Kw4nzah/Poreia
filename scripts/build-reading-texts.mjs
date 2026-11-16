@@ -113,6 +113,34 @@ function touchesDifference([book, c1, v1, c2, v2]) {
   );
 }
 
+// Old Testament in Russian: the Synodal Translation follows the Hebrew text and numbering while
+// the lectionary follows the Septuagint. A Synodal chapter is used for a Septuagint chapter only
+// when the book is one whose chapters line up and the verse counts are equal. The eBible
+// Synodal psalter already uses the Septuagint psalm numbers. Everything else stays a reference.
+const RU_OT_BOOKS = new Set(
+  'GEN EXO LEV NUM DEU JOS JDG 1SA 2SA 1KI 2KI ISA EZK HOS JOL AMO OBA JON MIC NAM HAB ZEP HAG ZEC MAL PSA'.split(' '),
+);
+async function russianOldTestament() {
+  const synodal = await loadBooks(ruDir, (code) => RU_OT_BOOKS.has(code));
+  const septuagint = await loadBooks(lxxDir, (code) => RU_OT_BOOKS.has(code));
+  const out = {};
+  let used = 0;
+  let skipped = 0;
+  for (const [book, chapters] of Object.entries(septuagint)) {
+    for (const [c, verses] of Object.entries(chapters)) {
+      const ru = synodal[book]?.[Number(c)];
+      if (!ru || Object.keys(ru).length !== Object.keys(verses).length) {
+        skipped++;
+        continue;
+      }
+      (out[book] ??= {})[c] = ru;
+      used++;
+    }
+  }
+  console.log(`ru Old Testament chapters: ${used} matched, ${skipped} left as references`);
+  return out;
+}
+
 const runs = (await neededRuns()).filter((run) => !touchesDifference(run));
 const isNT = (code) => NEW_TESTAMENT.has(code);
 const isOT = (code) => !NEW_TESTAMENT.has(code);
@@ -120,7 +148,7 @@ const isOT = (code) => !NEW_TESTAMENT.has(code);
 // numbering, the one the lectionary uses). ru: New Testament only (see header).
 const sources = {
   en: async () => ({ ...(await loadBooks(lxxDir, isOT)), ...(await loadBooks(enDir, isNT)) }),
-  ru: async () => loadBooks(ruDir, isNT),
+  ru: async () => ({ ...(await russianOldTestament()), ...(await loadBooks(ruDir, isNT)) }),
 };
 for (const lang of ['en', 'ru']) {
   const books = await sources[lang]();

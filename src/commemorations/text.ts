@@ -2,8 +2,8 @@
 // Built by scripts/build-reading-texts.mjs.
 //   en: New Testament = Berean Standard Bible (public domain); Old Testament and deuterocanon = LXX2012
 //       (Septuagint numbering, as the lectionary uses).
-//   ru: New Testament = Synodal Translation (1876) only.
-// Everything else (ru Old Testament, composite readings, Turkish) has no text and the
+//   ru: Synodal Translation (1876); Old Testament only for chapters that match the Septuagint verse for verse.
+// Everything else (unmatched ru Old Testament chapters, composite readings, Turkish) has no text and the
 // screens show the reference alone.
 
 import type { BookLanguage } from './books';
