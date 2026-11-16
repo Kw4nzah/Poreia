@@ -18,15 +18,12 @@ export function Prayers() {
     <ScrollView
       style={styles.screen}
       contentContainerStyle={{
-        paddingTop: insets.top + space.sm,
-        paddingBottom: insets.bottom + space.xl,
+        paddingTop: insets.top + space.md,
+        paddingBottom: space.xl,
         paddingHorizontal: space.lg,
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Pressable onPress={() => router.back()} style={styles.back} accessibilityRole="button">
-        <Text style={styles.backText}>‹ {m.settings.back}</Text>
-      </Pressable>
       <Text style={styles.title}>{m.prayers.title}</Text>
 
       {PRAYER_GROUPS.map((group) => (
@@ -36,7 +33,7 @@ export function Prayers() {
             {group.prayers.map((id, index) => (
               <Pressable
                 key={id}
-                onPress={() => router.push({ pathname: '/prayers/[id]', params: { id } })}
+                onPress={() => router.push({ pathname: '/prayer/[id]', params: { id } })}
                 style={({ pressed }) => [
                   styles.row,
                   index > 0 && styles.rowDivider,
@@ -58,9 +55,7 @@ export function Prayers() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { fontSize: 16, color: t.accent },
-    title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink, marginTop: space.xs },
+    title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink, marginTop: 0 },
     label: { fontSize: 14, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
     card: {
       borderRadius: 16,

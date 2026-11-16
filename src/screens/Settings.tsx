@@ -1,7 +1,6 @@
 // Name, tradition, language and updates.
 
 import * as Application from 'expo-application';
-import { useRouter } from 'expo-router';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
@@ -23,7 +22,6 @@ export function Settings() {
   const { settings, messages: m, update } = useSettings();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const router = useRouter();
   const styles = makeStyles(theme);
   const updates = useUpdateCheck();
   const apk = useApkUpdate();
@@ -45,16 +43,13 @@ export function Settings() {
     <ScrollView
       style={styles.screen}
       contentContainerStyle={{
-        paddingTop: insets.top + space.sm,
-        paddingBottom: insets.bottom + space.xl,
+        paddingTop: insets.top + space.md,
+        paddingBottom: space.xl,
         paddingHorizontal: space.lg,
       }}
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
     >
-      <Pressable onPress={() => router.back()} style={styles.back} accessibilityRole="button">
-        <Text style={styles.backText}>‹ {m.settings.back}</Text>
-      </Pressable>
       <Text style={styles.title}>{m.settings.title}</Text>
 
       <Text style={styles.label}>{m.settings.name}</Text>
@@ -195,8 +190,6 @@ export function Settings() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { fontSize: 16, color: t.accent },
     title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink, marginTop: space.xs },
     label: { fontSize: 14, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
     hint: { fontSize: 13, lineHeight: 19, color: t.muted, marginBottom: space.sm },

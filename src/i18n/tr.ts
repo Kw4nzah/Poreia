@@ -38,6 +38,8 @@ export const tr: Messages = {
     russian: { name: 'Rus geleneği', calendar: 'Eski (Jülyen) takvim' },
   },
 
+  tabs: { today: 'Bugün', readings: 'Okumalar' },
+
   today: {
     greeting: (name) => (name ? `Hoş geldin, ${name}` : 'Hoş geldin'),
     churchDate: (date) => `Kilise takvimi: ${date}`,
