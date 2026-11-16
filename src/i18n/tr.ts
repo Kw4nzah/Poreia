@@ -174,6 +174,7 @@ export const tr: Messages = {
     readings: 'Okumalar',
     more: (count) => `+${count} daha`,
     namesEnglish: 'Adlar İngilizce gösterilir.',
+    textEnglish: 'Türkçe metin henüz yok, İngilizcesi gösteriliyor.',
     noData: 'Bu yıl için henüz aziz ve okuma verisi yok.',
     epistle: 'Mektup',
     gospel: 'İncil',

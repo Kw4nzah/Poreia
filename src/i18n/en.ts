@@ -109,6 +109,7 @@ export interface Messages {
     more: (count: number) => string;
     /** Saint and feast names come from an English-only source. */
     namesEnglish: string;
+    textEnglish: string;
     noData: string;
     epistle: string;
     gospel: string;
@@ -301,6 +302,7 @@ export const en: Messages = {
     readings: 'Readings',
     more: (count) => `+${count} more`,
     namesEnglish: 'Names are shown in English.',
+    textEnglish: 'No text in this language yet, English is shown.',
     noData: 'No saints or readings for this year yet.',
     epistle: 'Epistle',
     gospel: 'Gospel',

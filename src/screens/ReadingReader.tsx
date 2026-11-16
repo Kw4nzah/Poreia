@@ -4,7 +4,7 @@ import { Redirect, useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getCommemoration, readingReference } from '../commemorations';
-import { readingVerses, translationName } from '../commemorations/text';
+import { readingText, translationName } from '../commemorations/text';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
@@ -22,8 +22,8 @@ export function ReadingReader({ index }: { index: number }) {
   const today = useToday();
 
   const reading = getCommemoration(today, settings.churchId)?.readings[index];
-  const verses = reading ? readingVerses(reading, settings.language) : null;
-  if (!reading || !verses) return <Redirect href="/readings" />;
+  const text = reading ? readingText(reading, settings.language) : null;
+  if (!reading || !text) return <Redirect href="/readings" />;
 
   const size = settings.prayerTextSize;
   const textSize = PRAYER_TEXT_SIZES[size];
@@ -79,9 +79,10 @@ export function ReadingReader({ index }: { index: number }) {
         <Text style={styles.title}>{readingReference(reading, settings.language)}</Text>
         <View style={styles.rule} />
 
-        <VerseText verses={verses} size={textSize} />
+        <VerseText verses={text.verses} size={textSize} />
 
-        <Text style={styles.source}>{translationName(reading, settings.language)}</Text>
+        <Text style={styles.source}>{translationName(reading, text.language)}</Text>
+        {text.fallback && <Text style={styles.note}>{m.readings.textEnglish}</Text>}
       </ScrollView>
     </View>
   );
@@ -107,5 +108,6 @@ function makeStyles(t: Theme) {
     title: { fontFamily: SERIF, fontSize: 28, lineHeight: 36, color: t.ink, marginTop: 2 },
     rule: { width: 40, height: 2, borderRadius: 1, backgroundColor: t.feast, marginTop: space.md },
     source: { fontSize: 13, color: t.muted, marginTop: space.xl },
+    note: { fontSize: 13, color: t.muted, marginTop: 4 },
   });
 }

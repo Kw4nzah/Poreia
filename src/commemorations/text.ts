@@ -63,3 +63,18 @@ export function readingVerses(reading: Reading, language: BookLanguage): Reading
   }
   return out.length > 0 ? out : null;
 }
+
+/**
+ * Text to show for a reading: the user's language when bundled, otherwise English (so every
+ * reading with any bundled text can be opened). `fallback` tells the screen to say so.
+ */
+export function readingText(
+  reading: Reading,
+  language: BookLanguage,
+): { verses: ReadingVerse[]; language: BookLanguage; fallback: boolean } | null {
+  const own = readingVerses(reading, language);
+  if (own) return { verses: own, language, fallback: false };
+  if (language === 'en') return null;
+  const english = readingVerses(reading, 'en');
+  return english ? { verses: english, language: 'en', fallback: true } : null;
+}

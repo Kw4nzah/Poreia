@@ -184,6 +184,7 @@ export const ru: Messages = {
     readings: 'Чтения',
     more: (count) => `ещё ${count}`,
     namesEnglish: 'Имена показаны на английском.',
+    textEnglish: 'Текста на русском нет, показан английский.',
     noData: 'Данных о святых и чтениях за этот год пока нет.',
     epistle: 'Апостол',
     gospel: 'Евангелие',

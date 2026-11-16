@@ -15,7 +15,7 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       {
         paragraphs: [
           'Göklerdeki Babamız, adın kutsal kılınsın. Hükümranlığın gelsin. Gökte olduğu gibi, yeryüzünde de Senin istediğin olsun.',
-          'Bugün bize gündelik ekmeğimizi ver. Bize karşı suç işleyenleri bağışladığımız gibi, sen de bizim suçlarımızı bağışla. Ayartılmamıza izin verme. Kötü olandan bizi kurtar. Çünkü hükümranlık, güç ve yücelik Senindir, Peder’in ve Oğul’un ve Aziz Ruh’un, şimdi ve daima ve ebetler ebedince. Âmin.',
+          'Bugün bize gündelik ekmeğimizi ver. Bize karşı suç işleyenleri bağışladığımız gibi, sen de bizim suçlarımızı bağışla. Ayartılmamıza izin verme. Kötü olandan bizi kurtar. Çünkü hükümranlık, güç ve yücelik Senindir, Baba’nın ve Oğul’un ve Aziz Ruh’un, şimdi ve daima ve ebetler ebedince. Âmin.',
         ],
       },
     ],
@@ -25,14 +25,14 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
     sections: [
       {
         paragraphs: [
-          'İman ederim bir Allah’a, her şeye kadir olan Peder’e, göğün ve yerin, bütün görünen ve görünmeyenlerin Yaradan’ına.',
-          'Ve bir Rab İsa Mesih’e, Allah’ın biricik Oğlu’na, bütün çağlardan önce Peder’den doğmuş olana. Nur’dan nur, gerçek Allah’tan gerçek Allah’a, doğmuş olup yaratılmış olmayana, Peder’le bir özde olana, her şeyin O’nun vasıtasıyla var edilmiş olduğuna.',
+          'İman ederim bir Allah’a, her şeye kadir olan Baba’ya, göğün ve yerin, bütün görünen ve görünmeyenlerin Yaradan’ına.',
+          'Ve bir Rab İsa Mesih’e, Allah’ın biricik Oğlu’na, bütün çağlardan önce Baba’dan doğmuş olana. Nur’dan nur, gerçek Allah’tan gerçek Allah’a, doğmuş olup yaratılmış olmayana, Baba’yla bir özde olana, her şeyin O’nun vasıtasıyla var edilmiş olduğuna.',
           'Biz insanlar ve kurtuluşumuz için göklerden inmiş olana ve Kutsal Ruh’tan ve Bâkire Meryem’den beden almış ve insan olmuş olana.',
           'Bizler için Pontius Pilatos zamanında Haç’a gerilmiş, cefâ çekmiş ve defnedilmiş olana.',
           'Ve Kutsal Yazılar’a göre üçüncü gün dirilmiş olana.',
-          'Ve göklere yükselmiş olana ve Peder’in sağında oturana.',
+          'Ve göklere yükselmiş olana ve Baba’nın sağında oturana.',
           'Ve dirileri ve ölüleri yargılamak için izzetle tekrar gelecek olana. O’nun ki, krallığın sonu olmayana.',
-          'Ve Kutsal Ruh’a, Rab’be, hayat verene, Peder’den çıkana, Peder ve Oğul’la birlikte tapılana ve yüceltilene, Peygamberler vasıtasıyla konuşmuş olana.',
+          'Ve Kutsal Ruh’a, Rab’be, hayat verene, Baba’dan çıkana, Baba ve Oğul’la birlikte tapılana ve yüceltilene, Peygamberler vasıtasıyla konuşmuş olana.',
           'Bir, Kutsal, Katolik ve Resûli Kilise’ye.',
           'Günahların bağışlanması için bir vaftizi ikrar ederim.',
           'Ölülerin dirilişini,',
