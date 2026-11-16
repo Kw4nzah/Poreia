@@ -96,20 +96,20 @@ save(art(GOLD, scale=0.82), "android-icon-foreground.png")
 save(Image.new("RGBA", (SIZE, SIZE), WINE), "android-icon-background.png")
 save(art((255, 255, 255, 255), scale=0.82), "android-icon-monochrome.png")
 
-# Splash: artwork plus the app name on transparent (the splash plugin sets the wine background).
-# Android 12+ shows the splash image inside a circle of 2/3 of the canvas, so everything stays
-# within radius ~340 px of the centre.
+# Splash: the artwork a little above centre with the app name under it, on transparent (the splash
+# plugin sets the wine background). Android 12+ may crop the splash image to a circle (about 2/3
+# of the canvas), so the name stays within that.
 def splash():
-    layer = art(GOLD, scale=0.6, dy=-95)
+    layer = art(GOLD, scale=0.74, dy=-80)
     d = ImageDraw.Draw(layer)
     font = None
-    for path in ("C:/Windows/Fonts/georgia.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"):
+    for path in ("C:/Windows/Fonts/constani.ttf", "C:/Windows/Fonts/georgia.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"):
         if os.path.exists(path):
-            font = ImageFont.truetype(path, 128)
+            font = ImageFont.truetype(path, 112)
             break
     text = "Poreia"
     box = d.textbbox((0, 0), text, font=font)
-    d.text(((SIZE - (box[2] - box[0])) / 2 - box[0], 675), text, font=font, fill=GOLD)
+    d.text(((SIZE - (box[2] - box[0])) / 2 - box[0], 690), text, font=font, fill=GOLD)
     return layer
 
 
