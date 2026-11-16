@@ -12,6 +12,7 @@ import type {
   NoteId,
   PeriodId,
 } from '../calendar';
+import type { ReadingGroupId } from '../commemorations';
 import type { PrayerGroupId, PrayerId, PrayerText } from '../prayers';
 import { prayerTexts } from './prayers/en';
 
@@ -93,6 +94,19 @@ export interface Messages {
     larger: string;
     group: Record<PrayerGroupId, string>;
     text: Record<PrayerId, PrayerText>;
+  };
+
+  readings: {
+    title: string;
+    saints: string;
+    readings: string;
+    more: (count: number) => string;
+    /** Saint and feast names come from an English-only source. */
+    namesEnglish: string;
+    noData: string;
+    epistle: string;
+    gospel: string;
+    group: Record<ReadingGroupId, string>;
   };
 
   updates: {
@@ -269,6 +283,24 @@ export const en: Messages = {
     larger: 'Larger text',
     group: { basic: 'Basic prayers', daily: 'Prayers of the day' },
     text: prayerTexts,
+  },
+
+  readings: {
+    title: 'Saints and readings',
+    saints: 'Saints of the day',
+    readings: 'Readings',
+    more: (count) => `+${count} more`,
+    namesEnglish: 'Names are shown in English.',
+    noData: 'No saints or readings for this year yet.',
+    epistle: 'Epistle',
+    gospel: 'Gospel',
+    group: {
+      liturgy: 'Divine Liturgy',
+      vespers: 'Vespers',
+      matins: 'Matins',
+      hours: 'Hours',
+      other: 'Other services',
+    },
   },
 
   updates: {

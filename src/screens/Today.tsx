@@ -4,11 +4,15 @@ import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '../calendar';
+import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
+
+/** Names listed on the Today card; the rest is on the day screen. */
+const SAINTS_SHOWN = 3;
 
 export function Today() {
   const { settings, messages: m } = useSettings();
@@ -22,6 +26,11 @@ export function Today() {
   const church = CHURCHES[settings.churchId];
   const info = getDayInfo(today, church, { greekFish: settings.greekFish });
   const upcoming = getUpcomingFast(today, church);
+
+  const commemoration = getCommemoration(today, settings.churchId);
+  const liturgyReadings = (commemoration?.readings ?? []).filter(
+    (r) => r.kind === 'epistle' || r.kind === 'gospel',
+  );
 
   const fasting = info.level !== 'none';
   const tone = fasting ? theme.accent : theme.free;
@@ -138,6 +147,49 @@ export function Today() {
         )}
       </View>
 
+      {commemoration && (
+        <Pressable
+          onPress={() => router.push('/day')}
+          style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+          accessibilityRole="button"
+        >
+          <Text style={styles.cardLabel}>{m.readings.saints}</Text>
+          {commemoration.names.slice(0, SAINTS_SHOWN).map((name) => (
+            <Text key={name} style={styles.saintName}>
+              {name}
+            </Text>
+          ))}
+          {commemoration.names.length > SAINTS_SHOWN && (
+            <Text style={styles.range}>
+              {m.readings.more(commemoration.names.length - SAINTS_SHOWN)}
+            </Text>
+          )}
+          {liturgyReadings.length > 0 && (
+            <View style={styles.readings}>
+              <Text style={styles.cardLabel}>{m.readings.readings}</Text>
+              {liturgyReadings.map((reading) => (
+                <View key={reading.kind + reading.source} style={styles.readingRow}>
+                  <Text style={styles.readingKind}>
+                    {reading.kind === 'epistle' ? m.readings.epistle : m.readings.gospel}
+                  </Text>
+                  <Text style={styles.readingRef}>
+                    {readingReference(reading, settings.language)}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          )}
+          <View style={styles.cardFoot}>
+            {settings.language !== 'en' ? (
+              <Text style={styles.small}>{m.readings.namesEnglish}</Text>
+            ) : (
+              <View />
+            )}
+            <Text style={styles.chevron}>›</Text>
+          </View>
+        </Pressable>
+      )}
+
       <Pressable
         onPress={() => router.push('/prayers')}
         style={({ pressed }) => [styles.card, styles.prayers, pressed && styles.pressed]}
@@ -231,6 +283,23 @@ function makeStyles(t: Theme) {
       paddingTop: space.md,
       borderTopWidth: 1,
       borderTopColor: t.line,
+    },
+
+    saintName: { fontFamily: SERIF, fontSize: 18, lineHeight: 25, color: t.ink, marginTop: 2 },
+    readings: {
+      marginTop: space.md,
+      paddingTop: space.md,
+      borderTopWidth: 1,
+      borderTopColor: t.line,
+    },
+    readingRow: { flexDirection: 'row', gap: 12, marginTop: 2 },
+    readingKind: { width: 76, fontSize: 15, lineHeight: 22, color: t.muted },
+    readingRef: { flex: 1, fontSize: 16, lineHeight: 22, color: t.ink },
+    cardFoot: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginTop: space.sm,
     },
 
     prayers: { flexDirection: 'row', alignItems: 'center', gap: 12 },
