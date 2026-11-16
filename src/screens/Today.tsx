@@ -1,12 +1,13 @@
 // The daily view: today's date, feast, fasting rule and the next fast.
 
 import { useRouter } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '../calendar';
 import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
+import { FadeIn, PressCard, useGrow } from '../ui/motion';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
@@ -31,6 +32,8 @@ export function Today() {
   const liturgyReadings = (commemoration?.readings ?? []).filter(
     (r) => r.kind === 'epistle' || r.kind === 'gospel',
   );
+
+  const grow = useGrow(info.period ? (info.period.day / info.period.totalDays) * 100 : 0);
 
   const fasting = info.level !== 'none';
   const tone = fasting ? theme.accent : theme.free;
@@ -64,130 +67,132 @@ export function Today() {
       )}
 
       {info.feasts.map((feast) => (
-        <View key={feast} style={styles.feast}>
-          <Text style={styles.feastLabel}>{m.today.feast}</Text>
-          <Text style={styles.feastName}>{m.feast[feast]}</Text>
-        </View>
+        <FadeIn key={feast} index={0}>
+          <View style={styles.feast}>
+            <Text style={styles.feastLabel}>{m.today.feast}</Text>
+            <Text style={styles.feastName}>{m.feast[feast]}</Text>
+          </View>
+        </FadeIn>
       ))}
 
-      <View style={styles.card}>
-        {heading && <Text style={styles.cardLabel}>{heading}</Text>}
-        <Text style={[styles.level, { color: tone }]}>{level.title}</Text>
-        <Text style={styles.detail}>{level.detail}</Text>
+      <FadeIn index={1}>
+        <View style={styles.card}>
+          {heading && <Text style={styles.cardLabel}>{heading}</Text>}
+          <Text style={[styles.level, { color: tone }]}>{level.title}</Text>
+          <Text style={styles.detail}>{level.detail}</Text>
 
-        {info.notes.map((note) => (
-          <Text key={note} style={styles.note}>
-            {m.note[note]}
-          </Text>
-        ))}
-
-        {fasting && (
-          <View style={styles.foods}>
-            {FOOD_IDS.map((food) => {
-              const allowed = isFoodAllowed(info.level, food);
-              return (
-                <View key={food} style={styles.foodRow}>
-                  <View
-                    style={[
-                      styles.mark,
-                      allowed
-                        ? { backgroundColor: theme.free, borderColor: theme.free }
-                        : { borderColor: theme.line },
-                    ]}
-                  >
-                    <Text style={[styles.markText, { color: allowed ? theme.surface : theme.muted }]}>
-                      {allowed ? '✓' : '✕'}
-                    </Text>
-                  </View>
-                  <Text style={[styles.foodName, !allowed && styles.foodForbidden]}>
-                    {m.food[food]}
-                  </Text>
-                </View>
-              );
-            })}
-          </View>
-        )}
-
-        {info.period && (
-          <View style={styles.progress}>
-            <View style={styles.track}>
-              <View
-                style={[
-                  styles.fill,
-                  {
-                    backgroundColor: tone,
-                    width: `${(info.period.day / info.period.totalDays) * 100}%`,
-                  },
-                ]}
-              />
-            </View>
-            <View style={styles.progressRow}>
-              <Text style={styles.progressText}>
-                {m.today.dayOf(info.period.day, info.period.totalDays)}
-              </Text>
-              <Text style={styles.progressText}>
-                {info.period.daysLeft === 0
-                  ? m.today.lastDay
-                  : m.today.daysLeft(info.period.daysLeft)}
-              </Text>
-            </View>
-          </View>
-        )}
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.cardLabel}>{m.today.upcomingTitle}</Text>
-        <Text style={styles.upcomingName}>{m.majorFast[upcoming.id]}</Text>
-        <Text style={styles.detail}>{m.today.startsIn(upcoming.daysUntil)}</Text>
-        <Text style={styles.range}>
-          {formatDayMonth(m, upcoming.start)} – {formatDate(m, upcoming.end)}
-        </Text>
-        {info.daysToPascha > 0 && (
-          <Text style={styles.pascha}>{m.today.daysToPascha(info.daysToPascha)}</Text>
-        )}
-      </View>
-
-      {commemoration && (
-        <Pressable
-          onPress={() => router.navigate('/readings')}
-          style={({ pressed }) => [styles.card, pressed && styles.pressed]}
-          accessibilityRole="button"
-        >
-          <Text style={styles.cardLabel}>{m.readings.saints}</Text>
-          {commemoration.names.slice(0, SAINTS_SHOWN).map((name) => (
-            <Text key={name} style={styles.saintName}>
-              {name}
+          {info.notes.map((note) => (
+            <Text key={note} style={styles.note}>
+              {m.note[note]}
             </Text>
           ))}
-          {commemoration.names.length > SAINTS_SHOWN && (
-            <Text style={styles.range}>
-              {m.readings.more(commemoration.names.length - SAINTS_SHOWN)}
-            </Text>
-          )}
-          {liturgyReadings.length > 0 && (
-            <View style={styles.readings}>
-              <Text style={styles.cardLabel}>{m.readings.readings}</Text>
-              {liturgyReadings.map((reading) => (
-                <View key={reading.kind + reading.source} style={styles.readingRow}>
-                  <Text style={styles.readingKind}>
-                    {reading.kind === 'epistle' ? m.readings.epistle : m.readings.gospel}
-                  </Text>
-                  <Text style={styles.readingRef}>
-                    {readingReference(reading, settings.language)}
-                  </Text>
-                </View>
-              ))}
+
+          {fasting && (
+            <View style={styles.foods}>
+              {FOOD_IDS.map((food) => {
+                const allowed = isFoodAllowed(info.level, food);
+                return (
+                  <View key={food} style={styles.foodRow}>
+                    <View
+                      style={[
+                        styles.mark,
+                        allowed
+                          ? { backgroundColor: theme.free, borderColor: theme.free }
+                          : { borderColor: theme.line },
+                      ]}
+                    >
+                      <Text
+                        style={[styles.markText, { color: allowed ? theme.surface : theme.muted }]}
+                      >
+                        {allowed ? '✓' : '✕'}
+                      </Text>
+                    </View>
+                    <Text style={[styles.foodName, !allowed && styles.foodForbidden]}>
+                      {m.food[food]}
+                    </Text>
+                  </View>
+                );
+              })}
             </View>
           )}
-          <View style={styles.cardFoot}>
-            {settings.language !== 'en' ? (
-              <Text style={styles.small}>{m.readings.namesEnglish}</Text>
-            ) : (
-              <View />
+
+          {info.period && (
+            <View style={styles.progress}>
+              <View style={styles.track}>
+                <Animated.View style={[styles.fill, { backgroundColor: tone, width: grow }]} />
+              </View>
+              <View style={styles.progressRow}>
+                <Text style={styles.progressText}>
+                  {m.today.dayOf(info.period.day, info.period.totalDays)}
+                </Text>
+                <Text style={styles.progressText}>
+                  {info.period.daysLeft === 0
+                    ? m.today.lastDay
+                    : m.today.daysLeft(info.period.daysLeft)}
+                </Text>
+              </View>
+            </View>
+          )}
+        </View>
+      </FadeIn>
+
+      <FadeIn index={2}>
+        <View style={styles.card}>
+          <Text style={styles.cardLabel}>{m.today.upcomingTitle}</Text>
+          <Text style={styles.upcomingName}>{m.majorFast[upcoming.id]}</Text>
+          <Text style={styles.detail}>{m.today.startsIn(upcoming.daysUntil)}</Text>
+          <Text style={styles.range}>
+            {formatDayMonth(m, upcoming.start)} – {formatDate(m, upcoming.end)}
+          </Text>
+          {info.daysToPascha > 0 && (
+            <Text style={styles.pascha}>{m.today.daysToPascha(info.daysToPascha)}</Text>
+          )}
+        </View>
+      </FadeIn>
+
+      {commemoration && (
+        <FadeIn index={3}>
+          <PressCard
+            onPress={() => router.navigate('/readings')}
+            style={styles.card}
+            accessibilityRole="button"
+          >
+            <Text style={styles.cardLabel}>{m.readings.saints}</Text>
+            {commemoration.names.slice(0, SAINTS_SHOWN).map((name) => (
+              <Text key={name} style={styles.saintName}>
+                {name}
+              </Text>
+            ))}
+            {commemoration.names.length > SAINTS_SHOWN && (
+              <Text style={styles.range}>
+                {m.readings.more(commemoration.names.length - SAINTS_SHOWN)}
+              </Text>
             )}
-            <Text style={styles.chevron}>›</Text>
-          </View>
-        </Pressable>
+            {liturgyReadings.length > 0 && (
+              <View style={styles.readings}>
+                <Text style={styles.cardLabel}>{m.readings.readings}</Text>
+                {liturgyReadings.map((reading) => (
+                  <View key={reading.kind + reading.source} style={styles.readingRow}>
+                    <Text style={styles.readingKind}>
+                      {reading.kind === 'epistle' ? m.readings.epistle : m.readings.gospel}
+                    </Text>
+                    <Text style={styles.readingRef}>
+                      {readingReference(reading, settings.language)}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+            )}
+            <View style={styles.cardFoot}>
+              {settings.language !== 'en' ? (
+                <Text style={styles.small}>{m.readings.namesEnglish}</Text>
+              ) : (
+                <View />
+              )}
+              <Text style={styles.chevron}>›</Text>
+            </View>
+          </PressCard>
+        </FadeIn>
       )}
 
       <Text style={styles.disclaimer}>{m.today.disclaimer}</Text>

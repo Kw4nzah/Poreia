@@ -5,6 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_GROUPS } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
+import { FadeIn } from '../ui/motion';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 
 export function Prayers() {
@@ -26,8 +27,8 @@ export function Prayers() {
     >
       <Text style={styles.title}>{m.prayers.title}</Text>
 
-      {PRAYER_GROUPS.map((group) => (
-        <View key={group.id}>
+      {PRAYER_GROUPS.map((group, groupIndex) => (
+        <FadeIn key={group.id} index={groupIndex}>
           <Text style={styles.label}>{m.prayers.group[group.id]}</Text>
           <View style={styles.card}>
             {group.prayers.map((id, index) => (
@@ -46,7 +47,7 @@ export function Prayers() {
               </Pressable>
             ))}
           </View>
-        </View>
+        </FadeIn>
       ))}
     </ScrollView>
   );
