@@ -4,6 +4,7 @@ import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
@@ -22,6 +23,7 @@ export function Settings() {
   const { settings, messages: m, update } = useSettings();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const styles = makeStyles(theme);
   const updates = useUpdateCheck();
   const apk = useApkUpdate();
@@ -183,6 +185,14 @@ export function Settings() {
           </View>
         )}
       </View>
+
+      <Pressable
+        onPress={() => router.push('/sources')}
+        style={[styles.button, styles.buttonOutline]}
+        accessibilityRole="button"
+      >
+        <Text style={styles.buttonOutlineText}>{m.sources.title}</Text>
+      </Pressable>
     </ScrollView>
   );
 }
