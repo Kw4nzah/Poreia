@@ -95,3 +95,6 @@ save(on_wine(art(GOLD, scale=1.2)), "icon.png")
 save(art(GOLD, scale=0.82), "android-icon-foreground.png")
 save(Image.new("RGBA", (SIZE, SIZE), WINE), "android-icon-background.png")
 save(art((255, 255, 255, 255), scale=0.82), "android-icon-monochrome.png")
+
+# Splash: the same gold artwork on transparent (the splash plugin sets the wine background).
+save(art(GOLD, scale=0.82), "splash-icon.png")
