@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Reading, getCommemoration, groupReadings, readingReference } from '../commemorations';
+import { parseService } from '../commemorations/service';
 import { readingText, translationName } from '../commemorations/text';
 import { formatDate } from '../i18n';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
@@ -36,7 +37,8 @@ export function Readings() {
   function kindLabel(reading: Reading): string {
     if (reading.kind === 'epistle') return m.readings.epistle;
     if (reading.kind === 'gospel') return m.readings.gospel;
-    return reading.source;
+    const service = parseService(reading.source);
+    return service ? m.readings.service(service) : reading.source;
   }
 
   const groups = day ? groupReadings(day.readings) : [];
@@ -108,7 +110,7 @@ export function Readings() {
           <Text style={styles.label}>{m.readings.saints}</Text>
           <View style={styles.card}>
             {day.names.map((name, index) => (
-              <Text key={name} style={[styles.name, index > 0 && styles.divider]}>
+              <Text key={`${index}-${name}`} style={[styles.name, index > 0 && styles.divider]}>
                 {name}
               </Text>
             ))}

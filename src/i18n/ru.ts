@@ -186,6 +186,28 @@ export const ru: Messages = {
     namesEnglish: 'Имена показаны на английском.',
     textEnglish: 'Текста на русском нет, показан английский.',
     openTurkish: 'Открыть в турецкой Библии (KKDEU)',
+    service: (service) => {
+      const part = { gospel: 'Евангелие', epistle: 'Апостол', prophecy: 'Паримия' };
+      const kind = service.part ? part[service.part] : '';
+      switch (service.kind) {
+        case 'vespers':
+          return service.part === 'gospel' ? 'Евангелие на вечерне' : 'Вечерня';
+        case 'matins':
+          return service.part === 'gospel'
+            ? (service.n ? service.n + '-е ' : '') + 'Евангелие на утрене'
+            : kind
+              ? kind + ' на утрене'
+              : 'Утреня';
+        case 'hour':
+          return (service.n ? service.n + '-й час' : 'Час') + (kind ? ', ' + kind : '');
+        case 'passion':
+          return (service.n ? service.n + '-е ' : '') + 'Евангелие страстей';
+        case 'waters':
+          return 'Великое освящение воды';
+        case 'cross':
+          return 'Крестный ход';
+      }
+    },
     noData: 'Данных о святых и чтениях за этот год пока нет.',
     epistle: 'Апостол',
     gospel: 'Евангелие',

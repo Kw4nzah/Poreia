@@ -6,6 +6,21 @@ import { CivilDate, civilFromLocalDate } from '../calendar';
 export function useToday(): CivilDate {
   const [today, setToday] = useState(() => civilFromLocalDate(new Date()));
 
+  // Also roll over at local midnight while the app stays open in the foreground.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    const arm = () => {
+      const now = new Date();
+      const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1);
+      timer = setTimeout(() => {
+        setToday(civilFromLocalDate(new Date()));
+        arm();
+      }, midnight.getTime() - now.getTime());
+    };
+    arm();
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (state) => {
       if (state !== 'active') return;

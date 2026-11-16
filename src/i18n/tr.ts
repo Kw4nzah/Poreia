@@ -176,6 +176,29 @@ export const tr: Messages = {
     namesEnglish: 'Adlar İngilizce gösterilir.',
     textEnglish: 'Türkçe metin henüz yok, İngilizcesi gösteriliyor.',
     openTurkish: 'Türkçesini aç (KKDEU, Kutsal Kitap ve Deuterokanonik Kitaplar)',
+    service: (service) => {
+      const part = { gospel: 'İncil', epistle: 'Mektup', prophecy: 'Peygamberlik okuması' };
+      const kind = service.part ? part[service.part] : '';
+      const n = service.n ? service.n + '. ' : '';
+      switch (service.kind) {
+        case 'vespers':
+          return service.part === 'gospel' ? 'Akşam Ayini İncili' : 'Akşam Ayini';
+        case 'matins':
+          return (
+            n +
+            'Sabah Ayini' +
+            (service.part === 'gospel' ? ' İncili' : service.part === 'epistle' ? ' Mektubu' : '')
+          );
+        case 'hour':
+          return n + 'Saat' + (kind ? ', ' + kind : '');
+        case 'passion':
+          return n + 'Çile İncili';
+        case 'waters':
+          return 'Büyük Ayazma Takdisi';
+        case 'cross':
+          return 'Haç Alayı';
+      }
+    },
     noData: 'Bu yıl için henüz aziz ve okuma verisi yok.',
     epistle: 'Mektup',
     gospel: 'İncil',
