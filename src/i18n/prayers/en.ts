@@ -47,6 +47,21 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       },
     ],
   },
+  trisagion: {
+    title: 'Trisagion',
+    sections: [
+      {
+        paragraphs: [
+          'Holy God! Holy Mighty! Holy Immortal! Have mercy on us. (3 times)',
+          'Glory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.',
+          'O Most Holy Trinity! Have mercy on us! Lord, cleanse us from our sins! Master, pardon our transgressions! Holy One, visit and heal our infirmities for Thy name’s sake.',
+          'Lord, have mercy! (3 times)',
+          'Glory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.',
+          'Then the Lord’s Prayer.',
+        ],
+      },
+    ],
+  },
   ephrem: {
     title: 'Prayer of St. Ephraim',
     sections: [

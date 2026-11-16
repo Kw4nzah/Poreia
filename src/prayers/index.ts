@@ -1,7 +1,7 @@
 // Which prayers exist and how they are grouped. Ids only; the texts live in the i18n layer.
 
 export const PRAYER_GROUPS = [
-  { id: 'basic', prayers: ['lordsPrayer', 'creed', 'heavenlyKing'] },
+  { id: 'basic', prayers: ['lordsPrayer', 'creed', 'heavenlyKing', 'trisagion'] },
   { id: 'daily', prayers: ['morning', 'evening', 'meals'] },
   { id: 'lent', prayers: ['ephrem'] },
 ] as const;

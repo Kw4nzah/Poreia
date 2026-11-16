@@ -50,16 +50,32 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       },
     ],
   },
-  // TODO: no published Turkish source found; English text (St Tikhon's) shown until a translation is supplied.
+  // Turkish: the user's translation (ortodoks_dualar_tr_ru_en.md, 2026-11-17); no published Turkish source.
+  trisagion: {
+    title: 'Trisagion (Üç Kez Kutsal)',
+    sections: [
+      {
+        paragraphs: [
+          'Kutsal Tanrı, Kutsal Güçlü, Kutsal Ölümsüz, bize merhamet et. (3 kez)',
+          'Baba’ya, Oğul’a ve Kutsal Ruh’a yücelik olsun; şimdi ve her zaman ve çağlar boyunca. Amin.',
+          'En Kutsal Teslis, bize merhamet et. Ya Rab, günahlarımızı temizle. Efendimiz, suçlarımızı bağışla. Ey Kutsal Olan, adın uğruna yanımıza gel ve zayıflıklarımızı iyileştir.',
+          'Rab, merhamet et. (3 kez)',
+          'Baba’ya, Oğul’a ve Kutsal Ruh’a yücelik olsun; şimdi ve her zaman ve çağlar boyunca. Amin.',
+          'Ardından Göklerdeki Babamız okunur.',
+        ],
+      },
+    ],
+  },
+  // Turkish: the user's translation (ortodoks_dualar_tr_ru_en.md, 2026-11-17); no published Turkish source.
   ephrem: {
     title: 'Aziz Efrem’in Duası',
     sections: [
       {
-        heading: 'Türkçe metin henüz yok, İngilizcesi gösteriliyor',
+        heading: 'Büyük Perhiz’in hafta içi günlerinde okunur',
         paragraphs: [
-          'O Lord and Master of my life! Take from me the spirit of sloth, despair, lust of power and idle talk.',
-          'But give rather the spirit of chastity, humility, patience, and love to Thy servant.',
-          'Yea, O Lord and King! Grant me to see my own transgressions and not to judge my brother, for blessed art Thou, unto ages of ages.',
+          'Ya Rab ve yaşamımın Efendisi, tembellik, umutsuzluk, iktidar hırsı ve boş söz ruhunu bana verme.',
+          'Bunun yerine iffet, alçakgönüllülük, sabır ve sevgi ruhunu kuluna bağışla.',
+          'Evet, ya Rab ve Kral, kendi günahlarımı görmemi ve kardeşimi yargılamamamı bana bağışla; çünkü sen çağlar boyunca kutsanmışsın. Amin.',
         ],
       },
     ],
