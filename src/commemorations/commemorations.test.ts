@@ -7,6 +7,7 @@ import {
   hasBookName,
   readingKind,
 } from './index';
+import { readingVerses } from './text';
 
 describe('getCommemoration', () => {
   // Values checked against https://orthocal.info/api/{gregorian,julian}/2026/11/16/ on 2026-11-16.
@@ -57,6 +58,52 @@ describe('formatReference', () => {
     expect(formatReference([['GEN', 1, 1, 1, 13], ['GEN', 2, 1, 2, 3]], 'en')).toBe(
       'Genesis 1:1-13; Genesis 2:1-3',
     );
+  });
+});
+
+describe('readingVerses', () => {
+  const day = getCommemoration({ year: 2026, month: 11, day: 16 }, 'greek')!;
+  const gospel = day.readings.find((r) => r.kind === 'gospel')!;
+
+  it('gives the verses in en and ru, none in tr', () => {
+    const en = readingVerses(gospel, 'en')!;
+    expect(en.map((v) => v.verse)).toEqual([9, 10, 11, 12, 13]);
+    expect(en[0].text).toContain('Matthew sitting at the tax collection office');
+    const ru = readingVerses(gospel, 'ru')!;
+    expect(ru).toHaveLength(5);
+    expect(ru[0].text).toContain('по имени Матфея');
+    expect(readingVerses(gospel, 'tr')).toBeNull();
+  });
+
+  it('follows a run across chapters', () => {
+    const verses = readingVerses(
+      { kind: 'other', source: 'x', runs: [['1PE', 1, 24, 2, 3]] },
+      'en',
+    )!;
+    expect(verses[0]).toMatchObject({ chapter: 1, verse: 24 });
+    expect(verses[verses.length - 1]).toMatchObject({ chapter: 2, verse: 3 });
+    expect(verses.map((v) => v.chapter)).toContain(2);
+  });
+
+  it('has no text for Old Testament, composite or numbering-differs readings', () => {
+    expect(readingVerses({ kind: 'other', source: 'x', runs: [['ISA', 35, 1, 35, 10]] }, 'en')).toBeNull();
+    expect(readingVerses({ kind: 'other', source: 'x', runs: [], label: 'Genesis 1' }, 'en')).toBeNull();
+    expect(readingVerses({ kind: 'other', source: 'x', runs: [['2CO', 13, 11, 13, 14]] }, 'ru')).toBeNull();
+  });
+
+  it('has text for every New Testament reading the data allows', () => {
+    const NT = /^(MAT|MRK|LUK|JHN|ACT|ROM|[12]CO|GAL|EPH|PHP|COL|[12]TH|[12]TI|TIT|PHM|HEB|JAS|[12]PE|[123]JN|JUD|REV)$/;
+    for (const church of ['greek', 'russian'] as const) {
+      for (let jdn = gregorianToJdn(2026, 1, 1); jdn <= gregorianToJdn(2027, 12, 31); jdn += 1) {
+        for (const reading of getCommemoration(jdnToGregorian(jdn), church)!.readings) {
+          if (reading.runs.length === 0 || !reading.runs.every((r) => NT.test(r[0]))) continue;
+          const en = readingVerses(reading, 'en');
+          const ru = readingVerses(reading, 'ru');
+          // Same readings are covered in both languages, except the few numbering differences.
+          expect(en === null, `${church} ${jdn} ${reading.source}`).toBe(ru === null);
+        }
+      }
+    }
   });
 });
 

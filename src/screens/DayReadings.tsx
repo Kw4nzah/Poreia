@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getCommemoration, groupReadings, readingReference } from '../commemorations';
+import { readingVerses } from '../commemorations/text';
 import { formatDate } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
@@ -53,23 +54,41 @@ export function DayReadings() {
             <View key={group.id}>
               <Text style={styles.label}>{m.readings.group[group.id]}</Text>
               <View style={styles.card}>
-                {group.readings.map((reading, index) => (
-                  <View
-                    key={reading.source + index}
-                    style={[styles.reading, index > 0 && styles.readingDivider]}
-                  >
-                    <Text style={styles.source}>
-                      {reading.kind === 'epistle'
-                        ? m.readings.epistle
-                        : reading.kind === 'gospel'
-                          ? m.readings.gospel
-                          : reading.source}
-                    </Text>
-                    <Text style={styles.reference}>
-                      {readingReference(reading, settings.language)}
-                    </Text>
-                  </View>
-                ))}
+                {group.readings.map((reading, index) => {
+                  const hasText = readingVerses(reading, settings.language) !== null;
+                  return (
+                    <Pressable
+                      key={reading.source + index}
+                      disabled={!hasText}
+                      onPress={() =>
+                        router.push({
+                          pathname: '/reading/[index]',
+                          params: { index: String(day.readings.indexOf(reading)) },
+                        })
+                      }
+                      style={({ pressed }) => [
+                        styles.reading,
+                        index > 0 && styles.readingDivider,
+                        pressed && styles.pressed,
+                      ]}
+                      accessibilityRole={hasText ? 'button' : 'text'}
+                    >
+                      <View style={styles.readingText}>
+                        <Text style={styles.source}>
+                          {reading.kind === 'epistle'
+                            ? m.readings.epistle
+                            : reading.kind === 'gospel'
+                              ? m.readings.gospel
+                              : reading.source}
+                        </Text>
+                        <Text style={styles.reference}>
+                          {readingReference(reading, settings.language)}
+                        </Text>
+                      </View>
+                      {hasText && <Text style={styles.chevron}>›</Text>}
+                    </Pressable>
+                  );
+                })}
               </View>
             </View>
           ))}
@@ -105,7 +124,16 @@ function makeStyles(t: Theme) {
       paddingVertical: 14,
     },
     nameDivider: { borderTopWidth: 1, borderTopColor: t.line },
-    reading: { paddingHorizontal: 20, paddingVertical: 14 },
+    reading: {
+      paddingHorizontal: 20,
+      paddingVertical: 14,
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
+    },
+    readingText: { flex: 1 },
+    pressed: { backgroundColor: t.background },
+    chevron: { fontSize: 22, lineHeight: 25, color: t.muted },
     readingDivider: { borderTopWidth: 1, borderTopColor: t.line },
     source: { fontSize: 14, color: t.muted },
     reference: { fontSize: 17, lineHeight: 24, color: t.ink, marginTop: 2 },
