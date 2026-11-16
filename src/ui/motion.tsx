@@ -81,6 +81,8 @@ export function FadeIn({
 export function PressCard({
   style,
   children,
+  onPressIn,
+  onPressOut,
   ...rest
 }: Omit<PressableProps, 'style' | 'children'> & {
   style?: StyleProp<ViewStyle>;
@@ -100,7 +102,17 @@ export function PressCard({
   }
 
   return (
-    <Pressable {...rest} onPressIn={() => to(0.98)} onPressOut={() => to(1)}>
+    <Pressable
+      {...rest}
+      onPressIn={(event) => {
+        to(0.98);
+        onPressIn?.(event);
+      }}
+      onPressOut={(event) => {
+        to(1);
+        onPressOut?.(event);
+      }}
+    >
       <Animated.View style={[style, { transform: [{ scale }] }]}>{children}</Animated.View>
     </Pressable>
   );

@@ -4,12 +4,10 @@
 // Hebrew one, so only books and chapters that line up get a link.
 
 import type { Reading } from './index';
+import { NEW_TESTAMENT } from './text';
 
 const VERSION = 'https://www.bible.com/bible/2308';
 
-const NEW_TESTAMENT = new Set(
-  'MAT MRK LUK JHN ACT ROM 1CO 2CO GAL EPH PHP COL 1TH 2TH 1TI 2TI TIT PHM HEB JAS 1PE 2PE 1JN 2JN 3JN JUD REV'.split(' '),
-);
 // Deuterocanon present in KKDEU with the same chapter numbers as the Septuagint.
 const DEUTEROCANON = new Set('TOB JDT WIS SIR BAR 1MA 2MA 3MA 1ES'.split(' '));
 // Old Testament books whose chapters line up closely enough; the link goes to the chapter only.

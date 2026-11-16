@@ -4,6 +4,7 @@ import { Redirect, useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getCommemoration, readingReference } from '../commemorations';
+import { parseService } from '../commemorations/service';
 import { readingText, translationName } from '../commemorations/text';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
@@ -33,7 +34,10 @@ export function ReadingReader({ index }: { index: number }) {
       ? m.readings.epistle
       : reading.kind === 'gospel'
         ? m.readings.gospel
-        : reading.source;
+        : (() => {
+            const service = parseService(reading.source);
+            return service ? m.readings.service(service) : reading.source;
+          })();
 
   function resize(step: -1 | 1) {
     const next = size + step;

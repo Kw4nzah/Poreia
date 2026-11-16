@@ -1,6 +1,7 @@
 // English is the reference dictionary: its shape defines `Messages`, so a key missing
 // from another language is a type error.
 
+import type { ParsedService } from '../commemorations/service';
 import type {
   ChurchId,
   FastDayId,
@@ -111,6 +112,7 @@ export interface Messages {
     namesEnglish: string;
     textEnglish: string;
     openTurkish: string;
+    service: (service: ParsedService) => string;
     noData: string;
     epistle: string;
     gospel: string;
@@ -309,6 +311,25 @@ export const en: Messages = {
     namesEnglish: 'Names are shown in English.',
     textEnglish: 'No text in this language yet, English is shown.',
     openTurkish: 'Open in the Turkish Bible (KKDEU)',
+    service: (service) => {
+      const ord = (n: number) => (n === 1 ? '1st' : n === 2 ? '2nd' : n === 3 ? '3rd' : n + 'th');
+      const part = service.part ? service.part.charAt(0).toUpperCase() + service.part.slice(1) : '';
+      const at = service.n ? ord(service.n) + ' ' : '';
+      switch (service.kind) {
+        case 'vespers':
+          return part ? 'Vespers ' + part : 'Vespers';
+        case 'matins':
+          return at + 'Matins' + (part ? ' ' + part : '');
+        case 'hour':
+          return at + 'Hour' + (part ? ', ' + part : '');
+        case 'passion':
+          return at + 'Passion Gospel';
+        case 'waters':
+          return 'Great Blessing of Waters';
+        case 'cross':
+          return 'Cross Procession';
+      }
+    },
     noData: 'No saints or readings for this year yet.',
     epistle: 'Epistle',
     gospel: 'Gospel',
