@@ -40,6 +40,8 @@ export interface Messages {
   };
   church: Record<ChurchId, { name: string; calendar: string }>;
 
+  tabs: { today: string; readings: string };
+
   today: {
     greeting: (name: string) => string;
     churchDate: (date: string) => string;
@@ -163,6 +165,8 @@ export const en: Messages = {
     greek: { name: 'Greek tradition', calendar: 'New calendar' },
     russian: { name: 'Russian tradition', calendar: 'Old (Julian) calendar' },
   },
+
+  tabs: { today: 'Today', readings: 'Readings' },
 
   today: {
     greeting: (name) => (name ? `Peace to you, ${name}` : 'Peace to you'),

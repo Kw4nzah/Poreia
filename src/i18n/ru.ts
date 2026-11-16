@@ -49,6 +49,8 @@ export const ru: Messages = {
     russian: { name: 'Русская традиция', calendar: 'Старый стиль (юлианский)' },
   },
 
+  tabs: { today: 'Сегодня', readings: 'Чтения' },
+
   today: {
     greeting: (name) => (name ? `Мир вам, ${name}` : 'Мир вам'),
     churchDate: (date) => `По церковному календарю: ${date}`,

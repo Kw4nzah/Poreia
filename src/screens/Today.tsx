@@ -49,7 +49,7 @@ export function Today() {
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.lg,
-        paddingBottom: insets.bottom + space.lg,
+        paddingBottom: space.lg,
         paddingHorizontal: space.lg,
       }}
       showsVerticalScrollIndicator={false}
@@ -149,7 +149,7 @@ export function Today() {
 
       {commemoration && (
         <Pressable
-          onPress={() => router.push('/day')}
+          onPress={() => router.navigate('/readings')}
           style={({ pressed }) => [styles.card, pressed && styles.pressed]}
           accessibilityRole="button"
         >
@@ -190,30 +190,17 @@ export function Today() {
         </Pressable>
       )}
 
-      <Pressable
-        onPress={() => router.push('/prayers')}
-        style={({ pressed }) => [styles.card, styles.prayers, pressed && styles.pressed]}
-        accessibilityRole="button"
-      >
-        <View style={styles.prayersText}>
-          <Text style={styles.upcomingName}>{m.prayers.title}</Text>
-          <Text style={styles.range}>{m.prayers.summary}</Text>
-        </View>
-        <Text style={styles.chevron}>›</Text>
-      </Pressable>
-
       <Text style={styles.disclaimer}>{m.today.disclaimer}</Text>
 
-      <View style={styles.footer}>
+      {apk.release && (
         <Pressable
-          onPress={() => router.push('/settings')}
+          onPress={() => router.navigate('/settings')}
           style={styles.link}
           accessibilityRole="button"
         >
-          <Text style={styles.linkText}>{m.today.settings}</Text>
-          {apk.release && <Text style={styles.small}>{m.today.newVersion}</Text>}
+          <Text style={styles.linkText}>{m.today.newVersion}</Text>
         </Pressable>
-      </View>
+      )}
     </ScrollView>
   );
 }
@@ -302,13 +289,10 @@ function makeStyles(t: Theme) {
       marginTop: space.sm,
     },
 
-    prayers: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-    prayersText: { flex: 1 },
     pressed: { backgroundColor: t.background },
     chevron: { fontSize: 22, lineHeight: 25, color: t.muted },
 
     disclaimer: { fontSize: 13, lineHeight: 19, color: t.muted, marginTop: space.lg },
-    footer: { marginTop: space.lg, alignItems: 'flex-start' },
     link: { minHeight: 44, justifyContent: 'center' },
     linkText: { fontSize: 15, color: t.accent },
     small: { fontSize: 13, color: t.muted, marginTop: space.xs },

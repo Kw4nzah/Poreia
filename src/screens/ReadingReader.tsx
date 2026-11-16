@@ -9,6 +9,7 @@ import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
+import { VerseText } from '../ui/VerseText';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
@@ -22,7 +23,7 @@ export function ReadingReader({ index }: { index: number }) {
 
   const reading = getCommemoration(today, settings.churchId)?.readings[index];
   const verses = reading ? readingVerses(reading, settings.language) : null;
-  if (!reading || !verses) return <Redirect href="/day" />;
+  if (!reading || !verses) return <Redirect href="/readings" />;
 
   const size = settings.prayerTextSize;
   const textSize = PRAYER_TEXT_SIZES[size];
@@ -78,19 +79,7 @@ export function ReadingReader({ index }: { index: number }) {
         <Text style={styles.title}>{readingReference(reading, settings.language)}</Text>
         <View style={styles.rule} />
 
-        {/* A new chapter number is shown where the chapter changes inside a reading. */}
-        <Text style={[styles.text, textSize]}>
-          {verses.map((v, i) => (
-            <Text key={`${v.chapter}:${v.verse}`}>
-              {i > 0 ? ' ' : ''}
-              <Text style={styles.number}>
-                {i > 0 && verses[i - 1].chapter !== v.chapter ? `${v.chapter}:${v.verse}` : v.verse}
-                {' '}
-              </Text>
-              {v.text}
-            </Text>
-          ))}
-        </Text>
+        <VerseText verses={verses} size={textSize} />
 
         <Text style={styles.source}>{translationName(reading, settings.language)}</Text>
       </ScrollView>
@@ -117,8 +106,6 @@ function makeStyles(t: Theme) {
     kind: { fontSize: 14, color: t.muted },
     title: { fontFamily: SERIF, fontSize: 28, lineHeight: 36, color: t.ink, marginTop: 2 },
     rule: { width: 40, height: 2, borderRadius: 1, backgroundColor: t.feast, marginTop: space.md },
-    text: { fontFamily: SERIF, color: t.ink, marginTop: space.lg },
-    number: { fontSize: 12, color: t.muted },
     source: { fontSize: 13, color: t.muted, marginTop: space.xl },
   });
 }
