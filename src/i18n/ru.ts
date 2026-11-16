@@ -82,6 +82,8 @@ export const ru: Messages = {
     updatesTitle: 'Обновления',
     version: (version) => `Версия ${version}`,
     apkAvailable: (version) => `Доступна версия ${version}`,
+    contentUpdated: (when) => `Содержимое обновлено ${when}`,
+    contentShipped: 'Содержимое из установочного пакета',
     apkInstall: (megabytes) => `Скачать и установить (${megabytes} МБ)`,
     apkDownloading: 'Загрузка…',
     apkFailed: 'Не удалось скачать. Попробуйте позже.',
