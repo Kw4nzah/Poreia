@@ -3,8 +3,10 @@
 // translations published by eBible.org as USFM:
 //   en = World English Bible (engwebu), ru = Synodal Translation 1876 (russyn).
 //
-// Only New Testament books are extracted. Old Testament readings follow Septuagint
-// numbering, which these translations (Masoretic) do not share, so they stay references.
+// en covers the whole lectionary: New Testament from WEB, Old Testament and deuterocanon
+// from LXX2012 (Septuagint numbering, as the lectionary uses). ru has the New Testament only:
+// its Synodal Old Testament is Masoretic-numbered and has no deuterocanon, so those readings
+// stay references in ru.
 //
 // Usage: node scripts/build-reading-texts.mjs <en-usfm-dir> <ru-usfm-dir>
 // Download first: https://ebible.org/Scriptures/engwebu_usfm.zip and russyn_usfm.zip
@@ -15,9 +17,9 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = join(root, 'src', 'commemorations', 'data');
-const [enDir, ruDir] = process.argv.slice(2);
+const [enDir, ruDir, lxxDir] = process.argv.slice(2);
 if (!enDir || !ruDir) {
-  console.error('usage: node scripts/build-reading-texts.mjs <en-usfm-dir> <ru-usfm-dir>');
+  console.error('usage: node scripts/build-reading-texts.mjs <en-usfm-dir> <ru-usfm-dir> <lxx-usfm-dir>');
   process.exit(1);
 }
 
@@ -33,7 +35,7 @@ async function neededRuns() {
     if (!/^(gregorian|julian)-\d{4}\.json$/.test(name)) continue;
     const year = JSON.parse(await readFile(join(dataDir, name), 'utf8'));
     for (const day of Object.values(year)) {
-      for (const reading of day.r) for (const run of reading.v) if (NEW_TESTAMENT.has(run[0])) runs.push(run);
+      for (const reading of day.r) for (const run of reading.v) runs.push(run);
     }
   }
   return runs;
@@ -83,11 +85,11 @@ function parseBook(usfm) {
   return chapters;
 }
 
-async function loadBooks(dir) {
+async function loadBooks(dir, wanted) {
   const books = {};
   for (const name of await readdir(dir)) {
     const m = name.match(/^\d+-([0-9A-Z]{3})/);
-    if (m && NEW_TESTAMENT.has(m[1])) books[m[1]] = parseBook(await readFile(join(dir, name), 'utf8'));
+    if (m && wanted(m[1])) books[m[1]] = parseBook(await readFile(join(dir, name), 'utf8'));
   }
   return books;
 }
@@ -112,15 +114,23 @@ function touchesDifference([book, c1, v1, c2, v2]) {
 }
 
 const runs = (await neededRuns()).filter((run) => !touchesDifference(run));
-for (const [lang, dir] of [['en', enDir], ['ru', ruDir]]) {
-  const books = await loadBooks(dir);
+const isNT = (code) => NEW_TESTAMENT.has(code);
+const isOT = (code) => !NEW_TESTAMENT.has(code);
+// en: New Testament from WEB, Old Testament and deuterocanon from LXX2012 (Septuagint
+// numbering, the one the lectionary uses). ru: New Testament only (see header).
+const sources = {
+  en: async () => ({ ...(await loadBooks(lxxDir, isOT)), ...(await loadBooks(enDir, isNT)) }),
+  ru: async () => loadBooks(ruDir, isNT),
+};
+for (const lang of ['en', 'ru']) {
+  const books = await sources[lang]();
   const out = {};
   const problems = [];
   let count = 0;
   for (const [book, c1, v1, c2, v2] of runs) {
     const text = books[book];
     if (!text) {
-      problems.push(`${book}: book missing`);
+      if (lang === 'en' || isNT(book)) problems.push(`${book}: book missing`);
       continue;
     }
     for (let c = c1; c <= c2; c++) {
