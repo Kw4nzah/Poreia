@@ -10,7 +10,7 @@ inside a circle of radius ~330 px on a 1024 px canvas and the legacy icon scales
 import math
 import os
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 SIZE = 1024
 SS = 4  # supersampling factor for smooth edges
@@ -19,7 +19,7 @@ GOLD = (217, 179, 95, 255)
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets")
 
 
-def art(color, scale=1.0):
+def art(color, scale=1.0, dy=0):
     """The cross and road as an RGBA layer on a transparent canvas."""
     big = SIZE * SS
     layer = Image.new("RGBA", (big, big), (0, 0, 0, 0))
@@ -28,7 +28,7 @@ def art(color, scale=1.0):
 
     def p(x, y):
         # scale around the canvas centre
-        return (cx + (x - 512) * scale * SS, cx + (y - 512) * scale * SS)
+        return (cx + (x - 512) * scale * SS, cx + (y - 512) * scale * SS + dy * SS)
 
     def rect(x0, y0, x1, y1):
         d.rectangle([*p(x0, y0), *p(x1, y1)], fill=color)
@@ -96,5 +96,21 @@ save(art(GOLD, scale=0.82), "android-icon-foreground.png")
 save(Image.new("RGBA", (SIZE, SIZE), WINE), "android-icon-background.png")
 save(art((255, 255, 255, 255), scale=0.82), "android-icon-monochrome.png")
 
-# Splash: the same gold artwork on transparent (the splash plugin sets the wine background).
-save(art(GOLD, scale=0.82), "splash-icon.png")
+# Splash: artwork plus the app name on transparent (the splash plugin sets the wine background).
+# Android 12+ shows the splash image inside a circle of 2/3 of the canvas, so everything stays
+# within radius ~340 px of the centre.
+def splash():
+    layer = art(GOLD, scale=0.6, dy=-95)
+    d = ImageDraw.Draw(layer)
+    font = None
+    for path in ("C:/Windows/Fonts/georgia.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"):
+        if os.path.exists(path):
+            font = ImageFont.truetype(path, 128)
+            break
+    text = "Poreia"
+    box = d.textbbox((0, 0), text, font=font)
+    d.text(((SIZE - (box[2] - box[0])) / 2 - box[0], 675), text, font=font, fill=GOLD)
+    return layer
+
+
+save(splash(), "splash-icon.png")
