@@ -174,7 +174,7 @@ export const ru: Messages = {
     summary: 'Отче наш, Символ веры, утренние и вечерние молитвы',
     smaller: 'Уменьшить текст',
     larger: 'Увеличить текст',
-    group: { basic: 'Основные молитвы', daily: 'Молитвы дня' },
+    group: { basic: 'Основные молитвы', daily: 'Молитвы дня', lent: 'Великий пост' },
     text: prayerTexts,
   },
 

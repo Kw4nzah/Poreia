@@ -291,7 +291,7 @@ export const en: Messages = {
     summary: 'The Lord’s Prayer, the Creed, morning and evening prayers',
     smaller: 'Smaller text',
     larger: 'Larger text',
-    group: { basic: 'Basic prayers', daily: 'Prayers of the day' },
+    group: { basic: 'Basic prayers', daily: 'Prayers of the day', lent: 'Great Lent' },
     text: prayerTexts,
   },
 

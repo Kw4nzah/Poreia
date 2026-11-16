@@ -3,6 +3,7 @@
 export const PRAYER_GROUPS = [
   { id: 'basic', prayers: ['lordsPrayer', 'creed', 'heavenlyKing'] },
   { id: 'daily', prayers: ['morning', 'evening', 'meals'] },
+  { id: 'lent', prayers: ['ephrem'] },
 ] as const;
 
 export type PrayerGroupId = (typeof PRAYER_GROUPS)[number]['id'];

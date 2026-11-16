@@ -50,6 +50,20 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       },
     ],
   },
+  // TODO: no published Turkish source found; English text (St Tikhon's) shown until a translation is supplied.
+  ephrem: {
+    title: 'Aziz Efrem’in Duası',
+    sections: [
+      {
+        heading: 'Türkçe metin henüz yok, İngilizcesi gösteriliyor',
+        paragraphs: [
+          'O Lord and Master of my life! Take from me the spirit of sloth, despair, lust of power and idle talk.',
+          'But give rather the spirit of chastity, humility, patience, and love to Thy servant.',
+          'Yea, O Lord and King! Grant me to see my own transgressions and not to judge my brother, for blessed art Thou, unto ages of ages.',
+        ],
+      },
+    ],
+  },
   morning: {
     title: 'Sabah duası',
     sections: [

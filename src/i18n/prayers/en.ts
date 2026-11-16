@@ -47,6 +47,19 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       },
     ],
   },
+  ephrem: {
+    title: 'Prayer of St. Ephraim',
+    sections: [
+      {
+        heading: 'Said at most services on weekdays of Great Lent',
+        paragraphs: [
+          'O Lord and Master of my life! Take from me the spirit of sloth, despair, lust of power and idle talk.',
+          'But give rather the spirit of chastity, humility, patience, and love to Thy servant.',
+          'Yea, O Lord and King! Grant me to see my own transgressions and not to judge my brother, for blessed art Thou, unto ages of ages.',
+        ],
+      },
+    ],
+  },
   morning: {
     title: 'Morning prayer',
     sections: [
@@ -55,7 +68,7 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
           'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.',
           'Glory to Thee, our God, glory to Thee.',
           'Having risen from sleep, I thank Thee, the Holy Trinity. In the abundance of Thy kindness and long patience, Thou hast not been angry with me for my laziness and sinfulness, nor hast Thou destroyed me in my lawlessness. Instead, in Thy usual love for mankind, Thou hast raised me as I lay in despair, that I might rise early and glorify Thy Reign.',
-          'Enlighten now the eyes of my mind and open my lips, that I might learn of Thy words, understand Thy commandments, accomplish Thy will, hymn Thee in heart-felt confession and praise Thine all-holy name, the Father and the Son, and the Holy Spirit, now and ever and unto ages of ages. Amen.',
+          'Enlighten now the eyes of my mind and open my lips, that I might learn of Thy words, understand Thy commandments, accomplish Thy will, hymn Thee in heart-felt confession and praise Thine all-holy name, the Father and the Son, and the Holy Spirit, now and ever and unto ages of ages.',
         ],
       },
     ],
@@ -66,7 +79,7 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       {
         paragraphs: [
           'O Lord our God, forgive all the sins I have committed this day in word, deed and thought, for Thou art good and lovest mankind. Grant me a peaceful sleep, free of restlessness. Send Thy Guardian Angel to protect and keep me from all harm.',
-          'For Thou art the Guardian of our souls and bodies, and to Thee we ascribe glory, to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.',
+          'For Thou art the Guardian of our souls and bodies, and to Thee we ascribe glory, to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages.',
           'Into Thy hands, O Lord Jesus Christ, my God, I commend my spirit. Bless me, have mercy on me, and grant me life eternal. Amen.',
         ],
       },
@@ -78,7 +91,7 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       {
         heading: 'Before meals',
         paragraphs: [
-          'O Christ God, bless the food and drink of Thy servants, for Thou art holy, always, now and ever and unto ages of ages. Amen.',
+          'O Christ God, bless the food and drink of Thy servants, for Thou art holy, always, now and ever and unto ages of ages.',
         ],
       },
       {
