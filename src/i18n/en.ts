@@ -116,6 +116,10 @@ export interface Messages {
     group: Record<ReadingGroupId, string>;
   };
 
+  sources: {
+    title: string;
+    sections: readonly { heading: string; body: string }[];
+  };
   updates: {
     check: string;
     disabled: string;
@@ -313,6 +317,19 @@ export const en: Messages = {
       hours: 'Hours',
       other: 'Other services',
     },
+  },
+
+  sources: {
+    title: 'Sources and licences',
+    sections: [
+      { heading: 'Scripture texts', body: 'Readings in English: New Testament from the World English Bible, Old Testament and deuterocanon from the English Septuagint (LXX2012). Readings in Russian: Synodal Translation (1876). All three are in the public domain; the texts come from eBible.org, with the markup removed and only the verses of each reading kept.' },
+      { heading: 'Saints and readings', body: 'Names of the saints, feast days and the references of the readings come from orthocal.info (Orthodox Church in America lectionary; the project’s code is MIT-licensed). Only names and references are used, not the lives of the saints.' },
+      { heading: 'Prayers, English', body: 'Lord’s Prayer, Creed, O Heavenly King, Trisagion and the Prayer of St. Ephraim: Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982), as published by Project Gutenberg (#34981). The morning, evening and meal prayers are faithful translations prepared for this app from the Slavonic and Greek texts.' },
+      { heading: 'Prayers, Russian', body: 'Church Slavonic texts in the public domain, checked against azbyka.ru (Молитвослов).' },
+      { heading: 'Prayers, Turkish', body: 'Translated for this app. There is no published Turkish prayer book to check them against, so they may differ from the text your church uses.' },
+      { heading: 'Fasting rules', body: 'Based on published rules of the Greek and Russian traditions. Practice differs between churches and jurisdictions; ask your spiritual father.' },
+      { heading: 'About this app', body: 'Poreia is a personal aid, not an official publication of any church. The icon was drawn for this app.' },
+    ],
   },
 
   updates: {
