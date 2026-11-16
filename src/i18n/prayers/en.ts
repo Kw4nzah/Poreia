@@ -1,6 +1,10 @@
-// English prayer texts from Orthodox Daily Prayers (St Tikhon's Seminary Press, 1982).
-// Only the last evening prayer ("Into Thy hands") is not in that book; it is rendered
-// from the Church Slavonic text.
+// English prayer texts.
+// lordsPrayer, creed, heavenlyKing, trisagion and ephrem: Orthodox Daily Prayers (St Tikhon's
+// Seminary Press, 1982; Project Gutenberg #34981).
+// morning, evening and meals: ortodoks_dualar_tr_ru_en.md supplied by the user (2026-11-17). Its
+// note says the short common prayers use the traditional wording of English-speaking Orthodox
+// churches, while the longer ones (troparia, Macarius, Antiochus) are faithful translations of the
+// Slavonic/Greek made for that file, not a printed prayer book.
 
 import type { PrayerId, PrayerText } from '../../prayers';
 
@@ -76,26 +80,69 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
     ],
   },
   morning: {
-    title: 'Morning prayer',
+    title: 'Morning prayers',
     sections: [
       {
+        heading: 'Opening',
         paragraphs: [
           'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.',
           'Glory to Thee, our God, glory to Thee.',
-          'Having risen from sleep, I thank Thee, the Holy Trinity. In the abundance of Thy kindness and long patience, Thou hast not been angry with me for my laziness and sinfulness, nor hast Thou destroyed me in my lawlessness. Instead, in Thy usual love for mankind, Thou hast raised me as I lay in despair, that I might rise early and glorify Thy Reign.',
-          'Enlighten now the eyes of my mind and open my lips, that I might learn of Thy words, understand Thy commandments, accomplish Thy will, hymn Thee in heart-felt confession and praise Thine all-holy name, the Father and the Son, and the Holy Spirit, now and ever and unto ages of ages.',
+        ],
+      },
+      {
+        heading: 'Troparia of the Trinity',
+        paragraphs: [
+          'Having arisen from sleep, we fall down before Thee, O Good One, and we cry to Thee, O Mighty One, the hymn of the angels: Holy, Holy, Holy art Thou, O God; through the Theotokos have mercy on us.',
+          'Glory to the Father, and to the Son, and to the Holy Spirit:',
+          'From bed and sleep Thou hast raised me up, O Lord; enlighten my mind and my heart, and open my lips, that I may praise Thee, O Holy Trinity: Holy, Holy, Holy art Thou, O God; through the Theotokos have mercy on us.',
+          'Both now and ever, and unto ages of ages. Amen:',
+          'Suddenly the Judge shall come, and the deeds of each shall be laid bare; but with fear let us cry out at midnight: Holy, Holy, Holy art Thou, O God; through the Theotokos have mercy on us.',
+        ],
+      },
+      {
+        heading: 'Prayer to the Holy Trinity',
+        paragraphs: [
+          'Having risen from sleep, I thank Thee, O Holy Trinity, that because of Thy great goodness and long-suffering Thou wast not angry with me, slothful and sinful as I am, nor didst Thou destroy me in my transgressions; but Thou hast shown Thy usual love for mankind, and hast raised me up, who lay in despair, to rise early and glorify Thy dominion. And now enlighten the eyes of my mind, open my mouth to learn Thy words and to understand Thy commandments, to do Thy will and to sing to Thee in heartfelt confession, and to praise Thine all-holy name, of the Father, and of the Son, and of the Holy Spirit, now and ever, and unto ages of ages. Amen.',
+        ],
+      },
+      {
+        heading: 'Prayer of St. Macarius the Great',
+        paragraphs: [
+          'O God, cleanse me a sinner, for I have never done anything good before Thee; but deliver me from the evil one, and let Thy will be done in me, that I may open my unworthy mouth without condemnation and praise Thy holy name, of the Father, and of the Son, and of the Holy Spirit, now and ever, and unto ages of ages. Amen.',
         ],
       },
     ],
   },
   evening: {
-    title: 'Evening prayer',
+    title: 'Evening prayers',
     sections: [
       {
+        heading: 'Penitential troparia',
         paragraphs: [
-          'O Lord our God, forgive all the sins I have committed this day in word, deed and thought, for Thou art good and lovest mankind. Grant me a peaceful sleep, free of restlessness. Send Thy Guardian Angel to protect and keep me from all harm.',
-          'For Thou art the Guardian of our souls and bodies, and to Thee we ascribe glory, to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages.',
-          'Into Thy hands, O Lord Jesus Christ, my God, I commend my spirit. Bless me, have mercy on me, and grant me life eternal. Amen.',
+          'Have mercy on us, O Lord, have mercy on us; for, lacking all defence, we sinners offer to Thee, as our Master, this supplication: have mercy on us.',
+          'Glory to the Father, and to the Son, and to the Holy Spirit:',
+          'O Lord, have mercy on us, for we have put our trust in Thee. Be not exceedingly angry with us, neither remember our iniquities; but look down on us now as Thou art compassionate, and deliver us from our enemies. For Thou art our God, and we are Thy people; we are all the work of Thy hands, and we call upon Thy name.',
+          'Both now and ever, and unto ages of ages. Amen:',
+          'Open unto us the doors of compassion, O blessed Theotokos; hoping in thee, may we not perish, but through thee may we be delivered from adversities, for thou art the salvation of the Christian people.',
+        ],
+      },
+      {
+        heading: 'Prayer of St. Macarius the Great',
+        paragraphs: [
+          'O eternal God and King of all creation, who hast vouchsafed me to arrive at this hour: forgive me the sins that I have committed this day in deed, word, and thought; and cleanse, O Lord, my humble soul from every defilement of flesh and spirit. And grant me, O Lord, to pass through the sleep of this night in peace, that, rising from my lowly bed, I may please Thy most holy name all the days of my life, and trample upon the enemies, both bodily and bodiless, that war against me. And deliver me, O Lord, from vain thoughts that defile me, and from evil desires. For Thine is the kingdom, and the power, and the glory, of the Father, and of the Son, and of the Holy Spirit, now and ever, and unto ages of ages. Amen.',
+        ],
+      },
+      {
+        heading: 'Prayer of St. Antiochus',
+        paragraphs: [
+          'O Almighty One, Word of the Father, Jesus Christ, who art Thyself perfect: for the sake of Thy great mercy never depart from me, Thy servant, but ever abide in me. O Jesus, Good Shepherd of Thy sheep, deliver me not over to the sedition of the serpent, and leave me not to the will of Satan, for the seed of corruption is in me.',
+          'Do Thou, therefore, O Lord God, worshipped King, holy Jesus Christ, guard me as I sleep by the Unwaning Light, by Thy Holy Spirit, with whom Thou didst sanctify Thy disciples. Grant, O Lord, to me also, Thine unworthy servant, Thy salvation upon my bed: enlighten my mind with the light of understanding of Thy Holy Gospel; my soul with the love of Thy Cross; my heart with the purity of Thy word; my body with Thy passionless Passion; keep my thoughts in Thy humility, and raise me up at the proper time to glorify Thee. For most glorified art Thou, together with Thine unoriginate Father and the Most Holy Spirit, unto the ages. Amen.',
+        ],
+      },
+      {
+        heading: 'Closing prayer',
+        paragraphs: [
+          'Into Thy hands, O Lord Jesus Christ, my God, I commend my spirit. Do Thou bless me, have mercy on me, and grant me life eternal. Amen.',
         ],
       },
     ],
@@ -106,13 +153,13 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       {
         heading: 'Before meals',
         paragraphs: [
-          'O Christ God, bless the food and drink of Thy servants, for Thou art holy, always, now and ever and unto ages of ages.',
+          'The eyes of all look to Thee with hope, O Lord, and Thou givest them their food in due season; Thou openest Thy bountiful hand and fillest every living thing with good will.',
         ],
       },
       {
         heading: 'After meals',
         paragraphs: [
-          'We thank Thee, Christ our God, for Thou hast satisfied us with Thine earthly gifts. Deprive us not of Thy Heavenly Kingdom, but as Thou camest among Thy disciples, O Savior, giving them peace, so come to us and save us!',
+          'We thank Thee, O Christ our God, that Thou hast satisfied us with Thine earthly gifts; deprive us not also of Thy heavenly Kingdom; but as Thou camest into the midst of Thy disciples, O Saviour, and gavest them peace, come to us and save us. Amen.',
         ],
       },
     ],
