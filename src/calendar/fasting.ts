@@ -1,8 +1,13 @@
 // Fasting calendar engine. Output is language-neutral (ids only); the UI layer
 // translates ids to text.
 //
-// Rules follow the commonly published parish calendars of each practice. They
-// are general guidance: local custom and a spiritual father's advice override.
+// Sources (checked 2026-11-16):
+// - Slavic practice: compared day by day against the OCA calendar API (orthocal.info)
+//   for all of 2026; 11 single-saint dispensations differ, everything else matches.
+// - Greek Nativity Fast: "The Nativity Fast" guidelines of the Holy Metropolis of Oropos
+//   and Phyli (imoph.org, lenient Studite tradition); the Typikon (ch. 33) agrees on days.
+// - Other Greek periods are still unverified against a Greek source.
+// Rules are general guidance: local custom and a spiritual father's advice override.
 
 import { Church, FastingPractice } from './churches';
 import {
@@ -243,11 +248,15 @@ function holyWeekRule(c: RuleContext): Rule {
 
 function apostlesFastRule(c: RuleContext): Rule {
   if (hasFishFeast(c)) return { level: 'fish', notes: ['feastRelaxation'] };
+  // Typikon ch. 33: fish on Saturday and Sunday only; Tuesday and Thursday wine and oil.
   if (c.practice === 'slavic') {
     if (c.weekday === MON) return { level: 'noOil' };
-    return { level: isWedFri(c.weekday) ? 'xerophagy' : 'fish' };
+    if (isWedFri(c.weekday)) return { level: 'xerophagy' };
+    return { level: isWeekend(c.weekday) ? 'fish' : 'oil' };
   }
-  return { level: isWedFri(c.weekday) ? 'noOil' : 'fish' };
+  // Greek practice follows the same fish pattern as the Nativity Fast (lenient tradition).
+  if (isWedFri(c.weekday)) return { level: 'noOil' };
+  return { level: c.weekday === MON ? 'oil' : 'fish' };
 }
 
 function dormitionFastRule(c: RuleContext): Rule {
@@ -255,6 +264,25 @@ function dormitionFastRule(c: RuleContext): Rule {
   if (c.practice === 'slavic') return { level: slavicStrictWeek(c.weekday) };
   return { level: isWeekend(c.weekday) ? 'oil' : 'noOil' };
 }
+
+/**
+ * Saints whose feast gives wine and oil on a Wednesday or Friday of the Nativity Fast
+ * (Greek practice), as "month-day". Matthew, Catherine, Andrew, Barbara, Sabbas,
+ * Nicholas, Anna, Spyridon, Eleutherios, Daniel and the Three Youths, Ignatios.
+ */
+const GREEK_NATIVITY_OIL_DAYS = new Set([
+  '11-16',
+  '11-25',
+  '11-30',
+  '12-4',
+  '12-5',
+  '12-6',
+  '12-9',
+  '12-12',
+  '12-15',
+  '12-17',
+  '12-20',
+]);
 
 function nativityFastRule(c: RuleContext): Rule {
   const december = c.month === 12;
@@ -266,7 +294,8 @@ function nativityFastRule(c: RuleContext): Rule {
     if (december && c.day === 6) return { level: 'fish', notes: ['feastRelaxation'] };
     if (!december || c.day < 6) {
       if (c.weekday === MON) return { level: 'noOil' };
-      return { level: isWedFri(c.weekday) ? 'xerophagy' : 'fish' };
+      if (isWedFri(c.weekday)) return { level: 'xerophagy' };
+      return { level: isWeekend(c.weekday) ? 'fish' : 'oil' };
     }
     if (c.day <= 19) {
       if (isWeekend(c.weekday)) return { level: 'fish' };
@@ -276,8 +305,17 @@ function nativityFastRule(c: RuleContext): Rule {
     return { level: slavicStrictWeek(c.weekday) };
   }
 
-  if (isWedFri(c.weekday)) return { level: 'noOil' };
-  return { level: december && c.day >= 18 ? 'oil' : 'fish' };
+  // Greek practice, the lenient (Studite) tradition: fish only on Tuesday, Thursday,
+  // Saturday and Sunday from 22 Nov to 17 Dec (21 Nov is handled as a fish feast).
+  // Monday is a strict day for monastics only, so laity get wine and oil but no fish.
+  if (isWedFri(c.weekday)) {
+    return GREEK_NATIVITY_OIL_DAYS.has(`${c.month}-${c.day}`)
+      ? { level: 'oil', notes: ['feastRelaxation'] }
+      : { level: 'noOil' };
+  }
+  if (c.weekday === MON) return { level: 'oil' };
+  const fishWindow = (c.month === 11 && c.day >= 22) || (december && c.day <= 17);
+  return { level: fishWindow ? 'fish' : 'oil' };
 }
 
 /** Eves of Nativity and Theophany. */
@@ -289,16 +327,11 @@ function eveRule(c: RuleContext): Rule {
 function ordinaryWedFriRule(c: RuleContext): Rule {
   if (hasFishFeast(c)) return { level: 'fish', notes: ['feastRelaxation'] };
   const paschalSeason = c.offset >= 7 && c.offset <= 49;
-  if (c.practice === 'slavic') {
-    // Fish from Christmastide to the Triodion and in the Paschal season.
-    const winter = c.offset < -48 && c.month <= 3;
-    return { level: paschalSeason || winter ? 'fish' : 'xerophagy' };
-  }
   if (paschalSeason) {
     // Mid-Pentecost and the Leavetaking of Pascha, both Wednesdays.
     return { level: c.offset === 24 || c.offset === 38 ? 'fish' : 'oil' };
   }
-  return { level: 'noOil' };
+  return { level: c.practice === 'slavic' ? 'xerophagy' : 'noOil' };
 }
 
 function toDayPeriod(range: PeriodRange, jdn: number): DayPeriod {

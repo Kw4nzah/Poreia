@@ -35,7 +35,29 @@ describe('Nativity Fast', () => {
     const info = getDayInfo(d(2026, 11, 15), greek);
     expect(info.weekday).toBe(0);
     expect(info.period).toMatchObject({ id: 'nativityFast', day: 1, totalDays: 40, daysLeft: 39 });
-    expect(info.level).toBe('fish');
+    expect(info.level).toBe('oil');
+  });
+
+  it('allows no fish in the first week or on Mondays (Greek)', () => {
+    // 16 Nov 2026 is a Monday (St Matthew): wine and oil, but no fish.
+    expect(getDayInfo(d(2026, 11, 16), greek).level).toBe('oil');
+    expect(getDayInfo(d(2026, 11, 17), greek).level).toBe('oil'); // Tuesday, first week
+    expect(getDayInfo(d(2026, 11, 21), greek).level).toBe('fish'); // Entry, a Saturday
+    expect(getDayInfo(d(2026, 11, 22), greek).level).toBe('fish'); // Sunday
+    expect(getDayInfo(d(2026, 11, 23), greek).level).toBe('oil'); // Monday
+    expect(getDayInfo(d(2026, 11, 24), greek).level).toBe('fish'); // Tuesday
+  });
+
+  it('gives wine and oil on a feast of a saint on a Wednesday or Friday (Greek)', () => {
+    expect(getDayInfo(d(2026, 11, 25), greek)).toMatchObject({ level: 'oil', notes: ['feastRelaxation'] });
+    expect(getDayInfo(d(2026, 12, 4), greek).level).toBe('oil'); // Friday, St Barbara
+    expect(getDayInfo(d(2026, 12, 2), greek).level).toBe('noOil'); // ordinary Wednesday
+  });
+
+  it('keeps fish off Tuesday and Thursday on the old calendar', () => {
+    // 1 Dec 2026 is a Tuesday (18 Nov old style); the Typikon gives wine and oil only.
+    expect(getDayInfo(d(2026, 12, 1), russian).level).toBe('oil');
+    expect(getDayInfo(d(2026, 12, 5), russian).level).toBe('fish'); // Saturday
   });
 
   it('has not started yet on 15 Nov for the Russian church', () => {
@@ -169,7 +191,19 @@ describe('single fast days', () => {
   it('relaxes Wednesdays and Fridays in the Paschal season', () => {
     expect(getDayInfo(d(2026, 4, 22), greek).level).toBe('oil');
     expect(getDayInfo(d(2026, 5, 6), greek).level).toBe('fish'); // Mid-Pentecost
-    expect(getDayInfo(d(2026, 4, 22), russian).level).toBe('fish');
+    expect(getDayInfo(d(2026, 4, 22), russian).level).toBe('oil');
+  });
+
+  it('keeps ordinary winter Wednesdays strict', () => {
+    expect(getDayInfo(d(2026, 1, 21), russian).level).toBe('xerophagy');
+    expect(getDayInfo(d(2026, 1, 21), greek).level).toBe('noOil');
+  });
+
+  it('gives wine and oil on Tuesday and Thursday of the Apostles Fast (Russian)', () => {
+    expect(getDayInfo(d(2026, 6, 9), russian).level).toBe('oil'); // Tuesday
+    expect(getDayInfo(d(2026, 6, 13), russian).level).toBe('fish'); // Saturday
+    expect(getDayInfo(d(2026, 6, 8), greek).level).toBe('oil'); // Monday
+    expect(getDayInfo(d(2026, 6, 9), greek).level).toBe('fish'); // Tuesday
   });
 
   it('keeps the eve of Theophany', () => {
