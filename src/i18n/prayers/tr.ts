@@ -81,6 +81,20 @@ export const prayerTexts: Record<PrayerId, PrayerText> = {
       },
     ],
   },
+  manasseh: {
+    title: 'Manaşşe’nin Duası',
+    sections: [
+      {
+        heading: 'Büyük Povecheriye’de okunur',
+        paragraphs: [
+          'Ey Rab, her şeye egemen olan, atalarımız İbrahim’in, İshak’ın, Yakup’un ve onların doğru soyunun Allahsı! Göğü ve yeri bütün süsleriyle yaratan, denizi buyruğunun sözüyle sınırlayan, derinliği kapatıp korkunç ve yüce adınla mühürleyen sensin. Herkes senden korkar ve gücünün önünde titrer; çünkü yüceliğinin görkemine dayanılamaz ve günahkârlara yönelik öfkenin tehdidi karşısında durulamaz. Ama vaat ettiğin merhamet ölçüsüz ve kavranamazdır; çünkü sen yüce Rab’sin, çok merhametli, sabırlı, lütfu bol olansın ve insanların kötülükleri yüzünden acı çekensin.',
+          'Sen, ya Rab, iyiliğinin büyüklüğüne göre sana karşı günah işleyenlere tövbe ve bağışlanma vaat ettin; sonsuz merhametinle günahkârlar kurtulsun diye onlara tövbeyi belirledin. Bu nedenle sen, ya Rab, doğruların Allahsı, sana karşı günah işlemeyen doğrulara — İbrahim’e, İshak’a ve Yakup’a — tövbeyi belirlemedin; ama günahkâr olan bana tövbeyi belirledin. Çünkü denizdeki kum tanelerinden daha çok günah işledim.',
+          'Suçlarım çoğaldı, ya Rab, suçlarım çoğaldı; haksızlıklarımın çokluğundan göklerin yüksekliğine bakmaya layık değilim. Birçok demir bağla eğilmişim, başımı kaldıramıyorum, hiç rahatlığım yok; çünkü öfkeni alevlendirdim, senin önünde kötülük yaptım; isteğini yerine getirmedim, buyruklarını tutmadım.',
+          'Şimdi yüreğimin dizlerini büküyor, senden lütuf diliyorum. Günah işledim, ya Rab, günah işledim; suçlarımı biliyorum. Ama sana yalvarıyorum: beni bağışla, ya Rab, beni bağışla; suçlarımla birlikte beni yok etme. Bana sonsuza dek öfkelenip kötülüklerimi saklama, beni yerin derinliklerine mahkûm etme. Çünkü sen Allah’sın, tövbe edenlerin Allahsısın; bende bütün iyiliğini göstereceksin: layık olmadığım hâlde büyük merhametinle beni kurtaracaksın. Ben de yaşamım boyunca her gün seni öveceğim. Çünkü göklerin bütün güçleri sana ilahi söyler ve yücelik sonsuza dek senindir. Amin.',
+        ],
+      },
+    ],
+  },
   morning: {
     title: 'Sabah duaları',
     sections: [
