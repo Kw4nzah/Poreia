@@ -1,6 +1,6 @@
 // Verse text of a reading, for the languages that have a public-domain source bundled.
 // Built by scripts/build-reading-texts.mjs.
-//   en: New Testament = World English Bible; Old Testament and deuterocanon = LXX2012
+//   en: New Testament = Berean Standard Bible (public domain); Old Testament and deuterocanon = LXX2012
 //       (Septuagint numbering, as the lectionary uses).
 //   ru: New Testament = Synodal Translation (1876) only.
 // Everything else (ru Old Testament, composite readings, Turkish) has no text and the
@@ -26,7 +26,7 @@ export function translationName(reading: Reading, language: BookLanguage): strin
   if (language === 'ru') return 'Синодальный перевод (1876)';
   if (language !== 'en') return undefined;
   const book = reading.runs[0]?.[0] ?? '';
-  return NEW_TESTAMENT.has(book) ? 'World English Bible' : 'LXX2012 (Septuagint)';
+  return NEW_TESTAMENT.has(book) ? 'Berean Standard Bible' : 'LXX2012 (Septuagint)';
 }
 
 const cache: Partial<Record<BookLanguage, TextData>> = {};

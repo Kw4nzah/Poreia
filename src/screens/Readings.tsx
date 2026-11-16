@@ -12,6 +12,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn } from '../ui/motion';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
+import { TurkishLink } from '../ui/TurkishLink';
 import { VerseText } from '../ui/VerseText';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
@@ -96,6 +97,7 @@ export function Readings() {
                   {text.fallback && <Text style={styles.note}>{m.readings.textEnglish}</Text>}
                 </>
               )}
+              <TurkishLink reading={reading} />
             </View>
           </FadeIn>
         );

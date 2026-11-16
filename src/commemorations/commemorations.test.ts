@@ -68,7 +68,7 @@ describe('readingVerses', () => {
   it('gives the verses in en and ru, none in tr', () => {
     const en = readingVerses(gospel, 'en')!;
     expect(en.map((v) => v.verse)).toEqual([9, 10, 11, 12, 13]);
-    expect(en[0].text).toContain('Matthew sitting at the tax collection office');
+    expect(en[0].text).toContain('a man named Matthew sitting at the tax booth');
     const ru = readingVerses(gospel, 'ru')!;
     expect(ru).toHaveLength(5);
     expect(ru[0].text).toContain('по имени Матфея');

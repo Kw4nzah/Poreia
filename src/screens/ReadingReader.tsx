@@ -9,6 +9,7 @@ import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
+import { TurkishLink } from '../ui/TurkishLink';
 import { VerseText } from '../ui/VerseText';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
@@ -83,6 +84,7 @@ export function ReadingReader({ index }: { index: number }) {
 
         <Text style={styles.source}>{translationName(reading, text.language)}</Text>
         {text.fallback && <Text style={styles.note}>{m.readings.textEnglish}</Text>}
+        <TurkishLink reading={reading} />
       </ScrollView>
     </View>
   );
