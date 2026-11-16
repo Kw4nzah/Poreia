@@ -74,6 +74,18 @@ export type FeastId =
   | 'dormition'
   | 'beheadingOfJohn';
 
+/**
+ * Which published Greek rule decides fish in the Nativity and Apostles' Fasts (Greek
+ * practice only). `unsure` shows the stricter reading and flags the disputed days.
+ */
+export const GREEK_FISH_PRACTICES = ['unsure', 'weekends', 'studite', 'greece'] as const;
+export type GreekFishPractice = (typeof GREEK_FISH_PRACTICES)[number];
+export const DEFAULT_GREEK_FISH_PRACTICE: GreekFishPractice = 'unsure';
+
+export interface DayOptions {
+  greekFish?: GreekFishPractice;
+}
+
 export type NoteId =
   | 'totalAbstinence'
   | 'caviarAllowed'
@@ -208,6 +220,7 @@ function findPeriod(jdn: number, civilYear: number, church: Church): PeriodRange
 
 interface RuleContext {
   practice: FastingPractice;
+  greekFish: GreekFishPractice;
   weekday: Weekday;
   /** Days from Pascha of the civil year */
   offset: number;
@@ -273,8 +286,11 @@ function apostlesFastRule(c: RuleContext): Rule {
   // Greek sources agree on fish for Tuesday, Thursday and weekends; Church of Greece
   // calendars also give it on Monday, the Typikon-based ones do not.
   if (isWedFri(c.weekday)) return { level: 'noOil' };
-  if (c.weekday === MON) return { level: 'oil', notes: ['fishDisputed'] };
-  return { level: 'fish' };
+  return greekFishRule(c, (p) => {
+    if (p === 'greece') return true;
+    if (p === 'studite') return c.weekday !== MON;
+    return isWeekend(c.weekday);
+  }, 'studite');
 }
 
 function dormitionFastRule(c: RuleContext): Rule {
@@ -301,6 +317,22 @@ const GREEK_NATIVITY_OIL_DAYS = new Set([
   '12-17',
   '12-20',
 ]);
+
+/**
+ * Fish on a Greek-practice Mon/Tue/Thu/Sat/Sun of a fast, decided by the chosen rule.
+ * `allows(p)` says whether rule `p` gives fish today; with `unsure` the stricter rule
+ * `strictest` is shown and the day is flagged when the Church of Greece rule differs.
+ */
+function greekFishRule(
+  c: RuleContext,
+  allows: (p: GreekFishPractice) => boolean,
+  strictest: GreekFishPractice,
+): Rule {
+  if (c.greekFish !== 'unsure') return { level: allows(c.greekFish) ? 'fish' : 'oil' };
+  const strict = allows(strictest);
+  const disputed = strict !== allows('greece');
+  return { level: strict ? 'fish' : 'oil', notes: disputed ? ['fishDisputed'] : [] };
+}
 
 function nativityFastRule(c: RuleContext): Rule {
   const december = c.month === 12;
@@ -337,8 +369,13 @@ function nativityFastRule(c: RuleContext): Rule {
   }
   const fishPeriod = c.month === 11 || (december && c.day <= 17);
   if (!fishPeriod) return { level: 'oil' }; // 18-23 Dec: wine and oil, no fish anywhere
-  if (isWeekend(c.weekday) && !(c.month === 11 && c.day < 22)) return { level: 'fish' };
-  return { level: 'oil', notes: ['fishDisputed'] };
+  const firstWeek = c.month === 11 && c.day < 22;
+  return greekFishRule(c, (p) => {
+    if (p === 'greece') return true; // every day except Wed/Fri
+    if (firstWeek) return false; // weekdays and the first Sunday
+    if (p === 'studite') return c.weekday !== MON;
+    return isWeekend(c.weekday); // 'weekends' and the strict reference
+  }, 'weekends');
 }
 
 /** Strict single fast days: the eves of Nativity and Theophany, the Beheading, the Exaltation. */
@@ -368,7 +405,7 @@ function toDayPeriod(range: PeriodRange, jdn: number): DayPeriod {
   };
 }
 
-export function getDayInfo(date: CivilDate, church: Church): DayInfo {
+export function getDayInfo(date: CivilDate, church: Church, options: DayOptions = {}): DayInfo {
   const jdn = gregorianToJdn(date.year, date.month, date.day);
   const weekday = weekdayOfJdn(jdn);
   const churchDate = jdnToFixed(church, jdn);
@@ -383,6 +420,7 @@ export function getDayInfo(date: CivilDate, church: Church): DayInfo {
 
   const ctx: RuleContext = {
     practice: church.practice,
+    greekFish: options.greekFish ?? DEFAULT_GREEK_FISH_PRACTICE,
     weekday,
     offset,
     month: churchDate.month,

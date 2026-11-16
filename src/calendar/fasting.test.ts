@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
   CHURCHES,
+  GREEK_FISH_PRACTICES,
+  GreekFishPractice,
   getDayInfo,
   getPeriods,
   getUpcomingFast,
@@ -56,6 +58,48 @@ describe('Nativity Fast', () => {
     expect(getDayInfo(d(2026, 11, 25), greek)).toMatchObject({ level: 'oil', notes: ['feastRelaxation'] });
     expect(getDayInfo(d(2026, 12, 4), greek).level).toBe('oil'); // Friday, St Barbara
     expect(getDayInfo(d(2026, 12, 2), greek).level).toBe('noOil'); // ordinary Wednesday
+  });
+
+  it('follows the chosen Greek fish rule in the Nativity Fast', () => {
+    const level = (m: number, dd: number, greekFish: GreekFishPractice) =>
+      getDayInfo(d(2026, m, dd), greek, { greekFish }).level;
+    // Monday 16 Nov, Sunday 15 Nov, Tuesday 17 Nov (first week), Tuesday 24 Nov, Sunday 22 Nov.
+    expect(['weekends', 'studite', 'greece'].map((p) => level(11, 16, p as GreekFishPractice))).toEqual([
+      'oil',
+      'oil',
+      'fish',
+    ]);
+    expect(['weekends', 'studite', 'greece'].map((p) => level(11, 15, p as GreekFishPractice))).toEqual([
+      'oil',
+      'oil',
+      'fish',
+    ]);
+    expect(['weekends', 'studite', 'greece'].map((p) => level(11, 17, p as GreekFishPractice))).toEqual([
+      'oil',
+      'oil',
+      'fish',
+    ]);
+    expect(['weekends', 'studite', 'greece'].map((p) => level(11, 24, p as GreekFishPractice))).toEqual([
+      'oil',
+      'fish',
+      'fish',
+    ]);
+    for (const p of GREEK_FISH_PRACTICES) expect(level(11, 22, p)).toBe('fish');
+    for (const p of GREEK_FISH_PRACTICES) expect(level(12, 19, p)).toBe('oil'); // after 17 Dec
+    for (const p of GREEK_FISH_PRACTICES) expect(level(11, 18, p)).toBe('noOil'); // Wednesday
+    // A chosen rule never shows the "traditions differ" note.
+    expect(getDayInfo(d(2026, 11, 16), greek, { greekFish: 'greece' }).notes).toEqual([]);
+  });
+
+  it('follows the chosen Greek fish rule in the Apostles Fast and ignores it on the old calendar', () => {
+    const level = (dd: number, greekFish: GreekFishPractice) =>
+      getDayInfo(d(2026, 6, dd), greek, { greekFish }).level;
+    expect(level(8, 'greece')).toBe('fish'); // Monday
+    expect(level(8, 'studite')).toBe('oil');
+    expect(level(9, 'studite')).toBe('fish'); // Tuesday
+    expect(level(9, 'weekends')).toBe('oil');
+    expect(level(13, 'weekends')).toBe('fish'); // Saturday
+    expect(getDayInfo(d(2026, 12, 1), russian, { greekFish: 'greece' }).level).toBe('oil'); // Tuesday
   });
 
   it('keeps fish off Tuesday and Thursday on the old calendar', () => {

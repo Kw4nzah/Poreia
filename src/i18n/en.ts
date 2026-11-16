@@ -7,6 +7,7 @@ import type {
   FastLevel,
   FeastId,
   FoodId,
+  GreekFishPractice,
   MajorFastId,
   NoteId,
   PeriodId,
@@ -58,6 +59,9 @@ export interface Messages {
     back: string;
     name: string;
     church: string;
+    fishTitle: string;
+    fishHint: string;
+    fish: Record<GreekFishPractice, { title: string; subtitle: string }>;
     language: string;
     updatesTitle: string;
     version: (version: string) => string;
@@ -163,6 +167,14 @@ export const en: Messages = {
     back: 'Back',
     name: 'Name',
     church: 'Tradition',
+    fishTitle: 'Fish in the Nativity and Apostles’ Fasts',
+    fishHint: 'Greek sources differ. Pick the rule your parish follows.',
+    fish: {
+      unsure: { title: 'Not sure', subtitle: 'Show the stricter reading and mark disputed days' },
+      weekends: { title: 'Weekends only', subtitle: 'Fish on Saturday and Sunday' },
+      studite: { title: 'Tuesday, Thursday and weekends', subtitle: 'Studite typikon' },
+      greece: { title: 'Every day but Wednesday and Friday', subtitle: 'Church of Greece, GOARCH' },
+    },
     language: 'Language',
     updatesTitle: 'Updates',
     version: (version) => `Version ${version}`,

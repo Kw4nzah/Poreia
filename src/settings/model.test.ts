@@ -16,6 +16,7 @@ describe('parseSettings', () => {
       notifications: true,
       notificationHour: 12,
       prayerTextSize: 2,
+      greekFish: 'greece',
     };
     expect(parseSettings(JSON.stringify(stored), 'en')).toEqual(stored);
   });
@@ -29,6 +30,11 @@ describe('parseSettings', () => {
   it('rejects an hour that is not offered', () => {
     const raw = JSON.stringify({ notifications: true, notificationHour: 3 });
     expect(parseSettings(raw, 'en').notificationHour).toBe(8);
+  });
+
+  it('falls back to the undecided fish rule when the stored one is unknown', () => {
+    expect(parseSettings(JSON.stringify({ greekFish: 'x' }), 'en').greekFish).toBe('unsure');
+    expect(parseSettings(JSON.stringify({ greekFish: 'studite' }), 'en').greekFish).toBe('studite');
   });
 
   it('falls back to the middle prayer text size when the stored one is invalid', () => {

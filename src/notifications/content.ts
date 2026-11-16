@@ -4,6 +4,7 @@ import {
   Church,
   CivilDate,
   DayInfo,
+  DayOptions,
   getDayInfo,
   gregorianToJdn,
   jdnToGregorian,
@@ -36,10 +37,11 @@ export function planNotifications(
   days: number,
   church: Church,
   m: Messages,
+  options?: DayOptions,
 ): DailyNotification[] {
   const start = gregorianToJdn(from.year, from.month, from.day);
   return Array.from({ length: days }, (_, i) => {
     const date = jdnToGregorian(start + i);
-    return { date, ...describeDay(getDayInfo(date, church), m) };
+    return { date, ...describeDay(getDayInfo(date, church, options), m) };
   });
 }

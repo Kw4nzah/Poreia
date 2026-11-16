@@ -1,6 +1,12 @@
 // What the app remembers about its user. Pure, so it can be tested without a device.
 
-import { CHURCHES, ChurchId } from '../calendar';
+import {
+  CHURCHES,
+  ChurchId,
+  DEFAULT_GREEK_FISH_PRACTICE,
+  GREEK_FISH_PRACTICES,
+  GreekFishPractice,
+} from '../calendar';
 import { Language, isLanguage } from '../i18n';
 import { DEFAULT_PRAYER_TEXT_SIZE, PrayerTextSize, isPrayerTextSize } from '../prayers';
 
@@ -20,6 +26,8 @@ export interface Settings {
   notificationHour: NotificationHour;
   /** Index into PRAYER_TEXT_SIZES. */
   prayerTextSize: PrayerTextSize;
+  /** Which Greek rule decides fish in the Nativity and Apostles' Fasts. */
+  greekFish: GreekFishPractice;
 }
 
 export const STORAGE_KEY = 'poreia.settings.v1';
@@ -33,6 +41,7 @@ export function defaultSettings(language: Language): Settings {
     notifications: false,
     notificationHour: 8,
     prayerTextSize: DEFAULT_PRAYER_TEXT_SIZE,
+    greekFish: DEFAULT_GREEK_FISH_PRACTICE,
   };
 }
 
@@ -68,5 +77,8 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
     prayerTextSize: isPrayerTextSize(s.prayerTextSize)
       ? s.prayerTextSize
       : fallback.prayerTextSize,
+    greekFish: GREEK_FISH_PRACTICES.includes(s.greekFish as GreekFishPractice)
+      ? (s.greekFish as GreekFishPractice)
+      : fallback.greekFish,
   };
 }

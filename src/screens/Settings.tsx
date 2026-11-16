@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CHURCHES, ChurchId } from '../calendar';
+import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
 import { requestPermission } from '../notifications/schedule';
 import { NOTIFICATION_HOURS } from '../settings/model';
@@ -79,6 +79,24 @@ export function Settings() {
           />
         ))}
       </View>
+
+      {settings.churchId === 'greek' && (
+        <>
+          <Text style={styles.label}>{m.settings.fishTitle}</Text>
+          <Text style={styles.hint}>{m.settings.fishHint}</Text>
+          <View style={styles.options}>
+            {GREEK_FISH_PRACTICES.map((id) => (
+              <Option
+                key={id}
+                selected={id === settings.greekFish}
+                title={m.settings.fish[id].title}
+                subtitle={m.settings.fish[id].subtitle}
+                onPress={() => update({ greekFish: id })}
+              />
+            ))}
+          </View>
+        </>
+      )}
 
       <Text style={styles.label}>{m.settings.language}</Text>
       <View style={styles.options}>
@@ -177,6 +195,7 @@ function makeStyles(t: Theme) {
     backText: { fontSize: 16, color: t.accent },
     title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink, marginTop: space.xs },
     label: { fontSize: 14, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
+    hint: { fontSize: 13, lineHeight: 19, color: t.muted, marginBottom: space.sm },
     input: {
       height: 56,
       paddingHorizontal: space.md,

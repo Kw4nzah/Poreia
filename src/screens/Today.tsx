@@ -20,7 +20,7 @@ export function Today() {
   const apk = useApkUpdate();
 
   const church = CHURCHES[settings.churchId];
-  const info = getDayInfo(today, church);
+  const info = getDayInfo(today, church, { greekFish: settings.greekFish });
   const upcoming = getUpcomingFast(today, church);
 
   const fasting = info.level !== 'none';
