@@ -4,7 +4,7 @@ import { Redirect, useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getCommemoration, readingReference } from '../commemorations';
-import { TRANSLATION_NAMES, readingVerses } from '../commemorations/text';
+import { readingVerses, translationName } from '../commemorations/text';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
@@ -92,7 +92,7 @@ export function ReadingReader({ index }: { index: number }) {
           ))}
         </Text>
 
-        <Text style={styles.source}>{TRANSLATION_NAMES[settings.language]}</Text>
+        <Text style={styles.source}>{translationName(reading, settings.language)}</Text>
       </ScrollView>
     </View>
   );

@@ -1,7 +1,10 @@
-// Verse text of a reading, for the languages that have a public-domain source bundled:
-// en = World English Bible, ru = Synodal Translation (1876). Built by
-// scripts/build-reading-texts.mjs. New Testament only; everything else (Old Testament,
-// composite readings, Turkish) has no text and the screens show the reference alone.
+// Verse text of a reading, for the languages that have a public-domain source bundled.
+// Built by scripts/build-reading-texts.mjs.
+//   en: New Testament = World English Bible; Old Testament and deuterocanon = LXX2012
+//       (Septuagint numbering, as the lectionary uses).
+//   ru: New Testament = Synodal Translation (1876) only.
+// Everything else (ru Old Testament, composite readings, Turkish) has no text and the
+// screens show the reference alone.
 
 import type { BookLanguage } from './books';
 import type { Reading } from './index';
@@ -14,11 +17,17 @@ export interface ReadingVerse {
 
 type TextData = Record<string, Record<string, Record<string, string>>>;
 
-/** Name of the translation shown under a reading. */
-export const TRANSLATION_NAMES: Partial<Record<BookLanguage, string>> = {
-  en: 'World English Bible',
-  ru: 'Синодальный перевод (1876)',
-};
+const NEW_TESTAMENT = new Set(
+  'MAT MRK LUK JHN ACT ROM 1CO 2CO GAL EPH PHP COL 1TH 2TH 1TI 2TI TIT PHM HEB JAS 1PE 2PE 1JN 2JN 3JN JUD REV'.split(' '),
+);
+
+/** Name of the translation the verses of this reading come from. */
+export function translationName(reading: Reading, language: BookLanguage): string | undefined {
+  if (language === 'ru') return 'Синодальный перевод (1876)';
+  if (language !== 'en') return undefined;
+  const book = reading.runs[0]?.[0] ?? '';
+  return NEW_TESTAMENT.has(book) ? 'World English Bible' : 'LXX2012 (Septuagint)';
+}
 
 const cache: Partial<Record<BookLanguage, TextData>> = {};
 

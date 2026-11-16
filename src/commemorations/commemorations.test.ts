@@ -7,7 +7,7 @@ import {
   hasBookName,
   readingKind,
 } from './index';
-import { readingVerses } from './text';
+import { readingVerses, translationName } from './text';
 
 describe('getCommemoration', () => {
   // Values checked against https://orthocal.info/api/{gregorian,julian}/2026/11/16/ on 2026-11-16.
@@ -85,8 +85,19 @@ describe('readingVerses', () => {
     expect(verses.map((v) => v.chapter)).toContain(2);
   });
 
-  it('has no text for Old Testament, composite or numbering-differs readings', () => {
-    expect(readingVerses({ kind: 'other', source: 'x', runs: [['ISA', 35, 1, 35, 10]] }, 'en')).toBeNull();
+  it('has Old Testament and deuterocanon text in en (LXX numbering) but not in ru', () => {
+    const isaiah = { kind: 'other', source: 'x', runs: [['ISA', 35, 1, 35, 10]] } as const;
+    const en = readingVerses(isaiah, 'en')!;
+    expect(en).toHaveLength(10);
+    expect(en[0].text).toMatch(/wilderness/i);
+    expect(translationName(isaiah, 'en')).toBe('LXX2012 (Septuagint)');
+    const wisdom = readingVerses({ kind: 'other', source: 'x', runs: [['WIS', 3, 1, 3, 9]] }, 'en')!;
+    expect(wisdom[0].text).toMatch(/righteous/i);
+    expect(readingVerses(isaiah, 'ru')).toBeNull();
+    expect(readingVerses({ kind: 'other', source: 'x', runs: [['WIS', 3, 1, 3, 9]] }, 'ru')).toBeNull();
+  });
+
+  it('has no text for composite or numbering-differs readings', () => {
     expect(readingVerses({ kind: 'other', source: 'x', runs: [], label: 'Genesis 1' }, 'en')).toBeNull();
     expect(readingVerses({ kind: 'other', source: 'x', runs: [['2CO', 13, 11, 13, 14]] }, 'ru')).toBeNull();
   });
