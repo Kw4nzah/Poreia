@@ -190,7 +190,7 @@ export const tr: Messages = {
   sources: {
     title: 'Kaynaklar ve lisanslar',
     sections: [
-      { heading: 'Kutsal Kitap metinleri', body: 'İngilizce okumalar: Yeni Ahit World English Bible’dan, Eski Ahit ve deuterokanon İngilizce Septuaginta’dan (LXX2012). Rusça okumalar: Sinodal Çeviri (1876). Üçü de kamu malıdır; metinler eBible.org’dan alındı, işaretlemeler kaldırıldı ve yalnızca her okumanın ayetleri tutuldu.' },
+      { heading: 'Kutsal Kitap metinleri', body: 'İngilizce okumalar: Yeni Ahit Berean Standard Bible’dan, Eski Ahit ve deuterokanon İngilizce Septuaginta’dan (LXX2012). Rusça okumalar: Sinodal Çeviri (1876). Üçü de kamu malıdır; metinler eBible.org’dan alındı, işaretlemeler kaldırıldı ve yalnızca her okumanın ayetleri tutuldu.' },
       { heading: 'Azizler ve okumalar', body: 'Azizlerin adları, bayram günleri ve okuma başvuruları orthocal.info’dan gelir (Amerika Ortodoks Kilisesi lectionary’si; projenin kodu MIT lisanslıdır). Yalnızca adlar ve başvurular kullanılır, azizlerin hayatları kullanılmaz.' },
       { heading: 'Dualar, İngilizce', body: 'Göklerdeki Babamız, İman İkrarı, Göksel Kral, Trisagion ve Aziz Efrem’in Duası: Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982), Project Gutenberg (#34981) yayınından. Sabah, akşam ve yemek dualarının İngilizcesi bu uygulama için Slavca ve Yunanca metinlerden hazırlanmış sadık çevirilerdir.' },
       { heading: 'Dualar, Rusça', body: 'Kamu malı Kilise Slavcası metinleri, azbyka.ru (Молитвослов) ile karşılaştırılmıştır.' },

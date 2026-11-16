@@ -1,15 +1,15 @@
 // Builds src/commemorations/data/text-<lang>.json: the New Testament verses that the bundled
 // lectionary data (see build-commemorations.mjs) refers to, taken from public-domain
 // translations published by eBible.org as USFM:
-//   en = World English Bible (engwebu), ru = Synodal Translation 1876 (russyn).
+//   en = Berean Standard Bible (engbsb) for the New Testament, ru = Synodal Translation 1876 (russyn).
 //
-// en covers the whole lectionary: New Testament from WEB, Old Testament and deuterocanon
+// en covers the whole lectionary: New Testament from BSB, Old Testament and deuterocanon
 // from LXX2012 (Septuagint numbering, as the lectionary uses). ru has the New Testament only:
 // its Synodal Old Testament is Masoretic-numbered and has no deuterocanon, so those readings
 // stay references in ru.
 //
 // Usage: node scripts/build-reading-texts.mjs <en-usfm-dir> <ru-usfm-dir>
-// Download first: https://ebible.org/Scriptures/engwebu_usfm.zip and russyn_usfm.zip
+// Download first: https://ebible.org/Scriptures/engbsb_usfm.zip, russyn_usfm.zip and eng-lxx2012_usfm.zip
 
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
@@ -138,6 +138,12 @@ for (const lang of ['en', 'ru']) {
       for (let v = c === c1 ? v1 : 1; v <= last; v++) {
         const verse = text[c]?.[v];
         if (verse === undefined) {
+          // A New Testament verse the translation leaves out on purpose (BSB drops verses that
+          // are not in the oldest manuscripts) is kept as an empty verse; the screens skip it.
+          if (isNT(book) && text[c]) {
+            ((out[book] ??= {})[c] ??= {})[v] = '';
+            continue;
+          }
           problems.push(`${book} ${c}:${v}`);
           continue;
         }
