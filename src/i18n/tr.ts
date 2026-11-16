@@ -163,6 +163,25 @@ export const tr: Messages = {
     text: prayerTexts,
   },
 
+  // Unreviewed by the user: church terms and book names.
+  readings: {
+    title: 'Azizler ve okumalar',
+    saints: 'Günün azizleri',
+    readings: 'Okumalar',
+    more: (count) => `+${count} daha`,
+    namesEnglish: 'Adlar İngilizce gösterilir.',
+    noData: 'Bu yıl için henüz aziz ve okuma verisi yok.',
+    epistle: 'Mektup',
+    gospel: 'İncil',
+    group: {
+      liturgy: 'İlahi Liturji',
+      vespers: 'Akşam Ayini',
+      matins: 'Sabah Ayini',
+      hours: 'Saat Ayinleri',
+      other: 'Diğer ayinler',
+    },
+  },
+
   updates: {
     check: 'Güncellemeleri denetle',
     disabled: 'Bu sürümde güncellemeler kapalı.',

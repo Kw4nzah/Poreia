@@ -174,6 +174,24 @@ export const ru: Messages = {
     text: prayerTexts,
   },
 
+  readings: {
+    title: 'Святые и чтения',
+    saints: 'Святые дня',
+    readings: 'Чтения',
+    more: (count) => `ещё ${count}`,
+    namesEnglish: 'Имена показаны на английском.',
+    noData: 'Данных о святых и чтениях за этот год пока нет.',
+    epistle: 'Апостол',
+    gospel: 'Евангелие',
+    group: {
+      liturgy: 'Литургия',
+      vespers: 'Вечерня',
+      matins: 'Утреня',
+      hours: 'Часы',
+      other: 'Другие службы',
+    },
+  },
+
   updates: {
     check: 'Проверить обновления',
     disabled: 'В этой сборке обновления отключены.',

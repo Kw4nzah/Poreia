@@ -66,6 +66,28 @@ export function readingKind(source: string): ReadingKind {
   return 'other';
 }
 
+export const READING_GROUPS = ['liturgy', 'vespers', 'matins', 'hours', 'other'] as const;
+export type ReadingGroupId = (typeof READING_GROUPS)[number];
+
+function groupOf(kind: ReadingKind): ReadingGroupId {
+  return kind === 'epistle' || kind === 'gospel' ? 'liturgy' : kind;
+}
+
+/** Readings split by service, in READING_GROUPS order; empty groups are left out. */
+export function groupReadings(
+  readings: readonly Reading[],
+): { id: ReadingGroupId; readings: Reading[] }[] {
+  return READING_GROUPS.map((id) => ({
+    id,
+    readings: readings.filter((r) => groupOf(r.kind) === id),
+  })).filter((group) => group.readings.length > 0);
+}
+
+/** One line for a reading in the given language; composite readings keep the published label. */
+export function readingReference(reading: Reading, language: BookLanguage): string {
+  return reading.runs.length > 0 ? formatReference(reading.runs, language) : (reading.label ?? '');
+}
+
 /** The Greek church follows the new calendar, the Russian church the old one. */
 export function getCommemoration(date: CivilDate, church: ChurchId): Commemoration | null {
   const year = DATA[`${church}-${date.year}`];
