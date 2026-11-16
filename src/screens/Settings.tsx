@@ -2,6 +2,7 @@
 
 import * as Application from 'expo-application';
 import { useRouter } from 'expo-router';
+import * as Updates from 'expo-updates';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -12,6 +13,7 @@ import { NOTIFICATION_HOURS } from '../settings/model';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { describeContent } from '../updates/contentVersion';
 import { useApkUpdate } from '../updates/useApkUpdate';
 import { useUpdateCheck } from '../updates/useUpdateCheck';
 
@@ -26,6 +28,7 @@ export function Settings() {
   const updates = useUpdateCheck();
   const apk = useApkUpdate();
   const [notificationsDenied, setNotificationsDenied] = useState(false);
+  const contentLine = describeContent(m, Updates.isEmbeddedLaunch, Updates.createdAt);
 
   async function toggleNotifications(on: boolean) {
     setNotificationsDenied(false);
@@ -153,6 +156,7 @@ export function Settings() {
         <Text style={styles.cardText}>
           {m.settings.version(Application.nativeApplicationVersion ?? '–')}
         </Text>
+        <Text style={styles.cardText}>{contentLine}</Text>
         {updates.status !== 'idle' && (
           <Text style={styles.status}>{m.updates[updates.status]}</Text>
         )}

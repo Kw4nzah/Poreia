@@ -71,6 +71,8 @@ export const tr: Messages = {
     updatesTitle: 'Güncellemeler',
     version: (version) => `Sürüm ${version}`,
     apkAvailable: (version) => `${version} sürümü yayında`,
+    contentUpdated: (when) => `İçerik güncellemesi: ${when}`,
+    contentShipped: 'İçerik uygulamayla gelen haliyle',
     apkInstall: (megabytes) => `İndir ve kur (${megabytes} MB)`,
     apkDownloading: 'İndiriliyor…',
     apkFailed: 'İndirilemedi. Daha sonra yeniden dene.',

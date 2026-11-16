@@ -67,6 +67,10 @@ export interface Messages {
     updatesTitle: string;
     version: (version: string) => string;
     apkAvailable: (version: string) => string;
+    /** Release time of the content bundle that is running. */
+    contentUpdated: (when: string) => string;
+    /** No downloaded update yet: the bundle that shipped inside the APK. */
+    contentShipped: string;
     apkInstall: (megabytes: number) => string;
     apkDownloading: string;
     apkFailed: string;
@@ -193,6 +197,8 @@ export const en: Messages = {
     updatesTitle: 'Updates',
     version: (version) => `Version ${version}`,
     apkAvailable: (version) => `Version ${version} is available`,
+    contentUpdated: (when) => `Content updated ${when}`,
+    contentShipped: 'Content as shipped with the app',
     apkInstall: (megabytes) => `Download and install (${megabytes} MB)`,
     apkDownloading: 'Downloading…',
     apkFailed: 'Download failed. Try again later.',
