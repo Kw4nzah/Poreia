@@ -14,7 +14,11 @@ export default function RootLayout() {
       <SettingsProvider>
         <DailyNotifications />
         <Stack
-          screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.background } }}
+          screenOptions={{
+            headerShown: false,
+            animation: 'fade_from_bottom',
+            contentStyle: { backgroundColor: theme.background },
+          }}
         />
       </SettingsProvider>
     </View>

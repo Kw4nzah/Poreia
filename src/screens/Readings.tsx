@@ -9,6 +9,7 @@ import { readingVerses, translationName } from '../commemorations/text';
 import { formatDate } from '../i18n';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
+import { FadeIn } from '../ui/motion';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { VerseText } from '../ui/VerseText';
@@ -80,20 +81,22 @@ export function Readings() {
 
       {!day && <Text style={styles.empty}>{m.readings.noData}</Text>}
 
-      {liturgy.map((reading) => {
+      {liturgy.map((reading, i) => {
         const verses = readingVerses(reading, settings.language);
         return (
-          <View key={reading.source + reading.kind} style={styles.reading}>
-            <Text style={styles.kind}>{kindLabel(reading)}</Text>
-            <Text style={styles.reference}>{readingReference(reading, settings.language)}</Text>
-            <View style={styles.rule} />
-            {verses && (
-              <>
-                <VerseText verses={verses} size={PRAYER_TEXT_SIZES[size]} />
-                <Text style={styles.source}>{translationName(reading, settings.language)}</Text>
-              </>
-            )}
-          </View>
+          <FadeIn key={reading.source + reading.kind} index={i}>
+            <View style={styles.reading}>
+              <Text style={styles.kind}>{kindLabel(reading)}</Text>
+              <Text style={styles.reference}>{readingReference(reading, settings.language)}</Text>
+              <View style={styles.rule} />
+              {verses && (
+                <>
+                  <VerseText verses={verses} size={PRAYER_TEXT_SIZES[size]} />
+                  <Text style={styles.source}>{translationName(reading, settings.language)}</Text>
+                </>
+              )}
+            </View>
+          </FadeIn>
         );
       })}
 
@@ -168,7 +171,13 @@ function makeStyles(t: Theme) {
     reading: { marginTop: space.lg },
     kind: { fontSize: 14, color: t.muted },
     reference: { fontFamily: SERIF, fontSize: 24, lineHeight: 32, color: t.ink, marginTop: 2 },
-    rule: { width: 40, height: 2, borderRadius: 1, backgroundColor: t.feast, marginVertical: space.md },
+    rule: {
+      width: 40,
+      height: 2,
+      borderRadius: 1,
+      backgroundColor: t.feast,
+      marginVertical: space.md,
+    },
     source: { fontSize: 13, color: t.muted, marginTop: space.sm },
 
     label: { fontSize: 14, color: t.muted, marginTop: space.xl, marginBottom: space.sm },
