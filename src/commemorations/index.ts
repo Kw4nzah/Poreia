@@ -8,8 +8,14 @@ import { bookName, type BookLanguage } from './books';
 
 import greek2026 from './data/gregorian-2026.json';
 import greek2027 from './data/gregorian-2027.json';
+import greek2028 from './data/gregorian-2028.json';
+import greek2029 from './data/gregorian-2029.json';
+import greek2030 from './data/gregorian-2030.json';
 import russian2026 from './data/julian-2026.json';
 import russian2027 from './data/julian-2027.json';
+import russian2028 from './data/julian-2028.json';
+import russian2029 from './data/julian-2029.json';
+import russian2030 from './data/julian-2030.json';
 
 export { bookName, hasBookName, type BookLanguage } from './books';
 
@@ -50,12 +56,18 @@ type RawYear = Record<string, RawDay>;
 const DATA: Record<string, RawYear> = {
   'greek-2026': greek2026 as unknown as RawYear,
   'greek-2027': greek2027 as unknown as RawYear,
+  'greek-2028': greek2028 as unknown as RawYear,
+  'greek-2029': greek2029 as unknown as RawYear,
+  'greek-2030': greek2030 as unknown as RawYear,
   'russian-2026': russian2026 as unknown as RawYear,
   'russian-2027': russian2027 as unknown as RawYear,
+  'russian-2028': russian2028 as unknown as RawYear,
+  'russian-2029': russian2029 as unknown as RawYear,
+  'russian-2030': russian2030 as unknown as RawYear,
 };
 
 /** Years with bundled data. Rerun scripts/build-commemorations.mjs to add more. */
-export const COMMEMORATION_YEARS: readonly number[] = [2026, 2027];
+export const COMMEMORATION_YEARS: readonly number[] = [2026, 2027, 2028, 2029, 2030];
 
 export function readingKind(source: string): ReadingKind {
   if (source === 'Epistle') return 'epistle';

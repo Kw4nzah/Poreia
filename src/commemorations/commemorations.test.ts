@@ -105,7 +105,7 @@ describe('readingVerses', () => {
   it('has text for every New Testament reading the data allows', () => {
     const NT = /^(MAT|MRK|LUK|JHN|ACT|ROM|[12]CO|GAL|EPH|PHP|COL|[12]TH|[12]TI|TIT|PHM|HEB|JAS|[12]PE|[123]JN|JUD|REV)$/;
     for (const church of ['greek', 'russian'] as const) {
-      for (let jdn = gregorianToJdn(2026, 1, 1); jdn <= gregorianToJdn(2027, 12, 31); jdn += 1) {
+      for (let jdn = gregorianToJdn(2026, 1, 1); jdn <= gregorianToJdn(2030, 12, 31); jdn += 1) {
         for (const reading of getCommemoration(jdnToGregorian(jdn), church)!.readings) {
           if (reading.runs.length === 0 || !reading.runs.every((r) => NT.test(r[0]))) continue;
           const en = readingVerses(reading, 'en');

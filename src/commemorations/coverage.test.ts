@@ -13,7 +13,7 @@ describe('text coverage', () => {
     };
     const lacking = new Map<string, number>();
     for (const church of ['greek', 'russian'] as const) {
-      for (let jdn = gregorianToJdn(2026, 1, 1); jdn <= gregorianToJdn(2027, 12, 31); jdn++) {
+      for (let jdn = gregorianToJdn(2026, 1, 1); jdn <= gregorianToJdn(2030, 12, 31); jdn++) {
         for (const reading of getCommemoration(jdnToGregorian(jdn), church)!.readings) {
           for (const lang of ['en', 'ru'] as const) {
             const liturgy = reading.kind === 'epistle' || reading.kind === 'gospel';
