@@ -3,7 +3,7 @@
     "name": "Poreia",
     "slug": "poreia",
     "scheme": "poreia",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -15,7 +15,7 @@
     },
     "android": {
       "package": "com.kw4nzah.poreia",
-      "versionCode": 3,
+      "versionCode": 4,
       "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
       "adaptiveIcon": {
         "backgroundColor": "#7A1F2B",
@@ -34,7 +34,7 @@
         "expo-splash-screen",
         {
           "image": "./assets/splash-icon.png",
-          "imageWidth": 400,
+          "imageWidth": 360,
           "backgroundColor": "#7A1F2B",
           "dark": { "image": "./assets/splash-icon.png", "backgroundColor": "#7A1F2B" }
         }
