@@ -174,7 +174,7 @@ export const ru: Messages = {
     summary: 'Отче наш, Символ веры, утренние и вечерние молитвы',
     smaller: 'Уменьшить текст',
     larger: 'Увеличить текст',
-    group: { basic: 'Основные молитвы', daily: 'Молитвы дня' },
+    group: { basic: 'Основные молитвы', daily: 'Молитвы дня', lent: 'Великий пост' },
     text: prayerTexts,
   },
 
@@ -184,6 +184,7 @@ export const ru: Messages = {
     readings: 'Чтения',
     more: (count) => `ещё ${count}`,
     namesEnglish: 'Имена показаны на английском.',
+    textEnglish: 'Текста на русском нет, показан английский.',
     noData: 'Данных о святых и чтениях за этот год пока нет.',
     epistle: 'Апостол',
     gospel: 'Евангелие',

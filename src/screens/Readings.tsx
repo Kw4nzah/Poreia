@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Reading, getCommemoration, groupReadings, readingReference } from '../commemorations';
-import { readingVerses, translationName } from '../commemorations/text';
+import { readingText, translationName } from '../commemorations/text';
 import { formatDate } from '../i18n';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
@@ -82,17 +82,18 @@ export function Readings() {
       {!day && <Text style={styles.empty}>{m.readings.noData}</Text>}
 
       {liturgy.map((reading, i) => {
-        const verses = readingVerses(reading, settings.language);
+        const text = readingText(reading, settings.language);
         return (
           <FadeIn key={reading.source + reading.kind} index={i}>
             <View style={styles.reading}>
               <Text style={styles.kind}>{kindLabel(reading)}</Text>
               <Text style={styles.reference}>{readingReference(reading, settings.language)}</Text>
               <View style={styles.rule} />
-              {verses && (
+              {text && (
                 <>
-                  <VerseText verses={verses} size={PRAYER_TEXT_SIZES[size]} />
-                  <Text style={styles.source}>{translationName(reading, settings.language)}</Text>
+                  <VerseText verses={text.verses} size={PRAYER_TEXT_SIZES[size]} />
+                  <Text style={styles.source}>{translationName(reading, text.language)}</Text>
+                  {text.fallback && <Text style={styles.note}>{m.readings.textEnglish}</Text>}
                 </>
               )}
             </View>
@@ -120,7 +121,7 @@ export function Readings() {
             <Text style={styles.label}>{m.readings.group[group.id]}</Text>
             <View style={styles.card}>
               {group.readings.map((reading, index) => {
-                const hasText = readingVerses(reading, settings.language) !== null;
+                const hasText = readingText(reading, settings.language) !== null;
                 return (
                   <Pressable
                     key={reading.source + index}
