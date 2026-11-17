@@ -9,6 +9,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { TAB_BAR_HEIGHT, TAB_BAR_SIDE, useTabBarBottom } from './tabBar';
 import { useTheme } from './theme';
 
+const PILL_RADIUS = (TAB_BAR_HEIGHT - 16) / 2;
 const TABS = ['today', 'readings', 'prayers', 'settings'] as const;
 type TabId = (typeof TABS)[number];
 
@@ -61,10 +62,21 @@ export function GlassTabBar({
                 key={id}
                 onPress={() => router.navigate(`/${id}`)}
                 style={styles.item}
-                accessibilityRole="tab"
+                focusable={false}
+                accessibilityRole="button"
                 accessibilityState={{ selected: active }}
               >
-                <View style={[styles.pill, active && { backgroundColor: theme.pill }]}>
+                <View style={styles.pill} collapsable={false}>
+                  {/* The fill is its own rounded layer, clipped by the pill, so it can never show square. */}
+                  {active && (
+                    <View
+                      style={[
+                        StyleSheet.absoluteFill,
+                        styles.fill,
+                        { backgroundColor: theme.pill },
+                      ]}
+                    />
+                  )}
                   <Text
                     numberOfLines={1}
                     adjustsFontSizeToFit
@@ -102,11 +114,13 @@ const styles = StyleSheet.create({
   item: { flex: 1, height: '100%', justifyContent: 'center' },
   pill: {
     height: TAB_BAR_HEIGHT - 16,
-    borderRadius: (TAB_BAR_HEIGHT - 16) / 2,
+    borderRadius: PILL_RADIUS,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 6,
+    overflow: 'hidden',
   },
+  fill: { borderRadius: PILL_RADIUS },
   label: { fontSize: 14, fontWeight: '500' },
   labelActive: { fontWeight: '700' },
 });
