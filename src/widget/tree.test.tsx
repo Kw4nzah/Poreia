@@ -97,7 +97,7 @@ describe('layoutFor', () => {
     const { layoutFor } = await import('./FastWidget');
     expect(layoutFor(340, 200).wide).toBe(true);
     expect(layoutFor(340, 200).tight).toBe(false);
-    expect(layoutFor(320, 165)).toEqual({ wide: true, tight: true, narrow: false });
+    expect(layoutFor(320, 165)).toEqual({ wide: true, tight: true, narrow: false, side: 0 });
     expect(layoutFor(340, 110).wide).toBe(false);
     expect(layoutFor(170, 170)).toEqual({ wide: false, tight: false, narrow: false, side: 170 });
     expect(layoutFor(110, 110)).toEqual({ wide: false, tight: true, narrow: true, side: 110 });
