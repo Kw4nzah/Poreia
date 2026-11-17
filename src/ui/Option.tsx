@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { space, useTheme, radius, type } from './theme';
+import { StyleSheet, Text, View } from 'react-native';
+import { Card } from './kit';
+import { space, useTheme, type } from './theme';
 
 interface OptionProps {
   selected: boolean;
@@ -12,37 +13,35 @@ interface OptionProps {
 export function Option({ selected, title, subtitle, onPress }: OptionProps) {
   const t = useTheme();
   return (
-    <Pressable
+    <Card
       onPress={onPress}
-      style={({ pressed }) => [
-        styles.option,
-        { borderColor: selected ? t.accent : t.line, backgroundColor: t.surface },
-        pressed && { opacity: 0.85 },
-      ]}
+      padding="none"
+      shape="field"
+      style={{ borderColor: selected ? t.accent : t.line }}
       accessibilityRole="radio"
       accessibilityLabel={subtitle ? `${title}. ${subtitle}` : title}
       accessibilityState={{ selected }}
     >
-      <View style={styles.text}>
-        <Text style={[styles.title, { color: t.ink }]}>{title}</Text>
-        {subtitle && <Text style={[styles.subtitle, { color: t.muted }]}>{subtitle}</Text>}
+      <View style={styles.row}>
+        <View style={styles.text}>
+          <Text style={[styles.title, { color: t.ink }]}>{title}</Text>
+          {subtitle && <Text style={[styles.subtitle, { color: t.muted }]}>{subtitle}</Text>}
+        </View>
+        <View style={[styles.radio, { borderColor: selected ? t.accent : t.line }]}>
+          {selected && <View style={[styles.dot, { backgroundColor: t.accent }]} />}
+        </View>
       </View>
-      <View style={[styles.radio, { borderColor: selected ? t.accent : t.line }]}>
-        {selected && <View style={[styles.dot, { backgroundColor: t.accent }]} />}
-      </View>
-    </Pressable>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  option: {
+  row: {
     flexDirection: 'row',
     alignItems: 'center',
     minHeight: 64,
     paddingHorizontal: space.md,
     paddingVertical: space.smd,
-    borderRadius: radius.field,
-    borderWidth: 1,
   },
   text: { flex: 1, gap: space.xs },
   title: { ...type.bodyLarge },

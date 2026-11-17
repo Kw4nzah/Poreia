@@ -3,19 +3,19 @@
     "name": "Poreia",
     "slug": "poreia",
     "scheme": "poreia",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "runtimeVersion": "4",
+    "runtimeVersion": "5",
     "updates": {
-      "url": "https://kw4nzah.github.io/Poreia/updates/android/4/manifest.json",
+      "url": "https://kw4nzah.github.io/Poreia/updates/android/5/manifest.json",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0
     },
     "android": {
       "package": "com.kw4nzah.poreia",
-      "versionCode": 6,
+      "versionCode": 7,
       "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
       "adaptiveIcon": {
         "backgroundColor": "#7A1F2B",
@@ -30,6 +30,24 @@
       "expo-localization",
       "expo-notifications",
       "expo-updates",
+      [
+        "react-native-android-widget",
+        {
+          "widgets": [
+            {
+              "name": "PoreiaFast",
+              "label": "Poreia",
+              "description": "Today's fast, what is allowed and today's feast.",
+              "minWidth": "110dp",
+              "minHeight": "110dp",
+              "targetCellWidth": 4,
+              "targetCellHeight": 2,
+              "resizeMode": "horizontal|vertical",
+              "updatePeriodMillis": 1800000
+            }
+          ]
+        }
+      ],
       [
         "expo-splash-screen",
         {

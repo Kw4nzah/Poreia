@@ -20,6 +20,7 @@ import { SAINT_TOPICS, SaintTopicId } from '../prayers/saintTopics';
 import { AppSwitch } from '../ui/AppSwitch';
 import { Dropdown } from '../ui/Dropdown';
 import { AppTextInput } from '../ui/AppTextInput';
+import { Button, Card, SectionHeader, SegmentedControl } from '../ui/kit';
 import { Option } from '../ui/Option';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme, radius, type } from '../ui/theme';
@@ -76,7 +77,7 @@ export function Settings() {
     >
       <Text style={styles.title}>{m.settings.title}</Text>
 
-      <Text style={styles.label}>{m.settings.name}</Text>
+      <SectionHeader title={m.settings.name} />
       <AppTextInput
         value={settings.name}
         onChangeText={(name) => update({ name })}
@@ -92,7 +93,7 @@ export function Settings() {
         accessibilityLabel={m.settings.name}
       />
 
-      <Text style={styles.label}>{m.settings.church}</Text>
+      <SectionHeader title={m.settings.church} />
       <View style={styles.options}>
         {CHURCH_IDS.map((id) => (
           <Option
@@ -107,8 +108,7 @@ export function Settings() {
 
       {settings.churchId === 'greek' && (
         <>
-          <Text style={styles.label}>{m.settings.fishTitle}</Text>
-          <Text style={styles.hint}>{m.settings.fishHint}</Text>
+          <SectionHeader title={m.settings.fishTitle} hint={m.settings.fishHint} />
           <View style={styles.options}>
             {GREEK_FISH_PRACTICES.map((id) => (
               <Option
@@ -123,7 +123,7 @@ export function Settings() {
         </>
       )}
 
-      <Text style={styles.label}>{m.settings.language}</Text>
+      <SectionHeader title={m.settings.language} />
       <View style={styles.options}>
         {LANGUAGES.map((language) => (
           <Option
@@ -135,8 +135,8 @@ export function Settings() {
         ))}
       </View>
 
-      <Text style={styles.label}>{m.settings.notificationsTitle}</Text>
-      <View style={styles.card}>
+      <SectionHeader title={m.settings.notificationsTitle} />
+      <Card padding="md">
         <View style={styles.switchRow}>
           <Text style={[styles.cardText, styles.switchText]}>{m.settings.notificationsToggle}</Text>
           <AppSwitch
@@ -151,24 +151,16 @@ export function Settings() {
         {settings.notifications && (
           <View style={styles.apk}>
             <Text style={styles.status}>{m.settings.notificationsTime}</Text>
-            <View style={styles.hours} accessibilityRole="radiogroup">
-              {NOTIFICATION_HOURS.map((hour) => {
-                const selected = hour === settings.notificationHour;
-                return (
-                  <Pressable
-                    key={hour}
-                    onPress={() => update({ notificationHour: hour })}
-                    style={[styles.hour, selected && styles.hourSelected]}
-                    accessibilityRole="radio"
-                    accessibilityLabel={`${String(hour).padStart(2, '0')}:00`}
-                    accessibilityState={{ selected }}
-                  >
-                    <Text style={[styles.hourText, selected && styles.hourTextSelected]}>
-                      {String(hour).padStart(2, '0')}:00
-                    </Text>
-                  </Pressable>
-                );
-              })}
+            <View style={styles.hours}>
+              <SegmentedControl
+                accessibilityLabel={m.settings.notificationsTime}
+                value={settings.notificationHour}
+                onChange={(hour) => update({ notificationHour: hour })}
+                options={NOTIFICATION_HOURS.map((hour) => ({
+                  value: hour,
+                  label: `${String(hour).padStart(2, '0')}:00`,
+                }))}
+              />
             </View>
             <View style={[styles.switchRow, styles.repeatRow]}>
               <Text style={[styles.cardText, styles.switchText]}>
@@ -183,10 +175,10 @@ export function Settings() {
             <Text style={styles.status}>{m.settings.notificationRepeatHint}</Text>
           </View>
         )}
-      </View>
+      </Card>
 
-      <Text style={styles.label}>{m.saints.title}</Text>
-      <View style={styles.card}>
+      <SectionHeader title={m.saints.title} />
+      <Card padding="md">
         <Text style={styles.hint}>{m.saints.hint}</Text>
         {settings.saints.map((saint) => (
           <View key={saint.name} style={styles.saintRow}>
@@ -227,28 +219,20 @@ export function Settings() {
               placeholder={m.saints.topicNone}
               onChange={setSaintTopic}
             />
-            <Pressable
+            <Button
+              label={m.saints.add}
               onPress={addSaint}
               disabled={saintName.trim() === ''}
-              style={[
-                styles.button,
-                styles.buttonFilled,
-                saintName.trim() === '' && styles.disabled,
-              ]}
-              accessibilityRole="button"
-              accessibilityLabel={m.saints.add}
-              accessibilityState={{ disabled: saintName.trim() === '' }}
-            >
-              <Text style={styles.buttonFilledText}>{m.saints.add}</Text>
-            </Pressable>
+              style={styles.buttonGap}
+            />
           </>
         ) : (
           <Text style={styles.status}>{m.saints.full}</Text>
         )}
-      </View>
+      </Card>
 
-      <Text style={styles.label}>{m.settings.updatesTitle}</Text>
-      <View style={styles.card}>
+      <SectionHeader title={m.settings.updatesTitle} />
+      <Card padding="md">
         <Text style={styles.cardText}>
           {m.settings.version(Application.nativeApplicationVersion ?? '–')}
         </Text>
@@ -258,16 +242,13 @@ export function Settings() {
             {m.updates[updates.status]}
           </Text>
         )}
-        <Pressable
+        <Button
+          label={m.updates.check}
           onPress={updates.check}
-          disabled={updates.busy}
-          style={[styles.button, styles.buttonOutline, updates.busy && styles.disabled]}
-          accessibilityRole="button"
-          accessibilityLabel={m.updates.check}
-          accessibilityState={{ disabled: updates.busy, busy: updates.busy }}
-        >
-          <Text style={styles.buttonOutlineText}>{m.updates.check}</Text>
-        </Pressable>
+          variant="secondary"
+          loading={updates.busy}
+          style={styles.buttonGap}
+        />
 
         {apk.release && (
           <View style={styles.apk}>
@@ -275,44 +256,34 @@ export function Settings() {
             {apk.status === 'failed' && (
               <Text style={[styles.status, styles.error]}>{m.settings.apkFailed}</Text>
             )}
-            <Pressable
-              onPress={apk.install}
-              disabled={apk.status === 'downloading'}
-              style={[
-                styles.button,
-                styles.buttonFilled,
-                apk.status === 'downloading' && styles.disabled,
-              ]}
-              accessibilityRole="button"
-              accessibilityState={{ disabled: apk.status === 'downloading', busy: apk.status === 'downloading' }}
-            >
-              <Text style={styles.buttonFilledText}>
-                {apk.status === 'downloading'
+            <Button
+              label={
+                apk.status === 'downloading'
                   ? m.settings.apkDownloading
-                  : m.settings.apkInstall(Math.round(apk.release.sizeBytes / 1_000_000))}
-              </Text>
-            </Pressable>
+                  : m.settings.apkInstall(Math.round(apk.release.sizeBytes / 1_000_000))
+              }
+              onPress={apk.install}
+              loading={apk.status === 'downloading'}
+              style={styles.buttonGap}
+            />
           </View>
         )}
-      </View>
+      </Card>
 
-      <Pressable
+      <Button
+        label={m.sources.title}
         onPress={() => router.push('/sources')}
-        style={[styles.button, styles.buttonOutline]}
-        accessibilityRole="button"
-        accessibilityLabel={m.sources.title}
-      >
-        <Text style={styles.buttonOutlineText}>{m.sources.title}</Text>
-      </Pressable>
+        variant="secondary"
+        style={styles.buttonGap}
+      />
 
-      <Pressable
+      <Button
+        label={m.settings.projectLink}
         onPress={() => Linking.openURL(PROJECT_URL).catch(() => {})}
-        style={[styles.button, styles.buttonOutline]}
+        variant="secondary"
         accessibilityRole="link"
-        accessibilityLabel={m.settings.projectLink}
-      >
-        <Text style={styles.buttonOutlineText}>{m.settings.projectLink}</Text>
-      </Pressable>
+        style={styles.buttonGap}
+      />
     </ScrollView>
   );
 }
@@ -321,7 +292,6 @@ function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
-    label: { ...type.label, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
     hint: { ...type.caption, color: t.muted, marginBottom: space.sm },
     input: {
       minHeight: 56,
@@ -334,47 +304,15 @@ function makeStyles(t: Theme) {
       color: t.ink,
     },
     options: { gap: space.smd },
-    card: {
-      padding: space.md,
-      borderRadius: radius.field,
-      borderWidth: 1,
-      borderColor: t.line,
-      backgroundColor: t.surface,
-    },
     cardText: { ...type.body, color: t.ink },
     status: { ...type.label, color: t.muted, marginTop: space.xs },
     warning: { color: t.warning },
     error: { color: t.danger },
-    button: {
-      minHeight: 48,
-      paddingVertical: space.sm,
-      paddingHorizontal: space.md,
-      borderRadius: 12,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: space.smd,
-    },
-    buttonOutline: { borderWidth: 1, borderColor: t.line },
-    buttonOutlineText: { ...type.body, color: t.ink, textAlign: 'center' },
-    buttonFilled: { backgroundColor: t.accent },
-    buttonFilledText: { ...type.body, fontWeight: '600', color: t.onAccent, textAlign: 'center' },
-    disabled: { opacity: 0.6 },
+    buttonGap: { marginTop: space.smd },
     switchRow: { flexDirection: 'row', alignItems: 'center', minHeight: 44, gap: space.smd },
     switchText: { flex: 1 },
     repeatRow: { marginTop: space.sm },
-    hours: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.sm },
-    hour: {
-      flex: 1,
-      minHeight: 44,
-      borderRadius: 12,
-      borderWidth: 1,
-      borderColor: t.line,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    hourSelected: { borderColor: t.accent, backgroundColor: t.accent },
-    hourText: { ...type.body, color: t.ink, fontVariant: ['tabular-nums'] },
-    hourTextSelected: { color: t.onAccent, fontWeight: '600' },
+    hours: { marginTop: space.sm },
     saintRow: {
       flexDirection: 'row',
       alignItems: 'center',
