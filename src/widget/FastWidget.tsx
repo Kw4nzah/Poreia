@@ -1,87 +1,174 @@
 'use no memo';
-// The home-screen widget: today's fast, what is allowed, the feast. Built from the library's
-// widget primitives (they become Android RemoteViews), not from react-native components.
+// The home-screen widget: today's fast, its progress, what is allowed and what is avoided,
+// the day's reading and a "complete today" button. Built from the library's widget primitives
+// (they become Android RemoteViews / a bitmap), not from react-native components.
 //
 // The library walks this tree itself: no hooks, no fragments, and a component must return an
 // element (never null). So the pieces below are plain functions that return elements.
 //
-// Layout rules: one inner padding (16), card corner 24, a 4dp grid for gaps, one dominant line,
-// one or two quiet lines. Every text has a line limit and END truncation, so a long Turkish or
-// Russian string shortens instead of pushing the layout around.
+// Layouts (chosen from the size the launcher gives the widget):
+//  - wide    (4x2): title, day badge with a thin progress bar, cross badge; two columns
+//                   "allowed / avoided"; reading reference and the complete button.
+//  - compact (2x2): cross and day badges, title, short status, progress bar, reading, percent.
+// Titles would be serif in the design, but the library only loads fonts bundled as native
+// assets (a native change), so titles are bold sans. Every text has a line limit and END
+// truncation, so a long Turkish or Russian string shortens instead of pushing the layout around.
 
 import type { ReactElement } from 'react';
-import { FlexWidget, TextWidget } from 'react-native-android-widget';
+import { FlexWidget, SvgWidget, TextWidget } from 'react-native-android-widget';
 import { CHURCHES } from '../calendar';
-import { MESSAGES } from '../i18n';
+import type { Language } from '../i18n';
 import type { Settings } from '../settings/model';
 import { Theme, themes } from '../ui/theme';
 import { WidgetContent, widgetContentFor } from './content';
+import { TOGGLE_DONE_ACTION } from './done';
 
 type Hex = `#${string}`;
 const hex = (color: string) => color as Hex;
+/** A colour with an alpha channel appended (alpha as two hex digits). */
+const tint = (color: string, alpha: string) => hex(color.slice(0, 7) + alpha);
 
-/** From this width (dp) the widget uses the wide 4x2 layout; narrower is the 2x2 layout. */
-const WIDE_FROM_DP = 200;
+/** From this width (dp) and height the widget uses the wide 4x2 layout; else the compact one. */
+const WIDE_FROM_WIDTH_DP = 200;
+const WIDE_FROM_HEIGHT_DP = 158;
+/** Below this height the wide layout drops to one line per food list and tighter gaps. */
+const DENSE_BELOW_HEIGHT_DP = 182;
+/** Below this height the compact layout drops the status line and the second title line. */
+const ROOMY_FROM_HEIGHT_DP = 150;
+/** Below this width the compact layout leaves out the day badge. */
+const NARROW_BELOW_WIDTH_DP = 130;
 
-const PADDING = 16;
 const RADIUS = 24;
-const BAR = 4;
+const BAR = 6;
 
-/** One line of text that shortens with an ellipsis instead of growing. */
-function line(
-  text: string,
-  style: {
-    fontSize: number;
-    color: string;
-    fontWeight?: 'normal' | 'bold';
-    marginLeft?: number;
-  },
-  maxLines = 1,
-) {
+export interface WidgetLayout {
+  wide: boolean;
+  /** Wide: little height, so lists get one line. Compact: enough height for the status line. */
+  tight: boolean;
+  /** Compact only: too narrow for the day badge beside the cross. */
+  narrow: boolean;
+}
+
+/** Which layout fits the size (dp) the launcher gave the widget. */
+export function layoutFor(width: number, height: number): WidgetLayout {
+  const h = height > 0 ? height : 160;
+  const wide = width >= WIDE_FROM_WIDTH_DP && h >= WIDE_FROM_HEIGHT_DP;
+  return {
+    wide,
+    tight: wide ? h < DENSE_BELOW_HEIGHT_DP : h < ROOMY_FROM_HEIGHT_DP,
+    narrow: !wide && width < NARROW_BELOW_WIDTH_DP,
+  };
+}
+
+// --- icons -------------------------------------------------------------------------------
+
+/** The project's three-bar Orthodox cross (geometry of scripts/make-icons.py). */
+const crossSvg = (color: string, width: number, height: number) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="362 205 300 455">` +
+  `<g fill="${color}"><rect x="488" y="215" width="48" height="435"/>` +
+  `<rect x="436" y="258" width="152" height="34"/><rect x="372" y="346" width="280" height="44"/>` +
+  `<rect x="432" y="551" width="160" height="30" transform="rotate(14 512 566)"/></g></svg>`;
+
+const strokeSvg = (color: string, size: number, paths: string, width = 2.2) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" ` +
+  `stroke="${color}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
+
+const CHECK = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+const CROSS_MARK = '<path d="M6 6l12 12M18 6L6 18"/>';
+const BOOK =
+  '<path d="M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M4 17a2 2 0 0 1 2-2h15"/>';
+
+function icon(svg: string, size: number, marginLeft = 0) {
+  return (
+    <SvgWidget
+      svg={svg}
+      style={{ width: size, height: size, ...(marginLeft ? { marginLeft } : {}) }}
+    />
+  );
+}
+
+// --- small pieces ------------------------------------------------------------------------
+
+interface TextStyle {
+  size: number;
+  color: string;
+  bold?: boolean;
+  italic?: boolean;
+  /** Line height; defaults to the size plus 4. */
+  lh?: number;
+  marginLeft?: number;
+  marginTop?: number;
+}
+
+/** Text that shortens with an ellipsis instead of growing. */
+function text(value: string, style: TextStyle, maxLines = 1) {
   return (
     <TextWidget
-      text={text}
+      text={value}
       maxLines={maxLines}
       truncate="END"
       style={{
-        fontSize: style.fontSize,
+        fontSize: style.size,
         // Fixed line height keeps the vertical rhythm the same in every language.
-        lineHeight: style.fontSize + 4,
+        lineHeight: style.lh ?? style.size + 4,
         color: hex(style.color),
-        ...(style.fontWeight ? { fontWeight: style.fontWeight } : {}),
+        ...(style.bold ? { fontWeight: 'bold' as const } : {}),
+        ...(style.italic ? { fontStyle: 'italic' as const } : {}),
         ...(style.marginLeft ? { marginLeft: style.marginLeft } : {}),
+        ...(style.marginTop ? { marginTop: style.marginTop } : {}),
       }}
     />
   );
 }
 
-/** Small gold label for today's feast. */
-function feastLabel(text: string, theme: Theme) {
+/** Small rounded label (day badge, status badge). */
+function chip(value: string, color: string, background: string, size = 12) {
   return (
-    <FlexWidget style={{ width: 'match_parent', flexDirection: 'row' }}>
-      <TextWidget
-        text={text}
-        maxLines={1}
-        truncate="END"
-        style={{
-          fontSize: 11,
-          fontWeight: 'bold',
-          color: hex(theme.feast),
-          backgroundColor: hex(theme.feastSurface),
-          borderRadius: 8,
-          paddingHorizontal: 8,
-          paddingVertical: 2,
-        }}
+    <TextWidget
+      text={value}
+      maxLines={1}
+      truncate="END"
+      style={{
+        fontSize: size,
+        lineHeight: size + 4,
+        fontWeight: 'bold',
+        color: hex(color),
+        backgroundColor: hex(background),
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 3,
+      }}
+    />
+  );
+}
+
+/** Round badge with the cross. */
+function crossBadge(size: number, theme: Theme) {
+  const height = Math.round(size * 0.46);
+  return (
+    <FlexWidget
+      style={{
+        width: size,
+        height: size,
+        borderRadius: size / 2,
+        backgroundColor: hex(theme.pill),
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <SvgWidget
+        svg={crossSvg(theme.accent, Math.round(height * 0.66), height)}
+        style={{ width: Math.round(height * 0.66), height }}
       />
     </FlexWidget>
   );
 }
 
 /** Thin rounded track with the accent fill for the days passed. */
-function progressBar(day: number, total: number, tone: string, theme: Theme) {
+function progressBar(day: number, total: number, theme: Theme) {
   const rest = total - day;
   const fill = (
-    <FlexWidget style={{ flex: day, width: 0, height: BAR, backgroundColor: hex(tone) }} />
+    <FlexWidget style={{ flex: day, width: 0, height: BAR, backgroundColor: hex(theme.accent) }} />
   );
   return (
     <FlexWidget
@@ -99,128 +186,334 @@ function progressBar(day: number, total: number, tone: string, theme: Theme) {
   );
 }
 
-function wideBody(content: WidgetContent, theme: Theme, tone: string): ReactElement[] {
-  const top = (
+function divider(theme: Theme, margin: number) {
+  return (
     <FlexWidget
       style={{
-        flexDirection: 'row',
         width: 'match_parent',
+        height: 1,
+        backgroundColor: hex(theme.line),
+        marginVertical: margin,
+      }}
+    />
+  );
+}
+
+/** Column heading: icon and title in one colour. */
+function columnHead(label: string, svg: string, color: string) {
+  return (
+    <FlexWidget style={{ flexDirection: 'row', width: 'match_parent', alignItems: 'center' }}>
+      {[
+        icon(svg, 14),
+        <FlexWidget style={{ flex: 1, width: 0, marginLeft: 6 }}>
+          {text(label, { size: 14, color, bold: true })}
+        </FlexWidget>,
+      ]}
+    </FlexWidget>
+  );
+}
+
+function column(
+  label: string,
+  svg: string,
+  headColor: string,
+  list: string,
+  listColor: string,
+  lines: number,
+) {
+  return (
+    <FlexWidget style={{ flex: 1, width: 0 }}>
+      {[
+        columnHead(label, svg, headColor),
+        text(list, { size: 12, color: listColor, lh: 16, marginTop: 3 }, lines),
+      ]}
+    </FlexWidget>
+  );
+}
+
+/** The "complete today" pill: solid accent until marked, then a soft, filled-in "Done". */
+function doneButton(content: WidgetContent, theme: Theme, done: boolean) {
+  const color = done ? theme.accent : theme.onAccent;
+  return (
+    <FlexWidget
+      clickAction={TOGGLE_DONE_ACTION}
+      accessibilityLabel={done ? content.labels.completed : content.labels.complete}
+      style={{
+        flexDirection: 'row',
         alignItems: 'center',
+        paddingHorizontal: 12,
+        paddingVertical: 7,
+        borderRadius: 16,
+        backgroundColor: done ? hex(theme.pill) : hex(theme.accent),
+        marginLeft: 8,
       }}
     >
       {[
+        icon(strokeSvg(color, 12, CHECK, 2.6), 12),
+        text(done ? content.labels.completed : content.labels.complete, {
+          size: 12,
+          color,
+          bold: true,
+          marginLeft: 6,
+        }),
+      ]}
+    </FlexWidget>
+  );
+}
+
+// --- wide (4x2) --------------------------------------------------------------------------
+
+function wideBody(
+  content: WidgetContent,
+  theme: Theme,
+  done: boolean,
+  tight: boolean,
+): ReactElement[] {
+  const { progress, feast, reading, fasting, labels } = content;
+
+  // Badge row under the title: day badge + bar (or the feast / status in their place).
+  const badge = progress
+    ? chip(progress.badge, theme.feast, theme.feastSurface)
+    : fasting
+      ? chip(content.levelShort, theme.accent, theme.pill)
+      : chip(labels.noFast, theme.free, tint(theme.free, '2E'));
+  const beside = progress
+    ? feast
+      ? text(feast, { size: 12, color: theme.feast, bold: true, marginLeft: 8 })
+      : (
+          <FlexWidget style={{ flex: 1, width: 0, marginLeft: 10 }}>
+            {progressBar(progress.day, progress.total, theme)}
+          </FlexWidget>
+        )
+    : null;
+
+  const top = (
+    <FlexWidget style={{ flexDirection: 'row', width: 'match_parent', alignItems: 'center' }}>
+      {[
         <FlexWidget style={{ flex: 1, width: 0 }}>
-          {line(content.eyebrow, { fontSize: 12, color: theme.muted })}
+          {[
+            text(content.title, { size: 18, color: theme.ink, bold: true, lh: 22 }),
+            <FlexWidget
+              style={{
+                flexDirection: 'row',
+                width: 'match_parent',
+                alignItems: 'center',
+                marginTop: 6,
+              }}
+            >
+              {beside ? [badge, beside] : [badge]}
+            </FlexWidget>,
+          ]}
         </FlexWidget>,
-        ...(content.progress
-          ? [
-              line(content.progress.counter, {
-                fontSize: 12,
-                color: theme.muted,
-                fontWeight: 'bold',
-                marginLeft: 8,
-              }),
-            ]
+        <FlexWidget style={{ marginLeft: 12 }}>{crossBadge(36, theme)}</FlexWidget>,
+      ]}
+    </FlexWidget>
+  );
+
+  // Middle: the two food columns; on a day without fasting one calm sentence instead.
+  const middle = fasting
+    ? (
+        <FlexWidget style={{ flexDirection: 'row', width: 'match_parent' }}>
+          {[
+            column(
+              labels.allowed,
+              strokeSvg(theme.free, 14, CHECK, 2.6),
+              theme.free,
+              content.allowedFoods,
+              theme.ink,
+              tight ? 1 : 2,
+            ),
+            <FlexWidget
+              style={{
+                width: 1,
+                height: 'match_parent',
+                backgroundColor: hex(theme.line),
+                marginHorizontal: 12,
+              }}
+            />,
+            column(
+              labels.avoided,
+              strokeSvg(theme.danger, 14, CROSS_MARK, 2.6),
+              theme.danger,
+              content.avoidedFoods,
+              theme.muted,
+              tight ? 1 : 2,
+            ),
+          ]}
+        </FlexWidget>
+      )
+    : (
+        <FlexWidget style={{ width: 'match_parent' }}>
+          {feast
+            ? text(feast, { size: 14, color: theme.feast, bold: true, lh: 20 }, 2)
+            : text(content.calmNote, { size: 14, color: theme.ink, lh: 20 }, 2)}
+        </FlexWidget>
+      );
+
+  // Bottom: the reading on the left, the complete button on the right (fasting days only).
+  const bottom = (
+    <FlexWidget style={{ flexDirection: 'row', width: 'match_parent', alignItems: 'center' }}>
+      {[
+        ...(reading ? [icon(strokeSvg(theme.muted, 16, BOOK, 1.8), 16)] : []),
+        <FlexWidget style={{ flex: 1, width: 0, ...(reading ? { marginLeft: 6 } : {}) }}>
+          {text(reading ?? content.dateLine, {
+            size: 12,
+            color: theme.muted,
+            italic: Boolean(reading),
+          })}
+        </FlexWidget>,
+        ...(fasting ? [doneButton(content, theme, done)] : []),
+      ]}
+    </FlexWidget>
+  );
+
+  return [top, divider(theme, tight ? 2 : 4), middle, divider(theme, tight ? 2 : 4), bottom];
+}
+
+// --- compact (2x2) -----------------------------------------------------------------------
+
+function compactBody(
+  content: WidgetContent,
+  theme: Theme,
+  roomy: boolean,
+  narrow: boolean,
+): ReactElement[] {
+  const { progress, feast, reading, fasting } = content;
+  const dot = feast ? theme.feast : theme.free;
+  const status = feast ?? (fasting ? content.levelShort : content.labels.noFast);
+
+  const top = (
+    <FlexWidget style={{ flexDirection: 'row', width: 'match_parent', alignItems: 'center' }}>
+      {[
+        crossBadge(roomy ? 32 : 28, theme),
+        <FlexWidget style={{ flex: 1, width: 0 }} />,
+        ...(progress && !narrow
+          ? [chip(progress.badgeShort, theme.feast, theme.feastSurface)]
           : []),
       ]}
     </FlexWidget>
   );
-  const status = line(content.status, { fontSize: 20, color: tone, fontWeight: 'bold' }, 2);
-  const bottom = (
+
+  const middle = (
     <FlexWidget style={{ width: 'match_parent' }}>
       {[
-        ...(content.progress
+        text(
+          content.title,
+          { size: roomy ? 17 : 15, color: theme.ink, bold: true, lh: roomy ? 21 : 19, marginTop: roomy ? 6 : 4 },
+          roomy ? 2 : 1,
+        ),
+        ...(roomy
           ? [
-              <FlexWidget style={{ width: 'match_parent', marginBottom: 8 }}>
-                {progressBar(content.progress.day, content.progress.total, tone, theme)}
+              <FlexWidget
+                style={{
+                  flexDirection: 'row',
+                  width: 'match_parent',
+                  alignItems: 'center',
+                  marginTop: 4,
+                }}
+              >
+                {[
+                  <FlexWidget
+                    style={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: 4,
+                      backgroundColor: hex(dot),
+                    }}
+                  />,
+                  <FlexWidget style={{ flex: 1, width: 0, marginLeft: 6 }}>
+                    {text(status, { size: 12, color: dot, bold: true })}
+                  </FlexWidget>,
+                ]}
               </FlexWidget>,
             ]
           : []),
-        content.feast
-          ? feastLabel(content.feast, theme)
-          : line(content.note, { fontSize: 12, color: theme.muted }),
       ]}
     </FlexWidget>
   );
-  return [top, status, bottom];
-}
 
-function compactBody(content: WidgetContent, theme: Theme, tone: string): ReactElement[] {
-  // Fast name on a fasting day, weekday on a free one; the feast label takes its place.
-  const top = content.feast
-    ? feastLabel(content.feast, theme)
-    : line(content.fasting ? content.eyebrow : content.weekday, {
-        fontSize: 11,
-        color: theme.muted,
-      });
-  const hero = (
-    <FlexWidget
-      style={{
-        flexDirection: 'row',
-        width: 'match_parent',
-        alignItems: 'flex-end',
-      }}
-    >
+  const footer = (
+    <FlexWidget style={{ flexDirection: 'row', width: 'match_parent', alignItems: 'center' }}>
       {[
-        <TextWidget
-          text={content.hero.value}
-          maxLines={1}
-          allowFontScaling={false}
-          style={{
-            fontSize: 40,
-            lineHeight: 44,
-            fontWeight: 'bold',
-            color: hex(tone),
-          }}
-        />,
-        <FlexWidget style={{ flex: 1, width: 0, marginLeft: 4, marginBottom: 6 }}>
-          {line(content.hero.suffix, { fontSize: 14, color: theme.muted })}
+        <FlexWidget style={{ flex: 1, width: 0 }}>
+          {text(reading ?? (fasting ? '' : content.dateLine), {
+            size: 11,
+            color: theme.muted,
+            lh: 14,
+          })}
         </FlexWidget>,
+        ...(progress
+          ? [text(progress.percentText, { size: 11, color: theme.muted, bold: true, lh: 14, marginLeft: 6 })]
+          : []),
       ]}
     </FlexWidget>
   );
-  const status = line(content.status, { fontSize: 12, color: theme.ink, fontWeight: 'bold' }, 2);
-  return [top, hero, status];
+
+  const bottom = (
+    <FlexWidget style={{ width: 'match_parent' }}>
+      {progress
+        ? [
+            <FlexWidget style={{ width: 'match_parent', marginBottom: 6 }}>
+              {progressBar(progress.day, progress.total, theme)}
+            </FlexWidget>,
+            footer,
+          ]
+        : [footer]}
+    </FlexWidget>
+  );
+
+  return [top, middle, bottom];
 }
 
-export function fastWidget(content: WidgetContent, theme: Theme, wide: boolean) {
-  const tone = content.fasting ? theme.accent : theme.free;
+// --- root --------------------------------------------------------------------------------
+
+export function fastWidget(
+  content: WidgetContent,
+  theme: Theme,
+  layout: WidgetLayout,
+  done: boolean,
+) {
   return (
     <FlexWidget
       clickAction="OPEN_APP"
-      accessibilityLabel={`${content.title}. ${content.status}`}
+      accessibilityLabel={`${content.title}. ${content.status}${content.feast ? `. ${content.feast}` : ''}`}
       style={{
         height: 'match_parent',
         width: 'match_parent',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        padding: PADDING,
+        padding: layout.wide ? 16 : layout.tight ? 12 : 14,
         borderRadius: RADIUS,
         backgroundColor: hex(theme.surface),
       }}
     >
-      {wide ? wideBody(content, theme, tone) : compactBody(content, theme, tone)}
+      {layout.wide
+        ? wideBody(content, theme, done, layout.tight)
+        : compactBody(content, theme, !layout.tight, layout.narrow)}
     </FlexWidget>
   );
 }
 
+type WidgetSettings = Pick<Settings, 'language' | 'churchId' | 'greekFish'>;
+
 /** The widget for a day, in both system themes; the launcher picks the matching one. */
 export function buildFastWidget(
-  settings: Pick<Settings, 'language' | 'churchId' | 'greekFish'>,
-  widthDp: number,
+  settings: WidgetSettings,
+  size: { width: number; height: number },
   now: Date,
+  done: boolean,
 ) {
   const date = {
     year: now.getFullYear(),
     month: now.getMonth() + 1,
     day: now.getDate(),
   };
-  const content = widgetContentFor(date, CHURCHES[settings.churchId], MESSAGES[settings.language], {
+  const content = widgetContentFor(date, CHURCHES[settings.churchId], settings.language as Language, {
     greekFish: settings.greekFish,
   });
-  const wide = widthDp >= WIDE_FROM_DP;
+  const layout = layoutFor(size.width, size.height);
   return {
-    light: fastWidget(content, themes.light, wide),
-    dark: fastWidget(content, themes.dark, wide),
+    light: fastWidget(content, themes.light, layout, done),
+    dark: fastWidget(content, themes.dark, layout, done),
   };
 }

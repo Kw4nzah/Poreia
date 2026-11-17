@@ -165,6 +165,27 @@ export interface Messages {
     downloading: string;
     failed: string;
   };
+  /** Home-screen widget. Short strings: they sit in small, fixed-size slots. */
+  widget: {
+    allowed: string;
+    avoided: string;
+    /** Shown in the "avoided" column when nothing is restricted. */
+    nothing: string;
+    complete: string;
+    completed: string;
+    noFast: string;
+    /** "Day 35 / 40" (wide badge). */
+    dayOfTotal: (day: number, total: number) => string;
+    /** "Day 35" (compact badge). */
+    dayShort: (day: number) => string;
+    percent: (value: number) => string;
+    /** Always-allowed basics, listed after the permitted food groups. */
+    staples: string;
+    /** Short names of the food groups, in running text. */
+    foods: Record<FoodId, string>;
+    /** One short phrase per fasting level, for the compact layout. */
+    levelShort: Record<FastLevel, string>;
+  };
 }
 
 function plural(n: number, one: string, many: string): string {
@@ -443,5 +464,32 @@ export const en: Messages = {
     upToDate: 'You have the latest version.',
     downloading: 'Downloading…',
     failed: 'Update failed. Try again later.',
+  },
+
+  widget: {
+    allowed: 'Allowed',
+    avoided: 'Avoid',
+    nothing: 'Nothing',
+    complete: 'Complete today',
+    completed: 'Done',
+    noFast: 'No fast',
+    dayOfTotal: (day, total) => `Day ${day} / ${total}`,
+    dayShort: (day) => `Day ${day}`,
+    percent: (value) => `${value}%`,
+    staples: 'bread, vegetables, fruit',
+    foods: {
+      meat: 'meat',
+      dairy: 'dairy, eggs',
+      fish: 'fish',
+      oil: 'oil, wine',
+    },
+    levelShort: {
+      none: 'No fast',
+      noMeat: 'No Meat',
+      fish: 'No Meat & Dairy',
+      oil: 'No Meat, Dairy, Fish',
+      noOil: 'No Oil',
+      xerophagy: 'Dry Eating',
+    },
   },
 };
