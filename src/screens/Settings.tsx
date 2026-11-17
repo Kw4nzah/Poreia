@@ -3,12 +3,14 @@
 import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
-import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
 import { requestPermission } from '../notifications/schedule';
+import { PROJECT_URL } from '../security/constants';
+import { openExternalUrl } from '../security/openExternal';
 import {
   MAX_FAVORITE_SAINTS,
   MAX_SAINT_NAME,
@@ -28,7 +30,6 @@ import { describeContent } from '../updates/contentVersion';
 import { useApkUpdate } from '../updates/useApkUpdate';
 import { useUpdateCheck } from '../updates/useUpdateCheck';
 
-const PROJECT_URL = 'https://github.com/Kw4nzah/Poreia';
 const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
 
 export function Settings() {
@@ -279,7 +280,7 @@ export function Settings() {
 
       <Button
         label={m.settings.projectLink}
-        onPress={() => Linking.openURL(PROJECT_URL).catch(() => {})}
+        onPress={() => void openExternalUrl(PROJECT_URL)}
         variant="secondary"
         accessibilityRole="link"
         style={styles.buttonGap}

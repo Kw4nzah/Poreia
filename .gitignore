@@ -16,7 +16,19 @@ expo-env.d.ts
 *.p8
 *.p12
 *.key
+*.keystore
+*.pfx
+*.pk8
 *.mobileprovision
+google-services.json
+GoogleService-Info.plist
+
+# signing material and secrets (the Android keystore and passwords live only in GitHub secrets)
+.env
+.env.*
+!.env.example
+**/private*.pem
+**/*-private*
 
 # Metro
 .metro-health-check*
