@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { DailyNotifications } from '../notifications/DailyNotifications';
 import { SettingsProvider } from '../settings/SettingsProvider';
+import { StatusBarBackground } from '../ui/StatusBarBackground';
 import { useTheme } from '../ui/theme';
 
 export default function RootLayout() {
@@ -21,6 +22,7 @@ export default function RootLayout() {
           }}
         />
       </SettingsProvider>
+      <StatusBarBackground />
     </View>
   );
 }
