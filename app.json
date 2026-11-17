@@ -31,6 +31,24 @@
       "expo-notifications",
       "expo-updates",
       [
+        "react-native-android-widget",
+        {
+          "widgets": [
+            {
+              "name": "PoreiaFast",
+              "label": "Poreia",
+              "description": "Today's fast, what is allowed and today's feast.",
+              "minWidth": "110dp",
+              "minHeight": "110dp",
+              "targetCellWidth": 4,
+              "targetCellHeight": 2,
+              "resizeMode": "horizontal|vertical",
+              "updatePeriodMillis": 1800000
+            }
+          ]
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/splash-icon.png",
