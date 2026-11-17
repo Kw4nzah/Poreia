@@ -82,11 +82,16 @@ export function PrayerReader({ id }: { id: PrayerId }) {
             {settings.saints.map((saint) => (
               <View key={saint.name}>
                 <Text style={[styles.paragraph, textSize]}>{m.saints.invocation(saint.name)}</Text>
-                {saint.note !== '' && (
-                  <Text style={styles.note}>
-                    {saint.name}: {saint.note}
-                  </Text>
-                )}
+                {saint.topic !== '' &&
+                  (m.saints.topics[saint.topic].prayer !== '' ? (
+                    <Text style={[styles.paragraph, textSize]}>
+                      {m.saints.topics[saint.topic].prayer.split('{name}').join(saint.name)}
+                    </Text>
+                  ) : (
+                    <Text style={styles.note}>
+                      {saint.name}: {m.saints.topics[saint.topic].label}
+                    </Text>
+                  ))}
               </View>
             ))}
           </View>

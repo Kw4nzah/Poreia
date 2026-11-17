@@ -18,7 +18,7 @@ describe('parseSettings', () => {
       notificationRepeat: true,
       prayerTextSize: 2,
       greekFish: 'greece',
-      saints: [{ name: 'Nicholas', note: 'travellers' }],
+      saints: [{ name: 'Nicholas', topic: 'travel' }],
     };
     expect(parseSettings(JSON.stringify(stored), 'en')).toEqual(stored);
   });
@@ -60,29 +60,29 @@ describe('favorite saints', () => {
     expect(parseSettings(null, 'en').saints).toEqual([]);
     const raw = JSON.stringify({
       saints: [
-        { name: '  Nicholas ', note: ' travellers ' },
+        { name: '  Nicholas ', topic: 'travel' },
         { name: '' },
         5,
-        { note: 'x' },
+        { topic: 'health' },
         { name: 'Seraphim' },
       ],
     });
     expect(parseSettings(raw, 'en').saints).toEqual([
-      { name: 'Nicholas', note: 'travellers' },
-      { name: 'Seraphim', note: '' },
+      { name: 'Nicholas', topic: 'travel' },
+      { name: 'Seraphim', topic: '' },
     ]);
   });
   it('ignores a name added twice', () => {
     expect(
       cleanSaints([
-        { name: 'Nicholas', note: '' },
-        { name: 'nicholas', note: 'x' },
+        { name: 'Nicholas', topic: '' },
+        { name: 'nicholas', topic: 'health' },
       ]),
     ).toHaveLength(1);
   });
-  it('keeps at most five', () => {
-    const many = Array.from({ length: 9 }, (_, i) => ({ name: 'S' + i, note: '' }));
-    expect(cleanSaints(many)).toHaveLength(5);
+  it('keeps at most ten', () => {
+    const many = Array.from({ length: 14 }, (_, i) => ({ name: 'S' + i, topic: '' as const }));
+    expect(cleanSaints(many)).toHaveLength(10);
   });
 });
 
@@ -95,5 +95,13 @@ describe('notification repeat', () => {
     expect(
       parseSettings(JSON.stringify({ notificationRepeat: true }), 'en').notificationRepeat,
     ).toBe(true);
+  });
+});
+
+describe('saint topic', () => {
+  it('drops a topic that is not on the list', () => {
+    expect(cleanSaints([{ name: 'Nicholas', topic: 'nonsense' }])).toEqual([
+      { name: 'Nicholas', topic: '' },
+    ]);
   });
 });
