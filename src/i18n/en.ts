@@ -120,6 +120,18 @@ export interface Messages {
     group: Record<ReadingGroupId, string>;
   };
 
+  saints: {
+    title: string;
+    hint: string;
+    namePlaceholder: string;
+    notePlaceholder: string;
+    add: string;
+    remove: string;
+    full: string;
+    heading: string;
+    /** The prayer asking a saint for intercession; `name` is what the user typed. */
+    invocation: (name: string) => string;
+  };
   sources: {
     title: string;
     sections: readonly { heading: string; body: string }[];
@@ -344,10 +356,22 @@ export const en: Messages = {
     },
   },
 
+  saints: {
+    title: 'My saints',
+    hint: 'Saints you turn to. They are named in the morning and evening prayers. Enter the name only, for example Nicholas.',
+    namePlaceholder: 'Saint’s name',
+    notePlaceholder: 'What you ask help for (optional)',
+    add: 'Add',
+    remove: 'Remove',
+    full: 'Five saints is the most.',
+    heading: 'My saints',
+    invocation: (name) => `Pray to God for me, holy ${name}, for with fervor I run to you, swift helper and intercessor for my soul!`,
+  },
   sources: {
     title: 'Sources and licences',
     sections: [
       { heading: 'Scripture texts', body: 'Readings in English: New Testament from the Berean Standard Bible, Old Testament and deuterocanon from the English Septuagint (LXX2012). Readings in Russian: Synodal Translation (1876). Old Testament readings in Russian appear only where the Synodal chapter matches the Septuagint chapter verse for verse; the Synodal text follows the Hebrew, so its wording can differ from what is read in church. All three are in the public domain; the texts come from eBible.org, with the markup removed and only the verses of each reading kept.' },
+      { heading: 'Saints in the prayers', body: 'The line that names your saints is the invocation of one’s patron saint in Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982). Russian: azbyka.ru, «Молитвенное призывание святого». The Turkish is translated for this app. The saint’s name and the note are what you typed; they stay on your device.' },
       { heading: 'Bible links (YouVersion)', body: 'Under each reading, a link opens the same passage in YouVersion (bible.com), in the YouVersion app if it is installed: English in the Revised Standard Version, Catholic Interconfessional (RSVCI), Turkish in the Kutsal Kitap ve Deuterokanonik Kitaplar (KKDEU, Bible Society in Turkey), Russian in the Synodal Translation. These translations are under copyright and are not stored in this app.' },
       { heading: 'Saints and readings', body: 'Names of the saints, feast days and the references of the readings come from orthocal.info (Orthodox Church in America lectionary; the project’s code is MIT-licensed). Only names and references are used, not the lives of the saints.' },
       { heading: 'Prayers, English', body: 'Lord’s Prayer, Creed, O Heavenly King, Trisagion and the Prayer of St. Ephraim: Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982), as published by Project Gutenberg (#34981). The morning, evening and meal prayers are faithful translations prepared for this app from the Slavonic and Greek texts. The Prayer of Manasseh is the King James Version (Apocrypha, public domain).' },

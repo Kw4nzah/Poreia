@@ -14,6 +14,16 @@ export const NOTIFICATION_HOURS = [7, 8, 9, 12] as const;
 
 export type NotificationHour = (typeof NOTIFICATION_HOURS)[number];
 
+/** A saint the user asks for intercession, with an optional note of what to ask. */
+export interface FavoriteSaint {
+  name: string;
+  note: string;
+}
+
+export const MAX_FAVORITE_SAINTS = 5;
+export const MAX_SAINT_NAME = 60;
+export const MAX_SAINT_NOTE = 100;
+
 export interface Settings {
   language: Language;
   name: string;
@@ -28,6 +38,8 @@ export interface Settings {
   prayerTextSize: PrayerTextSize;
   /** Which Greek rule decides fish in the Nativity and Apostles' Fasts. */
   greekFish: GreekFishPractice;
+  /** Saints the user asked to be named in the morning and evening prayers. */
+  saints: FavoriteSaint[];
 }
 
 export const STORAGE_KEY = 'poreia.settings.v1';
@@ -42,6 +54,7 @@ export function defaultSettings(language: Language): Settings {
     notificationHour: 8,
     prayerTextSize: DEFAULT_PRAYER_TEXT_SIZE,
     greekFish: DEFAULT_GREEK_FISH_PRACTICE,
+    saints: [],
   };
 }
 
@@ -51,6 +64,25 @@ function isChurchId(value: unknown): value is ChurchId {
 
 function isNotificationHour(value: unknown): value is NotificationHour {
   return NOTIFICATION_HOURS.includes(value as NotificationHour);
+}
+
+/** Keeps well-formed saints only: trimmed, non-empty names, limited in number and length. */
+export function cleanSaints(value: unknown): FavoriteSaint[] {
+  if (!Array.isArray(value)) return [];
+  const out: FavoriteSaint[] = [];
+  for (const item of value) {
+    if (!item || typeof item !== 'object') continue;
+    const { name, note } = item as Record<string, unknown>;
+    const cleanName = typeof name === 'string' ? name.trim().slice(0, MAX_SAINT_NAME) : '';
+    if (!cleanName || out.some((saint) => saint.name.toLowerCase() === cleanName.toLowerCase()))
+      continue;
+    out.push({
+      name: cleanName,
+      note: typeof note === 'string' ? note.trim().slice(0, MAX_SAINT_NOTE) : '',
+    });
+    if (out.length === MAX_FAVORITE_SAINTS) break;
+  }
+  return out;
 }
 
 /** Reads stored settings, replacing anything missing or invalid with defaults. */
@@ -74,11 +106,10 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
     notificationHour: isNotificationHour(s.notificationHour)
       ? s.notificationHour
       : fallback.notificationHour,
-    prayerTextSize: isPrayerTextSize(s.prayerTextSize)
-      ? s.prayerTextSize
-      : fallback.prayerTextSize,
+    prayerTextSize: isPrayerTextSize(s.prayerTextSize) ? s.prayerTextSize : fallback.prayerTextSize,
     greekFish: GREEK_FISH_PRACTICES.includes(s.greekFish as GreekFishPractice)
       ? (s.greekFish as GreekFishPractice)
       : fallback.greekFish,
+    saints: cleanSaints(s.saints),
   };
 }

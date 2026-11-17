@@ -75,6 +75,22 @@ export function PrayerReader({ id }: { id: PrayerId }) {
             ))}
           </View>
         ))}
+
+        {(id === 'morning' || id === 'evening') && settings.saints.length > 0 && (
+          <View>
+            <Text style={styles.heading}>{m.saints.heading}</Text>
+            {settings.saints.map((saint) => (
+              <View key={saint.name}>
+                <Text style={[styles.paragraph, textSize]}>{m.saints.invocation(saint.name)}</Text>
+                {saint.note !== '' && (
+                  <Text style={styles.note}>
+                    {saint.name}: {saint.note}
+                  </Text>
+                )}
+              </View>
+            ))}
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -100,5 +116,6 @@ function makeStyles(t: Theme) {
     rule: { width: 40, height: 2, borderRadius: 1, backgroundColor: t.feast, marginTop: space.md },
     heading: { fontSize: 14, color: t.muted, marginTop: space.lg },
     paragraph: { fontFamily: SERIF, color: t.ink, marginTop: space.md },
+    note: { fontSize: 14, color: t.muted, marginTop: space.xs },
   });
 }
