@@ -3,13 +3,28 @@
 import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
-import { Linking, Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import {
+  Linking,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
 import { requestPermission } from '../notifications/schedule';
-import { NOTIFICATION_HOURS } from '../settings/model';
+import {
+  MAX_FAVORITE_SAINTS,
+  MAX_SAINT_NAME,
+  MAX_SAINT_NOTE,
+  NOTIFICATION_HOURS,
+  cleanSaints,
+} from '../settings/model';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
@@ -29,7 +44,17 @@ export function Settings() {
   const updates = useUpdateCheck();
   const apk = useApkUpdate();
   const [notificationsDenied, setNotificationsDenied] = useState(false);
+  const [saintName, setSaintName] = useState('');
+  const [saintNote, setSaintNote] = useState('');
   const contentLine = describeContent(m, Updates.isEmbeddedLaunch, Updates.createdAt);
+
+  function addSaint() {
+    const next = cleanSaints([...settings.saints, { name: saintName, note: saintNote }]);
+    if (next.length === settings.saints.length) return;
+    update({ saints: next });
+    setSaintName('');
+    setSaintNote('');
+  }
 
   async function toggleNotifications(on: boolean) {
     setNotificationsDenied(false);
@@ -149,6 +174,61 @@ export function Settings() {
         )}
       </View>
 
+      <Text style={styles.label}>{m.saints.title}</Text>
+      <View style={styles.card}>
+        <Text style={styles.hint}>{m.saints.hint}</Text>
+        {settings.saints.map((saint) => (
+          <View key={saint.name} style={styles.saintRow}>
+            <View style={styles.saintText}>
+              <Text style={styles.cardText}>{saint.name}</Text>
+              {saint.note !== '' && <Text style={styles.status}>{saint.note}</Text>}
+            </View>
+            <Pressable
+              onPress={() => update({ saints: settings.saints.filter((s) => s !== saint) })}
+              style={styles.removeButton}
+              accessibilityRole="button"
+              accessibilityLabel={`${m.saints.remove}: ${saint.name}`}
+            >
+              <Text style={styles.removeText}>×</Text>
+            </Pressable>
+          </View>
+        ))}
+        {settings.saints.length < MAX_FAVORITE_SAINTS ? (
+          <>
+            <TextInput
+              value={saintName}
+              onChangeText={setSaintName}
+              placeholder={m.saints.namePlaceholder}
+              placeholderTextColor={theme.muted}
+              maxLength={MAX_SAINT_NAME}
+              style={[styles.input, styles.saintInput]}
+            />
+            <TextInput
+              value={saintNote}
+              onChangeText={setSaintNote}
+              placeholder={m.saints.notePlaceholder}
+              placeholderTextColor={theme.muted}
+              maxLength={MAX_SAINT_NOTE}
+              style={[styles.input, styles.saintInput]}
+            />
+            <Pressable
+              onPress={addSaint}
+              disabled={saintName.trim() === ''}
+              style={[
+                styles.button,
+                styles.buttonFilled,
+                saintName.trim() === '' && styles.disabled,
+              ]}
+              accessibilityRole="button"
+            >
+              <Text style={styles.buttonFilledText}>{m.saints.add}</Text>
+            </Pressable>
+          </>
+        ) : (
+          <Text style={styles.status}>{m.saints.full}</Text>
+        )}
+      </View>
+
       <Text style={styles.label}>{m.settings.updatesTitle}</Text>
       <View style={styles.card}>
         <Text style={styles.cardText}>
@@ -174,7 +254,11 @@ export function Settings() {
             <Pressable
               onPress={apk.install}
               disabled={apk.status === 'downloading'}
-              style={[styles.button, styles.buttonFilled, apk.status === 'downloading' && styles.disabled]}
+              style={[
+                styles.button,
+                styles.buttonFilled,
+                apk.status === 'downloading' && styles.disabled,
+              ]}
               accessibilityRole="button"
             >
               <Text style={styles.buttonFilledText}>
@@ -259,6 +343,18 @@ function makeStyles(t: Theme) {
     hourSelected: { borderColor: t.accent, backgroundColor: t.accent },
     hourText: { fontSize: 16, color: t.ink, fontVariant: ['tabular-nums'] },
     hourTextSelected: { color: t.onAccent, fontWeight: '600' },
+    saintRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
+      paddingVertical: space.sm,
+      borderTopWidth: 1,
+      borderTopColor: t.line,
+    },
+    saintText: { flex: 1 },
+    removeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
+    removeText: { fontSize: 24, color: t.muted },
+    saintInput: { height: 48, marginTop: space.sm },
     apk: { marginTop: space.md, paddingTop: space.md, borderTopWidth: 1, borderTopColor: t.line },
   });
 }
