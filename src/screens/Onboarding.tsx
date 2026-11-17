@@ -85,6 +85,7 @@ export function Onboarding() {
               autoCapitalize="words"
               autoCorrect={false}
               maxLength={40}
+              accessibilityLabel={m.settings.name}
               returnKeyType="next"
               onSubmitEditing={goNext}
             />
@@ -116,6 +117,7 @@ export function Onboarding() {
             onPress={() => setStepIndex(stepIndex - 1)}
             style={styles.secondary}
             accessibilityRole="button"
+            accessibilityLabel={m.onboarding.back}
           >
             <Text style={styles.secondaryText}>{m.onboarding.back}</Text>
           </Pressable>
@@ -124,6 +126,7 @@ export function Onboarding() {
           onPress={goNext}
           style={({ pressed }) => [styles.primary, pressed && styles.pressed]}
           accessibilityRole="button"
+          accessibilityLabel={isLast ? m.onboarding.start : m.onboarding.next}
         >
           <Text style={styles.primaryText}>{isLast ? m.onboarding.start : m.onboarding.next}</Text>
         </Pressable>
@@ -146,7 +149,7 @@ function makeStyles(t: Theme) {
     options: { gap: 12, marginTop: space.lg },
     input: {
       marginTop: space.lg,
-      height: 56,
+      minHeight: 56,
       paddingHorizontal: space.md,
       borderRadius: radius.field,
       borderWidth: 1,
@@ -158,16 +161,18 @@ function makeStyles(t: Theme) {
     actions: { flexDirection: 'row', gap: 12, paddingTop: space.sm },
     primary: {
       flex: 1,
-      height: 54,
+      minHeight: 54,
+      paddingVertical: 8,
       borderRadius: radius.field,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: t.accent,
     },
     pressed: { opacity: 0.85 },
-    primaryText: { fontSize: 17, fontWeight: '600', color: t.onAccent },
+    primaryText: { fontSize: 17, fontWeight: '600', color: t.onAccent, textAlign: 'center' },
     secondary: {
-      height: 54,
+      minHeight: 54,
+      paddingVertical: 8,
       paddingHorizontal: space.lg,
       borderRadius: radius.field,
       alignItems: 'center',

@@ -47,7 +47,10 @@ export function ReadingReader({ index }: { index: number }) {
   return (
     <View style={styles.screen}>
       <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
-        <Pressable onPress={() => router.back()} style={styles.back} accessibilityRole="button">
+        <Pressable onPress={() => router.back()} style={styles.back}
+          accessibilityRole="button"
+          accessibilityLabel={m.readings.title}
+        >
           <Text style={styles.backText}>‹ {m.readings.title}</Text>
         </Pressable>
         <View style={styles.sizes}>
@@ -57,6 +60,7 @@ export function ReadingReader({ index }: { index: number }) {
             style={styles.sizeButton}
             accessibilityRole="button"
             accessibilityLabel={m.prayers.smaller}
+            accessibilityState={{ disabled: size === 0 }}
           >
             <Text style={[styles.sizeText, size === 0 && styles.sizeDisabled]}>A−</Text>
           </Pressable>
@@ -66,6 +70,7 @@ export function ReadingReader({ index }: { index: number }) {
             style={styles.sizeButton}
             accessibilityRole="button"
             accessibilityLabel={m.prayers.larger}
+            accessibilityState={{ disabled: size === LARGEST }}
           >
             <Text style={[styles.sizeText, size === LARGEST && styles.sizeDisabled]}>A+</Text>
           </Pressable>

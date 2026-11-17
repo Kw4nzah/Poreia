@@ -69,6 +69,7 @@ export function Readings() {
             style={styles.sizeButton}
             accessibilityRole="button"
             accessibilityLabel={m.prayers.smaller}
+            accessibilityState={{ disabled: size === 0 }}
           >
             <Text style={[styles.sizeText, size === 0 && styles.sizeDisabled]}>A−</Text>
           </Pressable>
@@ -78,6 +79,7 @@ export function Readings() {
             style={styles.sizeButton}
             accessibilityRole="button"
             accessibilityLabel={m.prayers.larger}
+            accessibilityState={{ disabled: size === LARGEST }}
           >
             <Text style={[styles.sizeText, size === LARGEST && styles.sizeDisabled]}>A+</Text>
           </Pressable>
@@ -144,6 +146,7 @@ export function Readings() {
                       pressed && styles.pressed,
                     ]}
                     accessibilityRole={hasText ? 'button' : 'text'}
+                    accessibilityLabel={`${kindLabel(reading)}: ${readingReference(reading, settings.language)}`}
                   >
                     <View style={styles.rowText}>
                       <Text style={styles.source}>{kindLabel(reading)}</Text>
