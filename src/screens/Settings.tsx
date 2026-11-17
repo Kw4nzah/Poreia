@@ -3,7 +3,7 @@
 import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { Linking, Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES } from '../calendar';
@@ -17,6 +17,7 @@ import { describeContent } from '../updates/contentVersion';
 import { useApkUpdate } from '../updates/useApkUpdate';
 import { useUpdateCheck } from '../updates/useUpdateCheck';
 
+const PROJECT_URL = 'https://github.com/Kw4nzah/Poreia';
 const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
 
 export function Settings() {
@@ -192,6 +193,14 @@ export function Settings() {
         accessibilityRole="button"
       >
         <Text style={styles.buttonOutlineText}>{m.sources.title}</Text>
+      </Pressable>
+
+      <Pressable
+        onPress={() => Linking.openURL(PROJECT_URL).catch(() => {})}
+        style={[styles.button, styles.buttonOutline]}
+        accessibilityRole="link"
+      >
+        <Text style={styles.buttonOutlineText}>{m.settings.projectLink}</Text>
       </Pressable>
     </ScrollView>
   );
