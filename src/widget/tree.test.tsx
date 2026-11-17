@@ -56,7 +56,7 @@ describe('fast widget tree', () => {
     }
   });
 
-  it('the wide layout has the complete button, the compact one does not', async () => {
+  it('both layouts have the complete button', async () => {
     const { buildWidgetTree } = await import('react-native-android-widget/src/api/build-widget-tree');
     const { buildFastWidget } = await import('./FastWidget');
     const settings = { language: 'tr', churchId: 'greek', greekFish: 'unsure' } as const;
@@ -66,7 +66,7 @@ describe('fast widget tree', () => {
         buildWidgetTree(buildFastWidget(settings, { width, height }, now, done).light) as Tree,
       );
     expect(actions(340, 200, fastingDay, false)).toEqual(['OPEN_APP', 'TOGGLE_DONE']);
-    expect(actions(170, 170, fastingDay, false)).toEqual(['OPEN_APP']);
+    expect(actions(170, 170, fastingDay, false)).toEqual(['OPEN_APP', 'TOGGLE_DONE']);
     // No fast, no button: the card still opens the app.
     expect(actions(340, 200, new Date(2026, 9, 3), false)).toEqual(['OPEN_APP']);
   });

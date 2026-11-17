@@ -9,7 +9,8 @@
 // Layouts (chosen from the size the launcher gives the widget):
 //  - wide    (4x2): title, day badge with a thin progress bar, cross badge; two columns
 //                   "allowed / avoided"; reading reference and the complete button.
-//  - compact (2x2): cross and day badges, title, short status, progress bar, reading, percent.
+//  - compact (2x2): cross and day badges, title, status with percent, progress bar, reading and a
+//                   round complete button.
 // Titles would be serif in the design, but the library only loads fonts bundled as native
 // assets (a native change), so titles are bold sans. Every text has a line limit and END
 // truncation, so a long Turkish or Russian string shortens instead of pushing the layout around.
@@ -186,6 +187,28 @@ function progressBar(day: number, total: number, theme: Theme) {
   );
 }
 
+/** Round "complete today" button for the compact layout: outline until done, then filled. */
+function checkButton(content: WidgetContent, theme: Theme, done: boolean, size: number) {
+  const mark = Math.round(size * 0.5);
+  return (
+    <FlexWidget
+      clickAction={TOGGLE_DONE_ACTION}
+      accessibilityLabel={done ? content.labels.completed : content.labels.complete}
+      style={{
+        width: size,
+        height: size,
+        marginLeft: 8,
+        borderRadius: size / 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: hex(done ? theme.accent : theme.pill),
+      }}
+    >
+      {icon(strokeSvg(done ? theme.surface : theme.accent, mark, CHECK, 2.6), mark)}
+    </FlexWidget>
+  );
+}
+
 function divider(theme: Theme, margin: number) {
   return (
     <FlexWidget
@@ -277,15 +300,15 @@ function wideBody(
     : fasting
       ? chip(content.levelShort, theme.accent, theme.pill)
       : chip(labels.noFast, theme.free, tint(theme.free, '2E'));
-  const beside = progress
-    ? feast
-      ? text(feast, { size: 12, color: theme.feast, bold: true, marginLeft: 8 })
-      : (
-          <FlexWidget style={{ flex: 1, width: 0, marginLeft: 10 }}>
-            {progressBar(progress.day, progress.total, theme)}
-          </FlexWidget>
-        )
-    : null;
+  const beside = progress ? (
+    feast ? (
+      text(feast, { size: 12, color: theme.feast, bold: true, marginLeft: 8 })
+    ) : (
+      <FlexWidget style={{ flex: 1, width: 0, marginLeft: 10 }}>
+        {progressBar(progress.day, progress.total, theme)}
+      </FlexWidget>
+    )
+  ) : null;
 
   const top = (
     <FlexWidget style={{ flexDirection: 'row', width: 'match_parent', alignItems: 'center' }}>
@@ -311,44 +334,42 @@ function wideBody(
   );
 
   // Middle: the two food columns; on a day without fasting one calm sentence instead.
-  const middle = fasting
-    ? (
-        <FlexWidget style={{ flexDirection: 'row', width: 'match_parent' }}>
-          {[
-            column(
-              labels.allowed,
-              strokeSvg(theme.free, 14, CHECK, 2.6),
-              theme.free,
-              content.allowedFoods,
-              theme.ink,
-              tight ? 1 : 2,
-            ),
-            <FlexWidget
-              style={{
-                width: 1,
-                height: 'match_parent',
-                backgroundColor: hex(theme.line),
-                marginHorizontal: 12,
-              }}
-            />,
-            column(
-              labels.avoided,
-              strokeSvg(theme.danger, 14, CROSS_MARK, 2.6),
-              theme.danger,
-              content.avoidedFoods,
-              theme.muted,
-              tight ? 1 : 2,
-            ),
-          ]}
-        </FlexWidget>
-      )
-    : (
-        <FlexWidget style={{ width: 'match_parent' }}>
-          {feast
-            ? text(feast, { size: 14, color: theme.feast, bold: true, lh: 20 }, 2)
-            : text(content.calmNote, { size: 14, color: theme.ink, lh: 20 }, 2)}
-        </FlexWidget>
-      );
+  const middle = fasting ? (
+    <FlexWidget style={{ flexDirection: 'row', width: 'match_parent' }}>
+      {[
+        column(
+          labels.allowed,
+          strokeSvg(theme.free, 14, CHECK, 2.6),
+          theme.free,
+          content.allowedFoods,
+          theme.ink,
+          tight ? 1 : 2,
+        ),
+        <FlexWidget
+          style={{
+            width: 1,
+            height: 'match_parent',
+            backgroundColor: hex(theme.line),
+            marginHorizontal: 12,
+          }}
+        />,
+        column(
+          labels.avoided,
+          strokeSvg(theme.danger, 14, CROSS_MARK, 2.6),
+          theme.danger,
+          content.avoidedFoods,
+          theme.muted,
+          tight ? 1 : 2,
+        ),
+      ]}
+    </FlexWidget>
+  ) : (
+    <FlexWidget style={{ width: 'match_parent' }}>
+      {feast
+        ? text(feast, { size: 14, color: theme.feast, bold: true, lh: 20 }, 2)
+        : text(content.calmNote, { size: 14, color: theme.ink, lh: 20 }, 2)}
+    </FlexWidget>
+  );
 
   // Bottom: the reading on the left, the complete button on the right (fasting days only).
   const bottom = (
@@ -377,6 +398,7 @@ function compactBody(
   theme: Theme,
   roomy: boolean,
   narrow: boolean,
+  done: boolean,
 ): ReactElement[] {
   const { progress, feast, reading, fasting } = content;
   const dot = feast ? theme.feast : theme.free;
@@ -399,7 +421,13 @@ function compactBody(
       {[
         text(
           content.title,
-          { size: roomy ? 17 : 15, color: theme.ink, bold: true, lh: roomy ? 21 : 19, marginTop: roomy ? 6 : 4 },
+          {
+            size: roomy ? 17 : 15,
+            color: theme.ink,
+            bold: true,
+            lh: roomy ? 21 : 19,
+            marginTop: roomy ? 6 : 4,
+          },
           roomy ? 2 : 1,
         ),
         ...(roomy
@@ -424,6 +452,16 @@ function compactBody(
                   <FlexWidget style={{ flex: 1, width: 0, marginLeft: 6 }}>
                     {text(status, { size: 12, color: dot, bold: true })}
                   </FlexWidget>,
+                  ...(progress
+                    ? [
+                        text(progress.percentText, {
+                          size: 12,
+                          color: theme.muted,
+                          bold: true,
+                          marginLeft: 6,
+                        }),
+                      ]
+                    : []),
                 ]}
               </FlexWidget>,
             ]
@@ -442,9 +480,7 @@ function compactBody(
             lh: 14,
           })}
         </FlexWidget>,
-        ...(progress
-          ? [text(progress.percentText, { size: 11, color: theme.muted, bold: true, lh: 14, marginLeft: 6 })]
-          : []),
+        ...(fasting ? [checkButton(content, theme, done, roomy ? 32 : 28)] : []),
       ]}
     </FlexWidget>
   );
@@ -489,7 +525,7 @@ export function fastWidget(
     >
       {layout.wide
         ? wideBody(content, theme, done, layout.tight)
-        : compactBody(content, theme, !layout.tight, layout.narrow)}
+        : compactBody(content, theme, !layout.tight, layout.narrow, done)}
     </FlexWidget>
   );
 }
@@ -508,9 +544,14 @@ export function buildFastWidget(
     month: now.getMonth() + 1,
     day: now.getDate(),
   };
-  const content = widgetContentFor(date, CHURCHES[settings.churchId], settings.language as Language, {
-    greekFish: settings.greekFish,
-  });
+  const content = widgetContentFor(
+    date,
+    CHURCHES[settings.churchId],
+    settings.language as Language,
+    {
+      greekFish: settings.greekFish,
+    },
+  );
   const layout = layoutFor(size.width, size.height);
   return {
     light: fastWidget(content, themes.light, layout, done),
