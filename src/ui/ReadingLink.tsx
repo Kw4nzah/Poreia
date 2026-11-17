@@ -1,15 +1,15 @@
-// "Open this reading in the Turkish Bible" link, shown to Turkish readers under the text.
+// "Open this reading in YouVersion" link shown under a reading, in the user's language.
 
 import { Linking, Pressable, StyleSheet, Text } from 'react-native';
 import type { Reading } from '../commemorations';
-import { turkishReadingUrl } from '../commemorations/links';
+import { readingUrl } from '../commemorations/links';
 import { useSettings } from '../settings/SettingsProvider';
 import { Theme, space, useTheme } from './theme';
 
-export function TurkishLink({ reading }: { reading: Reading }) {
+export function ReadingLink({ reading }: { reading: Reading }) {
   const { settings, messages: m } = useSettings();
   const theme = useTheme();
-  const url = settings.language === 'tr' ? turkishReadingUrl(reading) : null;
+  const url = readingUrl(reading, settings.language);
   if (!url) return null;
   const styles = makeStyles(theme);
   return (
@@ -18,7 +18,7 @@ export function TurkishLink({ reading }: { reading: Reading }) {
       style={styles.button}
       accessibilityRole="link"
     >
-      <Text style={styles.text}>{m.readings.openTurkish}</Text>
+      <Text style={styles.text}>{m.readings.openBible}</Text>
     </Pressable>
   );
 }

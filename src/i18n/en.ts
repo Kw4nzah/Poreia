@@ -74,6 +74,7 @@ export interface Messages {
     contentUpdated: (when: string) => string;
     /** No downloaded update yet: the bundle that shipped inside the APK. */
     contentShipped: string;
+    projectLink: string;
     apkInstall: (megabytes: number) => string;
     apkDownloading: string;
     apkFailed: string;
@@ -111,7 +112,7 @@ export interface Messages {
     /** Saint and feast names come from an English-only source. */
     namesEnglish: string;
     textEnglish: string;
-    openTurkish: string;
+    openBible: string;
     service: (service: ParsedService) => string;
     noData: string;
     epistle: string;
@@ -211,6 +212,7 @@ export const en: Messages = {
     apkAvailable: (version) => `Version ${version} is available`,
     contentUpdated: (when) => `Content updated ${when}`,
     contentShipped: 'Content as shipped with the app',
+    projectLink: 'Project on GitHub',
     apkInstall: (megabytes) => `Download and install (${megabytes} MB)`,
     apkDownloading: 'Downloading…',
     apkFailed: 'Download failed. Try again later.',
@@ -310,7 +312,7 @@ export const en: Messages = {
     more: (count) => `+${count} more`,
     namesEnglish: 'Names are shown in English.',
     textEnglish: 'No text in this language yet, English is shown.',
-    openTurkish: 'Open in the Turkish Bible (KKDEU)',
+    openBible: 'Open in YouVersion (RSV Catholic Interconfessional)',
     service: (service) => {
       const ord = (n: number) => (n === 1 ? '1st' : n === 2 ? '2nd' : n === 3 ? '3rd' : n + 'th');
       const part = service.part ? service.part.charAt(0).toUpperCase() + service.part.slice(1) : '';
@@ -346,7 +348,7 @@ export const en: Messages = {
     title: 'Sources and licences',
     sections: [
       { heading: 'Scripture texts', body: 'Readings in English: New Testament from the Berean Standard Bible, Old Testament and deuterocanon from the English Septuagint (LXX2012). Readings in Russian: Synodal Translation (1876). Old Testament readings in Russian appear only where the Synodal chapter matches the Septuagint chapter verse for verse; the Synodal text follows the Hebrew, so its wording can differ from what is read in church. All three are in the public domain; the texts come from eBible.org, with the markup removed and only the verses of each reading kept.' },
-      { heading: 'Scripture texts, Turkish', body: 'Turkish readings open in the Kutsal Kitap ve Deuterokanonik Kitaplar (KKDEU, Bible Society in Turkey) on bible.com. The text is under copyright and is not stored in this app. Until you open the link, English text is shown.' },
+      { heading: 'Bible links (YouVersion)', body: 'Under each reading, a link opens the same passage in YouVersion (bible.com), in the YouVersion app if it is installed: English in the Revised Standard Version, Catholic Interconfessional (RSVCI), Turkish in the Kutsal Kitap ve Deuterokanonik Kitaplar (KKDEU, Bible Society in Turkey), Russian in the Synodal Translation. These translations are under copyright and are not stored in this app.' },
       { heading: 'Saints and readings', body: 'Names of the saints, feast days and the references of the readings come from orthocal.info (Orthodox Church in America lectionary; the project’s code is MIT-licensed). Only names and references are used, not the lives of the saints.' },
       { heading: 'Prayers, English', body: 'Lord’s Prayer, Creed, O Heavenly King, Trisagion and the Prayer of St. Ephraim: Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982), as published by Project Gutenberg (#34981). The morning, evening and meal prayers are faithful translations prepared for this app from the Slavonic and Greek texts. The Prayer of Manasseh is the King James Version (Apocrypha, public domain).' },
       { heading: 'Prayers, Russian', body: 'Church Slavonic texts in the public domain, checked against azbyka.ru (Молитвослов).' },

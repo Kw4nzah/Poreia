@@ -75,6 +75,7 @@ export const tr: Messages = {
     apkAvailable: (version) => `${version} sürümü yayında`,
     contentUpdated: (when) => `İçerik güncellemesi: ${when}`,
     contentShipped: 'İçerik uygulamayla gelen haliyle',
+    projectLink: 'GitHub’da proje',
     apkInstall: (megabytes) => `İndir ve kur (${megabytes} MB)`,
     apkDownloading: 'İndiriliyor…',
     apkFailed: 'İndirilemedi. Daha sonra yeniden dene.',
@@ -175,7 +176,7 @@ export const tr: Messages = {
     more: (count) => `+${count} daha`,
     namesEnglish: 'Adlar İngilizce gösterilir.',
     textEnglish: 'Türkçe metin henüz yok, İngilizcesi gösteriliyor.',
-    openTurkish: 'Türkçesini aç (KKDEU, Kutsal Kitap ve Deuterokanonik Kitaplar)',
+    openBible: 'YouVersion’da aç (KKDEU, Kutsal Kitap ve Deuterokanonik Kitaplar)',
     service: (service) => {
       const part = { gospel: 'İncil', epistle: 'Mektup', prophecy: 'Peygamberlik okuması' };
       const kind = service.part ? part[service.part] : '';
@@ -215,7 +216,7 @@ export const tr: Messages = {
     title: 'Kaynaklar ve lisanslar',
     sections: [
       { heading: 'Kutsal Kitap metinleri', body: 'İngilizce okumalar: Yeni Ahit Berean Standard Bible’dan, Eski Ahit ve deuterokanon İngilizce Septuaginta’dan (LXX2012). Rusça okumalar: Sinodal Çeviri (1876). Rusça Eski Ahit okumaları yalnızca Sinodal bölümün Septuaginta bölümüyle ayet ayet örtüştüğü yerlerde gösterilir; Sinodal metin İbranice metne dayandığı için kilisede okunandan sözcük olarak ayrılabilir. Üçü de kamu malıdır; metinler eBible.org’dan alındı, işaretlemeler kaldırıldı ve yalnızca her okumanın ayetleri tutuldu.' },
-      { heading: 'Kutsal Kitap metinleri, Türkçe', body: 'Türkçe okumalar bible.com üzerinde Kutsal Kitap ve Deuterokanonik Kitaplar’da (KKDEU, Türkiye Kitab-ı Mukaddes Şirketi) açılır. Metin telifli olduğu için bu uygulamada saklanmaz. Bağlantıyı açmadıkça İngilizcesi gösterilir.' },
+      { heading: 'İncil bağlantıları (YouVersion)', body: 'Her okumanın altındaki bağlantı aynı bölümü YouVersion’da (bible.com) açar, YouVersion uygulaması kuruluysa uygulamada: İngilizce için Revised Standard Version Catholic Interconfessional (RSVCI), Türkçe için Kutsal Kitap ve Deuterokanonik Kitaplar (KKDEU, Türkiye Kitab-ı Mukaddes Şirketi), Rusça için Sinodal Çeviri. Bu çeviriler telifli olduğundan uygulamada saklanmaz.' },
       { heading: 'Azizler ve okumalar', body: 'Azizlerin adları, bayram günleri ve okuma başvuruları orthocal.info’dan gelir (Amerika Ortodoks Kilisesi lectionary’si; projenin kodu MIT lisanslıdır). Yalnızca adlar ve başvurular kullanılır, azizlerin hayatları kullanılmaz.' },
       { heading: 'Dualar, İngilizce', body: 'Göklerdeki Babamız, İman İkrarı, Göksel Kral, Trisagion ve Aziz Efrem’in Duası: Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982), Project Gutenberg (#34981) yayınından. Sabah, akşam ve yemek dualarının İngilizcesi bu uygulama için Slavca ve Yunanca metinlerden hazırlanmış sadık çevirilerdir. Manaşşe’nin Duası King James Version’dandır (Apocrypha, kamu malı).' },
       { heading: 'Dualar, Rusça', body: 'Kamu malı Kilise Slavcası metinleri, azbyka.ru (Молитвослов) ile karşılaştırılmıştır.' },

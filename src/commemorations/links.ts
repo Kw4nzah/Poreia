@@ -1,14 +1,33 @@
-// Turkish readings are not bundled: the only Turkish Bible with the deuterocanon (KKDEU, Kutsal
-// Kitap ve Deuterokanonik Kitaplar, Bible Society in Turkey) is under copyright, so the app links
-// to it on bible.com instead. The lectionary uses Septuagint numbering and KKDEU follows the
-// Hebrew one, so only books and chapters that line up get a link.
+// Links from a reading to the same passage in YouVersion (bible.com), which opens the YouVersion
+// app when it is installed. The translations behind the links are copyrighted, so nothing of them
+// is stored in this app:
+//   tr  KKDEU   Kutsal Kitap ve Deuterokanonik Kitaplar (Bible Society in Turkey), version 2308
+//   en  RSVCI   Revised Standard Version, Catholic Interconfessional,               version 3548
+//   ru  SYNO    Synodal Translation,                                                version 400
+// The lectionary uses Septuagint numbering. KKDEU and RSVCI follow the Hebrew numbers for psalms
+// (the Synodal psalter on YouVersion uses the Septuagint ones), and a few books are arranged
+// differently, so only books and chapters that line up get a link.
 
+import type { BookLanguage } from './books';
 import type { Reading } from './index';
 import { NEW_TESTAMENT } from './text';
 
-const VERSION = 'https://www.bible.com/bible/2308';
+interface Version {
+  id: number;
+  code: string;
+  /** Does the translation include the deuterocanon? */
+  deuterocanon: boolean;
+  /** Psalm chapters are Hebrew-numbered (the lectionary's are Septuagint-numbered). */
+  hebrewPsalms: boolean;
+}
 
-// Deuterocanon present in KKDEU with the same chapter numbers as the Septuagint.
+const VERSIONS: Record<BookLanguage, Version> = {
+  tr: { id: 2308, code: 'KKDEU', deuterocanon: true, hebrewPsalms: true },
+  en: { id: 3548, code: 'RSVCI', deuterocanon: true, hebrewPsalms: true },
+  ru: { id: 400, code: 'SYNO', deuterocanon: false, hebrewPsalms: false },
+};
+
+// Deuterocanon with the same chapter numbers as the Septuagint.
 const DEUTEROCANON = new Set('TOB JDT WIS SIR BAR 1MA 2MA 3MA 1ES'.split(' '));
 // Old Testament books whose chapters line up closely enough; the link goes to the chapter only.
 const OLD_TESTAMENT = new Set(
@@ -24,18 +43,21 @@ export function hebrewPsalm(lxx: number): number | null {
   return null;
 }
 
-/** bible.com address of the start of a reading in KKDEU, or null when there is no safe link. */
-export function turkishReadingUrl(reading: Reading): string | null {
+/** YouVersion address of the start of a reading, or null when there is no safe link. */
+export function readingUrl(reading: Reading, language: BookLanguage): string | null {
   const first = reading.runs[0];
   if (!first) return null;
+  const version = VERSIONS[language];
+  const base = `https://www.bible.com/bible/${version.id}`;
   const [book, chapter, verse] = first;
-  if (NEW_TESTAMENT.has(book) || DEUTEROCANON.has(book)) {
-    return `${VERSION}/${book}.${chapter}.${verse}.KKDEU`;
+  if (NEW_TESTAMENT.has(book)) return `${base}/${book}.${chapter}.${verse}.${version.code}`;
+  if (DEUTEROCANON.has(book)) {
+    return version.deuterocanon ? `${base}/${book}.${chapter}.${verse}.${version.code}` : null;
   }
   if (book === 'PSA') {
-    const hebrew = hebrewPsalm(chapter);
-    return hebrew === null ? null : `${VERSION}/PSA.${hebrew}.KKDEU`;
+    const psalm = version.hebrewPsalms ? hebrewPsalm(chapter) : chapter;
+    return psalm === null ? null : `${base}/PSA.${psalm}.${version.code}`;
   }
-  if (OLD_TESTAMENT.has(book)) return `${VERSION}/${book}.${chapter}.KKDEU`;
+  if (OLD_TESTAMENT.has(book)) return `${base}/${book}.${chapter}.${version.code}`;
   return null;
 }
