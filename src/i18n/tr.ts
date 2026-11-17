@@ -279,4 +279,31 @@ export const tr: Messages = {
     downloading: 'İndiriliyor…',
     failed: 'Güncelleme başarısız. Daha sonra yeniden dene.',
   },
+
+  widget: {
+    allowed: 'Serbest',
+    avoided: 'Uzak Durulan',
+    nothing: 'Yok',
+    complete: 'Bugünü Tamamla',
+    completed: 'Tamamlandı',
+    noFast: 'Oruç yok',
+    dayOfTotal: (day, total) => `${day} / ${total}. Gün`,
+    dayShort: (day) => `${day}. Gün`,
+    percent: (value) => `%${value}`,
+    staples: 'ekmek, sebze, meyve',
+    foods: {
+      meat: 'et',
+      dairy: 'süt, yumurta',
+      fish: 'balık',
+      oil: 'zeytinyağı, şarap',
+    },
+    levelShort: {
+      none: 'Oruç yok',
+      noMeat: 'Etsiz',
+      fish: 'Etsiz & Süt Ürünsüz',
+      oil: 'Et, Süt, Balık Yok',
+      noOil: 'Yağsız',
+      xerophagy: 'Kuru Yeme',
+    },
+  },
 };

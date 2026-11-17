@@ -288,4 +288,31 @@ export const ru: Messages = {
     downloading: 'Загрузка…',
     failed: 'Не удалось обновить. Попробуйте позже.',
   },
+
+  widget: {
+    allowed: 'Можно',
+    avoided: 'Нельзя',
+    nothing: 'Нет',
+    complete: 'Отметить день',
+    completed: 'Выполнено',
+    noFast: 'Поста нет',
+    dayOfTotal: (day, total) => `День ${day} / ${total}`,
+    dayShort: (day) => `День ${day}`,
+    percent: (value) => `${value}%`,
+    staples: 'хлеб, овощи, фрукты',
+    foods: {
+      meat: 'мясо',
+      dairy: 'молочное, яйца',
+      fish: 'рыба',
+      oil: 'масло, вино',
+    },
+    levelShort: {
+      none: 'Поста нет',
+      noMeat: 'Без мяса',
+      fish: 'Без мяса и молочного',
+      oil: 'Без мяса, молочного, рыбы',
+      noOil: 'Без масла',
+      xerophagy: 'Сухоядение',
+    },
+  },
 };
