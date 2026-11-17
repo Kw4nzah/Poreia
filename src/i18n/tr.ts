@@ -225,7 +225,7 @@ export const tr: Messages = {
     topicLabel: 'Ne için dua istiyorsunuz?',
     topicNone: 'Belirli bir istek yok',
     topics: {
-      health: { label: 'Sağlık ve şifa', prayer: '' },
+      health: { label: 'Sağlık ve şifa', prayer: 'Baba, Oğul ve Kutsal Ruh’un adıyla. Âmin.\n\nEy kutsal {name}, Mesih’in sadık hizmetkârı ve Allah’ın huzurunda duran aziz!\n\nSenden alçakgönüllülükle rica ediyorum: Benim için Rabbimiz İsa Mesih’e dua et. O’ndan bana sağlık, sıhhat ve bedenime şifa; ruhuma huzur, sabır ve kuvvet vermesini dile.\n\nİçinde bulunduğum sıkıntılarda Allah’ın merhametine sığınabilmem, hastalıklar karşısında umudumu kaybetmemem ve imanımda güçlü kalabilmem için benim adıma şefaat et.\n\nRabbimizden doktorlara hikmet, tedavime bereket ve iyileşme yolunda bana güç vermesini dile.\n\nEy kutsal {name}, benim için dua et ki Rabbimiz bana merhamet etsin ve beni kendi kutsal iradesine uygun şekilde gözetip korusun.\n\nÂmin.' },
       family: { label: 'Ailem', prayer: '' },
       children: { label: 'Çocuklarım', prayer: '' },
       marriage: { label: 'Evlilik', prayer: '' },
