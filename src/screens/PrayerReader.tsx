@@ -28,7 +28,7 @@ export function PrayerReader({ id }: { id: PrayerId }) {
   return (
     <View style={styles.screen}>
       {/* Outside the scroll view so the size buttons stay within reach while reading. */}
-      <View style={[styles.header, { paddingTop: insets.top + space.sm }]}>
+      <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
         <Pressable onPress={() => router.back()} style={styles.back} accessibilityRole="button">
           <Text style={styles.backText}>‹ {m.prayers.title}</Text>
         </Pressable>
