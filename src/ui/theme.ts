@@ -15,6 +15,10 @@ export interface Theme {
   /** Gold: feasts. */
   feast: string;
   feastSurface: string;
+  /** Translucent surface of the floating tab bar (shows what scrolls under it). */
+  glass: string;
+  /** Hairline light edge of glass surfaces. */
+  glassEdge: string;
 }
 
 const light: Theme = {
@@ -29,6 +33,8 @@ const light: Theme = {
   free: '#566534',
   feast: '#8C6A1F',
   feastSurface: '#F3E6C4',
+  glass: '#FFFCF6E6',
+  glassEdge: '#FFFFFFCC',
 };
 
 const dark: Theme = {
@@ -43,6 +49,8 @@ const dark: Theme = {
   free: '#B4C389',
   feast: '#DDBB6C',
   feastSurface: '#3A2E14',
+  glass: '#211A17E6',
+  glassEdge: '#FFFFFF24',
 };
 
 export function useTheme(): Theme {

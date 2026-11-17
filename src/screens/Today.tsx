@@ -8,6 +8,7 @@ import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn, PressCard, useGrow } from '../ui/motion';
+import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
@@ -20,6 +21,7 @@ export function Today() {
   const router = useRouter();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const tabSpace = useTabBarSpace();
   const styles = makeStyles(theme);
   const today = useToday();
   const apk = useApkUpdate();
@@ -52,7 +54,7 @@ export function Today() {
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.lg,
-        paddingBottom: space.lg,
+        paddingBottom: tabSpace,
         paddingHorizontal: space.lg,
       }}
       showsVerticalScrollIndicator={false}

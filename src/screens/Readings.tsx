@@ -11,6 +11,7 @@ import { formatDate } from '../i18n';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn } from '../ui/motion';
+import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
@@ -23,6 +24,7 @@ export function Readings() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const tabSpace = useTabBarSpace();
   const styles = makeStyles(theme);
   const today = useToday();
 
@@ -50,7 +52,7 @@ export function Readings() {
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.md,
-        paddingBottom: space.xl,
+        paddingBottom: tabSpace,
         paddingHorizontal: space.lg,
       }}
       showsVerticalScrollIndicator={false}
