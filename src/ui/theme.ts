@@ -15,6 +15,10 @@ export interface Theme {
   /** Gold: feasts. */
   feast: string;
   feastSurface: string;
+  /** Cautions: a restrained terracotta. */
+  warning: string;
+  /** Errors: a deep red. */
+  danger: string;
   /** Translucent surface of the floating tab bar (shows what scrolls under it). */
   glass: string;
   /** Hairline light edge of glass surfaces. */
@@ -23,38 +27,44 @@ export interface Theme {
   pill: string;
 }
 
+// Palette (user's spec, 2026-11-18): muted wine for actions, sage for fast information, old gold
+// for feasts, terracotta for warnings, dark red for errors.
 const light: Theme = {
   dark: false,
-  background: '#F5EFE4',
-  surface: '#FFFCF6',
-  line: '#E3D8C6',
-  ink: '#2A211C',
-  muted: '#75695D',
-  accent: '#7A1F2B',
+  background: '#F7F4ED',
+  surface: '#FFFEFA',
+  line: '#DED8CD',
+  ink: '#292521',
+  muted: '#625B52',
+  accent: '#713B45',
   onAccent: '#FFF8F0',
-  free: '#566534',
-  feast: '#8C6A1F',
-  feastSurface: '#F3E6C4',
-  glass: '#FFFCF68C',
+  free: '#78866B',
+  feast: '#B18A4A',
+  feastSurface: '#F1E7D2',
+  warning: '#A65F46',
+  danger: '#8E2A2A',
+  glass: '#FFFEFA8C',
   glassEdge: '#FFFFFFB3',
-  pill: '#7A1F2B1F',
+  pill: '#713B4524',
 };
 
 const dark: Theme = {
   dark: true,
-  background: '#161210',
-  surface: '#211A17',
-  line: '#3A2F29',
-  ink: '#F0E7DB',
-  muted: '#A99C8F',
-  accent: '#E0959D',
-  onAccent: '#2A0E13',
-  free: '#B4C389',
-  feast: '#DDBB6C',
-  feastSurface: '#3A2E14',
-  glass: '#211A178C',
+  background: '#171719',
+  surface: '#222225',
+  line: '#39373B',
+  ink: '#F2EEE8',
+  muted: '#C4BDB5',
+  accent: '#D5A0A5',
+  onAccent: '#2A1417',
+  free: '#A9B99A',
+  feast: '#D7B978',
+  feastSurface: '#2F2B20',
+  warning: '#D9A088',
+  danger: '#E59A9A',
+  glass: '#2222258C',
   glassEdge: '#FFFFFF2E',
-  pill: '#E0959D2B',
+  pill: '#D5A0A52E',
 };
 
 export function useTheme(): Theme {

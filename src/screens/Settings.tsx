@@ -3,15 +3,7 @@
 import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
-import {
-  Linking,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES } from '../calendar';
@@ -148,7 +140,9 @@ export function Settings() {
             label={m.settings.notificationsToggle}
           />
         </View>
-        {notificationsDenied && <Text style={styles.status}>{m.settings.notificationsDenied}</Text>}
+        {notificationsDenied && (
+          <Text style={[styles.status, styles.warning]}>{m.settings.notificationsDenied}</Text>
+        )}
         {settings.notifications && (
           <View style={styles.apk}>
             <Text style={styles.status}>{m.settings.notificationsTime}</Text>
@@ -247,7 +241,9 @@ export function Settings() {
         </Text>
         <Text style={styles.cardText}>{contentLine}</Text>
         {updates.status !== 'idle' && (
-          <Text style={styles.status}>{m.updates[updates.status]}</Text>
+          <Text style={[styles.status, updates.status === 'failed' && styles.error]}>
+            {m.updates[updates.status]}
+          </Text>
         )}
         <Pressable
           onPress={updates.check}
@@ -261,7 +257,9 @@ export function Settings() {
         {apk.release && (
           <View style={styles.apk}>
             <Text style={styles.cardText}>{m.settings.apkAvailable(apk.release.version)}</Text>
-            {apk.status === 'failed' && <Text style={styles.status}>{m.settings.apkFailed}</Text>}
+            {apk.status === 'failed' && (
+              <Text style={[styles.status, styles.error]}>{m.settings.apkFailed}</Text>
+            )}
             <Pressable
               onPress={apk.install}
               disabled={apk.status === 'downloading'}
@@ -327,6 +325,8 @@ function makeStyles(t: Theme) {
     },
     cardText: { fontSize: 16, color: t.ink },
     status: { fontSize: 14, color: t.muted, marginTop: space.xs },
+    warning: { color: t.warning },
+    error: { color: t.danger },
     button: {
       height: 48,
       borderRadius: 12,
