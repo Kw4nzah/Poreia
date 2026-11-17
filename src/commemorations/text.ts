@@ -78,3 +78,31 @@ export function readingText(
   const english = readingVerses(reading, 'en');
   return english ? { verses: english, language: 'en', fallback: true } : null;
 }
+
+function hasVerses(reading: Reading, language: BookLanguage): boolean {
+  const data = load(language);
+  if (!data || reading.runs.length === 0) return false;
+  let any = false;
+  for (const [book, c1, v1, c2, v2] of reading.runs) {
+    const chapters = data[book];
+    if (!chapters) return false;
+    for (let c = c1; c <= c2; c++) {
+      const verses = chapters[c];
+      if (!verses) return false;
+      // Only the verses at the edges can be missing in a chapter that exists.
+      const first = c === c1 ? v1 : 1;
+      const last = c === c2 ? v2 : Math.max(...Object.keys(verses).map(Number));
+      for (let v = first; v <= last; v++) {
+        const text = verses[v];
+        if (text === undefined) return false;
+        if (text !== '') any = true;
+      }
+    }
+  }
+  return any;
+}
+
+/** Same answer as `readingText(...) !== null`, without building the verse arrays. */
+export function readingHasText(reading: Reading, language: BookLanguage): boolean {
+  return hasVerses(reading, language) || (language !== 'en' && hasVerses(reading, 'en'));
+}

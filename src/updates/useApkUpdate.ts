@@ -9,8 +9,26 @@ export type ApkStatus = 'idle' | 'downloading' | 'failed';
 
 const FLAG_GRANT_READ_URI_PERMISSION = 1;
 
+let pending: Promise<ApkRelease | null> | null = null;
+
+/** One GitHub request per app session, shared by every screen that asks (rate limit). */
+function sharedCheck(installed: string): Promise<ApkRelease | null> {
+  pending ??= fetch(LATEST_RELEASE_URL, { headers: { Accept: 'application/vnd.github+json' } })
+    .then((response) => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    })
+    .then((json) => pickNewerApk(json, installed))
+    .catch(() => {
+      // Offline or rate-limited: stay silent and let the next screen visit try again.
+      pending = null;
+      return null;
+    });
+  return pending;
+}
+
 /**
- * Looks for a newer APK release once per mount. `install` downloads it and hands it to
+ * Looks for a newer APK release once per app session (shared between screens). `install` downloads it and hands it to
  * the system installer, which asks the user to confirm.
  */
 export function useApkUpdate() {
@@ -21,13 +39,9 @@ export function useApkUpdate() {
     const installed = Application.nativeApplicationVersion;
     if (Platform.OS !== 'android' || !installed) return;
     let cancelled = false;
-    fetch(LATEST_RELEASE_URL, { headers: { Accept: 'application/vnd.github+json' } })
-      .then((response) => response.json())
-      .then((json) => {
-        if (!cancelled) setRelease(pickNewerApk(json, installed));
-      })
-      // Offline or rate-limited: no notice is shown, the next launch checks again.
-      .catch(() => {});
+    sharedCheck(installed).then((found) => {
+      if (!cancelled) setRelease(found);
+    });
     return () => {
       cancelled = true;
     };
