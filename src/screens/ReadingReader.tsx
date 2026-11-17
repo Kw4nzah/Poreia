@@ -46,7 +46,9 @@ export function ReadingReader({ index }: { index: number }) {
   return (
     <View style={styles.screen}>
       <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
-        <Pressable onPress={() => router.back()} style={styles.back}
+        <Pressable
+          onPress={() => router.back()}
+          style={styles.back}
           accessibilityRole="button"
           accessibilityLabel={m.readings.title}
         >
@@ -85,7 +87,9 @@ export function ReadingReader({ index }: { index: number }) {
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.kind}>{label}</Text>
-        <Text style={styles.title} accessibilityRole="header">{readingReference(reading, settings.language)}</Text>
+        <Text style={styles.title} accessibilityRole="header">
+          {readingReference(reading, settings.language)}
+        </Text>
         <View style={styles.rule} />
 
         <VerseText verses={text.verses} size={textSize} />

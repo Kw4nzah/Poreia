@@ -58,7 +58,9 @@ export function Onboarding() {
 
         {step === 'language' && (
           <>
-            <Text style={styles.title} accessibilityRole="header">{m.onboarding.languageTitle}</Text>
+            <Text style={styles.title} accessibilityRole="header">
+              {m.onboarding.languageTitle}
+            </Text>
             <View style={styles.options}>
               {LANGUAGES.map((language) => (
                 <Option
@@ -74,7 +76,9 @@ export function Onboarding() {
 
         {step === 'name' && (
           <>
-            <Text style={styles.title} accessibilityRole="header">{m.onboarding.nameTitle}</Text>
+            <Text style={styles.title} accessibilityRole="header">
+              {m.onboarding.nameTitle}
+            </Text>
             <Text style={styles.hint}>{m.onboarding.nameHint}</Text>
             <AppTextInput
               value={name}
@@ -94,7 +98,9 @@ export function Onboarding() {
 
         {step === 'church' && (
           <>
-            <Text style={styles.title} accessibilityRole="header">{m.onboarding.churchTitle}</Text>
+            <Text style={styles.title} accessibilityRole="header">
+              {m.onboarding.churchTitle}
+            </Text>
             <Text style={styles.hint}>{m.onboarding.churchHint}</Text>
             <View style={styles.options}>
               {CHURCH_IDS.map((id) => (

@@ -36,7 +36,9 @@ export function Prayers() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.title} accessibilityRole="header">{m.prayers.title}</Text>
+      <Text style={styles.title} accessibilityRole="header">
+        {m.prayers.title}
+      </Text>
 
       <AppTextInput
         value={query}
@@ -54,20 +56,20 @@ export function Prayers() {
         const visible = group.prayers.filter((id) => matches.has(id));
         if (visible.length === 0) return null;
         return (
-        <FadeIn key={group.id} index={groupIndex}>
-          <SectionHeader title={m.prayers.group[group.id]} />
-          <Card padding="none">
-            {visible.map((id, index) => (
-              <ListRow
-                key={id}
-                serif
-                divider={index > 0}
-                title={m.prayers.text[id].title}
-                onPress={() => router.push({ pathname: '/prayer/[id]', params: { id } })}
-              />
-            ))}
-          </Card>
-        </FadeIn>
+          <FadeIn key={group.id} index={groupIndex}>
+            <SectionHeader title={m.prayers.group[group.id]} />
+            <Card padding="none">
+              {visible.map((id, index) => (
+                <ListRow
+                  key={id}
+                  serif
+                  divider={index > 0}
+                  title={m.prayers.text[id].title}
+                  onPress={() => router.push({ pathname: '/prayer/[id]', params: { id } })}
+                />
+              ))}
+            </Card>
+          </FadeIn>
         );
       })}
     </ScrollView>

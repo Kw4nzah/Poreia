@@ -1,5 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { MESSAGES, Messages } from '../i18n';
 import { deviceLanguage } from './deviceLanguage';
 import { STORAGE_KEY, Settings, defaultSettings, parseSettings } from './model';

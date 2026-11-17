@@ -151,11 +151,7 @@ export function MonthCalendar() {
                   accessibilityState={{ selected: isPicked }}
                 >
                   <View
-                    style={[
-                      styles.day,
-                      isPicked && styles.dayPicked,
-                      isToday && styles.dayToday,
-                    ]}
+                    style={[styles.day, isPicked && styles.dayPicked, isToday && styles.dayToday]}
                   >
                     <Text style={styles.dayNumber} maxFontSizeMultiplier={1.3}>
                       {date.day}
@@ -236,7 +232,13 @@ function makeStyles(t: Theme) {
     arrowText: { fontSize: 28, lineHeight: 32, color: t.accent },
 
     week: { flexDirection: 'row' },
-    weekday: { flex: 1, textAlign: 'center', fontSize: 13, color: t.muted, paddingBottom: space.xs },
+    weekday: {
+      flex: 1,
+      textAlign: 'center',
+      fontSize: 13,
+      color: t.muted,
+      paddingBottom: space.xs,
+    },
     cell: { flex: 1, minHeight: 52, alignItems: 'center', justifyContent: 'center' },
     day: {
       width: 44,
@@ -272,7 +274,13 @@ function makeStyles(t: Theme) {
       backgroundColor: t.surface,
     },
     panelDate: { fontSize: 14, color: t.muted },
-    panelFeast: { fontFamily: SERIF, fontSize: 18, lineHeight: 25, color: t.feast, marginTop: space.xs },
+    panelFeast: {
+      fontFamily: SERIF,
+      fontSize: 18,
+      lineHeight: 25,
+      color: t.feast,
+      marginTop: space.xs,
+    },
     panelLabel: { fontSize: 14, color: t.muted, marginTop: space.sm },
     panelLevel: { fontFamily: SERIF, fontSize: 24, lineHeight: 32, marginTop: space.xs },
     panelDetail: { fontSize: 16, lineHeight: 23, color: t.ink, marginTop: space.xs },

@@ -28,7 +28,9 @@ export function PrayerReader({ id }: { id: PrayerId }) {
     <View style={styles.screen}>
       {/* Outside the scroll view so the size buttons stay within reach while reading. */}
       <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
-        <Pressable onPress={() => router.back()} style={styles.back}
+        <Pressable
+          onPress={() => router.back()}
+          style={styles.back}
           accessibilityRole="button"
           accessibilityLabel={m.prayers.title}
         >
@@ -66,12 +68,18 @@ export function PrayerReader({ id }: { id: PrayerId }) {
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title} accessibilityRole="header">{prayer.title}</Text>
+        <Text style={styles.title} accessibilityRole="header">
+          {prayer.title}
+        </Text>
         <View style={styles.rule} />
 
         {prayer.sections.map((section, index) => (
           <View key={index}>
-            {section.heading && <Text style={styles.heading} accessibilityRole="header">{section.heading}</Text>}
+            {section.heading && (
+              <Text style={styles.heading} accessibilityRole="header">
+                {section.heading}
+              </Text>
+            )}
             {section.paragraphs.map((paragraph, line) => (
               <Text key={line} style={[styles.paragraph, textSize]}>
                 {paragraph}
@@ -82,7 +90,9 @@ export function PrayerReader({ id }: { id: PrayerId }) {
 
         {(id === 'morning' || id === 'evening') && settings.saints.length > 0 && (
           <View>
-            <Text style={styles.heading} accessibilityRole="header">{m.saints.heading}</Text>
+            <Text style={styles.heading} accessibilityRole="header">
+              {m.saints.heading}
+            </Text>
             {settings.saints.map((saint) => (
               <View key={saint.name}>
                 <Text style={[styles.paragraph, textSize]}>{m.saints.invocation(saint.name)}</Text>

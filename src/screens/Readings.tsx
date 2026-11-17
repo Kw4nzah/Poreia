@@ -79,7 +79,9 @@ export function Readings() {
     >
       <View style={styles.header}>
         <View style={styles.headerText}>
-          <Text style={styles.title} accessibilityRole="header">{m.tabs.readings}</Text>
+          <Text style={styles.title} accessibilityRole="header">
+            {m.tabs.readings}
+          </Text>
           <Text style={styles.date}>{formatDate(m, today)}</Text>
         </View>
         <View style={styles.sizes}>

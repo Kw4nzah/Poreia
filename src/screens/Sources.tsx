@@ -15,7 +15,9 @@ export function Sources() {
   return (
     <View style={styles.screen}>
       <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
-        <Pressable onPress={() => router.back()} style={styles.back}
+        <Pressable
+          onPress={() => router.back()}
+          style={styles.back}
           accessibilityRole="button"
           accessibilityLabel={m.settings.title}
         >
@@ -30,10 +32,14 @@ export function Sources() {
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title} accessibilityRole="header">{m.sources.title}</Text>
+        <Text style={styles.title} accessibilityRole="header">
+          {m.sources.title}
+        </Text>
         {m.sources.sections.map((section) => (
           <View key={section.heading}>
-            <Text style={styles.heading} accessibilityRole="header">{section.heading}</Text>
+            <Text style={styles.heading} accessibilityRole="header">
+              {section.heading}
+            </Text>
             <Text style={styles.body}>{section.body}</Text>
           </View>
         ))}

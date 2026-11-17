@@ -75,7 +75,9 @@ export function Settings() {
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.title} accessibilityRole="header">{m.settings.title}</Text>
+      <Text style={styles.title} accessibilityRole="header">
+        {m.settings.title}
+      </Text>
 
       <SectionHeader title={m.settings.name} />
       <AppTextInput

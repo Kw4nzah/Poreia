@@ -60,7 +60,9 @@ export function Today() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.greeting} accessibilityRole="header">{m.today.greeting(settings.name)}</Text>
+      <Text style={styles.greeting} accessibilityRole="header">
+        {m.today.greeting(settings.name)}
+      </Text>
       <Text style={styles.weekday}>{m.weekdays[info.weekday]}</Text>
       <Text style={styles.date}>{formatDate(m, today)}</Text>
       {churchDateDiffers && (
@@ -81,11 +83,7 @@ export function Today() {
       <FadeIn index={1}>
         <Card style={styles.card}>
           {heading && (
-            <Badge
-              label={heading}
-              tone={fasting ? 'fast' : 'free'}
-              style={styles.headingBadge}
-            />
+            <Badge label={heading} tone={fasting ? 'fast' : 'free'} style={styles.headingBadge} />
           )}
           <Text style={[styles.level, { color: tone }]}>{level.title}</Text>
           <Text style={styles.detail}>{level.detail}</Text>
@@ -215,7 +213,11 @@ export function Today() {
               ) : (
                 <View />
               )}
-              <Text style={styles.chevron} accessibilityElementsHidden importantForAccessibility="no">
+              <Text
+                style={styles.chevron}
+                accessibilityElementsHidden
+                importantForAccessibility="no"
+              >
                 ›
               </Text>
             </View>
