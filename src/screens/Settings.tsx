@@ -27,6 +27,7 @@ import {
 } from '../settings/model';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
+import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 import { describeContent } from '../updates/contentVersion';
 import { useApkUpdate } from '../updates/useApkUpdate';
@@ -40,6 +41,7 @@ export function Settings() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const tabSpace = useTabBarSpace();
   const styles = makeStyles(theme);
   const updates = useUpdateCheck();
   const apk = useApkUpdate();
@@ -72,7 +74,7 @@ export function Settings() {
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.md,
-        paddingBottom: space.xl,
+        paddingBottom: tabSpace,
         paddingHorizontal: space.lg,
       }}
       keyboardShouldPersistTaps="handled"

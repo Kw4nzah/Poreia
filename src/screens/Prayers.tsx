@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_GROUPS } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn } from '../ui/motion';
+import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme } from '../ui/theme';
 
 export function Prayers() {
@@ -13,6 +14,7 @@ export function Prayers() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const tabSpace = useTabBarSpace();
   const styles = makeStyles(theme);
 
   return (
@@ -20,7 +22,7 @@ export function Prayers() {
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.md,
-        paddingBottom: space.xl,
+        paddingBottom: tabSpace,
         paddingHorizontal: space.lg,
       }}
       showsVerticalScrollIndicator={false}
