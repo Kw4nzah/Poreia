@@ -75,3 +75,78 @@ describe('planNotifications', () => {
     }
   });
 });
+
+describe('describeDay edge cases', () => {
+  it('lists several feasts one per line, in order', () => {
+    const text = describeDay(day({ level: 'fish', feasts: ['pascha', 'annunciation'] }), en);
+    expect(text.body.split('\n').slice(-2)).toEqual([en.feast.pascha, en.feast.annunciation]);
+  });
+
+  it('prefers the period over a lone fast day when both are set', () => {
+    const period = {
+      id: 'greatLent' as const,
+      day: 1,
+      totalDays: 42,
+      daysLeft: 41,
+      start: { year: 2026, month: 2, day: 23 },
+      end: { year: 2026, month: 4, day: 5 },
+    };
+    const text = describeDay(day({ level: 'noOil', period, fastDay: 'wednesday' }), en);
+    expect(text.body).not.toContain(en.fastDay.wednesday);
+    expect(text.body).toContain(en.period.greatLent);
+  });
+
+  it('has a title and body for every level, weekday and language', () => {
+    for (const m of Object.values(MESSAGES)) {
+      for (const level of Object.keys(m.level) as (keyof typeof m.level)[]) {
+        for (const weekday of [0, 1, 2, 3, 4, 5, 6] as const) {
+          const text = describeDay(day({ level, weekday }), m);
+          expect(text.title).toBe(`${m.weekdays[weekday]} · ${m.level[level].title}`);
+          expect(text.body.trim()).not.toBe('');
+          expect(text.title).not.toContain('undefined');
+          expect(text.body).not.toContain('undefined');
+        }
+      }
+    }
+  });
+
+  it('describes a fast-free day without a period line', () => {
+    expect(describeDay(day({ level: 'none' }), en).body.split('\n')).toHaveLength(1);
+  });
+});
+
+describe('planNotifications edge cases', () => {
+  it('returns nothing for zero days', () => {
+    expect(planNotifications({ year: 2026, month: 1, day: 1 }, 0, CHURCHES.greek, en)).toEqual([]);
+  });
+
+  it('includes the leap day 29 Feb 2028', () => {
+    const plan = planNotifications({ year: 2028, month: 2, day: 28 }, 3, CHURCHES.russian, en);
+    expect(plan.map((n) => n.date)).toEqual([
+      { year: 2028, month: 2, day: 28 },
+      { year: 2028, month: 2, day: 29 },
+      { year: 2028, month: 3, day: 1 },
+    ]);
+  });
+
+  it('does not add a 29 Feb in a non-leap year', () => {
+    const plan = planNotifications({ year: 2027, month: 2, day: 28 }, 2, CHURCHES.greek, en);
+    expect(plan[1].date).toEqual({ year: 2027, month: 3, day: 1 });
+  });
+
+  it('plans a full 60-day window with unique dates in every language', () => {
+    for (const m of Object.values(MESSAGES)) {
+      const plan = planNotifications({ year: 2026, month: 12, day: 1 }, 60, CHURCHES.greek, m);
+      expect(plan).toHaveLength(60);
+      expect(new Set(plan.map((n) => JSON.stringify(n.date))).size).toBe(60);
+    }
+  });
+
+  it('passes the Greek fish option through', () => {
+    const date = { year: 2026, month: 11, day: 28 };
+    for (const greekFish of ['greece', 'weekends'] as const) {
+      const [n] = planNotifications(date, 1, CHURCHES.greek, en, { greekFish });
+      expect(n).toMatchObject(describeDay(getDayInfo(date, CHURCHES.greek, { greekFish }), en));
+    }
+  });
+});

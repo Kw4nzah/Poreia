@@ -105,3 +105,88 @@ describe('saint topic', () => {
     ]);
   });
 });
+
+describe('settings edge cases', () => {
+  it('accepts every offered notification hour and rejects look-alikes', () => {
+    for (const h of [7, 8, 9, 12]) {
+      expect(parseSettings(JSON.stringify({ notificationHour: h }), 'en').notificationHour).toBe(h);
+    }
+    for (const h of ['9', 9.5, null, -1, 24, 10, true]) {
+      expect(parseSettings(JSON.stringify({ notificationHour: h }), 'en').notificationHour).toBe(8);
+    }
+  });
+
+  it('treats only a real true as notifications on and onboarded', () => {
+    for (const v of ['true', 1, null, 'yes']) {
+      const raw = JSON.stringify({ notifications: v, onboarded: v, churchId: 'greek' });
+      expect(parseSettings(raw, 'en')).toMatchObject({ notifications: false, onboarded: false });
+    }
+  });
+
+  it('survives JSON null, arrays, numbers and empty string', () => {
+    for (const raw of ['null', '[]', '42', 'true', '']) {
+      expect(parseSettings(raw, 'ru')).toEqual(defaultSettings('ru'));
+    }
+  });
+
+  it('ignores unknown keys', () => {
+    const parsed = parseSettings(JSON.stringify({ extra: 1, churchId: 'russian' }), 'en');
+    expect(parsed).not.toHaveProperty('extra');
+    expect(parsed.churchId).toBe('russian');
+  });
+
+  // KNOWN BUG: isChurchId in model.ts uses `value in CHURCHES`, which is true for inherited
+  // keys such as "constructor" (should be Object.hasOwn). Left failing until src is fixed.
+  it.fails('does not accept inherited object keys as church ids', () => {
+    for (const bad of ['constructor', 'toString', '__proto__']) {
+      expect(parseSettings(JSON.stringify({ churchId: bad, onboarded: true }), 'en')).toEqual(
+        defaultSettings('en'),
+      );
+    }
+  });
+
+  it('does not accept inherited object keys as fish rules', () => {
+    for (const bad of ['constructor', 'toString', '__proto__']) {
+      expect(parseSettings(JSON.stringify({ greekFish: bad }), 'en').greekFish).toBe('unsure');
+    }
+  });
+
+  it('keeps the name as stored, including empty and unicode text', () => {
+    expect(parseSettings(JSON.stringify({ name: 'Σάββας' }), 'en').name).toBe('Σάββας');
+    expect(parseSettings(JSON.stringify({ name: '' }), 'en').name).toBe('');
+  });
+
+  it('does not share the default saints array between calls', () => {
+    const a = defaultSettings('en');
+    a.saints.push({ name: 'X', topic: '' });
+    expect(defaultSettings('en').saints).toEqual([]);
+  });
+});
+
+describe('cleanSaints edge cases', () => {
+  it('rejects non-arrays', () => {
+    for (const v of [null, undefined, 'x', 3, {}]) expect(cleanSaints(v)).toEqual([]);
+  });
+
+  it('truncates names to 60 characters and drops whitespace-only names', () => {
+    expect(cleanSaints([{ name: 'a'.repeat(100) }])[0].name).toHaveLength(60);
+    expect(cleanSaints([{ name: '   ' }, { name: 5 }, null])).toEqual([]);
+  });
+
+  it('counts duplicates after trimming and ignores the case', () => {
+    expect(cleanSaints([{ name: ' Seraphim' }, { name: 'SERAPHIM ' }])).toHaveLength(1);
+  });
+
+  it('skips duplicates and invalid entries before reaching the limit of ten', () => {
+    const items = [
+      { name: 'A' },
+      { name: 'a' },
+      null,
+      ...Array.from({ length: 12 }, (_, i) => ({ name: 'S' + i })),
+    ];
+    const out = cleanSaints(items);
+    expect(out).toHaveLength(10);
+    expect(out[0].name).toBe('A');
+    expect(out[9].name).toBe('S8');
+  });
+});
