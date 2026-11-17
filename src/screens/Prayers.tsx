@@ -2,12 +2,13 @@
 
 import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_GROUPS, PRAYER_IDS } from '../prayers';
 import { searchPrayers } from '../prayers/search';
 import { AppTextInput } from '../ui/AppTextInput';
 import { useSettings } from '../settings/SettingsProvider';
+import { Card, ListRow, SectionHeader } from '../ui/kit';
 import { FadeIn } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, radius, space, useTheme, type } from '../ui/theme';
@@ -54,25 +55,18 @@ export function Prayers() {
         if (visible.length === 0) return null;
         return (
         <FadeIn key={group.id} index={groupIndex}>
-          <Text style={styles.label}>{m.prayers.group[group.id]}</Text>
-          <View style={styles.card}>
+          <SectionHeader title={m.prayers.group[group.id]} />
+          <Card padding="none">
             {visible.map((id, index) => (
-              <Pressable
+              <ListRow
                 key={id}
+                serif
+                divider={index > 0}
+                title={m.prayers.text[id].title}
                 onPress={() => router.push({ pathname: '/prayer/[id]', params: { id } })}
-                style={({ pressed }) => [
-                  styles.row,
-                  index > 0 && styles.rowDivider,
-                  pressed && styles.rowPressed,
-                ]}
-                accessibilityRole="button"
-                accessibilityLabel={m.prayers.text[id].title}
-              >
-                <Text style={styles.rowText}>{m.prayers.text[id].title}</Text>
-                <Text style={styles.chevron}>›</Text>
-              </Pressable>
+              />
             ))}
-          </View>
+          </Card>
         </FadeIn>
         );
       })}
@@ -96,25 +90,5 @@ function makeStyles(t: Theme) {
       ...type.body,
     },
     empty: { ...type.body, color: t.muted, marginTop: space.lg },
-    label: { ...type.label, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
-    card: {
-      borderRadius: radius.card,
-      borderWidth: 1,
-      borderColor: t.line,
-      backgroundColor: t.surface,
-      overflow: 'hidden',
-    },
-    row: {
-      minHeight: 56,
-      paddingHorizontal: space.lg,
-      paddingVertical: space.smd,
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: space.smd,
-    },
-    rowDivider: { borderTopWidth: 1, borderTopColor: t.line },
-    rowPressed: { backgroundColor: t.background },
-    rowText: { flex: 1, fontFamily: SERIF, ...type.headline, color: t.ink },
-    chevron: { ...type.title3, color: t.muted },
   });
 }
