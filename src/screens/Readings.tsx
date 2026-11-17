@@ -11,9 +11,10 @@ import { readingHasText, readingText, translationName } from '../commemorations/
 import { formatDate } from '../i18n';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
+import { Button, Card, ListRow, SectionHeader } from '../ui/kit';
 import { FadeIn } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, radius, space, useTheme, type } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
 import { VerseText } from '../ui/VerseText';
@@ -84,14 +85,13 @@ export function Readings() {
         </View>
         <View style={styles.sizes}>
           {day && (
-            <Pressable
+            <Button
+              label={m.readings.share}
               onPress={shareDay}
-              style={styles.shareButton}
-              accessibilityRole="button"
-              accessibilityLabel={m.readings.share}
-            >
-              <Text style={styles.shareText}>{m.readings.share}</Text>
-            </Pressable>
+              variant="ghost"
+              size="sm"
+              fullWidth={false}
+            />
           )}
           <Pressable
             onPress={() => resize(-1)}
@@ -141,14 +141,12 @@ export function Readings() {
 
       {day && (
         <>
-          <Text style={styles.label}>{m.readings.saints}</Text>
-          <View style={styles.card}>
+          <SectionHeader title={m.readings.saints} spacing="xl" />
+          <Card padding="none">
             {day.names.map((name, index) => (
-              <Text key={`${index}-${name}`} style={[styles.name, index > 0 && styles.divider]}>
-                {name}
-              </Text>
+              <ListRow key={`${index}-${name}`} serif title={name} divider={index > 0} />
             ))}
-          </View>
+          </Card>
           {settings.language !== 'en' && <Text style={styles.note}>{m.readings.namesEnglish}</Text>}
         </>
       )}
@@ -156,39 +154,30 @@ export function Readings() {
       {day &&
         others.map((group) => (
           <View key={group.id}>
-            <Text style={styles.label}>{m.readings.group[group.id]}</Text>
-            <View style={styles.card}>
+            <SectionHeader title={m.readings.group[group.id]} spacing="xl" />
+            <Card padding="none">
               {group.readings.map((reading, index) => {
                 const hasText = readingHasText(reading, settings.language);
                 return (
-                  <Pressable
+                  <ListRow
                     key={reading.source + index}
-                    disabled={!hasText}
-                    onPress={() =>
-                      router.push({
-                        pathname: '/reading/[index]',
-                        params: { index: String(day.readings.indexOf(reading)) },
-                      })
-                    }
-                    style={({ pressed }) => [
-                      styles.row,
-                      index > 0 && styles.divider,
-                      pressed && styles.pressed,
-                    ]}
-                    accessibilityRole={hasText ? 'button' : 'text'}
+                    divider={index > 0}
+                    overline={kindLabel(reading)}
+                    title={readingReference(reading, settings.language)}
                     accessibilityLabel={`${kindLabel(reading)}: ${readingReference(reading, settings.language)}`}
-                  >
-                    <View style={styles.rowText}>
-                      <Text style={styles.source}>{kindLabel(reading)}</Text>
-                      <Text style={styles.rowReference}>
-                        {readingReference(reading, settings.language)}
-                      </Text>
-                    </View>
-                    {hasText && <Text style={styles.chevron}>›</Text>}
-                  </Pressable>
+                    onPress={
+                      hasText
+                        ? () =>
+                            router.push({
+                              pathname: '/reading/[index]',
+                              params: { index: String(day.readings.indexOf(reading)) },
+                            })
+                        : undefined
+                    }
+                  />
                 );
               })}
-            </View>
+            </Card>
           </View>
         ))}
     </ScrollView>
@@ -203,8 +192,6 @@ function makeStyles(t: Theme) {
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
     date: { ...type.body, color: t.muted, marginTop: space.xs },
     sizes: { flexDirection: 'row', alignItems: 'center', marginRight: -space.sm },
-    shareButton: { minHeight: 44, paddingHorizontal: space.sm, justifyContent: 'center' },
-    shareText: { ...type.body, color: t.accent },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },
     sizeDisabled: { color: t.line },
@@ -222,33 +209,6 @@ function makeStyles(t: Theme) {
     },
     source: { ...type.caption, color: t.muted, marginTop: space.sm },
 
-    label: { ...type.label, color: t.muted, marginTop: space.xl, marginBottom: space.sm },
     note: { ...type.caption, color: t.muted, marginTop: space.sm },
-    card: {
-      borderRadius: radius.card,
-      borderWidth: 1,
-      borderColor: t.line,
-      backgroundColor: t.surface,
-      overflow: 'hidden',
-    },
-    name: {
-      fontFamily: SERIF,
-      ...type.headline,
-      color: t.ink,
-      paddingHorizontal: space.lg,
-      paddingVertical: space.smd,
-    },
-    divider: { borderTopWidth: 1, borderTopColor: t.line },
-    row: {
-      paddingHorizontal: space.lg,
-      paddingVertical: space.smd,
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: space.smd,
-    },
-    rowText: { flex: 1 },
-    rowReference: { ...type.bodyLarge, color: t.ink, marginTop: space.xs },
-    pressed: { backgroundColor: t.background },
-    chevron: { ...type.title3, color: t.muted },
   });
 }

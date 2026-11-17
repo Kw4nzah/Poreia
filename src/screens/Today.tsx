@@ -7,9 +7,10 @@ import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '
 import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
-import { FadeIn, PressCard, useGrow } from '../ui/motion';
+import { Badge, Card } from '../ui/kit';
+import { FadeIn, useGrow } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, radius, space, useTheme, type } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
 
@@ -70,16 +71,22 @@ export function Today() {
 
       {info.feasts.map((feast) => (
         <FadeIn key={feast} index={0}>
-          <View style={styles.feast}>
+          <Card tone="feast" padding="md" style={styles.gap}>
             <Text style={styles.feastLabel}>{m.today.feast}</Text>
             <Text style={styles.feastName}>{m.feast[feast]}</Text>
-          </View>
+          </Card>
         </FadeIn>
       ))}
 
       <FadeIn index={1}>
-        <View style={styles.card}>
-          {heading && <Text style={styles.cardLabel}>{heading}</Text>}
+        <Card style={styles.card}>
+          {heading && (
+            <Badge
+              label={heading}
+              tone={fasting ? 'fast' : 'free'}
+              style={styles.headingBadge}
+            />
+          )}
           <Text style={[styles.level, { color: tone }]}>{level.title}</Text>
           <Text style={styles.detail}>{level.detail}</Text>
 
@@ -135,11 +142,11 @@ export function Today() {
               </View>
             </View>
           )}
-        </View>
+        </Card>
       </FadeIn>
 
       <FadeIn index={2}>
-        <PressCard
+        <Card
           onPress={() => router.navigate('/calendar')}
           style={styles.card}
           accessibilityRole="button"
@@ -154,12 +161,12 @@ export function Today() {
           {info.daysToPascha > 0 && (
             <Text style={styles.pascha}>{m.today.daysToPascha(info.daysToPascha)}</Text>
           )}
-        </PressCard>
+        </Card>
       </FadeIn>
 
       {commemoration && (
         <FadeIn index={3}>
-          <PressCard
+          <Card
             onPress={() => router.navigate('/readings')}
             style={styles.card}
             accessibilityRole="button"
@@ -198,7 +205,7 @@ export function Today() {
               )}
               <Text style={styles.chevron}>›</Text>
             </View>
-          </PressCard>
+          </Card>
         </FadeIn>
       )}
 
@@ -228,23 +235,12 @@ function makeStyles(t: Theme) {
     date: { ...type.bodyLarge, color: t.ink, marginTop: space.xs },
     churchDate: { ...type.label, color: t.muted, marginTop: space.xs },
 
-    feast: {
-      marginTop: space.lg,
-      padding: space.md,
-      borderRadius: radius.card,
-      backgroundColor: t.feastSurface,
-    },
+    gap: { marginTop: space.lg },
     feastLabel: { ...type.caption, color: t.feast },
     feastName: { fontFamily: SERIF, ...type.title3, color: t.ink, marginTop: space.xs },
 
-    card: {
-      marginTop: space.md,
-      padding: space.lg,
-      borderRadius: radius.card,
-      borderWidth: 1,
-      borderColor: t.line,
-      backgroundColor: t.surface,
-    },
+    card: { marginTop: space.md },
+    headingBadge: { marginBottom: space.sm },
     cardLabel: { ...type.label, color: t.muted, marginBottom: space.xs },
     level: { fontFamily: SERIF, ...type.title2 },
     detail: { ...type.body, color: t.ink, marginTop: space.xs },
@@ -305,7 +301,6 @@ function makeStyles(t: Theme) {
       marginTop: space.sm,
     },
 
-    pressed: { backgroundColor: t.background },
     chevron: { ...type.title3, color: t.muted },
 
     disclaimer: { ...type.caption, color: t.muted, marginTop: space.lg },
