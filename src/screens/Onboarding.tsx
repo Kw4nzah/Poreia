@@ -2,12 +2,13 @@
 // change them, so every step starts from the current settings.
 
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
+import { AppTextInput } from '../ui/AppTextInput';
 import { SERIF, Theme, space, useTheme, radius } from '../ui/theme';
 
 const STEPS = ['language', 'name', 'church'] as const;
@@ -75,7 +76,7 @@ export function Onboarding() {
           <>
             <Text style={styles.title}>{m.onboarding.nameTitle}</Text>
             <Text style={styles.hint}>{m.onboarding.nameHint}</Text>
-            <TextInput
+            <AppTextInput
               value={name}
               onChangeText={setName}
               placeholder={m.onboarding.namePlaceholder}

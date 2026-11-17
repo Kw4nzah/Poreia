@@ -3,7 +3,7 @@
 import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
-import { Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES } from '../calendar';
@@ -18,6 +18,7 @@ import {
 } from '../settings/model';
 import { useSettings } from '../settings/SettingsProvider';
 import { AppSwitch } from '../ui/AppSwitch';
+import { AppTextInput } from '../ui/AppTextInput';
 import { Option } from '../ui/Option';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme, radius } from '../ui/theme';
@@ -75,7 +76,7 @@ export function Settings() {
       <Text style={styles.title}>{m.settings.title}</Text>
 
       <Text style={styles.label}>{m.settings.name}</Text>
-      <TextInput
+      <AppTextInput
         value={settings.name}
         onChangeText={(name) => update({ name })}
         onEndEditing={() => update({ name: settings.name.trim() })}
@@ -200,7 +201,7 @@ export function Settings() {
         ))}
         {settings.saints.length < MAX_FAVORITE_SAINTS ? (
           <>
-            <TextInput
+            <AppTextInput
               value={saintName}
               onChangeText={setSaintName}
               placeholder={m.saints.namePlaceholder}
@@ -208,7 +209,7 @@ export function Settings() {
               maxLength={MAX_SAINT_NAME}
               style={[styles.input, styles.saintInput]}
             />
-            <TextInput
+            <AppTextInput
               value={saintNote}
               onChangeText={setSaintNote}
               placeholder={m.saints.notePlaceholder}
