@@ -3,12 +3,12 @@
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { space } from './theme';
 
-export const TAB_BAR_HEIGHT = 60;
-export const TAB_BAR_MARGIN = 12;
+export const TAB_BAR_HEIGHT = 62;
+export const TAB_BAR_SIDE = 16;
 
 /** Distance from the bottom of the screen to the bottom edge of the bar. */
 export function useTabBarBottom(): number {
-  return useSafeAreaInsets().bottom + TAB_BAR_MARGIN / 2;
+  return useSafeAreaInsets().bottom + 8;
 }
 
 /** Bottom padding a scrolling tab screen needs so its last line clears the bar. */
