@@ -12,7 +12,7 @@ import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
 import { VerseText } from '../ui/VerseText';
@@ -190,7 +190,7 @@ function makeStyles(t: Theme) {
     label: { fontSize: 14, color: t.muted, marginTop: space.xl, marginBottom: space.sm },
     note: { fontSize: 13, color: t.muted, marginTop: space.sm },
     card: {
-      borderRadius: 16,
+      borderRadius: radius.card,
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,

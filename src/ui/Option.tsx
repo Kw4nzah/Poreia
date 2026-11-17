@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { space, useTheme } from './theme';
+import { space, useTheme, radius } from './theme';
 
 interface OptionProps {
   selected: boolean;
@@ -14,9 +14,10 @@ export function Option({ selected, title, subtitle, onPress }: OptionProps) {
   return (
     <Pressable
       onPress={onPress}
-      style={[
+      style={({ pressed }) => [
         styles.option,
         { borderColor: selected ? t.accent : t.line, backgroundColor: t.surface },
+        pressed && { opacity: 0.85 },
       ]}
       accessibilityRole="radio"
       accessibilityState={{ selected }}
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     minHeight: 64,
     paddingHorizontal: space.md,
     paddingVertical: 12,
-    borderRadius: 14,
+    borderRadius: radius.field,
     borderWidth: 1,
   },
   text: { flex: 1, gap: 2 },

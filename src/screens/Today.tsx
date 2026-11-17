@@ -9,7 +9,7 @@ import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn, PressCard, useGrow } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
 
@@ -223,7 +223,7 @@ function makeStyles(t: Theme) {
     feast: {
       marginTop: space.lg,
       padding: space.md,
-      borderRadius: 16,
+      borderRadius: radius.card,
       backgroundColor: t.feastSurface,
     },
     feastLabel: { fontSize: 13, color: t.feast },
@@ -232,7 +232,7 @@ function makeStyles(t: Theme) {
     card: {
       marginTop: space.md,
       padding: 20,
-      borderRadius: 16,
+      borderRadius: radius.card,
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,

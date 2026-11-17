@@ -7,7 +7,7 @@ import { PRAYER_GROUPS } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme } from '../ui/theme';
 
 export function Prayers() {
   const { messages: m } = useSettings();
@@ -61,7 +61,7 @@ function makeStyles(t: Theme) {
     title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink, marginTop: 0 },
     label: { fontSize: 14, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
     card: {
-      borderRadius: 16,
+      borderRadius: radius.card,
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,
