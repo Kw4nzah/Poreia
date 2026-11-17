@@ -31,7 +31,8 @@ function clickActions(tree: Tree): string[] {
 
 describe('fast widget tree', () => {
   it('builds for every size class, light and dark, with and without progress', async () => {
-    const { buildWidgetTree } = await import('react-native-android-widget/src/api/build-widget-tree');
+    const { buildWidgetTree } =
+      await import('react-native-android-widget/src/api/build-widget-tree');
     const { buildFastWidget } = await import('./FastWidget');
     for (const language of ['tr', 'en', 'ru'] as const) {
       const settings = { language, churchId: 'greek', greekFish: 'unsure' } as const;
@@ -57,7 +58,8 @@ describe('fast widget tree', () => {
   });
 
   it('both layouts have the complete button', async () => {
-    const { buildWidgetTree } = await import('react-native-android-widget/src/api/build-widget-tree');
+    const { buildWidgetTree } =
+      await import('react-native-android-widget/src/api/build-widget-tree');
     const { buildFastWidget } = await import('./FastWidget');
     const settings = { language: 'tr', churchId: 'greek', greekFish: 'unsure' } as const;
     const fastingDay = new Date(2026, 10, 17);
@@ -72,13 +74,15 @@ describe('fast widget tree', () => {
   });
 
   it('the button label follows the done state', async () => {
-    const { buildWidgetTree } = await import('react-native-android-widget/src/api/build-widget-tree');
+    const { buildWidgetTree } =
+      await import('react-native-android-widget/src/api/build-widget-tree');
     const { buildFastWidget } = await import('./FastWidget');
     const settings = { language: 'tr', churchId: 'greek', greekFish: 'unsure' } as const;
     const json = (done: boolean) =>
       JSON.stringify(
         buildWidgetTree(
-          buildFastWidget(settings, { width: 340, height: 200 }, new Date(2026, 10, 17), done).light,
+          buildFastWidget(settings, { width: 340, height: 200 }, new Date(2026, 10, 17), done)
+            .light,
         ),
       );
     expect(json(false)).toContain('Bugünü Tamamla');
@@ -95,8 +99,10 @@ describe('layoutFor', () => {
     expect(layoutFor(340, 200).tight).toBe(false);
     expect(layoutFor(320, 165)).toEqual({ wide: true, tight: true, narrow: false });
     expect(layoutFor(340, 110).wide).toBe(false);
-    expect(layoutFor(170, 170)).toEqual({ wide: false, tight: false, narrow: false });
-    expect(layoutFor(110, 110)).toEqual({ wide: false, tight: true, narrow: true });
+    expect(layoutFor(170, 170)).toEqual({ wide: false, tight: false, narrow: false, side: 170 });
+    expect(layoutFor(110, 110)).toEqual({ wide: false, tight: true, narrow: true, side: 110 });
+    // A wider-than-tall cell still gets a square card of the shorter edge.
+    expect(layoutFor(180, 150).side).toBe(150);
     // An unknown height (0) is treated as roomy.
     expect(layoutFor(340, 0).wide).toBe(true);
   });

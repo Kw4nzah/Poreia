@@ -48,16 +48,21 @@ export interface WidgetLayout {
   tight: boolean;
   /** Compact only: too narrow for the day badge beside the cross. */
   narrow: boolean;
+  /** Compact only: edge (dp) of the square card, centred in the widget area. 0 when wide. */
+  side: number;
 }
 
 /** Which layout fits the size (dp) the launcher gave the widget. */
 export function layoutFor(width: number, height: number): WidgetLayout {
   const h = height > 0 ? height : 160;
   const wide = width >= WIDE_FROM_WIDTH_DP && h >= WIDE_FROM_HEIGHT_DP;
+  // Launcher cells are rarely square, so the compact card is a square of the shorter edge.
+  const side = wide ? 0 : Math.round(width > 0 ? Math.min(width, h) : h);
   return {
     wide,
-    tight: wide ? h < DENSE_BELOW_HEIGHT_DP : h < ROOMY_FROM_HEIGHT_DP,
-    narrow: !wide && width < NARROW_BELOW_WIDTH_DP,
+    tight: wide ? h < DENSE_BELOW_HEIGHT_DP : side < ROOMY_FROM_HEIGHT_DP,
+    narrow: !wide && side < NARROW_BELOW_WIDTH_DP,
+    side,
   };
 }
 
@@ -509,13 +514,14 @@ export function fastWidget(
   layout: WidgetLayout,
   done: boolean,
 ) {
-  return (
+  const card = (
     <FlexWidget
       clickAction="OPEN_APP"
       accessibilityLabel={`${content.title}. ${content.status}${content.feast ? `. ${content.feast}` : ''}`}
       style={{
-        height: 'match_parent',
-        width: 'match_parent',
+        ...(layout.wide
+          ? { height: 'match_parent' as const, width: 'match_parent' as const }
+          : { height: layout.side, width: layout.side }),
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: layout.wide ? 16 : layout.tight ? 12 : 14,
@@ -526,6 +532,19 @@ export function fastWidget(
       {layout.wide
         ? wideBody(content, theme, done, layout.tight)
         : compactBody(content, theme, !layout.tight, layout.narrow, done)}
+    </FlexWidget>
+  );
+  if (layout.wide) return card;
+  return (
+    <FlexWidget
+      style={{
+        height: 'match_parent',
+        width: 'match_parent',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {card}
     </FlexWidget>
   );
 }
