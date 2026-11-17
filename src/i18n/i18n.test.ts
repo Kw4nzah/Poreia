@@ -33,6 +33,80 @@ describe('dictionaries', () => {
   });
 });
 
+describe('placeholders and generated text', () => {
+  const all = Object.fromEntries(
+    LANGUAGES.map((language) => [language, leaves(MESSAGES[language], 'm', new Map())]),
+  );
+
+  it.each(LANGUAGES)(
+    '%s has no broken placeholder, template or "undefined" in any text',
+    (language) => {
+      for (const [path, text] of all[language]) {
+        // Takes a structured argument, so the sample call used here says nothing about its text.
+        if (path === 'm.readings.service') continue;
+        // The only placeholder is `{name}`; anything else with braces is a typo.
+        const stripped = text.replaceAll('{name}', '');
+        expect(stripped, path).not.toMatch(/[{}]/);
+        expect(text, path).not.toMatch(/\$\{|undefined|NaN|\[object|null\b/);
+      }
+    },
+  );
+
+  it('writes {name} the same number of times in every language', () => {
+    const count = (text: string) => text.split('{name}').length - 1;
+    // Known gap for the owner: the Turkish health prayer lacks the closing line
+    // "O holy {name}, pray to God for me" that the English and Russian texts end with.
+    const knownGaps = new Set(['tr m.saints.topics.health.prayer']);
+    for (const [path, english] of all.en) {
+      for (const language of LANGUAGES) {
+        const text = all[language].get(path);
+        // A prayer still empty in one language is allowed (see the dictionary test above).
+        if (!text || !english) continue;
+        if (knownGaps.has(`${language} ${path}`)) {
+          expect(count(text)).toBeLessThan(count(english));
+          continue;
+        }
+        expect(count(text), `${language} ${path}`).toBe(count(english));
+      }
+    }
+  });
+
+  it('puts {name} in every saint prayer that has text', () => {
+    for (const language of LANGUAGES) {
+      for (const [path, text] of all[language]) {
+        if (/\.saints\.topics\.[a-z]+\.prayer$/.test(path) && text.trim() !== '') {
+          expect(text, `${language} ${path}`).toContain('{name}');
+        }
+      }
+    }
+  });
+
+  it('generated texts carry their arguments (a day count says the number)', () => {
+    for (const language of LANGUAGES) {
+      const m = MESSAGES[language];
+      expect(m.today.dayOf(7, 40)).toMatch(/7/);
+      expect(m.today.dayOf(7, 40)).toMatch(/40/);
+      expect(m.today.daysLeft(5)).toMatch(/5/);
+      expect(m.today.startsIn(9)).toMatch(/9/);
+      expect(m.today.greeting('Maria')).toContain('Maria');
+      expect(m.today.greeting('')).not.toMatch(/,\s*$/);
+      expect(m.widget.dayOfTotal(3, 40)).toMatch(/3/);
+      expect(m.date(18, m.months[10], 2026)).toMatch(/18/);
+    }
+  });
+
+  it('keeps the saint topics, prayers and church names complete in every language', () => {
+    for (const language of LANGUAGES) {
+      const m = MESSAGES[language];
+      for (const topic of Object.values(m.saints.topics)) expect(topic.label.trim()).not.toBe('');
+      for (const church of Object.values(m.church)) {
+        expect(church.name.trim()).not.toBe('');
+        expect(church.calendar.trim()).not.toBe('');
+      }
+    }
+  });
+});
+
 describe('pickLanguage', () => {
   it('takes the first supported device language', () => {
     expect(pickLanguage(['de', 'ru-RU', 'tr'])).toBe('ru');
