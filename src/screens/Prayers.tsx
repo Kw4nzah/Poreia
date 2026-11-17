@@ -11,7 +11,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { Card, ListRow, SectionHeader } from '../ui/kit';
 import { FadeIn } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, radius, space, useTheme, type } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme, type, useThemedStyles } from '../ui/theme';
 
 export function Prayers() {
   const { messages: m } = useSettings();
@@ -19,7 +19,7 @@ export function Prayers() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const tabSpace = useTabBarSpace();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
   const [query, setQuery] = useState('');
   const matches = useMemo(
     () => new Set(searchPrayers(query, PRAYER_IDS, m.prayers.text)),
@@ -36,7 +36,7 @@ export function Prayers() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.title}>{m.prayers.title}</Text>
+      <Text style={styles.title} accessibilityRole="header">{m.prayers.title}</Text>
 
       <AppTextInput
         value={query}

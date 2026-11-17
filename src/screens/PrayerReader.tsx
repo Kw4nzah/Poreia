@@ -5,16 +5,15 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_TEXT_SIZES, PrayerId, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
-import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
+import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
 export function PrayerReader({ id }: { id: PrayerId }) {
   const { settings, messages: m, update } = useSettings();
-  const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
 
   const prayer = m.prayers.text[id];
   const size = settings.prayerTextSize;
@@ -67,12 +66,12 @@ export function PrayerReader({ id }: { id: PrayerId }) {
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title}>{prayer.title}</Text>
+        <Text style={styles.title} accessibilityRole="header">{prayer.title}</Text>
         <View style={styles.rule} />
 
         {prayer.sections.map((section, index) => (
           <View key={index}>
-            {section.heading && <Text style={styles.heading}>{section.heading}</Text>}
+            {section.heading && <Text style={styles.heading} accessibilityRole="header">{section.heading}</Text>}
             {section.paragraphs.map((paragraph, line) => (
               <Text key={line} style={[styles.paragraph, textSize]}>
                 {paragraph}
@@ -83,7 +82,7 @@ export function PrayerReader({ id }: { id: PrayerId }) {
 
         {(id === 'morning' || id === 'evening') && settings.saints.length > 0 && (
           <View>
-            <Text style={styles.heading}>{m.saints.heading}</Text>
+            <Text style={styles.heading} accessibilityRole="header">{m.saints.heading}</Text>
             {settings.saints.map((saint) => (
               <View key={saint.name}>
                 <Text style={[styles.paragraph, textSize]}>{m.saints.invocation(saint.name)}</Text>

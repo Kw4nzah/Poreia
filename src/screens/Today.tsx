@@ -10,7 +10,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { Badge, Card } from '../ui/kit';
 import { FadeIn, useGrow } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
 
@@ -23,7 +23,7 @@ export function Today() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const tabSpace = useTabBarSpace();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
   const today = useToday();
   const apk = useApkUpdate();
 
@@ -60,7 +60,7 @@ export function Today() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.greeting}>{m.today.greeting(settings.name)}</Text>
+      <Text style={styles.greeting} accessibilityRole="header">{m.today.greeting(settings.name)}</Text>
       <Text style={styles.weekday}>{m.weekdays[info.weekday]}</Text>
       <Text style={styles.date}>{formatDate(m, today)}</Text>
       {churchDateDiffers && (
@@ -101,7 +101,12 @@ export function Today() {
               {FOOD_IDS.map((food) => {
                 const allowed = isFoodAllowed(info.level, food);
                 return (
-                  <View key={food} style={styles.foodRow}>
+                  <View
+                    key={food}
+                    style={styles.foodRow}
+                    accessible
+                    accessibilityLabel={`${m.food[food]}: ${allowed ? m.today.foodAllowed : m.today.foodForbidden}`}
+                  >
                     <View
                       style={[
                         styles.mark,
@@ -111,6 +116,7 @@ export function Today() {
                       ]}
                     >
                       <Text
+                        maxFontSizeMultiplier={1.3}
                         style={[styles.markText, { color: allowed ? theme.surface : theme.muted }]}
                       >
                         {allowed ? '✓' : '✕'}
@@ -127,7 +133,13 @@ export function Today() {
 
           {info.period && (
             <View style={styles.progress}>
-              <View style={styles.track}>
+              <View
+                style={styles.track}
+                accessible
+                accessibilityRole="progressbar"
+                accessibilityLabel={m.today.dayOf(info.period.day, info.period.totalDays)}
+                accessibilityValue={{ min: 0, max: info.period.totalDays, now: info.period.day }}
+              >
                 <Animated.View style={[styles.fill, { backgroundColor: tone, width: grow }]} />
               </View>
               <View style={styles.progressRow}>
@@ -203,7 +215,9 @@ export function Today() {
               ) : (
                 <View />
               )}
-              <Text style={styles.chevron}>›</Text>
+              <Text style={styles.chevron} accessibilityElementsHidden importantForAccessibility="no">
+                ›
+              </Text>
             </View>
           </Card>
         </FadeIn>

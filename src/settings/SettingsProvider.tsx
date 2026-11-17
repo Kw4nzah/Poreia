@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getLocales } from 'expo-localization';
 import { ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { MESSAGES, Messages, pickLanguage } from '../i18n';
+import { MESSAGES, Messages } from '../i18n';
+import { deviceLanguage } from './deviceLanguage';
 import { STORAGE_KEY, Settings, defaultSettings, parseSettings } from './model';
 
 interface SettingsContextValue {
@@ -12,17 +12,15 @@ interface SettingsContextValue {
 
 const SettingsContext = createContext<SettingsContextValue | null>(null);
 
-function deviceLanguage() {
-  return pickLanguage(getLocales().map((locale) => locale.languageCode));
-}
-
 /** Loads settings once, then renders children; nothing is shown while loading. */
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState<Settings | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    AsyncStorage.getItem(STORAGE_KEY)
+    // Whatever goes wrong while reading, the app starts with defaults instead of a blank screen.
+    Promise.resolve()
+      .then(() => AsyncStorage.getItem(STORAGE_KEY))
       .then((raw) => parseSettings(raw, deviceLanguage()))
       .catch(() => defaultSettings(deviceLanguage()))
       .then((loaded) => {

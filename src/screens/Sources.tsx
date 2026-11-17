@@ -4,14 +4,13 @@ import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSettings } from '../settings/SettingsProvider';
-import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
+import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
 export function Sources() {
   const { messages: m } = useSettings();
-  const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
 
   return (
     <View style={styles.screen}>
@@ -31,10 +30,10 @@ export function Sources() {
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title}>{m.sources.title}</Text>
+        <Text style={styles.title} accessibilityRole="header">{m.sources.title}</Text>
         {m.sources.sections.map((section) => (
           <View key={section.heading}>
-            <Text style={styles.heading}>{section.heading}</Text>
+            <Text style={styles.heading} accessibilityRole="header">{section.heading}</Text>
             <Text style={styles.body}>{section.body}</Text>
           </View>
         ))}

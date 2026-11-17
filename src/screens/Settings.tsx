@@ -23,7 +23,7 @@ import { AppTextInput } from '../ui/AppTextInput';
 import { Button, Card, SectionHeader, SegmentedControl } from '../ui/kit';
 import { Option } from '../ui/Option';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme, radius, type } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, radius, type, useThemedStyles } from '../ui/theme';
 import { describeContent } from '../updates/contentVersion';
 import { useApkUpdate } from '../updates/useApkUpdate';
 import { useUpdateCheck } from '../updates/useUpdateCheck';
@@ -37,7 +37,7 @@ export function Settings() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const tabSpace = useTabBarSpace();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
   const updates = useUpdateCheck();
   const apk = useApkUpdate();
   const [notificationsDenied, setNotificationsDenied] = useState(false);
@@ -75,7 +75,7 @@ export function Settings() {
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.title}>{m.settings.title}</Text>
+      <Text style={styles.title} accessibilityRole="header">{m.settings.title}</Text>
 
       <SectionHeader title={m.settings.name} />
       <AppTextInput

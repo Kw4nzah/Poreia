@@ -9,7 +9,7 @@ import { LANGUAGES, MESSAGES } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
 import { AppTextInput } from '../ui/AppTextInput';
-import { SERIF, Theme, space, useTheme, radius, type } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, radius, type, useThemedStyles } from '../ui/theme';
 
 const STEPS = ['language', 'name', 'church'] as const;
 const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
@@ -18,7 +18,7 @@ export function Onboarding() {
   const { settings, messages: m, update } = useSettings();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
 
   const [stepIndex, setStepIndex] = useState(0);
   const [name, setName] = useState(settings.name);
@@ -58,7 +58,7 @@ export function Onboarding() {
 
         {step === 'language' && (
           <>
-            <Text style={styles.title}>{m.onboarding.languageTitle}</Text>
+            <Text style={styles.title} accessibilityRole="header">{m.onboarding.languageTitle}</Text>
             <View style={styles.options}>
               {LANGUAGES.map((language) => (
                 <Option
@@ -74,7 +74,7 @@ export function Onboarding() {
 
         {step === 'name' && (
           <>
-            <Text style={styles.title}>{m.onboarding.nameTitle}</Text>
+            <Text style={styles.title} accessibilityRole="header">{m.onboarding.nameTitle}</Text>
             <Text style={styles.hint}>{m.onboarding.nameHint}</Text>
             <AppTextInput
               value={name}
@@ -94,7 +94,7 @@ export function Onboarding() {
 
         {step === 'church' && (
           <>
-            <Text style={styles.title}>{m.onboarding.churchTitle}</Text>
+            <Text style={styles.title} accessibilityRole="header">{m.onboarding.churchTitle}</Text>
             <Text style={styles.hint}>{m.onboarding.churchHint}</Text>
             <View style={styles.options}>
               {CHURCH_IDS.map((id) => (

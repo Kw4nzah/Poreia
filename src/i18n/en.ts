@@ -67,6 +67,9 @@ export interface Messages {
     disclaimer: string;
     settings: string;
     newVersion: string;
+    /** Read by screen readers after a food name instead of the check / cross mark. */
+    foodAllowed: string;
+    foodForbidden: string;
   };
 
   settings: {
@@ -254,6 +257,8 @@ export const en: Messages = {
       'General guidance from the parish calendars. Local custom and the advice of your spiritual father come first. Allowances on saints’ days are only partly included.',
     settings: 'Settings',
     newVersion: 'A new version is ready to install',
+    foodAllowed: 'allowed',
+    foodForbidden: 'not allowed',
   },
 
   settings: {

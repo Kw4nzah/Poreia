@@ -31,6 +31,20 @@ export function translationName(reading: Reading, language: BookLanguage): strin
 
 const cache: Partial<Record<BookLanguage, TextData>> = {};
 
+// Highest verse number of a chapter, computed once per chapter object (Object.keys over a long
+// chapter on every lookup showed up in the readings lists).
+const lastVerses = new WeakMap<object, number>();
+
+function lastVerseOf(verses: Record<string, string>): number {
+  let last = lastVerses.get(verses);
+  if (last === undefined) {
+    last = 0;
+    for (const key in verses) last = Math.max(last, Number(key));
+    lastVerses.set(verses, last);
+  }
+  return last;
+}
+
 // Required lazily: each file is large and only the user's language is ever needed.
 function load(language: BookLanguage): TextData | null {
   if (language === 'tr') return null;
@@ -52,7 +66,7 @@ export function readingVerses(reading: Reading, language: BookLanguage): Reading
     for (let c = c1; c <= c2; c++) {
       const verses = chapters[c];
       if (!verses) return null;
-      const last = c === c2 ? v2 : Math.max(...Object.keys(verses).map(Number));
+      const last = c === c2 ? v2 : lastVerseOf(verses);
       for (let v = c === c1 ? v1 : 1; v <= last; v++) {
         const text = verses[v];
         if (text === undefined) return null;
@@ -91,7 +105,7 @@ function hasVerses(reading: Reading, language: BookLanguage): boolean {
       if (!verses) return false;
       // Only the verses at the edges can be missing in a chapter that exists.
       const first = c === c1 ? v1 : 1;
-      const last = c === c2 ? v2 : Math.max(...Object.keys(verses).map(Number));
+      const last = c === c2 ? v2 : lastVerseOf(verses);
       for (let v = first; v <= last; v++) {
         const text = verses[v];
         if (text === undefined) return false;

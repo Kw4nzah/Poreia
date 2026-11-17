@@ -74,3 +74,16 @@ export function paschaJdn(year: number): number {
 export function civilFromLocalDate(date: Date): CivilDate {
   return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
 }
+
+export function isSameCivilDate(a: CivilDate, b: CivilDate): boolean {
+  return a.year === b.year && a.month === b.month && a.day === b.day;
+}
+
+/**
+ * Milliseconds from `now` to one second after the next local midnight. Built from calendar
+ * fields, so a 23- or 25-hour day (DST change) still ends at the right wall-clock midnight.
+ */
+export function msUntilNextLocalMidnight(now: Date): number {
+  const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1);
+  return Math.max(1000, next.getTime() - now.getTime());
+}

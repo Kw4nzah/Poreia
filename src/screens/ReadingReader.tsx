@@ -8,7 +8,7 @@ import { parseService } from '../commemorations/service';
 import { readingText, translationName } from '../commemorations/text';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
-import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
+import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
 import { VerseText } from '../ui/VerseText';
@@ -17,10 +17,9 @@ const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
 export function ReadingReader({ index }: { index: number }) {
   const { settings, messages: m, update } = useSettings();
-  const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
   const today = useToday();
 
   const reading = getCommemoration(today, settings.churchId)?.readings[index];
@@ -86,7 +85,7 @@ export function ReadingReader({ index }: { index: number }) {
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.kind}>{label}</Text>
-        <Text style={styles.title}>{readingReference(reading, settings.language)}</Text>
+        <Text style={styles.title} accessibilityRole="header">{readingReference(reading, settings.language)}</Text>
         <View style={styles.rule} />
 
         <VerseText verses={text.verses} size={textSize} />

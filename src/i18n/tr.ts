@@ -63,6 +63,8 @@ export const tr: Messages = {
       'Kilise takvimlerine dayanan genel bir rehberdir. Yerel âdet ve ruhani babanın öğüdü önce gelir. Azizlerin anma günlerinde verilen izinlerin yalnızca bir kısmı yer alır.',
     settings: 'Ayarlar',
     newVersion: 'Yeni sürüm kurulmaya hazır',
+    foodAllowed: 'serbest',
+    foodForbidden: 'yasak',
   },
 
   settings: {

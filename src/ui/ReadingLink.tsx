@@ -4,14 +4,13 @@ import { Linking, Pressable, StyleSheet, Text } from 'react-native';
 import type { Reading } from '../commemorations';
 import { readingUrl } from '../commemorations/links';
 import { useSettings } from '../settings/SettingsProvider';
-import { Theme, space, useTheme, type } from './theme';
+import { Theme, space, type, useThemedStyles } from './theme';
 
 export function ReadingLink({ reading }: { reading: Reading }) {
   const { settings, messages: m } = useSettings();
-  const theme = useTheme();
   const url = readingUrl(reading, settings.language);
   if (!url) return null;
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
   return (
     <Pressable
       onPress={() => Linking.openURL(url).catch(() => {})}

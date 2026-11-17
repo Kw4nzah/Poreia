@@ -14,7 +14,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { Button, Card, ListRow, SectionHeader } from '../ui/kit';
 import { FadeIn } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
+import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
 import { VerseText } from '../ui/VerseText';
@@ -23,11 +23,10 @@ const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
 export function Readings() {
   const { settings, messages: m, update } = useSettings();
-  const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const tabSpace = useTabBarSpace();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
   const today = useToday();
 
   const day = getCommemoration(today, settings.churchId);
@@ -80,7 +79,7 @@ export function Readings() {
     >
       <View style={styles.header}>
         <View style={styles.headerText}>
-          <Text style={styles.title}>{m.tabs.readings}</Text>
+          <Text style={styles.title} accessibilityRole="header">{m.tabs.readings}</Text>
           <Text style={styles.date}>{formatDate(m, today)}</Text>
         </View>
         <View style={styles.sizes}>

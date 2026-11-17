@@ -18,7 +18,7 @@ import {
 } from '../calendar';
 import { formatDate } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
-import { SERIF, Theme, radius, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 
 /** Width of the level mark under the day number, from light to strict. */
@@ -40,7 +40,7 @@ export function MonthCalendar() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const today = useToday();
-  const styles = makeStyles(theme);
+  const styles = useThemedStyles(makeStyles);
 
   const [shown, setShown] = useState({ year: today.year, month: today.month });
   const [picked, setPicked] = useState<CivilDate>(today);

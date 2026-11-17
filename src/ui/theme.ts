@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useColorScheme } from 'react-native';
 
 export interface Theme {
@@ -74,6 +75,12 @@ export const themes = { light, dark };
 
 export function useTheme(): Theme {
   return useColorScheme() === 'dark' ? dark : light;
+}
+
+/** Styles built from the theme, rebuilt only when the theme changes (not on every render). `make` must be a module-level function. */
+export function useThemedStyles<T>(make: (theme: Theme) => T): T {
+  const theme = useTheme();
+  return useMemo(() => make(theme), [make, theme]);
 }
 
 /** System serif (Noto Serif on Android) for titles; covers Latin and Cyrillic. */

@@ -1,37 +1,44 @@
 import { useEffect, useState } from 'react';
 import { AppState } from 'react-native';
-import { CivilDate, civilFromLocalDate } from '../calendar';
+import {
+  CivilDate,
+  civilFromLocalDate,
+  isSameCivilDate,
+  msUntilNextLocalMidnight,
+} from '../calendar';
 
-/** Today's date, refreshed when the app returns to the foreground on a new day. */
+/**
+ * Today's date. It changes at local midnight while the app is open and when the app returns to the
+ * foreground (the clock or timezone may have changed meanwhile). The same object is kept while the
+ * date is unchanged, so effects that depend on it do not run again for nothing.
+ */
 export function useToday(): CivilDate {
   const [today, setToday] = useState(() => civilFromLocalDate(new Date()));
 
-  // Also roll over at local midnight while the app stays open in the foreground.
   useEffect(() => {
+    const refresh = () => {
+      const now = civilFromLocalDate(new Date());
+      setToday((previous) => (isSameCivilDate(previous, now) ? previous : now));
+    };
     let timer: ReturnType<typeof setTimeout>;
     const arm = () => {
-      const now = new Date();
-      const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1);
       timer = setTimeout(() => {
-        setToday(civilFromLocalDate(new Date()));
+        refresh();
         arm();
-      }, midnight.getTime() - now.getTime());
+      }, msUntilNextLocalMidnight(new Date()));
     };
     arm();
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
     const subscription = AppState.addEventListener('change', (state) => {
       if (state !== 'active') return;
-      const now = civilFromLocalDate(new Date());
-      setToday((previous) =>
-        previous.year === now.year && previous.month === now.month && previous.day === now.day
-          ? previous
-          : now,
-      );
+      refresh();
+      // The timer may have been paused while the app slept; start it again from the real clock.
+      clearTimeout(timer);
+      arm();
     });
-    return () => subscription.remove();
+    return () => {
+      clearTimeout(timer);
+      subscription.remove();
+    };
   }, []);
 
   return today;
