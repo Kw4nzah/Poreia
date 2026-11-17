@@ -22,7 +22,7 @@ import { Dropdown } from '../ui/Dropdown';
 import { AppTextInput } from '../ui/AppTextInput';
 import { Option } from '../ui/Option';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme, radius } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, radius, type } from '../ui/theme';
 import { describeContent } from '../updates/contentVersion';
 import { useApkUpdate } from '../updates/useApkUpdate';
 import { useUpdateCheck } from '../updates/useUpdateCheck';
@@ -320,9 +320,9 @@ export function Settings() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink, marginTop: space.xs },
-    label: { fontSize: 14, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
-    hint: { fontSize: 13, lineHeight: 19, color: t.muted, marginBottom: space.sm },
+    title: { fontFamily: SERIF, ...type.title1, color: t.ink },
+    label: { ...type.label, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
+    hint: { ...type.caption, color: t.muted, marginBottom: space.sm },
     input: {
       minHeight: 56,
       paddingHorizontal: space.md,
@@ -330,10 +330,10 @@ function makeStyles(t: Theme) {
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,
-      fontSize: 17,
+      ...type.bodyLarge,
       color: t.ink,
     },
-    options: { gap: 12 },
+    options: { gap: space.smd },
     card: {
       padding: space.md,
       borderRadius: radius.field,
@@ -341,25 +341,25 @@ function makeStyles(t: Theme) {
       borderColor: t.line,
       backgroundColor: t.surface,
     },
-    cardText: { fontSize: 16, color: t.ink },
-    status: { fontSize: 14, color: t.muted, marginTop: space.xs },
+    cardText: { ...type.body, color: t.ink },
+    status: { ...type.label, color: t.muted, marginTop: space.xs },
     warning: { color: t.warning },
     error: { color: t.danger },
     button: {
       minHeight: 48,
-      paddingVertical: 8,
+      paddingVertical: space.sm,
       paddingHorizontal: space.md,
       borderRadius: 12,
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: 12,
+      marginTop: space.smd,
     },
     buttonOutline: { borderWidth: 1, borderColor: t.line },
-    buttonOutlineText: { fontSize: 16, color: t.ink, textAlign: 'center' },
+    buttonOutlineText: { ...type.body, color: t.ink, textAlign: 'center' },
     buttonFilled: { backgroundColor: t.accent },
-    buttonFilledText: { fontSize: 16, fontWeight: '600', color: t.onAccent, textAlign: 'center' },
+    buttonFilledText: { ...type.body, fontWeight: '600', color: t.onAccent, textAlign: 'center' },
     disabled: { opacity: 0.6 },
-    switchRow: { flexDirection: 'row', alignItems: 'center', minHeight: 44, gap: 12 },
+    switchRow: { flexDirection: 'row', alignItems: 'center', minHeight: 44, gap: space.smd },
     switchText: { flex: 1 },
     repeatRow: { marginTop: space.sm },
     hours: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.sm },
@@ -373,19 +373,19 @@ function makeStyles(t: Theme) {
       justifyContent: 'center',
     },
     hourSelected: { borderColor: t.accent, backgroundColor: t.accent },
-    hourText: { fontSize: 16, color: t.ink, fontVariant: ['tabular-nums'] },
+    hourText: { ...type.body, color: t.ink, fontVariant: ['tabular-nums'] },
     hourTextSelected: { color: t.onAccent, fontWeight: '600' },
     saintRow: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 12,
+      gap: space.smd,
       paddingVertical: space.sm,
       borderTopWidth: 1,
       borderTopColor: t.line,
     },
     saintText: { flex: 1 },
     removeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
-    removeText: { fontSize: 24, color: t.muted },
+    removeText: { ...type.title2, color: t.muted },
     saintInput: { minHeight: 48, marginTop: space.sm },
     apk: { marginTop: space.md, paddingTop: space.md, borderTopWidth: 1, borderTopColor: t.line },
   });

@@ -4,7 +4,7 @@ import { Linking, Pressable, StyleSheet, Text } from 'react-native';
 import type { Reading } from '../commemorations';
 import { readingUrl } from '../commemorations/links';
 import { useSettings } from '../settings/SettingsProvider';
-import { Theme, space, useTheme } from './theme';
+import { Theme, space, useTheme, type } from './theme';
 
 export function ReadingLink({ reading }: { reading: Reading }) {
   const { settings, messages: m } = useSettings();
@@ -32,6 +32,6 @@ function makeStyles(t: Theme) {
       marginTop: space.sm,
       alignSelf: 'flex-start',
     },
-    text: { fontSize: 15, color: t.accent, textDecorationLine: 'underline' },
+    text: { ...type.body, color: t.accent, textDecorationLine: 'underline' },
   });
 }

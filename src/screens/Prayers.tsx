@@ -7,7 +7,7 @@ import { PRAYER_GROUPS } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, radius, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme, type } from '../ui/theme';
 
 export function Prayers() {
   const { messages: m } = useSettings();
@@ -59,8 +59,8 @@ export function Prayers() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink, marginTop: 0 },
-    label: { fontSize: 14, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
+    title: { fontFamily: SERIF, ...type.title1, color: t.ink },
+    label: { ...type.label, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
     card: {
       borderRadius: radius.card,
       borderWidth: 1,
@@ -70,15 +70,15 @@ function makeStyles(t: Theme) {
     },
     row: {
       minHeight: 56,
-      paddingHorizontal: 20,
-      paddingVertical: 14,
+      paddingHorizontal: space.lg,
+      paddingVertical: space.smd,
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 12,
+      gap: space.smd,
     },
     rowDivider: { borderTopWidth: 1, borderTopColor: t.line },
     rowPressed: { backgroundColor: t.background },
-    rowText: { flex: 1, fontFamily: SERIF, fontSize: 18, lineHeight: 25, color: t.ink },
-    chevron: { fontSize: 22, lineHeight: 25, color: t.muted },
+    rowText: { flex: 1, fontFamily: SERIF, ...type.headline, color: t.ink },
+    chevron: { ...type.title3, color: t.muted },
   });
 }

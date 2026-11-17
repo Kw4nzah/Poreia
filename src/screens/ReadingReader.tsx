@@ -8,7 +8,7 @@ import { parseService } from '../commemorations/service';
 import { readingText, translationName } from '../commemorations/text';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
-import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
 import { VerseText } from '../ui/VerseText';
@@ -109,16 +109,16 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.lg,
     },
     back: { minHeight: 44, justifyContent: 'center', flexShrink: 1 },
-    backText: { fontSize: 16, color: t.accent },
+    backText: { ...type.body, color: t.accent },
     sizes: { flexDirection: 'row' },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
-    sizeText: { fontFamily: SERIF, fontSize: 18, color: t.accent },
+    sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },
     sizeDisabled: { color: t.line },
 
-    kind: { fontSize: 14, color: t.muted },
-    title: { fontFamily: SERIF, fontSize: 28, lineHeight: 36, color: t.ink, marginTop: 2 },
+    kind: { ...type.label, color: t.muted },
+    title: { fontFamily: SERIF, ...type.title1, color: t.ink, marginTop: space.xs },
     rule: { width: 40, height: 2, borderRadius: 1, backgroundColor: t.feast, marginTop: space.md },
-    source: { fontSize: 13, color: t.muted, marginTop: space.xl },
-    note: { fontSize: 13, color: t.muted, marginTop: 4 },
+    source: { ...type.caption, color: t.muted, marginTop: space.xl },
+    note: { ...type.caption, color: t.muted, marginTop: space.xs },
   });
 }

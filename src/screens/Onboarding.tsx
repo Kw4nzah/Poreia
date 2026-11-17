@@ -9,7 +9,7 @@ import { LANGUAGES, MESSAGES } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
 import { AppTextInput } from '../ui/AppTextInput';
-import { SERIF, Theme, space, useTheme, radius } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, radius, type } from '../ui/theme';
 
 const STEPS = ['language', 'name', 'church'] as const;
 const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
@@ -139,14 +139,14 @@ function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background, paddingHorizontal: space.lg },
     content: { paddingBottom: space.lg },
-    brand: { fontFamily: SERIF, fontSize: 40, color: t.accent },
-    tagline: { fontSize: 15, lineHeight: 22, color: t.muted, marginTop: space.xs },
-    dots: { flexDirection: 'row', gap: 6, marginTop: space.xl, marginBottom: space.lg },
+    brand: { fontFamily: SERIF, ...type.display, color: t.accent },
+    tagline: { ...type.body, color: t.muted, marginTop: space.xs },
+    dots: { flexDirection: 'row', gap: space.sm, marginTop: space.xl, marginBottom: space.lg },
     dot: { width: 28, height: 3, borderRadius: 2, backgroundColor: t.line },
     dotActive: { backgroundColor: t.accent },
-    title: { fontFamily: SERIF, fontSize: 24, lineHeight: 32, color: t.ink },
-    hint: { fontSize: 15, lineHeight: 22, color: t.muted, marginTop: space.sm },
-    options: { gap: 12, marginTop: space.lg },
+    title: { fontFamily: SERIF, ...type.title2, color: t.ink },
+    hint: { ...type.body, color: t.muted, marginTop: space.sm },
+    options: { gap: space.smd, marginTop: space.lg },
     input: {
       marginTop: space.lg,
       minHeight: 56,
@@ -155,24 +155,24 @@ function makeStyles(t: Theme) {
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,
-      fontSize: 17,
+      ...type.bodyLarge,
       color: t.ink,
     },
-    actions: { flexDirection: 'row', gap: 12, paddingTop: space.sm },
+    actions: { flexDirection: 'row', gap: space.smd, paddingTop: space.sm },
     primary: {
       flex: 1,
       minHeight: 54,
-      paddingVertical: 8,
+      paddingVertical: space.sm,
       borderRadius: radius.field,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: t.accent,
     },
     pressed: { opacity: 0.85 },
-    primaryText: { fontSize: 17, fontWeight: '600', color: t.onAccent, textAlign: 'center' },
+    primaryText: { ...type.bodyLarge, fontWeight: '600', color: t.onAccent, textAlign: 'center' },
     secondary: {
       minHeight: 54,
-      paddingVertical: 8,
+      paddingVertical: space.sm,
       paddingHorizontal: space.lg,
       borderRadius: radius.field,
       alignItems: 'center',
@@ -180,6 +180,6 @@ function makeStyles(t: Theme) {
       borderWidth: 1,
       borderColor: t.line,
     },
-    secondaryText: { fontSize: 17, color: t.ink },
+    secondaryText: { ...type.bodyLarge, color: t.ink },
   });
 }
