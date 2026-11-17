@@ -9,8 +9,11 @@ import {
   Pressable,
   PressableProps,
   StyleProp,
+  StyleSheet,
+  View,
   ViewStyle,
 } from 'react-native';
+import { useTheme } from './theme';
 
 /** True while the system "remove animations" / "reduce motion" setting is on. */
 export function useReduceMotion(): boolean {
@@ -77,7 +80,7 @@ export function FadeIn({
   );
 }
 
-/** A card-sized Pressable that sinks a little under the finger. */
+/** A card-sized Pressable that darkens under the finger (it never scales). */
 export function PressCard({
   style,
   children,
@@ -89,13 +92,13 @@ export function PressCard({
   children: ReactNode;
 }) {
   const reduce = useReduceMotion();
-  const scale = useRef(new Animated.Value(1)).current;
+  const theme = useTheme();
+  const shade = useRef(new Animated.Value(0)).current;
 
-  function to(value: number) {
-    if (reduce) return;
-    Animated.timing(scale, {
-      toValue: value,
-      duration: 120,
+  function to(value: number, duration: number) {
+    Animated.timing(shade, {
+      toValue: reduce ? (value > 0 ? 1 : 0) : value,
+      duration: reduce ? 0 : duration,
       easing: EASE_OUT,
       useNativeDriver: true,
     }).start();
@@ -105,18 +108,32 @@ export function PressCard({
     <Pressable
       {...rest}
       onPressIn={(event) => {
-        to(0.98);
+        to(1, 120);
         onPressIn?.(event);
       }}
       onPressOut={(event) => {
-        to(1);
+        to(0, 160);
         onPressOut?.(event);
       }}
     >
-      <Animated.View style={[style, { transform: [{ scale }] }]}>{children}</Animated.View>
+      <View style={[style, styles.clip]}>
+        {children}
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            StyleSheet.absoluteFill,
+            {
+              backgroundColor: theme.dark ? '#FFFFFF' : '#000000',
+              opacity: Animated.multiply(shade, 0.06),
+            },
+          ]}
+        />
+      </View>
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({ clip: { overflow: 'hidden' } });
 
 /** Width in percent that eases from 0 to `percent` the first time it is shown. */
 export function useGrow(percent: number): Animated.AnimatedInterpolation<string> {

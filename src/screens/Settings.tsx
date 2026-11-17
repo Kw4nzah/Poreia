@@ -28,7 +28,7 @@ import {
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, radius } from '../ui/theme';
 import { describeContent } from '../updates/contentVersion';
 import { useApkUpdate } from '../updates/useApkUpdate';
 import { useUpdateCheck } from '../updates/useUpdateCheck';
@@ -301,7 +301,7 @@ function makeStyles(t: Theme) {
     input: {
       height: 56,
       paddingHorizontal: space.md,
-      borderRadius: 14,
+      borderRadius: radius.field,
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,
@@ -311,7 +311,7 @@ function makeStyles(t: Theme) {
     options: { gap: 12 },
     card: {
       padding: space.md,
-      borderRadius: 14,
+      borderRadius: radius.field,
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,

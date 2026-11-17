@@ -64,4 +64,7 @@ export function useTheme(): Theme {
 /** System serif (Noto Serif on Android) for titles; covers Latin and Cyrillic. */
 export const SERIF = 'serif';
 
+/** Corner radii: cards and panels are large and soft, fields a step smaller, pills fully round. */
+export const radius = { card: 24, field: 16, pill: 999 } as const;
+
 export const space = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 } as const;

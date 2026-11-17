@@ -8,7 +8,7 @@ import { CHURCHES, ChurchId } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
-import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, radius } from '../ui/theme';
 
 const STEPS = ['language', 'name', 'church'] as const;
 const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
@@ -147,7 +147,7 @@ function makeStyles(t: Theme) {
       marginTop: space.lg,
       height: 56,
       paddingHorizontal: space.md,
-      borderRadius: 14,
+      borderRadius: radius.field,
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,
@@ -158,7 +158,7 @@ function makeStyles(t: Theme) {
     primary: {
       flex: 1,
       height: 54,
-      borderRadius: 14,
+      borderRadius: radius.field,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: t.accent,
@@ -168,7 +168,7 @@ function makeStyles(t: Theme) {
     secondary: {
       height: 54,
       paddingHorizontal: space.lg,
-      borderRadius: 14,
+      borderRadius: radius.field,
       alignItems: 'center',
       justifyContent: 'center',
       borderWidth: 1,
