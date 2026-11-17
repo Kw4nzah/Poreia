@@ -135,9 +135,7 @@ describe('settings edge cases', () => {
     expect(parsed.churchId).toBe('russian');
   });
 
-  // KNOWN BUG: isChurchId in model.ts uses `value in CHURCHES`, which is true for inherited
-  // keys such as "constructor" (should be Object.hasOwn). Left failing until src is fixed.
-  it.fails('does not accept inherited object keys as church ids', () => {
+  it('does not accept inherited object keys as church ids', () => {
     for (const bad of ['constructor', 'toString', '__proto__']) {
       expect(parseSettings(JSON.stringify({ churchId: bad, onboarded: true }), 'en')).toEqual(
         defaultSettings('en'),

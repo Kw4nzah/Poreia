@@ -94,7 +94,7 @@ async function loadBooks(dir, wanted) {
   return books;
 }
 
-// Verse numbering that differs between WEB and the Synodal Translation (found by comparing the
+// Verse numbering that differs between BSB and the Synodal Translation (found by comparing the
 // verse count of every New Testament chapter on 2026-11-16: only these chapters differ).
 // A run touching one of these ranges gets no text in either language, only its reference.
 const NUMBERING_DIFFERS = [
@@ -144,7 +144,7 @@ async function russianOldTestament() {
 const runs = (await neededRuns()).filter((run) => !touchesDifference(run));
 const isNT = (code) => NEW_TESTAMENT.has(code);
 const isOT = (code) => !NEW_TESTAMENT.has(code);
-// en: New Testament from WEB, Old Testament and deuterocanon from LXX2012 (Septuagint
+// en: New Testament from BSB, Old Testament and deuterocanon from LXX2012 (Septuagint
 // numbering, the one the lectionary uses). ru: New Testament only (see header).
 const sources = {
   en: async () => ({ ...(await loadBooks(lxxDir, isOT)), ...(await loadBooks(enDir, isNT)) }),
