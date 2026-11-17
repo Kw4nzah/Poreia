@@ -3,7 +3,7 @@
     "name": "Poreia",
     "slug": "poreia",
     "scheme": "poreia",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -15,7 +15,7 @@
     },
     "android": {
       "package": "com.kw4nzah.poreia",
-      "versionCode": 5,
+      "versionCode": 6,
       "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
       "adaptiveIcon": {
         "backgroundColor": "#7A1F2B",
