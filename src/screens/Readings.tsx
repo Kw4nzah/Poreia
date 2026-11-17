@@ -3,7 +3,7 @@
 
 import { useRouter } from 'expo-router';
 import { useMemo } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Reading, getCommemoration, groupReadings, readingReference } from '../commemorations';
 import { parseService } from '../commemorations/service';
@@ -44,6 +44,19 @@ export function Readings() {
     return service ? m.readings.service(service) : reading.source;
   }
 
+  function shareDay() {
+    if (!day) return;
+    const refs = day.readings
+      .map((r) => `${kindLabel(r)}: ${readingReference(r, settings.language)}`)
+      .join('\n');
+    const message = [
+      formatDate(m, today),
+      `${m.readings.shareSaints}:\n${day.names.join('\n')}`,
+      `${m.readings.shareReadings}:\n${refs}`,
+    ].join('\n\n');
+    Share.share({ message }).catch(() => {});
+  }
+
   const groups = day ? groupReadings(day.readings) : [];
   const liturgy = groups.find((g) => g.id === 'liturgy')?.readings ?? [];
   const others = groups.filter((g) => g.id !== 'liturgy');
@@ -70,6 +83,16 @@ export function Readings() {
           <Text style={styles.date}>{formatDate(m, today)}</Text>
         </View>
         <View style={styles.sizes}>
+          {day && (
+            <Pressable
+              onPress={shareDay}
+              style={styles.shareButton}
+              accessibilityRole="button"
+              accessibilityLabel={m.readings.share}
+            >
+              <Text style={styles.shareText}>{m.readings.share}</Text>
+            </Pressable>
+          )}
           <Pressable
             onPress={() => resize(-1)}
             disabled={size === 0}
@@ -179,7 +202,9 @@ function makeStyles(t: Theme) {
     headerText: { flex: 1 },
     title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink },
     date: { fontSize: 16, color: t.muted, marginTop: 2 },
-    sizes: { flexDirection: 'row', marginRight: -space.sm },
+    sizes: { flexDirection: 'row', alignItems: 'center', marginRight: -space.sm },
+    shareButton: { minHeight: 44, paddingHorizontal: space.sm, justifyContent: 'center' },
+    shareText: { fontSize: 15, color: t.accent },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     sizeText: { fontFamily: SERIF, fontSize: 18, color: t.accent },
     sizeDisabled: { color: t.line },

@@ -103,6 +103,8 @@ export interface Messages {
     summary: string;
     smaller: string;
     larger: string;
+    searchPlaceholder: string;
+    noResults: string;
     group: Record<PrayerGroupId, string>;
     text: Record<PrayerId, PrayerText>;
   };
@@ -118,6 +120,9 @@ export interface Messages {
     openBible: string;
     service: (service: ParsedService) => string;
     noData: string;
+    share: string;
+    shareSaints: string;
+    shareReadings: string;
     epistle: string;
     gospel: string;
     group: Record<ReadingGroupId, string>;
@@ -321,6 +326,8 @@ export const en: Messages = {
     summary: 'The Lord’s Prayer, the Creed, morning and evening prayers',
     smaller: 'Smaller text',
     larger: 'Larger text',
+    searchPlaceholder: 'Search prayers',
+    noResults: 'No prayer found.',
     group: { basic: 'Basic prayers', daily: 'Prayers of the day', lent: 'Great Lent' },
     text: prayerTexts,
   },
@@ -353,6 +360,9 @@ export const en: Messages = {
       }
     },
     noData: 'No saints or readings for this year yet.',
+    share: 'Share',
+    shareSaints: 'Saints of the day',
+    shareReadings: 'Readings',
     epistle: 'Epistle',
     gospel: 'Gospel',
     group: {

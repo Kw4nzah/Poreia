@@ -41,9 +41,9 @@ const light: Theme = {
   accent: '#7A1F2B',
   onAccent: '#FFF8F0',
   free: '#78866B',
-  feast: '#B18A4A',
+  feast: '#9E7835',
   feastSurface: '#F3E6C4',
-  warning: '#A65F46',
+  warning: '#9C5740',
   danger: '#8E2A2A',
   glass: '#FFFCF68C',
   glassEdge: '#FFFFFFB3',
@@ -68,6 +68,9 @@ const dark: Theme = {
   glassEdge: '#FFFFFF2E',
   pill: '#E0959D2B',
 };
+
+/** Both palettes, exported for tests. */
+export const themes = { light, dark };
 
 export function useTheme(): Theme {
   return useColorScheme() === 'dark' ? dark : light;
