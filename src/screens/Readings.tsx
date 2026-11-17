@@ -2,11 +2,12 @@
 // the readings of the other services, which open on their own page.
 
 import { useRouter } from 'expo-router';
+import { useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Reading, getCommemoration, groupReadings, readingReference } from '../commemorations';
 import { parseService } from '../commemorations/service';
-import { readingText, translationName } from '../commemorations/text';
+import { readingHasText, readingText, translationName } from '../commemorations/text';
 import { formatDate } from '../i18n';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
@@ -46,6 +47,12 @@ export function Readings() {
   const groups = day ? groupReadings(day.readings) : [];
   const liturgy = groups.find((g) => g.id === 'liturgy')?.readings ?? [];
   const others = groups.filter((g) => g.id !== 'liturgy');
+  const liturgyTexts = useMemo(
+    () => liturgy.map((reading) => readingText(reading, settings.language)),
+    // `liturgy` is rebuilt every render; the day and language are what it depends on.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [day, settings.language],
+  );
 
   return (
     <ScrollView
@@ -87,7 +94,7 @@ export function Readings() {
       {!day && <Text style={styles.empty}>{m.readings.noData}</Text>}
 
       {liturgy.map((reading, i) => {
-        const text = readingText(reading, settings.language);
+        const text = liturgyTexts[i];
         return (
           <FadeIn key={reading.source + reading.kind} index={i}>
             <View style={styles.reading}>
@@ -127,7 +134,7 @@ export function Readings() {
             <Text style={styles.label}>{m.readings.group[group.id]}</Text>
             <View style={styles.card}>
               {group.readings.map((reading, index) => {
-                const hasText = readingText(reading, settings.language) !== null;
+                const hasText = readingHasText(reading, settings.language);
                 return (
                   <Pressable
                     key={reading.source + index}
