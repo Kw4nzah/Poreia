@@ -3,19 +3,19 @@
     "name": "Poreia",
     "slug": "poreia",
     "scheme": "poreia",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "runtimeVersion": "3",
+    "runtimeVersion": "4",
     "updates": {
-      "url": "https://kw4nzah.github.io/Poreia/updates/android/3/manifest.json",
+      "url": "https://kw4nzah.github.io/Poreia/updates/android/4/manifest.json",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0
     },
     "android": {
       "package": "com.kw4nzah.poreia",
-      "versionCode": 4,
+      "versionCode": 5,
       "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
       "adaptiveIcon": {
         "backgroundColor": "#7A1F2B",
