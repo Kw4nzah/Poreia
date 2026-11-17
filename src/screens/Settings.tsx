@@ -73,7 +73,7 @@ export function Settings() {
     <ScrollView
       style={styles.screen}
       contentContainerStyle={{
-        paddingTop: insets.top + space.md,
+        paddingTop: insets.top + space.lg,
         paddingBottom: tabSpace,
         paddingHorizontal: space.lg,
       }}

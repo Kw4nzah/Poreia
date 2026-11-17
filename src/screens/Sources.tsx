@@ -15,7 +15,7 @@ export function Sources() {
 
   return (
     <View style={styles.screen}>
-      <View style={[styles.header, { paddingTop: insets.top + space.sm }]}>
+      <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
         <Pressable onPress={() => router.back()} style={styles.back} accessibilityRole="button">
           <Text style={styles.backText}>‹ {m.settings.title}</Text>
         </Pressable>
