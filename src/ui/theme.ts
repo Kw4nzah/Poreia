@@ -27,42 +27,44 @@ export interface Theme {
   pill: string;
 }
 
-// Palette (user's spec, 2026-11-18, wine kept as before): wine for actions, sage for fast information, old gold
+// Palette (user's spec, 2026-11-18). Backgrounds, cards and lines are the original warm brown tones
+// (the spec's cool grey-blue dark read as "Twitter blue"); text, sage, gold and the status colours
+// are the spec's. Wine for actions, sage for fast information, old gold
 // for feasts, terracotta for warnings, dark red for errors.
 const light: Theme = {
   dark: false,
-  background: '#F7F4ED',
-  surface: '#FFFEFA',
-  line: '#DED8CD',
+  background: '#F5EFE4',
+  surface: '#FFFCF6',
+  line: '#E3D8C6',
   ink: '#292521',
   muted: '#625B52',
   accent: '#7A1F2B',
   onAccent: '#FFF8F0',
   free: '#78866B',
   feast: '#B18A4A',
-  feastSurface: '#F1E7D2',
+  feastSurface: '#F3E6C4',
   warning: '#A65F46',
   danger: '#8E2A2A',
-  glass: '#FFFEFA8C',
+  glass: '#FFFCF68C',
   glassEdge: '#FFFFFFB3',
   pill: '#7A1F2B1F',
 };
 
 const dark: Theme = {
   dark: true,
-  background: '#171719',
-  surface: '#222225',
-  line: '#39373B',
+  background: '#161210',
+  surface: '#211A17',
+  line: '#3A2F29',
   ink: '#F2EEE8',
   muted: '#C4BDB5',
   accent: '#E0959D',
   onAccent: '#2A0E13',
   free: '#A9B99A',
   feast: '#D7B978',
-  feastSurface: '#2F2B20',
+  feastSurface: '#3A2E14',
   warning: '#D9A088',
   danger: '#E59A9A',
-  glass: '#2222258C',
+  glass: '#211A178C',
   glassEdge: '#FFFFFF2E',
   pill: '#E0959D2B',
 };
