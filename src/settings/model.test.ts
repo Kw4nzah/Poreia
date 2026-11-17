@@ -15,6 +15,7 @@ describe('parseSettings', () => {
       onboarded: true,
       notifications: true,
       notificationHour: 12,
+      notificationRepeat: true,
       prayerTextSize: 2,
       greekFish: 'greece',
       saints: [{ name: 'Nicholas', note: 'travellers' }],
@@ -82,5 +83,17 @@ describe('favorite saints', () => {
   it('keeps at most five', () => {
     const many = Array.from({ length: 9 }, (_, i) => ({ name: 'S' + i, note: '' }));
     expect(cleanSaints(many)).toHaveLength(5);
+  });
+});
+
+describe('notification repeat', () => {
+  it('is off by default and only on for a real true', () => {
+    expect(parseSettings(null, 'en').notificationRepeat).toBe(false);
+    expect(
+      parseSettings(JSON.stringify({ notificationRepeat: 'yes' }), 'en').notificationRepeat,
+    ).toBe(false);
+    expect(
+      parseSettings(JSON.stringify({ notificationRepeat: true }), 'en').notificationRepeat,
+    ).toBe(true);
   });
 });

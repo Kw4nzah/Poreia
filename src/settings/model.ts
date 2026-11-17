@@ -34,6 +34,8 @@ export interface Settings {
   notifications: boolean;
   /** Local hour (0-23) at which it is shown. */
   notificationHour: NotificationHour;
+  /** Repeat the daily notification every few minutes until the app is opened that day. */
+  notificationRepeat: boolean;
   /** Index into PRAYER_TEXT_SIZES. */
   prayerTextSize: PrayerTextSize;
   /** Which Greek rule decides fish in the Nativity and Apostles' Fasts. */
@@ -52,6 +54,7 @@ export function defaultSettings(language: Language): Settings {
     onboarded: false,
     notifications: false,
     notificationHour: 8,
+    notificationRepeat: false,
     prayerTextSize: DEFAULT_PRAYER_TEXT_SIZE,
     greekFish: DEFAULT_GREEK_FISH_PRACTICE,
     saints: [],
@@ -103,6 +106,7 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
     churchId: isChurchId(s.churchId) ? s.churchId : fallback.churchId,
     onboarded: s.onboarded === true && isChurchId(s.churchId),
     notifications: s.notifications === true,
+    notificationRepeat: s.notificationRepeat === true,
     notificationHour: isNotificationHour(s.notificationHour)
       ? s.notificationHour
       : fallback.notificationHour,

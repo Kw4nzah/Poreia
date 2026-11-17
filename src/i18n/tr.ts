@@ -81,6 +81,8 @@ export const tr: Messages = {
     apkFailed: 'İndirilemedi. Daha sonra yeniden dene.',
     notificationsTitle: 'Günlük bildirim',
     notificationsToggle: 'Her sabah günün orucu',
+    notificationRepeat: 'Uygulamayı açana kadar tekrar hatırlat',
+    notificationRepeatHint: 'Bildirim görülmez ya da silinirse 5 dakikada bir, en fazla 6 kez tekrar gelir. Uygulamayı açmak o gün için durdurur.',
     notificationsTime: 'Saat',
     notificationsDenied:
       'Poreia için bildirimler kapalı. Telefon ayarlarından izin ver, sonra burayı yeniden aç.',

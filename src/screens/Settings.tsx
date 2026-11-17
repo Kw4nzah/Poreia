@@ -172,6 +172,19 @@ export function Settings() {
                 );
               })}
             </View>
+            <View style={[styles.switchRow, styles.repeatRow]}>
+              <Text style={[styles.cardText, styles.switchText]}>
+                {m.settings.notificationRepeat}
+              </Text>
+              <Switch
+                value={settings.notificationRepeat}
+                onValueChange={(value) => update({ notificationRepeat: value })}
+                trackColor={{ false: theme.line, true: theme.accent }}
+                thumbColor={theme.surface}
+                accessibilityLabel={m.settings.notificationRepeat}
+              />
+            </View>
+            <Text style={styles.status}>{m.settings.notificationRepeatHint}</Text>
           </View>
         )}
       </View>
@@ -332,6 +345,7 @@ function makeStyles(t: Theme) {
     disabled: { opacity: 0.6 },
     switchRow: { flexDirection: 'row', alignItems: 'center', minHeight: 44, gap: 12 },
     switchText: { flex: 1 },
+    repeatRow: { marginTop: space.sm },
     hours: { flexDirection: 'row', gap: space.sm, marginTop: space.sm },
     hour: {
       flex: 1,

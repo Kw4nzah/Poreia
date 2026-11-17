@@ -80,6 +80,8 @@ export interface Messages {
     apkFailed: string;
     notificationsTitle: string;
     notificationsToggle: string;
+    notificationRepeat: string;
+    notificationRepeatHint: string;
     notificationsTime: string;
     notificationsDenied: string;
     /** Name of the notification category in the phone's settings. */
@@ -230,6 +232,8 @@ export const en: Messages = {
     apkFailed: 'Download failed. Try again later.',
     notificationsTitle: 'Daily notification',
     notificationsToggle: "Today's fast, every morning",
+    notificationRepeat: 'Keep reminding me until I open the app',
+    notificationRepeatHint: 'If the notification goes unseen or is swiped away, it comes again every 5 minutes, up to 6 times. Opening the app stops it for that day.',
     notificationsTime: 'Time',
     notificationsDenied:
       'Notifications are blocked for Poreia. Allow them in the phone settings, then turn this on again.',

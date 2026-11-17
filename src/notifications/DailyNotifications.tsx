@@ -10,14 +10,19 @@ export function DailyNotifications() {
   const { settings, messages } = useSettings();
   const today = useToday();
   const enabled = settings.onboarded && settings.notifications;
-  const { churchId, notificationHour, greekFish } = settings;
+  const { churchId, notificationHour, notificationRepeat, greekFish } = settings;
 
   useEffect(() => {
     const plan = enabled
       ? planNotifications(today, DAYS_AHEAD, CHURCHES[churchId], messages, { greekFish })
       : null;
-    syncDailyNotifications(plan, notificationHour, messages.settings.notificationsChannel);
-  }, [enabled, churchId, notificationHour, greekFish, messages, today]);
+    syncDailyNotifications(
+      plan,
+      notificationHour,
+      messages.settings.notificationsChannel,
+      notificationRepeat,
+    );
+  }, [enabled, churchId, notificationHour, notificationRepeat, greekFish, messages, today]);
 
   return null;
 }
