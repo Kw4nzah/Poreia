@@ -8,7 +8,6 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Switch,
   Text,
   TextInput,
   View,
@@ -26,6 +25,7 @@ import {
   cleanSaints,
 } from '../settings/model';
 import { useSettings } from '../settings/SettingsProvider';
+import { AppSwitch } from '../ui/AppSwitch';
 import { Option } from '../ui/Option';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme, radius } from '../ui/theme';
@@ -142,12 +142,10 @@ export function Settings() {
       <View style={styles.card}>
         <View style={styles.switchRow}>
           <Text style={[styles.cardText, styles.switchText]}>{m.settings.notificationsToggle}</Text>
-          <Switch
+          <AppSwitch
             value={settings.notifications}
             onValueChange={toggleNotifications}
-            trackColor={{ false: theme.line, true: theme.accent }}
-            thumbColor={theme.surface}
-            accessibilityLabel={m.settings.notificationsToggle}
+            label={m.settings.notificationsToggle}
           />
         </View>
         {notificationsDenied && <Text style={styles.status}>{m.settings.notificationsDenied}</Text>}
@@ -176,12 +174,10 @@ export function Settings() {
               <Text style={[styles.cardText, styles.switchText]}>
                 {m.settings.notificationRepeat}
               </Text>
-              <Switch
+              <AppSwitch
                 value={settings.notificationRepeat}
                 onValueChange={(value) => update({ notificationRepeat: value })}
-                trackColor={{ false: theme.line, true: theme.accent }}
-                thumbColor={theme.surface}
-                accessibilityLabel={m.settings.notificationRepeat}
+                label={m.settings.notificationRepeat}
               />
             </View>
             <Text style={styles.status}>{m.settings.notificationRepeatHint}</Text>
