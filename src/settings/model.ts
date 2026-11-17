@@ -62,7 +62,7 @@ export function defaultSettings(language: Language): Settings {
 }
 
 function isChurchId(value: unknown): value is ChurchId {
-  return typeof value === 'string' && value in CHURCHES;
+  return typeof value === 'string' && Object.hasOwn(CHURCHES, value);
 }
 
 function isNotificationHour(value: unknown): value is NotificationHour {

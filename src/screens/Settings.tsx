@@ -87,6 +87,9 @@ export function Settings() {
         autoCapitalize="words"
         autoCorrect={false}
         maxLength={40}
+        returnKeyType="done"
+        blurOnSubmit
+        accessibilityLabel={m.settings.name}
       />
 
       <Text style={styles.label}>{m.settings.church}</Text>
@@ -157,6 +160,7 @@ export function Settings() {
                     onPress={() => update({ notificationHour: hour })}
                     style={[styles.hour, selected && styles.hourSelected]}
                     accessibilityRole="radio"
+                    accessibilityLabel={`${String(hour).padStart(2, '0')}:00`}
                     accessibilityState={{ selected }}
                   >
                     <Text style={[styles.hourText, selected && styles.hourTextSelected]}>
@@ -210,6 +214,11 @@ export function Settings() {
               placeholder={m.saints.namePlaceholder}
               placeholderTextColor={theme.muted}
               maxLength={MAX_SAINT_NAME}
+              autoCapitalize="words"
+              autoCorrect={false}
+              returnKeyType="done"
+              onSubmitEditing={addSaint}
+              accessibilityLabel={m.saints.namePlaceholder}
               style={[styles.input, styles.saintInput]}
             />
             <Dropdown
@@ -227,6 +236,8 @@ export function Settings() {
                 saintName.trim() === '' && styles.disabled,
               ]}
               accessibilityRole="button"
+              accessibilityLabel={m.saints.add}
+              accessibilityState={{ disabled: saintName.trim() === '' }}
             >
               <Text style={styles.buttonFilledText}>{m.saints.add}</Text>
             </Pressable>
@@ -252,6 +263,8 @@ export function Settings() {
           disabled={updates.busy}
           style={[styles.button, styles.buttonOutline, updates.busy && styles.disabled]}
           accessibilityRole="button"
+          accessibilityLabel={m.updates.check}
+          accessibilityState={{ disabled: updates.busy, busy: updates.busy }}
         >
           <Text style={styles.buttonOutlineText}>{m.updates.check}</Text>
         </Pressable>
@@ -271,6 +284,7 @@ export function Settings() {
                 apk.status === 'downloading' && styles.disabled,
               ]}
               accessibilityRole="button"
+              accessibilityState={{ disabled: apk.status === 'downloading', busy: apk.status === 'downloading' }}
             >
               <Text style={styles.buttonFilledText}>
                 {apk.status === 'downloading'
@@ -286,6 +300,7 @@ export function Settings() {
         onPress={() => router.push('/sources')}
         style={[styles.button, styles.buttonOutline]}
         accessibilityRole="button"
+        accessibilityLabel={m.sources.title}
       >
         <Text style={styles.buttonOutlineText}>{m.sources.title}</Text>
       </Pressable>
@@ -294,6 +309,7 @@ export function Settings() {
         onPress={() => Linking.openURL(PROJECT_URL).catch(() => {})}
         style={[styles.button, styles.buttonOutline]}
         accessibilityRole="link"
+        accessibilityLabel={m.settings.projectLink}
       >
         <Text style={styles.buttonOutlineText}>{m.settings.projectLink}</Text>
       </Pressable>
@@ -308,7 +324,7 @@ function makeStyles(t: Theme) {
     label: { fontSize: 14, color: t.muted, marginTop: space.lg, marginBottom: space.sm },
     hint: { fontSize: 13, lineHeight: 19, color: t.muted, marginBottom: space.sm },
     input: {
-      height: 56,
+      minHeight: 56,
       paddingHorizontal: space.md,
       borderRadius: radius.field,
       borderWidth: 1,
@@ -330,24 +346,26 @@ function makeStyles(t: Theme) {
     warning: { color: t.warning },
     error: { color: t.danger },
     button: {
-      height: 48,
+      minHeight: 48,
+      paddingVertical: 8,
+      paddingHorizontal: space.md,
       borderRadius: 12,
       alignItems: 'center',
       justifyContent: 'center',
       marginTop: 12,
     },
     buttonOutline: { borderWidth: 1, borderColor: t.line },
-    buttonOutlineText: { fontSize: 16, color: t.ink },
+    buttonOutlineText: { fontSize: 16, color: t.ink, textAlign: 'center' },
     buttonFilled: { backgroundColor: t.accent },
-    buttonFilledText: { fontSize: 16, fontWeight: '600', color: t.onAccent },
+    buttonFilledText: { fontSize: 16, fontWeight: '600', color: t.onAccent, textAlign: 'center' },
     disabled: { opacity: 0.6 },
     switchRow: { flexDirection: 'row', alignItems: 'center', minHeight: 44, gap: 12 },
     switchText: { flex: 1 },
     repeatRow: { marginTop: space.sm },
-    hours: { flexDirection: 'row', gap: space.sm, marginTop: space.sm },
+    hours: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.sm },
     hour: {
       flex: 1,
-      height: 44,
+      minHeight: 44,
       borderRadius: 12,
       borderWidth: 1,
       borderColor: t.line,
@@ -368,7 +386,7 @@ function makeStyles(t: Theme) {
     saintText: { flex: 1 },
     removeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     removeText: { fontSize: 24, color: t.muted },
-    saintInput: { height: 48, marginTop: space.sm },
+    saintInput: { minHeight: 48, marginTop: space.sm },
     apk: { marginTop: space.md, paddingTop: space.md, borderTopWidth: 1, borderTopColor: t.line },
   });
 }

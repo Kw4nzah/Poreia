@@ -20,6 +20,7 @@ export function Option({ selected, title, subtitle, onPress }: OptionProps) {
         pressed && { opacity: 0.85 },
       ]}
       accessibilityRole="radio"
+      accessibilityLabel={subtitle ? `${title}. ${subtitle}` : title}
       accessibilityState={{ selected }}
     >
       <View style={styles.text}>

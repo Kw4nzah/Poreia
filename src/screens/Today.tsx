@@ -197,6 +197,8 @@ export function Today() {
         </FadeIn>
       )}
 
+      {!commemoration && <Text style={styles.note}>{m.readings.noData}</Text>}
+
       <Text style={styles.disclaimer}>{m.today.disclaimer}</Text>
 
       {apk.release && (
@@ -204,6 +206,7 @@ export function Today() {
           onPress={() => router.navigate('/settings')}
           style={styles.link}
           accessibilityRole="button"
+          accessibilityLabel={m.today.newVersion}
         >
           <Text style={styles.linkText}>{m.today.newVersion}</Text>
         </Pressable>
@@ -253,6 +256,7 @@ function makeStyles(t: Theme) {
     mark: {
       width: 24,
       height: 24,
+      flexShrink: 0,
       borderRadius: 12,
       borderWidth: 1.5,
       alignItems: 'center',
@@ -287,7 +291,7 @@ function makeStyles(t: Theme) {
       borderTopColor: t.line,
     },
     readingRow: { flexDirection: 'row', gap: 12, marginTop: 2 },
-    readingKind: { width: 76, fontSize: 15, lineHeight: 22, color: t.muted },
+    readingKind: { minWidth: 76, flexShrink: 0, fontSize: 15, lineHeight: 22, color: t.muted },
     readingRef: { flex: 1, fontSize: 16, lineHeight: 22, color: t.ink },
     cardFoot: {
       flexDirection: 'row',
