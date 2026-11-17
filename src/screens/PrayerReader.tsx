@@ -29,7 +29,10 @@ export function PrayerReader({ id }: { id: PrayerId }) {
     <View style={styles.screen}>
       {/* Outside the scroll view so the size buttons stay within reach while reading. */}
       <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
-        <Pressable onPress={() => router.back()} style={styles.back} accessibilityRole="button">
+        <Pressable onPress={() => router.back()} style={styles.back}
+          accessibilityRole="button"
+          accessibilityLabel={m.prayers.title}
+        >
           <Text style={styles.backText}>‹ {m.prayers.title}</Text>
         </Pressable>
         <View style={styles.sizes}>
@@ -39,6 +42,7 @@ export function PrayerReader({ id }: { id: PrayerId }) {
             style={styles.sizeButton}
             accessibilityRole="button"
             accessibilityLabel={m.prayers.smaller}
+            accessibilityState={{ disabled: size === 0 }}
           >
             <Text style={[styles.sizeText, size === 0 && styles.sizeDisabled]}>A−</Text>
           </Pressable>
@@ -48,6 +52,7 @@ export function PrayerReader({ id }: { id: PrayerId }) {
             style={styles.sizeButton}
             accessibilityRole="button"
             accessibilityLabel={m.prayers.larger}
+            accessibilityState={{ disabled: size === LARGEST }}
           >
             <Text style={[styles.sizeText, size === LARGEST && styles.sizeDisabled]}>A+</Text>
           </Pressable>

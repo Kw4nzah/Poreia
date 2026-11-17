@@ -34,6 +34,7 @@ export function Dropdown<T extends string>({
           pressed && { opacity: 0.85 },
         ]}
         accessibilityRole="button"
+        accessibilityLabel={selected ? selected.label : placeholder}
         accessibilityState={{ expanded: open }}
       >
         <Text style={[styles.value, { color: selected ? t.ink : t.muted }]} numberOfLines={1}>
@@ -80,7 +81,7 @@ export function Dropdown<T extends string>({
 
 const styles = StyleSheet.create({
   field: {
-    height: 48,
+    minHeight: 48,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

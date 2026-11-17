@@ -17,6 +17,7 @@ export function ReadingLink({ reading }: { reading: Reading }) {
       onPress={() => Linking.openURL(url).catch(() => {})}
       style={styles.button}
       accessibilityRole="link"
+      accessibilityLabel={m.readings.openBible}
     >
       <Text style={styles.text}>{m.readings.openBible}</Text>
     </Pressable>

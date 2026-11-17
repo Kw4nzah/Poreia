@@ -63,7 +63,8 @@ export function GlassTabBar({
                 onPress={() => router.navigate(`/${id}`)}
                 style={styles.item}
                 focusable={false}
-                accessibilityRole="button"
+                accessibilityRole="tab"
+                accessibilityLabel={labels[id]}
                 accessibilityState={{ selected: active }}
               >
                 <View style={styles.pill} collapsable={false}>
@@ -79,6 +80,7 @@ export function GlassTabBar({
                   )}
                   <Text
                     numberOfLines={1}
+                    maxFontSizeMultiplier={1.3}
                     adjustsFontSizeToFit
                     style={[
                       styles.label,

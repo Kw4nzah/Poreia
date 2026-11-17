@@ -43,6 +43,7 @@ export function Prayers() {
                   pressed && styles.rowPressed,
                 ]}
                 accessibilityRole="button"
+                accessibilityLabel={m.prayers.text[id].title}
               >
                 <Text style={styles.rowText}>{m.prayers.text[id].title}</Text>
                 <Text style={styles.chevron}>›</Text>
