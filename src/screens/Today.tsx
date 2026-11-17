@@ -139,7 +139,12 @@ export function Today() {
       </FadeIn>
 
       <FadeIn index={2}>
-        <View style={styles.card}>
+        <PressCard
+          onPress={() => router.navigate('/calendar')}
+          style={styles.card}
+          accessibilityRole="button"
+          accessibilityHint={m.calendar.title}
+        >
           <Text style={styles.cardLabel}>{m.today.upcomingTitle}</Text>
           <Text style={styles.upcomingName}>{m.majorFast[upcoming.id]}</Text>
           <Text style={styles.detail}>{m.today.startsIn(upcoming.daysUntil)}</Text>
@@ -149,7 +154,7 @@ export function Today() {
           {info.daysToPascha > 0 && (
             <Text style={styles.pascha}>{m.today.daysToPascha(info.daysToPascha)}</Text>
           )}
-        </View>
+        </PressCard>
       </FadeIn>
 
       {commemoration && (

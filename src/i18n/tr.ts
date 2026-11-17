@@ -40,6 +40,15 @@ export const tr: Messages = {
 
   tabs: { today: 'Bugün', readings: 'Okumalar' },
 
+  calendar: {
+    title: 'Takvim',
+    weekdaysShort: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'],
+    previousMonth: 'Önceki ay',
+    nextMonth: 'Sonraki ay',
+    back: 'Geri',
+    today: 'bugün',
+  },
+
   today: {
     greeting: (name) => (name ? `Hoş geldin, ${name}` : 'Hoş geldin'),
     churchDate: (date) => `Kilise takvimi: ${date}`,
