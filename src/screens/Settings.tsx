@@ -12,12 +12,13 @@ import { requestPermission } from '../notifications/schedule';
 import {
   MAX_FAVORITE_SAINTS,
   MAX_SAINT_NAME,
-  MAX_SAINT_NOTE,
   NOTIFICATION_HOURS,
   cleanSaints,
 } from '../settings/model';
 import { useSettings } from '../settings/SettingsProvider';
+import { SAINT_TOPICS, SaintTopicId } from '../prayers/saintTopics';
 import { AppSwitch } from '../ui/AppSwitch';
+import { Dropdown } from '../ui/Dropdown';
 import { AppTextInput } from '../ui/AppTextInput';
 import { Option } from '../ui/Option';
 import { useTabBarSpace } from '../ui/tabBar';
@@ -40,15 +41,15 @@ export function Settings() {
   const apk = useApkUpdate();
   const [notificationsDenied, setNotificationsDenied] = useState(false);
   const [saintName, setSaintName] = useState('');
-  const [saintNote, setSaintNote] = useState('');
+  const [saintTopic, setSaintTopic] = useState<SaintTopicId | ''>('');
   const contentLine = describeContent(m, Updates.isEmbeddedLaunch, Updates.createdAt);
 
   function addSaint() {
-    const next = cleanSaints([...settings.saints, { name: saintName, note: saintNote }]);
+    const next = cleanSaints([...settings.saints, { name: saintName, topic: saintTopic }]);
     if (next.length === settings.saints.length) return;
     update({ saints: next });
     setSaintName('');
-    setSaintNote('');
+    setSaintTopic('');
   }
 
   async function toggleNotifications(on: boolean) {
@@ -187,7 +188,9 @@ export function Settings() {
           <View key={saint.name} style={styles.saintRow}>
             <View style={styles.saintText}>
               <Text style={styles.cardText}>{saint.name}</Text>
-              {saint.note !== '' && <Text style={styles.status}>{saint.note}</Text>}
+              {saint.topic !== '' && (
+                <Text style={styles.status}>{m.saints.topics[saint.topic].label}</Text>
+              )}
             </View>
             <Pressable
               onPress={() => update({ saints: settings.saints.filter((s) => s !== saint) })}
@@ -209,13 +212,11 @@ export function Settings() {
               maxLength={MAX_SAINT_NAME}
               style={[styles.input, styles.saintInput]}
             />
-            <AppTextInput
-              value={saintNote}
-              onChangeText={setSaintNote}
-              placeholder={m.saints.notePlaceholder}
-              placeholderTextColor={theme.muted}
-              maxLength={MAX_SAINT_NOTE}
-              style={[styles.input, styles.saintInput]}
+            <Dropdown
+              value={saintTopic}
+              options={SAINT_TOPICS.map((id) => ({ id, label: m.saints.topics[id].label }))}
+              placeholder={m.saints.topicNone}
+              onChange={setSaintTopic}
             />
             <Pressable
               onPress={addSaint}

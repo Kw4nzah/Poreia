@@ -9,20 +9,20 @@ import {
 } from '../calendar';
 import { Language, isLanguage } from '../i18n';
 import { DEFAULT_PRAYER_TEXT_SIZE, PrayerTextSize, isPrayerTextSize } from '../prayers';
+import { SaintTopicId, isSaintTopic } from '../prayers/saintTopics';
 
 export const NOTIFICATION_HOURS = [7, 8, 9, 12] as const;
 
 export type NotificationHour = (typeof NOTIFICATION_HOURS)[number];
 
-/** A saint the user asks for intercession, with an optional note of what to ask. */
+/** A saint the user asks for intercession, with what they ask help for (or none). */
 export interface FavoriteSaint {
   name: string;
-  note: string;
+  topic: SaintTopicId | '';
 }
 
-export const MAX_FAVORITE_SAINTS = 5;
+export const MAX_FAVORITE_SAINTS = 10;
 export const MAX_SAINT_NAME = 60;
-export const MAX_SAINT_NOTE = 100;
 
 export interface Settings {
   language: Language;
@@ -75,13 +75,13 @@ export function cleanSaints(value: unknown): FavoriteSaint[] {
   const out: FavoriteSaint[] = [];
   for (const item of value) {
     if (!item || typeof item !== 'object') continue;
-    const { name, note } = item as Record<string, unknown>;
+    const { name, topic } = item as Record<string, unknown>;
     const cleanName = typeof name === 'string' ? name.trim().slice(0, MAX_SAINT_NAME) : '';
     if (!cleanName || out.some((saint) => saint.name.toLowerCase() === cleanName.toLowerCase()))
       continue;
     out.push({
       name: cleanName,
-      note: typeof note === 'string' ? note.trim().slice(0, MAX_SAINT_NOTE) : '',
+      topic: isSaintTopic(topic) ? topic : '',
     });
     if (out.length === MAX_FAVORITE_SAINTS) break;
   }

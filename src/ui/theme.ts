@@ -27,7 +27,7 @@ export interface Theme {
   pill: string;
 }
 
-// Palette (user's spec, 2026-11-18): muted wine for actions, sage for fast information, old gold
+// Palette (user's spec, 2026-11-18, wine kept as before): wine for actions, sage for fast information, old gold
 // for feasts, terracotta for warnings, dark red for errors.
 const light: Theme = {
   dark: false,
@@ -36,7 +36,7 @@ const light: Theme = {
   line: '#DED8CD',
   ink: '#292521',
   muted: '#625B52',
-  accent: '#713B45',
+  accent: '#7A1F2B',
   onAccent: '#FFF8F0',
   free: '#78866B',
   feast: '#B18A4A',
@@ -45,7 +45,7 @@ const light: Theme = {
   danger: '#8E2A2A',
   glass: '#FFFEFA8C',
   glassEdge: '#FFFFFFB3',
-  pill: '#713B4524',
+  pill: '#7A1F2B1F',
 };
 
 const dark: Theme = {
@@ -55,8 +55,8 @@ const dark: Theme = {
   line: '#39373B',
   ink: '#F2EEE8',
   muted: '#C4BDB5',
-  accent: '#D5A0A5',
-  onAccent: '#2A1417',
+  accent: '#E0959D',
+  onAccent: '#2A0E13',
   free: '#A9B99A',
   feast: '#D7B978',
   feastSurface: '#2F2B20',
@@ -64,7 +64,7 @@ const dark: Theme = {
   danger: '#E59A9A',
   glass: '#2222258C',
   glassEdge: '#FFFFFF2E',
-  pill: '#D5A0A52E',
+  pill: '#E0959D2B',
 };
 
 export function useTheme(): Theme {

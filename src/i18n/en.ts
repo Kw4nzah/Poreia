@@ -1,6 +1,7 @@
 // English is the reference dictionary: its shape defines `Messages`, so a key missing
 // from another language is a type error.
 
+import type { SaintTopicId } from '../prayers/saintTopics';
 import type { ParsedService } from '../commemorations/service';
 import type {
   ChurchId,
@@ -126,7 +127,10 @@ export interface Messages {
     title: string;
     hint: string;
     namePlaceholder: string;
-    notePlaceholder: string;
+    topicLabel: string;
+    topicNone: string;
+    /** `prayer` is written by the app's author per topic; `{name}` stands for the saint's name. Empty = only the topic is shown. */
+    topics: Record<SaintTopicId, { label: string; prayer: string }>;
     add: string;
     remove: string;
     full: string;
@@ -362,20 +366,37 @@ export const en: Messages = {
 
   saints: {
     title: 'My saints',
-    hint: 'Saints you turn to. They are named in the morning and evening prayers. Enter the name only, for example Nicholas.',
+    hint: 'Saints you turn to. They are named in the morning and evening prayers. Enter the name only, for example Nicholas, then choose what you ask help for.',
     namePlaceholder: 'Saint’s name',
-    notePlaceholder: 'What you ask help for (optional)',
     add: 'Add',
     remove: 'Remove',
-    full: 'Five saints is the most.',
+    full: 'Ten saints is the most.',
     heading: 'My saints',
+    topicLabel: 'What do you ask for?',
+    topicNone: 'No particular request',
+    topics: {
+      health: { label: 'Health and healing', prayer: '' },
+      family: { label: 'My family', prayer: '' },
+      children: { label: 'My children', prayer: '' },
+      marriage: { label: 'Marriage', prayer: '' },
+      work: { label: 'Work and livelihood', prayer: '' },
+      travel: { label: 'A journey', prayer: '' },
+      study: { label: 'Study and exams', prayer: '' },
+      protection: { label: 'Protection', prayer: '' },
+      repentance: { label: 'Repentance and forgiveness', prayer: '' },
+      temptation: { label: 'Strength against temptation', prayer: '' },
+      peace: { label: 'Peace and reconciliation', prayer: '' },
+      guidance: { label: 'Guidance in a decision', prayer: '' },
+      patience: { label: 'Patience', prayer: '' },
+      gratitude: { label: 'Thanksgiving', prayer: '' },
+    },
     invocation: (name) => `Pray to God for me, holy ${name}, for with fervor I run to you, swift helper and intercessor for my soul!`,
   },
   sources: {
     title: 'Sources and licences',
     sections: [
       { heading: 'Scripture texts', body: 'Readings in English: New Testament from the Berean Standard Bible, Old Testament and deuterocanon from the English Septuagint (LXX2012). Readings in Russian: Synodal Translation (1876). Old Testament readings in Russian appear only where the Synodal chapter matches the Septuagint chapter verse for verse; the Synodal text follows the Hebrew, so its wording can differ from what is read in church. All three are in the public domain; the texts come from eBible.org, with the markup removed and only the verses of each reading kept.' },
-      { heading: 'Saints in the prayers', body: 'The line that names your saints is the invocation of one’s patron saint in Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982). Russian: azbyka.ru, «Молитвенное призывание святого». The Turkish is translated for this app. The saint’s name and the note are what you typed; they stay on your device.' },
+      { heading: 'Saints in the prayers', body: 'The line that names your saints is the invocation of one’s patron saint in Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982). Russian: azbyka.ru, «Молитвенное призывание святого». The Turkish is translated for this app. The saint’s name is what you typed and the request is what you chose; they stay on your device.' },
       { heading: 'Bible links (YouVersion)', body: 'Under each reading, a link opens the same passage in YouVersion (bible.com), in the YouVersion app if it is installed: English in the Revised Standard Version, Catholic Interconfessional (RSVCI), Turkish in the Kutsal Kitap ve Deuterokanonik Kitaplar (KKDEU, Bible Society in Turkey), Russian in the Synodal Translation. These translations are under copyright and are not stored in this app.' },
       { heading: 'Saints and readings', body: 'Names of the saints, feast days and the references of the readings come from orthocal.info (Orthodox Church in America lectionary; the project’s code is MIT-licensed). Only names and references are used, not the lives of the saints.' },
       { heading: 'Prayers, English', body: 'Lord’s Prayer, Creed, O Heavenly King, Trisagion and the Prayer of St. Ephraim: Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982), as published by Project Gutenberg (#34981). The morning, evening and meal prayers are faithful translations prepared for this app from the Slavonic and Greek texts. The Prayer of Manasseh is the King James Version (Apocrypha, public domain).' },
