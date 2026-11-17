@@ -1,6 +1,8 @@
 // Finds a newer signed APK among the project's GitHub releases. Needed only when a
 // release contains native changes; everything else arrives as a bundle update.
 
+import { isAllowedApkUrl } from '../security/externalLinks';
+
 export const LATEST_RELEASE_URL = 'https://api.github.com/repos/Kw4nzah/Poreia/releases/latest';
 
 export interface ApkRelease {
@@ -34,7 +36,8 @@ export function pickNewerApk(release: unknown, installedVersion: string): ApkRel
   if (!Array.isArray(assets)) return null;
   for (const asset of assets as Record<string, unknown>[]) {
     const { name, browser_download_url: url, size } = asset ?? {};
-    if (typeof name === 'string' && name.endsWith('.apk') && typeof url === 'string') {
+    // Only an APK hosted on this project's own releases is ever offered for download.
+    if (typeof name === 'string' && name.endsWith('.apk') && isAllowedApkUrl(url)) {
       return {
         version: tag.replace(/^v/i, ''),
         url,

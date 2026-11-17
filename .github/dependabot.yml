@@ -1,0 +1,38 @@
+# Weekly dependency update pull requests. Nothing is merged or deployed automatically.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    # Expo pins one compatible version of each native-facing package per SDK. Those move
+    # together in a manual SDK upgrade (see CLAUDE.md, "Native change"), not one by one.
+    ignore:
+      - dependency-name: expo
+        update-types: [version-update:semver-major]
+      - dependency-name: expo-*
+        update-types: [version-update:semver-major]
+      - dependency-name: react
+        update-types: [version-update:semver-major]
+      - dependency-name: react-dom
+        update-types: [version-update:semver-major]
+      - dependency-name: react-native
+        update-types: [version-update:semver-major, version-update:semver-minor]
+      - dependency-name: react-native-*
+        update-types: [version-update:semver-major]
+      - dependency-name: '@react-native-async-storage/async-storage'
+        update-types: [version-update:semver-major]
+    groups:
+      dev-tooling:
+        dependency-type: development
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ['*']

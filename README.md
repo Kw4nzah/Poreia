@@ -21,7 +21,7 @@ daily reminder, in English, Turkish and Russian. It works offline.
 - **Themes:** light and dark, following the system setting.
 - **Offline:** the calendar, readings and prayers are shipped with the app.
 
-See [PRIVACY.md](PRIVACY.md) for what the app stores and what it sends over the
+See [SECURITY.md](SECURITY.md) to report a vulnerability and [PRIVACY.md](PRIVACY.md) for what the app stores and what it sends over the
 network, and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the sources of
 the texts.
 

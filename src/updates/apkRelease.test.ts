@@ -7,7 +7,12 @@ const release = {
   prerelease: false,
   assets: [
     { name: 'notes.txt', browser_download_url: 'https://example.com/notes.txt', size: 10 },
-    { name: 'poreia-v0.2.0.apk', browser_download_url: 'https://example.com/p.apk', size: 30_000_000 },
+    {
+      name: 'poreia-v0.2.0.apk',
+      browser_download_url:
+        'https://github.com/Kw4nzah/Poreia/releases/download/v0.2.0/poreia-v0.2.0.apk',
+      size: 30_000_000,
+    },
   ],
 };
 
@@ -23,7 +28,7 @@ describe('pickNewerApk', () => {
   it('returns the APK of a newer release', () => {
     expect(pickNewerApk(release, '0.1.0')).toEqual({
       version: '0.2.0',
-      url: 'https://example.com/p.apk',
+      url: 'https://github.com/Kw4nzah/Poreia/releases/download/v0.2.0/poreia-v0.2.0.apk',
       sizeBytes: 30_000_000,
     });
   });
@@ -39,5 +44,10 @@ describe('pickNewerApk', () => {
     expect(pickNewerApk({ ...release, assets: [release.assets[0]] }, '0.1.0')).toBeNull();
     expect(pickNewerApk({ message: 'API rate limit exceeded' }, '0.1.0')).toBeNull();
     expect(pickNewerApk(null, '0.1.0')).toBeNull();
+  });
+
+  it('refuses an APK that is not hosted on this project releases', () => {
+    const foreign = { name: 'p.apk', browser_download_url: 'https://example.com/p.apk', size: 1 };
+    expect(pickNewerApk({ ...release, assets: [foreign] }, '0.1.0')).toBeNull();
   });
 });

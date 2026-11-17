@@ -39,7 +39,9 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, { failed: 
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.error(error, info.componentStack);
+    // Release builds log nothing: an error message or component stack could carry the user's
+    // name or saints, and logcat can be read by other tools. The fallback screen shows no details.
+    if (__DEV__) console.error(error, info.componentStack);
   }
 
   render() {

@@ -1,8 +1,9 @@
 // "Open this reading in YouVersion" link shown under a reading, in the user's language.
 
-import { Linking, Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 import type { Reading } from '../commemorations';
 import { readingUrl } from '../commemorations/links';
+import { openExternalUrl } from '../security/openExternal';
 import { useSettings } from '../settings/SettingsProvider';
 import { Theme, space, type, useThemedStyles } from './theme';
 
@@ -13,7 +14,7 @@ export function ReadingLink({ reading }: { reading: Reading }) {
   const styles = useThemedStyles(makeStyles);
   return (
     <Pressable
-      onPress={() => Linking.openURL(url).catch(() => {})}
+      onPress={() => void openExternalUrl(url)}
       style={styles.button}
       accessibilityRole="link"
       accessibilityLabel={m.readings.openBible}

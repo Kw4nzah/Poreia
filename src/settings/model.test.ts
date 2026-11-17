@@ -188,3 +188,28 @@ describe('cleanSaints edge cases', () => {
     expect(out[9].name).toBe('S8');
   });
 });
+
+describe('hostile stored data', () => {
+  it('caps the name and replaces control characters', () => {
+    const raw = JSON.stringify({ name: `  Sam\nuel${'x'.repeat(100)}` });
+    const { name } = parseSettings(raw, 'en');
+    expect(name).toHaveLength(40);
+    expect(name.startsWith('Sam uel')).toBe(true);
+  });
+
+  it('ignores a name that is not text', () => {
+    expect(parseSettings(JSON.stringify({ name: { a: 1 } }), 'en').name).toBe('');
+    expect(parseSettings(JSON.stringify({ name: 5 }), 'en').name).toBe('');
+  });
+
+  it('cleans saint names the same way', () => {
+    const out = cleanSaints([{ name: 'Nic\u0007holas\n' }, { name: '\u0001\u0002' }]);
+    expect(out).toEqual([{ name: 'Nic holas', topic: '' }]);
+  });
+
+  it('falls back to defaults for oversized or non-object storage', () => {
+    const big = JSON.stringify({ name: 'a'.repeat(20_000) });
+    expect(parseSettings(big, 'en')).toEqual(defaultSettings('en'));
+    expect(parseSettings('{not json', 'en')).toEqual(defaultSettings('en'));
+  });
+});

@@ -23,6 +23,16 @@ export interface FavoriteSaint {
 
 export const MAX_FAVORITE_SAINTS = 10;
 export const MAX_SAINT_NAME = 60;
+export const MAX_USER_NAME = 40;
+/** Upper bound on the stored settings text; anything larger is not ours and is ignored. */
+export const MAX_SETTINGS_CHARS = 16_384;
+
+const CONTROL_CHARS = /[\p{Cc}\p{Zl}\p{Zp}]/gu;
+
+/** A short single-line text from storage: no control characters, trimmed, length-capped. */
+export function cleanText(value: unknown, max: number): string {
+  return typeof value === 'string' ? value.replace(CONTROL_CHARS, ' ').trim().slice(0, max) : '';
+}
 
 export interface Settings {
   language: Language;
@@ -76,7 +86,7 @@ export function cleanSaints(value: unknown): FavoriteSaint[] {
   for (const item of value) {
     if (!item || typeof item !== 'object') continue;
     const { name, topic } = item as Record<string, unknown>;
-    const cleanName = typeof name === 'string' ? name.trim().slice(0, MAX_SAINT_NAME) : '';
+    const cleanName = cleanText(name, MAX_SAINT_NAME);
     if (!cleanName || out.some((saint) => saint.name.toLowerCase() === cleanName.toLowerCase()))
       continue;
     out.push({
@@ -91,18 +101,18 @@ export function cleanSaints(value: unknown): FavoriteSaint[] {
 /** Reads stored settings, replacing anything missing or invalid with defaults. */
 export function parseSettings(raw: string | null, deviceLanguage: Language): Settings {
   const fallback = defaultSettings(deviceLanguage);
-  if (!raw) return fallback;
+  if (!raw || raw.length > MAX_SETTINGS_CHARS) return fallback;
   let stored: unknown;
   try {
     stored = JSON.parse(raw);
   } catch {
     return fallback;
   }
-  if (!stored || typeof stored !== 'object') return fallback;
+  if (!stored || typeof stored !== 'object' || Array.isArray(stored)) return fallback;
   const s = stored as Record<string, unknown>;
   return {
     language: isLanguage(s.language) ? s.language : fallback.language,
-    name: typeof s.name === 'string' ? s.name : fallback.name,
+    name: cleanText(s.name, MAX_USER_NAME),
     churchId: isChurchId(s.churchId) ? s.churchId : fallback.churchId,
     onboarded: s.onboarded === true && isChurchId(s.churchId),
     notifications: s.notifications === true,
