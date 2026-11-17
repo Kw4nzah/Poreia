@@ -6,6 +6,7 @@ import { SettingsProvider } from '../settings/SettingsProvider';
 import { ErrorBoundary } from '../ui/ErrorBoundary';
 import { StatusBarBackground } from '../ui/StatusBarBackground';
 import { useTheme } from '../ui/theme';
+import { WidgetSync } from '../widget/WidgetSync';
 
 export default function RootLayout() {
   const theme = useTheme();
@@ -16,6 +17,7 @@ export default function RootLayout() {
       <ErrorBoundary>
         <SettingsProvider>
           <DailyNotifications />
+          <WidgetSync />
           <Stack
             screenOptions={{
               headerShown: false,
