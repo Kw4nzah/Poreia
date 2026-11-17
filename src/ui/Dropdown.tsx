@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { radius, space, useTheme } from './theme';
+import { radius, space, useTheme, type } from './theme';
 
 export interface DropdownOption<T extends string> {
   id: T;
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: space.sm,
   },
-  value: { flex: 1, fontSize: 16 },
-  arrow: { fontSize: 14, marginLeft: space.sm },
+  value: { flex: 1, ...type.body },
+  arrow: { ...type.label, marginLeft: space.sm },
   list: {
     marginTop: space.xs,
     borderRadius: radius.field,
@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   row: { minHeight: 44, justifyContent: 'center', paddingHorizontal: space.md },
-  rowText: { fontSize: 16 },
+  rowText: { ...type.body },
   rowActive: { fontWeight: '600' },
 });

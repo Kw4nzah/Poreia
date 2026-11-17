@@ -7,7 +7,7 @@ import type { ComponentRef, RefObject } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSettings } from '../settings/SettingsProvider';
 import { TAB_BAR_HEIGHT, TAB_BAR_SIDE, useTabBarBottom } from './tabBar';
-import { useTheme } from './theme';
+import { useTheme, type } from './theme';
 
 const PILL_RADIUS = (TAB_BAR_HEIGHT - 16) / 2;
 const TABS = ['today', 'readings', 'prayers', 'settings'] as const;
@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   fill: { borderRadius: PILL_RADIUS },
-  label: { fontSize: 14, fontWeight: '500' },
+  label: { ...type.label, fontWeight: '500' },
   labelActive: { fontWeight: '700' },
 });

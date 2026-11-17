@@ -13,7 +13,7 @@ import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, radius, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme, type } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
 import { VerseText } from '../ui/VerseText';
@@ -177,17 +177,17 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     header: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' },
     headerText: { flex: 1 },
-    title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink },
-    date: { fontSize: 16, color: t.muted, marginTop: 2 },
+    title: { fontFamily: SERIF, ...type.title1, color: t.ink },
+    date: { ...type.body, color: t.muted, marginTop: space.xs },
     sizes: { flexDirection: 'row', marginRight: -space.sm },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
-    sizeText: { fontFamily: SERIF, fontSize: 18, color: t.accent },
+    sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },
     sizeDisabled: { color: t.line },
-    empty: { fontSize: 16, lineHeight: 23, color: t.muted, marginTop: space.lg },
+    empty: { ...type.body, color: t.muted, marginTop: space.lg },
 
     reading: { marginTop: space.lg },
-    kind: { fontSize: 14, color: t.muted },
-    reference: { fontFamily: SERIF, fontSize: 24, lineHeight: 32, color: t.ink, marginTop: 2 },
+    kind: { ...type.label, color: t.muted },
+    reference: { fontFamily: SERIF, ...type.title2, color: t.ink, marginTop: space.xs },
     rule: {
       width: 40,
       height: 2,
@@ -195,10 +195,10 @@ function makeStyles(t: Theme) {
       backgroundColor: t.feast,
       marginVertical: space.md,
     },
-    source: { fontSize: 13, color: t.muted, marginTop: space.sm },
+    source: { ...type.caption, color: t.muted, marginTop: space.sm },
 
-    label: { fontSize: 14, color: t.muted, marginTop: space.xl, marginBottom: space.sm },
-    note: { fontSize: 13, color: t.muted, marginTop: space.sm },
+    label: { ...type.label, color: t.muted, marginTop: space.xl, marginBottom: space.sm },
+    note: { ...type.caption, color: t.muted, marginTop: space.sm },
     card: {
       borderRadius: radius.card,
       borderWidth: 1,
@@ -208,23 +208,22 @@ function makeStyles(t: Theme) {
     },
     name: {
       fontFamily: SERIF,
-      fontSize: 18,
-      lineHeight: 25,
+      ...type.headline,
       color: t.ink,
-      paddingHorizontal: 20,
-      paddingVertical: 14,
+      paddingHorizontal: space.lg,
+      paddingVertical: space.smd,
     },
     divider: { borderTopWidth: 1, borderTopColor: t.line },
     row: {
-      paddingHorizontal: 20,
-      paddingVertical: 14,
+      paddingHorizontal: space.lg,
+      paddingVertical: space.smd,
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 12,
+      gap: space.smd,
     },
     rowText: { flex: 1 },
-    rowReference: { fontSize: 17, lineHeight: 24, color: t.ink, marginTop: 2 },
+    rowReference: { ...type.bodyLarge, color: t.ink, marginTop: space.xs },
     pressed: { backgroundColor: t.background },
-    chevron: { fontSize: 22, lineHeight: 25, color: t.muted },
+    chevron: { ...type.title3, color: t.muted },
   });
 }

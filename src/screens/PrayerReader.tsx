@@ -5,7 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_TEXT_SIZES, PrayerId, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
-import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
@@ -122,16 +122,16 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.lg,
     },
     back: { minHeight: 44, justifyContent: 'center' },
-    backText: { fontSize: 16, color: t.accent },
+    backText: { ...type.body, color: t.accent },
     sizes: { flexDirection: 'row' },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
-    sizeText: { fontFamily: SERIF, fontSize: 18, color: t.accent },
+    sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },
     sizeDisabled: { color: t.line },
 
-    title: { fontFamily: SERIF, fontSize: 28, lineHeight: 36, color: t.ink },
+    title: { fontFamily: SERIF, ...type.title1, color: t.ink },
     rule: { width: 40, height: 2, borderRadius: 1, backgroundColor: t.feast, marginTop: space.md },
-    heading: { fontSize: 14, color: t.muted, marginTop: space.lg },
+    heading: { ...type.label, color: t.muted, marginTop: space.lg },
     paragraph: { fontFamily: SERIF, color: t.ink, marginTop: space.md },
-    note: { fontSize: 14, color: t.muted, marginTop: space.xs },
+    note: { ...type.label, color: t.muted, marginTop: space.xs },
   });
 }

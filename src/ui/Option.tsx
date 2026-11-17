@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { space, useTheme, radius } from './theme';
+import { space, useTheme, radius, type } from './theme';
 
 interface OptionProps {
   selected: boolean;
@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     minHeight: 64,
     paddingHorizontal: space.md,
-    paddingVertical: 12,
+    paddingVertical: space.smd,
     borderRadius: radius.field,
     borderWidth: 1,
   },
-  text: { flex: 1, gap: 2 },
-  title: { fontSize: 17 },
-  subtitle: { fontSize: 14 },
+  text: { flex: 1, gap: space.xs },
+  title: { ...type.bodyLarge },
+  subtitle: { ...type.label },
   radio: {
     width: 22,
     height: 22,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 12,
+    marginLeft: space.smd,
   },
   dot: { width: 10, height: 10, borderRadius: 5 },
 });
