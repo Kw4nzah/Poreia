@@ -84,9 +84,15 @@ export function PrayerReader({ id }: { id: PrayerId }) {
                 <Text style={[styles.paragraph, textSize]}>{m.saints.invocation(saint.name)}</Text>
                 {saint.topic !== '' &&
                   (m.saints.topics[saint.topic].prayer !== '' ? (
-                    <Text style={[styles.paragraph, textSize]}>
-                      {m.saints.topics[saint.topic].prayer.split('{name}').join(saint.name)}
-                    </Text>
+                    m.saints.topics[saint.topic].prayer
+                      .split('{name}')
+                      .join(saint.name)
+                      .split('\n\n')
+                      .map((paragraph, line) => (
+                        <Text key={line} style={[styles.paragraph, textSize]}>
+                          {paragraph}
+                        </Text>
+                      ))
                   ) : (
                     <Text style={styles.note}>
                       {saint.name}: {m.saints.topics[saint.topic].label}

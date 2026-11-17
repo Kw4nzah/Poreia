@@ -375,7 +375,7 @@ export const en: Messages = {
     topicLabel: 'What do you ask for?',
     topicNone: 'No particular request',
     topics: {
-      health: { label: 'Health and healing', prayer: '' },
+      health: { label: 'Health and healing', prayer: 'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.\n\nO holy {name}, faithful servant of Christ and one who stands before God!\n\nI humbly ask you: pray to our Lord Jesus Christ on my behalf. Ask Him to grant me good health, healing of body, peace of soul, patience, and strength.\n\nPray that, in the trials I am facing, I may seek refuge in His mercy, never lose hope in the face of illness, and remain steadfast in faith.\n\nAsk the Lord to grant wisdom to the physicians, bless my treatment, and strengthen me on the path to recovery.\n\nO holy {name}, intercede for me before the Lord, that He may have mercy on me and watch over and protect me according to His holy will.\n\nAmen.\n\nO holy {name}, pray to God for me.' },
       family: { label: 'My family', prayer: '' },
       children: { label: 'My children', prayer: '' },
       marriage: { label: 'Marriage', prayer: '' },
