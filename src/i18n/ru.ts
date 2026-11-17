@@ -186,6 +186,8 @@ export const ru: Messages = {
     summary: 'Отче наш, Символ веры, утренние и вечерние молитвы',
     smaller: 'Уменьшить текст',
     larger: 'Увеличить текст',
+    searchPlaceholder: 'Поиск молитв',
+    noResults: 'Молитва не найдена.',
     group: { basic: 'Основные молитвы', daily: 'Молитвы дня', lent: 'Великий пост' },
     text: prayerTexts,
   },
@@ -221,6 +223,9 @@ export const ru: Messages = {
       }
     },
     noData: 'Данных о святых и чтениях за этот год пока нет.',
+    share: 'Поделиться',
+    shareSaints: 'Святые дня',
+    shareReadings: 'Чтения',
     epistle: 'Апостол',
     gospel: 'Евангелие',
     group: {
