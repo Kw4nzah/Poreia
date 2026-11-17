@@ -13,18 +13,36 @@ describe('widgetContentFor', () => {
     expect(content).toEqual({
       dateLine: 'Salı · 17 Kasım',
       title: 'Noel Orucu',
-      rule: 'Şarap ve zeytinyağı serbest',
-      detail: 'Bugün balık yok.',
-      progress: { text: '40 günün 3. günü', day: 3, total: 40 },
+      eyebrow: 'Noel Orucu',
+      status: 'Şarap ve zeytinyağı serbest',
+      note: 'Bugün balık yok.',
+      hero: { value: '3', suffix: '/ 40' },
+      weekday: 'Salı',
+      progress: {
+        text: '40 günün 3. günü',
+        day: 3,
+        total: 40,
+        counter: '3 / 40',
+        left: '37 gün kaldı',
+      },
       feast: null,
       fasting: true,
     });
   });
 
+  it('says what remains on a day without the fish rule, and "last day" at the end', () => {
+    const lent = widgetContentFor({ year: 2026, month: 2, day: 23 }, greek, tr);
+    expect(lent.note).toBe(lent.progress?.left);
+    const last = widgetContentFor({ year: 2026, month: 12, day: 24 }, greek, tr);
+    expect(last.progress?.left).toBe(tr.today.lastDay);
+  });
+
   it('says plainly when it is not a fasting day', () => {
     const content = widgetContentFor({ year: 2026, month: 10, day: 3 }, greek, tr);
-    expect(content.title).toBe(tr.level.none.title);
-    expect(content.rule).toBe(tr.level.none.detail);
+    expect(content.status).toBe(tr.level.none.title);
+    expect(content.note).toBe(tr.level.none.detail);
+    expect(content.eyebrow).toBe(content.dateLine);
+    expect(content.hero).toEqual({ value: '3', suffix: 'Ekim' });
     expect(content.progress).toBeNull();
     expect(content.fasting).toBe(false);
   });
@@ -43,7 +61,9 @@ describe('widgetContentFor', () => {
         MESSAGES[language],
       );
       expect(content.title).not.toBe('');
-      expect(content.rule).not.toBe('');
+      expect(content.status).not.toBe('');
+      expect(content.note).not.toBe('');
+      expect(content.eyebrow).not.toBe('');
       expect(content.dateLine).not.toBe('');
       expect(content.progress?.text).toContain('40');
     }
