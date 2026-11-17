@@ -51,6 +51,15 @@ export const ru: Messages = {
 
   tabs: { today: 'Сегодня', readings: 'Чтения' },
 
+  calendar: {
+    title: 'Календарь',
+    weekdaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+    previousMonth: 'Предыдущий месяц',
+    nextMonth: 'Следующий месяц',
+    back: 'Назад',
+    today: 'сегодня',
+  },
+
   today: {
     greeting: (name) => (name ? `Мир вам, ${name}` : 'Мир вам'),
     churchDate: (date) => `По церковному календарю: ${date}`,

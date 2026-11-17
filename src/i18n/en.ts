@@ -44,6 +44,16 @@ export interface Messages {
 
   tabs: { today: string; readings: string };
 
+  calendar: {
+    title: string;
+    /** Indexed like `weekdays` (0 = Sunday). */
+    weekdaysShort: readonly string[];
+    previousMonth: string;
+    nextMonth: string;
+    back: string;
+    today: string;
+  };
+
   today: {
     greeting: (name: string) => string;
     churchDate: (date: string) => string;
@@ -194,6 +204,15 @@ export const en: Messages = {
   },
 
   tabs: { today: 'Today', readings: 'Readings' },
+
+  calendar: {
+    title: 'Calendar',
+    weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    previousMonth: 'Previous month',
+    nextMonth: 'Next month',
+    back: 'Back',
+    today: 'today',
+  },
 
   today: {
     greeting: (name) => (name ? `Peace to you, ${name}` : 'Peace to you'),
