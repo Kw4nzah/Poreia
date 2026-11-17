@@ -9,7 +9,7 @@ import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { FadeIn, PressCard, useGrow } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, radius, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme, type } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
 
@@ -139,7 +139,12 @@ export function Today() {
       </FadeIn>
 
       <FadeIn index={2}>
-        <View style={styles.card}>
+        <PressCard
+          onPress={() => router.navigate('/calendar')}
+          style={styles.card}
+          accessibilityRole="button"
+          accessibilityHint={m.calendar.title}
+        >
           <Text style={styles.cardLabel}>{m.today.upcomingTitle}</Text>
           <Text style={styles.upcomingName}>{m.majorFast[upcoming.id]}</Text>
           <Text style={styles.detail}>{m.today.startsIn(upcoming.daysUntil)}</Text>
@@ -149,7 +154,7 @@ export function Today() {
           {info.daysToPascha > 0 && (
             <Text style={styles.pascha}>{m.today.daysToPascha(info.daysToPascha)}</Text>
           )}
-        </View>
+        </PressCard>
       </FadeIn>
 
       {commemoration && (
@@ -218,10 +223,10 @@ export function Today() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    greeting: { fontSize: 15, color: t.muted },
-    weekday: { fontFamily: SERIF, fontSize: 34, lineHeight: 42, color: t.ink, marginTop: space.sm },
-    date: { fontSize: 17, color: t.ink, marginTop: 2 },
-    churchDate: { fontSize: 14, color: t.muted, marginTop: space.xs },
+    greeting: { ...type.body, color: t.muted },
+    weekday: { fontFamily: SERIF, ...type.hero, color: t.ink, marginTop: space.sm },
+    date: { ...type.bodyLarge, color: t.ink, marginTop: space.xs },
+    churchDate: { ...type.label, color: t.muted, marginTop: space.xs },
 
     feast: {
       marginTop: space.lg,
@@ -229,30 +234,30 @@ function makeStyles(t: Theme) {
       borderRadius: radius.card,
       backgroundColor: t.feastSurface,
     },
-    feastLabel: { fontSize: 13, color: t.feast },
-    feastName: { fontFamily: SERIF, fontSize: 20, lineHeight: 27, color: t.ink, marginTop: 2 },
+    feastLabel: { ...type.caption, color: t.feast },
+    feastName: { fontFamily: SERIF, ...type.title3, color: t.ink, marginTop: space.xs },
 
     card: {
       marginTop: space.md,
-      padding: 20,
+      padding: space.lg,
       borderRadius: radius.card,
       borderWidth: 1,
       borderColor: t.line,
       backgroundColor: t.surface,
     },
-    cardLabel: { fontSize: 14, color: t.muted, marginBottom: space.xs },
-    level: { fontFamily: SERIF, fontSize: 28, lineHeight: 36 },
-    detail: { fontSize: 16, lineHeight: 23, color: t.ink, marginTop: space.xs },
-    note: { fontSize: 14, lineHeight: 20, color: t.muted, marginTop: space.sm },
+    cardLabel: { ...type.label, color: t.muted, marginBottom: space.xs },
+    level: { fontFamily: SERIF, ...type.title2 },
+    detail: { ...type.body, color: t.ink, marginTop: space.xs },
+    note: { ...type.label, color: t.muted, marginTop: space.sm },
 
     foods: {
       marginTop: space.md,
       paddingTop: space.md,
       borderTopWidth: 1,
       borderTopColor: t.line,
-      gap: 12,
+      gap: space.smd,
     },
-    foodRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+    foodRow: { flexDirection: 'row', alignItems: 'center', gap: space.smd },
     mark: {
       width: 24,
       height: 24,
@@ -263,19 +268,19 @@ function makeStyles(t: Theme) {
       justifyContent: 'center',
     },
     markText: { fontSize: 12, lineHeight: 15, fontWeight: '700' },
-    foodName: { flex: 1, fontSize: 16, color: t.ink },
+    foodName: { flex: 1, ...type.body, color: t.ink },
     foodForbidden: { color: t.muted },
 
-    progress: { marginTop: 20 },
+    progress: { marginTop: space.lg },
     track: { height: 4, borderRadius: 2, backgroundColor: t.line, overflow: 'hidden' },
     fill: { height: 4, borderRadius: 2 },
     progressRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: space.sm },
-    progressText: { fontSize: 14, color: t.muted, fontVariant: ['tabular-nums'] },
+    progressText: { ...type.label, color: t.muted, fontVariant: ['tabular-nums'] },
 
-    upcomingName: { fontFamily: SERIF, fontSize: 22, lineHeight: 29, color: t.ink },
-    range: { fontSize: 14, color: t.muted, marginTop: space.xs },
+    upcomingName: { fontFamily: SERIF, ...type.title3, color: t.ink },
+    range: { ...type.label, color: t.muted, marginTop: space.xs },
     pascha: {
-      fontSize: 14,
+      ...type.label,
       color: t.muted,
       marginTop: space.md,
       paddingTop: space.md,
@@ -283,16 +288,16 @@ function makeStyles(t: Theme) {
       borderTopColor: t.line,
     },
 
-    saintName: { fontFamily: SERIF, fontSize: 18, lineHeight: 25, color: t.ink, marginTop: 2 },
+    saintName: { fontFamily: SERIF, ...type.headline, color: t.ink, marginTop: space.xs },
     readings: {
       marginTop: space.md,
       paddingTop: space.md,
       borderTopWidth: 1,
       borderTopColor: t.line,
     },
-    readingRow: { flexDirection: 'row', gap: 12, marginTop: 2 },
-    readingKind: { minWidth: 76, flexShrink: 0, fontSize: 15, lineHeight: 22, color: t.muted },
-    readingRef: { flex: 1, fontSize: 16, lineHeight: 22, color: t.ink },
+    readingRow: { flexDirection: 'row', gap: space.smd, marginTop: space.xs },
+    readingKind: { minWidth: 76, flexShrink: 0, ...type.label, color: t.muted },
+    readingRef: { flex: 1, ...type.body, color: t.ink },
     cardFoot: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -301,11 +306,11 @@ function makeStyles(t: Theme) {
     },
 
     pressed: { backgroundColor: t.background },
-    chevron: { fontSize: 22, lineHeight: 25, color: t.muted },
+    chevron: { ...type.title3, color: t.muted },
 
-    disclaimer: { fontSize: 13, lineHeight: 19, color: t.muted, marginTop: space.lg },
+    disclaimer: { ...type.caption, color: t.muted, marginTop: space.lg },
     link: { minHeight: 44, justifyContent: 'center' },
-    linkText: { fontSize: 15, color: t.accent },
-    small: { fontSize: 13, color: t.muted, marginTop: space.xs },
+    linkText: { ...type.body, color: t.accent },
+    small: { ...type.caption, color: t.muted, marginTop: space.xs },
   });
 }

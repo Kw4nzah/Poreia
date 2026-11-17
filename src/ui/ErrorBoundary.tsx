@@ -2,7 +2,7 @@ import { getLocales } from 'expo-localization';
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { errorTextFor } from './errorText';
-import { SERIF, radius, space, useTheme } from './theme';
+import { SERIF, radius, space, useTheme, type } from './theme';
 
 function deviceText() {
   try {
@@ -50,8 +50,8 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, { failed: 
 
 const styles = StyleSheet.create({
   screen: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.lg },
-  title: { fontFamily: SERIF, fontSize: 24, textAlign: 'center', marginBottom: space.sm },
-  body: { fontSize: 16, lineHeight: 23, textAlign: 'center', marginBottom: space.lg },
+  title: { fontFamily: SERIF, ...type.title2, textAlign: 'center', marginBottom: space.sm },
+  body: { ...type.body, textAlign: 'center', marginBottom: space.lg },
   button: { paddingHorizontal: space.lg, paddingVertical: space.md, borderRadius: radius.pill },
-  buttonText: { fontSize: 16, fontWeight: '600' },
+  buttonText: { ...type.body, fontWeight: '600' },
 });

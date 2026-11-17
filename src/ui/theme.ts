@@ -41,9 +41,9 @@ const light: Theme = {
   accent: '#7A1F2B',
   onAccent: '#FFF8F0',
   free: '#78866B',
-  feast: '#B18A4A',
+  feast: '#9E7835',
   feastSurface: '#F3E6C4',
-  warning: '#A65F46',
+  warning: '#9C5740',
   danger: '#8E2A2A',
   glass: '#FFFCF68C',
   glassEdge: '#FFFFFFB3',
@@ -69,6 +69,9 @@ const dark: Theme = {
   pill: '#E0959D2B',
 };
 
+/** Both palettes, exported for tests. */
+export const themes = { light, dark };
+
 export function useTheme(): Theme {
   return useColorScheme() === 'dark' ? dark : light;
 }
@@ -79,4 +82,21 @@ export const SERIF = 'serif';
 /** Corner radii: cards and panels are large and soft, fields a step smaller, pills fully round. */
 export const radius = { card: 24, field: 16, pill: 999 } as const;
 
-export const space = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 } as const;
+export const space = { xs: 4, sm: 8, smd: 12, md: 16, lg: 24, xl: 32 } as const;
+
+/**
+ * Type scale (size / line height on a 4px grid). Spread into a style: `...type.body`.
+ * Serif titles add `fontFamily: SERIF` themselves. Prayer text sizes are a user setting and stay separate.
+ */
+export const type = {
+  caption: { fontSize: 13, lineHeight: 20 },
+  label: { fontSize: 14, lineHeight: 20 },
+  body: { fontSize: 16, lineHeight: 24 },
+  bodyLarge: { fontSize: 17, lineHeight: 24 },
+  headline: { fontSize: 18, lineHeight: 28 },
+  title3: { fontSize: 20, lineHeight: 28 },
+  title2: { fontSize: 24, lineHeight: 32 },
+  title1: { fontSize: 30, lineHeight: 40 },
+  hero: { fontSize: 34, lineHeight: 44 },
+  display: { fontSize: 40, lineHeight: 48 },
+} as const;

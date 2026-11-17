@@ -44,6 +44,16 @@ export interface Messages {
 
   tabs: { today: string; readings: string };
 
+  calendar: {
+    title: string;
+    /** Indexed like `weekdays` (0 = Sunday). */
+    weekdaysShort: readonly string[];
+    previousMonth: string;
+    nextMonth: string;
+    back: string;
+    today: string;
+  };
+
   today: {
     greeting: (name: string) => string;
     churchDate: (date: string) => string;
@@ -103,6 +113,8 @@ export interface Messages {
     summary: string;
     smaller: string;
     larger: string;
+    searchPlaceholder: string;
+    noResults: string;
     group: Record<PrayerGroupId, string>;
     text: Record<PrayerId, PrayerText>;
   };
@@ -118,6 +130,9 @@ export interface Messages {
     openBible: string;
     service: (service: ParsedService) => string;
     noData: string;
+    share: string;
+    shareSaints: string;
+    shareReadings: string;
     epistle: string;
     gospel: string;
     group: Record<ReadingGroupId, string>;
@@ -194,6 +209,15 @@ export const en: Messages = {
   },
 
   tabs: { today: 'Today', readings: 'Readings' },
+
+  calendar: {
+    title: 'Calendar',
+    weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    previousMonth: 'Previous month',
+    nextMonth: 'Next month',
+    back: 'Back',
+    today: 'today',
+  },
 
   today: {
     greeting: (name) => (name ? `Peace to you, ${name}` : 'Peace to you'),
@@ -321,6 +345,8 @@ export const en: Messages = {
     summary: 'The Lord’s Prayer, the Creed, morning and evening prayers',
     smaller: 'Smaller text',
     larger: 'Larger text',
+    searchPlaceholder: 'Search prayers',
+    noResults: 'No prayer found.',
     group: { basic: 'Basic prayers', daily: 'Prayers of the day', lent: 'Great Lent' },
     text: prayerTexts,
   },
@@ -353,6 +379,9 @@ export const en: Messages = {
       }
     },
     noData: 'No saints or readings for this year yet.',
+    share: 'Share',
+    shareSaints: 'Saints of the day',
+    shareReadings: 'Readings',
     epistle: 'Epistle',
     gospel: 'Gospel',
     group: {

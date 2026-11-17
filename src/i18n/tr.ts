@@ -40,6 +40,15 @@ export const tr: Messages = {
 
   tabs: { today: 'Bugün', readings: 'Okumalar' },
 
+  calendar: {
+    title: 'Takvim',
+    weekdaysShort: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'],
+    previousMonth: 'Önceki ay',
+    nextMonth: 'Sonraki ay',
+    back: 'Geri',
+    today: 'bugün',
+  },
+
   today: {
     greeting: (name) => (name ? `Hoş geldin, ${name}` : 'Hoş geldin'),
     churchDate: (date) => `Kilise takvimi: ${date}`,
@@ -166,6 +175,8 @@ export const tr: Messages = {
     summary: 'Göklerdeki Babamız, İman İkrarı, sabah ve akşam duaları',
     smaller: 'Yazıyı küçült',
     larger: 'Yazıyı büyüt',
+    searchPlaceholder: 'Dua ara',
+    noResults: 'Dua bulunamadı.',
     group: { basic: 'Temel dualar', daily: 'Günün duaları', lent: 'Büyük Perhiz' },
     text: prayerTexts,
   },
@@ -203,6 +214,9 @@ export const tr: Messages = {
       }
     },
     noData: 'Bu yıl için henüz aziz ve okuma verisi yok.',
+    share: 'Paylaş',
+    shareSaints: 'Günün azizleri',
+    shareReadings: 'Okumalar',
     epistle: 'Mektup',
     gospel: 'İncil',
     group: {

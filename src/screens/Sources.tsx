@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSettings } from '../settings/SettingsProvider';
-import { SERIF, Theme, space, useTheme } from '../ui/theme';
+import { SERIF, Theme, space, useTheme, type } from '../ui/theme';
 
 export function Sources() {
   const { messages: m } = useSettings();
@@ -48,9 +48,9 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     header: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { fontSize: 16, color: t.accent },
-    title: { fontFamily: SERIF, fontSize: 30, lineHeight: 38, color: t.ink },
-    heading: { fontSize: 14, color: t.muted, marginTop: space.lg },
-    body: { fontSize: 16, lineHeight: 24, color: t.ink, marginTop: space.xs },
+    backText: { ...type.body, color: t.accent },
+    title: { fontFamily: SERIF, ...type.title1, color: t.ink },
+    heading: { ...type.label, color: t.muted, marginTop: space.lg },
+    body: { ...type.body, color: t.ink, marginTop: space.xs },
   });
 }
