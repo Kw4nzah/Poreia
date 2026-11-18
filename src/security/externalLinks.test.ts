@@ -20,6 +20,29 @@ describe('isAllowedExternalUrl', () => {
     }
   });
 
+  it('accepts a pre-filled issue link (query with encoded title and body)', () => {
+    const query = `title=${encodeURIComponent('Problem report 0.7.0')}&body=${encodeURIComponent('## What happened\n- App: 0.7.0 (Pixel 7)')}`;
+    expect(isAllowedExternalUrl(`https://github.com/Kw4nzah/Poreia/issues/new?${query}`)).toBe(
+      true,
+    );
+    expect(
+      isAllowedExternalUrl(`https://github.com.evil.example/Kw4nzah/Poreia/issues/new?${query}`),
+    ).toBe(false);
+    expect(
+      isAllowedExternalUrl(`https://github.com@evil.example/Kw4nzah/Poreia/issues/new?${query}`),
+    ).toBe(false);
+    expect(isAllowedExternalUrl(`http://github.com/Kw4nzah/Poreia/issues/new?${query}`)).toBe(
+      false,
+    );
+    // A raw newline or space (an unencoded body) is not accepted.
+    expect(isAllowedExternalUrl('https://github.com/Kw4nzah/Poreia/issues/new?body=a\nb')).toBe(
+      false,
+    );
+    expect(isAllowedExternalUrl('https://github.com/Kw4nzah/Poreia/issues/new?body=a b')).toBe(
+      false,
+    );
+  });
+
   it('rejects other schemes', () => {
     for (const url of [
       'http://github.com/x',

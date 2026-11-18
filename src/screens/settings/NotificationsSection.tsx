@@ -8,6 +8,7 @@ import { useSettings } from '../../settings/SettingsProvider';
 import { AppSwitch } from '../../ui/AppSwitch';
 import { Card, SegmentedControl } from '../../ui/kit';
 import { Theme, space, type, useThemedStyles } from '../../ui/theme';
+import { NotificationHelp } from './NotificationHelp';
 import { hourLabel } from './sections';
 
 export function NotificationsSection() {
@@ -39,64 +40,67 @@ export function NotificationsSection() {
   }
 
   return (
-    <Card padding="md" style={styles.card}>
-      <View style={styles.switchRow}>
-        <Text style={[styles.cardText, styles.switchText]}>{m.settings.notificationsToggle}</Text>
-        <AppSwitch
-          value={settings.notifications}
-          onValueChange={toggleNotifications}
-          label={m.settings.notificationsToggle}
-        />
-      </View>
-      {notificationsDenied && (
-        <Text style={[styles.status, styles.warning]} accessibilityLiveRegion="polite">
-          {m.settings.notificationsDenied}
-        </Text>
-      )}
-      {settings.notifications && (
-        <View style={styles.group}>
-          <Text style={styles.status}>{m.settings.notificationsTime}</Text>
-          <View style={styles.hours}>
-            <SegmentedControl
-              accessibilityLabel={m.settings.notificationsTime}
-              value={settings.notificationHour}
-              onChange={(hour) => update({ notificationHour: hour })}
-              options={NOTIFICATION_HOURS.map((hour) => ({
-                value: hour,
-                label: hourLabel(hour),
-              }))}
-            />
-          </View>
-          <View style={[styles.switchRow, styles.repeatRow]}>
-            <Text style={[styles.cardText, styles.switchText]}>
-              {m.settings.notificationRepeat}
-            </Text>
-            <AppSwitch
-              value={settings.notificationRepeat}
-              onValueChange={(value) => update({ notificationRepeat: value })}
-              label={m.settings.notificationRepeat}
-            />
-          </View>
-          <Text style={styles.status}>{m.settings.notificationRepeatHint}</Text>
-        </View>
-      )}
-      <View style={styles.group}>
+    <>
+      <Card padding="md" style={styles.card}>
         <View style={styles.switchRow}>
-          <Text style={[styles.cardText, styles.switchText]}>{m.settings.eveReminder}</Text>
+          <Text style={[styles.cardText, styles.switchText]}>{m.settings.notificationsToggle}</Text>
           <AppSwitch
-            value={settings.eveReminder}
-            onValueChange={toggleEve}
-            label={m.settings.eveReminder}
+            value={settings.notifications}
+            onValueChange={toggleNotifications}
+            label={m.settings.notificationsToggle}
           />
         </View>
-        <Text style={styles.status}>{m.settings.eveReminderHint}</Text>
-        {eveDenied && (
+        {notificationsDenied && (
           <Text style={[styles.status, styles.warning]} accessibilityLiveRegion="polite">
             {m.settings.notificationsDenied}
           </Text>
         )}
-      </View>
-    </Card>
+        {settings.notifications && (
+          <View style={styles.group}>
+            <Text style={styles.status}>{m.settings.notificationsTime}</Text>
+            <View style={styles.hours}>
+              <SegmentedControl
+                accessibilityLabel={m.settings.notificationsTime}
+                value={settings.notificationHour}
+                onChange={(hour) => update({ notificationHour: hour })}
+                options={NOTIFICATION_HOURS.map((hour) => ({
+                  value: hour,
+                  label: hourLabel(hour),
+                }))}
+              />
+            </View>
+            <View style={[styles.switchRow, styles.repeatRow]}>
+              <Text style={[styles.cardText, styles.switchText]}>
+                {m.settings.notificationRepeat}
+              </Text>
+              <AppSwitch
+                value={settings.notificationRepeat}
+                onValueChange={(value) => update({ notificationRepeat: value })}
+                label={m.settings.notificationRepeat}
+              />
+            </View>
+            <Text style={styles.status}>{m.settings.notificationRepeatHint}</Text>
+          </View>
+        )}
+        <View style={styles.group}>
+          <View style={styles.switchRow}>
+            <Text style={[styles.cardText, styles.switchText]}>{m.settings.eveReminder}</Text>
+            <AppSwitch
+              value={settings.eveReminder}
+              onValueChange={toggleEve}
+              label={m.settings.eveReminder}
+            />
+          </View>
+          <Text style={styles.status}>{m.settings.eveReminderHint}</Text>
+          {eveDenied && (
+            <Text style={[styles.status, styles.warning]} accessibilityLiveRegion="polite">
+              {m.settings.notificationsDenied}
+            </Text>
+          )}
+        </View>
+      </Card>
+      <NotificationHelp />
+    </>
   );
 }
 
