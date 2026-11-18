@@ -35,8 +35,6 @@ export const ru: Messages = {
   onboarding: {
     tagline: 'Спутник в постах Церкви',
     languageTitle: 'Выберите язык',
-    nameTitle: 'Как к вам обращаться?',
-    nameHint: 'Только для приветствия. Имя остаётся на этом телефоне.',
     namePlaceholder: 'Ваше имя',
     churchTitle: 'Какой традиции вы следуете?',
     churchHint: 'От этого зависят календарь и устав поста.',
@@ -86,6 +84,19 @@ export const ru: Messages = {
     newVersion: 'Новая версия готова к установке',
     foodAllowed: 'можно',
     foodForbidden: 'нельзя',
+  },
+
+  summary: {
+    today: (name) => `Сегодня: ${name}.`,
+    noFast: 'Сегодня поста нет.',
+    feast: (names) => `Праздник: ${names}.`,
+    allowed: (list) => `Можно: ${list}.`,
+    avoided: (list) => `Нельзя: ${list}.`,
+    fishDisputed: 'Рыба: обычаи расходятся.',
+    food: { meat: 'мясо', dairy: 'молочное, яйца', fish: 'рыба', oil: 'масло, вино' },
+    wine: 'вино',
+    oil: 'масло',
+    plain: { noOil: 'пища без масла', xerophagy: 'хлеб, фрукты, овощи, орехи' },
   },
 
   log: {

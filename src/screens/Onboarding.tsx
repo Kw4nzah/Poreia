@@ -1,37 +1,36 @@
-// First-run questions: language, name, church. Also reopened from the Today screen to
-// change them, so every step starts from the current settings.
+// First-run questions, essentials only: language, church calendar and, for the Greek church,
+// the fish rule. The name is optional and lives in Settings.
 
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CHURCHES, ChurchId } from '../calendar';
+import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES, GreekFishPractice } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
-import { AppTextInput } from '../ui/AppTextInput';
-import { SERIF, Theme, space, useTheme, radius, type, useThemedStyles } from '../ui/theme';
-import { useKeyboardHeight } from '../ui/useKeyboardHeight';
+import { SERIF, Theme, space, radius, type, useThemedStyles } from '../ui/theme';
 
-const STEPS = ['language', 'name', 'church'] as const;
+type Step = 'language' | 'church' | 'fish';
 const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
 
 export function Onboarding() {
   const { settings, messages: m, update } = useSettings();
-  const theme = useTheme();
   const insets = useSafeAreaInsets();
   const styles = useThemedStyles(makeStyles);
 
   const [stepIndex, setStepIndex] = useState(0);
-  const [name, setName] = useState(settings.name);
   const [churchId, setChurchId] = useState<ChurchId>(settings.churchId);
-  const keyboard = useKeyboardHeight();
+  const [greekFish, setGreekFish] = useState<GreekFishPractice>(settings.greekFish);
 
-  const step = STEPS[stepIndex];
-  const isLast = stepIndex === STEPS.length - 1;
+  // The fish rule only exists in the Greek practice.
+  const steps: Step[] =
+    churchId === 'greek' ? ['language', 'church', 'fish'] : ['language', 'church'];
+  const step = steps[stepIndex];
+  const isLast = stepIndex === steps.length - 1;
 
   function goNext() {
     if (isLast) {
-      update({ name: name.trim(), churchId, onboarded: true });
+      update({ churchId, greekFish, onboarded: true });
     } else {
       setStepIndex(stepIndex + 1);
     }
@@ -45,7 +44,7 @@ export function Onboarding() {
       ]}
     >
       <ScrollView
-        contentContainerStyle={[styles.content, keyboard > 0 && { paddingBottom: keyboard }]}
+        contentContainerStyle={styles.content}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
@@ -57,9 +56,9 @@ export function Onboarding() {
         <View
           style={styles.dots}
           accessible
-          accessibilityLabel={m.report.page(stepIndex + 1, STEPS.length)}
+          accessibilityLabel={m.report.page(stepIndex + 1, steps.length)}
         >
-          {STEPS.map((id, index) => (
+          {steps.map((id, index) => (
             <View key={id} style={[styles.dot, index <= stepIndex && styles.dotActive]} />
           ))}
         </View>
@@ -82,28 +81,6 @@ export function Onboarding() {
           </>
         )}
 
-        {step === 'name' && (
-          <>
-            <Text style={styles.title} accessibilityRole="header">
-              {m.onboarding.nameTitle}
-            </Text>
-            <Text style={styles.hint}>{m.onboarding.nameHint}</Text>
-            <AppTextInput
-              value={name}
-              onChangeText={setName}
-              placeholder={m.onboarding.namePlaceholder}
-              placeholderTextColor={theme.muted}
-              style={styles.input}
-              autoCapitalize="words"
-              autoCorrect={false}
-              maxLength={40}
-              accessibilityLabel={m.settings.name}
-              returnKeyType="next"
-              onSubmitEditing={goNext}
-            />
-          </>
-        )}
-
         {step === 'church' && (
           <>
             <Text style={styles.title} accessibilityRole="header">
@@ -118,6 +95,26 @@ export function Onboarding() {
                   title={m.church[id].name}
                   subtitle={m.church[id].calendar}
                   onPress={() => setChurchId(id)}
+                />
+              ))}
+            </View>
+          </>
+        )}
+
+        {step === 'fish' && (
+          <>
+            <Text style={styles.title} accessibilityRole="header">
+              {m.settings.fishTitle}
+            </Text>
+            <Text style={styles.hint}>{m.settings.fishHint}</Text>
+            <View style={styles.options} accessibilityRole="radiogroup">
+              {GREEK_FISH_PRACTICES.map((id) => (
+                <Option
+                  key={id}
+                  selected={id === greekFish}
+                  title={m.settings.fish[id].title}
+                  subtitle={m.settings.fish[id].subtitle}
+                  onPress={() => setGreekFish(id)}
                 />
               ))}
             </View>
@@ -161,17 +158,6 @@ function makeStyles(t: Theme) {
     title: { fontFamily: SERIF, ...type.title2, color: t.ink },
     hint: { ...type.body, color: t.muted, marginTop: space.sm },
     options: { gap: space.smd, marginTop: space.lg },
-    input: {
-      marginTop: space.lg,
-      minHeight: 56,
-      paddingHorizontal: space.md,
-      borderRadius: radius.field,
-      borderWidth: 1,
-      borderColor: t.outline,
-      backgroundColor: t.surface,
-      ...type.bodyLarge,
-      color: t.ink,
-    },
     actions: { flexDirection: 'row', gap: space.smd, paddingTop: space.sm },
     primary: {
       flex: 1,

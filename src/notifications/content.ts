@@ -1,7 +1,9 @@
 // Text of the daily notification. Pure, so it can be tested without a device.
 
 import {
+  CHURCHES,
   Church,
+  ChurchId,
   CivilDate,
   DayInfo,
   DayOptions,
@@ -9,7 +11,9 @@ import {
   gregorianToJdn,
   jdnToGregorian,
 } from '../calendar';
+import { getCommemoration, type BookLanguage } from '../commemorations';
 import type { Messages } from '../i18n';
+import { readingsLine, summarizeDay } from '../today/summary';
 
 export interface DailyNotification {
   date: CivilDate;
@@ -17,18 +21,32 @@ export interface DailyNotification {
   body: string;
 }
 
-/** The rule goes in the title, so it can be read without expanding the notification. */
-export function describeDay(info: DayInfo, m: Messages): { title: string; body: string } {
+/** First body line is what Android shows collapsed; keep it within this many characters. */
+export const COLLAPSED_LINE_MAX = 100;
+
+/**
+ * The title is the feast or, on an ordinary day, the fast. The first body line is what Android
+ * shows collapsed: what is allowed and what to avoid. The rest shows only when expanded: the
+ * fast under a feast, the period, and the day's epistle and gospel when `readings` is given.
+ */
+export function describeDay(
+  info: DayInfo,
+  m: Messages,
+  readings: string | null = null,
+): { title: string; body: string } {
   const level = m.level[info.level];
-  const lines = [level.detail];
+  const summary = summarizeDay(info, m);
+  const feasts = info.feasts.map((id) => m.feast[id]);
+  const lines = [info.level === 'none' ? level.detail : summary.foods];
+  if (feasts.length > 0 && info.level !== 'none') lines.push(summary.fast);
   if (info.period) {
     const { day, totalDays } = info.period;
     lines.push(`${m.period[info.period.id]} · ${m.today.dayOf(day, totalDays)}`);
   } else if (info.fastDay) {
     lines.push(m.fastDay[info.fastDay]);
   }
-  for (const feast of info.feasts) lines.push(m.feast[feast]);
-  return { title: `${m.weekdays[info.weekday]} · ${level.title}`, body: lines.join('\n') };
+  if (readings) lines.push(readings);
+  return { title: feasts.length > 0 ? feasts.join(' · ') : level.title, body: lines.join('\n') };
 }
 
 /** One notification per day for `days` consecutive days, starting on `from`. */
@@ -38,12 +56,22 @@ export function planNotifications(
   church: Church,
   m: Messages,
   options?: DayOptions,
+  /** Language of the book names in the readings line; without it the line is left out. */
+  readingsLanguage?: BookLanguage,
 ): DailyNotification[] {
   const start = gregorianToJdn(from.year, from.month, from.day);
   return Array.from({ length: days }, (_, i) => {
     const date = jdnToGregorian(start + i);
-    return { date, ...describeDay(getDayInfo(date, church, options), m) };
+    const readings =
+      readingsLanguage && isChurchId(church.id)
+        ? readingsLine(getCommemoration(date, church.id), m, readingsLanguage)
+        : null;
+    return { date, ...describeDay(getDayInfo(date, church, options), m, readings) };
   });
+}
+
+function isChurchId(id: string): id is ChurchId {
+  return id in CHURCHES;
 }
 
 /** Repeats of the daily notification when "keep reminding me" is on. */

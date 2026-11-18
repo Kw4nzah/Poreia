@@ -24,8 +24,6 @@ export const tr: Messages = {
   onboarding: {
     tagline: 'Kilisenin oruçlarında yol arkadaşın',
     languageTitle: 'Dilini seç',
-    nameTitle: 'Sana nasıl hitap edelim?',
-    nameHint: 'Yalnızca seni selamlamak için. Bu telefonda kalır.',
     namePlaceholder: 'Adın',
     churchTitle: 'Hangi geleneği izliyorsun?',
     churchHint: 'Takvim ve oruç âdetleri buna göre belirlenir.',
@@ -75,6 +73,19 @@ export const tr: Messages = {
     newVersion: 'Yeni sürüm kurulmaya hazır',
     foodAllowed: 'serbest',
     foodForbidden: 'yasak',
+  },
+
+  summary: {
+    today: (name) => `Bugün: ${name}.`,
+    noFast: 'Bugün oruç yok.',
+    feast: (names) => `Bayram: ${names}.`,
+    allowed: (list) => `Serbest: ${list}.`,
+    avoided: (list) => `Yasak: ${list}.`,
+    fishDisputed: 'Balık: gelenekler ayrışıyor.',
+    food: { meat: 'et', dairy: 'süt ürünleri, yumurta', fish: 'balık', oil: 'zeytinyağı, şarap' },
+    wine: 'şarap',
+    oil: 'zeytinyağı',
+    plain: { noOil: 'yağsız pişmiş yemek', xerophagy: 'ekmek, meyve, sebze, kuruyemiş' },
   },
 
   log: {
