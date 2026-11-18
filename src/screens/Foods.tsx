@@ -19,6 +19,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { AppTextInput } from '../ui/AppTextInput';
 import { Badge, type BadgeTone, Card, ListRow, SectionHeader } from '../ui/kit';
 import { SERIF, Theme, radius, space, type, useTheme, useThemedStyles } from '../ui/theme';
+import { useKeyboardHeight } from '../ui/useKeyboardHeight';
 import { useToday } from '../ui/useToday';
 
 const STATUS_TONE: Record<FoodStatus, BadgeTone> = {
@@ -38,6 +39,7 @@ export function Foods() {
   const styles = useThemedStyles(makeStyles);
   const today = useToday();
   const [query, setQuery] = useState('');
+  const keyboard = useKeyboardHeight();
 
   const info = getDayInfo(today, CHURCHES[settings.churchId], { greekFish: settings.greekFish });
   const searching = query.trim().length > 0;
@@ -80,14 +82,14 @@ export function Foods() {
       <ScrollView
         contentContainerStyle={{
           paddingTop: space.sm,
-          paddingBottom: insets.bottom + space.xl,
+          paddingBottom: insets.bottom + space.xl + keyboard,
           paddingHorizontal: space.lg,
         }}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title} accessibilityRole="header">
+        <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
           {m.foods.title}
         </Text>
 
@@ -112,7 +114,11 @@ export function Foods() {
           style={styles.search}
         />
 
-        {searching && matches.length === 0 && <Text style={styles.empty}>{m.foods.noResults}</Text>}
+        {searching && matches.length === 0 && (
+          <Text style={styles.empty} accessibilityLiveRegion="polite">
+            {m.foods.noResults}
+          </Text>
+        )}
 
         {searching &&
           matches.map((id) => {
@@ -170,7 +176,7 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.md,
       borderRadius: radius.field,
       borderWidth: 1,
-      borderColor: t.line,
+      borderColor: t.outline,
       backgroundColor: t.surface,
       color: t.ink,
       ...type.body,

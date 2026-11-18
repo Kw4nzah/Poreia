@@ -25,7 +25,10 @@ export function UpdatesSection() {
       </Text>
       <Text style={styles.cardText}>{contentLine}</Text>
       {updates.status !== 'idle' && (
-        <Text style={[styles.status, updates.status === 'failed' && styles.error]}>
+        <Text
+          accessibilityLiveRegion="polite"
+          style={[styles.status, updates.status === 'failed' && styles.error]}
+        >
           {m.updates[updates.status]}
         </Text>
       )}

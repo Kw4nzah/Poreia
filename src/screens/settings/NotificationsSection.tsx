@@ -49,7 +49,9 @@ export function NotificationsSection() {
         />
       </View>
       {notificationsDenied && (
-        <Text style={[styles.status, styles.warning]}>{m.settings.notificationsDenied}</Text>
+        <Text style={[styles.status, styles.warning]} accessibilityLiveRegion="polite">
+          {m.settings.notificationsDenied}
+        </Text>
       )}
       {settings.notifications && (
         <View style={styles.group}>
@@ -89,7 +91,9 @@ export function NotificationsSection() {
         </View>
         <Text style={styles.status}>{m.settings.eveReminderHint}</Text>
         {eveDenied && (
-          <Text style={[styles.status, styles.warning]}>{m.settings.notificationsDenied}</Text>
+          <Text style={[styles.status, styles.warning]} accessibilityLiveRegion="polite">
+            {m.settings.notificationsDenied}
+          </Text>
         )}
       </View>
     </Card>

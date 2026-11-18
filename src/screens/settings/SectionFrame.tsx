@@ -6,12 +6,14 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSettings } from '../../settings/SettingsProvider';
 import { SERIF, Theme, space, type, useThemedStyles } from '../../ui/theme';
+import { useKeyboardHeight } from '../../ui/useKeyboardHeight';
 
 export function SectionFrame({ title, children }: { title: string; children: ReactNode }) {
   const { messages: m } = useSettings();
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const styles = useThemedStyles(makeStyles);
+  const keyboard = useKeyboardHeight();
 
   return (
     <View style={styles.screen}>
@@ -28,13 +30,14 @@ export function SectionFrame({ title, children }: { title: string; children: Rea
       <ScrollView
         contentContainerStyle={{
           paddingTop: space.sm,
-          paddingBottom: insets.bottom + space.xl,
+          // Room for the keyboard, so the name, saint and backup fields can scroll above it.
+          paddingBottom: insets.bottom + space.xl + keyboard,
           paddingHorizontal: space.lg,
         }}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title} accessibilityRole="header">
+        <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
           {title}
         </Text>
         {children}

@@ -112,6 +112,9 @@ export function ScrollTopButton() {
   return (
     <Animated.View
       pointerEvents={visible ? 'box-none' : 'none'}
+      // Invisible means invisible to TalkBack too: no phantom "Back to top" stop while it is hidden.
+      accessibilityElementsHidden={!visible}
+      importantForAccessibility={visible ? 'auto' : 'no-hide-descendants'}
       style={[
         styles.wrap,
         {

@@ -70,7 +70,7 @@ export function ApkDownloadModal({ apk }: { apk: ApkUpdate }) {
               {percent === null ? (
                 <ActivityIndicator color={theme.accent} style={styles.spinner} />
               ) : (
-                <Text style={styles.percent}>{`${percent}%`}</Text>
+                <Text style={styles.percent} maxFontSizeMultiplier={1.3}>{`${percent}%`}</Text>
               )}
               <View
                 style={styles.track}

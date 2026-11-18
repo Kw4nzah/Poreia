@@ -27,7 +27,7 @@ export function Option({ selected, title, subtitle, onPress }: OptionProps) {
           <Text style={[styles.title, { color: t.ink }]}>{title}</Text>
           {subtitle && <Text style={[styles.subtitle, { color: t.muted }]}>{subtitle}</Text>}
         </View>
-        <View style={[styles.radio, { borderColor: selected ? t.accent : t.line }]}>
+        <View style={[styles.radio, { borderColor: selected ? t.accent : t.outline }]}>
           {selected && <View style={[styles.dot, { backgroundColor: t.accent }]} />}
         </View>
       </View>

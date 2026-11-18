@@ -39,7 +39,13 @@ export function SegmentedControl<T extends string | number>({
             accessibilityLabel={option.accessibilityLabel ?? option.label}
             accessibilityState={{ selected }}
           >
-            <Text style={[styles.text, { color: c.text }, selected && styles.selectedText]}>
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.7}
+              maxFontSizeMultiplier={1.3}
+              style={[styles.text, { color: c.text }, selected && styles.selectedText]}
+            >
               {option.label}
             </Text>
           </Pressable>

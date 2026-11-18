@@ -107,3 +107,21 @@ describe('layoutFor', () => {
     expect(layoutFor(340, 0).wide).toBe(true);
   });
 });
+
+describe('cardLabel', () => {
+  it('says what the wide card shows, and the compact card only what it has', async () => {
+    const { cardLabel, layoutFor } = await import('./FastWidget');
+    const { widgetContentFor } = await import('./content');
+    const { CHURCHES } = await import('../calendar');
+    const content = widgetContentFor({ year: 2026, month: 11, day: 17 }, CHURCHES.greek, 'en', {
+      greekFish: 'unsure',
+    });
+    const wide = cardLabel(content, layoutFor(340, 200));
+    expect(wide).toContain(content.title);
+    expect(wide).toContain(`${content.labels.allowed}: ${content.allowedFoods}`);
+    expect(wide).toContain(`${content.labels.avoided}: ${content.avoidedFoods}`);
+    const compact = cardLabel(content, layoutFor(110, 110));
+    expect(compact).toContain(content.title);
+    expect(compact).not.toContain(content.labels.allowed);
+  });
+});

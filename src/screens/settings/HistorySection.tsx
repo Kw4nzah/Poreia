@@ -3,7 +3,7 @@
 
 import { useRouter } from 'expo-router';
 import { useMemo } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text } from 'react-native';
 import { CHURCHES, gregorianToJdn } from '../../calendar';
 import { periodKey } from '../../report/periods';
 import { listReports } from '../../report/report';
@@ -11,12 +11,13 @@ import { reportHeading } from '../../report/text';
 import { useReportInputs } from '../../report/useReportInputs';
 import { useSettings } from '../../settings/SettingsProvider';
 import { Card, ListRow } from '../../ui/kit';
-import { Theme, space, type, useThemedStyles } from '../../ui/theme';
+import { Theme, space, type, useTheme, useThemedStyles } from '../../ui/theme';
 import { useToday } from '../../ui/useToday';
 
 export function HistorySection() {
   const { settings, messages: m } = useSettings();
   const router = useRouter();
+  const theme = useTheme();
   const styles = useThemedStyles(makeStyles);
   const today = useToday();
   const { done, loaded } = useReportInputs();
@@ -28,7 +29,8 @@ export function HistorySection() {
     [done, settings.churchId, settings.greekFish, todayJdn],
   );
 
-  if (!loaded) return null;
+  // The done days are still being read: a quiet spinner instead of an empty screen.
+  if (!loaded) return <ActivityIndicator color={theme.accent} style={styles.loading} />;
   if (reports.length === 0) return <Text style={styles.empty}>{m.report.empty}</Text>;
 
   return (
@@ -54,6 +56,7 @@ export function HistorySection() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     list: { marginTop: space.lg },
+    loading: { marginTop: space.xl },
     empty: { ...type.body, color: t.muted, marginTop: space.lg },
   });
 }

@@ -30,17 +30,23 @@ export function Dropdown<T extends string>({
         onPress={() => setOpen((v) => !v)}
         style={({ pressed }) => [
           styles.field,
-          { borderColor: open ? t.accent : t.line, backgroundColor: t.surface },
+          { borderColor: open ? t.accent : t.outline, backgroundColor: t.surface },
           pressed && { opacity: 0.85 },
         ]}
         accessibilityRole="button"
         accessibilityLabel={selected ? selected.label : placeholder}
         accessibilityState={{ expanded: open }}
       >
-        <Text style={[styles.value, { color: selected ? t.ink : t.muted }]} numberOfLines={1}>
+        <Text style={[styles.value, { color: selected ? t.ink : t.muted }]} numberOfLines={2}>
           {selected ? selected.label : placeholder}
         </Text>
-        <Text style={[styles.arrow, { color: t.muted }]}>{open ? '▴' : '▾'}</Text>
+        <Text
+          accessibilityElementsHidden
+          importantForAccessibility="no"
+          style={[styles.arrow, { color: t.muted }]}
+        >
+          {open ? '▴' : '▾'}
+        </Text>
       </Pressable>
       {open && (
         <View style={[styles.list, { borderColor: t.line, backgroundColor: t.surface }]}>

@@ -94,7 +94,7 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.md,
       borderRadius: radius.field,
       borderWidth: 1,
-      borderColor: t.line,
+      borderColor: t.outline,
       backgroundColor: t.surface,
       ...type.bodyLarge,
       color: t.ink,

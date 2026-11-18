@@ -10,6 +10,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { Option } from '../ui/Option';
 import { AppTextInput } from '../ui/AppTextInput';
 import { SERIF, Theme, space, useTheme, radius, type, useThemedStyles } from '../ui/theme';
+import { useKeyboardHeight } from '../ui/useKeyboardHeight';
 
 const STEPS = ['language', 'name', 'church'] as const;
 const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
@@ -23,6 +24,7 @@ export function Onboarding() {
   const [stepIndex, setStepIndex] = useState(0);
   const [name, setName] = useState(settings.name);
   const [churchId, setChurchId] = useState<ChurchId>(settings.churchId);
+  const keyboard = useKeyboardHeight();
 
   const step = STEPS[stepIndex];
   const isLast = stepIndex === STEPS.length - 1;
@@ -43,14 +45,20 @@ export function Onboarding() {
       ]}
     >
       <ScrollView
-        contentContainerStyle={styles.content}
+        contentContainerStyle={[styles.content, keyboard > 0 && { paddingBottom: keyboard }]}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.brand}>Poreia</Text>
+        <Text style={styles.brand} maxFontSizeMultiplier={1.3}>
+          Poreia
+        </Text>
         <Text style={styles.tagline}>{m.onboarding.tagline}</Text>
 
-        <View style={styles.dots}>
+        <View
+          style={styles.dots}
+          accessible
+          accessibilityLabel={m.report.page(stepIndex + 1, STEPS.length)}
+        >
           {STEPS.map((id, index) => (
             <View key={id} style={[styles.dot, index <= stepIndex && styles.dotActive]} />
           ))}
@@ -61,7 +69,7 @@ export function Onboarding() {
             <Text style={styles.title} accessibilityRole="header">
               {m.onboarding.languageTitle}
             </Text>
-            <View style={styles.options}>
+            <View style={styles.options} accessibilityRole="radiogroup">
               {LANGUAGES.map((language) => (
                 <Option
                   key={language}
@@ -102,7 +110,7 @@ export function Onboarding() {
               {m.onboarding.churchTitle}
             </Text>
             <Text style={styles.hint}>{m.onboarding.churchHint}</Text>
-            <View style={styles.options}>
+            <View style={styles.options} accessibilityRole="radiogroup">
               {CHURCH_IDS.map((id) => (
                 <Option
                   key={id}
@@ -159,7 +167,7 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.md,
       borderRadius: radius.field,
       borderWidth: 1,
-      borderColor: t.line,
+      borderColor: t.outline,
       backgroundColor: t.surface,
       ...type.bodyLarge,
       color: t.ink,
@@ -184,7 +192,7 @@ function makeStyles(t: Theme) {
       alignItems: 'center',
       justifyContent: 'center',
       borderWidth: 1,
-      borderColor: t.line,
+      borderColor: t.outline,
     },
     secondaryText: { ...type.bodyLarge, color: t.ink },
   });

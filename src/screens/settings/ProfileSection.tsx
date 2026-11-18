@@ -34,7 +34,7 @@ export function ProfileSection() {
       />
 
       <SectionHeader title={m.settings.church} />
-      <View style={styles.options}>
+      <View style={styles.options} accessibilityRole="radiogroup">
         {CHURCH_IDS.map((id) => (
           <Option
             key={id}
@@ -49,7 +49,7 @@ export function ProfileSection() {
       {settings.churchId === 'greek' && (
         <>
           <SectionHeader title={m.settings.fishTitle} hint={m.settings.fishHint} />
-          <View style={styles.options}>
+          <View style={styles.options} accessibilityRole="radiogroup">
             {GREEK_FISH_PRACTICES.map((id) => (
               <Option
                 key={id}
@@ -73,7 +73,7 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.md,
       borderRadius: radius.field,
       borderWidth: 1,
-      borderColor: t.line,
+      borderColor: t.outline,
       backgroundColor: t.surface,
       ...type.bodyLarge,
       color: t.ink,

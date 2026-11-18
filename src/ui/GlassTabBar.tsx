@@ -67,7 +67,7 @@ export function GlassTabBar({
         />
         {/* Keeps the labels readable whatever is behind, and is the whole look if blur is off. */}
         <View style={[StyleSheet.absoluteFill, { backgroundColor: theme.glass }]} />
-        <View style={styles.row}>
+        <View style={styles.row} accessibilityRole="tablist">
           {TABS.map((id) => {
             const active = pathname === `/${id}` || pathname.startsWith(`/${id}/`);
             return (
@@ -95,6 +95,7 @@ export function GlassTabBar({
                     numberOfLines={1}
                     maxFontSizeMultiplier={1.3}
                     adjustsFontSizeToFit
+                    minimumFontScale={0.7}
                     style={[
                       styles.label,
                       { color: active ? theme.accent : theme.muted },
@@ -132,7 +133,8 @@ const styles = StyleSheet.create({
     borderRadius: PILL_RADIUS,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 6,
+    // Narrow: "Настройки" has to fit a quarter of a 320dp bar.
+    paddingHorizontal: 2,
     overflow: 'hidden',
   },
   fill: { borderRadius: PILL_RADIUS },

@@ -71,7 +71,7 @@ export function Settings() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.title} accessibilityRole="header">
+      <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
         {m.settings.title}
       </Text>
 

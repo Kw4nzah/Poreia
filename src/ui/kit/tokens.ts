@@ -48,7 +48,7 @@ export function buttonColors(t: Theme, variant: ButtonVariant): ButtonColors {
     case 'secondary':
       return {
         background: 'transparent',
-        border: t.line,
+        border: t.outline,
         text: t.ink,
         overlay: t.ink,
         overlayOpacity: 0.07,
@@ -118,10 +118,20 @@ export function badgeColors(t: Theme, tone: BadgeTone): BadgeColors {
     return { background: t.background, border: t.line, dot: t.muted, text: t.ink };
   }
   if (tone === 'feast') {
-    return { background: t.feastSurface, border: withAlpha(t.feast, 0.45), dot: t.feast, text: t.ink };
+    return {
+      background: t.feastSurface,
+      border: withAlpha(t.feast, 0.45),
+      dot: t.feast,
+      text: t.ink,
+    };
   }
   const base = tone === 'fast' ? t.accent : tone === 'free' ? t.free : t.warning;
-  return { background: withAlpha(base, 0.14), border: withAlpha(base, 0.4), dot: base, text: t.ink };
+  return {
+    background: withAlpha(base, 0.14),
+    border: withAlpha(base, 0.4),
+    dot: base,
+    text: t.ink,
+  };
 }
 
 export type CardPadding = 'none' | 'md' | 'lg';
@@ -160,7 +170,7 @@ export interface SegmentColors {
 export function segmentColors(t: Theme, selected: boolean): SegmentColors {
   return selected
     ? { background: t.accent, border: t.accent, text: t.onAccent }
-    : { background: 'transparent', border: t.line, text: t.ink };
+    : { background: 'transparent', border: t.outline, text: t.ink };
 }
 
 /** Accessibility state of a control that may be disabled or busy (a busy control is not pressable). */

@@ -83,6 +83,8 @@ export function Button({
               lineHeight: metrics.lineHeight,
               fontWeight: '600',
               textAlign: 'center',
+              // A long Turkish or Russian label wraps inside the button instead of leaving it.
+              flexShrink: 1,
             }}
           >
             {label}

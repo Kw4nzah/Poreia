@@ -301,13 +301,13 @@ function wideBody(
 
   // Badge row under the title: day badge + bar (or the feast / status in their place).
   const badge = progress
-    ? chip(progress.badge, theme.feast, theme.feastSurface)
+    ? chip(progress.badge, theme.feastInk, theme.feastSurface)
     : fasting
       ? chip(content.levelShort, theme.accent, theme.pill)
-      : chip(labels.noFast, theme.free, tint(theme.free, '2E'));
+      : chip(labels.noFast, theme.freeInk, tint(theme.free, '2E'));
   const beside = progress ? (
     feast ? (
-      text(feast, { size: 12, color: theme.feast, bold: true, marginLeft: 8 })
+      text(feast, { size: 12, color: theme.feastInk, bold: true, marginLeft: 8 })
     ) : (
       <FlexWidget style={{ flex: 1, width: 0, marginLeft: 10 }}>
         {progressBar(progress.day, progress.total, theme)}
@@ -344,8 +344,8 @@ function wideBody(
       {[
         column(
           labels.allowed,
-          strokeSvg(theme.free, 14, CHECK, 2.6),
-          theme.free,
+          strokeSvg(theme.freeInk, 14, CHECK, 2.6),
+          theme.freeInk,
           content.allowedFoods,
           theme.ink,
           tight ? 1 : 2,
@@ -371,7 +371,7 @@ function wideBody(
   ) : (
     <FlexWidget style={{ width: 'match_parent' }}>
       {feast
-        ? text(feast, { size: 14, color: theme.feast, bold: true, lh: 20 }, 2)
+        ? text(feast, { size: 14, color: theme.feastInk, bold: true, lh: 20 }, 2)
         : text(content.calmNote, { size: 14, color: theme.ink, lh: 20 }, 2)}
     </FlexWidget>
   );
@@ -407,6 +407,8 @@ function compactBody(
 ): ReactElement[] {
   const { progress, feast, reading, fasting } = content;
   const dot = feast ? theme.feast : theme.free;
+  // The status line is small text: it uses the darker "ink" variant of the dot's colour.
+  const statusColor = feast ? theme.feastInk : theme.freeInk;
   const status = feast ?? (fasting ? content.levelShort : content.labels.noFast);
 
   const top = (
@@ -415,7 +417,7 @@ function compactBody(
         crossBadge(roomy ? 32 : 28, theme),
         <FlexWidget style={{ flex: 1, width: 0 }} />,
         ...(progress && !narrow
-          ? [chip(progress.badgeShort, theme.feast, theme.feastSurface)]
+          ? [chip(progress.badgeShort, theme.feastInk, theme.feastSurface)]
           : []),
       ]}
     </FlexWidget>
@@ -455,7 +457,7 @@ function compactBody(
                     }}
                   />,
                   <FlexWidget style={{ flex: 1, width: 0, marginLeft: 6 }}>
-                    {text(status, { size: 12, color: dot, bold: true })}
+                    {text(status, { size: 12, color: statusColor, bold: true })}
                   </FlexWidget>,
                   ...(progress
                     ? [
@@ -508,6 +510,23 @@ function compactBody(
 
 // --- root --------------------------------------------------------------------------------
 
+/**
+ * What a screen reader says for the whole card. The card is one tap target, so TalkBack reads this
+ * and not the texts inside it: it carries everything the card shows (the food lists only where the
+ * layout has them).
+ */
+export function cardLabel(content: WidgetContent, layout: WidgetLayout): string {
+  const parts = [content.title, content.status, content.feast, content.progress?.text];
+  if (layout.wide && content.fasting) {
+    parts.push(
+      `${content.labels.allowed}: ${content.allowedFoods}`,
+      `${content.labels.avoided}: ${content.avoidedFoods}`,
+    );
+  }
+  parts.push(content.reading);
+  return parts.filter(Boolean).join('. ');
+}
+
 export function fastWidget(
   content: WidgetContent,
   theme: Theme,
@@ -517,7 +536,7 @@ export function fastWidget(
   const card = (
     <FlexWidget
       clickAction="OPEN_APP"
-      accessibilityLabel={`${content.title}. ${content.status}${content.feast ? `. ${content.feast}` : ''}`}
+      accessibilityLabel={cardLabel(content, layout)}
       style={{
         ...(layout.wide
           ? { height: 'match_parent' as const, width: 'match_parent' as const }

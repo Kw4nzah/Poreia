@@ -82,7 +82,7 @@ export function Readings() {
     >
       <View style={styles.header}>
         <View style={styles.headerText}>
-          <Text style={styles.title} accessibilityRole="header">
+          <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
             {m.tabs.readings}
           </Text>
           <Text style={styles.date}>{formatDate(m, today)}</Text>
@@ -191,11 +191,22 @@ export function Readings() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    header: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' },
-    headerText: { flex: 1 },
+    // Wraps: on a narrow phone (or a long Russian "Поделиться") the size buttons drop to a second line.
+    header: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+    },
+    headerText: { flexGrow: 1, flexShrink: 1, minWidth: 110 },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
     date: { ...type.body, color: t.muted, marginTop: space.xs },
-    sizes: { flexDirection: 'row', alignItems: 'center', marginRight: -space.sm },
+    sizes: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginLeft: 'auto',
+      marginRight: -space.sm,
+    },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },
     sizeDisabled: { color: t.line },

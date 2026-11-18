@@ -9,9 +9,10 @@ import { Theme, space, type, useThemedStyles } from './theme';
 
 export function ReadingLink({ reading }: { reading: Reading }) {
   const { settings, messages: m } = useSettings();
+  // Hooks first: the early return below must not change how many hooks run.
+  const styles = useThemedStyles(makeStyles);
   const url = readingUrl(reading, settings.language);
   if (!url) return null;
-  const styles = useThemedStyles(makeStyles);
   return (
     <Pressable
       onPress={() => void openExternalUrl(url)}

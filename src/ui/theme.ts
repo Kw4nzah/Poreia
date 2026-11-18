@@ -13,8 +13,14 @@ export interface Theme {
   onAccent: string;
   /** Olive: fast-free days and permitted foods. */
   free: string;
+  /** Border of fields and outlined controls: 3:1 against the page and cards (`line` is only a hairline). */
+  outline: string;
+  /** Olive for small text (4.5:1); `free` itself is for fills, marks and large text. */
+  freeInk: string;
   /** Gold: feasts. */
   feast: string;
+  /** Gold for small text on `feastSurface` and cards (4.5:1); `feast` itself is for fills and marks. */
+  feastInk: string;
   feastSurface: string;
   /** Cautions: a restrained terracotta. */
   warning: string;
@@ -41,8 +47,11 @@ const light: Theme = {
   muted: '#625B52',
   accent: '#7A1F2B',
   onAccent: '#FFF8F0',
+  outline: '#8C8174',
   free: '#78866B',
+  freeInk: '#57644C',
   feast: '#9E7835',
+  feastInk: '#7D5B1C',
   feastSurface: '#F3E6C4',
   warning: '#9C5740',
   danger: '#8E2A2A',
@@ -60,8 +69,11 @@ const dark: Theme = {
   muted: '#C4BDB5',
   accent: '#E0959D',
   onAccent: '#2A0E13',
+  outline: '#7A6D65',
   free: '#A9B99A',
+  freeInk: '#A9B99A',
   feast: '#D7B978',
+  feastInk: '#D7B978',
   feastSurface: '#3A2E14',
   warning: '#D9A088',
   danger: '#E59A9A',

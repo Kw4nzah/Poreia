@@ -74,16 +74,22 @@ describe.each([
   ['light', themes.light],
   ['dark', themes.dark],
 ])('%s theme', (_name, t) => {
-  it.each(['primary', 'danger'] as const)('filled %s button text has contrast >= 4.5', (variant) => {
-    const c = buttonColors(t, variant);
-    expect(contrast(c.text, c.background)).toBeGreaterThanOrEqual(4.5);
-  });
+  it.each(['primary', 'danger'] as const)(
+    'filled %s button text has contrast >= 4.5',
+    (variant) => {
+      const c = buttonColors(t, variant);
+      expect(contrast(c.text, c.background)).toBeGreaterThanOrEqual(4.5);
+    },
+  );
 
-  it.each(['secondary', 'ghost'] as const)('%s button text reads on surface and background', (variant) => {
-    const c = buttonColors(t, variant);
-    expect(contrast(c.text, t.surface)).toBeGreaterThanOrEqual(4.5);
-    expect(contrast(c.text, t.background)).toBeGreaterThanOrEqual(4.5);
-  });
+  it.each(['secondary', 'ghost'] as const)(
+    '%s button text reads on surface and background',
+    (variant) => {
+      const c = buttonColors(t, variant);
+      expect(contrast(c.text, t.surface)).toBeGreaterThanOrEqual(4.5);
+      expect(contrast(c.text, t.background)).toBeGreaterThanOrEqual(4.5);
+    },
+  );
 
   it.each(VARIANTS)('%s pressed overlay is a subtle one', (variant) => {
     const c = buttonColors(t, variant);
@@ -97,16 +103,19 @@ describe.each([
     expect(luminance(pressed)).toBeLessThan(luminance(c.background));
   });
 
-  it.each(TONES)('%s badge text has contrast >= 4.5 on its fill, over surface and background', (tone) => {
-    const c = badgeColors(t, tone);
-    for (const base of [t.surface, t.background]) {
-      expect(contrast(c.text, over(c.background, base))).toBeGreaterThanOrEqual(4.5);
-    }
-  });
+  it.each(TONES)(
+    '%s badge text has contrast >= 4.5 on its fill, over surface and background',
+    (tone) => {
+      const c = badgeColors(t, tone);
+      for (const base of [t.surface, t.background]) {
+        expect(contrast(c.text, over(c.background, base))).toBeGreaterThanOrEqual(4.5);
+      }
+    },
+  );
 
   it('selected segment is the accent fill, the others are outlined', () => {
     expect(segmentColors(t, true)).toMatchObject({ background: t.accent, text: t.onAccent });
-    expect(segmentColors(t, false)).toMatchObject({ background: 'transparent', border: t.line });
+    expect(segmentColors(t, false)).toMatchObject({ background: 'transparent', border: t.outline });
     expect(contrast(segmentColors(t, true).text, t.accent)).toBeGreaterThanOrEqual(4.5);
   });
 

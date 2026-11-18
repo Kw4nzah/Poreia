@@ -66,7 +66,7 @@ export function PrayerReader({ id }: { id: PrayerId }) {
           <View style={styles.sizes}>
             <Pressable
               onPress={() => update({ prayerReadingMode: true })}
-              style={styles.sizeButton}
+              style={styles.modeButton}
               accessibilityRole="button"
               accessibilityLabel={m.prayers.readingMode}
             >
@@ -107,7 +107,7 @@ export function PrayerReader({ id }: { id: PrayerId }) {
         ]}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={[styles.title, align]} accessibilityRole="header">
+        <Text style={[styles.title, align]} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
           {prayer.title}
         </Text>
         <View style={[styles.rule, calm && styles.ruleCentered]} />
@@ -182,9 +182,16 @@ function makeStyles(t: Theme) {
       justifyContent: 'space-between',
       paddingHorizontal: space.lg,
     },
-    back: { minHeight: 44, justifyContent: 'center' },
+    back: { minHeight: 44, justifyContent: 'center', flexShrink: 1 },
     backText: { ...type.body, color: t.accent },
-    sizes: { flexDirection: 'row' },
+    sizes: { flexDirection: 'row', flexShrink: 1, justifyContent: 'flex-end' },
+    // "Режим чтения" wraps instead of pushing the size buttons off a narrow screen.
+    modeButton: {
+      minHeight: 44,
+      flexShrink: 1,
+      justifyContent: 'center',
+      paddingHorizontal: space.sm,
+    },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },
     sizeDisabled: { color: t.line },

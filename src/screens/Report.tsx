@@ -7,10 +7,12 @@ import { useRouter } from 'expo-router';
 import { ComponentRef, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
+  ActivityIndicator,
   Animated,
   Easing,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  PixelRatio,
   Pressable,
   ScrollView,
   Share,
@@ -22,6 +24,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, gregorianToJdn } from '../calendar';
 import type { Messages } from '../i18n';
+import { titleFontSize, TITLE_MAX_FONT_SCALE } from '../report/layout';
 import { PagePalette, reportPalettes } from '../report/palette';
 import { parsePeriodKey } from '../report/periods';
 import { PeriodReport, ReportDayState, reportFor } from '../report/report';
@@ -139,11 +142,16 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
           label={m.report.close}
           onPress={close}
         />
-        {loaded && (
+        {loaded ? (
           <View style={[styles.page, { width, paddingTop: insets.top + CLOSE_SIZE + space.lg }]}>
             <Text style={[styles.body, { color: palettes.wine.text }]} accessibilityRole="alert">
               {m.report.notFound}
             </Text>
+          </View>
+        ) : (
+          // The done days are still being read: a spinner instead of a blank screen.
+          <View style={styles.loading}>
+            <ActivityIndicator color={palettes.wine.text} />
           </View>
         )}
       </View>
@@ -151,7 +159,7 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
   }
 
   const content = [
-    <TitlePage key="title" report={report} m={m} palette={palettes.wine} />,
+    <TitlePage key="title" report={report} m={m} palette={palettes.wine} width={width} />,
     <CountPage key="count" report={report} m={m} palette={palettes.gold} />,
     <WeeksPage key="weeks" report={report} m={m} palette={palettes.wine} />,
     <GridPage key="grid" report={report} m={m} palette={palettes.gold} width={width} />,
@@ -159,6 +167,7 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
       key="closing"
       m={m}
       palette={palettes.wine}
+      width={width}
       onShare={() => void share()}
       onClose={close}
     />,
@@ -167,6 +176,8 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
   return (
     <View style={[styles.screen, { backgroundColor: palette.background }]}>
       <StatusBar style={palette.statusBar} />
+      {/* First in the tree so a screen reader reaches it first; zIndex keeps it above the pages. */}
+      <CloseButton palette={palette} top={insets.top} label={m.report.close} onPress={close} />
       <Animated.ScrollView
         ref={scroller}
         horizontal
@@ -211,9 +222,16 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
                 },
               ]}
             >
-              <Animated.View style={{ opacity, transform: [{ translateY }] }}>
-                {children}
-              </Animated.View>
+              {/* Scrolls vertically only when a large system font makes the page taller than the screen. */}
+              <ScrollView
+                style={styles.pageScroll}
+                contentContainerStyle={styles.pageContent}
+                showsVerticalScrollIndicator={false}
+              >
+                <Animated.View style={{ opacity, transform: [{ translateY }] }}>
+                  {children}
+                </Animated.View>
+              </ScrollView>
             </View>
           );
         })}
@@ -248,8 +266,6 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
           />
         </View>
       )}
-
-      <CloseButton palette={palette} top={insets.top} label={m.report.close} onPress={close} />
 
       <View style={[styles.dots, { bottom: insets.bottom }]}>
         {Array.from({ length: PAGE_COUNT }, (_, index) => (
@@ -310,7 +326,14 @@ interface PageProps {
   palette: PagePalette;
 }
 
-function TitlePage({ report, m, palette }: PageProps) {
+/** Style of a big title sized so its longest word fits the page width (no mid-word breaks). */
+function fittedTitle(text: string, width: number) {
+  const size = titleFontSize(text, width - space.lg * 2, PixelRatio.getFontScale());
+  return { fontSize: size, lineHeight: Math.round(size * 1.18) };
+}
+
+function TitlePage({ report, m, palette, width }: PageProps & { width: number }) {
+  const heading = reportHeading(report, m);
   return (
     <View>
       <FadeIn index={0}>
@@ -319,10 +342,10 @@ function TitlePage({ report, m, palette }: PageProps) {
       <FadeIn index={1}>
         <Text
           accessibilityRole="header"
-          maxFontSizeMultiplier={1.2}
-          style={[styles.title, { color: palette.text }]}
+          maxFontSizeMultiplier={TITLE_MAX_FONT_SCALE}
+          style={[styles.title, fittedTitle(heading, width), { color: palette.text }]}
         >
-          {reportHeading(report, m)}
+          {heading}
         </Text>
       </FadeIn>
       <FadeIn index={2}>
@@ -374,7 +397,11 @@ function CountPage({ report, m, palette }: PageProps) {
 function WeeksPage({ report, m, palette }: PageProps) {
   return (
     <View>
-      <Text accessibilityRole="header" style={[styles.pageTitle, { color: palette.text }]}>
+      <Text
+        accessibilityRole="header"
+        maxFontSizeMultiplier={1.4}
+        style={[styles.pageTitle, { color: palette.text }]}
+      >
         {m.report.weeksTitle}
       </Text>
       <View style={styles.weeks}>
@@ -388,7 +415,10 @@ function WeeksPage({ report, m, palette }: PageProps) {
               accessible
               accessibilityLabel={`${m.report.week(week.index)}: ${value}`}
             >
-              <Text style={[styles.weekLabel, { color: palette.muted }]} numberOfLines={1}>
+              <Text
+                style={[styles.weekLabel, { color: palette.muted }]}
+                maxFontSizeMultiplier={1.3}
+              >
                 {m.report.week(week.index)}
               </Text>
               <View style={[styles.weekTrack, { backgroundColor: palette.track }]}>
@@ -399,7 +429,9 @@ function WeeksPage({ report, m, palette }: PageProps) {
                   ]}
                 />
               </View>
-              <Text style={[styles.weekValue, { color: palette.text }]}>{value}</Text>
+              <Text style={[styles.weekValue, { color: palette.text }]} maxFontSizeMultiplier={1.3}>
+                {value}
+              </Text>
             </View>
           );
         })}
@@ -487,7 +519,11 @@ function GridPage({ report, m, palette, width }: PageProps & { width: number }) 
 
   return (
     <View>
-      <Text accessibilityRole="header" style={[styles.pageTitle, { color: palette.text }]}>
+      <Text
+        accessibilityRole="header"
+        maxFontSizeMultiplier={1.4}
+        style={[styles.pageTitle, { color: palette.text }]}
+      >
         {m.report.gridTitle}
       </Text>
       <View
@@ -529,11 +565,13 @@ function GridPage({ report, m, palette, width }: PageProps & { width: number }) 
 function ClosingPage({
   m,
   palette,
+  width,
   onShare,
   onClose,
 }: {
   m: Messages;
   palette: PagePalette;
+  width: number;
   onShare: () => void;
   onClose: () => void;
 }) {
@@ -560,8 +598,8 @@ function ClosingPage({
     <View>
       <Text
         accessibilityRole="header"
-        maxFontSizeMultiplier={1.2}
-        style={[styles.title, { color: palette.text }]}
+        maxFontSizeMultiplier={TITLE_MAX_FONT_SCALE}
+        style={[styles.title, fittedTitle(m.report.closingTitle, width), { color: palette.text }]}
       >
         {m.report.closingTitle}
       </Text>
@@ -579,8 +617,12 @@ function ClosingPage({
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   page: { justifyContent: 'center', paddingHorizontal: space.lg },
+  pageScroll: { flex: 1 },
+  pageContent: { flexGrow: 1, justifyContent: 'center' },
+  loading: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   close: {
     position: 'absolute',
+    zIndex: 2,
     right: space.sm,
     width: CLOSE_SIZE,
     height: CLOSE_SIZE,
@@ -621,10 +663,12 @@ const styles = StyleSheet.create({
 
   weeks: { marginTop: space.lg, gap: space.md },
   weekRow: { flexDirection: 'row', alignItems: 'center', gap: space.smd },
-  weekLabel: { width: 84, fontSize: 15, lineHeight: 22 },
-  weekTrack: { flex: 1, height: 14, borderRadius: 7, overflow: 'hidden' },
+  // Minimum widths, not fixed ones: "Неделя 10" and "10/12" grow with the system font size.
+  weekLabel: { minWidth: 84, flexShrink: 0, fontSize: 15, lineHeight: 22 },
+  weekTrack: { flex: 1, minWidth: 24, height: 14, borderRadius: 7, overflow: 'hidden' },
   weekValue: {
-    width: 48,
+    minWidth: 48,
+    flexShrink: 0,
     textAlign: 'right',
     fontSize: 16,
     lineHeight: 22,
@@ -647,6 +691,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: space.lg,
+    paddingVertical: space.sm,
   },
-  buttonText: { fontSize: 16, lineHeight: 24, fontWeight: '600' },
+  buttonText: { fontSize: 16, lineHeight: 24, fontWeight: '600', textAlign: 'center' },
 });

@@ -78,7 +78,15 @@ export function Today() {
       <Text style={styles.greeting} accessibilityRole="header">
         {m.today.greeting(settings.name)}
       </Text>
-      <Text style={styles.weekday}>{m.weekdays[info.weekday]}</Text>
+      <Text
+        style={styles.weekday}
+        numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.6}
+        maxFontSizeMultiplier={1.3}
+      >
+        {m.weekdays[info.weekday]}
+      </Text>
       <Text style={styles.date}>{formatDate(m, today)}</Text>
       {churchDateDiffers && (
         <Text style={styles.churchDate}>
@@ -125,7 +133,7 @@ export function Today() {
                         styles.mark,
                         allowed
                           ? { backgroundColor: theme.free, borderColor: theme.free }
-                          : { borderColor: theme.line },
+                          : { borderColor: theme.outline },
                       ]}
                     >
                       <Text
@@ -334,7 +342,7 @@ function makeStyles(t: Theme) {
     churchDate: { ...type.label, color: t.muted, marginTop: space.xs },
 
     gap: { marginTop: space.lg },
-    feastLabel: { ...type.caption, color: t.feast },
+    feastLabel: { ...type.caption, color: t.feastInk },
     feastName: { fontFamily: SERIF, ...type.title3, color: t.ink, marginTop: space.xs },
 
     card: { marginTop: space.md },

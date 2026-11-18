@@ -19,7 +19,8 @@ export function AppSwitch({
       value={value}
       onValueChange={onValueChange}
       trackColor={{ false: theme.line, true: theme.accent }}
-      thumbColor={value ? '#FFF8F0' : theme.muted}
+      // onAccent is cream in light and dark brown in dark: either way 3:1 or more on the track.
+      thumbColor={value ? theme.onAccent : theme.muted}
       ios_backgroundColor={theme.line}
       accessibilityLabel={label}
     />

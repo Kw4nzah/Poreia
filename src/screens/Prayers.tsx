@@ -39,7 +39,7 @@ export function Prayers() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.title} accessibilityRole="header">
+      <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
         {m.prayers.title}
       </Text>
 
@@ -53,7 +53,11 @@ export function Prayers() {
         autoCorrect={false}
         style={styles.search}
       />
-      {matches.size === 0 && <Text style={styles.empty}>{m.prayers.noResults}</Text>}
+      {matches.size === 0 && (
+        <Text style={styles.empty} accessibilityLiveRegion="polite">
+          {m.prayers.noResults}
+        </Text>
+      )}
 
       {PRAYER_GROUPS.map((group, groupIndex) => {
         const visible = group.prayers.filter((id) => matches.has(id));
@@ -89,7 +93,7 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.md,
       borderRadius: radius.field,
       borderWidth: 1,
-      borderColor: t.line,
+      borderColor: t.outline,
       backgroundColor: t.surface,
       color: t.ink,
       ...type.body,

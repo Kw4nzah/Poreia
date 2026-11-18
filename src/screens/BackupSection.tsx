@@ -125,7 +125,7 @@ function makeStyles(t: Theme) {
       padding: space.md,
       borderRadius: radius.field,
       borderWidth: 1,
-      borderColor: t.line,
+      borderColor: t.outline,
       backgroundColor: t.surface,
       ...type.body,
       color: t.ink,

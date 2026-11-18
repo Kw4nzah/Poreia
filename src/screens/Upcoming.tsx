@@ -39,7 +39,7 @@ export function Upcoming() {
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title} accessibilityRole="header">
+        <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
           {m.upcoming.title}
         </Text>
         <Text style={styles.hint}>{m.upcoming.hint}</Text>

@@ -36,7 +36,9 @@ const styles = StyleSheet.create({
     paddingVertical: space.xs,
     borderRadius: radius.pill,
     borderWidth: 1,
+    // A long label wraps inside the pill instead of running past the card.
+    maxWidth: '100%',
   },
-  dot: { width: 8, height: 8, borderRadius: 4 },
-  text: { ...type.caption, fontWeight: '600' },
+  dot: { width: 8, height: 8, borderRadius: 4, flexShrink: 0 },
+  text: { ...type.caption, fontWeight: '600', flexShrink: 1 },
 });

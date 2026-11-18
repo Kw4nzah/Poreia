@@ -10,7 +10,7 @@ export function LanguageSection() {
   const { settings, update } = useSettings();
 
   return (
-    <View style={styles.options}>
+    <View style={styles.options} accessibilityRole="radiogroup">
       {LANGUAGES.map((language) => (
         <Option
           key={language}

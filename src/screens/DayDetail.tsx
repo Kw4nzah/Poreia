@@ -129,7 +129,7 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
             styles.mark,
             ok
               ? { backgroundColor: theme.free, borderColor: theme.free }
-              : { borderColor: theme.line },
+              : { borderColor: theme.outline },
           ]}
         >
           <Text
@@ -156,7 +156,14 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.weekday} accessibilityRole="header">
+        <Text
+          style={styles.weekday}
+          accessibilityRole="header"
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={0.6}
+          maxFontSizeMultiplier={1.3}
+        >
           {m.weekdays[info.weekday]}
         </Text>
         <Text style={styles.date}>{formatDate(m, date)}</Text>
@@ -309,7 +316,7 @@ function makeStyles(t: Theme) {
     churchDate: { ...type.label, color: t.muted, marginTop: space.xs },
 
     gap: { marginTop: space.lg },
-    feastLabel: { ...type.caption, color: t.feast },
+    feastLabel: { ...type.caption, color: t.feastInk },
     feastName: { fontFamily: SERIF, ...type.title3, color: t.ink, marginTop: space.xs },
 
     card: { marginTop: space.md },
