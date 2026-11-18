@@ -92,6 +92,48 @@ describe('fast widget tree', () => {
   });
 });
 
+describe('widget fonts', () => {
+  it('only the title is serif, in both layouts, and the font is a plugin-bundled file', async () => {
+    const { buildWidgetTree } =
+      await import('react-native-android-widget/src/api/build-widget-tree');
+    const { buildFastWidget, WIDGET_SERIF } = await import('./FastWidget');
+    const { default: app } = await import('../../app.json');
+    const plugin = app.expo.plugins.find(
+      (p) => Array.isArray(p) && p[0] === 'react-native-android-widget',
+    ) as [string, { fonts: string[] }];
+    expect(plugin[1].fonts).toHaveLength(1);
+    // The library looks the font up by file name without the extension.
+    expect(plugin[1].fonts[0].split('/').pop()).toBe(`${WIDGET_SERIF}.ttf`);
+
+    interface Node {
+      props?: { text?: string; fontFamily?: string };
+      children?: Node[];
+    }
+    const serifTexts = (tree: Node) => {
+      const out: string[] = [];
+      const walk = (node: Node) => {
+        if (node.props?.fontFamily === WIDGET_SERIF) out.push(node.props.text ?? '');
+        (node.children ?? []).forEach(walk);
+      };
+      walk(tree);
+      return out;
+    };
+    const settings = { language: 'tr', churchId: 'greek', greekFish: 'unsure' } as const;
+    for (const size of [
+      { width: 340, height: 200 },
+      { width: 170, height: 170 },
+      { width: 110, height: 110 },
+    ]) {
+      const { light, dark } = buildFastWidget(settings, size, new Date(2026, 10, 17), false);
+      for (const element of [light, dark]) {
+        const found = serifTexts(buildWidgetTree(element) as Node);
+        expect(found).toHaveLength(1);
+        expect(found[0].length).toBeGreaterThan(3);
+      }
+    }
+  });
+});
+
 describe('layoutFor', () => {
   it('picks wide for a roomy 4x2, compact otherwise', async () => {
     const { layoutFor } = await import('./FastWidget');

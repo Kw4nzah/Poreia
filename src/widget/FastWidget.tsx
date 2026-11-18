@@ -11,9 +11,10 @@
 //                   "allowed / avoided"; reading reference and the fasting button.
 //  - compact (2x2): cross and day badges, title, status with percent, progress bar, reading and a
 //                   round fasting button.
-// Titles would be serif in the design, but the library only loads fonts bundled as native
-// assets (a native change), so titles are bold sans. Every text has a line limit and END
-// truncation, so a long Turkish or Russian string shortens instead of pushing the layout around.
+// Titles are serif: the library only loads fonts bundled as native assets, so Noto Serif Bold
+// (the face the app's SERIF resolves to) is shipped through the plugin's `fonts` option in app.json.
+// Small text stays sans. Every text has a line limit and END truncation, so a long Turkish or
+// Russian string shortens instead of pushing the layout around.
 
 import type { ReactElement } from 'react';
 import { FlexWidget, SvgWidget, TextWidget } from 'react-native-android-widget';
@@ -38,6 +39,13 @@ const DENSE_BELOW_HEIGHT_DP = 182;
 const ROOMY_FROM_HEIGHT_DP = 150;
 /** Below this width the compact layout leaves out the day badge. */
 const NARROW_BELOW_WIDTH_DP = 130;
+
+/**
+ * Widget title font: the file name (without extension) of assets/fonts/NotoSerif-Bold.ttf, which
+ * the react-native-android-widget plugin copies into the app's native assets. A name the app does
+ * not carry falls back to the system sans, so a missing font only costs the look.
+ */
+export const WIDGET_SERIF = 'NotoSerif-Bold';
 
 const RADIUS = 24;
 const BAR = 6;
@@ -100,6 +108,8 @@ interface TextStyle {
   color: string;
   bold?: boolean;
   italic?: boolean;
+  /** Titles: the bundled serif (bold). */
+  serif?: boolean;
   /** Line height; defaults to the size plus 4. */
   lh?: number;
   marginLeft?: number;
@@ -118,6 +128,7 @@ function text(value: string, style: TextStyle, maxLines = 1) {
         // Fixed line height keeps the vertical rhythm the same in every language.
         lineHeight: style.lh ?? style.size + 4,
         color: hex(style.color),
+        ...(style.serif ? { fontFamily: WIDGET_SERIF } : {}),
         ...(style.bold ? { fontWeight: 'bold' as const } : {}),
         ...(style.italic ? { fontStyle: 'italic' as const } : {}),
         ...(style.marginLeft ? { marginLeft: style.marginLeft } : {}),
@@ -320,7 +331,7 @@ function wideBody(
       {[
         <FlexWidget style={{ flex: 1, width: 0 }}>
           {[
-            text(content.title, { size: 18, color: theme.ink, bold: true, lh: 22 }),
+            text(content.title, { size: 18, color: theme.ink, bold: true, serif: true, lh: 22 }),
             <FlexWidget
               style={{
                 flexDirection: 'row',
@@ -432,6 +443,7 @@ function compactBody(
             size: roomy ? 17 : 15,
             color: theme.ink,
             bold: true,
+            serif: true,
             lh: roomy ? 21 : 19,
             marginTop: roomy ? 6 : 4,
           },

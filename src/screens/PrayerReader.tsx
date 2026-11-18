@@ -1,6 +1,5 @@
 // One prayer as a plain reading page, with an adjustable text size and a calm reading mode
-// (large, centred text and no controls). The screen is not kept awake: that needs a native module
-// (expo-keep-awake), which this app does not include.
+// (large, centred text and no controls). The screen stays on only while reading mode is on.
 
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
@@ -9,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_TEXT_SIZES, PrayerId, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
+import { holdScreenAwake } from './keepAwake';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
@@ -44,6 +44,12 @@ export function PrayerReader({ id }: { id: PrayerId }) {
     });
     return () => subscription.remove();
   }, [calm, update]);
+
+  // Reading mode keeps the screen on; leaving it (or the page) gives that back.
+  useEffect(() => {
+    if (!calm) return;
+    return holdScreenAwake();
+  }, [calm]);
 
   function resize(step: -1 | 1) {
     const next = size + step;

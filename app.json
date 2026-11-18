@@ -63,6 +63,7 @@
       [
         "react-native-android-widget",
         {
+          "fonts": ["./assets/fonts/NotoSerif-Bold.ttf"],
           "widgets": [
             {
               "name": "PoreiaFast",
