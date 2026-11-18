@@ -11,6 +11,9 @@ export interface Theme {
   /** Wine red: fasting days, primary actions. */
   accent: string;
   onAccent: string;
+  /** Fill of primary buttons and selected segments: wine in both themes. */
+  action: string;
+  onAction: string;
   /** Olive: fast-free days and permitted foods. */
   free: string;
   /** Gold: feasts. */
@@ -20,10 +23,6 @@ export interface Theme {
   warning: string;
   /** Errors: a deep red. */
   danger: string;
-  /** Translucent surface of the floating tab bar (shows what scrolls under it). */
-  glass: string;
-  /** Hairline light edge of glass surfaces. */
-  glassEdge: string;
   /** Fill of the selected tab in the bar. */
   pill: string;
 }
@@ -41,13 +40,13 @@ const light: Theme = {
   muted: '#625B52',
   accent: '#7A1F2B',
   onAccent: '#FFF8F0',
+  action: '#7A1F2B',
+  onAction: '#FFF8F0',
   free: '#78866B',
   feast: '#9E7835',
   feastSurface: '#F3E6C4',
   warning: '#9C5740',
   danger: '#8E2A2A',
-  glass: '#FFFCF68C',
-  glassEdge: '#FFFFFFB3',
   pill: '#7A1F2B1F',
 };
 
@@ -60,13 +59,15 @@ const dark: Theme = {
   muted: '#C4BDB5',
   accent: '#E0959D',
   onAccent: '#2A0E13',
+  // The light pink accent is for text and marks on dark; a filled button that size reads as a
+  // pink slab, so fills keep the wine.
+  action: '#8E2A38',
+  onAction: '#FFF8F0',
   free: '#A9B99A',
   feast: '#D7B978',
   feastSurface: '#3A2E14',
   warning: '#D9A088',
   danger: '#E59A9A',
-  glass: '#211A178C',
-  glassEdge: '#FFFFFF2E',
   pill: '#E0959D2B',
 };
 
@@ -86,8 +87,15 @@ export function useThemedStyles<T>(make: (theme: Theme) => T): T {
 /** System serif (Noto Serif on Android) for titles; covers Latin and Cyrillic. */
 export const SERIF = 'serif';
 
-/** Corner radii: cards and panels are large and soft, fields a step smaller, pills fully round. */
-export const radius = { card: 24, field: 16, pill: 999 } as const;
+/**
+ * Corner radii by size: cards, then fields and buttons a step smaller, then small tags. A shape
+ * nested in another takes the outer radius minus the padding between them. `pill` is for round
+ * things only (switch, radio).
+ */
+export const radius = { card: 16, field: 12, tag: 6, pill: 999 } as const;
+
+/** Widest the app's column gets; on tablets and wide windows it is centred. */
+export const MAX_CONTENT_WIDTH = 560;
 
 export const space = { xs: 4, sm: 8, smd: 12, md: 16, lg: 24, xl: 32 } as const;
 

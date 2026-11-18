@@ -5,7 +5,7 @@ import { DailyNotifications } from '../notifications/DailyNotifications';
 import { SettingsProvider } from '../settings/SettingsProvider';
 import { ErrorBoundary } from '../ui/ErrorBoundary';
 import { StatusBarBackground } from '../ui/StatusBarBackground';
-import { useTheme } from '../ui/theme';
+import { MAX_CONTENT_WIDTH, useTheme } from '../ui/theme';
 import { WidgetSync } from '../widget/WidgetSync';
 
 export default function RootLayout() {
@@ -18,6 +18,8 @@ export default function RootLayout() {
         <SettingsProvider>
           <DailyNotifications />
           <WidgetSync />
+          {/* One phone-width column, centred on tablets and wide windows. */}
+          <View style={{ flex: 1, width: '100%', maxWidth: MAX_CONTENT_WIDTH, alignSelf: 'center' }}>
           <Stack
             screenOptions={{
               headerShown: false,
@@ -25,6 +27,7 @@ export default function RootLayout() {
               contentStyle: { backgroundColor: theme.background },
             }}
           />
+          </View>
         </SettingsProvider>
       </ErrorBoundary>
       <StatusBarBackground />

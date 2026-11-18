@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Icon } from '../Icon';
 import { SERIF, space, type, useTheme } from '../theme';
 import { Divider } from './Divider';
 
@@ -56,9 +57,7 @@ export function ListRow({
       </View>
       {trailing ??
         (pressable && !hideArrow && (
-          <Text accessibilityElementsHidden importantForAccessibility="no" style={[styles.arrow, { color: t.muted }]}>
-            ›
-          </Text>
+          <Icon name="chevron-right" color={t.muted} />
         ))}
     </View>
   );
@@ -93,5 +92,4 @@ const styles = StyleSheet.create({
   title: { ...type.bodyLarge },
   serifTitle: { fontFamily: SERIF, ...type.headline },
   subtitle: { ...type.label, marginTop: space.xs },
-  arrow: { ...type.title3 },
 });

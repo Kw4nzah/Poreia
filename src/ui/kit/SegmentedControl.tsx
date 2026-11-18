@@ -22,7 +22,11 @@ export function SegmentedControl<T extends string | number>({
 }) {
   const t = useTheme();
   return (
-    <View style={styles.row} accessibilityRole="radiogroup" accessibilityLabel={accessibilityLabel}>
+    <View
+      style={[styles.track, { backgroundColor: t.background, borderColor: t.line }]}
+      accessibilityRole="radiogroup"
+      accessibilityLabel={accessibilityLabel}
+    >
       {options.map((option) => {
         const selected = option.value === value;
         const c = segmentColors(t, selected);
@@ -33,7 +37,7 @@ export function SegmentedControl<T extends string | number>({
             style={({ pressed }) => [
               styles.segment,
               { backgroundColor: c.background, borderColor: c.border },
-              pressed && !selected && { backgroundColor: t.background },
+              pressed && !selected && { backgroundColor: t.line },
             ]}
             accessibilityRole="radio"
             accessibilityLabel={option.accessibilityLabel ?? option.label}
@@ -49,17 +53,27 @@ export function SegmentedControl<T extends string | number>({
   );
 }
 
+/** Space between the track's edge and the segments. */
+const TRACK_INSET = space.xs;
+
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', gap: space.sm },
+  track: {
+    flexDirection: 'row',
+    gap: 2,
+    padding: TRACK_INSET,
+    borderRadius: radius.field,
+    borderWidth: 1,
+  },
   segment: {
     flex: 1,
     minHeight: MIN_TARGET,
     paddingHorizontal: space.xs,
-    borderRadius: radius.field,
+    // Nested radius: the track's radius minus its inset.
+    borderRadius: radius.field - TRACK_INSET,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: { ...type.body, fontVariant: ['tabular-nums'] },
-  selectedText: { fontWeight: '600' },
+  selectedText: { fontWeight: '500' },
 });

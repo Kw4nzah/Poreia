@@ -20,6 +20,8 @@ import { formatDate } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, radius, space, useTheme, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
+import { BackLabel } from '../ui/BackLabel';
+import { Icon } from '../ui/Icon';
 
 /** Width of the level mark under the day number, from light to strict. */
 const MARK_WIDTH: Record<FastLevel, number> = {
@@ -77,7 +79,7 @@ export function MonthCalendar() {
           accessibilityRole="button"
           accessibilityLabel={m.calendar.back}
         >
-          <Text style={styles.backText}>‹ {m.calendar.back}</Text>
+          <BackLabel label={m.calendar.back} />
         </Pressable>
       </View>
 
@@ -95,7 +97,7 @@ export function MonthCalendar() {
             accessibilityRole="button"
             accessibilityLabel={m.calendar.previousMonth}
           >
-            <Text style={styles.arrowText}>‹</Text>
+            <Icon name="chevron-left" color={theme.accent} size={20} />
           </Pressable>
           <Text style={styles.month} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
             {m.months[shown.month - 1]} {shown.year}
@@ -106,7 +108,7 @@ export function MonthCalendar() {
             accessibilityRole="button"
             accessibilityLabel={m.calendar.nextMonth}
           >
-            <Text style={styles.arrowText}>›</Text>
+            <Icon name="chevron-right" color={theme.accent} size={20} />
           </Pressable>
         </View>
 
@@ -211,7 +213,6 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     header: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { fontSize: 16, color: t.accent },
 
     monthRow: {
       flexDirection: 'row',
@@ -229,7 +230,6 @@ function makeStyles(t: Theme) {
       color: t.ink,
     },
     arrow: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
-    arrowText: { fontSize: 28, lineHeight: 32, color: t.accent },
 
     week: { flexDirection: 'row' },
     weekday: {
@@ -249,7 +249,7 @@ function makeStyles(t: Theme) {
       borderColor: 'transparent',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: 3,
+      gap: space.xs,
     },
     dayPicked: { backgroundColor: t.surface, borderColor: t.line },
     dayToday: { borderColor: t.accent },

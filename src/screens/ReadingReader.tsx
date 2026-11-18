@@ -12,6 +12,7 @@ import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
 import { VerseText } from '../ui/VerseText';
+import { BackLabel } from '../ui/BackLabel';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
@@ -52,7 +53,7 @@ export function ReadingReader({ index }: { index: number }) {
           accessibilityRole="button"
           accessibilityLabel={m.readings.title}
         >
-          <Text style={styles.backText}>‹ {m.readings.title}</Text>
+          <BackLabel label={m.readings.title} />
         </Pressable>
         <View style={styles.sizes}>
           <Pressable
@@ -112,7 +113,6 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.lg,
     },
     back: { minHeight: 44, justifyContent: 'center', flexShrink: 1 },
-    backText: { ...type.body, color: t.accent },
     sizes: { flexDirection: 'row' },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },

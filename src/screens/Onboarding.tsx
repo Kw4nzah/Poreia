@@ -172,10 +172,10 @@ function makeStyles(t: Theme) {
       borderRadius: radius.field,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: t.accent,
+      backgroundColor: t.action,
     },
     pressed: { opacity: 0.85 },
-    primaryText: { ...type.bodyLarge, fontWeight: '600', color: t.onAccent, textAlign: 'center' },
+    primaryText: { ...type.bodyLarge, fontWeight: '600', color: t.onAction, textAlign: 'center' },
     secondary: {
       minHeight: 54,
       paddingVertical: space.sm,

@@ -31,10 +31,10 @@ export function buttonColors(t: Theme, variant: ButtonVariant): ButtonColors {
   switch (variant) {
     case 'primary':
       return {
-        background: t.accent,
-        border: t.accent,
-        text: t.onAccent,
-        overlay: t.dark ? t.onAccent : t.ink,
+        background: t.action,
+        border: t.action,
+        text: t.onAction,
+        overlay: t.dark ? t.background : t.ink,
         overlayOpacity: 0.16,
       };
     case 'danger':
@@ -42,12 +42,12 @@ export function buttonColors(t: Theme, variant: ButtonVariant): ButtonColors {
         background: t.danger,
         border: t.danger,
         text: t.onAccent,
-        overlay: t.dark ? t.onAccent : t.ink,
+        overlay: t.dark ? t.background : t.ink,
         overlayOpacity: 0.16,
       };
     case 'secondary':
       return {
-        background: 'transparent',
+        background: t.surface,
         border: t.line,
         text: t.ink,
         overlay: t.ink,
@@ -157,10 +157,15 @@ export interface SegmentColors {
   text: string;
 }
 
+/**
+ * BoardUI segmented control: the selected segment is a raised neutral thumb with primary text;
+ * the others sit flat on the track in secondary text. No accent, so it stays quiet next to the
+ * screen's one wine action.
+ */
 export function segmentColors(t: Theme, selected: boolean): SegmentColors {
   return selected
-    ? { background: t.accent, border: t.accent, text: t.onAccent }
-    : { background: 'transparent', border: t.line, text: t.ink };
+    ? { background: t.surface, border: t.line, text: t.ink }
+    : { background: 'transparent', border: 'transparent', text: t.muted };
 }
 
 /** Accessibility state of a control that may be disabled or busy (a busy control is not pressable). */
