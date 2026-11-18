@@ -74,6 +74,59 @@ describe('settings saved by older versions', () => {
     expect(parsed.notificationHour).toBe(8);
   });
 
+  it('reads the 0.4 shape: saints carried a free-text note, there was no eve reminder or reading mode', () => {
+    const old = JSON.stringify({
+      language: 'tr',
+      name: 'Maria',
+      churchId: 'greek',
+      onboarded: true,
+      notifications: true,
+      notificationHour: 9,
+      prayerTextSize: 1,
+      greekFish: 'studite',
+      saints: [
+        { name: 'Nicholas', note: 'for travellers' },
+        { name: 'Seraphim of Sarov', note: '' },
+        'a bare string',
+        null,
+        { note: 'no name' },
+      ],
+    });
+    expect(parseSettings(old, 'en')).toEqual({
+      ...defaultSettings('en'),
+      language: 'tr',
+      name: 'Maria',
+      churchId: 'greek',
+      onboarded: true,
+      notifications: true,
+      notificationHour: 9,
+      prayerTextSize: 1,
+      greekFish: 'studite',
+      saints: [
+        { name: 'Nicholas', topic: '' },
+        { name: 'Seraphim of Sarov', topic: '' },
+      ],
+    });
+  });
+
+  it('survives values of the wrong type in every field', () => {
+    const junk = JSON.stringify({
+      language: ['tr'],
+      name: { first: 'x' },
+      churchId: 7,
+      onboarded: 'yes',
+      notifications: 1,
+      notificationHour: '8',
+      notificationRepeat: 'true',
+      eveReminder: [],
+      prayerTextSize: 99,
+      prayerReadingMode: null,
+      greekFish: {},
+      saints: { name: 'Nicholas' },
+    });
+    expect(parseSettings(junk, 'ru')).toEqual(defaultSettings('ru'));
+  });
+
   it('survives a truncated write (half a JSON document)', () => {
     expect(parseSettings('{"language":"tr","name":"Ma', 'en')).toEqual(defaultSettings('en'));
   });

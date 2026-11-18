@@ -124,6 +124,16 @@ describe('reportFor', () => {
     expect(report?.period.id).toBe('greatLent');
     expect(report?.period.year).toBe(2027);
   });
+
+  it('has no report for a fast that has not begun (a link to next year, a far future year)', () => {
+    const before = lent2027.startJdn - 1;
+    expect(reportFor({ id: 'greatLent', year: 2027 }, new Set(), greek, before)).toBeNull();
+    expect(reportFor({ id: 'greatLent', year: 2199 }, new Set(), greek, before)).toBeNull();
+    // The first day of the fast is a report already.
+    expect(
+      reportFor({ id: 'greatLent', year: 2027 }, new Set(), greek, lent2027.startJdn),
+    ).not.toBeNull();
+  });
 });
 
 describe('listReports', () => {

@@ -71,7 +71,7 @@ export function Foods() {
     <View style={styles.screen}>
       <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
         <Pressable
-          onPress={() => router.back()}
+          onPress={() => (router.canGoBack() ? router.back() : router.replace('/today'))}
           style={styles.back}
           accessibilityRole="button"
           accessibilityLabel={m.foods.back}
