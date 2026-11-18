@@ -9,7 +9,7 @@ import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { useFastingLog } from '../log/useFastingLog';
-import { Badge, Button, Card } from '../ui/kit';
+import { Badge, Button, Card, ListRow } from '../ui/kit';
 import { FadeIn, useGrow } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme, type, useThemedStyles } from '../ui/theme';
@@ -193,8 +193,24 @@ export function Today() {
         </Card>
       </FadeIn>
 
+      <FadeIn index={3}>
+        <Card padding="none" style={styles.card}>
+          <ListRow
+            title={m.foods.open}
+            subtitle={m.foods.openHint}
+            onPress={() => router.navigate('/foods')}
+          />
+          <ListRow
+            divider
+            title={m.upcoming.open}
+            subtitle={m.upcoming.openHint}
+            onPress={() => router.navigate('/upcoming')}
+          />
+        </Card>
+      </FadeIn>
+
       {commemoration && (
-        <FadeIn index={3}>
+        <FadeIn index={4}>
           <Card
             onPress={() => router.navigate('/readings')}
             style={styles.card}
