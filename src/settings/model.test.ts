@@ -18,6 +18,7 @@ describe('parseSettings', () => {
       notificationRepeat: true,
       eveReminder: true,
       prayerTextSize: 2,
+      prayerReadingMode: true,
       greekFish: 'greece',
       saints: [{ name: 'Nicholas', topic: 'travel' }],
     };
@@ -43,6 +44,18 @@ describe('parseSettings', () => {
   it('falls back to the middle prayer text size when the stored one is invalid', () => {
     expect(parseSettings(JSON.stringify({ prayerTextSize: 7 }), 'en').prayerTextSize).toBe(1);
     expect(parseSettings(JSON.stringify({ prayerTextSize: 0 }), 'en').prayerTextSize).toBe(0);
+  });
+
+  it('keeps the prayer reading mode off unless it is stored as exactly true', () => {
+    expect(parseSettings(null, 'en').prayerReadingMode).toBe(false);
+    expect(parseSettings(JSON.stringify({ prayerReadingMode: true }), 'en').prayerReadingMode).toBe(
+      true,
+    );
+    for (const bad of ['true', 1, 'yes', null, [], {}]) {
+      expect(
+        parseSettings(JSON.stringify({ prayerReadingMode: bad }), 'en').prayerReadingMode,
+      ).toBe(false);
+    }
   });
 
   it('survives corrupt data', () => {

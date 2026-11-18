@@ -1,5 +1,5 @@
-// Monthly calendar: a Monday-first grid marked by fasting level and feasts,
-// with the rule of the tapped day underneath.
+// Monthly calendar: a Monday-first grid marked by fasting level and feasts.
+// Tapping a day opens its day screen.
 
 import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
@@ -9,11 +9,10 @@ import {
   CHURCHES,
   CivilDate,
   FastLevel,
-  FOOD_IDS,
   MONDAY_FIRST,
   buildMonthGrid,
+  formatIsoDate,
   getDayInfo,
-  isFoodAllowed,
   shiftMonth,
 } from '../calendar';
 import { formatDate } from '../i18n';
@@ -43,7 +42,6 @@ export function MonthCalendar() {
   const styles = useThemedStyles(makeStyles);
 
   const [shown, setShown] = useState({ year: today.year, month: today.month });
-  const [picked, setPicked] = useState<CivilDate>(today);
 
   const church = CHURCHES[settings.churchId];
   const weeks = useMemo(() => buildMonthGrid(shown.year, shown.month), [shown]);
@@ -52,21 +50,7 @@ export function MonthCalendar() {
   function go(delta: -1 | 1) {
     const next = shiftMonth(shown.year, shown.month, delta);
     setShown(next);
-    // Keep the detail panel on a day of the month being viewed.
-    setPicked(
-      next.year === today.year && next.month === today.month
-        ? today
-        : { year: next.year, month: next.month, day: 1 },
-    );
   }
-
-  const info = infoOf(picked);
-  const heading = info.period
-    ? m.period[info.period.id]
-    : info.fastDay
-      ? m.fastDay[info.fastDay]
-      : null;
-  const allowed = FOOD_IDS.filter((food) => isFoodAllowed(info.level, food));
 
   return (
     <View style={styles.screen}>
@@ -130,7 +114,6 @@ export function MonthCalendar() {
               if (!date) return <View key={col} style={styles.cell} />;
               const day = infoOf(date);
               const isToday = sameDay(date, today);
-              const isPicked = sameDay(date, picked);
               const fasting = day.level !== 'none';
               const label = [
                 formatDate(m, date),
@@ -144,15 +127,15 @@ export function MonthCalendar() {
               return (
                 <Pressable
                   key={col}
-                  onPress={() => setPicked(date)}
+                  onPress={() =>
+                    router.push({ pathname: '/day/[date]', params: { date: formatIsoDate(date) } })
+                  }
                   style={styles.cell}
                   accessibilityRole="button"
                   accessibilityLabel={label}
-                  accessibilityState={{ selected: isPicked }}
+                  accessibilityHint={m.calendar.openDay}
                 >
-                  <View
-                    style={[styles.day, isPicked && styles.dayPicked, isToday && styles.dayToday]}
-                  >
+                  <View style={[styles.day, isToday && styles.dayToday]}>
                     <Text style={styles.dayNumber} maxFontSizeMultiplier={1.3}>
                       {date.day}
                     </Text>
@@ -172,35 +155,6 @@ export function MonthCalendar() {
             })}
           </View>
         ))}
-
-        <View style={styles.panel} accessibilityLiveRegion="polite">
-          <Text style={styles.panelDate}>
-            {m.weekdays[info.weekday]}, {formatDate(m, picked)}
-          </Text>
-          {info.feasts.map((feast) => (
-            <Text key={feast} style={styles.panelFeast}>
-              {m.feast[feast]}
-            </Text>
-          ))}
-          {heading && <Text style={styles.panelLabel}>{heading}</Text>}
-          <Text
-            style={[
-              styles.panelLevel,
-              { color: info.level === 'none' ? theme.free : theme.accent },
-            ]}
-          >
-            {m.level[info.level].title}
-          </Text>
-          <Text style={styles.panelDetail}>{m.level[info.level].detail}</Text>
-          {allowed.length > 0 && (
-            <Text style={styles.panelFoods}>{allowed.map((food) => m.food[food]).join(' · ')}</Text>
-          )}
-          {info.notes.map((note) => (
-            <Text key={note} style={styles.panelNote}>
-              {m.note[note]}
-            </Text>
-          ))}
-        </View>
       </ScrollView>
     </View>
   );
@@ -251,7 +205,6 @@ function makeStyles(t: Theme) {
       justifyContent: 'center',
       gap: 3,
     },
-    dayPicked: { backgroundColor: t.surface, borderColor: t.line },
     dayToday: { borderColor: t.accent },
     dayNumber: { fontSize: 16, lineHeight: 20, color: t.ink, fontVariant: ['tabular-nums'] },
     mark: { height: 4, borderRadius: 2 },
@@ -264,27 +217,5 @@ function makeStyles(t: Theme) {
       borderRadius: 4,
       backgroundColor: t.feast,
     },
-
-    panel: {
-      marginTop: space.lg,
-      padding: 20,
-      borderRadius: radius.card,
-      borderWidth: 1,
-      borderColor: t.line,
-      backgroundColor: t.surface,
-    },
-    panelDate: { fontSize: 14, color: t.muted },
-    panelFeast: {
-      fontFamily: SERIF,
-      fontSize: 18,
-      lineHeight: 25,
-      color: t.feast,
-      marginTop: space.xs,
-    },
-    panelLabel: { fontSize: 14, color: t.muted, marginTop: space.sm },
-    panelLevel: { fontFamily: SERIF, fontSize: 24, lineHeight: 32, marginTop: space.xs },
-    panelDetail: { fontSize: 16, lineHeight: 23, color: t.ink, marginTop: space.xs },
-    panelFoods: { fontSize: 15, lineHeight: 22, color: t.free, marginTop: space.sm },
-    panelNote: { fontSize: 14, lineHeight: 20, color: t.muted, marginTop: space.sm },
   });
 }

@@ -1,8 +1,10 @@
-// One reading of today with its verses, with the same adjustable text size as the prayers.
+// One reading of today (or of the day it is opened from) with its verses, with the same
+// adjustable text size as the prayers.
 
 import { Redirect, useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import type { CivilDate } from '../calendar';
 import { getCommemoration, readingReference } from '../commemorations';
 import { parseService } from '../commemorations/service';
 import { readingText, translationName } from '../commemorations/text';
@@ -15,14 +17,14 @@ import { VerseText } from '../ui/VerseText';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
-export function ReadingReader({ index }: { index: number }) {
+export function ReadingReader({ index, date }: { index: number; date?: CivilDate }) {
   const { settings, messages: m, update } = useSettings();
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const styles = useThemedStyles(makeStyles);
   const today = useToday();
 
-  const reading = getCommemoration(today, settings.churchId)?.readings[index];
+  const reading = getCommemoration(date ?? today, settings.churchId)?.readings[index];
   const text = reading ? readingText(reading, settings.language) : null;
   if (!reading || !text) return <Redirect href="/readings" />;
 

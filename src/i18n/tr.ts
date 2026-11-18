@@ -47,6 +47,16 @@ export const tr: Messages = {
     nextMonth: 'Sonraki ay',
     back: 'Geri',
     today: 'bugün',
+    openDay: 'Günü aç',
+  },
+
+  day: {
+    previous: 'Önceki gün',
+    next: 'Sonraki gün',
+    invalid: 'Bu tarih gösterilemiyor.',
+    allowed: 'Serbest olanlar',
+    avoided: 'Kaçınılacaklar',
+    nothingAvoided: 'Yasak bir şey yok.',
   },
 
   today: {
@@ -214,6 +224,8 @@ export const tr: Messages = {
     summary: 'Göklerdeki Babamız, İman İkrarı, sabah ve akşam duaları',
     smaller: 'Yazıyı küçült',
     larger: 'Yazıyı büyüt',
+    readingMode: 'Okuma kipi',
+    leaveReadingMode: 'Okuma kipinden çık',
     searchPlaceholder: 'Dua ara',
     noResults: 'Dua bulunamadı.',
     group: { basic: 'Temel dualar', daily: 'Günün duaları', lent: 'Büyük Perhiz' },

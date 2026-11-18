@@ -58,6 +58,16 @@ export const ru: Messages = {
     nextMonth: 'Следующий месяц',
     back: 'Назад',
     today: 'сегодня',
+    openDay: 'Открыть день',
+  },
+
+  day: {
+    previous: 'Предыдущий день',
+    next: 'Следующий день',
+    invalid: 'Эту дату нельзя показать.',
+    allowed: 'Можно',
+    avoided: 'Нельзя',
+    nothingAvoided: 'Ограничений нет.',
   },
 
   today: {
@@ -225,6 +235,8 @@ export const ru: Messages = {
     summary: 'Отче наш, Символ веры, утренние и вечерние молитвы',
     smaller: 'Уменьшить текст',
     larger: 'Увеличить текст',
+    readingMode: 'Режим чтения',
+    leaveReadingMode: 'Выйти из режима чтения',
     searchPlaceholder: 'Поиск молитв',
     noResults: 'Молитва не найдена.',
     group: { basic: 'Основные молитвы', daily: 'Молитвы дня', lent: 'Великий пост' },

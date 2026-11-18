@@ -50,6 +50,8 @@ export interface Settings {
   eveReminder: boolean;
   /** Index into PRAYER_TEXT_SIZES. */
   prayerTextSize: PrayerTextSize;
+  /** Prayer reader in its calm mode: large centred text, no controls. */
+  prayerReadingMode: boolean;
   /** Which Greek rule decides fish in the Nativity and Apostles' Fasts. */
   greekFish: GreekFishPractice;
   /** Saints the user asked to be named in the morning and evening prayers. */
@@ -69,6 +71,7 @@ export function defaultSettings(language: Language): Settings {
     notificationRepeat: false,
     eveReminder: false,
     prayerTextSize: DEFAULT_PRAYER_TEXT_SIZE,
+    prayerReadingMode: false,
     greekFish: DEFAULT_GREEK_FISH_PRACTICE,
     saints: [],
   };
@@ -125,6 +128,7 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
       ? s.notificationHour
       : fallback.notificationHour,
     prayerTextSize: isPrayerTextSize(s.prayerTextSize) ? s.prayerTextSize : fallback.prayerTextSize,
+    prayerReadingMode: s.prayerReadingMode === true,
     greekFish: GREEK_FISH_PRACTICES.includes(s.greekFish as GreekFishPractice)
       ? (s.greekFish as GreekFishPractice)
       : fallback.greekFish,

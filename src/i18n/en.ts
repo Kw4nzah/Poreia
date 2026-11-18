@@ -52,6 +52,18 @@ export interface Messages {
     nextMonth: string;
     back: string;
     today: string;
+    /** Hint on a day of the grid: it opens the day screen. */
+    openDay: string;
+  };
+
+  day: {
+    previous: string;
+    next: string;
+    /** Shown instead of the day when the link holds no valid date. */
+    invalid: string;
+    allowed: string;
+    avoided: string;
+    nothingAvoided: string;
   };
 
   today: {
@@ -157,6 +169,8 @@ export interface Messages {
     summary: string;
     smaller: string;
     larger: string;
+    readingMode: string;
+    leaveReadingMode: string;
     searchPlaceholder: string;
     noResults: string;
     group: Record<PrayerGroupId, string>;
@@ -282,6 +296,16 @@ export const en: Messages = {
     nextMonth: 'Next month',
     back: 'Back',
     today: 'today',
+    openDay: 'Open the day',
+  },
+
+  day: {
+    previous: 'Previous day',
+    next: 'Next day',
+    invalid: 'This date cannot be shown.',
+    allowed: 'Allowed',
+    avoided: 'Avoided',
+    nothingAvoided: 'Nothing is restricted.',
   },
 
   today: {
@@ -449,6 +473,8 @@ export const en: Messages = {
     summary: 'The Lord’s Prayer, the Creed, morning and evening prayers',
     smaller: 'Smaller text',
     larger: 'Larger text',
+    readingMode: 'Reading mode',
+    leaveReadingMode: 'Leave reading mode',
     searchPlaceholder: 'Search prayers',
     noResults: 'No prayer found.',
     group: { basic: 'Basic prayers', daily: 'Prayers of the day', lent: 'Great Lent' },
