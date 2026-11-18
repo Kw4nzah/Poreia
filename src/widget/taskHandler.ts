@@ -31,7 +31,7 @@ export const widgetTaskHandler: WidgetTaskHandler = async ({
   try {
     const now = new Date();
     const today = civilFromLocalDate(now);
-    // The "complete today" button runs here, in the background: flip the mark, then redraw.
+    // The "I am fasting today" button runs here, in the background: flip the mark, then redraw.
     // A tap on the card itself is OPEN_APP, handled natively, and never reaches this handler.
     const done =
       widgetAction === 'WIDGET_CLICK' && clickAction === TOGGLE_DONE_ACTION

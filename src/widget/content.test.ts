@@ -29,8 +29,8 @@ describe('widgetContentFor', () => {
     expect(content.labels).toEqual({
       allowed: 'Serbest',
       avoided: 'Uzak Durulan',
-      complete: 'Bugünü Tamamla',
-      completed: 'Tamamlandı',
+      complete: 'Bugün oruç tutuyorum',
+      completed: 'Oruç tutuyorum',
       noFast: 'Oruç yok',
     });
   });

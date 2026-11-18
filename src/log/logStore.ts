@@ -1,4 +1,4 @@
-// Reads every "complete today" mark from AsyncStorage (the widget writes the same keys).
+// Reads every "I am fasting today" mark from AsyncStorage (the widget writes the same keys).
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DONE_PREFIX } from '../widget/done';

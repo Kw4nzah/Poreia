@@ -1,6 +1,6 @@
-// Fasting log: streak and totals from the "complete today" marks. Pure, so it can be tested
-// without a device. Days are whole-number Julian Day Numbers (JDN), so there are no timezone or
-// DST pitfalls: a civil date maps to one integer and the arithmetic never touches a clock.
+// Fasting log: the days the user marked as fasting. Pure, so it can be tested without a device.
+// Days are whole-number Julian Day Numbers (JDN), so there are no timezone or DST pitfalls: a civil
+// date maps to one integer and the arithmetic never touches a clock.
 
 import { CivilDate, PeriodId, gregorianToJdn, jdnToGregorian } from '../calendar';
 import { DONE_PREFIX, isDone } from '../widget/done';

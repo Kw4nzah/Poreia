@@ -1,4 +1,4 @@
-// "Complete today" mark of the home-screen widget. Pure, so it can be tested without a device.
+// "I am fasting today" mark of the home-screen widget and the app. Pure, so it can be tested without a device.
 //
 // One AsyncStorage key per day, `poreia.done.YYYY-MM-DD`, holding "1" while the day is marked.
 // Un-marking removes the key, so only marked days occupy storage.

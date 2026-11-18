@@ -7,6 +7,7 @@ export const SECTION_IDS = [
   'language',
   'notifications',
   'saints',
+  'history',
   'backup',
   'updates',
   'about',
@@ -29,6 +30,8 @@ export function sectionTitle(m: Messages, id: SectionId): string {
       return m.settings.notificationsTitle;
     case 'saints':
       return m.saints.title;
+    case 'history':
+      return m.report.title;
     case 'backup':
       return m.backup.title;
     case 'updates':

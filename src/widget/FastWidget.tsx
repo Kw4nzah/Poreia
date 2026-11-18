@@ -1,6 +1,6 @@
 'use no memo';
 // The home-screen widget: today's fast, its progress, what is allowed and what is avoided,
-// the day's reading and a "complete today" button. Built from the library's widget primitives
+// the day's reading and an "I am fasting today" button. Built from the library's widget primitives
 // (they become Android RemoteViews / a bitmap), not from react-native components.
 //
 // The library walks this tree itself: no hooks, no fragments, and a component must return an
@@ -8,9 +8,9 @@
 //
 // Layouts (chosen from the size the launcher gives the widget):
 //  - wide    (4x2): title, day badge with a thin progress bar, cross badge; two columns
-//                   "allowed / avoided"; reading reference and the complete button.
+//                   "allowed / avoided"; reading reference and the fasting button.
 //  - compact (2x2): cross and day badges, title, status with percent, progress bar, reading and a
-//                   round complete button.
+//                   round fasting button.
 // Titles would be serif in the design, but the library only loads fonts bundled as native
 // assets (a native change), so titles are bold sans. Every text has a line limit and END
 // truncation, so a long Turkish or Russian string shortens instead of pushing the layout around.
@@ -192,7 +192,7 @@ function progressBar(day: number, total: number, theme: Theme) {
   );
 }
 
-/** Round "complete today" button for the compact layout: outline until done, then filled. */
+/** Round "I am fasting today" button for the compact layout: outline until done, then filled. */
 function checkButton(content: WidgetContent, theme: Theme, done: boolean, size: number) {
   const mark = Math.round(size * 0.5);
   return (
@@ -259,7 +259,7 @@ function column(
   );
 }
 
-/** The "complete today" pill: solid accent until marked, then a soft, filled-in "Done". */
+/** The "I am fasting today" pill: solid accent until marked, then a soft, filled-in confirmation. */
 function doneButton(content: WidgetContent, theme: Theme, done: boolean) {
   const color = done ? theme.accent : theme.onAccent;
   return (
@@ -376,7 +376,7 @@ function wideBody(
     </FlexWidget>
   );
 
-  // Bottom: the reading on the left, the complete button on the right (fasting days only).
+  // Bottom: the reading on the left, the fasting button on the right (fasting days only).
   const bottom = (
     <FlexWidget style={{ flexDirection: 'row', width: 'match_parent', alignItems: 'center' }}>
       {[

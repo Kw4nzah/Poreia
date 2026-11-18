@@ -9,6 +9,9 @@ import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { useFastingLog } from '../log/useFastingLog';
+import { periodKey } from '../report/periods';
+import { reportHeading } from '../report/text';
+import { usePendingReport } from '../report/usePendingReport';
 import { Badge, Button, Card, ListRow } from '../ui/kit';
 import { FadeIn, useGrow } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
@@ -43,9 +46,10 @@ export function Today() {
 
   const fasting = info.level !== 'none';
 
-  // The widget's "complete today" mark, shared through storage; the widget is redrawn after a tap.
+  // The "I am fasting today" mark, shared through storage; the widget is redrawn after a tap.
   const redrawWidget = useCallback(() => refreshWidget(settings), [settings]);
   const log = useFastingLog(today, redrawWidget);
+  const report = usePendingReport(today);
 
   const tone = fasting ? theme.accent : theme.free;
   const level = m.level[info.level];
@@ -164,7 +168,7 @@ export function Today() {
           {fasting && (
             <View style={styles.logAction}>
               <Button
-                label={log.doneToday ? m.widget.completed : m.widget.complete}
+                label={log.doneToday ? m.log.marked : m.log.mark}
                 accessibilityLabel={log.doneToday ? m.log.doneA11y : m.log.markA11y}
                 variant={log.doneToday ? 'secondary' : 'primary'}
                 onPress={() => void log.toggle()}
@@ -173,6 +177,46 @@ export function Today() {
           )}
         </Card>
       </FadeIn>
+
+      {report.pending && (
+        <FadeIn index={2}>
+          <Card padding="none" tone="feast" style={styles.card}>
+            <View style={styles.readyRow}>
+              <Pressable
+                style={styles.readyMain}
+                onPress={() => {
+                  const key = periodKey(report.pending!.period);
+                  report.markSeen();
+                  router.push(`/report/${key}`);
+                }}
+                accessibilityRole="button"
+                accessibilityLabel={`${m.report.readyTitle(m.majorFast[report.pending.period.id])}. ${m.report.readyHint}`}
+              >
+                <Text style={styles.readyTitle}>
+                  {m.report.readyTitle(m.majorFast[report.pending.period.id])}
+                </Text>
+                <Text style={styles.readyHint}>
+                  {reportHeading(report.pending, m)} · {m.report.readyHint}
+                </Text>
+              </Pressable>
+              <Pressable
+                style={styles.readyDismiss}
+                onPress={report.markSeen}
+                accessibilityRole="button"
+                accessibilityLabel={m.report.dismiss}
+              >
+                <Text
+                  accessibilityElementsHidden
+                  importantForAccessibility="no"
+                  style={styles.readyDismissText}
+                >
+                  ✕
+                </Text>
+              </Pressable>
+            </View>
+          </Card>
+        </FadeIn>
+      )}
 
       <FadeIn index={2}>
         <Card
@@ -324,6 +368,19 @@ function makeStyles(t: Theme) {
       borderTopWidth: 1,
       borderTopColor: t.line,
     },
+
+    readyRow: { flexDirection: 'row', alignItems: 'center' },
+    readyMain: {
+      flex: 1,
+      minHeight: 56,
+      justifyContent: 'center',
+      paddingVertical: space.smd,
+      paddingLeft: space.md,
+    },
+    readyTitle: { fontFamily: SERIF, ...type.headline, color: t.ink },
+    readyHint: { ...type.label, color: t.muted, marginTop: space.xs },
+    readyDismiss: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+    readyDismissText: { fontSize: 16, lineHeight: 20, color: t.muted },
 
     progress: { marginTop: space.lg },
     track: { height: 4, borderRadius: 2, backgroundColor: t.line, overflow: 'hidden' },

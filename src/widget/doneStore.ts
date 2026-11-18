@@ -1,4 +1,4 @@
-// Reads and flips the widget's "complete today" mark in AsyncStorage (same store as the settings).
+// Reads and flips the "I am fasting" mark of a day in AsyncStorage (same store as the settings).
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { CivilDate } from '../calendar';

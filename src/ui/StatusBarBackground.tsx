@@ -3,6 +3,7 @@
 // icons on every screen, and just below it the colour fades out smoothly, so content scrolling up
 // dissolves instead of being cut off. (A gradient is built from thin strips: no native module.)
 
+import { useSegments } from 'expo-router';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './theme';
@@ -20,6 +21,9 @@ function fadeOpacity(i: number): number {
 export function StatusBarBackground() {
   const theme = useTheme();
   const top = useSafeAreaInsets().top;
+  const segments: string[] = useSegments();
+  // The report paints its own full-screen colour, edge to edge, under the status bar.
+  if (segments[0] === 'report') return null;
   return (
     <View
       pointerEvents="none"

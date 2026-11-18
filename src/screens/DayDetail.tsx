@@ -10,6 +10,7 @@ import {
   FOOD_IDS,
   formatIsoDate,
   getDayInfo,
+  gregorianToJdn,
   isFoodAllowed,
   shiftDay,
 } from '../calendar';
@@ -17,9 +18,11 @@ import { Reading, getCommemoration, groupReadings, readingReference } from '../c
 import { parseService } from '../commemorations/service';
 import { readingHasText } from '../commemorations/text';
 import { formatDate, formatDayMonth } from '../i18n';
+import { useDayMark } from '../log/useDayMark';
 import { useSettings } from '../settings/SettingsProvider';
-import { Badge, Card, ListRow, SectionHeader } from '../ui/kit';
+import { Badge, Button, Card, ListRow, SectionHeader } from '../ui/kit';
 import { SERIF, Theme, space, type, useTheme, useThemedStyles } from '../ui/theme';
+import { useToday } from '../ui/useToday';
 
 export function DayDetail({ date }: { date: CivilDate | null }) {
   const { settings, messages: m } = useSettings();
@@ -27,6 +30,8 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const styles = useThemedStyles(makeStyles);
+  const today = useToday();
+  const mark = useDayMark(date, today);
 
   function goBack() {
     if (router.canGoBack()) router.back();
@@ -87,6 +92,12 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
   const iso = formatIsoDate(date);
 
   const fasting = info.level !== 'none';
+  // A day can be marked once it has begun: today or any day before it, never a day to come.
+  const isToday = iso === formatIsoDate(today);
+  const canMark =
+    fasting &&
+    gregorianToJdn(date.year, date.month, date.day) <=
+      gregorianToJdn(today.year, today.month, today.day);
   const level = m.level[info.level];
   const heading = info.period
     ? m.period[info.period.id]
@@ -192,6 +203,33 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
               )}
             </View>
           </View>
+
+          {canMark && (
+            <View style={styles.markAction}>
+              <Button
+                label={
+                  mark.marked
+                    ? isToday
+                      ? m.log.marked
+                      : m.log.markedPast
+                    : isToday
+                      ? m.log.mark
+                      : m.log.markPast
+                }
+                accessibilityLabel={
+                  mark.marked
+                    ? isToday
+                      ? m.log.doneA11y
+                      : m.log.donePastA11y
+                    : isToday
+                      ? m.log.markA11y
+                      : m.log.markPastA11y
+                }
+                variant={mark.marked ? 'secondary' : 'primary'}
+                onPress={() => void mark.toggle()}
+              />
+            </View>
+          )}
         </Card>
 
         {commemoration ? (
@@ -302,6 +340,13 @@ function makeStyles(t: Theme) {
     markText: { fontSize: 12, lineHeight: 15, fontWeight: '700' },
     foodName: { flex: 1, ...type.body, color: t.ink },
     foodForbidden: { color: t.muted },
+
+    markAction: {
+      marginTop: space.md,
+      paddingTop: space.md,
+      borderTopWidth: 1,
+      borderTopColor: t.line,
+    },
 
     small: { ...type.caption, color: t.muted, marginTop: space.sm },
     noData: { ...type.body, color: t.muted, marginTop: space.xl },

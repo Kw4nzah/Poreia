@@ -57,7 +57,7 @@ describe('fast widget tree', () => {
     }
   });
 
-  it('both layouts have the complete button', async () => {
+  it('both layouts have the fasting button', async () => {
     const { buildWidgetTree } =
       await import('react-native-android-widget/src/api/build-widget-tree');
     const { buildFastWidget } = await import('./FastWidget');
@@ -85,10 +85,10 @@ describe('fast widget tree', () => {
             .light,
         ),
       );
-    expect(json(false)).toContain('Bugünü Tamamla');
-    expect(json(false)).not.toContain('Tamamlandı');
-    expect(json(true)).toContain('Tamamlandı');
-    expect(json(true)).not.toContain('Bugünü Tamamla');
+    expect(json(false)).toContain('Bugün oruç tutuyorum');
+    expect(json(false)).not.toContain('Oruç tutuyorum');
+    expect(json(true)).toContain('Oruç tutuyorum');
+    expect(json(true)).not.toContain('Bugün oruç tutuyorum');
   });
 });
 

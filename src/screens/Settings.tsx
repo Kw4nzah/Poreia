@@ -15,7 +15,7 @@ import { SectionId, hourLabel, sectionTitle } from './settings/sections';
 
 /** The hub's two groups: what the user sets about themselves, then the app itself. */
 const GROUPS: readonly (readonly SectionId[])[] = [
-  ['profile', 'language', 'notifications', 'saints'],
+  ['profile', 'language', 'notifications', 'saints', 'history'],
   ['backup', 'updates', 'about'],
 ];
 
@@ -43,6 +43,8 @@ export function Settings() {
         return settings.saints.length > 0
           ? m.settings.summarySaints(settings.saints.length)
           : m.settings.summarySaintsNone;
+      case 'history':
+        return m.report.summary;
       case 'backup':
         return m.settings.summaryBackup;
       case 'updates': {

@@ -85,13 +85,58 @@ export interface Messages {
     foodForbidden: string;
   };
 
-  /** Fasting log: the "complete today" button (its labels are `widget.complete` / `completed`). */
+  /** Fasting marks: "I am fasting today" on Today, and the same for a past day on the day screen. */
   log: {
     title: string;
+    /** Today screen button while today is not marked. */
+    mark: string;
+    /** Today screen button while today is marked. */
+    marked: string;
     /** Screen-reader label of the button while today is not marked. */
     markA11y: string;
     /** Screen-reader label of the button while today is marked. */
     doneA11y: string;
+    /** Day screen button for a past day, not marked / marked. */
+    markPast: string;
+    markedPast: string;
+    markPastA11y: string;
+    donePastA11y: string;
+  };
+
+  /** Fasting history and the report that closes a fast. */
+  report: {
+    /** Settings category and screen title. */
+    title: string;
+    /** One line under the category in the settings hub. */
+    summary: string;
+    empty: string;
+    /** "32 of 40 days": the days marked out of the days of fasting. */
+    count: (marked: number, total: number) => string;
+    notFound: string;
+    kicker: string;
+    /** "Great Lent 2027". */
+    heading: (name: string, year: number) => string;
+    inProgress: string;
+    countLead: string;
+    countOf: (total: number) => string;
+    percent: (value: number) => string;
+    weeksTitle: string;
+    week: (n: number) => string;
+    gridTitle: string;
+    legendMarked: string;
+    legendUnmarked: string;
+    legendFree: string;
+    legendUpcoming: string;
+    closingTitle: string;
+    closingBody: string;
+    share: string;
+    close: string;
+    /** Screen-reader label of one page of the report. */
+    page: (n: number, total: number) => string;
+    /** Today card. */
+    readyTitle: (name: string) => string;
+    readyHint: string;
+    dismiss: string;
   };
 
   settings: {
@@ -373,9 +418,44 @@ export const en: Messages = {
   },
 
   log: {
-    title: 'Fasting log',
-    markA11y: 'Mark today complete',
-    doneA11y: 'Today is complete. Tap to undo.',
+    title: 'Fasting marks',
+    mark: 'I’m fasting today',
+    marked: 'Fasting today ✓',
+    markA11y: 'Mark today as a day you are fasting',
+    doneA11y: 'Marked as fasting today. Tap to undo.',
+    markPast: 'I fasted this day',
+    markedPast: 'Fasted this day ✓',
+    markPastA11y: 'Mark this day as a day you fasted',
+    donePastA11y: 'Marked as fasted. Tap to undo.',
+  },
+
+  report: {
+    title: 'Fasting history',
+    summary: 'A quiet look back at each fast',
+    empty: 'Nothing to show yet. Mark the days you fast, and a summary of each fast will appear here.',
+    count: (marked, total) => `${marked} of ${total} days`,
+    notFound: 'This report is not available.',
+    kicker: 'Your fast',
+    heading: (name, year) => `${name} ${year}`,
+    inProgress: 'The fast is still under way.',
+    countLead: 'Days you marked as fasting',
+    countOf: (total) => `of ${total} days`,
+    percent: (value) => `${value}%`,
+    weeksTitle: 'Week by week',
+    week: (n) => `Week ${n}`,
+    gridTitle: 'Day by day',
+    legendMarked: 'Marked',
+    legendUnmarked: 'Not marked',
+    legendFree: 'No fast',
+    legendUpcoming: 'Still to come',
+    closingTitle: 'Thank you',
+    closingBody: 'Thank you for keeping this fast. May you be kept in peace.',
+    share: 'Share',
+    close: 'Close',
+    page: (n, total) => `Page ${n} of ${total}`,
+    readyTitle: (name) => `Your ${name} report is ready`,
+    readyHint: 'A quiet summary of your fast',
+    dismiss: 'Dismiss',
   },
 
   settings: {
@@ -687,8 +767,8 @@ export const en: Messages = {
     allowed: 'Allowed',
     avoided: 'Avoid',
     nothing: 'Nothing',
-    complete: 'Complete today',
-    completed: 'Done',
+    complete: 'I’m fasting today',
+    completed: 'Fasting today',
     noFast: 'No fast',
     dayOfTotal: (day, total) => `Day ${day} / ${total}`,
     dayShort: (day) => `Day ${day}`,
