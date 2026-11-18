@@ -3,7 +3,7 @@ import { File, Paths } from 'expo-file-system';
 import { startActivityAsync } from 'expo-intent-launcher';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Platform } from 'react-native';
-import { isAllowedApkUrl } from '../security/externalLinks';
+import { fetchApk } from './apkFetch';
 import { ApkRelease, LATEST_RELEASE_URL, pickNewerApk } from './apkRelease';
 import { ProgressView, computeProgress } from './downloadProgress';
 
@@ -59,49 +59,47 @@ export function useApkUpdate() {
 
   const install = useCallback(async () => {
     if (!release || controller.current) return;
-    // The listing was already filtered; checking again here keeps the download itself safe.
-    if (!isAllowedApkUrl(release.url)) {
-      setStatus('failed');
-      return;
-    }
     const abort = new AbortController();
     controller.current = abort;
     const target = new File(Paths.cache, 'poreia-update.apk');
     let lastStep = -1;
     setProgress(computeProgress(0, null, release.sizeBytes));
     setStatus('downloading');
-    let apk: File;
-    try {
-      if (target.exists) target.delete();
-      apk = await File.downloadFileAsync(release.url, target, {
-        idempotent: true,
-        signal: abort.signal,
-        onProgress: ({ bytesWritten, totalBytes }) => {
-          const step = Math.floor(bytesWritten / PROGRESS_STEP_BYTES);
-          if (step === lastStep || abort.signal.aborted) return;
-          lastStep = step;
-          setProgress(computeProgress(bytesWritten, totalBytes, release.sizeBytes));
+    const result = await fetchApk(
+      release,
+      abort.signal,
+      {
+        discard: () => {
+          if (target.exists) target.delete();
         },
-      });
-    } catch {
-      try {
-        if (target.exists) target.delete();
-      } catch {
-        // A half-written file that cannot be removed is overwritten by the next attempt.
-      }
-      controller.current = null;
-      setProgress(null);
-      // A cancel by the user is not an error.
-      setStatus(abort.signal.aborted ? 'idle' : 'failed');
-      return;
-    }
+        download: async (url, signal, onProgress) => {
+          const apk = await File.downloadFileAsync(url, target, {
+            idempotent: true,
+            signal,
+            onProgress: ({ bytesWritten, totalBytes }) => onProgress(bytesWritten, totalBytes),
+          });
+          return { uri: apk.contentUri, size: apk.size };
+        },
+      },
+      (bytesWritten, totalBytes) => {
+        const step = Math.floor(bytesWritten / PROGRESS_STEP_BYTES);
+        if (step === lastStep) return;
+        lastStep = step;
+        setProgress(computeProgress(bytesWritten, totalBytes, release.sizeBytes));
+      },
+    );
     controller.current = null;
     setProgress(null);
+    if (!result.ok) {
+      // A cancel by the user is not an error.
+      setStatus(result.reason === 'cancelled' ? 'idle' : 'failed');
+      return;
+    }
     // Closed before the installer opens, so the popup is never left behind it.
     setStatus('idle');
     try {
       await startActivityAsync('android.intent.action.VIEW', {
-        data: apk.contentUri,
+        data: result.uri,
         type: 'application/vnd.android.package-archive',
         flags: FLAG_GRANT_READ_URI_PERMISSION,
       });

@@ -11,20 +11,27 @@ export interface ApkRelease {
   sizeBytes: number;
 }
 
-/** Compares dotted versions ("0.10.0" > "0.9.3"); a leading "v" is ignored. */
+/**
+ * Compares dotted versions ("0.10.0" > "0.9.3"); a leading "v" is ignored. A pre-release suffix
+ * ("-rc.1") is older than the same version without it, and build metadata ("+5") is ignored.
+ */
 export function compareVersions(a: string, b: string): number {
-  const parts = (v: string) =>
-    v
-      .replace(/^v/i, '')
-      .split('.')
-      .map((part) => parseInt(part, 10) || 0);
-  const pa = parts(a);
-  const pb = parts(b);
-  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
-    const diff = (pa[i] ?? 0) - (pb[i] ?? 0);
+  const split = (v: string) => {
+    const text = v.trim().replace(/^v/i, '');
+    const dash = text.search(/[-+]/);
+    const core = dash === -1 ? text : text.slice(0, dash);
+    return {
+      numbers: core.split('.').map((part) => parseInt(part, 10) || 0),
+      preRelease: dash !== -1 && text[dash] === '-',
+    };
+  };
+  const va = split(a);
+  const vb = split(b);
+  for (let i = 0; i < Math.max(va.numbers.length, vb.numbers.length); i++) {
+    const diff = (va.numbers[i] ?? 0) - (vb.numbers[i] ?? 0);
     if (diff !== 0) return Math.sign(diff);
   }
-  return 0;
+  return Math.sign(Number(vb.preRelease) - Number(va.preRelease));
 }
 
 /** The release's APK if it is newer than the installed version, otherwise null. */
