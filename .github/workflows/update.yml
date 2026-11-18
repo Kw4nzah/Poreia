@@ -1,9 +1,11 @@
 # Publishes the JavaScript and asset bundle of every commit on main to GitHub Pages.
 # Installed apps download it from there, so most changes need no new APK.
 #
-# Two jobs on purpose: the one that installs npm packages and runs their code ("build") can only
-# read the repository; the one that may write to Pages ("deploy") runs nothing but the official
-# deploy action.
+# Three jobs on purpose: the one that installs npm packages and runs their code ("build") can only
+# read the repository and never sees the signing key; "sign" gets the OTA signing key in one step,
+# on a fresh checkout, and runs only Node built-ins (no npm package, nothing from the build except
+# the files it signs); the one that may write to Pages ("deploy") runs nothing but the official
+# deploy action. See docs/SECURITY-OTA-SIGNING.md.
 name: Publish update
 
 on:
@@ -43,13 +45,51 @@ jobs:
       - run: npx expo export --platform android --output-dir dist
       - run: node scripts/build-update.mjs dist site
       # Hashes, URLs, runtime version and stray files are checked before anything is uploaded.
+      - run: node scripts/verify-update.mjs site --before-signing
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: unsigned-site
+          path: site
+          include-hidden-files: true # .nojekyll
+          if-no-files-found: error
+          retention-days: 1
+
+  sign:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    # The signing key is an environment secret of `release`; this job is the only one that reads it.
+    environment: release
+    steps:
+      # A fresh checkout: the build job ran npm code, so nothing it could have changed is executed.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: unsigned-site
+          path: site
+      - run: node scripts/verify-update.mjs site --before-signing
+      # Fails when app.json requires signing and the secret is missing or does not match
+      # certs/certificate.pem. Nothing may change the manifest after this step.
+      - name: Sign manifest
+        env:
+          POREIA_OTA_PRIVATE_KEY: ${{ secrets.POREIA_OTA_PRIVATE_KEY }}
+        run: node scripts/sign-manifest.mjs site
+      # The signature is checked the way the app checks it before anything reaches Pages.
       - run: node scripts/verify-update.mjs site
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: site
 
   deploy:
-    needs: build
+    needs: sign
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10

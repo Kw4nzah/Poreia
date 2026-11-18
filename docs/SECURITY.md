@@ -51,7 +51,7 @@ off by default, and the released manifest has no `usesCleartextTraffic` and no
 
 | Attacker | Goal | Defence | Residual risk |
 |---|---|---|---|
-| Network attacker (public Wi-Fi) | Serve a fake update or APK | HTTPS to GitHub; every bundle and asset has a SHA-256 in the manifest; the APK must match the SHA-256 GitHub lists for it; Android only installs an APK signed with the same key as the installed app | The manifest itself is not signed (see SECURITY-OTA-SIGNING.md); TLS and GitHub are trusted |
+| Network attacker (public Wi-Fi) | Serve a fake update or APK | HTTPS to GitHub; every bundle and asset has a SHA-256 in the manifest; the APK must match the SHA-256 GitHub lists for it; Android only installs an APK signed with the same key as the installed app | Up to v0.6.1 (runtime 6) the manifest is not signed; from the next APK (runtime 7) it must carry a valid code signature (SECURITY-OTA-SIGNING.md, pending a device test); TLS and GitHub are trusted |
 | Whoever can write to the GitHub repo, Actions or Pages | Ship malicious JS to every install through the next update, or get a signed APK built | Pinned actions, least-privilege job permissions, build and deploy split, main-only publishing, tag must match `app.json` and be on main, `.github/CODEOWNERS` | **No branch or tag protection is set on the repository yet and a second account has write access (finding F-01).** Account takeover is the biggest single risk of this release model |
 | Malicious or compromised npm package | Run code in the build or the app | `npm ci --ignore-scripts` with a lockfile (only `fsevents` has an install script, macOS only), every package resolved from `registry.npmjs.org` with sha512 integrity, weekly Dependabot PRs, review before merge | A compromised package still runs when the build runs `expo export` or Gradle |
 | Malicious app on the same phone | Read settings, call the widget or components | Private app storage, backups off, widget receiver not exported, only the launcher activity and a few permission-guarded system receivers exported (table below) | Rooted devices are out of scope |
@@ -174,15 +174,17 @@ not authenticate anything. Still enforced, read from the installed expo-updates 
 - Every bundle and asset is verified against the `hash` in the manifest
   (`downloadAssetAndVerifyHashAndWriteToPath`), and asset file names are checked for path traversal
   (`isSafeFilename`).
-- What the patch also means: static hosting cannot send `expo-signature` either, so no code signing,
-  and no roll-back-to-embedded directive (directives travel only in multipart responses). Neither
-  is a regression, since both were already impossible on static hosting.
+- What the patch also means: static hosting cannot send `expo-signature` either. The patch
+  therefore also fetches the signature from `<manifest url>.sig` when code signing is configured
+  and the header is absent, and hands it to expo-updates' unchanged signature check (from the next
+  APK; see SECURITY-OTA-SIGNING.md). There is still no roll-back-to-embedded directive (directives
+  travel only in multipart responses), which was already impossible on static hosting.
 
 Weak points that exist with or without the patch: the manifest carries its own hashes, so the
 hashes defend against a swapped file but not against a swapped manifest; a `createdAt` that does not
 parse becomes "now" instead of an error; and the manifest's asset URLs may name any host (a tampered
 manifest could point the bundle anywhere). All of these need the attacker to control the manifest,
-which is the code-signing problem in SECURITY-OTA-SIGNING.md.
+which is what code signing (SECURITY-OTA-SIGNING.md) closes for APKs that carry the certificate.
 
 ## The OTA path
 
@@ -202,12 +204,16 @@ that). It cannot silently install anything.
 Risk rating (before the owner actions in the checklist): **High**. Likelihood is low to medium (it
 needs write access to the repository or Pages, or TLS interception), impact is every install.
 After branch and tag protection, required review and a 2FA key on the owner account: Medium.
-After manifest signing: Low.
+After manifest signing (implemented, effective for installs of the next APK once its device test
+passes): Low for Pages or deploy compromise; publishing still needs the `sign` job, so repository
+write access plus a run of that job remains the path to every install.
 
 Mitigations in place after this review (all in `.github/` and `scripts/`, no native change):
 
 - The workflow is split. `build` has only `contents: read` and is the only job that runs project or
-  npm code; `deploy` has `pages: write` and `id-token: write` and runs only `actions/deploy-pages`.
+  npm code; `sign` (environment `release`) gets `POREIA_OTA_PRIVATE_KEY` in one step on a fresh
+  checkout and runs only Node built-ins; `deploy` has `pages: write` and `id-token: write` and runs
+  only `actions/deploy-pages`.
 - Both jobs run only for `refs/heads/main`, so a manual run from another branch cannot publish,
   whatever the environment rules say.
 - `npm ci --ignore-scripts` and an explicit `npx patch-package`: no dependency install script runs
@@ -215,7 +221,9 @@ Mitigations in place after this review (all in `.github/` and `scripts/`, no nat
 - `scripts/verify-update.mjs` runs before the upload and fails the build unless the runtime version
   matches `app.json`, every URL is https under the manifest's own folder, every file's SHA-256 and
   name match the manifest, `createdAt` is a real date that is not in the future, and nothing else
-  (source maps, `.env`, keys, strays) is in the site. Tests: `scripts/verify-update.test.mjs`.
+  (source maps, `.env`, keys, strays) is in the site; with code signing configured it also requires
+  `manifest.json.sig` and checks it the way the app does. Tests: `scripts/verify-update.test.mjs`,
+  `scripts/sign-manifest.test.mjs`.
 - `.github/CODEOWNERS` marks the files that decide what ships.
 
 ## Permissions
@@ -265,7 +273,9 @@ CI hardening in `.github/`:
 - Every action is pinned to a commit SHA with the version in a comment. On 2026-11-18 each of the
   six SHAs was checked against the tag through the GitHub API and matched (`actions/checkout`
   v4.4.0, `setup-node` v4.4.0, `setup-java` v4.9.1, `upload-pages-artifact` v3.0.1,
-  `deploy-pages` v4.0.5, `configure-pages` v5.0.0 which is no longer used). All are GitHub-owned;
+  `deploy-pages` v4.0.5, `configure-pages` v5.0.0 which is no longer used). On 2026-11-19 two
+  were added for the signing job, with SHAs read from the tag list through the GitHub API:
+  `upload-artifact` v7.0.2 and `download-artifact` v8.0.2. All are GitHub-owned;
   there is no third-party action. Dependabot (`.github/dependabot.yml`, weekly) proposes updates
   for npm and for the actions.
 - No `pull_request_target`, no `${{ github.event... }}` in any `run:` block (the only expressions
@@ -274,8 +284,9 @@ CI hardening in `.github/`:
 - Workflow-level permissions are `contents: read`; the jobs that need more ask for it themselves
   (release creation, Pages deploy). Checkout does not persist the token.
 - The keystore comes from GitHub secrets (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`),
-  is written to the runner's temp directory and deleted on exit, and is never echoed. No other
-  secret appears in any workflow. The release job now also runs in the environment `release`, so
+  is written to the runner's temp directory and deleted on exit, and is never echoed. The only
+  other secret is `POREIA_OTA_PRIVATE_KEY` (OTA manifest signing), passed to the single signing
+  step of `update.yml`. The release job now also runs in the environment `release`, so
   the owner can move the secrets there and require an approval.
 - A tag must equal `v` plus the version in `app.json` and its commit must be on `main`; the keystore
   and the built APK must carry the expected certificate (fingerprint above).
@@ -299,7 +310,7 @@ with the next `v*` release), left (accepted or not worth the risk).
 | ID | Severity | Finding | Evidence | Status |
 |---|---|---|---|---|
 | F-01 | High | `main` has no branch protection and there are no rulesets, so tags are unprotected. A collaborator with `write` can push to `main` (publishes to every install) or push a `v*` tag (builds a signed APK in a run that can read the keystore secrets; a changed workflow could also copy them out) | `gh api repos/Kw4nzah/Poreia/branches/main/protection` returned 404; `.../rulesets` returned `[]`; `.../collaborators` lists `egemenmermer` with `push: true` | needs-owner (checklist). In-repo guards added (main-only publishing, tag on main and equal to the version, CODEOWNERS, `environment: release`) |
-| F-02 | High (impact) | The update manifest is not signed, so repository or Pages write access means code execution in every install | Documented; `docs/SECURITY-OTA-SIGNING.md`; no `codeSigningCertificate` in the released `app.config` | left (needs native patch, APK and a new runtime; steps documented) |
+| F-02 | High (impact) | The update manifest is not signed, so repository or Pages write access means code execution in every install | Documented; `docs/SECURITY-OTA-SIGNING.md`; no `codeSigningCertificate` in the released `app.config` | fixed in the next APK, pending device test: certificate in `app.json`, expo-updates patch reads `manifest.json.sig` and runs the stock signature check (fails closed), `sign` job signs with an environment secret, `verify-update.mjs` checks the signature. Needs the owner to add the secret (checklist) and the runtime bump |
 | F-03 | Medium | The `github-pages` environment allows deployments from the stale branch `feat/calendar-engine` as well as `main` | `gh api .../environments/github-pages/deployment-branch-policies` | needs-owner. The workflow itself now refuses any ref except `main` |
 | F-04 | Medium | Private vulnerability reporting is off although SECURITY.md tells reporters to use it; Dependabot alerts and security updates are off. (Secret scanning and push protection are on) | `gh api repos/Kw4nzah/Poreia/private-vulnerability-reporting` returned `enabled: false`; `.../vulnerability-alerts` 404; `security_and_analysis` in the repo object | needs-owner |
 | F-05 | Medium | The signing secret is exposed to the whole Gradle build, so any code in the build can read it | `apk.yml` passes it as environment of the Gradle step | left (documented; option: sign last with `apksigner`). Reduced: certificate pin checks, tag checks, environment |
@@ -334,14 +345,19 @@ with the next `v*` release), left (accepted or not worth the risk).
       leave `main` only.
 - [ ] Settings, Environments, `release` (the release job now uses it; it is created on the first
       run, or create it first): move `ANDROID_KEYSTORE_BASE64` and `ANDROID_KEYSTORE_PASSWORD`
-      from repository secrets into this environment, restrict its deployment tags to `v*`, and add
-      yourself as a required reviewer.
+      from repository secrets into this environment, restrict its deployments to `v*` tags **and
+      the `main` branch** (the OTA `sign` job runs on `main`), and add yourself as a required
+      reviewer (every update publish then waits for your approval).
+- [ ] Settings, Environments, `release`: add the secret `POREIA_OTA_PRIVATE_KEY` with the PEM text
+      of the OTA signing key (kept outside the repository; see SECURITY-OTA-SIGNING.md). Without
+      it, nothing is published once `app.json` requires signing. Keep an offline backup of it.
 - [ ] Settings, Actions, General: keep the default workflow token permission "Read repository
       contents" (it is), keep "Require approval for first-time contributors" (it is), and tick
       "Require actions to be pinned to a full-length commit SHA"; allow GitHub-owned actions only.
 - [ ] Keep an offline backup of the keystore and its password. Losing it means users must
       uninstall and reinstall to get a newer APK.
-- [ ] Decide about OTA manifest signing: [SECURITY-OTA-SIGNING.md](SECURITY-OTA-SIGNING.md).
+- [ ] OTA manifest signing: run the device test in
+      [SECURITY-OTA-SIGNING.md](SECURITY-OTA-SIGNING.md) before merging the runtime-7 change.
 
 ## Needs the next APK
 
@@ -350,8 +366,9 @@ These are in `app.json` or the code now but reach phones only with the next `v*`
 - `android.allowBackup: false` (Expo's template already writes the same value, and v0.6.1 already
   has it; the explicit setting keeps it stable across SDK upgrades).
 - The enlarged `android.blockedPermissions` list (finding F-10).
-- Anything about OTA code signing (not enabled) and the optional removal of the `EAS-Client-ID`
-  header (finding F-08).
+- OTA code signing (finding F-02): the certificate in `app.json` and the expo-updates patch that
+  reads `manifest.json.sig`.
+- The optional removal of the `EAS-Client-ID` header (finding F-08).
 
 Everything else on this page, including the APK digest check, the link allowlist, the settings
 validation, the backup trim, the quieter error boundary and the backup warning text, is

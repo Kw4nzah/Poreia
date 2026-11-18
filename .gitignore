@@ -41,6 +41,9 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
+# The public OTA code-signing certificate ships in the APK and is the only .pem that may be
+# committed. The private key lives outside the repository (docs/SECURITY-OTA-SIGNING.md).
+!/certs/certificate.pem
 
 # local env files
 .env*.local

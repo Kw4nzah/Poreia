@@ -1,3 +1,79 @@
+diff --git a/node_modules/expo-updates/android/src/main/java/expo/modules/updates/loader/FileDownloader.kt b/node_modules/expo-updates/android/src/main/java/expo/modules/updates/loader/FileDownloader.kt
+--- a/node_modules/expo-updates/android/src/main/java/expo/modules/updates/loader/FileDownloader.kt
++++ b/node_modules/expo-updates/android/src/main/java/expo/modules/updates/loader/FileDownloader.kt
+@@ -494,7 +494,7 @@
+     }
+   }
+ 
+-  internal fun parseRemoteUpdateResponse(response: Response): UpdateResponse {
++  internal fun parseRemoteUpdateResponse(response: Response, sidecarSignature: String? = null): UpdateResponse {
+     val responseHeaders = response.headers
+     val responseHeaderData = ResponseHeaderData(
+       protocolVersionRaw = responseHeaders["expo-protocol-version"],
+@@ -527,7 +527,7 @@
+       val manifestResponseInfo = ResponsePartInfo(
+         responseHeaderData = responseHeaderData,
+         responsePartHeaderData = ResponsePartHeaderData(
+-          signature = responseHeaders["expo-signature"]
++          signature = responseHeaders["expo-signature"] ?: sidecarSignature
+         ),
+         body = response.body!!.string()
+       )
+@@ -739,7 +739,26 @@
+         throw IOException(message, underlyingError)
+       }
+ 
+-      return parseRemoteUpdateResponse(response)
++      // Poreia: static hosting (GitHub Pages) cannot send the expo-signature header, so the
++      // signature is published next to the manifest as `<manifest url>.sig`. It goes through the
++      // same validateSignature check as the header would; if it cannot be fetched, the update is
++      // rejected like any other failed download.
++      val sidecarSignature = if (
++        configuration.codeSigningConfiguration != null &&
++        response.headers["expo-signature"] == null &&
++        response.body?.contentType()?.type != "multipart"
++      ) {
++        try {
++          downloadManifestSignature()
++        } catch (e: Exception) {
++          response.body?.close()
++          throw e
++        }
++      } else {
++        null
++      }
++
++      return parseRemoteUpdateResponse(response, sidecarSignature)
+     } catch (e: Exception) {
+       val message = "Failed to download remote update"
+       logger.error(message, e, UpdatesErrorCode.UpdateFailedToLoad)
+@@ -747,6 +766,26 @@
+     }
+   }
+ 
++  // Poreia: fetches `<manifest url>.sig` with the same client; returns its text, else throws.
++  private suspend fun downloadManifestSignature(): String {
++    val updateUrl = configuration.updateUrl
++    val signatureUrl = updateUrl.buildUpon().encodedPath(updateUrl.encodedPath + ".sig").build()
++    val request = Request.Builder()
++      .url(signatureUrl.toString())
++      .header("Accept", "*/*")
++      .build()
++    return downloadData(request).use { response ->
++      if (!response.isSuccessful) {
++        throw IOException("Manifest signature request not successful: HTTP ${response.code}")
++      }
++      val signature = response.body?.string()?.trim()
++      if (signature.isNullOrEmpty()) {
++        throw IOException("Manifest signature file is empty")
++      }
++      signature
++    }
++  }
++
+   suspend fun downloadAsset(
+     asset: AssetEntity,
+     destinationDirectory: File,
 diff --git a/node_modules/expo-updates/android/src/main/java/expo/modules/updates/manifest/UpdateFactory.kt b/node_modules/expo-updates/android/src/main/java/expo/modules/updates/manifest/UpdateFactory.kt
 index eed5a92..c24af6e 100644
 --- a/node_modules/expo-updates/android/src/main/java/expo/modules/updates/manifest/UpdateFactory.kt
