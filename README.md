@@ -239,13 +239,14 @@ of plain data: a fixed calendar and a fasting practice.
 The whole pipeline runs on GitHub. There is no Expo account and no backend.
 
 - **Push to `main`:** publishes a JavaScript and asset update to GitHub Pages. Installed apps
-  download it on the next start.
+  download it on the next start. The manifest is code-signed in CI (secret
+  `POREIA_OTA_PRIVATE_KEY`); see [docs/SECURITY-OTA-SIGNING.md](docs/SECURITY-OTA-SIGNING.md).
 - **`v*` tag:** builds the signed APK and creates a GitHub release.
 - **Native change** (new native module, permission, icon, SDK upgrade): bump `runtimeVersion`
   and the matching number in `updates.url`, `version` and `android.versionCode` in `app.json`,
   then tag. A native change is never shipped as a plain update.
-- `patches/expo-updates+*.patch` lets the app accept a manifest from static hosting. Keep it,
-  and re-create it when expo-updates is upgraded.
+- `patches/expo-updates+*.patch` lets the app accept a manifest from static hosting and read its
+  signature from `manifest.json.sig`. Keep it, and re-create it when expo-updates is upgraded.
 
 ## License
 

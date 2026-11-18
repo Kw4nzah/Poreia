@@ -8,14 +8,20 @@
 //   - every bundle and asset URL is https, under the manifest's own folder, and names a file that
 //     exists whose SHA-256 is the `hash` in the manifest and whose name is that hash;
 //   - nothing else is in the site (source maps, .env files, keys, stray files);
-//   - `createdAt` is a real date that is not in the future (expo-updates orders updates by it).
-// It cannot tell who wrote the manifest (see docs/SECURITY-OTA-SIGNING.md); it catches mistakes
-// and accidental leaks in the build, not a compromised build.
+//   - `createdAt` is a real date that is not in the future (expo-updates orders updates by it);
+//   - when app.json configures code signing, `manifest.json.sig` exists and the app would accept
+//     it: right format and keyid, and a valid RSA-SHA256 signature of the exact manifest bytes by
+//     the key of `updates.codeSigningCertificate` (see docs/SECURITY-OTA-SIGNING.md).
+// It catches mistakes and accidental leaks in the build, and a signature the app would refuse; it
+// cannot catch a compromised build.
+//
+//   node scripts/verify-update.mjs <siteDir> --before-signing   skips the signature checks
 
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { checkManifestSignature, codeSigningSettings } from './sign-manifest.mjs';
 
 const FORBIDDEN = /(\.map|\.env[^/]*|\.pem|\.key|\.jks|\.keystore|\.p12)$/i;
 
@@ -30,7 +36,9 @@ function listFiles(dir, base = dir) {
 
 /**
  * @param {string} siteDir folder that will be published
- * @param {{ runtimeVersion: string, updateUrl: string }} app values from app.json
+ * @param {{ runtimeVersion: string, updateUrl: string,
+ *   codeSigning?: { certificatePem: string, keyId: string } | null }} app values from app.json;
+ *   with `codeSigning`, the site must carry a signature file the app accepts
  * @param {Date} [now]
  * @returns {string[]} problems, empty when the site is fine
  */
@@ -62,7 +70,21 @@ export function verifySite(siteDir, app, now = new Date()) {
   if (Number.isNaN(created)) problems.push('createdAt is not a date');
   else if (created > now.getTime() + 5 * 60_000) problems.push('createdAt is in the future');
 
-  // `<manifest>.sig` is the signature file of docs/SECURITY-OTA-SIGNING.md, once that is enabled.
+  // `<manifest>.sig` is the signature file of docs/SECURITY-OTA-SIGNING.md.
+  const signatureFile = `${manifestFile}.sig`;
+  if (app.codeSigning) {
+    if (!existsSync(signatureFile)) {
+      problems.push(`no signature file at ${manifestPath}.sig (app.json requires code signing)`);
+    } else {
+      const problem = checkManifestSignature(
+        readFileSync(manifestFile),
+        readFileSync(signatureFile, 'utf8'),
+        app.codeSigning,
+        now,
+      );
+      if (problem) problems.push(`manifest signature: ${problem}`);
+    }
+  }
   const expected = new Set([manifestPath, `${manifestPath}.sig`, '.nojekyll']);
   const assets = [manifest.launchAsset, ...(Array.isArray(manifest.assets) ? manifest.assets : [])];
   for (const [index, asset] of assets.entries()) {
@@ -107,21 +129,24 @@ export function verifySite(siteDir, app, now = new Date()) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const siteDir = process.argv[2];
-  if (!siteDir) {
-    console.error('usage: node scripts/verify-update.mjs <siteDir>');
+  const [siteDir, flag] = process.argv.slice(2);
+  if (!siteDir || (flag !== undefined && flag !== '--before-signing')) {
+    console.error('usage: node scripts/verify-update.mjs <siteDir> [--before-signing]');
     process.exit(1);
   }
   const expo = JSON.parse(readFileSync('app.json', 'utf8')).expo;
+  const codeSigning = flag === '--before-signing' ? null : codeSigningSettings(expo);
   const problems = verifySite(siteDir, {
     runtimeVersion: expo.runtimeVersion,
     updateUrl: expo.updates.url,
+    codeSigning,
   });
   if (problems.length > 0) {
     for (const problem of problems) console.error(`FAIL ${problem}`);
     process.exit(1);
   }
   console.log(
-    `update site verified: ${listFiles(siteDir).length} files, hashes match the manifest`,
+    `update site verified: ${listFiles(siteDir).length} files, hashes match the manifest` +
+      (codeSigning ? `, signature valid (keyid ${codeSigning.keyId})` : ', signature not checked'),
   );
 }
