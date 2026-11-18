@@ -11,6 +11,9 @@ export interface Theme {
   /** Wine red: fasting days, primary actions. */
   accent: string;
   onAccent: string;
+  /** Fill of primary buttons and selected segments: wine in both themes. */
+  action: string;
+  onAction: string;
   /** Olive: fast-free days and permitted foods. */
   free: string;
   /** Gold: feasts. */
@@ -37,6 +40,8 @@ const light: Theme = {
   muted: '#625B52',
   accent: '#7A1F2B',
   onAccent: '#FFF8F0',
+  action: '#7A1F2B',
+  onAction: '#FFF8F0',
   free: '#78866B',
   feast: '#9E7835',
   feastSurface: '#F3E6C4',
@@ -54,6 +59,10 @@ const dark: Theme = {
   muted: '#C4BDB5',
   accent: '#E0959D',
   onAccent: '#2A0E13',
+  // The light pink accent is for text and marks on dark; a filled button that size reads as a
+  // pink slab, so fills keep the wine.
+  action: '#8E2A38',
+  onAction: '#FFF8F0',
   free: '#A9B99A',
   feast: '#D7B978',
   feastSurface: '#3A2E14',
@@ -84,6 +93,9 @@ export const SERIF = 'serif';
  * things only (switch, radio).
  */
 export const radius = { card: 16, field: 12, tag: 8, pill: 999 } as const;
+
+/** Widest the app's column gets; on tablets and wide windows it is centred. */
+export const MAX_CONTENT_WIDTH = 560;
 
 export const space = { xs: 4, sm: 8, smd: 12, md: 16, lg: 24, xl: 32 } as const;
 

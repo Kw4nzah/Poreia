@@ -105,9 +105,9 @@ describe.each([
   });
 
   it('selected segment is the accent fill, the others are outlined', () => {
-    expect(segmentColors(t, true)).toMatchObject({ background: t.accent, text: t.onAccent });
+    expect(segmentColors(t, true)).toMatchObject({ background: t.action, text: t.onAction });
     expect(segmentColors(t, false)).toMatchObject({ background: 'transparent', border: t.line });
-    expect(contrast(segmentColors(t, true).text, t.accent)).toBeGreaterThanOrEqual(4.5);
+    expect(contrast(segmentColors(t, true).text, t.action)).toBeGreaterThanOrEqual(4.5);
   });
 
   it('card style follows the radius tokens', () => {

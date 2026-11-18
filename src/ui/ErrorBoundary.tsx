@@ -22,9 +22,9 @@ function Fallback({ onRetry }: { onRetry: () => void }) {
       <Pressable
         onPress={onRetry}
         accessibilityRole="button"
-        style={[styles.button, { backgroundColor: theme.accent }]}
+        style={[styles.button, { backgroundColor: theme.action }]}
       >
-        <Text style={[styles.buttonText, { color: theme.onAccent }]}>{text.retry}</Text>
+        <Text style={[styles.buttonText, { color: theme.onAction }]}>{text.retry}</Text>
       </Pressable>
     </View>
   );

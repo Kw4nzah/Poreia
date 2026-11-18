@@ -31,10 +31,10 @@ export function buttonColors(t: Theme, variant: ButtonVariant): ButtonColors {
   switch (variant) {
     case 'primary':
       return {
-        background: t.accent,
-        border: t.accent,
-        text: t.onAccent,
-        overlay: t.dark ? t.onAccent : t.ink,
+        background: t.action,
+        border: t.action,
+        text: t.onAction,
+        overlay: t.dark ? t.background : t.ink,
         overlayOpacity: 0.16,
       };
     case 'danger':
@@ -42,7 +42,7 @@ export function buttonColors(t: Theme, variant: ButtonVariant): ButtonColors {
         background: t.danger,
         border: t.danger,
         text: t.onAccent,
-        overlay: t.dark ? t.onAccent : t.ink,
+        overlay: t.dark ? t.background : t.ink,
         overlayOpacity: 0.16,
       };
     case 'secondary':
@@ -159,7 +159,7 @@ export interface SegmentColors {
 
 export function segmentColors(t: Theme, selected: boolean): SegmentColors {
   return selected
-    ? { background: t.accent, border: t.accent, text: t.onAccent }
+    ? { background: t.action, border: t.action, text: t.onAction }
     : { background: 'transparent', border: t.line, text: t.ink };
 }
 

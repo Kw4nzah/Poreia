@@ -37,4 +37,7 @@ describe.each([
   it('onAccent on accent >= 4.5', () => {
     expect(contrast(t.onAccent, t.accent)).toBeGreaterThanOrEqual(4.5);
   });
+  it('onAction on action >= 4.5', () => {
+    expect(contrast(t.onAction, t.action)).toBeGreaterThanOrEqual(4.5);
+  });
 });
