@@ -3,7 +3,7 @@
 import * as Notifications from 'expo-notifications';
 import { type DailyNotification, type ScheduledNotification, notificationTimes } from './content';
 
-const CHANNEL_ID = 'daily';
+export const CHANNEL_ID = 'daily';
 
 /**
  * Nothing runs in the background, so the coming days are scheduled ahead each time the

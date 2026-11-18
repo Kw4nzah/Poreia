@@ -314,6 +314,59 @@ export interface Messages {
     downloading: string;
     failed: string;
   };
+  /** Notification help, "What's new" and "Report a problem" in Settings. */
+  support: {
+    helpTitle: string;
+    helpIntro: string;
+    helpCheck: string;
+    helpRecheck: string;
+    helpChecking: string;
+    rowPermission: string;
+    permissionGranted: string;
+    permissionDenied: string;
+    permissionUndetermined: string;
+    rowChannel: string;
+    importanceOff: string;
+    importanceMin: string;
+    importanceLow: string;
+    importanceDefault: string;
+    importanceHigh: string;
+    rowScheduled: string;
+    rowNext: string;
+    rowExact: string;
+    exactAllowed: string;
+    exactBlocked: string;
+    none: string;
+    unknown: string;
+    stepsTitle: string;
+    /** `channel` is the notification category's name in the phone's settings. */
+    stepAllow: (channel: string) => string;
+    stepBattery: string;
+    stepFocus: string;
+    stepAutostart: string;
+    /** `days` is how far ahead the app schedules. */
+    stepOpenApp: (days: number) => string;
+    openSettings: string;
+    testButton: string;
+    testScheduled: string;
+    testFailed: string;
+    testTitle: string;
+    testBody: string;
+    whatsNewTitle: string;
+    whatsNewInstalled: string;
+    reportButton: string;
+    reportHint: string;
+    reportFailed: string;
+    reportTitle: string;
+    reportWhat: string;
+    reportWrite: string;
+    reportDetails: string;
+    reportApp: string;
+    reportRuntime: string;
+    reportAndroid: string;
+    reportDevice: string;
+    reportLanguage: string;
+  };
   /** Home-screen widget. Short strings: they sit in small, fixed-size slots. */
   widget: {
     allowed: string;
@@ -762,6 +815,63 @@ export const en: Messages = {
     upToDate: 'You have the latest version.',
     downloading: 'Downloading…',
     failed: 'Update failed. Try again later.',
+  },
+
+  support: {
+    helpTitle: 'Notifications not arriving?',
+    helpIntro: 'See what the phone reports, then go through the steps below.',
+    helpCheck: 'Check now',
+    helpRecheck: 'Check again',
+    helpChecking: 'Checking…',
+    rowPermission: 'Permission',
+    permissionGranted: 'Allowed',
+    permissionDenied: 'Blocked',
+    permissionUndetermined: 'Not asked yet',
+    rowChannel: 'Notification category',
+    importanceOff: 'Off',
+    importanceMin: 'Minimal',
+    importanceLow: 'Low',
+    importanceDefault: 'Default',
+    importanceHigh: 'High',
+    rowScheduled: 'Scheduled',
+    rowNext: 'Next one',
+    rowExact: 'Exact alarms',
+    exactAllowed: 'Allowed',
+    exactBlocked: 'Not allowed',
+    none: 'None',
+    unknown: 'Unknown',
+    stepsTitle: 'What usually helps',
+    stepAllow: (channel) =>
+      `Open the app settings with the button below, choose Notifications and make sure they are on, including the “${channel}” category.`,
+    stepBattery:
+      'In the same settings open Battery and choose “Unrestricted” (on some phones “No restrictions” or “Don’t optimise”). A strict battery mode can delay or drop notifications.',
+    stepFocus:
+      'Do Not Disturb and focus modes silence notifications. Allow Poreia there, or switch them off for a moment.',
+    stepAutostart:
+      'Some phones (Xiaomi, Huawei, Samsung and others) also keep an autostart or “sleeping apps” list. Make sure Poreia is not on it.',
+    stepOpenApp: (days) =>
+      `Poreia plans ${days} days ahead each time you open it. If you have not opened it for a month, open it once.`,
+    openSettings: 'Open app settings',
+    testButton: 'Send a test notification now',
+    testScheduled: 'A test notification will arrive in about 5 seconds.',
+    testFailed: 'The test notification could not be scheduled.',
+    testTitle: 'Test notification',
+    testBody: 'If you can read this, notifications reach you.',
+    whatsNewTitle: 'What’s new',
+    whatsNewInstalled: 'Installed',
+    reportButton: 'Report a problem',
+    reportHint:
+      'Opens a GitHub page with the app version, Android version, device model and language filled in. Nothing else is sent. A GitHub account is needed to submit it.',
+    reportFailed: 'The page could not be opened.',
+    reportTitle: 'Problem report',
+    reportWhat: 'What happened',
+    reportWrite: '(Describe the problem and how to repeat it.)',
+    reportDetails: 'Technical details (added automatically)',
+    reportApp: 'App',
+    reportRuntime: 'Content',
+    reportAndroid: 'Android',
+    reportDevice: 'Device',
+    reportLanguage: 'Language',
   },
 
   widget: {
