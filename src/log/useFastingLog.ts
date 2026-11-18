@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useFocusEffect } from 'expo-router';
 import { AppState } from 'react-native';
 import { CivilDate, gregorianToJdn } from '../calendar';
 import { toggleDone } from '../widget/doneStore';
@@ -29,6 +30,13 @@ export function useFastingLog(today: CivilDate, onToggled: () => void) {
       subscription.remove();
     };
   }, [reload]);
+
+  // A restore in Settings writes marks while this screen stays mounted behind it.
+  useFocusEffect(
+    useCallback(() => {
+      void reload();
+    }, [reload]),
+  );
 
   const toggle = useCallback(async () => {
     if (busy.current) return;
