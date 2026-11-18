@@ -62,6 +62,13 @@ release APK. All URLs in the code are https.
   the name (40 characters) and saint names (60 characters, at most 10). The widget task handler uses
   the same function, so the widget never trusts raw storage. "Done" marks are compared with the
   exact value `"1"`.
+- Backup and restore (`src/backup/`): the backup is text the user copies out (share sheet) and
+  pastes back in; the app never sends it anywhere itself. Pasted text is untrusted: it is limited to
+  65 536 characters, must be a JSON object with `app: "poreia"` and a known `version`, only its own
+  properties are read (so `__proto__` or `constructor` keys do nothing), the settings go through
+  `parseSettings`, and the done list must hold only real `YYYY-MM-DD` days (one bad entry rejects
+  the backup, at most 1 500 days). Restore asks for confirmation, writes done days only under the
+  `poreia.done.` prefix, and never throws. Tests: `src/backup/*.test.ts`.
 - No `eval`, `new Function` or `require` with a variable. The two lazy `require` calls load fixed
   files.
 - Logging: the app logs nothing in release builds. The error boundary logs only under `__DEV__`

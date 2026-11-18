@@ -87,3 +87,49 @@ export function notificationTimes(
   });
   return out;
 }
+
+/** Local hour of the evening-before reminder. */
+export const EVE_HOUR = 20;
+/** Safety cap: a 30-day window holds a handful of such days, never more than this. */
+export const MAX_EVE_REMINDERS = 8;
+
+const MAJOR_FASTS: ReadonlySet<string> = new Set([
+  'greatLent',
+  'apostlesFast',
+  'dormitionFast',
+  'nativityFast',
+]);
+
+/**
+ * The evening-before reminders in the next `days` days: one at 20:00 on each evening when the
+ * following day is the first day of a major fast or carries a feast. Only those days produce an
+ * alarm, so the count stays small. Moments that are already past are left out.
+ */
+export function planEveReminders(
+  from: CivilDate,
+  days: number,
+  church: Church,
+  m: Messages,
+  options?: DayOptions,
+  now: Date = new Date(),
+): ScheduledNotification[] {
+  const start = gregorianToJdn(from.year, from.month, from.day);
+  const out: ScheduledNotification[] = [];
+  for (let i = 0; i < days && out.length < MAX_EVE_REMINDERS; i++) {
+    const evening = jdnToGregorian(start + i);
+    const info = getDayInfo(jdnToGregorian(start + i + 1), church, options);
+    const startsFast =
+      info.period !== null && info.period.day === 1 && MAJOR_FASTS.has(info.period.id);
+    if (!startsFast && info.feasts.length === 0) continue;
+    const when = new Date(evening.year, evening.month - 1, evening.day, EVE_HOUR, 0, 0);
+    if (when.getTime() <= now.getTime()) continue;
+    const level = m.level[info.level];
+    const names: string[] = [];
+    if (startsFast && info.period) names.push(m.period[info.period.id]);
+    for (const feast of info.feasts) names.push(m.feast[feast]);
+    const lines = startsFast ? [m.eve.fastBegins] : [];
+    lines.push(`${level.title}: ${level.detail}`);
+    out.push({ when, title: `${m.eve.tomorrow} · ${names.join(' · ')}`, body: lines.join('\n') });
+  }
+  return out;
+}

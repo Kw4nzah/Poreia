@@ -16,6 +16,7 @@ describe('parseSettings', () => {
       notifications: true,
       notificationHour: 12,
       notificationRepeat: true,
+      eveReminder: true,
       prayerTextSize: 2,
       greekFish: 'greece',
       saints: [{ name: 'Nicholas', topic: 'travel' }],
@@ -88,6 +89,8 @@ describe('favorite saints', () => {
 
 describe('notification repeat', () => {
   it('is off by default and only on for a real true', () => {
+    expect(parseSettings(null, 'en').eveReminder).toBe(false);
+    expect(parseSettings(JSON.stringify({ eveReminder: 'yes' }), 'en').eveReminder).toBe(false);
     expect(parseSettings(null, 'en').notificationRepeat).toBe(false);
     expect(
       parseSettings(JSON.stringify({ notificationRepeat: 'yes' }), 'en').notificationRepeat,

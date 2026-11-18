@@ -116,6 +116,38 @@ export interface Messages {
     notificationsDenied: string;
     /** Name of the notification category in the phone's settings. */
     notificationsChannel: string;
+    eveReminder: string;
+    eveReminderHint: string;
+  };
+
+  /** Evening-before reminder (fast begins, feast tomorrow). */
+  eve: {
+    tomorrow: string;
+    fastBegins: string;
+  };
+
+  backup: {
+    title: string;
+    hint: string;
+    copy: string;
+    copyHint: string;
+    /** Title of the system share dialog. */
+    shareTitle: string;
+    restore: string;
+    pasteLabel: string;
+    pastePlaceholder: string;
+    confirmTitle: string;
+    confirmBody: string;
+    cancel: string;
+    restored: (days: number) => string;
+    errors: {
+      empty: string;
+      tooLarge: string;
+      invalid: string;
+      notBackup: string;
+      version: string;
+      storage: string;
+    };
   };
 
   period: Record<PeriodId, string>;
@@ -319,6 +351,37 @@ export const en: Messages = {
     notificationsDenied:
       'Notifications are blocked for Poreia. Allow them in the phone settings, then turn this on again.',
     notificationsChannel: 'Daily fast',
+    eveReminder: 'The evening before a fast or feast',
+    eveReminderHint: 'At 20:00 the evening before a fast begins or a feast falls.',
+  },
+
+  eve: {
+    tomorrow: 'Tomorrow',
+    fastBegins: 'The fast begins.',
+  },
+
+  backup: {
+    title: 'Backup',
+    hint: 'Keep your settings and completed days safe, or move them to another phone. Copy the backup, then paste it here to restore it.',
+    copy: 'Copy backup',
+    copyHint: 'Opens the share sheet. Choose Copy, or send it to yourself.',
+    shareTitle: 'Poreia backup',
+    restore: 'Restore',
+    pasteLabel: 'Backup text',
+    pastePlaceholder: 'Paste the backup here',
+    confirmTitle: 'Restore this backup?',
+    confirmBody:
+      'Your current settings will be replaced. Completed days in the backup are added to the ones you have.',
+    cancel: 'Cancel',
+    restored: (days) => `Restored. Completed days in the backup: ${days}.`,
+    errors: {
+      empty: 'Paste the backup text first.',
+      tooLarge: 'This text is too long to be a Poreia backup.',
+      invalid: 'This is not readable as a backup. Copy it again and paste the whole text.',
+      notBackup: 'This text is not a Poreia backup.',
+      version: 'This backup comes from a newer version of Poreia. Update the app first.',
+      storage: 'The backup could not be saved on this phone. Try again.',
+    },
   },
 
   period: {
