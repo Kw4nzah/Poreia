@@ -8,6 +8,7 @@ import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, ChurchId, GREEK_FISH_PRACTICES } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
+import { BackupSection } from './BackupSection';
 import { requestPermission } from '../notifications/schedule';
 import { PROJECT_URL } from '../security/constants';
 import { openExternalUrl } from '../security/openExternal';
@@ -42,6 +43,7 @@ export function Settings() {
   const updates = useUpdateCheck();
   const apk = useApkUpdate();
   const [notificationsDenied, setNotificationsDenied] = useState(false);
+  const [eveDenied, setEveDenied] = useState(false);
   const [saintName, setSaintName] = useState('');
   const [saintTopic, setSaintTopic] = useState<SaintTopicId | ''>('');
   const contentLine = describeContent(m, Updates.isEmbeddedLaunch, Updates.createdAt);
@@ -63,6 +65,17 @@ export function Settings() {
     const granted = await requestPermission(m.settings.notificationsChannel).catch(() => false);
     if (granted) update({ notifications: true });
     else setNotificationsDenied(true);
+  }
+
+  async function toggleEve(on: boolean) {
+    setEveDenied(false);
+    if (!on) {
+      update({ eveReminder: false });
+      return;
+    }
+    const granted = await requestPermission(m.settings.notificationsChannel).catch(() => false);
+    if (granted) update({ eveReminder: true });
+    else setEveDenied(true);
   }
 
   return (
@@ -178,6 +191,20 @@ export function Settings() {
             <Text style={styles.status}>{m.settings.notificationRepeatHint}</Text>
           </View>
         )}
+        <View style={styles.apk}>
+          <View style={styles.switchRow}>
+            <Text style={[styles.cardText, styles.switchText]}>{m.settings.eveReminder}</Text>
+            <AppSwitch
+              value={settings.eveReminder}
+              onValueChange={toggleEve}
+              label={m.settings.eveReminder}
+            />
+          </View>
+          <Text style={styles.status}>{m.settings.eveReminderHint}</Text>
+          {eveDenied && (
+            <Text style={[styles.status, styles.warning]}>{m.settings.notificationsDenied}</Text>
+          )}
+        </View>
       </Card>
 
       <SectionHeader title={m.saints.title} />
@@ -233,6 +260,8 @@ export function Settings() {
           <Text style={styles.status}>{m.saints.full}</Text>
         )}
       </Card>
+
+      <BackupSection />
 
       <SectionHeader title={m.settings.updatesTitle} />
       <Card padding="md">

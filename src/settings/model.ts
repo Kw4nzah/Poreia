@@ -46,6 +46,8 @@ export interface Settings {
   notificationHour: NotificationHour;
   /** Repeat the daily notification every few minutes until the app is opened that day. */
   notificationRepeat: boolean;
+  /** Evening reminder (20:00) the day before a fast begins or a feast falls. */
+  eveReminder: boolean;
   /** Index into PRAYER_TEXT_SIZES. */
   prayerTextSize: PrayerTextSize;
   /** Which Greek rule decides fish in the Nativity and Apostles' Fasts. */
@@ -65,6 +67,7 @@ export function defaultSettings(language: Language): Settings {
     notifications: false,
     notificationHour: 8,
     notificationRepeat: false,
+    eveReminder: false,
     prayerTextSize: DEFAULT_PRAYER_TEXT_SIZE,
     greekFish: DEFAULT_GREEK_FISH_PRACTICE,
     saints: [],
@@ -117,6 +120,7 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
     onboarded: s.onboarded === true && isChurchId(s.churchId),
     notifications: s.notifications === true,
     notificationRepeat: s.notificationRepeat === true,
+    eveReminder: s.eveReminder === true,
     notificationHour: isNotificationHour(s.notificationHour)
       ? s.notificationHour
       : fallback.notificationHour,

@@ -98,6 +98,37 @@ export const tr: Messages = {
     notificationsDenied:
       'Poreia için bildirimler kapalı. Telefon ayarlarından izin ver, sonra burayı yeniden aç.',
     notificationsChannel: 'Günlük oruç',
+    eveReminder: 'Oruç ya da bayramdan önceki akşam',
+    eveReminderHint: 'Bir oruç başlamadan ya da bayram gelmeden önceki akşam saat 20:00’de.',
+  },
+
+  eve: {
+    tomorrow: 'Yarın',
+    fastBegins: 'Oruç başlıyor.',
+  },
+
+  backup: {
+    title: 'Yedek',
+    hint: 'Ayarlarınızı ve tamamladığınız günleri saklayın ya da başka bir telefona taşıyın. Yedeği kopyalayın, geri yüklemek için buraya yapıştırın.',
+    copy: 'Yedeği kopyala',
+    copyHint: 'Paylaşım menüsünü açar. Kopyala’yı seçin ya da kendinize gönderin.',
+    shareTitle: 'Poreia yedeği',
+    restore: 'Geri yükle',
+    pasteLabel: 'Yedek metni',
+    pastePlaceholder: 'Yedeği buraya yapıştırın',
+    confirmTitle: 'Bu yedek geri yüklensin mi?',
+    confirmBody:
+      'Şimdiki ayarlarınızın yerine yedektekiler gelir. Yedekteki tamamlanan günler, sizdeki günlere eklenir.',
+    cancel: 'Vazgeç',
+    restored: (days) => `Geri yüklendi. Yedekteki tamamlanan gün sayısı: ${days}.`,
+    errors: {
+      empty: 'Önce yedek metnini yapıştırın.',
+      tooLarge: 'Bu metin bir Poreia yedeği olamayacak kadar uzun.',
+      invalid: 'Bu metin yedek olarak okunamadı. Yeniden kopyalayıp metnin tamamını yapıştırın.',
+      notBackup: 'Bu metin bir Poreia yedeği değil.',
+      version: 'Bu yedek Poreia’nın daha yeni bir sürümünden. Önce uygulamayı güncelleyin.',
+      storage: 'Yedek bu telefona kaydedilemedi. Yeniden deneyin.',
+    },
   },
 
   period: {

@@ -64,6 +64,28 @@ describe('syncDailyNotifications', () => {
     expect(calls).toEqual(['cancel']);
   });
 
+  it('schedules the evening reminders alone when the daily notification is off', async () => {
+    const eve = [{ when: new Date(2099, 0, 1, 20), title: 't', body: 'b' }];
+    await syncDailyNotifications(null, 8, 'Daily', false, eve);
+    expect(calls).toEqual(['cancel', 'channel', 'schedule']);
+  });
+
+  it('adds the evening reminders to the daily ones, and skips past moments', async () => {
+    const eve = [
+      { when: new Date(2099, 0, 1, 20), title: 't', body: 'b' },
+      { when: new Date(2000, 0, 1, 20), title: 'old', body: 'b' },
+    ];
+    await syncDailyNotifications(plan(2), 8, 'Daily', false, eve);
+    expect(calls.filter((c) => c === 'schedule')).toHaveLength(3);
+  });
+
+  it('schedules no evening reminder without permission', async () => {
+    permissionGranted = false;
+    const eve = [{ when: new Date(2099, 0, 1, 20), title: 't', body: 'b' }];
+    await syncDailyNotifications(null, 8, 'Daily', false, eve);
+    expect(calls).toEqual(['cancel']);
+  });
+
   it('keeps scheduling the days after one the system refused', async () => {
     failScheduleAt = 2;
     await expect(syncDailyNotifications(plan(4), 8, 'Daily')).resolves.toBeUndefined();

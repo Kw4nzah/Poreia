@@ -33,6 +33,7 @@ describe('settings saved by older versions', () => {
       notificationHour: 12,
       prayerTextSize: 2,
       notificationRepeat: false,
+      eveReminder: false,
       saints: [],
       greekFish: defaultSettings('ru').greekFish,
     });

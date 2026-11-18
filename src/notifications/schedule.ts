@@ -1,7 +1,7 @@
 // Talks to the system: permission, channel and the scheduled notifications themselves.
 
 import * as Notifications from 'expo-notifications';
-import { type DailyNotification, notificationTimes } from './content';
+import { type DailyNotification, type ScheduledNotification, notificationTimes } from './content';
 
 const CHANNEL_ID = 'daily';
 
@@ -48,12 +48,19 @@ async function replaceAll(
   hour: number,
   channelName: string,
   repeat: boolean,
+  eve: readonly ScheduledNotification[],
 ) {
   await Notifications.cancelAllScheduledNotificationsAsync();
-  if (!plan) return;
+  if (!plan && eve.length === 0) return;
   if (!(await Notifications.getPermissionsAsync()).granted) return;
   await ensureChannel(channelName);
-  for (const { when, title, body } of notificationTimes(plan, hour, repeat, new Date())) {
+  const now = new Date();
+  // The few evening reminders go first, so a refused alarm never costs one of them.
+  const moments = [
+    ...eve.filter(({ when }) => when.getTime() > now.getTime()),
+    ...(plan ? notificationTimes(plan, hour, repeat, now) : []),
+  ];
+  for (const { when, title, body } of moments) {
     try {
       await Notifications.scheduleNotificationAsync({
         content: { title, body },
@@ -75,7 +82,8 @@ let queue: Promise<void> = Promise.resolve();
 let waiting: Request | null = null;
 
 /**
- * Replaces everything scheduled with `plan`, or clears it when `plan` is null.
+ * Replaces everything scheduled with `plan` (the daily notifications) and `eve` (the evening-before
+ * reminders), or clears it when `plan` is null and `eve` is empty.
  * Calls run one after another so two quick setting changes cannot interleave, and while one is
  * running only the newest waiting request is kept (the older ones would be overwritten anyway).
  */
@@ -84,8 +92,9 @@ export function syncDailyNotifications(
   hour: number,
   channelName: string,
   repeat = false,
+  eve: readonly ScheduledNotification[] = [],
 ): Promise<void> {
-  waiting = [plan, hour, channelName, repeat];
+  waiting = [plan, hour, channelName, repeat, eve];
   queue = queue
     .then(() => {
       const request = waiting;

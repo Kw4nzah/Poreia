@@ -3,7 +3,7 @@ import { AppState } from 'react-native';
 import { CHURCHES } from '../calendar';
 import { useSettings } from '../settings/SettingsProvider';
 import { useToday } from '../ui/useToday';
-import { planNotifications } from './content';
+import { planEveReminders, planNotifications } from './content';
 import { DAYS_AHEAD, syncDailyNotifications } from './schedule';
 
 function currentTimeZone(): string {
@@ -35,6 +35,7 @@ export function DailyNotifications() {
   const today = useToday();
   const zone = useTimeZone();
   const enabled = settings.onboarded && settings.notifications;
+  const eveEnabled = settings.onboarded && settings.eveReminder;
   const { churchId, notificationHour, notificationRepeat, greekFish } = settings;
 
   useEffect(() => {
@@ -43,16 +44,30 @@ export function DailyNotifications() {
       const plan = enabled
         ? planNotifications(today, DAYS_AHEAD, CHURCHES[churchId], messages, { greekFish })
         : null;
+      const eve = eveEnabled
+        ? planEveReminders(today, DAYS_AHEAD, CHURCHES[churchId], messages, { greekFish })
+        : [];
       syncDailyNotifications(
         plan,
         notificationHour,
         messages.settings.notificationsChannel,
         notificationRepeat,
+        eve,
       ).catch(() => {});
     } catch {
       // Try again on the next change or app start.
     }
-  }, [enabled, churchId, notificationHour, notificationRepeat, greekFish, messages, today, zone]);
+  }, [
+    enabled,
+    eveEnabled,
+    churchId,
+    notificationHour,
+    notificationRepeat,
+    greekFish,
+    messages,
+    today,
+    zone,
+  ]);
 
   return null;
 }
