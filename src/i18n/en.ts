@@ -79,13 +79,6 @@ export interface Messages {
     markA11y: string;
     /** Screen-reader label of the button while today is marked. */
     doneA11y: string;
-    streak: string;
-    thisYear: string;
-    streakNote: string;
-    /** Spoken count of days, e.g. "5 days". */
-    days: (count: number) => string;
-    /** Spoken progress, e.g. "5 of 40". */
-    outOf: (done: number, total: number) => string;
   };
 
   settings: {
@@ -313,11 +306,6 @@ export const en: Messages = {
     title: 'Fasting log',
     markA11y: 'Mark today complete',
     doneA11y: 'Today is complete. Tap to undo.',
-    streak: 'Days in a row',
-    thisYear: 'This year',
-    streakNote: 'Days without a fast do not break the streak.',
-    days: (count) => `${count} ${plural(count, 'day', 'days')}`,
-    outOf: (done, total) => `${done} of ${total}`,
   },
 
   settings: {

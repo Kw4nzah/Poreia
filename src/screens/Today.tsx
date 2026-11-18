@@ -1,15 +1,13 @@
 // The daily view: today's date, feast, fasting rule and the next fast.
 
 import { useRouter } from 'expo-router';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '../calendar';
 import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
-import { FastingStatsCard } from '../log/FastingStatsCard';
-import { computeStats } from '../log/log';
 import { useFastingLog } from '../log/useFastingLog';
 import { Badge, Button, Card } from '../ui/kit';
 import { FadeIn, useGrow } from '../ui/motion';
@@ -48,17 +46,6 @@ export function Today() {
   // The widget's "complete today" mark, shared through storage; the widget is redrawn after a tap.
   const redrawWidget = useCallback(() => refreshWidget(settings), [settings]);
   const log = useFastingLog(today, redrawWidget);
-  const stats = useMemo(
-    () =>
-      computeStats(
-        today,
-        log.done,
-        (date) => getDayInfo(date, church, { greekFish: settings.greekFish }).level !== 'none',
-        info.period,
-      ),
-    [today, log.done, church, settings.greekFish, info.period?.id],
-  );
-  const hasMarks = stats.year > 0 || stats.streak > 0;
 
   const tone = fasting ? theme.accent : theme.free;
   const level = m.level[info.level];
@@ -186,12 +173,6 @@ export function Today() {
           )}
         </Card>
       </FadeIn>
-
-      {hasMarks && (
-        <FadeIn index={2}>
-          <FastingStatsCard stats={stats} style={styles.card} />
-        </FadeIn>
-      )}
 
       <FadeIn index={2}>
         <Card

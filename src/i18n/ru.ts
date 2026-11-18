@@ -82,11 +82,6 @@ export const ru: Messages = {
     title: 'Дневник поста',
     markA11y: 'Отметить сегодняшний день',
     doneA11y: 'Сегодня выполнено. Нажмите, чтобы отменить.',
-    streak: 'Дней подряд',
-    thisYear: 'В этом году',
-    streakNote: 'Дни без поста не прерывают серию.',
-    days: (count) => days(count),
-    outOf: (done, total) => `${done} из ${total}`,
   },
 
   settings: {

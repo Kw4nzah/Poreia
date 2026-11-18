@@ -71,11 +71,6 @@ export const tr: Messages = {
     title: 'Oruç günlüğü',
     markA11y: 'Bugünü tamamla',
     doneA11y: 'Bugün tamamlandı. Geri almak için dokun.',
-    streak: 'Art arda gün',
-    thisYear: 'Bu yıl',
-    streakNote: 'Oruçsuz günler seriyi bozmaz.',
-    days: (count) => `${count} gün`,
-    outOf: (done, total) => `${done} / ${total}`,
   },
 
   settings: {
