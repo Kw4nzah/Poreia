@@ -4,3 +4,4 @@ export * from './fasting';
 export * from './isoDate';
 export * from './foods';
 export * from './monthGrid';
+export * from './upcoming';

@@ -15,6 +15,7 @@ import type {
   PeriodId,
 } from '../calendar';
 import type { ReadingGroupId } from '../commemorations';
+import type { FoodItemId } from '../foods/lookup';
 import type { PrayerGroupId, PrayerId, PrayerText } from '../prayers';
 import { prayerTexts } from './prayers/en';
 
@@ -161,6 +162,34 @@ export interface Messages {
   feast: Record<FeastId, string>;
   level: Record<FastLevel, { title: string; detail: string }>;
   food: Record<FoodId, string>;
+  /** Concrete foods for the "Can I eat this?" search; also matched in the other languages. */
+  foodItem: Record<FoodItemId, string>;
+  foods: {
+    title: string;
+    back: string;
+    /** Row on the Today screen. */
+    open: string;
+    openHint: string;
+    searchPlaceholder: string;
+    today: (level: string) => string;
+    sectionAllowed: string;
+    sectionAvoided: string;
+    statusAllowed: string;
+    statusForbidden: string;
+    statusDisputed: string;
+    noResults: string;
+  };
+  upcoming: {
+    title: string;
+    back: string;
+    /** Row on the Today screen. */
+    open: string;
+    openHint: string;
+    hint: string;
+    kindFeast: string;
+    kindFast: string;
+    inDays: (days: number) => string;
+  };
   note: Record<NoteId, string>;
 
   prayers: {
@@ -458,6 +487,54 @@ export const en: Messages = {
     dairy: 'Dairy and eggs',
     fish: 'Fish',
     oil: 'Wine and oil',
+  },
+  foodItem: {
+    meat: 'Meat',
+    beef: 'Beef',
+    pork: 'Pork',
+    lamb: 'Lamb',
+    chicken: 'Chicken',
+    sausage: 'Sausage, salami',
+    broth: 'Meat broth',
+    milk: 'Milk',
+    cheese: 'Cheese',
+    yogurt: 'Yogurt, kefir',
+    butter: 'Butter',
+    cream: 'Cream, sour cream',
+    eggs: 'Eggs',
+    iceCream: 'Ice cream',
+    fish: 'Fish',
+    salmon: 'Salmon, trout',
+    tuna: 'Tuna',
+    sardine: 'Sardines, anchovies',
+    oliveOil: 'Olive oil',
+    sunflowerOil: 'Sunflower oil',
+    fried: 'Fried food',
+    wine: 'Wine',
+  },
+  foods: {
+    title: 'Can I eat this?',
+    back: 'Back',
+    open: 'Can I eat this?',
+    openHint: 'Check a food against today’s fast',
+    searchPlaceholder: 'Search a food, for example cheese',
+    today: (level) => `Today: ${level}`,
+    sectionAllowed: 'Allowed today',
+    sectionAvoided: 'Avoid today',
+    statusAllowed: 'Allowed today',
+    statusForbidden: 'Not allowed today',
+    statusDisputed: 'Traditions differ',
+    noResults: 'No food found. For anything not listed, ask your spiritual father.',
+  },
+  upcoming: {
+    title: 'Feasts and fasts ahead',
+    back: 'Back',
+    open: 'Feasts and fasts ahead',
+    openHint: 'Days until the next feasts and fasts',
+    hint: 'By the church calendar you chose.',
+    kindFeast: 'Feast',
+    kindFast: 'Fast begins',
+    inDays: (days) => (days === 1 ? 'tomorrow' : `in ${days} days`),
   },
   note: {
     totalAbstinence: 'Those who are able keep a complete fast today.',
