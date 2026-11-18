@@ -14,13 +14,16 @@ export function useReportInputs() {
   const [seen, setSeen] = useState<ReadonlySet<string>>(() => new Set());
   const [loaded, setLoaded] = useState(false);
   const latest = useRef(0);
+  // Reports seen since this screen mounted. A read that began before the flag reached storage must
+  // not bring a dismissed card back, so reads are merged with these.
+  const addedHere = useRef(new Set<string>());
 
   const reload = useCallback(async () => {
     const request = ++latest.current;
     const [days, seenReports] = await Promise.all([readAllDone(), readSeenReports()]);
     if (request !== latest.current) return;
     setDone(days);
-    setSeen(seenReports);
+    setSeen(new Set([...seenReports, ...addedHere.current]));
     setLoaded(true);
   }, []);
 
@@ -42,6 +45,7 @@ export function useReportInputs() {
 
   /** Records a report as seen at once, ahead of the next read. */
   const addSeen = useCallback((key: string) => {
+    addedHere.current.add(key);
     setSeen((previous) => new Set(previous).add(key));
   }, []);
 

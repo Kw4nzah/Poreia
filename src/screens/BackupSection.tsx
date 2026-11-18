@@ -9,6 +9,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { AppTextInput } from '../ui/AppTextInput';
 import { Button, Card } from '../ui/kit';
 import { Theme, radius, space, type, useTheme, useThemedStyles } from '../ui/theme';
+import { refreshWidget } from '../widget/refresh';
 
 type Outcome =
   { kind: 'restored'; days: number } | { kind: 'error'; error: BackupError | 'storage' };
@@ -43,6 +44,8 @@ export function BackupSection() {
         return;
       }
       update(parsed.settings);
+      // Today's mark may have come with the backup; the widget shows it.
+      refreshWidget(parsed.settings);
       setText('');
       setOutcome({ kind: 'restored', days: parsed.done.length });
     } finally {

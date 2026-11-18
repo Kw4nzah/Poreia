@@ -13,6 +13,8 @@ export const MAX_BACKUP_CHARS = 65_536;
 export const MAX_DONE_DAYS = 1500;
 
 const ISO_DATE = /^(\d{4})-(\d{2})-(\d{2})$/;
+/** Whitespace, zero-width characters and the byte order mark at either end of pasted text. */
+const INVISIBLE_EDGES = /^[\s​-‍⁠﻿]+|[\s​-‍⁠﻿]+$/g;
 const MIN_YEAR = 2000;
 const MAX_YEAR = 2200;
 
@@ -80,7 +82,8 @@ export function parseBackup(raw: string, fallbackLanguage: Language): ParsedBack
     if (raw.length > MAX_BACKUP_CHARS) return fail('tooLarge');
     let data: unknown;
     try {
-      data = JSON.parse(raw);
+      // Text copied out of a chat or an editor can carry a byte order mark or zero-width characters.
+      data = JSON.parse(raw.replace(INVISIBLE_EDGES, ''));
     } catch {
       return fail('invalid');
     }

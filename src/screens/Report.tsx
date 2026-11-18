@@ -39,6 +39,8 @@ const DOTS_HEIGHT = 56;
 const DAYS_PER_ROW = 7;
 /** Each page stays this long before the report turns to the next one by itself. */
 export const PAGE_SECONDS = 10;
+/** Longest a page may stay held after the finger lifts if no "momentum end" arrives. */
+const HELD_FAILSAFE_MS = 1500;
 const STORY_BAR_HEIGHT = 3;
 
 export function Report({ periodKey }: { periodKey: string | undefined }) {
@@ -57,6 +59,14 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
   const [page, setPage] = useState(0);
   // The timer holds while a finger is on the pages, like a story.
   const [held, setHeld] = useState(false);
+  // Normally the momentum end lets go of the hold. If a platform never reports it (a drag that
+  // ends without moving the page), this timer does, so the report cannot stay stuck for good.
+  const releaseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearReleaseTimer = () => {
+    if (releaseTimer.current) clearTimeout(releaseTimer.current);
+    releaseTimer.current = null;
+  };
+  useEffect(() => clearReleaseTimer, []);
   const countdown = useRef(new Animated.Value(0)).current;
   const [screenReader, setScreenReader] = useState(false);
   useEffect(() => {
@@ -91,9 +101,12 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
   }, [periodKey, ended]);
 
   const lastPage = page >= PAGE_COUNT - 1;
+  // Only whether there is a report matters here: a re-read of the marks (coming back from the share
+  // sheet) builds a new report object and must not restart the page's countdown.
+  const hasReport = report !== null;
   useEffect(() => {
     countdown.setValue(0);
-    if (!report || !auto || held || lastPage) return;
+    if (!hasReport || !auto || held || lastPage) return;
     const animation = Animated.timing(countdown, {
       toValue: 1,
       duration: PAGE_SECONDS * 1000,
@@ -104,7 +117,7 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
       if (finished) scroller.current?.scrollTo({ x: (page + 1) * width, animated: true });
     });
     return () => animation.stop();
-  }, [page, held, auto, lastPage, report, width, countdown]);
+  }, [page, held, auto, lastPage, hasReport, width, countdown]);
 
   function close() {
     if (router.canGoBack()) router.back();
@@ -175,12 +188,20 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
         bounces={false}
         overScrollMode="never"
         scrollEventThrottle={16}
-        onScrollBeginDrag={() => setHeld(true)}
+        onScrollBeginDrag={() => {
+          clearReleaseTimer();
+          setHeld(true);
+        }}
         onScrollEndDrag={(event) => {
+          clearReleaseTimer();
           // A drag that ends without momentum settles on its own page right away.
           if (event.nativeEvent.velocity?.x === 0) setHeld(false);
+          else releaseTimer.current = setTimeout(() => setHeld(false), HELD_FAILSAFE_MS);
         }}
-        onMomentumScrollEnd={() => setHeld(false)}
+        onMomentumScrollEnd={() => {
+          clearReleaseTimer();
+          setHeld(false);
+        }}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
           useNativeDriver: true,
           listener: onScroll,

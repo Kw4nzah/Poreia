@@ -17,7 +17,8 @@ export function SectionFrame({ title, children }: { title: string; children: Rea
     <View style={styles.screen}>
       <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
         <Pressable
-          onPress={() => router.back()}
+          // Opened by a link with nothing behind it: go to the hub instead of doing nothing.
+          onPress={() => (router.canGoBack() ? router.back() : router.replace('/settings'))}
           style={styles.back}
           accessibilityRole="button"
           accessibilityLabel={m.settings.title}

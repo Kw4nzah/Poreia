@@ -102,7 +102,10 @@ export function buildReport(
   };
 }
 
-/** The report of a fast named by a key, or null when that year has no such fast. */
+/**
+ * The report of a fast named by a key, or null when that year has no such fast or the fast has not
+ * begun (there is nothing to look back on, whatever a hand-typed link says).
+ */
 export function reportFor(
   ref: PeriodRef,
   done: ReadonlySet<number>,
@@ -111,7 +114,8 @@ export function reportFor(
   options?: DayOptions,
 ): PeriodReport | null {
   const period = getFastPeriod(ref.id, ref.year, church);
-  return period ? buildReport(period, done, church, todayJdn, options) : null;
+  if (!period || todayJdn < period.startJdn) return null;
+  return buildReport(period, done, church, todayJdn, options);
 }
 
 /**

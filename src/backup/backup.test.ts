@@ -64,6 +64,16 @@ describe('createBackup and parseBackup', () => {
     expect(data).toMatchObject({ app: 'poreia', version: 1, done: [] });
   });
 
+  it('reads a backup pasted with a byte order mark, spaces or line breaks around it', () => {
+    const text = createBackup(settings, ['2026-11-17']);
+    for (const pasted of [`﻿${text}`, `  \n${text}\n\n`, `​${text}`, `﻿\n${text}`]) {
+      expect(parseBackup(pasted, 'en'), JSON.stringify(pasted.slice(0, 4))).toMatchObject({
+        ok: true,
+        done: ['2026-11-17'],
+      });
+    }
+  });
+
   it('is deterministic and survives parse then create', () => {
     const text = createBackup(settings, ['2026-11-17']);
     const parsed = parseBackup(text, 'en');

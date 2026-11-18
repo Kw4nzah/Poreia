@@ -9,6 +9,8 @@ import {
   CHURCHES,
   CivilDate,
   FastLevel,
+  MAX_ISO_YEAR,
+  MIN_ISO_YEAR,
   MONDAY_FIRST,
   buildMonthGrid,
   formatIsoDate,
@@ -49,6 +51,8 @@ export function MonthCalendar() {
 
   function go(delta: -1 | 1) {
     const next = shiftMonth(shown.year, shown.month, delta);
+    // Days outside these years have no day screen (see parseIsoDate), so the grid stops there.
+    if (next.year < MIN_ISO_YEAR || next.year > MAX_ISO_YEAR) return;
     setShown(next);
   }
 
@@ -56,7 +60,7 @@ export function MonthCalendar() {
     <View style={styles.screen}>
       <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
         <Pressable
-          onPress={() => router.back()}
+          onPress={() => (router.canGoBack() ? router.back() : router.replace('/today'))}
           style={styles.back}
           accessibilityRole="button"
           accessibilityLabel={m.calendar.back}
