@@ -36,13 +36,20 @@ export function DailyNotifications() {
   const zone = useTimeZone();
   const enabled = settings.onboarded && settings.notifications;
   const eveEnabled = settings.onboarded && settings.eveReminder;
-  const { churchId, notificationHour, notificationRepeat, greekFish } = settings;
+  const { churchId, notificationHour, notificationRepeat, greekFish, language } = settings;
 
   useEffect(() => {
     // A failure inside the plan or the scheduler is never allowed to become an unhandled rejection.
     try {
       const plan = enabled
-        ? planNotifications(today, DAYS_AHEAD, CHURCHES[churchId], messages, { greekFish })
+        ? planNotifications(
+            today,
+            DAYS_AHEAD,
+            CHURCHES[churchId],
+            messages,
+            { greekFish },
+            language,
+          )
         : null;
       const eve = eveEnabled
         ? planEveReminders(today, DAYS_AHEAD, CHURCHES[churchId], messages, { greekFish })
@@ -64,6 +71,7 @@ export function DailyNotifications() {
     notificationHour,
     notificationRepeat,
     greekFish,
+    language,
     messages,
     today,
     zone,

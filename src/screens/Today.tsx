@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '../calendar';
+import { CHURCHES, getDayInfo, getUpcomingFast } from '../calendar';
 import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
@@ -14,9 +14,10 @@ import { reportHeading } from '../report/text';
 import { usePendingReport } from '../report/usePendingReport';
 import { Badge, Button, Card, ListRow } from '../ui/kit';
 import { FadeIn, useGrow } from '../ui/motion';
+import { summarizeDay } from '../today/summary';
 import { useScrollTop } from '../ui/scrollTop';
 import { useTabBarSpace } from '../ui/tabBar';
-import { SERIF, Theme, space, useTheme, type, useThemedStyles } from '../ui/theme';
+import { SERIF, Theme, radius, space, useTheme, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
 import { refreshWidget } from '../widget/refresh';
@@ -54,13 +55,15 @@ export function Today() {
   const report = usePendingReport(today);
 
   const tone = fasting ? theme.accent : theme.free;
-  const level = m.level[info.level];
+  const summary = summarizeDay(info, m);
   // Outside a named period, a lone fast day (Wednesday, an eve) is the heading.
   const heading = info.period
     ? m.period[info.period.id]
     : info.fastDay
       ? m.fastDay[info.fastDay]
       : null;
+  // The summary card says the rule; this card keeps the period, its notes, progress and the mark.
+  const hasDayCard = heading !== null || info.notes.length > 0 || fasting;
   const churchDateDiffers =
     info.churchDate.day !== today.day || info.churchDate.month !== today.month;
 
@@ -94,100 +97,77 @@ export function Today() {
         </Text>
       )}
 
-      {info.feasts.map((feast) => (
-        <FadeIn key={feast} index={0}>
-          <Card tone="feast" padding="md" style={styles.gap}>
-            <Text style={styles.feastLabel}>{m.today.feast}</Text>
-            <Text style={styles.feastName}>{m.feast[feast]}</Text>
-          </Card>
-        </FadeIn>
-      ))}
-
-      <FadeIn index={1}>
-        <Card style={styles.card}>
-          {heading && (
-            <Badge label={heading} tone={fasting ? 'fast' : 'free'} style={styles.headingBadge} />
-          )}
-          <Text style={[styles.level, { color: tone }]}>{level.title}</Text>
-          <Text style={styles.detail}>{level.detail}</Text>
-
-          {info.notes.map((note) => (
-            <Text key={note} style={styles.note}>
-              {m.note[note]}
-            </Text>
-          ))}
-
-          {fasting && (
-            <View style={styles.foods}>
-              {FOOD_IDS.map((food) => {
-                const allowed = isFoodAllowed(info.level, food);
-                return (
-                  <View
-                    key={food}
-                    style={styles.foodRow}
-                    accessible
-                    accessibilityLabel={`${m.food[food]}: ${allowed ? m.today.foodAllowed : m.today.foodForbidden}`}
-                  >
-                    <View
-                      style={[
-                        styles.mark,
-                        allowed
-                          ? { backgroundColor: theme.free, borderColor: theme.free }
-                          : { borderColor: theme.outline },
-                      ]}
-                    >
-                      <Text
-                        maxFontSizeMultiplier={1.3}
-                        style={[styles.markText, { color: allowed ? theme.surface : theme.muted }]}
-                      >
-                        {allowed ? '✓' : '✕'}
-                      </Text>
-                    </View>
-                    <Text style={[styles.foodName, !allowed && styles.foodForbidden]}>
-                      {m.food[food]}
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
-          )}
-
-          {info.period && (
-            <View style={styles.progress}>
-              <View
-                style={styles.track}
-                accessible
-                accessibilityRole="progressbar"
-                accessibilityLabel={m.today.dayOf(info.period.day, info.period.totalDays)}
-                accessibilityValue={{ min: 0, max: info.period.totalDays, now: info.period.day }}
-              >
-                <Animated.View style={[styles.fill, { backgroundColor: tone, width: grow }]} />
-              </View>
-              <View style={styles.progressRow}>
-                <Text style={styles.progressText}>
-                  {m.today.dayOf(info.period.day, info.period.totalDays)}
-                </Text>
-                <Text style={styles.progressText}>
-                  {info.period.daysLeft === 0
-                    ? m.today.lastDay
-                    : m.today.daysLeft(info.period.daysLeft)}
-                </Text>
-              </View>
-            </View>
-          )}
-
-          {fasting && (
-            <View style={styles.logAction}>
-              <Button
-                label={log.doneToday ? m.log.marked : m.log.mark}
-                accessibilityLabel={log.doneToday ? m.log.doneA11y : m.log.markA11y}
-                variant={log.doneToday ? 'secondary' : 'primary'}
-                onPress={() => void log.toggle()}
-              />
-            </View>
-          )}
+      <FadeIn index={0}>
+        <Card tone={info.feasts.length > 0 ? 'feast' : 'surface'} style={styles.gap}>
+          <Text style={[styles.headline, { color: tone }]}>{summary.headline}</Text>
+          {summary.foods !== '' && <Text style={styles.foodsLine}>{summary.foods}</Text>}
         </Card>
       </FadeIn>
+
+      <FadeIn index={1}>
+        <Pressable
+          onPress={() => router.navigate('/foods')}
+          style={styles.search}
+          accessibilityRole="search"
+          accessibilityLabel={m.foods.title}
+          accessibilityHint={m.foods.searchPlaceholder}
+        >
+          <Text style={styles.searchText} numberOfLines={1}>
+            {m.foods.searchPlaceholder}
+          </Text>
+        </Pressable>
+      </FadeIn>
+
+      {hasDayCard && (
+        <FadeIn index={1}>
+          <Card style={styles.card}>
+            {heading && (
+              <Badge label={heading} tone={fasting ? 'fast' : 'free'} style={styles.headingBadge} />
+            )}
+
+            {info.notes.map((note) => (
+              <Text key={note} style={styles.note}>
+                {m.note[note]}
+              </Text>
+            ))}
+
+            {info.period && (
+              <View style={styles.progress}>
+                <View
+                  style={styles.track}
+                  accessible
+                  accessibilityRole="progressbar"
+                  accessibilityLabel={m.today.dayOf(info.period.day, info.period.totalDays)}
+                  accessibilityValue={{ min: 0, max: info.period.totalDays, now: info.period.day }}
+                >
+                  <Animated.View style={[styles.fill, { backgroundColor: tone, width: grow }]} />
+                </View>
+                <View style={styles.progressRow}>
+                  <Text style={styles.progressText}>
+                    {m.today.dayOf(info.period.day, info.period.totalDays)}
+                  </Text>
+                  <Text style={styles.progressText}>
+                    {info.period.daysLeft === 0
+                      ? m.today.lastDay
+                      : m.today.daysLeft(info.period.daysLeft)}
+                  </Text>
+                </View>
+              </View>
+            )}
+
+            {fasting && (
+              <View style={styles.logAction}>
+                <Button
+                  label={log.doneToday ? m.log.marked : m.log.mark}
+                  accessibilityLabel={log.doneToday ? m.log.doneA11y : m.log.markA11y}
+                  variant={log.doneToday ? 'secondary' : 'primary'}
+                  onPress={() => void log.toggle()}
+                />
+              </View>
+            )}
+          </Card>
+        </FadeIn>
+      )}
 
       {report.pending && (
         <FadeIn index={2}>
@@ -251,12 +231,6 @@ export function Today() {
       <FadeIn index={3}>
         <Card padding="none" style={styles.card}>
           <ListRow
-            title={m.foods.open}
-            subtitle={m.foods.openHint}
-            onPress={() => router.navigate('/foods')}
-          />
-          <ListRow
-            divider
             title={m.upcoming.open}
             subtitle={m.upcoming.openHint}
             onPress={() => router.navigate('/upcoming')}
@@ -342,36 +316,25 @@ function makeStyles(t: Theme) {
     churchDate: { ...type.label, color: t.muted, marginTop: space.xs },
 
     gap: { marginTop: space.lg },
-    feastLabel: { ...type.caption, color: t.feastInk },
-    feastName: { fontFamily: SERIF, ...type.title3, color: t.ink, marginTop: space.xs },
+    headline: { fontFamily: SERIF, ...type.title3 },
+    foodsLine: { ...type.body, color: t.ink, marginTop: space.sm },
+    search: {
+      minHeight: 48,
+      justifyContent: 'center',
+      marginTop: space.md,
+      paddingHorizontal: space.md,
+      borderRadius: radius.field,
+      borderWidth: 1,
+      borderColor: t.outline,
+      backgroundColor: t.surface,
+    },
+    searchText: { ...type.body, color: t.muted },
 
     card: { marginTop: space.md },
     headingBadge: { marginBottom: space.sm },
     cardLabel: { ...type.label, color: t.muted, marginBottom: space.xs },
-    level: { fontFamily: SERIF, ...type.title2 },
     detail: { ...type.body, color: t.ink, marginTop: space.xs },
     note: { ...type.label, color: t.muted, marginTop: space.sm },
-
-    foods: {
-      marginTop: space.md,
-      paddingTop: space.md,
-      borderTopWidth: 1,
-      borderTopColor: t.line,
-      gap: space.smd,
-    },
-    foodRow: { flexDirection: 'row', alignItems: 'center', gap: space.smd },
-    mark: {
-      width: 24,
-      height: 24,
-      flexShrink: 0,
-      borderRadius: 12,
-      borderWidth: 1.5,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    markText: { fontSize: 12, lineHeight: 15, fontWeight: '700' },
-    foodName: { flex: 1, ...type.body, color: t.ink },
-    foodForbidden: { color: t.muted },
 
     logAction: {
       marginTop: space.md,

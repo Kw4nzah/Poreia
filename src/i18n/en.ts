@@ -32,8 +32,6 @@ export interface Messages {
   onboarding: {
     tagline: string;
     languageTitle: string;
-    nameTitle: string;
-    nameHint: string;
     namePlaceholder: string;
     churchTitle: string;
     churchHint: string;
@@ -83,6 +81,24 @@ export interface Messages {
     /** Read by screen readers after a food name instead of the check / cross mark. */
     foodAllowed: string;
     foodForbidden: string;
+  };
+
+  /** The one-glance answer for a day (Today card and the daily notification). */
+  summary: {
+    /** `name` is the fasting level title. */
+    today: (name: string) => string;
+    noFast: string;
+    feast: (names: string) => string;
+    allowed: (list: string) => string;
+    avoided: (list: string) => string;
+    fishDisputed: string;
+    /** Lower-case names for a list, one per food group. */
+    food: Record<FoodId, string>;
+    wine: string;
+    /** Oil alone, when wine is allowed but oil is not. */
+    oil: string;
+    /** What is allowed on the strictest days besides the food groups. */
+    plain: { noOil: string; xerophagy: string };
   };
 
   /** Fasting marks: "I am fasting today" on Today, and the same for a past day on the day screen. */
@@ -364,8 +380,6 @@ export const en: Messages = {
   onboarding: {
     tagline: 'A companion for the fasts of the Church',
     languageTitle: 'Choose your language',
-    nameTitle: 'What should we call you?',
-    nameHint: 'Only used to greet you. It stays on this phone.',
     namePlaceholder: 'Your name',
     churchTitle: 'Which tradition do you follow?',
     churchHint: 'This sets the calendar and the fasting customs.',
@@ -415,6 +429,19 @@ export const en: Messages = {
     newVersion: 'A new version is ready to install',
     foodAllowed: 'allowed',
     foodForbidden: 'not allowed',
+  },
+
+  summary: {
+    today: (name) => `Today: ${name}.`,
+    noFast: 'No fast today.',
+    feast: (names) => `Feast: ${names}.`,
+    allowed: (list) => `Allowed: ${list}.`,
+    avoided: (list) => `Avoid: ${list}.`,
+    fishDisputed: 'Fish: traditions differ.',
+    food: { meat: 'meat', dairy: 'dairy, eggs', fish: 'fish', oil: 'oil, wine' },
+    wine: 'wine',
+    oil: 'oil',
+    plain: { noOil: 'food cooked without oil', xerophagy: 'bread, fruit, vegetables, nuts' },
   },
 
   log: {
