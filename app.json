@@ -3,13 +3,13 @@
     "name": "Poreia",
     "slug": "poreia",
     "scheme": "poreia",
-    "version": "0.6.1",
+    "version": "0.7.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "runtimeVersion": "6",
+    "runtimeVersion": "7",
     "updates": {
-      "url": "https://kw4nzah.github.io/Poreia/updates/android/6/manifest.json",
+      "url": "https://kw4nzah.github.io/Poreia/updates/android/7/manifest.json",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0,
       "codeSigningCertificate": "./certs/certificate.pem",
@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "com.kw4nzah.poreia",
-      "versionCode": 9,
+      "versionCode": 10,
       "allowBackup": false,
       "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
       "blockedPermissions": [
