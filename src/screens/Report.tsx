@@ -6,7 +6,9 @@ import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { ComponentRef, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  AccessibilityInfo,
   Animated,
+  Easing,
   NativeScrollEvent,
   NativeSyntheticEvent,
   Pressable,
@@ -35,6 +37,9 @@ const PAGE_COUNT = 5;
 const CLOSE_SIZE = 44;
 const DOTS_HEIGHT = 56;
 const DAYS_PER_ROW = 7;
+/** Each page stays this long before the report turns to the next one by itself. */
+export const PAGE_SECONDS = 10;
+const STORY_BAR_HEIGHT = 3;
 
 export function Report({ periodKey }: { periodKey: string | undefined }) {
   const { settings, messages: m } = useSettings();
@@ -50,6 +55,24 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
   const scrollX = useRef(new Animated.Value(0)).current;
   const scroller = useRef<ComponentRef<typeof ScrollView>>(null);
   const [page, setPage] = useState(0);
+  // The timer holds while a finger is on the pages, like a story.
+  const [held, setHeld] = useState(false);
+  const countdown = useRef(new Animated.Value(0)).current;
+  const [screenReader, setScreenReader] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    AccessibilityInfo.isScreenReaderEnabled()
+      .then((value) => alive && setScreenReader(value))
+      .catch(() => {});
+    const subscription = AccessibilityInfo.addEventListener('screenReaderChanged', setScreenReader);
+    return () => {
+      alive = false;
+      subscription.remove();
+    };
+  }, []);
+  // Pages that move on their own are no help to a screen reader or to someone who asked for less
+  // motion: for them the report stays put and is turned by hand.
+  const auto = !reduceMotion && !screenReader;
 
   const todayJdn = gregorianToJdn(today.year, today.month, today.day);
   const report = useMemo(() => {
@@ -66,6 +89,22 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
     const ref = parsePeriodKey(periodKey);
     if (ref && ended) void markReportSeen(ref);
   }, [periodKey, ended]);
+
+  const lastPage = page >= PAGE_COUNT - 1;
+  useEffect(() => {
+    countdown.setValue(0);
+    if (!report || !auto || held || lastPage) return;
+    const animation = Animated.timing(countdown, {
+      toValue: 1,
+      duration: PAGE_SECONDS * 1000,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    });
+    animation.start(({ finished }) => {
+      if (finished) scroller.current?.scrollTo({ x: (page + 1) * width, animated: true });
+    });
+    return () => animation.stop();
+  }, [page, held, auto, lastPage, report, width, countdown]);
 
   function close() {
     if (router.canGoBack()) router.back();
@@ -136,6 +175,12 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
         bounces={false}
         overScrollMode="never"
         scrollEventThrottle={16}
+        onScrollBeginDrag={() => setHeld(true)}
+        onScrollEndDrag={(event) => {
+          // A drag that ends without momentum settles on its own page right away.
+          if (event.nativeEvent.velocity?.x === 0) setHeld(false);
+        }}
+        onMomentumScrollEnd={() => setHeld(false)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
           useNativeDriver: true,
           listener: onScroll,
@@ -173,6 +218,36 @@ export function Report({ periodKey }: { periodKey: string | undefined }) {
           );
         })}
       </Animated.ScrollView>
+
+      {auto && (
+        <View
+          pointerEvents="none"
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+          style={[
+            styles.storyTrack,
+            { top: insets.top + 4, backgroundColor: palette.track, width: width - space.lg * 2 },
+          ]}
+        >
+          <Animated.View
+            style={[
+              styles.storyFill,
+              {
+                backgroundColor: palette.text,
+                width: width - space.lg * 2,
+                transform: [
+                  {
+                    translateX: countdown.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [-(width - space.lg * 2), 0],
+                    }),
+                  },
+                ],
+              },
+            ]}
+          />
+        </View>
+      )}
 
       <CloseButton palette={palette} top={insets.top} label={m.report.close} onPress={close} />
 
@@ -513,6 +588,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   closeText: { fontSize: 20, lineHeight: 24 },
+  storyTrack: {
+    position: 'absolute',
+    left: space.lg,
+    height: STORY_BAR_HEIGHT,
+    borderRadius: STORY_BAR_HEIGHT / 2,
+    overflow: 'hidden',
+  },
+  storyFill: { height: STORY_BAR_HEIGHT, borderRadius: STORY_BAR_HEIGHT / 2 },
   dots: {
     position: 'absolute',
     left: 0,
