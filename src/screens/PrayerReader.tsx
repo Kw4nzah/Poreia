@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_TEXT_SIZES, PrayerId, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
+import { BackLabel } from '../ui/BackLabel';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
@@ -34,7 +35,7 @@ export function PrayerReader({ id }: { id: PrayerId }) {
           accessibilityRole="button"
           accessibilityLabel={m.prayers.title}
         >
-          <Text style={styles.backText}>‹ {m.prayers.title}</Text>
+          <BackLabel label={m.prayers.title} />
         </Pressable>
         <View style={styles.sizes}>
           <Pressable
@@ -131,7 +132,6 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.lg,
     },
     back: { minHeight: 44, justifyContent: 'center' },
-    backText: { ...type.body, color: t.accent },
     sizes: { flexDirection: 'row' },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },

@@ -29,6 +29,7 @@ import { SERIF, Theme, space, useTheme, radius, type, useThemedStyles } from '..
 import { describeContent } from '../updates/contentVersion';
 import { useApkUpdate } from '../updates/useApkUpdate';
 import { useUpdateCheck } from '../updates/useUpdateCheck';
+import { Icon } from '../ui/Icon';
 
 const CHURCH_IDS = Object.keys(CHURCHES) as ChurchId[];
 
@@ -197,7 +198,7 @@ export function Settings() {
               accessibilityRole="button"
               accessibilityLabel={`${m.saints.remove}: ${saint.name}`}
             >
-              <Text style={styles.removeText}>×</Text>
+              <Icon name="cross" color={theme.muted} />
             </Pressable>
           </View>
         ))}
@@ -326,7 +327,6 @@ function makeStyles(t: Theme) {
     },
     saintText: { flex: 1 },
     removeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
-    removeText: { ...type.title2, color: t.muted },
     saintInput: { minHeight: 48, marginTop: space.sm },
     apk: { marginTop: space.md, paddingTop: space.md, borderTopWidth: 1, borderTopColor: t.line },
   });

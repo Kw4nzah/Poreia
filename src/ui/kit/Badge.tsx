@@ -2,7 +2,7 @@ import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { radius, space, type, useTheme } from '../theme';
 import { BadgeTone, badgeColors } from './tokens';
 
-/** Small status pill: fast level, feast or caution. Text is ink; the tone shows in fill, edge and dot. */
+/** Small status tag: fast level, feast or caution. Text is ink; the tone shows in fill, edge and dot. */
 export function Badge({
   label,
   tone = 'neutral',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     gap: space.sm,
     paddingHorizontal: space.smd,
     paddingVertical: space.xs,
-    borderRadius: radius.pill,
+    borderRadius: radius.tag,
     borderWidth: 1,
   },
   dot: { width: 8, height: 8, borderRadius: 4 },

@@ -5,6 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
+import { BackLabel } from '../ui/BackLabel';
 
 export function Sources() {
   const { messages: m } = useSettings();
@@ -21,7 +22,7 @@ export function Sources() {
           accessibilityRole="button"
           accessibilityLabel={m.settings.title}
         >
-          <Text style={styles.backText}>‹ {m.settings.title}</Text>
+          <BackLabel label={m.settings.title} />
         </Pressable>
       </View>
       <ScrollView
@@ -53,7 +54,6 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     header: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { ...type.body, color: t.accent },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
     heading: { ...type.label, color: t.muted, marginTop: space.lg },
     body: { ...type.body, color: t.ink, marginTop: space.xs },

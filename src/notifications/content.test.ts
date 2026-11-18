@@ -24,7 +24,7 @@ describe('describeDay', () => {
   it('puts the weekday and the rule in the title', () => {
     const text = describeDay(day({ level: 'fish' }), en);
     expect(text.title).toBe('Wednesday · Fish allowed');
-    expect(text.body).toBe('Fish, wine and oil are allowed.');
+    expect(text.body).toBe('Fish, wine and oil are allowed');
   });
 
   it('adds the period with the day count', () => {
@@ -37,7 +37,7 @@ describe('describeDay', () => {
       end: { year: 2026, month: 12, day: 24 },
     };
     const text = describeDay(day({ level: 'oil', period }), en);
-    expect(text.body).toBe('No fish today.\nNativity Fast · Day 12 of 40');
+    expect(text.body).toBe('No fish today\nNativity Fast · Day 12 of 40');
   });
 
   it('names a lone fast day and the feasts', () => {
@@ -45,7 +45,7 @@ describe('describeDay', () => {
       day({ level: 'noOil', fastDay: 'wednesday', feasts: ['annunciation'] }),
       en,
     );
-    expect(text.body).toBe('Cooked food prepared without oil.\nWednesday fast\nAnnunciation');
+    expect(text.body).toBe('Cooked food prepared without oil\nWednesday fast\nAnnunciation');
   });
 
   it('has text in every language', () => {

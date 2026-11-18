@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Icon } from './Icon';
 import { radius, space, useTheme, type } from './theme';
 
 export interface DropdownOption<T extends string> {
@@ -40,7 +41,7 @@ export function Dropdown<T extends string>({
         <Text style={[styles.value, { color: selected ? t.ink : t.muted }]} numberOfLines={1}>
           {selected ? selected.label : placeholder}
         </Text>
-        <Text style={[styles.arrow, { color: t.muted }]}>{open ? '▴' : '▾'}</Text>
+        <Icon name={open ? 'chevron-up' : 'chevron-down'} color={t.muted} style={styles.arrow} />
       </Pressable>
       {open && (
         <View style={[styles.list, { borderColor: t.line, backgroundColor: t.surface }]}>
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     marginTop: space.sm,
   },
   value: { flex: 1, ...type.body },
-  arrow: { ...type.label, marginLeft: space.sm },
+  arrow: { marginLeft: space.sm },
   list: {
     marginTop: space.xs,
     borderRadius: radius.field,

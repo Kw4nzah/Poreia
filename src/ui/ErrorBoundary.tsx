@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
   screen: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.lg },
   title: { fontFamily: SERIF, ...type.title2, textAlign: 'center', marginBottom: space.sm },
   body: { ...type.body, textAlign: 'center', marginBottom: space.lg },
-  button: { paddingHorizontal: space.lg, paddingVertical: space.md, borderRadius: radius.pill },
+  button: { paddingHorizontal: space.lg, paddingVertical: space.md, borderRadius: radius.field },
   buttonText: { ...type.body, fontWeight: '600' },
 });
