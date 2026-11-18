@@ -80,6 +80,8 @@ export function useApkUpdate() {
           });
           return { uri: apk.contentUri, size: apk.size };
         },
+        // Hashed natively (java.security.MessageDigest), not in JavaScript.
+        sha256: () => target.digest('SHA-256'),
       },
       (bytesWritten, totalBytes) => {
         const step = Math.floor(bytesWritten / PROGRESS_STEP_BYTES);

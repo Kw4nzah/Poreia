@@ -1,0 +1,11 @@
+# Files that decide what reaches every install (the update bundle, the signed APK) or what is
+# trusted to build it. Takes effect when "Require review from Code Owners" is on for main
+# (Settings, Branches); see docs/SECURITY.md, owner checklist.
+/.github/ @Kw4nzah
+/patches/ @Kw4nzah
+/scripts/ @Kw4nzah
+/app.json @Kw4nzah
+/package.json @Kw4nzah
+/package-lock.json @Kw4nzah
+/src/security/ @Kw4nzah
+/src/updates/ @Kw4nzah

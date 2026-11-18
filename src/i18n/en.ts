@@ -516,7 +516,8 @@ export const en: Messages = {
     title: 'Backup',
     hint: 'Keep your settings and completed days safe, or move them to another phone. Copy the backup, then paste it here to restore it.',
     copy: 'Copy backup',
-    copyHint: 'Opens the share sheet. Choose Copy, or send it to yourself.',
+    copyHint:
+      'Opens the share sheet. Choose Copy, or send it to yourself. The backup is plain text with your name, saints and completed days, so share it with no one else.',
     shareTitle: 'Poreia backup',
     restore: 'Restore',
     pasteLabel: 'Backup text',

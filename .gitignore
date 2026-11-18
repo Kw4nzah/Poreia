@@ -54,3 +54,6 @@ yarn-error.*
 
 # Generated update site
 site/
+
+# Local test-run output (it records absolute paths of the machine it ran on)
+.vitest/

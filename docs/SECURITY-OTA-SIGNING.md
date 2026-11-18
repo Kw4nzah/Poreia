@@ -62,25 +62,27 @@ cannot be tested without building and running an APK.
    `npx expo-updates codesigning:configure --certificate-input-directory code-signing --key-input-directory ~/poreia-ota-keys`):
 
        "updates": {
-         "url": "https://kw4nzah.github.io/Poreia/updates/android/6/manifest.json",
+         "url": "https://kw4nzah.github.io/Poreia/updates/android/7/manifest.json",
          "codeSigningCertificate": "./code-signing/certificate.pem",
          "codeSigningMetadata": { "keyid": "main", "alg": "rsa-v1_5-sha256" },
          ...
        }
 
-4. Bump `runtimeVersion` to `"6"` and the number in `updates.url`, `version` and
-   `android.versionCode`, as `CLAUDE.md` requires for a native change. Old APKs (runtime 5) keep
-   receiving unsigned runtime-5 updates from the old path until you stop publishing it.
+4. Bump `runtimeVersion` to the next number (the current one is `"6"`, so `"7"`) and the number
+   in `updates.url`, `version` and `android.versionCode`, as `CLAUDE.md` requires for a native
+   change. Old APKs (runtime 6) keep receiving unsigned runtime-6 updates from the old path until
+   you stop publishing it.
 
 5. Store the private key as a GitHub secret, preferably an environment secret in a protected
    environment: `OTA_SIGNING_KEY_PEM` (the PEM text).
 
-6. In `.github/workflows/update.yml`, after "Build update site" and before upload, add:
+6. In `.github/workflows/update.yml`, in the `build` job after the `verify-update.mjs` step and
+   before the upload (the verify step already tolerates `manifest.json.sig`), add:
 
        - name: Sign manifest
          env:
            OTA_SIGNING_KEY_PEM: ${{ secrets.OTA_SIGNING_KEY_PEM }}
-         run: node scripts/sign-manifest.mjs "site/updates/android/6/manifest.json"
+         run: node scripts/sign-manifest.mjs "site/updates/android/7/manifest.json"
 
    The script verifies its own signature before it writes `manifest.json.sig`. Do not change the
    manifest after this step.
@@ -96,7 +98,7 @@ cannot be tested without building and running an APK.
 
 1. Land the patch, certificate and `app.json` changes with the runtime bump on a branch.
 2. Tag, let CI build the APK, install it, run the checks from step 8.
-3. Only then merge to `main` so the runtime-6 update is published.
+3. Only then merge to `main` so the runtime-7 update is published.
 
 Never publish a signed manifest to a runtime that old APKs read, and never enable signing without a
 runtime bump: an app with a certificate refuses unsigned manifests, an app without one ignores the

@@ -2,7 +2,8 @@
 # Needed only when native code changes (new native module, permissions, icon,
 # runtimeVersion bump). Everything else ships through "Publish update".
 #
-# Start it by pushing a tag like v0.1.0.
+# Start it by pushing a tag like v0.1.0. The tag must match "version" in app.json and point at a
+# commit that is already on main.
 name: Build APK
 
 on:
@@ -12,6 +13,12 @@ on:
 permissions:
   contents: read
 
+env:
+  # SHA-256 of the certificate Poreia APKs have been signed with since v0.4.0 (public information).
+  # The build stops if the keystore secret holds anything else: Android refuses to update an app
+  # with a different signing key, so every installed copy would be locked out of the new APK.
+  EXPECTED_CERT_SHA256: ef88664588fb2876f1b558dac28fa2752a08067850b2fc68be337d18e9569375
+
 jobs:
   apk:
     runs-on: ubuntu-latest
@@ -19,10 +26,27 @@ jobs:
     # Least privilege: only this job may create the release.
     permissions:
       contents: write
+    # A named environment lets the repository owner hold the keystore secrets there and require
+    # an approval (or limit the tags) before this job can read them. Created on first use.
+    environment: release
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           persist-credentials: false
+          fetch-depth: 0
+
+      - name: The tag is this app version, on main
+        run: |
+          version="$(node -p "require('./app.json').expo.version")"
+          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match app.json version $version"
+            exit 1
+          fi
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::$GITHUB_SHA is not on main; merge it before tagging a release"
+            exit 1
+          fi
+
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 24
@@ -31,7 +55,9 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - run: npm ci
+      # Dependency install scripts do not run; the one patch the project needs is applied by hand.
+      - run: npm ci --ignore-scripts
+      - run: npx patch-package
       - run: npm test
       - run: npx expo prebuild --platform android --no-install
 
@@ -44,12 +70,31 @@ jobs:
           # The signing key lives only in GitHub secrets; never echo it, always delete the file.
           trap 'rm -f "$RUNNER_TEMP/poreia.p12"' EXIT
           printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/poreia.p12"
+          # Before building anything: is this the key the installed apps trust?
+          actual="$(keytool -list -v -keystore "$RUNNER_TEMP/poreia.p12" -storetype PKCS12 \
+            -storepass:env KEYSTORE_PASSWORD -alias poreia \
+            | sed -n 's/^[[:space:]]*SHA256:[[:space:]]*//p' | head -n1 | tr -d ':' | tr 'A-F' 'a-f')"
+          if [ "$actual" != "$EXPECTED_CERT_SHA256" ]; then
+            echo "::error::the keystore secret does not hold the expected signing certificate"
+            exit 1
+          fi
           ./gradlew assembleRelease --no-daemon \
             -PreactNativeArchitectures=arm64-v8a \
             -Pandroid.injected.signing.store.file="$RUNNER_TEMP/poreia.p12" \
             -Pandroid.injected.signing.store.password="$KEYSTORE_PASSWORD" \
             -Pandroid.injected.signing.key.alias=poreia \
             -Pandroid.injected.signing.key.password="$KEYSTORE_PASSWORD"
+
+      - name: The APK is signed with the expected certificate
+        run: |
+          apksigner="$(ls -d "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -n1)"
+          out="$("$apksigner" verify --print-certs android/app/build/outputs/apk/release/app-release.apk)"
+          echo "$out"
+          actual="$(printf '%s\n' "$out" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')"
+          if [ "$actual" != "$EXPECTED_CERT_SHA256" ]; then
+            echo "::error::the built APK is not signed with the expected certificate"
+            exit 1
+          fi
 
       - name: Publish release
         env:

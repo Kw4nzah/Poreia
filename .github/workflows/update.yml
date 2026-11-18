@@ -1,5 +1,9 @@
 # Publishes the JavaScript and asset bundle of every commit on main to GitHub Pages.
 # Installed apps download it from there, so most changes need no new APK.
+#
+# Two jobs on purpose: the one that installs npm packages and runs their code ("build") can only
+# read the repository; the one that may write to Pages ("deploy") runs nothing but the official
+# deploy action.
 name: Publish update
 
 on:
@@ -15,17 +19,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
+  build:
+    # Whatever started this run, only main is ever published. A manual run from another branch
+    # (workflow_dispatch lets you pick one) would otherwise ship unreviewed code to every install.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    # Least privilege: only this job may deploy to Pages.
     permissions:
       contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
@@ -34,14 +35,32 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
+      # Dependency install scripts do not run; the one patch the project needs is applied by hand.
+      - run: npm ci --ignore-scripts
+      - run: npx patch-package
       - run: npm test
       - run: npm run typecheck
       - run: npx expo export --platform android --output-dir dist
       - run: node scripts/build-update.mjs dist site
-      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
+      # Hashes, URLs, runtime version and stray files are checked before anything is uploaded.
+      - run: node scripts/verify-update.mjs site
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: site
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Least privilege: only this job may deploy to Pages, and it runs no project code.
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - id: deploy
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5

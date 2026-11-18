@@ -1,7 +1,7 @@
 // Finds a newer signed APK among the project's GitHub releases. Needed only when a
 // release contains native changes; everything else arrives as a bundle update.
 
-import { isAllowedApkUrl } from '../security/externalLinks';
+import { APK_URL_PREFIX, isAllowedApkUrl } from '../security/externalLinks';
 
 export const LATEST_RELEASE_URL = 'https://api.github.com/repos/Kw4nzah/Poreia/releases/latest';
 
@@ -9,6 +9,22 @@ export interface ApkRelease {
   version: string;
   url: string;
   sizeBytes: number;
+  /**
+   * SHA-256 of the APK (64 lower-case hex characters) as GitHub lists it for the asset, or null when
+   * the listing carries none. A download that does not match is thrown away.
+   */
+  sha256: string | null;
+}
+
+/** A release tag as this project writes it, such as `v0.6.1`, with an optional `-rc.1` suffix. */
+const TAG = /^v?\d{1,4}(?:\.\d{1,4}){0,3}(?:-[0-9A-Za-z.]{1,20})?$/;
+const SHA256_DIGEST = /^sha256:([0-9a-f]{64})$/i;
+
+/** The hash out of GitHub's `digest` field (`sha256:<hex>`), or null for anything else. */
+export function parseSha256Digest(digest: unknown): string | null {
+  if (typeof digest !== 'string') return null;
+  const match = SHA256_DIGEST.exec(digest);
+  return match ? match[1].toLowerCase() : null;
 }
 
 /**
@@ -38,17 +54,27 @@ export function compareVersions(a: string, b: string): number {
 export function pickNewerApk(release: unknown, installedVersion: string): ApkRelease | null {
   if (!release || typeof release !== 'object') return null;
   const { tag_name: tag, assets, draft, prerelease } = release as Record<string, unknown>;
-  if (typeof tag !== 'string' || draft === true || prerelease === true) return null;
+  // The tag is shown on screen and decides the download path: only a plain version number passes.
+  if (typeof tag !== 'string' || !TAG.test(tag) || draft === true || prerelease === true) {
+    return null;
+  }
   if (compareVersions(tag, installedVersion) <= 0) return null;
   if (!Array.isArray(assets)) return null;
   for (const asset of assets as Record<string, unknown>[]) {
-    const { name, browser_download_url: url, size } = asset ?? {};
-    // Only an APK hosted on this project's own releases is ever offered for download.
-    if (typeof name === 'string' && name.endsWith('.apk') && isAllowedApkUrl(url)) {
+    const { name, browser_download_url: url, size, digest } = asset ?? {};
+    // Only an APK hosted on this project's own releases, under this release's own tag, is ever
+    // offered for download.
+    if (
+      typeof name === 'string' &&
+      name.endsWith('.apk') &&
+      isAllowedApkUrl(url) &&
+      url.startsWith(`${APK_URL_PREFIX}${tag}/`)
+    ) {
       return {
         version: tag.replace(/^v/i, ''),
         url,
-        sizeBytes: typeof size === 'number' ? size : 0,
+        sizeBytes: typeof size === 'number' && Number.isSafeInteger(size) && size > 0 ? size : 0,
+        sha256: parseSha256Digest(digest),
       };
     }
   }

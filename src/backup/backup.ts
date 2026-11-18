@@ -13,8 +13,22 @@ export const MAX_BACKUP_CHARS = 65_536;
 export const MAX_DONE_DAYS = 1500;
 
 const ISO_DATE = /^(\d{4})-(\d{2})-(\d{2})$/;
-/** Whitespace, zero-width characters and the byte order mark at either end of pasted text. */
-const INVISIBLE_EDGES = /^[\s​-‍⁠﻿]+|[\s​-‍⁠﻿]+$/g;
+/** Zero-width characters and the byte order mark; `trim` does not remove them. */
+const INVISIBLE = /[\u200b-\u200d\u2060\ufeff]/;
+
+/**
+ * Whitespace and invisible characters off both ends of pasted text. A scan from each end, not a
+ * regular expression: `/\s+$/` backtracks quadratically on a long run of spaces inside the text
+ * (65 536 of them froze the paste box for seconds), and the text is untrusted.
+ */
+export function trimInvisible(text: string): string {
+  const blank = (char: string) => char.trim() === '' || INVISIBLE.test(char);
+  let start = 0;
+  let end = text.length;
+  while (start < end && blank(text[start])) start++;
+  while (end > start && blank(text[end - 1])) end--;
+  return text.slice(start, end);
+}
 const MIN_YEAR = 2000;
 const MAX_YEAR = 2200;
 
@@ -83,7 +97,7 @@ export function parseBackup(raw: string, fallbackLanguage: Language): ParsedBack
     let data: unknown;
     try {
       // Text copied out of a chat or an editor can carry a byte order mark or zero-width characters.
-      data = JSON.parse(raw.replace(INVISIBLE_EDGES, ''));
+      data = JSON.parse(trimInvisible(raw));
     } catch {
       return fail('invalid');
     }

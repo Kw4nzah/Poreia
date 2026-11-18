@@ -40,5 +40,10 @@
     "postinstall": "patch-package",
     "export:android": "expo export --platform android --output-dir dist"
   },
+  "overrides": {
+    "@expo/fingerprint": {
+      "minimatch": "^11.0.9"
+    }
+  },
   "private": true
 }

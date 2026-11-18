@@ -8,6 +8,7 @@ import {
   createBackup,
   isValidIsoDate,
   parseBackup,
+  trimInvisible,
 } from './backup';
 
 const settings = {
@@ -265,6 +266,24 @@ describe('parseBackup hardening', () => {
     for (const input of inputs) {
       expect(() => parseBackup(input as string, 'en')).not.toThrow();
     }
+  });
+});
+
+describe('trimInvisible', () => {
+  it('removes whitespace, zero-width characters and the byte order mark at both ends only', () => {
+    expect(trimInvisible('﻿ ​\n{"a": 1}⁠ \r\n')).toBe('{"a": 1}');
+    expect(trimInvisible('  a  b  ')).toBe('a  b');
+    expect(trimInvisible('')).toBe('');
+    expect(trimInvisible(' ​﻿ ')).toBe('');
+  });
+
+  it('is linear: a long run of spaces inside the text must not stall the paste box', () => {
+    // The previous regular expression took seconds on this input (quadratic backtracking).
+    const hostile = '{' + ' '.repeat(MAX_BACKUP_CHARS - 2) + 'x';
+    const started = Date.now();
+    expect(trimInvisible(hostile)).toBe(hostile);
+    expect(parseBackup(hostile, 'en')).toEqual({ ok: false, error: 'invalid' });
+    expect(Date.now() - started).toBeLessThan(250);
   });
 });
 

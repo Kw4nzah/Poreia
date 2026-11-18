@@ -6,13 +6,20 @@ const release: ApkRelease = {
   version: '0.7.0',
   url: 'https://github.com/Kw4nzah/Poreia/releases/download/v0.7.0/poreia-v0.7.0.apk',
   sizeBytes: 1000,
+  sha256: null,
 };
 
-function fakeFiles(download: ApkFiles['download']) {
+const GOOD = 'a'.repeat(64);
+
+function fakeFiles(
+  download: ApkFiles['download'],
+  sha256: ApkFiles['sha256'] = () => Promise.resolve(GOOD),
+) {
   const log: string[] = [];
   const files: ApkFiles = {
     discard: () => void log.push('discard'),
     download,
+    sha256,
   };
   return { files, log };
 }
@@ -113,6 +120,76 @@ describe('fetchApk', () => {
     expect(called).toBe(false);
   });
 
+  describe('SHA-256 of the download', () => {
+    const listed = { ...release, sha256: GOOD };
+
+    it('accepts a file whose hash is the listed one, whatever the letter case', async () => {
+      const { files } = fakeFiles(
+        () => done(),
+        () => Promise.resolve(GOOD.toUpperCase()),
+      );
+      expect(await fetchApk(listed, new AbortController().signal, files, () => {})).toEqual({
+        ok: true,
+        uri: 'content://apk',
+      });
+    });
+
+    it('a different hash (same size) is failed and the file is removed', async () => {
+      const { files, log } = fakeFiles(
+        () => done(),
+        () => Promise.resolve('b'.repeat(64)),
+      );
+      expect(await fetchApk(listed, new AbortController().signal, files, () => {})).toEqual({
+        ok: false,
+        reason: 'failed',
+      });
+      expect(log).toEqual(['discard', 'discard']);
+    });
+
+    it('a hash that cannot be computed is failed and the file is removed', async () => {
+      const { files, log } = fakeFiles(
+        () => done(),
+        () => Promise.reject(new Error('io')),
+      );
+      expect(await fetchApk(listed, new AbortController().signal, files, () => {})).toEqual({
+        ok: false,
+        reason: 'failed',
+      });
+      expect(log).toEqual(['discard', 'discard']);
+    });
+
+    it('a cancel while the file is being hashed is a cancel', async () => {
+      const controller = new AbortController();
+      const { files, log } = fakeFiles(
+        () => done(),
+        async () => {
+          controller.abort();
+          return GOOD;
+        },
+      );
+      expect(await fetchApk(listed, controller.signal, files, () => {})).toEqual({
+        ok: false,
+        reason: 'cancelled',
+      });
+      expect(log).toEqual(['discard', 'discard']);
+    });
+
+    it('is not asked for when the listing carries no hash', async () => {
+      let asked = false;
+      const { files } = fakeFiles(
+        () => done(),
+        () => {
+          asked = true;
+          return Promise.resolve('c'.repeat(64));
+        },
+      );
+      expect(await fetchApk(release, new AbortController().signal, files, () => {})).toMatchObject({
+        ok: true,
+      });
+      expect(asked).toBe(false);
+    });
+  });
+
   it('a file that cannot be removed does not turn a cancel into a crash', async () => {
     const controller = new AbortController();
     const files: ApkFiles = {
@@ -120,6 +197,7 @@ describe('fetchApk', () => {
         throw new Error('locked');
       },
       download: () => Promise.reject(new Error('aborted')),
+      sha256: () => Promise.reject(new Error('aborted')),
     };
     controller.abort();
     expect(await fetchApk(release, controller.signal, files, () => {})).toEqual({

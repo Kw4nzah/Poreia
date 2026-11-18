@@ -10,10 +10,14 @@ Everything the app keeps stays on your device, in the app's own storage
 (AsyncStorage):
 
 - your settings: language, fish rule, notification on/off, time and repeat
-  setting, and the saints you asked to be named in the prayers, with the topic
-  you chose for each.
+  setting, your first name if you entered one, and the saints you asked to be
+  named in the prayers, with the topic you chose for each;
+- the days you marked as fasting or completed.
 
-Poreia does not send these to any server.
+Poreia does not send these to any server. The one way they leave the phone is
+the backup: "Copy backup" opens Android's share sheet with a plain-text copy of
+the above, and what happens to it afterwards depends on the app you choose
+(and on your clipboard history), so send it only to yourself.
 
 ## Network requests
 
@@ -29,7 +33,12 @@ The app makes only these requests:
 
 Requests to GitHub and YouVersion are ordinary web requests, so those services
 see what they always see (for example your IP address and the time). Poreia adds
-no identifiers of its own and no data about you.
+no data about you. The one thing it adds is from the update library
+(expo-updates): the update check carries a random identifier that the library
+creates once per installation (it is not linked to you, your device or any
+account, and it is deleted when you uninstall), the runtime and update ids, and,
+if the app crashed on its last run, the first 1 024 characters of that error
+message. Nothing you typed or marked is in any request.
 
 ## Notifications
 

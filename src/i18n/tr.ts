@@ -177,7 +177,8 @@ export const tr: Messages = {
     title: 'Yedek',
     hint: 'Ayarlarınızı ve tamamladığınız günleri saklayın ya da başka bir telefona taşıyın. Yedeği kopyalayın, geri yüklemek için buraya yapıştırın.',
     copy: 'Yedeği kopyala',
-    copyHint: 'Paylaşım menüsünü açar. Kopyala’yı seçin ya da kendinize gönderin.',
+    copyHint:
+      'Paylaşım menüsünü açar. Kopyala’yı seçin ya da kendinize gönderin. Yedek; adınızı, azizlerinizi ve tamamladığınız günleri düz metin olarak içerir, bu yüzden başkasıyla paylaşmayın.',
     shareTitle: 'Poreia yedeği',
     restore: 'Geri yükle',
     pasteLabel: 'Yedek metni',

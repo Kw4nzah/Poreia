@@ -29,6 +29,8 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
+      # Dependency install scripts do not run; the one patch the project needs is applied by hand.
+      - run: npm ci --ignore-scripts
+      - run: npx patch-package
       - run: npx tsc --noEmit
       - run: npm test

@@ -19,6 +19,8 @@ export interface ApkFiles {
     signal: AbortSignal,
     onProgress: (bytesWritten: number, totalBytes: number | null) => void,
   ): Promise<DownloadedApk>;
+  /** SHA-256 of the downloaded file as lower-case hex. Rejects when it cannot be computed. */
+  sha256(): Promise<string>;
 }
 
 export type ApkFetchResult =
@@ -60,6 +62,19 @@ export async function fetchApk(
     if (release.sizeBytes > 0 && apk.size !== null && apk.size !== release.sizeBytes) {
       discard();
       return failed;
+    }
+    // The download may have been redirected to another host, so what counts is the content: it must
+    // be the file GitHub listed. (Android still checks the signing key before it installs.)
+    if (release.sha256 !== null) {
+      const actual = await files.sha256();
+      if (signal.aborted) {
+        discard();
+        return cancelled;
+      }
+      if (actual.toLowerCase() !== release.sha256) {
+        discard();
+        return failed;
+      }
     }
     return { ok: true, uri: apk.uri };
   } catch {

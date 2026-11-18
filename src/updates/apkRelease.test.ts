@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { compareVersions, pickNewerApk } from './apkRelease';
+import { compareVersions, parseSha256Digest, pickNewerApk } from './apkRelease';
 
 const release = {
   tag_name: 'v0.2.0',
@@ -51,6 +51,7 @@ describe('pickNewerApk', () => {
       version: '0.2.0',
       url: 'https://github.com/Kw4nzah/Poreia/releases/download/v0.2.0/poreia-v0.2.0.apk',
       sizeBytes: 30_000_000,
+      sha256: null,
     });
   });
 
@@ -62,8 +63,20 @@ describe('pickNewerApk', () => {
   });
 
   it('does not offer a pre-release tag of the version already installed', () => {
-    expect(pickNewerApk({ ...release, tag_name: 'v0.2.0-rc.1' }, '0.2.0')).toBeNull();
-    expect(pickNewerApk({ ...release, tag_name: 'v0.2.0-rc.1' }, '0.1.0')).not.toBeNull();
+    const rc = {
+      ...release,
+      tag_name: 'v0.2.0-rc.1',
+      assets: [
+        {
+          name: 'poreia-v0.2.0-rc.1.apk',
+          browser_download_url:
+            'https://github.com/Kw4nzah/Poreia/releases/download/v0.2.0-rc.1/poreia-v0.2.0-rc.1.apk',
+          size: 1,
+        },
+      ],
+    };
+    expect(pickNewerApk(rc, '0.2.0')).toBeNull();
+    expect(pickNewerApk(rc, '0.1.0')).not.toBeNull();
   });
 
   it('returns null for releases without an APK or unexpected responses', () => {
@@ -75,5 +88,58 @@ describe('pickNewerApk', () => {
   it('refuses an APK that is not hosted on this project releases', () => {
     const foreign = { name: 'p.apk', browser_download_url: 'https://example.com/p.apk', size: 1 };
     expect(pickNewerApk({ ...release, assets: [foreign] }, '0.1.0')).toBeNull();
+  });
+});
+
+describe('pickNewerApk: the listing is untrusted', () => {
+  const HASH = 'ab'.repeat(32);
+  const withAsset = (extra: Record<string, unknown>) => ({
+    ...release,
+    assets: [{ ...release.assets[1], ...extra }],
+  });
+
+  it('carries the SHA-256 GitHub lists for the asset, in lower case', () => {
+    const picked = pickNewerApk(withAsset({ digest: `sha256:${HASH.toUpperCase()}` }), '0.1.0');
+    expect(picked?.sha256).toBe(HASH);
+  });
+
+  it('has no hash when the digest is missing or is not a SHA-256', () => {
+    const digests = [undefined, null, '', `sha1:${'a'.repeat(40)}`, 'sha256:abc', `md5:${HASH}`];
+    for (const digest of digests) {
+      expect(pickNewerApk(withAsset({ digest }), '0.1.0')?.sha256).toBeNull();
+    }
+  });
+
+  it('refuses an asset that lives under another release tag', () => {
+    const other = 'https://github.com/Kw4nzah/Poreia/releases/download/v0.1.5/poreia-v0.2.0.apk';
+    expect(pickNewerApk(withAsset({ browser_download_url: other }), '0.1.0')).toBeNull();
+  });
+
+  it('refuses a tag that is not a plain version number', () => {
+    for (const tag_name of [
+      'v0.2.0\n',
+      'v0.2.0/../x',
+      '<b>v0.2.0</b>',
+      'latest',
+      'v9'.repeat(30),
+    ]) {
+      expect(pickNewerApk({ ...release, tag_name }, '0.1.0')).toBeNull();
+    }
+  });
+
+  it('treats a size that is not a positive whole number as unknown', () => {
+    for (const size of [-5, 1.5, Infinity, NaN, '30', null]) {
+      expect(pickNewerApk(withAsset({ size }), '0.1.0')?.sizeBytes).toBe(0);
+    }
+  });
+});
+
+describe('parseSha256Digest', () => {
+  it('reads only sha256:<64 hex>', () => {
+    expect(parseSha256Digest(`sha256:${'F'.repeat(64)}`)).toBe('f'.repeat(64));
+    expect(parseSha256Digest(`sha256:${'f'.repeat(63)}`)).toBeNull();
+    expect(parseSha256Digest(`sha256:${'g'.repeat(64)}`)).toBeNull();
+    expect(parseSha256Digest(` sha256:${'f'.repeat(64)}`)).toBeNull();
+    expect(parseSha256Digest(42)).toBeNull();
   });
 });
