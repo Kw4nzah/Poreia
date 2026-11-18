@@ -92,7 +92,7 @@ export const SERIF = 'serif';
  * nested in another takes the outer radius minus the padding between them. `pill` is for round
  * things only (switch, radio).
  */
-export const radius = { card: 16, field: 12, tag: 8, pill: 999 } as const;
+export const radius = { card: 16, field: 12, tag: 6, pill: 999 } as const;
 
 /** Widest the app's column gets; on tablets and wide windows it is centred. */
 export const MAX_CONTENT_WIDTH = 560;
