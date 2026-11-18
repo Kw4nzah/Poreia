@@ -8,14 +8,14 @@ import type { CivilDate } from '../calendar';
 /** clickAction the widget's button sends to the task handler. */
 export const TOGGLE_DONE_ACTION = 'TOGGLE_DONE';
 
-const PREFIX = 'poreia.done.';
+export const DONE_PREFIX = 'poreia.done.';
 const MARKED = '1';
 
 const pad = (n: number, width: number) => String(n).padStart(width, '0');
 
 /** Storage key of a day, e.g. `poreia.done.2026-11-17`. */
 export function doneKey(date: CivilDate): string {
-  return `${PREFIX}${pad(date.year, 4)}-${pad(date.month, 2)}-${pad(date.day, 2)}`;
+  return `${DONE_PREFIX}${pad(date.year, 4)}-${pad(date.month, 2)}-${pad(date.day, 2)}`;
 }
 
 /** Whether a stored value means "marked". Anything else (missing, garbage) is not marked. */

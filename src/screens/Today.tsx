@@ -1,18 +1,23 @@
 // The daily view: today's date, feast, fasting rule and the next fast.
 
 import { useRouter } from 'expo-router';
+import { useCallback, useMemo } from 'react';
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '../calendar';
 import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
-import { Badge, Card } from '../ui/kit';
+import { FastingStatsCard } from '../log/FastingStatsCard';
+import { computeStats } from '../log/log';
+import { useFastingLog } from '../log/useFastingLog';
+import { Badge, Button, Card } from '../ui/kit';
 import { FadeIn, useGrow } from '../ui/motion';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { useApkUpdate } from '../updates/useApkUpdate';
+import { refreshWidget } from '../widget/refresh';
 
 /** Names listed on the Today card; the rest is on the day screen. */
 const SAINTS_SHOWN = 3;
@@ -39,6 +44,22 @@ export function Today() {
   const grow = useGrow(info.period ? (info.period.day / info.period.totalDays) * 100 : 0);
 
   const fasting = info.level !== 'none';
+
+  // The widget's "complete today" mark, shared through storage; the widget is redrawn after a tap.
+  const redrawWidget = useCallback(() => refreshWidget(settings), [settings]);
+  const log = useFastingLog(today, redrawWidget);
+  const stats = useMemo(
+    () =>
+      computeStats(
+        today,
+        log.done,
+        (date) => getDayInfo(date, church, { greekFish: settings.greekFish }).level !== 'none',
+        info.period,
+      ),
+    [today, log.done, church, settings.greekFish, info.period?.id],
+  );
+  const hasMarks = stats.year > 0 || stats.streak > 0;
+
   const tone = fasting ? theme.accent : theme.free;
   const level = m.level[info.level];
   // Outside a named period, a lone fast day (Wednesday, an eve) is the heading.
@@ -152,8 +173,25 @@ export function Today() {
               </View>
             </View>
           )}
+
+          {fasting && (
+            <View style={styles.logAction}>
+              <Button
+                label={log.doneToday ? m.widget.completed : m.widget.complete}
+                accessibilityLabel={log.doneToday ? m.log.doneA11y : m.log.markA11y}
+                variant={log.doneToday ? 'secondary' : 'primary'}
+                onPress={() => void log.toggle()}
+              />
+            </View>
+          )}
         </Card>
       </FadeIn>
+
+      {hasMarks && (
+        <FadeIn index={2}>
+          <FastingStatsCard stats={stats} style={styles.card} />
+        </FadeIn>
+      )}
 
       <FadeIn index={2}>
         <Card
@@ -282,6 +320,13 @@ function makeStyles(t: Theme) {
     markText: { fontSize: 12, lineHeight: 15, fontWeight: '700' },
     foodName: { flex: 1, ...type.body, color: t.ink },
     foodForbidden: { color: t.muted },
+
+    logAction: {
+      marginTop: space.md,
+      paddingTop: space.md,
+      borderTopWidth: 1,
+      borderTopColor: t.line,
+    },
 
     progress: { marginTop: space.lg },
     track: { height: 4, borderRadius: 2, backgroundColor: t.line, overflow: 'hidden' },
