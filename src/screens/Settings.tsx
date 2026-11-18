@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MESSAGES } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { Card, ListRow } from '../ui/kit';
+import { useScrollTop } from '../ui/scrollTop';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useApkUpdate } from '../updates/useApkUpdate';
@@ -24,6 +25,7 @@ export function Settings() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const tabSpace = useTabBarSpace();
+  const scrollProps = useScrollTop('settings');
   const styles = useThemedStyles(makeStyles);
   const apk = useApkUpdate();
 
@@ -60,6 +62,7 @@ export function Settings() {
 
   return (
     <ScrollView
+      {...scrollProps}
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.lg,

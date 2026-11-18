@@ -43,7 +43,7 @@ export interface Messages {
   };
   church: Record<ChurchId, { name: string; calendar: string }>;
 
-  tabs: { today: string; readings: string };
+  tabs: { today: string; readings: string; scrollTop: string };
 
   calendar: {
     title: string;
@@ -378,7 +378,7 @@ export const en: Messages = {
     russian: { name: 'Russian tradition', calendar: 'Old (Julian) calendar' },
   },
 
-  tabs: { today: 'Today', readings: 'Readings' },
+  tabs: { today: 'Today', readings: 'Readings', scrollTop: 'Back to top' },
 
   calendar: {
     title: 'Calendar',

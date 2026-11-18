@@ -49,7 +49,7 @@ export const ru: Messages = {
     russian: { name: 'Русская традиция', calendar: 'Старый стиль (юлианский)' },
   },
 
-  tabs: { today: 'Сегодня', readings: 'Чтения' },
+  tabs: { today: 'Сегодня', readings: 'Чтения', scrollTop: 'Наверх' },
 
   calendar: {
     title: 'Календарь',

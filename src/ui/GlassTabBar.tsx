@@ -3,15 +3,15 @@
 
 import { BlurTargetView, BlurView } from 'expo-blur';
 import { usePathname, useRouter } from 'expo-router';
+import { useRef } from 'react';
 import type { ComponentRef, RefObject } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSettings } from '../settings/SettingsProvider';
 import { TAB_BAR_HEIGHT, TAB_BAR_SIDE, useTabBarBottom } from './tabBar';
+import { DOUBLE_TAP_MS, TAB_IDS as TABS, TabId, scrollTabToTop } from './scrollTop';
 import { useTheme, type } from './theme';
 
 const PILL_RADIUS = (TAB_BAR_HEIGHT - 16) / 2;
-const TABS = ['today', 'readings', 'prayers', 'settings'] as const;
-type TabId = (typeof TABS)[number];
 
 export function GlassTabBar({
   targetRef,
@@ -23,6 +23,19 @@ export function GlassTabBar({
   const router = useRouter();
   const pathname = usePathname();
   const bottom = useTabBarBottom();
+  const lastTap = useRef({ id: '', at: 0 });
+
+  // A second tap on the tab you are already on scrolls that page to the top.
+  function onTabPress(id: TabId, active: boolean) {
+    const now = Date.now();
+    const double = lastTap.current.id === id && now - lastTap.current.at < DOUBLE_TAP_MS;
+    lastTap.current = { id, at: now };
+    if (active && pathname === `/${id}`) {
+      if (double) scrollTabToTop(id);
+      return;
+    }
+    router.navigate(`/${id}`);
+  }
 
   const labels: Record<TabId, string> = {
     today: m.tabs.today,
@@ -60,7 +73,7 @@ export function GlassTabBar({
             return (
               <Pressable
                 key={id}
-                onPress={() => router.navigate(`/${id}`)}
+                onPress={() => onTabPress(id, active)}
                 style={styles.item}
                 focusable={false}
                 accessibilityRole="tab"

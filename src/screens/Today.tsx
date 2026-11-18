@@ -14,6 +14,7 @@ import { reportHeading } from '../report/text';
 import { usePendingReport } from '../report/usePendingReport';
 import { Badge, Button, Card, ListRow } from '../ui/kit';
 import { FadeIn, useGrow } from '../ui/motion';
+import { useScrollTop } from '../ui/scrollTop';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, useTheme, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
@@ -29,6 +30,7 @@ export function Today() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const tabSpace = useTabBarSpace();
+  const scrollProps = useScrollTop('today');
   const styles = useThemedStyles(makeStyles);
   const today = useToday();
   const apk = useApkUpdate();
@@ -64,6 +66,7 @@ export function Today() {
 
   return (
     <ScrollView
+      {...scrollProps}
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.lg,

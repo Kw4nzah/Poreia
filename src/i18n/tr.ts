@@ -38,7 +38,7 @@ export const tr: Messages = {
     russian: { name: 'Rus geleneği', calendar: 'Eski (Jülyen) takvim' },
   },
 
-  tabs: { today: 'Bugün', readings: 'Okumalar' },
+  tabs: { today: 'Bugün', readings: 'Okumalar', scrollTop: 'Başa dön' },
 
   calendar: {
     title: 'Takvim',

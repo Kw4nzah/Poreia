@@ -13,6 +13,7 @@ import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { Button, Card, ListRow, SectionHeader } from '../ui/kit';
 import { FadeIn } from '../ui/motion';
+import { useScrollTop } from '../ui/scrollTop';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
@@ -26,6 +27,7 @@ export function Readings() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const tabSpace = useTabBarSpace();
+  const scrollProps = useScrollTop('readings');
   const styles = useThemedStyles(makeStyles);
   const today = useToday();
 
@@ -69,6 +71,7 @@ export function Readings() {
 
   return (
     <ScrollView
+      {...scrollProps}
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.lg,

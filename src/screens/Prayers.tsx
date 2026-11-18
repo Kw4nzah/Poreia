@@ -10,6 +10,7 @@ import { AppTextInput } from '../ui/AppTextInput';
 import { useSettings } from '../settings/SettingsProvider';
 import { Card, ListRow, SectionHeader } from '../ui/kit';
 import { FadeIn } from '../ui/motion';
+import { useScrollTop } from '../ui/scrollTop';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, radius, space, useTheme, type, useThemedStyles } from '../ui/theme';
 
@@ -19,6 +20,7 @@ export function Prayers() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const tabSpace = useTabBarSpace();
+  const scrollProps = useScrollTop('prayers');
   const styles = useThemedStyles(makeStyles);
   const [query, setQuery] = useState('');
   const matches = useMemo(
@@ -28,6 +30,7 @@ export function Prayers() {
 
   return (
     <ScrollView
+      {...scrollProps}
       style={styles.screen}
       contentContainerStyle={{
         paddingTop: insets.top + space.lg,

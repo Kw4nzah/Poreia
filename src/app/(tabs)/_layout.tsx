@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import { View } from 'react-native';
 import { useSettings } from '../../settings/SettingsProvider';
 import { GlassTabBar } from '../../ui/GlassTabBar';
+import { ScrollTopButton } from '../../ui/scrollTop';
 import { useTheme } from '../../ui/theme';
 
 // The navigator's own bar is off; GlassTabBar floats over the screens. The screens sit in a
@@ -31,6 +32,7 @@ export default function TabsLayout() {
           <Tabs.Screen name="settings" options={{ title: m.settings.title }} />
         </Tabs>
       </BlurTargetView>
+      <ScrollTopButton />
       <GlassTabBar targetRef={target} />
     </View>
   );
