@@ -19,9 +19,9 @@ export function Sources() {
           onPress={() => router.back()}
           style={styles.back}
           accessibilityRole="button"
-          accessibilityLabel={m.settings.title}
+          accessibilityLabel={m.settings.sectionAbout}
         >
-          <Text style={styles.backText}>‹ {m.settings.title}</Text>
+          <Text style={styles.backText}>‹ {m.settings.sectionAbout}</Text>
         </Pressable>
       </View>
       <ScrollView

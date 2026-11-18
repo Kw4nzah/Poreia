@@ -7,7 +7,7 @@ import type { BackupError } from '../backup/backup';
 import { readDoneDays, writeDoneDays } from '../backup/doneStorage';
 import { useSettings } from '../settings/SettingsProvider';
 import { AppTextInput } from '../ui/AppTextInput';
-import { Button, Card, SectionHeader } from '../ui/kit';
+import { Button, Card } from '../ui/kit';
 import { Theme, radius, space, type, useTheme, useThemedStyles } from '../ui/theme';
 
 type Outcome =
@@ -65,7 +65,8 @@ export function BackupSection() {
 
   return (
     <>
-      <SectionHeader title={m.backup.title} hint={m.backup.hint} />
+      {/* The category screen already carries the title. */}
+      <Text style={styles.hint}>{m.backup.hint}</Text>
       <Card padding="md">
         <Button label={m.backup.copy} onPress={() => void copyBackup()} variant="secondary" />
         <Text style={styles.status}>{m.backup.copyHint}</Text>
@@ -113,6 +114,7 @@ export function BackupSection() {
 
 function makeStyles(t: Theme) {
   return StyleSheet.create({
+    hint: { ...type.caption, color: t.muted, marginTop: space.md, marginBottom: space.sm },
     status: { ...type.label, color: t.muted, marginTop: space.xs },
     error: { color: t.danger },
     success: { color: t.ink },

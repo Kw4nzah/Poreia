@@ -124,6 +124,23 @@ export interface Messages {
     notificationsChannel: string;
     eveReminder: string;
     eveReminderHint: string;
+    /** Settings hub: category not covered by an existing title. */
+    sectionProfile: string;
+    sectionAbout: string;
+    /** Hub summaries; `hour` is already formatted ("08:00"). */
+    summaryNotificationsOn: (hour: string) => string;
+    summaryNotificationsOff: string;
+    summarySaints: (count: number) => string;
+    summarySaintsNone: string;
+    summaryBackup: string;
+    summaryAbout: string;
+    /** Download popup. Sizes are megabytes already formatted ("12.3"). */
+    apkModalTitle: (version: string) => string;
+    apkBytes: (done: string, total: string) => string;
+    apkBytesUnknown: (done: string) => string;
+    apkCancel: string;
+    apkRetry: string;
+    apkClose: string;
   };
 
   /** Evening-before reminder (fast begins, feast tomorrow). */
@@ -394,6 +411,20 @@ export const en: Messages = {
     notificationsChannel: 'Daily fast',
     eveReminder: 'The evening before a fast or feast',
     eveReminderHint: 'At 20:00 the evening before a fast begins or a feast falls.',
+    sectionProfile: 'Profile and tradition',
+    sectionAbout: 'About',
+    summaryNotificationsOn: (hour) => `Daily at ${hour}`,
+    summaryNotificationsOff: 'Off',
+    summarySaints: (count) => (count === 1 ? '1 saint' : `${count} saints`),
+    summarySaintsNone: 'None added yet',
+    summaryBackup: 'Copy or restore your data',
+    summaryAbout: 'Sources and GitHub',
+    apkModalTitle: (version) => `Downloading version ${version}`,
+    apkBytes: (done, total) => `${done} of ${total} MB`,
+    apkBytesUnknown: (done) => `${done} MB`,
+    apkCancel: 'Cancel',
+    apkRetry: 'Try again',
+    apkClose: 'Close',
   },
 
   eve: {
