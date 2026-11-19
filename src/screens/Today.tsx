@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CHURCHES, getDayInfo, getUpcomingFast } from '../calendar';
+import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '../calendar';
 import { getCommemoration, readingReference } from '../commemorations';
 import { formatDate, formatDayMonth } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
@@ -100,7 +100,6 @@ export function Today() {
       <FadeIn index={0}>
         <Card tone={info.feasts.length > 0 ? 'feast' : 'surface'} style={styles.gap}>
           <Text style={[styles.headline, { color: tone }]}>{summary.headline}</Text>
-          {summary.foods !== '' && <Text style={styles.foodsLine}>{summary.foods}</Text>}
         </Card>
       </FadeIn>
 
@@ -130,6 +129,41 @@ export function Today() {
                 {m.note[note]}
               </Text>
             ))}
+
+            {fasting && (
+              <View style={styles.foods}>
+                {FOOD_IDS.map((food) => {
+                  const allowed = isFoodAllowed(info.level, food);
+                  return (
+                    <View
+                      key={food}
+                      style={styles.foodRow}
+                      accessible
+                      accessibilityLabel={`${m.food[food]}: ${allowed ? m.today.foodAllowed : m.today.foodForbidden}`}
+                    >
+                      <View
+                        style={[
+                          styles.mark,
+                          allowed
+                            ? { backgroundColor: theme.free, borderColor: theme.free }
+                            : { borderColor: theme.outline },
+                        ]}
+                      >
+                        <Text
+                          maxFontSizeMultiplier={1.3}
+                          style={[styles.markText, { color: allowed ? theme.surface : theme.muted }]}
+                        >
+                          {allowed ? '✓' : '✕'}
+                        </Text>
+                      </View>
+                      <Text style={[styles.foodName, !allowed && styles.foodForbidden]}>
+                        {m.food[food]}
+                      </Text>
+                    </View>
+                  );
+                })}
+              </View>
+            )}
 
             {info.period && (
               <View style={styles.progress}>
@@ -317,7 +351,26 @@ function makeStyles(t: Theme) {
 
     gap: { marginTop: space.lg },
     headline: { fontFamily: SERIF, ...type.title3 },
-    foodsLine: { ...type.body, color: t.ink, marginTop: space.sm },
+    foods: {
+      marginTop: space.md,
+      paddingTop: space.md,
+      borderTopWidth: 1,
+      borderTopColor: t.line,
+      gap: space.smd,
+    },
+    foodRow: { flexDirection: 'row', alignItems: 'center', gap: space.smd },
+    mark: {
+      width: 24,
+      height: 24,
+      flexShrink: 0,
+      borderRadius: 12,
+      borderWidth: 1.5,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    markText: { fontSize: 12, lineHeight: 15, fontWeight: '700' },
+    foodName: { flex: 1, ...type.body, color: t.ink },
+    foodForbidden: { color: t.muted },
     search: {
       minHeight: 48,
       justifyContent: 'center',
