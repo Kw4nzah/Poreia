@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.1',
+    notes: {
+      tr: ['Litürji’de Slavca açıklamalarda kutucuk olarak görünen harfler düzeltildi.'],
+      en: ['Fixed boxes showing instead of letters in the Church Slavonic directions of the Liturgy.'],
+      ru: ['Исправлено отображение букв в церковнославянских ремарках литургии.'],
+    },
+  },
+  {
     version: '0.9.0',
     notes: {
       tr: ['İlahi Litürji (Aziz Yuhanna Hrisostomos) artık Kilise Slavcası ve İngilizce metniyle okunabiliyor.'],

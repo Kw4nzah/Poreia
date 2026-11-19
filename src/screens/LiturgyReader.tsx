@@ -100,7 +100,10 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
           styles.text,
           base,
           { fontFamily: fontFor(language) },
-          rubric && styles.rubric,
+          // The Slavonic font has no italic face; on Android an italic request falls back to the
+          // system font, which lacks the Slavonic letters and shows boxes. Rubrics in Slavonic
+          // are set apart by colour and size instead.
+          rubric && (language === 'cu' ? styles.rubricCu : styles.rubric),
           who === 'omitted' && styles.omitted,
           muted && styles.secondary,
         ]}
@@ -285,6 +288,7 @@ function makeStyles(t: Theme) {
     speaker: { ...type.caption, color: t.accent, fontWeight: '600', marginBottom: space.xs },
     text: { color: t.ink },
     rubric: { fontStyle: 'italic', color: t.muted },
+    rubricCu: { color: t.muted, opacity: 0.9 },
     omitted: { opacity: 0.7 },
     secondary: { color: t.muted },
     gap: { height: space.sm },
