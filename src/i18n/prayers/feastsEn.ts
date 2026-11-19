@@ -1,162 +1,253 @@
 // English texts of the feast hymns (troparion and kontakion of each feast).
-// Source: the Orthodox Church in America, "Troparia and kontakia" pages, oca.org/saints/troparia/<date>
-// (OCA translation; Slavic usage, tones as printed there). Fetched 2026-11-19 and checked word for
-// word against the page. Line breaks follow the " / " line breaks of the source. Rubrics such as
-// "(Original Melody)" and footnotes are left out. Copyright of the OCA; see the Sources screen.
+//
+// Source: Isabel Florence Hapgood (translator and compiler), Service Book of the Holy
+// Orthodox-Catholic Apostolic (Greco-Russian) Church, Houghton, Mifflin and Company, Boston and
+// New York, 1906 (first edition), from the Special Services of the Great Feasts. Public domain:
+// first published in the United States in 1906, and Hapgood died in 1928. Her "Hymn for the Day"
+// is the troparion and her "Collect-Hymn" the kontakion. The text was extracted by script from
+// the Internet Archive scan of the 1906 edition (archive.org/details/cu31924029363128) and
+// checked against a second scan of the same edition (archive.org/details/servicebookofhol00orth_1).
+// Only OCR line-break hyphens, stray marks, spacing before : ; ! ? and the rubric "(Thrice.)" were
+// cleaned. The spelling and wording are Hapgood's (thee/thy), unchanged. The 1922 edition words
+// four of these hymns slightly differently; the 1906 wording is used throughout.
+//
+// Feasts for which that book has no usable hymn in English have no English text here. Those are
+// listed in englishFeastFallback and show the Russian text (see feastsRu.ts) with a short note:
+// the troparion or kontakion is missing from Hapgood's book (Dormition kontakion, Lazarus
+// Saturday, Circumcision, Protection, the Forerunner and Apostle feasts), or it is worded for the
+// Russian Empire, with a ruler's name to be inserted and a war to be won (Exaltation of the
+// Cross, Meeting of the Lord kontakion), which this app does not alter. Nothing is invented and
+// no copyrighted translation (OCA, GOARCH, HTM, Antiochian, St Tikhon's) is used.
 
-import type { FeastPrayerId, PrayerText } from '../../prayers';
+import type { FeastPrayerId, PrayerText } from "../../prayers";
+import { feastPrayerTexts as russianFeastTexts } from "./feastsRu";
+
+/** Feasts without a public-domain English hymn. They show the Russian text with a note. */
+export const englishFeastFallback = [
+  "exaltationOfCross",
+  "protectionOfTheotokos",
+  "circumcision",
+  "meetingOfTheLord",
+  "nativityOfForerunner",
+  "peterAndPaul",
+  "dormition",
+  "beheadingOfJohn",
+  "lazarusSaturday",
+] as const satisfies readonly FeastPrayerId[];
+
+export type EnglishFallbackId = (typeof englishFeastFallback)[number];
+
+export const ENGLISH_FALLBACK_NOTE =
+  "English text is not yet available; Russian shown.";
+
+function russianFallback(id: EnglishFallbackId, title: string): PrayerText {
+  return {
+    title,
+    note: ENGLISH_FALLBACK_NOTE,
+    sections: russianFeastTexts[id].sections,
+  };
+}
 
 export const feastPrayerTexts: Record<FeastPrayerId, PrayerText> = {
-  // https://www.oca.org/saints/troparia/2025/09/08 ; The Nativity of our Most Holy Lady the Mother of God and Ever-Virgin Mary ; Troparion Tone 4, Kontakion Tone 4
+  // Hapgood 1906, Nativity of the Birth-giver of God (Sept. 8), Hymn for the Day / Collect-Hymn at the Liturgy
   nativityOfTheotokos: {
-    title: 'Nativity of the Theotokos',
+    title: "Nativity of the Theotokos",
     sections: [
-      { heading: 'Troparion', paragraphs: ['Your Nativity, O Virgin,\nhas proclaimed joy to the whole universe!\nThe Sun of Righteousness, Christ our God,\nhas shone from you, O Theotokos!\nBy annulling the curse,\nHe bestowed a blessing.\nBy destroying death, He has granted us eternal Life.'] },
-      { heading: 'Kontakion', paragraphs: ['By your Nativity, O Most Pure Virgin,\nJoachim and Anna are freed from barrenness;\nAdam and Eve, from the corruption of death.\nAnd we, your people, freed from the guilt of sin, celebrate and sing to you:\n“The barren woman gives birth to the Theotokos, the nourisher of our life.”'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "Thy holy Nativity, O virgin Birth-giver of God, hath proclaimed joy unto all the universe; for from thee is risen the Sun of Righteousness, even Christ our God. And having destroyed the curse, he hath bestowed a blessing; and having brought Death to naught, he hath given unto us life eternal.",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "Joachim and Anna were delivered from the reproach of childlessness, and Adam and Eve from the corruption of death, at thy holy Nativity, O All-pure One. This do thy people celebrate, being redeemed from the guilt of transgressions, when they cry unto thee: The barren giveth birth to the Birth-giver of God and the Nourisher of our Life.",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/09/14 ; The Universal Exaltation of the Precious and Life-Giving Cross ; Troparion Tone 1, Kontakion Tone 4
-  exaltationOfCross: {
-    title: 'Exaltation of the Holy Cross',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['O Lord, save Your people,\nand bless Your inheritance.\nGrant victories to the Orthodox Christians\nover their adversaries.\nAnd by virtue of Your Cross,\npreserve Your habitation.'] },
-      { heading: 'Kontakion', paragraphs: ['As You were voluntarily raised upon the cross for our sake,\ngrant mercy to those who are called by Your Name, O Christ God;\nmake all Orthodox Christians glad by Your power,\ngranting them victories over their adversaries,\nby bestowing on them the Invincible trophy, Your weapon of Peace.'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/10/01 ; The Protection of our Most Holy Lady the Mother of God and Ever-Virgin Mary ; Troparion Tone 4, Kontakion Tone 3
-  protectionOfTheotokos: {
-    title: 'Protection of the Theotokos',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['On this day we, the Orthodox people, joyously keep festival,\nillumined by your coming, O Mother of God;\nand, beholding your most pure image, we cry out with compunction:\n"Cover us with your Protecting Veil and deliver us from all evil,\nentreating your Son, Christ our God, to save our souls."'] },
-      { heading: 'Kontakion', paragraphs: ['Today the Virgin stands in the church,\nand with hosts of Saints, and invisibly prays to God for us.\nAngels worship with Hierarchs,\nand Apostles rejoice with Prophets,\nfor the Theotokos prays to the Pre-eternal God for us.'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/11/21 ; The Entry of the Most Holy Mother of God into the Temple ; Troparion Tone 4, Kontakion Tone 4
+  exaltationOfCross: russianFallback(
+    "exaltationOfCross",
+    "Exaltation of the Holy Cross",
+  ),
+  protectionOfTheotokos: russianFallback(
+    "protectionOfTheotokos",
+    "Protection of the Theotokos",
+  ),
+  // Hapgood 1906, Entrance into the Temple of the Birth-giver of God (Nov. 21), Hymn for the Day / Collect-Hymn
   entryOfTheotokos: {
-    title: 'Entry of the Theotokos into the Temple',
+    title: "Entry of the Theotokos into the Temple",
     sections: [
-      { heading: 'Troparion', paragraphs: ['Today is the prelude of the good will of God,\nof the preaching of the salvation of mankind.\nThe Virgin appears in the temple of God,\nin anticipation proclaiming Christ to all.\nLet us rejoice\nand sing to her:\n"Rejoice, O Fulfillment of the Creator\'s dispensation."'] },
-      { heading: 'Kontakion', paragraphs: ['The most pure Temple of the Savior;\nthe precious Chamber and Virgin;\nthe sacred Treasure of the glory of God,\nis presented today to the house of the Lord.\nShe brings with her the grace of the Spirit,\ntherefore, the angels of God praise her:\n“Truly this woman is the abode of heaven.”'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "To-day is the foreshadowing of the beneficence of God which is to come, and the heralding of man's salvation. The Virgin is clearly manifested in the temple of God, and in anticipation announceth Christ unto all men. Unto her let us, also, cry, aloud: Hail, thou who art the fulfilment of the Creator's providence!",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "The all-pure Temple of the Saviour, the most precious Bridal-chamber and Virgin, the Treasure-house of the glory of God, to-day is led into the temple of the Lord, bringing with her the grace which is in the Divine Spirit; whom also the Angels of God do celebrate in song: This is the Abode of Heaven.",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/12/25 ; The Nativity of our Lord God and Savior Jesus Christ ; Troparion Tone 4, Kontakion Tone 3
+  // Hapgood 1906, Nativity of Christ, Hymn at the Blessing of the Loaves / Collect-Hymn after Canticle VI
   nativityOfChrist: {
-    title: 'Nativity of Christ',
+    title: "Nativity of Christ",
     sections: [
-      { heading: 'Troparion', paragraphs: ['Your Nativity, O Christ our God,\nhas shone to the world the Light of knowledge;\nfor by it, those who worshipped the stars\nwere taught by a star to adore You,\nthe Sun of Righteousness,\nand to know You, the Dayspring from on High.\nO Lord, glory to You!'] },
-      { heading: 'Kontakion', paragraphs: ['Today the Virgin gives birth to the Transcendent One,\nand the earth offers a cave to the Unapproachable One!\nAngels with shepherds glorify Him.\nThe wise men journey with a star,\nsince for our sake the Pre-Eternal God was born as a young Child.'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "Thy Nativity, O Christ our God, hath arisen upon the world as the light of wisdom. For at it, they who worshipped the stars were, by a Star, taught to adore thee, the Sun of Righteousness, and to know thee, the Orient from on high. O Lord, glory to thee.",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "To-day a Virgin bringeth forth the Supersubstantial, and earth offereth a cavern to the Unapproachable; Angels together with the Shepherds sing praises; the Wise Men journey on with the Star. For, for our sakes, God, who is before all the ages, is born a little Child.",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/01/01 ; The Circumcision of our Lord and Savior Jesus Christ ; Troparion Tone 1, Kontakion Tone 3
-  circumcision: {
-    title: 'Circumcision of the Lord',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['Enthroned on high with the Eternal Father and Your divine Spirit,\nO Jesus, You willed to be born on earth of the unwedded handmaid, your Mother.\nTherefore You were circumcised as an eight-day old Child.\nGlory to Your most gracious counsel;\nglory to Your dispensation;\nglory to Your condescension, O only Lover of mankind.'] },
-      { heading: 'Kontakion', paragraphs: ['The Lord of all accepts to be circumcised,\nthus, as He is good, excises the sins of mortal men.\nToday He grants the world salvation,\nwhile light-bearing Basil, high priest of our Creator,\nrejoices in heaven as a divine initiate of Christ.'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/01/06 ; Feast of the Theophany of our Lord and Savior Jesus Christ ; Troparion Tone 1, Kontakion Tone 4
+  circumcision: russianFallback("circumcision", "Circumcision of the Lord"),
+  // Hapgood 1906, The Epiphany, Hymn for the Day / Collect-Hymn at the Liturgy
   theophany: {
-    title: 'Holy Theophany',
+    title: "Holy Theophany",
     sections: [
-      { heading: 'Troparion', paragraphs: ['When You, O Lord were baptized in the Jordan\nthe worship of the Trinity was made manifest\nfor the voice of the Father bore witness to You\nand called You His beloved Son.\nAnd the Spirit, in the form of a dove,\nconfirmed the truthfulness of His word.\nO Christ, our God, You have revealed Yourself\nand have enlightened the world, glory to You!'] },
-      { heading: 'Kontakion', paragraphs: ['Today You have shown forth to the world, O Lord,\nand the light of Your countenance has been marked on us.\nKnowing You, we sing Your praises.\nYou have come and revealed Yourself,\nO unapproachable Light.'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "When in Jordan thou wast baptized, O Lord, the worship of the Trinity was made manifest. For the voice of the Father bare witness unto thee, calling thee his beloved Son, and the Spirit, in the form of a dove, confirmed the steadfastness of that word. O Christ our God, who didst manifest thyself, and dost enlighten the world, glory to thee.",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "To-day hast thou revealed thyself unto the universe, and thy Light, O Lord, hath showed a sign unto us, who with understanding sing unto thee: Thou art come, and hast revealed thyself, O Light Unapproachable.",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/02/02 ; The Meeting of our Lord and Savior Jesus Christ in the Temple ; Troparion Tone 1, Kontakion Tone 1
-  meetingOfTheLord: {
-    title: 'Meeting of the Lord',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['Hail, Virgin Theotokos, full of grace;\nfor from you has shone forth the Sun of Righteousness, Christ our God,\ngiving light to those in darkness.\nBe glad, O righteous Elder;\nfor you received in your arms the Redeemer of our souls,\nWho bestows upon us the resurrection.'] },
-      { heading: 'Kontakion', paragraphs: ['By Your birth, You sanctified a virginal womb,\nand fittingly You blessed Simeon’s hands, O Christ God;\neven now You have saved us by anticipation.\nGrant peace to Your faithful people whom You have loved, O only Lover of mankind.'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/03/25 ; The Annunciation of our Most Holy Lady, the Theotokos and Ever-Virgin Mary ; Troparion Tone 4, Kontakion Tone 8
+  meetingOfTheLord: russianFallback("meetingOfTheLord", "Meeting of the Lord"),
+  // Hapgood 1906, Annunciation, Hymn for the Day / Hymn to the Birth-giver of God (First Hour, p. 42)
   annunciation: {
-    title: 'Annunciation',
+    title: "Annunciation",
     sections: [
-      { heading: 'Troparion', paragraphs: ['Today is the beginning of our salvation,\nthe revelation of the eternal mystery!\nThe Son of God becomes the Son of the Virgin\nas Gabriel announces the coming of Grace.\nTogether with him let us cry to the Theotokos:\nHail, O Full of Grace,\nthe Lord is with You!'] },
-      { heading: 'Kontakion', paragraphs: ['O Victorious Leader of Triumphant Hosts!\nWe, your servants, delivered from evil, sing our grateful thanks to you, O Theotokos!\nAs you possess invincible might, set us free from every calamity\nso that we may sing: Hail, O unwedded Bride!'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "To-day is the crown of our salvation, and the manifestation of that mystery which is from everlasting: The Son of God becometh the son of a Virgin, and Gabriel announceth the glad tidings of grace. Wherefore let us also cry aloud with him unto the Birth-giver of God: Hail, thou that art full of grace, the Lord is with thee!",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "We, thy servants, in that we have been delivered from calamities, do offer unto thee, O Birth-giver of God, who as victorious Chieftain warrest for us, songs of triumph and thanksgiving: Do thou also, in that thou hast might invincible, free us from all assaults, that we may cry unto thee: Hail, O Bride unwedded!",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/06/24 ; Nativity of the Holy Glorious Prophet, Forerunner and Baptist, John ; Troparion Tone 4, Kontakion Tone 3
-  nativityOfForerunner: {
-    title: 'Nativity of St John the Forerunner',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['Prophet and Forerunner of the coming of Christ,\nalthough we cannot praise you worthily,\nwe honor you in love at your nativity,\nfor by it you ended your father’s silence and your mother’s barrenness,\nproclaiming to the world the incarnation of the Son of God!'] },
-      { heading: 'Kontakion', paragraphs: ['Today the formerly barren woman gives birth to Christ’s Forerunner,\nwho is the fulfillment of every prophecy;\nfor in the Jordan,\nwhen he laid his hand on the One foretold by the prophets,\nhe was revealed as Prophet, Herald, and Forerunner of God the Word.'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/06/29 ; The Holy Glorious and All-Praised Leaders of the Apostles, Peter and Paul ; Troparion Tone 4, Kontakion Tone 2
-  peterAndPaul: {
-    title: 'Holy Apostles Peter and Paul',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['O foremost of the Apostles and teachers of the inhabited earth,\nintercede with the Master of all\nto grant peace to the world and great mercy to our souls.'] },
-      { heading: 'Kontakion', paragraphs: ['You received the steadfast and divinely-inspired Heralds, O Lord, the Foremost Apostles,\nfor the enjoyment of Your blessings and repose.\nFor You recognized their labors and death as greater than any burnt offering,\nfor You alone know what is in the hearts of men.'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/08/06 ; The Holy Transfiguration of our Lord God and Savior Jesus Christ (the Second "Feast of the Savior" in August) ; Troparion Tone 7, Kontakion Tone 7
+  nativityOfForerunner: russianFallback(
+    "nativityOfForerunner",
+    "Nativity of St John the Forerunner",
+  ),
+  peterAndPaul: russianFallback("peterAndPaul", "Holy Apostles Peter and Paul"),
+  // Hapgood 1906, Transfiguration, Hymn / Collect-Hymn of the Special Service
   transfiguration: {
-    title: 'Transfiguration of the Lord',
+    title: "Transfiguration of the Lord",
     sections: [
-      { heading: 'Troparion', paragraphs: ['You were transfigured on the mountain, O Christ God,\nrevealing Your glory to Your disciples as far as they could bear it.\nLet Your everlasting Light also shine upon us sinners,\nthrough the prayers of the Theotokos.\nO Giver of Light, glory to You!'] },
-      { heading: 'Kontakion', paragraphs: ['On the Mountain You were Transfigured, O Christ God,\nand Your disciples beheld Your glory as far as they could see it;\nso that when they would behold You crucified,\nthey would understand that Your suffering was voluntary,\nand would proclaim to the world,\nthat You are truly the Radiance of the Father!'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "Thou wast transfigured upon the Mount, O Christ-God, revealing unto thy disciples thy glory in so far as they were able to bear it. Let thy light everlasting illumine us sinners also; through the prayers of the Birth-giver of God. O Light-giver, glory to thee!",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "Upon the Mount wast thou transfigured, and thy disciples, in so far as they were qualified, beheld thy glory, O Christ-God; that when they should see thee crucified they might comprehend that thy suffering was voluntary, and proclaim it unto the world: For thou art, of a truth, the effulgence of the Father.",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/08/15 ; The Dormition of our Most Holy Lady the Mother of God and Ever-Virgin Mary ; Troparion Tone 1, Kontakion Tone 2
-  dormition: {
-    title: 'Dormition of the Theotokos',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['In giving birth, you preserved your virginity,\nand in falling asleep you did not forsake the world, O Theotokos.\nYou passed into life as the Mother of Life,\nand by your prayers, you deliver our souls from death.'] },
-      { heading: 'Kontakion', paragraphs: ['Neither the tomb, nor death had power over the Theotokos,\nwho is unsleeping in her intercessions and an unchanging hope in her protection.\nFor as the Mother of Life,\nshe was translated into life by Him who dwelt in her ever-virginal womb.'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/08/29 ; The Beheading of the Holy Glorious Prophet, Forerunner, and Baptist John ; Troparion Tone 2, Kontakion Tone 5
-  beheadingOfJohn: {
-    title: 'Beheading of St John the Forerunner',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['The memory of the righteous is celebrated with hymns of praise,\nbut the Lord’s testimony is sufficient for you, O Forerunner.\nYou were shown in truth to be the most honorable of the prophets,\nfor you were deemed worthy to baptize in the streams of the Jordan Him whom they foretold.\nTherefore, having suffered for the truth with joy,\nyou proclaimed to those in hell God who appeared in the flesh,\nwho takes away the sin of the world,\nand grants us great mercy.'] },
-      { heading: 'Kontakion', paragraphs: ['The glorious beheading of the Forerunner,\nbecame an act of divine dispensation,\nfor he preached to those in hell the coming of the Savior.\nLet Herodias lament, for she entreated lawless murder,\nloving not the law of God, nor eternal life,\nbut that which is false and temporal.'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/04/20 ; HOLY PASCHA: The Resurrection of Our Lord ; Troparion Tone 4, Kontakion Tone 8
+  dormition: russianFallback("dormition", "Dormition of the Theotokos"),
+  beheadingOfJohn: russianFallback(
+    "beheadingOfJohn",
+    "Beheading of St John the Forerunner",
+  ),
+  // Hapgood 1906, Easter, Hymn at the Paschal Matins / Collect-Hymn of the Canon
   pascha: {
-    title: 'Holy Pascha',
+    title: "Holy Pascha",
     sections: [
-      { heading: 'Troparion', paragraphs: ['Christ is risen from the dead,\ntrampling down death by death,\nand upon those in the tombs bestowing life!'] },
-      { heading: 'Kontakion', paragraphs: ['You descended into the tomb, O Immortal,\nYou destroyed the power of death.\nIn victory You arose, O Christ God,\nproclaiming: “Rejoice!” to the Myrrhbearing Women,\ngranting peace to Your Apostles, and bestowing Resurrection on the fallen.'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "Christ is risen from the dead, trampling down Death by death, and upon those in the tomb bestowing life.",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "Though thou didst descend into the grave, O Deathless One, yet didst thou annihilate the power of Hell, and didst rise again as conqueror, O Christ our God, announcing unto the Myrrh-bearing Women: Rejoice! and giving peace unto thine Apostles, and bestowing Resurrection upon the fallen.",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/04/13 ; Entry of Our Lord into Jerusalem (Palm Sunday) ; Troparion Tone 1, Kontakion Tone 6
+  // Hapgood 1906, Entrance of the Lord into Jerusalem, Hymn for the Day / Collect-Hymn
   palmSunday: {
-    title: 'Palm Sunday',
+    title: "Palm Sunday",
     sections: [
-      { heading: 'Troparion', paragraphs: ['By raising Lazarus from the dead before Your passion,\nYou did confirm the universal Resurrection, O Christ God!\nLike the children with the palms of victory,\nwe cry out to You, O Vanquisher of death:\nHosanna in the Highest!\nBlessed is He that comes in the Name of the Lord!'] },
-      { heading: 'Kontakion', paragraphs: ['Sitting on Your throne in heaven,\ncarried on a foal on earth, O Christ God!\nAccept the praise of angels and the songs of children who sing:\nBlessed is He that comes to recall Adam!'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "Thou didst raise Lazarus from the dead, O Christ our God, making certain the universal resurrection, before thy Passion. For which cause we also, like unto the children, bearing the emblems of victory, cry aloud unto thee, the Conqueror of Death: Hosanna in the highest! Blessed is he that cometh in the Name of the Lord.",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "O Christ-God, who in heaven art borne upon the throne, and on earth upon the foal of an ass, thou didst accept the praises of the Angels, and the hymns of the children that cried unto thee: Blessed art thou who art come to recall Adam from the dead!",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/04/12 ; The Raising of Lazarus (Lazarus Saturday) ; Troparion Tone 1, Kontakion Tone 2
-  lazarusSaturday: {
-    title: 'Lazarus Saturday',
-    sections: [
-      { heading: 'Troparion', paragraphs: ['By raising Lazarus from the dead before Your passion,\nYou did confirm the universal Resurrection, O Christ God!\nLike the children with the palms of victory,\nwe cry out to You, O Vanquisher of death:\nHosanna in the Highest!\nBlessed is He that comes in the Name of the Lord!'] },
-      { heading: 'Kontakion', paragraphs: ['Christ the Joy, the Truth and the Light of all,\nthe Life of the World and the Resurrection\nhas appeared in His goodness, to those on earth.\nHe has become the Image of our Resurrection,\ngranting divine forgiveness to all!'] },
-    ],
-  },
-  // https://www.oca.org/saints/troparia/2025/05/29 ; The Ascension of our Lord ; Troparion Tone 4, Kontakion Tone 6
+  lazarusSaturday: russianFallback("lazarusSaturday", "Lazarus Saturday"),
+  // Hapgood 1906, Ascension, Hymn for the Day / Collect-Hymn
   ascension: {
-    title: 'Ascension of the Lord',
+    title: "Ascension of the Lord",
     sections: [
-      { heading: 'Troparion', paragraphs: ['O Christ God, You have ascended in Glory,\ngranting joy to Your disciples by the promise of the Holy Spirit.\nThrough the blessing they were assured\nthat You are the Son of God,\nthe Redeemer of the world!'] },
-      { heading: 'Kontakion', paragraphs: ['When You had fulfilled the dispensation for our sake,\nand united earth to heaven:\nYou ascended in glory, O Christ our God,\nnot being parted from those who love You,\nbut remaining with them and crying:\n“I am with you and no one will be against you!”'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "Thou art ascended up into glory, O Christ our God, having made joyful thy disciples by the promise of thy Holy Spirit, the blessing which was announced unto them. For thou art the Son of God, the Redeemer of the world.",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "When thou hadst accomplished thy dispensation to usward, and hadst united things earthly with things heavenly, thou didst ascend into glory, O Christ our God, yet in no wise departing but abiding uninterruptedly with us, and crying unto those who love thee: I am with you, and none shall prevail against you.",
+        ],
+      },
     ],
   },
-  // https://www.oca.org/saints/troparia/2025/06/08 ; Holy Pentecost ; Troparion Tone 8, Kontakion Tone 8
+  // Hapgood 1906, Pentecost, Hymn for the Day / Collect-Hymn
   pentecost: {
-    title: 'Pentecost',
+    title: "Pentecost",
     sections: [
-      { heading: 'Troparion', paragraphs: ['Blessed are You O Christ Our God\nYou have revealed the fishermen as most wise\nby sending down upon them the Holy Spirit\nthrough them You drew the world into Your net\nO Lover of Man, Glory to You!'] },
-      { heading: 'Kontakion', paragraphs: ['When the most High came down and confused the tongues,\nHe divided the nations;\nbut when he distributed the tongues of fire\nHe called all to unity.\nTherefore, with one voice, we glorify the All-holy Spirit!'] },
+      {
+        heading: "Troparion",
+        paragraphs: [
+          "Blessed art thou, O Christ our God, who hast revealed fishers most wise, sending down upon them the Holy Spirit, and thereby catching the universe as in a net. O Christ our God, who lovest mankind, glory to thee.",
+        ],
+      },
+      {
+        heading: "Kontakion",
+        paragraphs: [
+          "When the Most High confounded the tongues, he dispersed the nations: but when he distributed the tongues of fire, he called all men unto unity. Wherefore, with one accord, we glorify the All-holy Spirit.",
+        ],
+      },
     ],
   },
 };
