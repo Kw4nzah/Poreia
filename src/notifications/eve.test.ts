@@ -47,6 +47,29 @@ describe('planEveReminders', () => {
     expect(christmas.body).not.toContain(en.eve.fastBegins);
   });
 
+  it('leads with the change when tomorrow differs from today', () => {
+    // Sunday 2027-03-14 (cheese fare, no meat) -> Clean Monday: the fast begins and the level changes.
+    const [lent] = plan([2027, 3, 10], 10);
+    expect(lent.body.split('\n').slice(0, 2)).toEqual([
+      en.eve.fastBegins,
+      en.eve.changes(en.level.noMeat.title, en.level.noOil.title),
+    ]);
+  });
+
+  it('reminds across a year boundary', () => {
+    const days = plan([2026, 12, 30], 10).map(
+      (r) => r.when.getMonth() + 1 + '-' + r.when.getDate(),
+    );
+    expect(days).toContain('1-5');
+  });
+
+  it('stays simple when tomorrow has the same rule as today', () => {
+    const same = plan([2026, 11, 10], 60).filter(
+      (r) => !r.body.includes(en.eve.changes('', '').slice(0, 6)),
+    );
+    for (const r of same) expect(r.body.split('\n').length).toBeLessThanOrEqual(2);
+  });
+
   it('does not remind on ordinary days', () => {
     // 2027-06-01 .. 06-04: nothing begins or falls within.
     expect(plan([2027, 6, 1], 3)).toEqual([]);

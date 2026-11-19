@@ -200,6 +200,7 @@ export const tr: Messages = {
 
   eve: {
     tomorrow: 'Yarın',
+    changes: (today, tomorrow) => `Bugün: ${today}. Yarın: ${tomorrow}.`,
     fastBegins: 'Oruç başlıyor.',
   },
 

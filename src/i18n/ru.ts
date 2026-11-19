@@ -211,6 +211,7 @@ export const ru: Messages = {
 
   eve: {
     tomorrow: 'Завтра',
+    changes: (today, tomorrow) => `Сегодня: ${today}. Завтра: ${tomorrow}.`,
     fastBegins: 'Начинается пост.',
   },
 

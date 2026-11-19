@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.8.3',
+    notes: {
+      tr: ['Akşam hatırlatması artık yarın kuralın bugünden nasıl değiştiğini ilk satırda söylüyor.'],
+      en: ['The evening reminder now says first how tomorrow’s rule differs from today’s.'],
+      ru: ['Вечернее напоминание теперь сначала говорит, чем завтрашнее правило отличается от сегодняшнего.'],
+    },
+  },
+  {
     version: '0.8.2',
     notes: {
       tr: ['Ayarlar’da yeni “Cihaz kontrolü”: güncellemeden sonra telefonda denenecekler için kısa bir liste.'],

@@ -152,10 +152,15 @@ export function planEveReminders(
     const when = new Date(evening.year, evening.month - 1, evening.day, EVE_HOUR, 0, 0);
     if (when.getTime() <= now.getTime()) continue;
     const level = m.level[info.level];
+    const today = getDayInfo(evening, church, options);
     const names: string[] = [];
     if (startsFast && info.period) names.push(m.period[info.period.id]);
     for (const feast of info.feasts) names.push(m.feast[feast]);
     const lines = startsFast ? [m.eve.fastBegins] : [];
+    // Say what changes first; when tomorrow's rule equals today's, only the rule itself follows.
+    if (today.level !== info.level) {
+      lines.push(m.eve.changes(m.level[today.level].title, level.title));
+    }
     lines.push(`${level.title}: ${level.detail}`);
     out.push({ when, title: `${m.eve.tomorrow} · ${names.join(' · ')}`, body: lines.join('\n') });
   }

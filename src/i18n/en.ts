@@ -235,6 +235,8 @@ export interface Messages {
   eve: {
     tomorrow: string;
     fastBegins: string;
+    /** Tomorrow's level differs from today's. */
+    changes: (today: string, tomorrow: string) => string;
   };
 
   backup: {
@@ -668,6 +670,7 @@ export const en: Messages = {
 
   eve: {
     tomorrow: 'Tomorrow',
+    changes: (today, tomorrow) => `Today: ${today}. Tomorrow: ${tomorrow}.`,
     fastBegins: 'The fast begins.',
   },
 
