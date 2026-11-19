@@ -393,6 +393,8 @@ export interface Messages {
     testTitle: string;
     testBody: string;
     whatsNewTitle: string;
+    whatsNewIn: (version: string) => string;
+    whatsNewComing: (version: string) => string;
     whatsNewInstalled: string;
     reportButton: string;
     reportHint: string;
@@ -925,6 +927,8 @@ export const en: Messages = {
     testTitle: 'Test notification',
     testBody: 'If you can read this, notifications reach you.',
     whatsNewTitle: 'What’s new',
+    whatsNewIn: (version) => `What’s new in ${version}`,
+    whatsNewComing: (version) => `What’s new in ${version}`,
     whatsNewInstalled: 'Installed',
     reportButton: 'Report a problem',
     reportHint:

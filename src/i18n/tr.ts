@@ -498,6 +498,8 @@ export const tr: Messages = {
     testTitle: 'Deneme bildirimi',
     testBody: 'Bunu okuyabiliyorsan bildirimler sana ulaşıyor.',
     whatsNewTitle: 'Yenilikler',
+    whatsNewIn: (version) => `${version} sürümündeki yenilikler`,
+    whatsNewComing: (version) => `${version} sürümündeki yenilikler`,
     whatsNewInstalled: 'Yüklü',
     reportButton: 'Sorun bildir',
     reportHint:

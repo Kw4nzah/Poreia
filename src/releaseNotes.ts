@@ -19,6 +19,10 @@ export const RELEASE_NOTES: readonly ReleaseNote[] = [
         'Bildirim yardımı: bildirimler gelmiyorsa telefonun bildirimle ilgili durumunu gösterir, ayarlara götürür ve deneme bildirimi gönderir.',
         'Bugün ekranında günün özeti.',
         'Ayarlar’da “Yenilikler” ve “Sorun bildir”.',
+        'Oruç günlerinde yiyecek listesi yine ✓ ve ✕ işaretleriyle.',
+        'Takvimde oruç tuttuğun günlerde nokta; “Günleri işaretle” ile geçmiş günleri toplu işaretleme.',
+        'Favori dualar ve “Kaldığın yerden devam et”.',
+        'Güncellemeler bölümünde sürümün yenilikleri.',
       ],
       en: [
         'Signed updates for safety: the app only accepts verified updates.',
@@ -27,6 +31,10 @@ export const RELEASE_NOTES: readonly ReleaseNote[] = [
         'Notification help: if notifications do not arrive, see what the phone reports, jump to the right settings and send a test notification.',
         'A summary of the day on the Today screen.',
         '“What’s new” and “Report a problem” in Settings.',
+        'The food list is back with ✓ and ✕ marks on fasting days.',
+        'A dot on the calendar for days you fasted, and “Mark days” to mark past days in bulk.',
+        'Favourite prayers and “Continue where you left off”.',
+        'This version’s news in the Updates section.',
       ],
       ru: [
         'Подписанные обновления для безопасности: приложение принимает только проверенные обновления.',
@@ -35,6 +43,10 @@ export const RELEASE_NOTES: readonly ReleaseNote[] = [
         'Помощь с уведомлениями: если уведомления не приходят, можно увидеть состояние на телефоне, перейти в нужные настройки и отправить тестовое уведомление.',
         'Сводка дня на экране «Сегодня».',
         'В настройках появились «Что нового» и «Сообщить о проблеме».',
+        'В постные дни список продуктов снова с отметками ✓ и ✕.',
+        'В календаре точка у дней, когда вы постились, и «Отметить дни» для массовой отметки прошедших дней.',
+        'Избранные молитвы и «Продолжить с того места, где остановились».',
+        'Новости версии в разделе «Обновления».',
       ],
     },
   },
@@ -171,4 +183,10 @@ export function releaseNotesFor(
 /** True when `version` is the one installed (ignores a build suffix such as "0.7.0-rc.1"). */
 export function isInstalledVersion(version: string, installed: string | null | undefined): boolean {
   return !!installed && installed.split(/[-+]/)[0] === version;
+}
+
+/** Notes for one version in one language, or null when this build has none for it. */
+export function notesForVersion(language: Language, version: string): readonly string[] | null {
+  const entry = RELEASE_NOTES.find((note) => note.version === version.replace(/^v/i, ''));
+  return entry ? entry.notes[language] : null;
 }

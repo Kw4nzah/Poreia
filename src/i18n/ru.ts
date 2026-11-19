@@ -507,6 +507,8 @@ export const ru: Messages = {
     testTitle: 'Тестовое уведомление',
     testBody: 'Если вы это читаете, уведомления доходят.',
     whatsNewTitle: 'Что нового',
+    whatsNewIn: (version) => `Что нового в ${version}`,
+    whatsNewComing: (version) => `Что нового в ${version}`,
     whatsNewInstalled: 'Установлена',
     reportButton: 'Сообщить о проблеме',
     reportHint:
