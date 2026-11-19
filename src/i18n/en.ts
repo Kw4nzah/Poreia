@@ -384,6 +384,8 @@ export interface Messages {
     loadFailed: string;
     /** Heading of the liturgy part of the Sources screen. */
     sourcesHeading: string;
+    /** Sources screen: the Church Slavonic font and its licence. */
+    fontNote: string;
     /** General note on the Sources screen: how to ask for a text to be removed; `url` is the issues page. */
     rightsNote: (url: string) => string;
   };
@@ -968,6 +970,8 @@ export const en: Messages = {
     loading: 'Loading…',
     loadFailed: 'The text could not be loaded.',
     sourcesHeading: 'Divine Liturgy',
+    fontNote:
+      'Church Slavonic text is set in Ponomar Unicode, copyright 2025 The Ponomar Project Authors, under the SIL Open Font License 1.1.',
     rightsNote: (url) =>
       `If you hold rights to a text here and want it removed, report it at ${url} and it will be removed.`,
   },

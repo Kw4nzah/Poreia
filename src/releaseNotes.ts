@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.0',
+    notes: {
+      tr: ['İlahi Litürji (Aziz Yuhanna Hrisostomos) artık Kilise Slavcası ve İngilizce metniyle okunabiliyor.'],
+      en: ['The Divine Liturgy of St John Chrysostom can now be read in Church Slavonic and English.'],
+      ru: ['Божественную литургию святителя Иоанна Златоуста теперь можно читать на церковнославянском и английском языках.'],
+    },
+  },
+  {
     version: '0.8.3',
     notes: {
       tr: ['Akşam hatırlatması artık yarın kuralın bugünden nasıl değiştiğini ilk satırda söylüyor.'],

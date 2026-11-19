@@ -481,6 +481,8 @@ export const tr: Messages = {
     loading: 'Yükleniyor…',
     loadFailed: 'Metin yüklenemedi.',
     sourcesHeading: 'Kutsal Litürji',
+    fontNote:
+      'Kilise Slavcası metin Ponomar Unicode yazı tipiyle dizilmiştir; telif hakkı 2025 The Ponomar Project Authors, lisansı SIL Open Font License 1.1.',
     rightsNote: (url) =>
       `Burada yer alan bir metin üzerinde hak sahibiyseniz ve kaldırılmasını istiyorsanız, bunu ${url} adresinden bildirin; metin kaldırılacaktır.`,
   },

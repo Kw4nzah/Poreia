@@ -3,13 +3,13 @@
     "name": "Poreia",
     "slug": "poreia",
     "scheme": "poreia",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "runtimeVersion": "8",
+    "runtimeVersion": "9",
     "updates": {
-      "url": "https://kw4nzah.github.io/Poreia/updates/android/8/manifest.json",
+      "url": "https://kw4nzah.github.io/Poreia/updates/android/9/manifest.json",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0,
       "codeSigningCertificate": "./certs/certificate.pem",
@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "com.kw4nzah.poreia",
-      "versionCode": 11,
+      "versionCode": 12,
       "allowBackup": false,
       "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
       "blockedPermissions": [
@@ -99,6 +99,12 @@
           "imageWidth": 360,
           "backgroundColor": "#7A1F2B",
           "dark": { "image": "./assets/splash-icon.png", "backgroundColor": "#7A1F2B" }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "android": { "fonts": ["./assets/fonts/Ponomar-Regular.ttf"] }
         }
       ]
     ]

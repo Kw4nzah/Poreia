@@ -493,6 +493,8 @@ export const ru: Messages = {
     loading: 'Загрузка…',
     loadFailed: 'Не удалось загрузить текст.',
     sourcesHeading: 'Божественная литургия',
+    fontNote:
+      'Церковнославянский текст набран шрифтом Ponomar Unicode, авторские права 2025 The Ponomar Project Authors, лицензия SIL Open Font License 1.1.',
     rightsNote: (url) =>
       `Если вы обладаете правами на какой-либо из этих текстов и хотите, чтобы он был удалён, сообщите об этом по адресу ${url}, и текст будет удалён.`,
   },
