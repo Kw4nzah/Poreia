@@ -17,6 +17,7 @@ describe('parseSettings', () => {
       notificationHour: 12,
       notificationRepeat: true,
       eveReminder: true,
+      persistentNotification: true,
       prayerTextSize: 2,
       prayerReadingMode: true,
       greekFish: 'greece',
@@ -99,6 +100,19 @@ describe('favorite saints', () => {
   it('keeps at most ten', () => {
     const many = Array.from({ length: 14 }, (_, i) => ({ name: 'S' + i, topic: '' as const }));
     expect(cleanSaints(many)).toHaveLength(10);
+  });
+});
+
+describe('persistent notification', () => {
+  it('is off by default and only on for a real true', () => {
+    expect(parseSettings(null, 'en').persistentNotification).toBe(false);
+    for (const v of ['yes', 1, 'true', [], {}, null]) {
+      const raw = JSON.stringify({ persistentNotification: v });
+      expect(parseSettings(raw, 'en').persistentNotification, String(v)).toBe(false);
+    }
+    expect(
+      parseSettings(JSON.stringify({ persistentNotification: true }), 'en').persistentNotification,
+    ).toBe(true);
   });
 });
 

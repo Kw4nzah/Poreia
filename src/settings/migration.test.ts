@@ -34,6 +34,7 @@ describe('settings saved by older versions', () => {
       prayerTextSize: 2,
       notificationRepeat: false,
       eveReminder: false,
+      persistentNotification: false,
       saints: [],
       greekFish: defaultSettings('ru').greekFish,
     });
@@ -119,6 +120,7 @@ describe('settings saved by older versions', () => {
       notificationHour: '8',
       notificationRepeat: 'true',
       eveReminder: [],
+      persistentNotification: 'on',
       prayerTextSize: 99,
       prayerReadingMode: null,
       greekFish: {},

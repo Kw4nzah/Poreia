@@ -3,6 +3,7 @@
 
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
+import { ONGOING_ID } from './ongoingContent';
 import { CHANNEL_ID, requestPermission } from './schedule';
 import {
   Diagnostics,
@@ -27,7 +28,12 @@ export async function readDiagnostics(now = new Date()): Promise<Diagnostics> {
   const [permissions, channel, scheduled, exact] = await Promise.all([
     safe(() => Notifications.getPermissionsAsync()),
     safe(() => Notifications.getNotificationChannelAsync(CHANNEL_ID)),
-    safe(() => Notifications.getAllScheduledNotificationsAsync()),
+    // The persistent notification's rollover is not a reminder; it must not count or show as "next".
+    safe(async () =>
+      (await Notifications.getAllScheduledNotificationsAsync()).filter(
+        (request) => request.identifier !== ONGOING_ID,
+      ),
+    ),
     safe(() => Notifications.getExactAlarmPermissionsAsync()),
   ]);
   return {

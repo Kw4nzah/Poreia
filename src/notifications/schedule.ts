@@ -2,6 +2,7 @@
 
 import * as Notifications from 'expo-notifications';
 import { type DailyNotification, type ScheduledNotification, notificationTimes } from './content';
+import { ONGOING_ID } from './ongoingContent';
 
 export const CHANNEL_ID = 'daily';
 
@@ -43,6 +44,23 @@ export async function requestPermission(channelName: string): Promise<boolean> {
   return (await Notifications.requestPermissionsAsync()).granted;
 }
 
+/**
+ * Cancels every scheduled notification except the persistent notification's rollover, which has
+ * its own life cycle. Falls back to cancelling everything if the list cannot be read.
+ */
+async function cancelScheduled() {
+  try {
+    const pending = await Notifications.getAllScheduledNotificationsAsync();
+    await Promise.all(
+      pending
+        .filter((request) => request.identifier !== ONGOING_ID)
+        .map((request) => Notifications.cancelScheduledNotificationAsync(request.identifier)),
+    );
+  } catch {
+    await Notifications.cancelAllScheduledNotificationsAsync();
+  }
+}
+
 async function replaceAll(
   plan: DailyNotification[] | null,
   hour: number,
@@ -50,7 +68,7 @@ async function replaceAll(
   repeat: boolean,
   eve: readonly ScheduledNotification[],
 ) {
-  await Notifications.cancelAllScheduledNotificationsAsync();
+  await cancelScheduled();
   if (!plan && eve.length === 0) return;
   if (!(await Notifications.getPermissionsAsync()).granted) return;
   await ensureChannel(channelName);

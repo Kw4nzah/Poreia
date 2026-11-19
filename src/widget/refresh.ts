@@ -14,6 +14,13 @@ type WidgetSettings = Pick<Settings, 'language' | 'churchId' | 'greekFish'>;
  */
 export function refreshWidget(settings: WidgetSettings): void {
   if (Platform.OS !== 'android') return;
+  // The persistent notification shows what the widget shows, so it is redrawn at the same moments
+  // (the mark changed, the app opened, settings or a backup restore changed what is shown).
+  try {
+    void require('../notifications/ongoing').refreshOngoing();
+  } catch {
+    // No notification support in this build.
+  }
   try {
     const { requestWidgetUpdate } = require('react-native-android-widget');
     const { buildFastWidget } = require('./FastWidget');

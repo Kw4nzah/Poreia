@@ -204,6 +204,12 @@ export interface Messages {
     notificationsChannel: string;
     eveReminder: string;
     eveReminderHint: string;
+    ongoingToggle: string;
+    ongoingHint: string;
+    /** Name of the persistent notification's category in the phone's settings. */
+    ongoingChannel: string;
+    /** Button of the persistent notification that clears today's "I'm fasting" mark. */
+    ongoingUndo: string;
     /** Settings hub: category not covered by an existing title. */
     sectionProfile: string;
     sectionAbout: string;
@@ -610,6 +616,11 @@ export const en: Messages = {
     notificationsChannel: 'Daily fast',
     eveReminder: 'The evening before a fast or feast',
     eveReminderHint: 'At 20:00 the evening before a fast begins or a feast falls.',
+    ongoingToggle: 'Persistent notification',
+    ongoingHint:
+      'Stays in the notification shade with today’s fast and foods, for those who don’t use the widget. Hidden on the lock screen.',
+    ongoingChannel: 'Today’s fast (pinned)',
+    ongoingUndo: 'Clear mark',
     sectionProfile: 'Profile and tradition',
     sectionAbout: 'About',
     summaryNotificationsOn: (hour) => `Daily at ${hour}`,

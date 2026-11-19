@@ -18,6 +18,7 @@ const settings = {
   onboarded: true,
   notifications: true,
   eveReminder: true,
+  persistentNotification: true,
   saints: [{ name: 'Nicholas', topic: 'travel' as const }],
 };
 

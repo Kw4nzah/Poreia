@@ -187,6 +187,11 @@ export const ru: Messages = {
     notificationsChannel: 'Пост на день',
     eveReminder: 'Накануне поста или праздника',
     eveReminderHint: 'В 20:00 накануне начала поста или праздника.',
+    ongoingToggle: 'Постоянное уведомление',
+    ongoingHint:
+      'Для тех, кто не пользуется виджетом: пост дня и пища остаются в шторке уведомлений. На экране блокировки не показывается.',
+    ongoingChannel: 'Пост дня (закреплено)',
+    ongoingUndo: 'Снять отметку',
     sectionProfile: 'Профиль и традиция',
     sectionAbout: 'О приложении',
     summaryNotificationsOn: (hour) => `Каждый день в ${hour}`,
