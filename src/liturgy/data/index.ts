@@ -12,5 +12,8 @@
 import type { LiturgyLoaders } from '../types';
 
 export const LOADERS: LiturgyLoaders = {
-  chrysostom: { cu: () => import('./chrysostom.cu') },
+  chrysostom: {
+    cu: () => import('./chrysostom.cu'),
+    en: () => import('./chrysostom.en'),
+  },
 };

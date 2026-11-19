@@ -22,6 +22,13 @@ import { SegmentedControl } from '../ui/kit';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { holdScreenAwake } from './keepAwake';
 
+/**
+ * The two-language view aligns blocks by id. The Slavonic and English texts come from different
+ * books with different ids and order, so every block would read "no text in this language".
+ * Turn this on only when two languages share block ids.
+ */
+const PARALLEL_VIEW_READY = false;
+
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 /** Line length cap so wide screens still read as a narrow column. */
 const COLUMN_WIDTH = 600;
@@ -42,7 +49,8 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
   const [parallel, setParallel] = useState(false);
   const main = chosen ?? defaultLiturgyLanguage(available, settings.language);
   const second = main && parallel ? secondLanguage(available, main) : null;
-  const canParallel = main !== null && secondLanguage(available, main) !== null;
+  const canParallel =
+    PARALLEL_VIEW_READY && main !== null && secondLanguage(available, main) !== null;
 
   const texts = useLiturgyTexts(
     id,
