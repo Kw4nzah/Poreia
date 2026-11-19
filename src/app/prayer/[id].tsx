@@ -3,7 +3,7 @@ import { isPrayerId } from '../../prayers';
 import { PrayerReader } from '../../screens/PrayerReader';
 
 export default function PrayerRoute() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, resume } = useLocalSearchParams<{ id: string; resume?: string }>();
   if (!isPrayerId(id)) return <Redirect href="/prayers" />;
-  return <PrayerReader id={id} />;
+  return <PrayerReader id={id} resume={resume === '1'} />;
 }

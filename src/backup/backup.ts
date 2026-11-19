@@ -59,7 +59,12 @@ export function createBackup(settings: Settings, doneDays: readonly string[]): s
     app: BACKUP_APP,
     version: BACKUP_VERSION,
     // Re-validated on the way out, so a backup never carries more than parseSettings would keep.
-    settings: parseSettings(JSON.stringify(settings), settings.language),
+    // The favourite prayers travel with it; the reading bookmark is tied to this device's place
+    // in the text and stays out.
+    settings: {
+      ...parseSettings(JSON.stringify(settings), settings.language),
+      lastPrayer: null,
+    },
     done: cleanDoneDays(doneDays),
   });
 }
