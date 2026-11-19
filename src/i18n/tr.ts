@@ -177,6 +177,11 @@ export const tr: Messages = {
     notificationsChannel: 'Günlük oruç',
     eveReminder: 'Oruç ya da bayramdan önceki akşam',
     eveReminderHint: 'Bir oruç başlamadan ya da bayram gelmeden önceki akşam saat 20:00’de.',
+    ongoingToggle: 'Kalıcı bildirim',
+    ongoingHint:
+      'Widget kullanmayanlar için: günün orucu ve yiyecekler bildirim panelinde sabit durur. Kilit ekranında görünmez.',
+    ongoingChannel: 'Günün orucu (sabit)',
+    ongoingUndo: 'İşareti kaldır',
     sectionProfile: 'Profil ve gelenek',
     sectionAbout: 'Hakkında',
     summaryNotificationsOn: (hour) => `Her gün ${hour}`,

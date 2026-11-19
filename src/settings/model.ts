@@ -50,6 +50,8 @@ export interface Settings {
   notificationRepeat: boolean;
   /** Evening reminder (20:00) the day before a fast begins or a feast falls. */
   eveReminder: boolean;
+  /** Ongoing notification in the shade with the widget's information, for people without the widget. */
+  persistentNotification: boolean;
   /** Index into PRAYER_TEXT_SIZES. */
   prayerTextSize: PrayerTextSize;
   /** Prayer reader in its calm mode: large centred text, no controls. */
@@ -76,6 +78,7 @@ export function defaultSettings(language: Language): Settings {
     notificationHour: 8,
     notificationRepeat: false,
     eveReminder: false,
+    persistentNotification: false,
     prayerTextSize: DEFAULT_PRAYER_TEXT_SIZE,
     prayerReadingMode: false,
     greekFish: DEFAULT_GREEK_FISH_PRACTICE,
@@ -132,6 +135,7 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
     notifications: s.notifications === true,
     notificationRepeat: s.notificationRepeat === true,
     eveReminder: s.eveReminder === true,
+    persistentNotification: s.persistentNotification === true,
     notificationHour: isNotificationHour(s.notificationHour)
       ? s.notificationHour
       : fallback.notificationHour,

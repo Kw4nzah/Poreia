@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { DailyNotifications } from '../notifications/DailyNotifications';
+import { OngoingNotification } from '../notifications/OngoingNotification';
 import { SettingsProvider } from '../settings/SettingsProvider';
 import { ErrorBoundary } from '../ui/ErrorBoundary';
 import { StatusBarBackground } from '../ui/StatusBarBackground';
@@ -17,6 +18,7 @@ export default function RootLayout() {
       <ErrorBoundary>
         <SettingsProvider>
           <DailyNotifications />
+          <OngoingNotification />
           <WidgetSync />
           <Stack
             screenOptions={{

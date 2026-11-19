@@ -16,6 +16,7 @@ export function NotificationsSection() {
   const styles = useThemedStyles(makeStyles);
   const [notificationsDenied, setNotificationsDenied] = useState(false);
   const [eveDenied, setEveDenied] = useState(false);
+  const [ongoingDenied, setOngoingDenied] = useState(false);
 
   async function toggleNotifications(on: boolean) {
     setNotificationsDenied(false);
@@ -37,6 +38,17 @@ export function NotificationsSection() {
     const granted = await requestPermission(m.settings.notificationsChannel).catch(() => false);
     if (granted) update({ eveReminder: true });
     else setEveDenied(true);
+  }
+
+  async function toggleOngoing(on: boolean) {
+    setOngoingDenied(false);
+    if (!on) {
+      update({ persistentNotification: false });
+      return;
+    }
+    const granted = await requestPermission(m.settings.notificationsChannel).catch(() => false);
+    if (granted) update({ persistentNotification: true });
+    else setOngoingDenied(true);
   }
 
   return (
@@ -93,6 +105,22 @@ export function NotificationsSection() {
           </View>
           <Text style={styles.status}>{m.settings.eveReminderHint}</Text>
           {eveDenied && (
+            <Text style={[styles.status, styles.warning]} accessibilityLiveRegion="polite">
+              {m.settings.notificationsDenied}
+            </Text>
+          )}
+        </View>
+        <View style={styles.group}>
+          <View style={styles.switchRow}>
+            <Text style={[styles.cardText, styles.switchText]}>{m.settings.ongoingToggle}</Text>
+            <AppSwitch
+              value={settings.persistentNotification}
+              onValueChange={toggleOngoing}
+              label={m.settings.ongoingToggle}
+            />
+          </View>
+          <Text style={styles.status}>{m.settings.ongoingHint}</Text>
+          {ongoingDenied && (
             <Text style={[styles.status, styles.warning]} accessibilityLiveRegion="polite">
               {m.settings.notificationsDenied}
             </Text>
