@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.8.2',
+    notes: {
+      tr: ['Ayarlar’da yeni “Cihaz kontrolü”: güncellemeden sonra telefonda denenecekler için kısa bir liste.'],
+      en: ['New “Device check” in Settings: a short list of things to try on your phone after an update.'],
+      ru: ['В настройках появилась «Проверка на телефоне»: короткий список того, что стоит проверить после обновления.'],
+    },
+  },
+  {
     version: '0.8.1',
     notes: {
       tr: ['Azizlerim: aziz mi azize mi olduğunu seçebilirsin; dualar buna göre yazılır.'],

@@ -430,6 +430,20 @@ export interface Messages {
     reportDevice: string;
     reportLanguage: string;
   };
+  /** Settings > Device check: a checklist for things only a real phone can verify. */
+  deviceCheck: {
+    title: string;
+    summaryRow: string;
+    intro: string;
+    summary: (done: number, total: number) => string;
+    reset: string;
+    tickA11y: string;
+    untickA11y: string;
+    items: Record<
+      'widgets' | 'calendarExport' | 'persistentNotification' | 'femaleSaint' | 'updatesNotes' | 'otaReopen',
+      { title: string; steps: readonly string[] }
+    >;
+  };
   /** Home-screen widget. Short strings: they sit in small, fixed-size slots. */
   widget: {
     allowed: string;
@@ -984,6 +998,61 @@ export const en: Messages = {
     reportAndroid: 'Android',
     reportDevice: 'Device',
     reportLanguage: 'Language',
+  },
+
+  deviceCheck: {
+    title: 'Device check',
+    summaryRow: 'Things to try on your phone after an update',
+    intro:
+      'Some things only a real phone can show. After an update, go through these and tick each one that works. The ticks belong to this version and start empty with the next one.',
+    summary: (done, total) => `${done} of ${total} checked`,
+    reset: 'Reset',
+    tickA11y: 'Not checked. Tap to mark as checked.',
+    untickA11y: 'Checked. Tap to clear.',
+    items: {
+      widgets: {
+        title: 'Widgets',
+        steps: [
+          'Press and hold the home screen, open Widgets and add the 4x1 strip and the other Poreia widgets.',
+          'Each one should show today’s fasting rule.',
+        ],
+      },
+      calendarExport: {
+        title: 'Add to my calendar',
+        steps: [
+          'Open Upcoming and tap “Add to my calendar”.',
+          'A calendar app should open with the events.',
+        ],
+      },
+      persistentNotification: {
+        title: 'Persistent notification',
+        steps: [
+          'Turn on “Persistent notification” in Settings > Notifications. It should appear in the notification shade.',
+          'Tap its button: today’s mark should change on the Today screen.',
+        ],
+      },
+      femaleSaint: {
+        title: 'Female saint',
+        steps: [
+          'In Settings > My saints, add a female saint, for example Maria. “Female saint” should be preselected.',
+          'Open a topic: the prayer should be worded for a woman.',
+        ],
+      },
+      updatesNotes: {
+        title: 'Updates screen',
+        steps: [
+          'Open Settings > Updates: the notes of the installed version should show.',
+          'If a newer APK exists, the update button should show.',
+        ],
+      },
+      otaReopen: {
+        title: 'Update on reopening',
+        steps: [
+          'Close the app completely and open it again, twice.',
+          'The version and notes line in Settings > Updates should match the latest release.',
+        ],
+      },
+    },
   },
 
   widget: {

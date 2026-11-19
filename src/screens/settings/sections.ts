@@ -10,6 +10,7 @@ export const SECTION_IDS = [
   'history',
   'backup',
   'updates',
+  'deviceCheck',
   'about',
 ] as const;
 
@@ -36,6 +37,8 @@ export function sectionTitle(m: Messages, id: SectionId): string {
       return m.backup.title;
     case 'updates':
       return m.settings.updatesTitle;
+    case 'deviceCheck':
+      return m.deviceCheck.title;
     case 'about':
       return m.settings.sectionAbout;
   }

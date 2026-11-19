@@ -4,6 +4,7 @@ import { Redirect, useLocalSearchParams } from 'expo-router';
 import { useSettings } from '../settings/SettingsProvider';
 import { BackupSection } from './BackupSection';
 import { AboutSection } from './settings/AboutSection';
+import { DeviceCheckSection } from './settings/DeviceCheckSection';
 import { HistorySection } from './settings/HistorySection';
 import { LanguageSection } from './settings/LanguageSection';
 import { NotificationsSection } from './settings/NotificationsSection';
@@ -29,6 +30,8 @@ function Body({ id }: { id: SectionId }) {
       return <BackupSection />;
     case 'updates':
       return <UpdatesSection />;
+    case 'deviceCheck':
+      return <DeviceCheckSection />;
     case 'about':
       return <AboutSection />;
   }

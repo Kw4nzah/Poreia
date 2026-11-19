@@ -537,6 +537,61 @@ export const tr: Messages = {
     reportLanguage: 'Dil',
   },
 
+  deviceCheck: {
+    title: 'Cihaz kontrolü',
+    summaryRow: 'Güncellemeden sonra telefonda denenecekler',
+    intro:
+      'Bazı şeyleri yalnızca gerçek bir telefon gösterebilir. Güncellemeden sonra bunları sırayla dene, çalışanları işaretle. İşaretler bu sürüme aittir; sonraki sürümde boş başlar.',
+    summary: (done, total) => `${total} maddenin ${done} tanesi kontrol edildi`,
+    reset: 'Sıfırla',
+    tickA11y: 'Kontrol edilmedi. Kontrol edildi diye işaretlemek için dokun.',
+    untickA11y: 'Kontrol edildi. İşareti kaldırmak için dokun.',
+    items: {
+      widgets: {
+        title: 'Widget’lar',
+        steps: [
+          'Ana ekrana uzun bas, Widget’lar’ı aç; 4x1 ince widget’ı ve Poreia’nın diğer widget’larını ekle.',
+          'Her biri bugünün oruç kuralını göstermeli.',
+        ],
+      },
+      calendarExport: {
+        title: 'Takvimime ekle',
+        steps: [
+          'Yaklaşanlar ekranını aç ve “Takvimime ekle”ye dokun.',
+          'Bir takvim uygulaması etkinliklerle birlikte açılmalı.',
+        ],
+      },
+      persistentNotification: {
+        title: 'Kalıcı bildirim',
+        steps: [
+          'Ayarlar > Bildirimler’de “Kalıcı bildirim”i aç. Bildirim panelinde görünmeli.',
+          'Bildirimdeki düğmeye dokun: Bugün ekranında günün işareti değişmeli.',
+        ],
+      },
+      femaleSaint: {
+        title: 'Azize',
+        steps: [
+          'Ayarlar > Azizlerim’de bir azize ekle, örneğin Maria. “Azize” önceden seçili gelmeli.',
+          'Bir konu aç: dua kadın için yazılmış gibi olmalı.',
+        ],
+      },
+      updatesNotes: {
+        title: 'Güncellemeler ekranı',
+        steps: [
+          'Ayarlar > Güncellemeler’i aç: yüklü sürümün notları görünmeli.',
+          'Daha yeni bir APK varsa güncelleme düğmesi görünmeli.',
+        ],
+      },
+      otaReopen: {
+        title: 'Yeniden açınca güncelleme',
+        steps: [
+          'Uygulamayı tamamen kapatıp iki kez yeniden aç.',
+          'Ayarlar > Güncellemeler’deki sürüm ve not satırı son sürümle aynı olmalı.',
+        ],
+      },
+    },
+  },
+
   widget: {
     allowed: 'Serbest',
     avoided: 'Uzak Durulan',
