@@ -2,7 +2,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { CivilDate } from '../calendar';
-import { doneKey, isDone, toggledValue } from './done';
+import { MARKED, doneKey, isDone, toggledValue } from './done';
 
 export async function readDone(date: CivilDate): Promise<boolean> {
   try {
@@ -39,5 +39,36 @@ async function flip(date: CivilDate, key: string): Promise<boolean> {
     return next !== null;
   } catch {
     return readDone(date);
+  }
+}
+
+/**
+ * Marks (`marked` true) or clears (false) many days in one batched write, for the calendar's
+ * "Mark days" mode. It waits for flips already running on those days and holds back later ones, so
+ * it never overlaps a single tap. Returns whether the write went through; a failure changes nothing
+ * that the caller has not already read back.
+ */
+export function setDoneMany(dates: readonly CivilDate[], marked: boolean): Promise<boolean> {
+  const keys = [...new Set(dates.map(doneKey))];
+  if (keys.length === 0) return Promise.resolve(true);
+  const waiting = keys.map((key) => queues.get(key) ?? Promise.resolve());
+  const run = Promise.allSettled(waiting).then(() => writeMany(keys, marked));
+  for (const key of keys) {
+    queues.set(key, run);
+    const clean = () => {
+      if (queues.get(key) === run) queues.delete(key);
+    };
+    run.then(clean, clean);
+  }
+  return run;
+}
+
+async function writeMany(keys: string[], marked: boolean): Promise<boolean> {
+  try {
+    if (marked) await AsyncStorage.multiSet(keys.map((key) => [key, MARKED]));
+    else await AsyncStorage.multiRemove(keys);
+    return true;
+  } catch {
+    return false;
   }
 }

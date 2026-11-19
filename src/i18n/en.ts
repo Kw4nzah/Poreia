@@ -53,6 +53,25 @@ export interface Messages {
     today: string;
     /** Hint on a day of the grid: it opens the day screen. */
     openDay: string;
+    /** Header button that starts / ends the "Mark days" mode. */
+    markDays: string;
+    markDaysDone: string;
+    /** Added to the label of a day marked as fasting (the dot is not the only cue). */
+    markedFasting: string;
+    /** Added to the label of a day picked in the "Mark days" mode. */
+    daySelected: string;
+    /** Hint on a day in the "Mark days" mode. */
+    selectHint: string;
+    /** Line under the month while the "Mark days" mode is on. */
+    markDaysHelp: string;
+    selectedCount: (count: number) => string;
+    markAsFasting: string;
+    clearMarks: string;
+    cancel: string;
+    /** Spoken after the marks of the chosen days were written / removed. */
+    marksSaved: string;
+    marksCleared: string;
+    marksFailed: string;
   };
 
   day: {
@@ -455,6 +474,19 @@ export const en: Messages = {
     back: 'Back',
     today: 'today',
     openDay: 'Open the day',
+    markDays: 'Mark days',
+    markDaysDone: 'Done',
+    markedFasting: 'marked as fasting',
+    daySelected: 'selected',
+    selectHint: 'Double tap to select or deselect',
+    markDaysHelp: 'Choose the fasting days you kept. Days to come cannot be marked.',
+    selectedCount: (count) => `Selected: ${count}`,
+    markAsFasting: 'Mark as fasting',
+    clearMarks: 'Clear marks',
+    cancel: 'Cancel',
+    marksSaved: 'Marked as fasting',
+    marksCleared: 'Marks cleared',
+    marksFailed: 'The marks could not be saved',
   },
 
   day: {

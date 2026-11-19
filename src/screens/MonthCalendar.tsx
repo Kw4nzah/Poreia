@@ -1,9 +1,10 @@
 // Monthly calendar: a Monday-first grid marked by fasting level and feasts.
-// Tapping a day opens its day screen.
+// Tapping a day opens its day screen. A dot marks the days the user marked "I am fasting", and
+// the "Mark days" mode marks or clears many past days at once.
 
 import { useRouter } from 'expo-router';
-import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useMemo, useState } from 'react';
+import { AccessibilityInfo, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   CHURCHES,
@@ -15,12 +16,17 @@ import {
   buildMonthGrid,
   formatIsoDate,
   getDayInfo,
+  jdnToGregorian,
   shiftMonth,
 } from '../calendar';
 import { formatDate } from '../i18n';
+import { bulkActions, isMarkableDay, jdnOf, toggleSelected } from '../log/bulk';
+import { useFastingLog } from '../log/useFastingLog';
 import { useSettings } from '../settings/SettingsProvider';
-import { SERIF, Theme, radius, space, useTheme, useThemedStyles } from '../ui/theme';
+import { Button } from '../ui/kit';
+import { SERIF, Theme, radius, space, type, useTheme, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
+import { refreshWidget } from '../widget/refresh';
 
 /** Width of the level mark under the day number, from light to strict. */
 const MARK_WIDTH: Record<FastLevel, number> = {
@@ -31,6 +37,9 @@ const MARK_WIDTH: Record<FastLevel, number> = {
   noOil: 22,
   xerophagy: 26,
 };
+
+/** Nothing to do when a mark changed outside the Today screen; the calendar reads the marks itself. */
+const noop = () => {};
 
 const sameDay = (a: CivilDate, b: CivilDate) =>
   a.year === b.year && a.month === b.month && a.day === b.day;
@@ -44,10 +53,42 @@ export function MonthCalendar() {
   const styles = useThemedStyles(makeStyles);
 
   const [shown, setShown] = useState({ year: today.year, month: today.month });
+  const { done, markMany } = useFastingLog(today, noop);
+  const [selecting, setSelecting] = useState(false);
+  const [selected, setSelected] = useState<ReadonlySet<number>>(() => new Set());
+  const [saving, setSaving] = useState(false);
+  const [barHeight, setBarHeight] = useState(0);
 
   const church = CHURCHES[settings.churchId];
   const weeks = useMemo(() => buildMonthGrid(shown.year, shown.month), [shown]);
   const infoOf = (date: CivilDate) => getDayInfo(date, church, { greekFish: settings.greekFish });
+
+  function endSelecting() {
+    setSelecting(false);
+    setSelected(new Set());
+  }
+
+  const actions = bulkActions(selected, done);
+  const todayJdn = jdnOf(today);
+
+  async function apply(marked: boolean) {
+    if (saving || selected.size === 0) return;
+    setSaving(true);
+    try {
+      const ok = await markMany([...selected].map(jdnToGregorian), marked);
+      if (ok) {
+        if (selected.has(todayJdn)) refreshWidget(settings);
+        AccessibilityInfo.announceForAccessibility(
+          marked ? m.calendar.marksSaved : m.calendar.marksCleared,
+        );
+        endSelecting();
+      } else {
+        AccessibilityInfo.announceForAccessibility(m.calendar.marksFailed);
+      }
+    } finally {
+      setSaving(false);
+    }
+  }
 
   function go(delta: -1 | 1) {
     const next = shiftMonth(shown.year, shown.month, delta);
@@ -67,11 +108,22 @@ export function MonthCalendar() {
         >
           <Text style={styles.backText}>‹ {m.calendar.back}</Text>
         </Pressable>
+        <Pressable
+          onPress={() => (selecting ? endSelecting() : setSelecting(true))}
+          style={styles.modeButton}
+          accessibilityRole="button"
+          accessibilityLabel={selecting ? m.calendar.markDaysDone : m.calendar.markDays}
+          accessibilityState={{ selected: selecting }}
+        >
+          <Text style={styles.modeText}>
+            {selecting ? m.calendar.markDaysDone : m.calendar.markDays}
+          </Text>
+        </Pressable>
       </View>
 
       <ScrollView
         contentContainerStyle={{
-          paddingBottom: insets.bottom + space.xl,
+          paddingBottom: (selecting ? barHeight : insets.bottom) + space.xl,
           paddingHorizontal: space.lg,
         }}
         showsVerticalScrollIndicator={false}
@@ -98,6 +150,12 @@ export function MonthCalendar() {
           </Pressable>
         </View>
 
+        {selecting && (
+          <Text style={styles.help} maxFontSizeMultiplier={1.4}>
+            {m.calendar.markDaysHelp}
+          </Text>
+        )}
+
         <View style={styles.week}>
           {MONDAY_FIRST.map((weekday) => (
             <Text
@@ -119,12 +177,18 @@ export function MonthCalendar() {
               const day = infoOf(date);
               const isToday = sameDay(date, today);
               const fasting = day.level !== 'none';
+              const jdn = jdnOf(date);
+              const marked = done.has(jdn);
+              const markable = isMarkableDay(date, today, day.level);
+              const picked = selecting && selected.has(jdn);
               const label = [
                 formatDate(m, date),
                 m.weekdays[day.weekday],
                 isToday ? m.calendar.today : null,
                 ...day.feasts.map((feast) => m.feast[feast]),
                 m.level[day.level].title,
+                marked ? m.calendar.markedFasting : null,
+                picked ? m.calendar.daySelected : null,
               ]
                 .filter(Boolean)
                 .join(', ');
@@ -132,15 +196,34 @@ export function MonthCalendar() {
                 <Pressable
                   key={col}
                   onPress={() =>
-                    router.push({ pathname: '/day/[date]', params: { date: formatIsoDate(date) } })
+                    selecting
+                      ? setSelected((current) => toggleSelected(current, jdn))
+                      : router.push({
+                          pathname: '/day/[date]',
+                          params: { date: formatIsoDate(date) },
+                        })
                   }
+                  disabled={selecting && !markable}
                   style={styles.cell}
-                  accessibilityRole="button"
+                  accessibilityRole={selecting ? 'checkbox' : 'button'}
                   accessibilityLabel={label}
-                  accessibilityHint={m.calendar.openDay}
+                  accessibilityHint={selecting ? m.calendar.selectHint : m.calendar.openDay}
+                  accessibilityState={
+                    selecting ? { checked: picked, disabled: !markable } : undefined
+                  }
                 >
-                  <View style={[styles.day, isToday && styles.dayToday]}>
-                    <Text style={styles.dayNumber} maxFontSizeMultiplier={1.3}>
+                  <View
+                    style={[
+                      styles.day,
+                      isToday && styles.dayToday,
+                      picked && styles.daySelected,
+                      selecting && !markable && styles.dayDimmed,
+                    ]}
+                  >
+                    <Text
+                      style={[styles.dayNumber, picked && { color: theme.onAccent }]}
+                      maxFontSizeMultiplier={1.3}
+                    >
                       {date.day}
                     </Text>
                     <View
@@ -148,10 +231,22 @@ export function MonthCalendar() {
                         styles.mark,
                         {
                           width: MARK_WIDTH[day.level],
-                          backgroundColor: fasting ? theme.accent : theme.free,
+                          backgroundColor: picked
+                            ? theme.onAccent
+                            : fasting
+                              ? theme.accent
+                              : theme.free,
                         },
                       ]}
                     />
+                    {marked && (
+                      <View
+                        style={[
+                          styles.fastingDot,
+                          { backgroundColor: picked ? theme.onAccent : theme.accent },
+                        ]}
+                      />
+                    )}
                     {day.feasts.length > 0 && <View style={styles.feastDot} />}
                   </View>
                 </Pressable>
@@ -160,6 +255,41 @@ export function MonthCalendar() {
           </View>
         ))}
       </ScrollView>
+
+      {selecting && (
+        <View
+          style={[styles.bar, { paddingBottom: insets.bottom + space.md }]}
+          onLayout={(event) => setBarHeight(event.nativeEvent.layout.height)}
+        >
+          <View style={styles.barTop}>
+            <Text style={styles.count} accessibilityLiveRegion="polite" maxFontSizeMultiplier={1.4}>
+              {m.calendar.selectedCount(selected.size)}
+            </Text>
+            <Button
+              label={m.calendar.cancel}
+              variant="ghost"
+              size="sm"
+              fullWidth={false}
+              onPress={endSelecting}
+            />
+          </View>
+          <View style={styles.barActions}>
+            <Button
+              label={m.calendar.markAsFasting}
+              style={styles.barButton}
+              disabled={saving || !actions.canMark}
+              onPress={() => void apply(true)}
+            />
+            <Button
+              label={m.calendar.clearMarks}
+              variant="secondary"
+              style={styles.barButton}
+              disabled={saving || !actions.canClear}
+              onPress={() => void apply(false)}
+            />
+          </View>
+        </View>
+      )}
     </View>
   );
 }
@@ -167,9 +297,17 @@ export function MonthCalendar() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    header: { paddingHorizontal: space.lg },
+    header: {
+      paddingHorizontal: space.lg,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
     backText: { fontSize: 16, color: t.accent },
+    modeButton: { minHeight: 44, minWidth: 44, justifyContent: 'center', alignItems: 'flex-end' },
+    modeText: { fontSize: 16, fontWeight: '600', color: t.accent },
+    help: { ...type.caption, color: t.muted, textAlign: 'center', marginBottom: space.md },
 
     monthRow: {
       flexDirection: 'row',
@@ -210,8 +348,18 @@ function makeStyles(t: Theme) {
       gap: 3,
     },
     dayToday: { borderColor: t.accent },
+    daySelected: { backgroundColor: t.accent, borderColor: t.accent },
+    dayDimmed: { opacity: 0.35 },
     dayNumber: { fontSize: 16, lineHeight: 20, color: t.ink, fontVariant: ['tabular-nums'] },
     mark: { height: 4, borderRadius: 2 },
+    fastingDot: {
+      position: 'absolute',
+      top: 5,
+      left: 6,
+      width: 7,
+      height: 7,
+      borderRadius: 4,
+    },
     feastDot: {
       position: 'absolute',
       top: 4,
@@ -221,5 +369,22 @@ function makeStyles(t: Theme) {
       borderRadius: 4,
       backgroundColor: t.feast,
     },
+
+    bar: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      paddingHorizontal: space.lg,
+      paddingTop: space.smd,
+      gap: space.sm,
+      backgroundColor: t.surface,
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderTopColor: t.line,
+    },
+    barTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+    count: { ...type.label, flex: 1, color: t.ink },
+    barActions: { flexDirection: 'row', gap: space.sm },
+    barButton: { flex: 1 },
   });
 }

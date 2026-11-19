@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useFocusEffect } from 'expo-router';
 import { AppState } from 'react-native';
 import { CivilDate, gregorianToJdn } from '../calendar';
-import { toggleDone } from '../widget/doneStore';
+import { setDoneMany, toggleDone } from '../widget/doneStore';
 import { readAllDone } from './logStore';
 
 /**
@@ -50,5 +50,20 @@ export function useFastingLog(today: CivilDate, onToggled: () => void) {
     }
   }, [today, reload, onToggled]);
 
-  return { done, doneToday: done.has(gregorianToJdn(today.year, today.month, today.day)), toggle };
+  /** Marks or clears many days in one batched write, then reads the marks back. */
+  const markMany = useCallback(
+    async (dates: readonly CivilDate[], marked: boolean) => {
+      const ok = await setDoneMany(dates, marked);
+      await reload();
+      return ok;
+    },
+    [reload],
+  );
+
+  return {
+    done,
+    doneToday: done.has(gregorianToJdn(today.year, today.month, today.day)),
+    toggle,
+    markMany,
+  };
 }

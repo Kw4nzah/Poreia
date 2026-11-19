@@ -9,7 +9,7 @@ import type { CivilDate } from '../calendar';
 export const TOGGLE_DONE_ACTION = 'TOGGLE_DONE';
 
 export const DONE_PREFIX = 'poreia.done.';
-const MARKED = '1';
+export const MARKED = '1';
 
 const pad = (n: number, width: number) => String(n).padStart(width, '0');
 
