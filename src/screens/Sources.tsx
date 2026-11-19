@@ -3,11 +3,14 @@
 import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useLiturgySources } from '../liturgy/sources';
 import { useSettings } from '../settings/SettingsProvider';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
 export function Sources() {
-  const { messages: m } = useSettings();
+  const { messages: m, settings } = useSettings();
+  // Each liturgy text carries its own source line; nothing shows until a text exists.
+  const liturgySources = useLiturgySources(settings.language);
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const styles = useThemedStyles(makeStyles);
@@ -43,6 +46,18 @@ export function Sources() {
             <Text style={styles.body}>{section.body}</Text>
           </View>
         ))}
+        {liturgySources.length > 0 && (
+          <View>
+            <Text style={styles.heading} accessibilityRole="header">
+              {m.liturgy.sourcesHeading}
+            </Text>
+            {liturgySources.map((line) => (
+              <Text key={line.language} style={styles.body}>
+                {m.liturgy.language[line.language]}: {line.source}
+              </Text>
+            ))}
+          </View>
+        )}
       </ScrollView>
     </View>
   );

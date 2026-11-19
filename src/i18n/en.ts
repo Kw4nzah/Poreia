@@ -1,6 +1,7 @@
 // English is the reference dictionary: its shape defines `Messages`, so a key missing
 // from another language is a type error.
 
+import type { LiturgyLanguage, LiturgySection, LiturgySpeaker } from '../liturgy/types';
 import type { SaintGender } from '../prayers/saintGender';
 import type { SaintTopicId } from '../prayers/saintTopics';
 import type { ParsedService } from '../commemorations/service';
@@ -364,6 +365,25 @@ export interface Messages {
     heading: string;
     /** The prayer asking a saint for intercession; `name` is what the user typed. */
     invocation: (name: string, gender: SaintGender) => string;
+  };
+  /** The Divine Liturgy reader; its entry shows only once a text is installed. */
+  liturgy: {
+    title: string;
+    /** Row in the prayers list. */
+    entry: string;
+    sectionsLabel: string;
+    section: Record<LiturgySection, string>;
+    speaker: Record<LiturgySpeaker, string>;
+    languageLabel: string;
+    language: Record<LiturgyLanguage, string>;
+    parallel: string;
+    parallelOff: string;
+    /** Shown where a language has no text for a block. */
+    missing: string;
+    loading: string;
+    loadFailed: string;
+    /** Heading of the liturgy part of the Sources screen. */
+    sourcesHeading: string;
   };
   sources: {
     title: string;
@@ -918,6 +938,34 @@ export const en: Messages = {
       gratitude: { label: 'Thanksgiving', prayer: 'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.\n\nO holy {name}, faithful servant of Christ and one who stands before God!\n\nI humbly ask you: give thanks with me to our Lord Jesus Christ, and offer my gratitude before Him. I praise Him for my life, my health, my family, my friends, the provisions I have today, and the blessings I may not even recognize.\n\nI beg you to ask the Lord that I may never forget to thank Him in days of joy or to trust in Him in days of hardship. Ask Him to keep me from ingratitude, envy, and taking His gifts for granted.\n\nIntercede that He may teach me to share what I have received and to help those in need.\n\nO holy {name}, glorify with me the Father, the Son, and the Holy Spirit, now and ever.\n\nAmen.\n\nO holy {name}, offer my thanks to God.' },
     },
     invocation: (name, _gender) => `Pray to God for me, holy ${name}, for with fervor I run to you, swift helper and intercessor for my soul!`,
+  },
+  liturgy: {
+    title: 'Divine Liturgy',
+    entry: 'Divine Liturgy of St John Chrysostom',
+    sectionsLabel: 'Sections',
+    section: {
+      proskomedia: 'Proskomedia',
+      catechumens: 'Liturgy of the Catechumens',
+      faithful: 'Liturgy of the Faithful',
+      dismissal: 'Dismissal',
+    },
+    speaker: {
+      deacon: 'Deacon',
+      priest: 'Priest',
+      choir: 'Choir',
+      reader: 'Reader',
+      people: 'People',
+      rubric: 'Direction',
+      omitted: 'Not read',
+    },
+    languageLabel: 'Language',
+    language: { cu: 'Church Slavonic', en: 'English', tr: 'Turkish' },
+    parallel: 'Two languages',
+    parallelOff: 'One language',
+    missing: 'No text in this language',
+    loading: 'Loading…',
+    loadFailed: 'The text could not be loaded.',
+    sourcesHeading: 'Divine Liturgy',
   },
   sources: {
     title: 'Sources and licences',
