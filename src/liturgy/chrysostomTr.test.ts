@@ -7,7 +7,7 @@ const SECTIONS_PRESENT = LITURGY_SECTIONS.filter((section) => section !== 'prosk
 
 describe('Turkish text of the Chrysostom liturgy', () => {
   it('has unique, sequential ids', () => {
-    expect(blocks).toHaveLength(361);
+    expect(blocks).toHaveLength(373);
     blocks.forEach((b, i) => expect(b.id).toBe(`tr-${String(i + 1).padStart(4, '0')}`));
     expect(new Set(blocks.map((b) => b.id)).size).toBe(blocks.length);
   });
@@ -55,14 +55,14 @@ describe('Turkish text of the Chrysostom liturgy', () => {
   });
 
   it('starts and ends as the booklet does', () => {
-    expect(blocks[0]).toMatchObject({ section: 'catechumens', who: 'deacon', text: 'Kutsa ey aziz Peder.' });
+    expect(blocks[0]).toMatchObject({ section: 'catechumens', who: 'deacon', text: 'Kutsa, ey aziz Peder.' });
     const faithful = blocks.find((b) => b.section === 'faithful');
     expect(faithful?.text.startsWith('Amin. Ey Heruvimleri gizemle temsil eden')).toBe(true);
     const dismissal = blocks.find((b) => b.section === 'dismissal');
-    expect(dismissal?.text).toBe('ŞÜKRAN DUASI');
+    expect(dismissal?.text).toBe('Şükran Duası');
     expect(dismissal?.who).toBe('rubric');
     expect(blocks[blocks.length - 1].who).toBe('rubric');
-    expect(blocks[blocks.length - 1].text.startsWith('Günaydın der ve ayin biter')).toBe(true);
+    expect(blocks[blocks.length - 1].text.startsWith('(Ruhani cemaate')).toBe(true);
   });
 
   it('carries a source line in the three app languages that names the booklet and the website', () => {

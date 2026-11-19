@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.3',
+    notes: {
+      tr: ['Litürji’nin Türkçe metni düzeltilmiş sürümle değiştirildi.'],
+      en: ['The Turkish text of the Liturgy was replaced with a corrected version.'],
+      ru: ['Турецкий текст литургии заменён исправленной версией.'],
+    },
+  },
+  {
     version: '0.9.2',
     notes: {
       tr: ['Litürji’ye Türkçe metin eklendi (OCR ile okunmuştur, hatalar olabilir).'],
