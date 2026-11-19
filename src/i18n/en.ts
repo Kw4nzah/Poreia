@@ -278,6 +278,11 @@ export interface Messages {
     larger: string;
     readingMode: string;
     leaveReadingMode: string;
+    /** Heading of the starred prayers and the label of the star toggle. */
+    favorites: string;
+    favorite: string;
+    /** Small label above the last-opened prayer at the top of the list. */
+    continueReading: string;
     searchPlaceholder: string;
     noResults: string;
     group: Record<PrayerGroupId, string>;
@@ -744,6 +749,9 @@ export const en: Messages = {
     larger: 'Larger text',
     readingMode: 'Reading mode',
     leaveReadingMode: 'Leave reading mode',
+    favorites: 'Favourites',
+    favorite: 'Favourite',
+    continueReading: 'Continue where you left off',
     searchPlaceholder: 'Search prayers',
     noResults: 'No prayer found.',
     group: { basic: 'Basic prayers', daily: 'Prayers of the day', lent: 'Great Lent' },

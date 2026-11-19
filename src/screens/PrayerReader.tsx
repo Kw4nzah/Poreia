@@ -2,11 +2,24 @@
 // (large, centred text and no controls). The screen stays on only while reading mode is on.
 
 import { useRouter } from 'expo-router';
-import { useEffect } from 'react';
-import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useRef } from 'react';
+import {
+  AppState,
+  BackHandler,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  Pressable,
+  ScrollView,
+  ScrollViewInstance,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_TEXT_SIZES, PrayerId, PrayerTextSize } from '../prayers';
+import { cleanPrayerBookmark, toggleFavoritePrayer } from '../prayers/favorites';
 import { useSettings } from '../settings/SettingsProvider';
+import { FavoriteStar } from '../ui/FavoriteStar';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { holdScreenAwake } from './keepAwake';
 
@@ -16,8 +29,12 @@ const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 const READING_SCALE = 1.25;
 /** Line length cap so wide screens still read as a narrow column. */
 const READING_WIDTH = 560;
+/** How long scrolling must pause before the position is remembered. */
+const SAVE_DELAY_MS = 800;
+/** Smaller moves than this are not worth a write. */
+const SAVE_MIN_STEP = 24;
 
-export function PrayerReader({ id }: { id: PrayerId }) {
+export function PrayerReader({ id, resume = false }: { id: PrayerId; resume?: boolean }) {
   const { settings, messages: m, update } = useSettings();
   const insets = useSafeAreaInsets();
   const router = useRouter();
@@ -51,6 +68,56 @@ export function PrayerReader({ id }: { id: PrayerId }) {
     return holdScreenAwake();
   }, [calm]);
 
+  const favorite = settings.favoritePrayers.includes(id);
+
+  // "Continue where you left off": remember this prayer and how far down it the reader is.
+  // The saved offset is read once, when the page opens; later saves must not move the view.
+  const scrollRef = useRef<ScrollViewInstance>(null);
+  const restoreTo = useRef(
+    resume && settings.lastPrayer?.id === id
+      ? (cleanPrayerBookmark(settings.lastPrayer)?.scroll ?? 0)
+      : 0,
+  );
+  const offset = useRef(restoreTo.current);
+  const saved = useRef(restoreTo.current);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const updateRef = useRef(update);
+  updateRef.current = update;
+
+  const save = useRef((force: boolean) => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
+    if (!force && Math.abs(offset.current - saved.current) < SAVE_MIN_STEP) return;
+    saved.current = offset.current;
+    updateRef.current({ lastPrayer: { id, scroll: Math.round(offset.current) } });
+  }).current;
+
+  useEffect(() => {
+    // Opening a prayer afresh starts its bookmark at the top.
+    save(true);
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') save(true);
+    });
+    return () => {
+      subscription.remove();
+      save(true);
+    };
+  }, [save]);
+
+  function onScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    offset.current = Math.max(0, event.nativeEvent.contentOffset.y);
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => save(false), SAVE_DELAY_MS);
+  }
+
+  // The text is laid out after the first render, so the saved offset is applied once it is.
+  function onContentSizeChange() {
+    const target = restoreTo.current;
+    if (target <= 0) return;
+    restoreTo.current = 0;
+    scrollRef.current?.scrollTo({ y: target, animated: false });
+  }
+
   function resize(step: -1 | 1) {
     const next = size + step;
     if (next >= 0 && next <= LARGEST) update({ prayerTextSize: next as PrayerTextSize });
@@ -70,6 +137,13 @@ export function PrayerReader({ id }: { id: PrayerId }) {
             <Text style={styles.backText}>‹ {m.prayers.title}</Text>
           </Pressable>
           <View style={styles.sizes}>
+            <FavoriteStar
+              selected={favorite}
+              label={m.prayers.favorite}
+              onPress={() =>
+                update({ favoritePrayers: toggleFavoritePrayer(settings.favoritePrayers, id) })
+              }
+            />
             <Pressable
               onPress={() => update({ prayerReadingMode: true })}
               style={styles.modeButton}
@@ -103,6 +177,10 @@ export function PrayerReader({ id }: { id: PrayerId }) {
       )}
 
       <ScrollView
+        ref={scrollRef}
+        onScroll={onScroll}
+        scrollEventThrottle={64}
+        onContentSizeChange={onContentSizeChange}
         contentContainerStyle={[
           {
             paddingTop: calm ? insets.top + space.xl : space.sm,

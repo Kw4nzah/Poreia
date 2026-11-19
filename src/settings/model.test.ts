@@ -21,6 +21,8 @@ describe('parseSettings', () => {
       prayerReadingMode: true,
       greekFish: 'greece',
       saints: [{ name: 'Nicholas', topic: 'travel' }],
+      favoritePrayers: ['creed'],
+      lastPrayer: { id: 'morning', scroll: 120 },
     };
     expect(parseSettings(JSON.stringify(stored), 'en')).toEqual(stored);
   });

@@ -9,6 +9,8 @@ import {
 } from '../calendar';
 import { Language, isLanguage } from '../i18n';
 import { DEFAULT_PRAYER_TEXT_SIZE, PrayerTextSize, isPrayerTextSize } from '../prayers';
+import { PrayerId } from '../prayers';
+import { PrayerBookmark, cleanFavoritePrayers, cleanPrayerBookmark } from '../prayers/favorites';
 import { SaintTopicId, isSaintTopic } from '../prayers/saintTopics';
 
 export const NOTIFICATION_HOURS = [7, 8, 9, 12] as const;
@@ -56,6 +58,10 @@ export interface Settings {
   greekFish: GreekFishPractice;
   /** Saints the user asked to be named in the morning and evening prayers. */
   saints: FavoriteSaint[];
+  /** Prayers the user starred, shown at the top of the Prayers list. */
+  favoritePrayers: PrayerId[];
+  /** The prayer last opened and the scroll position in it; null when there is none. */
+  lastPrayer: PrayerBookmark | null;
 }
 
 export const STORAGE_KEY = 'poreia.settings.v1';
@@ -74,6 +80,8 @@ export function defaultSettings(language: Language): Settings {
     prayerReadingMode: false,
     greekFish: DEFAULT_GREEK_FISH_PRACTICE,
     saints: [],
+    favoritePrayers: [],
+    lastPrayer: null,
   };
 }
 
@@ -133,5 +141,7 @@ export function parseSettings(raw: string | null, deviceLanguage: Language): Set
       ? (s.greekFish as GreekFishPractice)
       : fallback.greekFish,
     saints: cleanSaints(s.saints),
+    favoritePrayers: cleanFavoritePrayers(s.favoritePrayers),
+    lastPrayer: cleanPrayerBookmark(s.lastPrayer),
   };
 }

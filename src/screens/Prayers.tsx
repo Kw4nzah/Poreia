@@ -2,20 +2,22 @@
 
 import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { PRAYER_GROUPS, PRAYER_IDS } from '../prayers';
+import { PRAYER_GROUPS, PRAYER_IDS, PrayerId } from '../prayers';
+import { toggleFavoritePrayer } from '../prayers/favorites';
 import { searchPrayers } from '../prayers/search';
 import { AppTextInput } from '../ui/AppTextInput';
 import { useSettings } from '../settings/SettingsProvider';
-import { Card, ListRow, SectionHeader } from '../ui/kit';
+import { FavoriteStar } from '../ui/FavoriteStar';
+import { Card, Divider, ListRow, SectionHeader } from '../ui/kit';
 import { FadeIn } from '../ui/motion';
 import { useScrollTop } from '../ui/scrollTop';
 import { useTabBarSpace } from '../ui/tabBar';
 import { SERIF, Theme, radius, space, useTheme, type, useThemedStyles } from '../ui/theme';
 
 export function Prayers() {
-  const { messages: m } = useSettings();
+  const { settings, messages: m, update } = useSettings();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
@@ -27,6 +29,36 @@ export function Prayers() {
     () => new Set(searchPrayers(query, PRAYER_IDS, m.prayers.text)),
     [query, m],
   );
+
+  const favorites = settings.favoritePrayers;
+  const favoriteList = favorites.filter((id) => matches.has(id));
+  // Hidden while searching; the parser already dropped a bookmark whose prayer no longer exists.
+  const resume = query.trim() === '' ? settings.lastPrayer : null;
+
+  function open(id: PrayerId, resumeReading = false) {
+    router.push({
+      pathname: '/prayer/[id]',
+      params: resumeReading ? { id, resume: '1' } : { id },
+    });
+  }
+
+  function renderRow(id: PrayerId, index: number) {
+    return (
+      <View key={id}>
+        {index > 0 && <Divider />}
+        <View style={styles.rowWithStar}>
+          <View style={styles.rowMain}>
+            <ListRow serif hideArrow title={m.prayers.text[id].title} onPress={() => open(id)} />
+          </View>
+          <FavoriteStar
+            selected={favorites.includes(id)}
+            label={`${m.prayers.favorite}: ${m.prayers.text[id].title}`}
+            onPress={() => update({ favoritePrayers: toggleFavoritePrayer(favorites, id) })}
+          />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <ScrollView
@@ -59,23 +91,34 @@ export function Prayers() {
         </Text>
       )}
 
+      {resume && (
+        <FadeIn index={0}>
+          <SectionHeader title={m.prayers.continueReading} />
+          <Card padding="none">
+            <ListRow
+              serif
+              title={m.prayers.text[resume.id].title}
+              accessibilityLabel={`${m.prayers.continueReading}: ${m.prayers.text[resume.id].title}`}
+              onPress={() => open(resume.id, true)}
+            />
+          </Card>
+        </FadeIn>
+      )}
+
+      {favoriteList.length > 0 && (
+        <FadeIn index={1}>
+          <SectionHeader title={m.prayers.favorites} />
+          <Card padding="none">{favoriteList.map((id, index) => renderRow(id, index))}</Card>
+        </FadeIn>
+      )}
+
       {PRAYER_GROUPS.map((group, groupIndex) => {
         const visible = group.prayers.filter((id) => matches.has(id));
         if (visible.length === 0) return null;
         return (
-          <FadeIn key={group.id} index={groupIndex}>
+          <FadeIn key={group.id} index={groupIndex + 2}>
             <SectionHeader title={m.prayers.group[group.id]} />
-            <Card padding="none">
-              {visible.map((id, index) => (
-                <ListRow
-                  key={id}
-                  serif
-                  divider={index > 0}
-                  title={m.prayers.text[id].title}
-                  onPress={() => router.push({ pathname: '/prayer/[id]', params: { id } })}
-                />
-              ))}
-            </Card>
+            <Card padding="none">{visible.map((id, index) => renderRow(id, index))}</Card>
           </FadeIn>
         );
       })}
@@ -98,6 +141,8 @@ function makeStyles(t: Theme) {
       color: t.ink,
       ...type.body,
     },
+    rowWithStar: { flexDirection: 'row', alignItems: 'center', paddingRight: space.xs },
+    rowMain: { flex: 1 },
     empty: { ...type.body, color: t.muted, marginTop: space.lg },
   });
 }
