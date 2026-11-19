@@ -7,7 +7,8 @@ import { civilFromLocalDate } from '../calendar';
 import { deviceLanguage } from '../settings/deviceLanguage';
 import { STORAGE_KEY, Settings, defaultSettings, parseSettings } from '../settings/model';
 import { buildFastWidget } from './FastWidget';
-import { FAST_WIDGET_NAME } from './content';
+import { buildStripWidget } from './StripWidget';
+import { FAST_WIDGET_NAME, STRIP_WIDGET_NAME } from './content';
 import { TOGGLE_DONE_ACTION } from './done';
 import { readDone, toggleDone } from './doneStore';
 
@@ -25,7 +26,9 @@ export const widgetTaskHandler: WidgetTaskHandler = async ({
   clickAction,
   renderWidget,
 }) => {
-  if (widgetInfo.widgetName !== FAST_WIDGET_NAME || widgetAction === 'WIDGET_DELETED') return;
+  const isStrip = widgetInfo.widgetName === STRIP_WIDGET_NAME;
+  if ((widgetInfo.widgetName !== FAST_WIDGET_NAME && !isStrip) || widgetAction === 'WIDGET_DELETED')
+    return;
   // Nothing may escape: a rejected background task would only leave the widget blank, and the
   // next periodic update draws it again.
   try {
@@ -38,8 +41,11 @@ export const widgetTaskHandler: WidgetTaskHandler = async ({
         ? await toggleDone(today)
         : await readDone(today);
     const settings = await loadStoredSettings();
+    const size = { width: widgetInfo.width, height: widgetInfo.height };
     renderWidget(
-      buildFastWidget(settings, { width: widgetInfo.width, height: widgetInfo.height }, now, done),
+      isStrip
+        ? buildStripWidget(settings, size, now, done)
+        : buildFastWidget(settings, size, now, done),
     );
   } catch {
     // Keep the last drawing.

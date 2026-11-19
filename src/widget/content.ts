@@ -15,6 +15,8 @@ import { Language, MESSAGES, Messages, formatDayMonth } from '../i18n';
 
 /** Name of the widget in app.json and in the widget task handler. */
 export const FAST_WIDGET_NAME = 'PoreiaFast';
+/** Name of the 4x1 strip widget in app.json and in the widget task handler. */
+export const STRIP_WIDGET_NAME = 'PoreiaStrip';
 
 export interface WidgetProgress {
   /** "Day 3 of 40" in the app language (accessibility label). */

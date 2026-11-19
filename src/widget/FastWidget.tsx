@@ -25,8 +25,8 @@ import { Theme, themes } from '../ui/theme';
 import { WidgetContent, widgetContentFor } from './content';
 import { TOGGLE_DONE_ACTION } from './done';
 
-type Hex = `#${string}`;
-const hex = (color: string) => color as Hex;
+export type Hex = `#${string}`;
+export const hex = (color: string) => color as Hex;
 /** A colour with an alpha channel appended (alpha as two hex digits). */
 const tint = (color: string, alpha: string) => hex(color.slice(0, 7) + alpha);
 
@@ -47,7 +47,7 @@ const NARROW_BELOW_WIDTH_DP = 130;
  */
 export const WIDGET_SERIF = 'NotoSerif-Bold';
 
-const RADIUS = 24;
+export const RADIUS = 24;
 const BAR = 6;
 
 export interface WidgetLayout {
@@ -103,7 +103,7 @@ function icon(svg: string, size: number, marginLeft = 0) {
 
 // --- small pieces ------------------------------------------------------------------------
 
-interface TextStyle {
+export interface TextStyle {
   size: number;
   color: string;
   bold?: boolean;
@@ -117,7 +117,7 @@ interface TextStyle {
 }
 
 /** Text that shortens with an ellipsis instead of growing. */
-function text(value: string, style: TextStyle, maxLines = 1) {
+export function text(value: string, style: TextStyle, maxLines = 1) {
   return (
     <TextWidget
       text={value}
@@ -139,7 +139,7 @@ function text(value: string, style: TextStyle, maxLines = 1) {
 }
 
 /** Small rounded label (day badge, status badge). */
-function chip(value: string, color: string, background: string, size = 12) {
+export function chip(value: string, color: string, background: string, size = 12) {
   return (
     <TextWidget
       text={value}
@@ -160,7 +160,7 @@ function chip(value: string, color: string, background: string, size = 12) {
 }
 
 /** Round badge with the cross. */
-function crossBadge(size: number, theme: Theme) {
+export function crossBadge(size: number, theme: Theme) {
   const height = Math.round(size * 0.46);
   return (
     <FlexWidget
@@ -204,7 +204,7 @@ function progressBar(day: number, total: number, theme: Theme) {
 }
 
 /** Round "I am fasting today" button for the compact layout: outline until done, then filled. */
-function checkButton(content: WidgetContent, theme: Theme, done: boolean, size: number) {
+export function checkButton(content: WidgetContent, theme: Theme, done: boolean, size: number) {
   const mark = Math.round(size * 0.5);
   return (
     <FlexWidget

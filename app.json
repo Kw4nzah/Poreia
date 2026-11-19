@@ -3,13 +3,13 @@
     "name": "Poreia",
     "slug": "poreia",
     "scheme": "poreia",
-    "version": "0.7.0",
+    "version": "0.8.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "runtimeVersion": "7",
+    "runtimeVersion": "8",
     "updates": {
-      "url": "https://kw4nzah.github.io/Poreia/updates/android/7/manifest.json",
+      "url": "https://kw4nzah.github.io/Poreia/updates/android/8/manifest.json",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0,
       "codeSigningCertificate": "./certs/certificate.pem",
@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "com.kw4nzah.poreia",
-      "versionCode": 10,
+      "versionCode": 11,
       "allowBackup": false,
       "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
       "blockedPermissions": [
@@ -76,6 +76,17 @@
               "targetCellWidth": 4,
               "targetCellHeight": 2,
               "resizeMode": "horizontal|vertical",
+              "updatePeriodMillis": 1800000
+            },
+            {
+              "name": "PoreiaStrip",
+              "label": "Poreia (strip)",
+              "description": "Today's fasting rule in one row.",
+              "minWidth": "250dp",
+              "minHeight": "40dp",
+              "targetCellWidth": 4,
+              "targetCellHeight": 1,
+              "resizeMode": "horizontal",
               "updatePeriodMillis": 1800000
             }
           ]

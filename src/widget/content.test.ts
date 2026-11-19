@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import app from '../../app.json';
 import { CHURCHES } from '../calendar';
 import { LANGUAGES, MESSAGES } from '../i18n';
-import { FAST_WIDGET_NAME, pickReading, widgetContentFor } from './content';
+import { FAST_WIDGET_NAME, STRIP_WIDGET_NAME, pickReading, widgetContentFor } from './content';
 
 const greek = CHURCHES.greek;
 
@@ -129,6 +129,17 @@ describe('widget registration', () => {
     expect(plugin).toBeDefined();
     const widget = plugin?.[1].widgets.find((w) => w.name === FAST_WIDGET_NAME);
     expect(widget).toBeDefined();
+    expect(widget?.updatePeriodMillis).toBeGreaterThanOrEqual(30 * 60 * 1000);
+  });
+
+  it('app.json declares the 4x1 strip widget under the name the task handler uses', () => {
+    const plugin = app.expo.plugins.find(
+      (entry) => Array.isArray(entry) && entry[0] === 'react-native-android-widget',
+    ) as
+      | [string, { widgets: { name: string; targetCellHeight: number; updatePeriodMillis: number }[] }]
+      | undefined;
+    const widget = plugin?.[1].widgets.find((w) => w.name === STRIP_WIDGET_NAME);
+    expect(widget?.targetCellHeight).toBe(1);
     expect(widget?.updatePeriodMillis).toBeGreaterThanOrEqual(30 * 60 * 1000);
   });
 });

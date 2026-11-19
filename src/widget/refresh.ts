@@ -3,7 +3,7 @@
 import { Platform } from 'react-native';
 import { civilFromLocalDate } from '../calendar';
 import type { Settings } from '../settings/model';
-import { FAST_WIDGET_NAME } from './content';
+import { FAST_WIDGET_NAME, STRIP_WIDGET_NAME } from './content';
 import { readDone } from './doneStore';
 
 type WidgetSettings = Pick<Settings, 'language' | 'churchId' | 'greekFish'>;
@@ -24,16 +24,20 @@ export function refreshWidget(settings: WidgetSettings): void {
   try {
     const { requestWidgetUpdate } = require('react-native-android-widget');
     const { buildFastWidget } = require('./FastWidget');
-    Promise.resolve(
-      requestWidgetUpdate({
-        widgetName: FAST_WIDGET_NAME,
-        renderWidget: async (info: { width: number; height: number }) => {
-          const now = new Date();
-          const done = await readDone(civilFromLocalDate(now));
-          return buildFastWidget(settings, { width: info.width, height: info.height }, now, done);
-        },
-      }),
-    ).catch(() => {});
+    const { buildStripWidget } = require('./StripWidget');
+    const redraw = (widgetName: string, build: typeof buildFastWidget) =>
+      Promise.resolve(
+        requestWidgetUpdate({
+          widgetName,
+          renderWidget: async (info: { width: number; height: number }) => {
+            const now = new Date();
+            const done = await readDone(civilFromLocalDate(now));
+            return build(settings, { width: info.width, height: info.height }, now, done);
+          },
+        }),
+      ).catch(() => {});
+    void redraw(FAST_WIDGET_NAME, buildFastWidget);
+    void redraw(STRIP_WIDGET_NAME, buildStripWidget);
   } catch {
     // No native widget support in this build.
   }

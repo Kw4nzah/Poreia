@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.8.0',
+    notes: {
+      tr: ['Yeni ince widget (4x1): bugünün oruç kuralı tek satırda.'],
+      en: ['New slim widget (4x1): today’s fasting rule in one row.'],
+      ru: ['Новый узкий виджет (4×1): сегодняшнее правило поста в одной строке.'],
+    },
+  },
+  {
     version: '0.7.0',
     notes: {
       tr: [
