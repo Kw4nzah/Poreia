@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { getAvailableLiturgies } from '../liturgy/registry';
 import { PRAYER_GROUPS, PRAYER_IDS, PrayerId } from '../prayers';
 import { toggleFavoritePrayer } from '../prayers/favorites';
 import { searchPrayers } from '../prayers/search';
@@ -29,6 +30,9 @@ export function Prayers() {
     () => new Set(searchPrayers(query, PRAYER_IDS, m.prayers.text)),
     [query, m],
   );
+
+  // Empty until a liturgy text is installed, which keeps the entry hidden.
+  const liturgies = useMemo(() => getAvailableLiturgies(), []);
 
   const favorites = settings.favoritePrayers;
   const favoriteList = favorites.filter((id) => matches.has(id));
@@ -109,6 +113,23 @@ export function Prayers() {
         <FadeIn index={1}>
           <SectionHeader title={m.prayers.favorites} />
           <Card padding="none">{favoriteList.map((id, index) => renderRow(id, index))}</Card>
+        </FadeIn>
+      )}
+
+      {liturgies.length > 0 && query.trim() === '' && (
+        <FadeIn index={2}>
+          <SectionHeader title={m.liturgy.title} />
+          <Card padding="none">
+            {liturgies.map((id, index) => (
+              <ListRow
+                key={id}
+                serif
+                divider={index > 0}
+                title={m.liturgy.entry}
+                onPress={() => router.push({ pathname: '/liturgy/[id]', params: { id } })}
+              />
+            ))}
+          </Card>
         </FadeIn>
       )}
 
