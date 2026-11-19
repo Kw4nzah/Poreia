@@ -481,6 +481,8 @@ export const tr: Messages = {
     loading: 'Yükleniyor…',
     loadFailed: 'Metin yüklenemedi.',
     sourcesHeading: 'Kutsal Litürji',
+    rightsNote: (url) =>
+      `Burada yer alan bir metin üzerinde hak sahibiyseniz ve kaldırılmasını istiyorsanız, bunu ${url} adresinden bildirin; metin kaldırılacaktır.`,
   },
   sources: {
     title: 'Kaynaklar ve lisanslar',

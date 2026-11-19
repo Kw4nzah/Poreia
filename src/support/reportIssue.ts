@@ -6,7 +6,8 @@
 import { PROJECT_URL } from '../security/constants';
 import { isAllowedExternalUrl } from '../security/externalLinks';
 
-export const NEW_ISSUE_URL = `${PROJECT_URL}/issues/new`;
+export const ISSUES_URL = `${PROJECT_URL}/issues`;
+export const NEW_ISSUE_URL = `${ISSUES_URL}/new`;
 
 export interface ReportInfo {
   appVersion?: string | null;

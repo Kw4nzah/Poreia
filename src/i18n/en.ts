@@ -384,6 +384,8 @@ export interface Messages {
     loadFailed: string;
     /** Heading of the liturgy part of the Sources screen. */
     sourcesHeading: string;
+    /** General note on the Sources screen: how to ask for a text to be removed; `url` is the issues page. */
+    rightsNote: (url: string) => string;
   };
   sources: {
     title: string;
@@ -966,6 +968,8 @@ export const en: Messages = {
     loading: 'Loading…',
     loadFailed: 'The text could not be loaded.',
     sourcesHeading: 'Divine Liturgy',
+    rightsNote: (url) =>
+      `If you hold rights to a text here and want it removed, report it at ${url} and it will be removed.`,
   },
   sources: {
     title: 'Sources and licences',

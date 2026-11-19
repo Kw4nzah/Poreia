@@ -4,13 +4,16 @@ import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLiturgySources } from '../liturgy/sources';
+import { openExternalUrl } from '../security/openExternal';
 import { useSettings } from '../settings/SettingsProvider';
+import { ISSUES_URL } from '../support/reportIssue';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
 export function Sources() {
   const { messages: m, settings } = useSettings();
   // Each liturgy text carries its own source line; nothing shows until a text exists.
   const liturgySources = useLiturgySources(settings.language);
+  const [rightsBefore, rightsAfter = ''] = m.liturgy.rightsNote(ISSUES_URL).split(ISSUES_URL);
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const styles = useThemedStyles(makeStyles);
@@ -56,6 +59,17 @@ export function Sources() {
                 {m.liturgy.language[line.language]}: {line.source}
               </Text>
             ))}
+            <Text style={styles.body}>
+              {rightsBefore}
+              <Text
+                style={styles.link}
+                accessibilityRole="link"
+                onPress={() => void openExternalUrl(ISSUES_URL)}
+              >
+                {ISSUES_URL}
+              </Text>
+              {rightsAfter}
+            </Text>
           </View>
         )}
       </ScrollView>
@@ -72,5 +86,6 @@ function makeStyles(t: Theme) {
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
     heading: { ...type.label, color: t.muted, marginTop: space.lg },
     body: { ...type.body, color: t.ink, marginTop: space.xs },
+    link: { color: t.accent, textDecorationLine: 'underline' },
   });
 }
