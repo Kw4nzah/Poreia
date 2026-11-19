@@ -100,6 +100,16 @@ export function Today() {
       <FadeIn index={0}>
         <Card tone={info.feasts.length > 0 ? 'feast' : 'surface'} style={styles.gap}>
           <Text style={[styles.headline, { color: tone }]}>{summary.headline}</Text>
+          {info.feasts.map((feast) => (
+            <Button
+              key={feast}
+              label={m.prayers.readFeastPrayers}
+              accessibilityLabel={`${m.prayers.readFeastPrayers}: ${m.feast[feast]}`}
+              variant="secondary"
+              onPress={() => router.push({ pathname: '/prayer/[id]', params: { id: feast } })}
+              style={styles.feastPrayers}
+            />
+          ))}
         </Card>
       </FadeIn>
 
@@ -351,6 +361,7 @@ function makeStyles(t: Theme) {
 
     gap: { marginTop: space.lg },
     headline: { fontFamily: SERIF, ...type.title3 },
+    feastPrayers: { marginTop: space.md },
     foods: {
       marginTop: space.md,
       paddingTop: space.md,

@@ -19,7 +19,11 @@ describe('dictionaries', () => {
 
   it.each(LANGUAGES)('%s has every key with non-empty text', (language) => {
     const own = leaves(MESSAGES[language], 'en', new Map());
-    expect([...own.keys()].sort()).toEqual([...reference.keys()].sort());
+    // A prayer's `note` exists only where its text needs one (the unreviewed Turkish feast hymns).
+    const comparable = (key: string) => !/^en\.prayers\.text\.\w+\.note$/.test(key);
+    expect([...own.keys()].filter(comparable).sort()).toEqual(
+      [...reference.keys()].filter(comparable).sort(),
+    );
     for (const [path, text] of own) {
       // Saint-request prayers are written by the app's author; empty until supplied.
       if (/^en\.saints\.topics\.[a-z]+\.prayer$/.test(path)) continue;

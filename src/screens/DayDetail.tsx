@@ -177,6 +177,13 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
           <Card key={feast} tone="feast" padding="md" style={styles.gap}>
             <Text style={styles.feastLabel}>{m.today.feast}</Text>
             <Text style={styles.feastName}>{m.feast[feast]}</Text>
+            <Button
+              label={m.prayers.readFeastPrayers}
+              accessibilityLabel={`${m.prayers.readFeastPrayers}: ${m.feast[feast]}`}
+              variant="secondary"
+              onPress={() => router.push({ pathname: '/prayer/[id]', params: { id: feast } })}
+              style={styles.feastPrayers}
+            />
           </Card>
         ))}
 
@@ -318,6 +325,7 @@ function makeStyles(t: Theme) {
     gap: { marginTop: space.lg },
     feastLabel: { ...type.caption, color: t.feastInk },
     feastName: { fontFamily: SERIF, ...type.title3, color: t.ink, marginTop: space.xs },
+    feastPrayers: { marginTop: space.md },
 
     card: { marginTop: space.md },
     headingBadge: { marginBottom: space.sm },

@@ -7,9 +7,9 @@
 // churches, while the longer ones (troparia, Macarius, Antiochus) are faithful translations of the
 // Slavonic/Greek made for that file, not a printed prayer book.
 
-import type { PrayerId, PrayerText } from '../../prayers';
+import type { PrayerText, RegularPrayerId } from '../../prayers';
 
-export const prayerTexts: Record<PrayerId, PrayerText> = {
+export const prayerTexts: Record<RegularPrayerId, PrayerText> = {
   lordsPrayer: {
     title: 'The Lord’s Prayer',
     sections: [

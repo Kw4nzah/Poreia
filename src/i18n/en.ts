@@ -18,6 +18,7 @@ import type { ReadingGroupId } from '../commemorations';
 import type { FoodItemId } from '../foods/lookup';
 import type { PrayerGroupId, PrayerId, PrayerText } from '../prayers';
 import { prayerTexts } from './prayers/en';
+import { feastPrayerTexts } from './prayers/feastsEn';
 
 export interface Messages {
   /** Name of the language in the language itself. */
@@ -304,6 +305,8 @@ export interface Messages {
     continueReading: string;
     searchPlaceholder: string;
     noResults: string;
+    /** Button on a feast's card in Today and the calendar day. */
+    readFeastPrayers: string;
     group: Record<PrayerGroupId, string>;
     text: Record<PrayerId, PrayerText>;
   };
@@ -788,8 +791,14 @@ export const en: Messages = {
     continueReading: 'Continue where you left off',
     searchPlaceholder: 'Search prayers',
     noResults: 'No prayer found.',
-    group: { basic: 'Basic prayers', daily: 'Prayers of the day', lent: 'Great Lent' },
-    text: prayerTexts,
+    readFeastPrayers: 'Read the feast prayers',
+    group: {
+      basic: 'Basic prayers',
+      daily: 'Prayers of the day',
+      lent: 'Great Lent',
+      feasts: 'Feasts',
+    },
+    text: { ...prayerTexts, ...feastPrayerTexts },
   },
 
   readings: {
@@ -872,6 +881,7 @@ export const en: Messages = {
       { heading: 'Prayers, English', body: 'Lord’s Prayer, Creed, O Heavenly King, Trisagion and the Prayer of St. Ephraim: Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982), as published by Project Gutenberg (#34981). The morning, evening and meal prayers are faithful translations prepared for this app from the Slavonic and Greek texts. The Prayer of Manasseh is the King James Version (Apocrypha, public domain).' },
       { heading: 'Prayers, Russian', body: 'Church Slavonic texts in the public domain, checked against azbyka.ru (Молитвослов).' },
       { heading: 'Prayers, Turkish', body: 'Translated for this app. There is no published Turkish prayer book to check them against, so they may differ from the text your church uses.' },
+      { heading: 'Feast hymns', body: 'The troparion and kontakion of each feast. English: Orthodox Church in America, oca.org/saints/troparia (OCA translation, Slavic usage). The OCA reserves its rights and states that these troparia and kontakia are for liturgical use only; permission to include them in this app has not been obtained. Russian: Church Slavonic from azbyka.ru (calendar pages, Julian dates), which states no terms of use. Turkish: translated from the English for this app and not yet reviewed by a Turkish-speaking Orthodox; it may differ from the text your church uses.' },
       { heading: 'Fasting rules', body: 'Based on published rules of the Greek and Russian traditions. Practice differs between churches and jurisdictions; ask your spiritual father.' },
       { heading: 'About this app', body: 'Poreia is a personal aid, not an official publication of any church. The icon was drawn for this app.' },
     ],

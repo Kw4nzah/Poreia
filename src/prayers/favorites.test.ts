@@ -129,3 +129,39 @@ describe('in a backup', () => {
     expect(parsed.settings.lastPrayer).toBeNull();
   });
 });
+
+describe('feast prayers', () => {
+  it('can be favourites, in the list and in the settings', () => {
+    expect(cleanFavoritePrayers(['dormition', 'creed', 'pascha', 'dormition'])).toEqual([
+      'dormition',
+      'creed',
+      'pascha',
+    ]);
+    expect(toggleFavoritePrayer(['creed'], 'theophany')).toEqual(['creed', 'theophany']);
+    const s = parseSettings(
+      JSON.stringify({ favoritePrayers: ['pascha', 'feasts', 'creed'] }),
+      'en',
+    );
+    expect(s.favoritePrayers).toEqual(['pascha', 'creed']);
+  });
+  it('can be the bookmark; a group name is not a prayer', () => {
+    expect(cleanPrayerBookmark({ id: 'annunciation', scroll: 80 })).toEqual({
+      id: 'annunciation',
+      scroll: 80,
+    });
+    expect(cleanPrayerBookmark({ id: 'feasts', scroll: 80 })).toBeNull();
+    const s = parseSettings(JSON.stringify({ lastPrayer: { id: 'pentecost', scroll: 12 } }), 'en');
+    expect(s.lastPrayer).toEqual({ id: 'pentecost', scroll: 12 });
+  });
+  it('survive a backup round trip', () => {
+    const settings = { ...defaultSettings('en'), favoritePrayers: ['pascha' as const] };
+    const parsed = parseBackup(createBackup(settings, []), 'en');
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    expect(parsed.settings.favoritePrayers).toEqual(['pascha']);
+  });
+  it('raise the favourites cap to cover every prayer', () => {
+    expect(MAX_FAVORITE_PRAYERS).toBe(PRAYER_IDS.length);
+    expect(cleanFavoritePrayers(PRAYER_IDS)).toEqual([...PRAYER_IDS]);
+  });
+});

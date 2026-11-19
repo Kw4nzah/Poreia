@@ -1,5 +1,6 @@
 import type { Messages } from './en';
 import { prayerTexts } from './prayers/tr';
+import { feastPrayerTexts } from './prayers/feastsTr';
 
 export const tr: Messages = {
   languageName: 'Türkçe',
@@ -354,8 +355,14 @@ export const tr: Messages = {
     continueReading: 'Kaldığın yerden devam et',
     searchPlaceholder: 'Dua ara',
     noResults: 'Dua bulunamadı.',
-    group: { basic: 'Temel dualar', daily: 'Günün duaları', lent: 'Büyük Perhiz' },
-    text: prayerTexts,
+    readFeastPrayers: 'Bayram dualarını oku',
+    group: {
+      basic: 'Temel dualar',
+      daily: 'Günün duaları',
+      lent: 'Büyük Perhiz',
+      feasts: 'Bayramlar',
+    },
+    text: { ...prayerTexts, ...feastPrayerTexts },
   },
 
   // Unreviewed by the user: church terms and book names.
@@ -443,6 +450,7 @@ export const tr: Messages = {
       { heading: 'Dualar, İngilizce', body: 'Göklerdeki Babamız, İman İkrarı, Göksel Kral, Trisagion ve Aziz Efrem’in Duası: Orthodox Daily Prayers (St Tikhon’s Seminary Press, 1982), Project Gutenberg (#34981) yayınından. Sabah, akşam ve yemek dualarının İngilizcesi bu uygulama için Slavca ve Yunanca metinlerden hazırlanmış sadık çevirilerdir. Manaşşe’nin Duası King James Version’dandır (Apocrypha, kamu malı).' },
       { heading: 'Dualar, Rusça', body: 'Kamu malı Kilise Slavcası metinleri, azbyka.ru (Молитвослов) ile karşılaştırılmıştır.' },
       { heading: 'Dualar, Türkçe', body: 'Bu uygulama için çevrilmiştir. Karşılaştırılacak yayımlanmış bir Türkçe dua kitabı yoktur; bu yüzden kilisenizde kullanılan metinden farklı olabilir.' },
+      { heading: 'Bayram ilahileri', body: 'Her bayramın tropar ve kontakionu. İngilizce: Amerika Ortodoks Kilisesi, oca.org/saints/troparia (OCA çevirisi, Slav geleneği). OCA haklarını saklı tutar ve bu troparia ile kontakia’nın yalnızca ayin kullanımı için olduğunu belirtir; bunları bu uygulamaya almak için izin alınmamıştır. Rusça: azbyka.ru’dan Kilise Slavcası metni (takvim sayfaları, Jülyen tarihleri); orada kullanım koşulu belirtilmemiştir. Türkçe: bu uygulama için İngilizceden çevrilmiştir, Türkçe bilen bir Ortodoks tarafından henüz gözden geçirilmemiştir; kilisenizde kullanılan metinden farklı olabilir.' },
       { heading: 'Oruç kuralları', body: 'Rum ve Rus geleneklerinin yayımlanmış kurallarına dayanır. Uygulama kiliseler ve piskoposluklar arasında değişir; ruhani babanıza danışın.' },
       { heading: 'Bu uygulama hakkında', body: 'Poreia kişisel bir yardımcıdır, hiçbir kilisenin resmî yayını değildir. Simge bu uygulama için çizildi.' },
     ],

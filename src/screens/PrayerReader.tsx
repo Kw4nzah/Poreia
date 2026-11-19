@@ -211,6 +211,12 @@ export function PrayerReader({ id, resume = false }: { id: PrayerId; resume?: bo
           </View>
         ))}
 
+        {prayer.note && (
+          <Text style={[styles.translationNote, align]} accessibilityRole="text">
+            {prayer.note}
+          </Text>
+        )}
+
         {(id === 'morning' || id === 'evening') && settings.saints.length > 0 && (
           <View>
             <Text style={[styles.heading, align]} accessibilityRole="header">
@@ -300,5 +306,6 @@ function makeStyles(t: Theme) {
     heading: { ...type.label, color: t.muted, marginTop: space.lg },
     paragraph: { fontFamily: SERIF, color: t.ink, marginTop: space.md },
     note: { ...type.label, color: t.muted, marginTop: space.xs },
+    translationNote: { ...type.label, color: t.muted, marginTop: space.lg },
   });
 }

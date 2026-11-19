@@ -4,9 +4,9 @@
 // was the starting point; where it differed from azbyka (Antiochus 2, Macarius) azbyka wins.
 // The Prayer of Manasseh: azbyka.ru/molitvoslov/molitva-manassii-carja-iudejskogo.html.
 
-import type { PrayerId, PrayerText } from '../../prayers';
+import type { PrayerText, RegularPrayerId } from '../../prayers';
 
-export const prayerTexts: Record<PrayerId, PrayerText> = {
+export const prayerTexts: Record<RegularPrayerId, PrayerText> = {
   lordsPrayer: {
     title: 'Отче наш',
     sections: [

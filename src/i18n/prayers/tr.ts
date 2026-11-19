@@ -6,9 +6,9 @@
 // The Creed wording used for comparison earlier was the Turkish Divine Liturgy of St John
 // Chrysostom in The Canadian Journal of Orthodox Christianity XVII/3 (2022).
 
-import type { PrayerId, PrayerText } from '../../prayers';
+import type { PrayerText, RegularPrayerId } from '../../prayers';
 
-export const prayerTexts: Record<PrayerId, PrayerText> = {
+export const prayerTexts: Record<RegularPrayerId, PrayerText> = {
   lordsPrayer: {
     title: 'Göklerdeki Babamız',
     sections: [
