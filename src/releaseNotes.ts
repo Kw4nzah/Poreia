@@ -23,6 +23,8 @@ export const RELEASE_NOTES: readonly ReleaseNote[] = [
         'Takvimde oruç tuttuğun günlerde nokta; “Günleri işaretle” ile geçmiş günleri toplu işaretleme.',
         'Favori dualar ve “Kaldığın yerden devam et”.',
         'Güncellemeler bölümünde sürümün yenilikleri.',
+        'Bayram duaları: 19 bayramın tropar ve kondağı; bayram gününde Bugün ekranından açılır.',
+        'İstersen bildirim alanında widget’taki bilgilerin hepsini gösteren kalıcı bir bildirim (Ayarlar > Bildirimler).',
       ],
       en: [
         'Signed updates for safety: the app only accepts verified updates.',
@@ -35,6 +37,8 @@ export const RELEASE_NOTES: readonly ReleaseNote[] = [
         'A dot on the calendar for days you fasted, and “Mark days” to mark past days in bulk.',
         'Favourite prayers and “Continue where you left off”.',
         'This version’s news in the Updates section.',
+        'Feast prayers: the troparion and kontakion of 19 feasts, opened from Today on the feast day.',
+        'An optional persistent notification with everything the widget shows (Settings > Notifications).',
       ],
       ru: [
         'Подписанные обновления для безопасности: приложение принимает только проверенные обновления.',
@@ -47,6 +51,8 @@ export const RELEASE_NOTES: readonly ReleaseNote[] = [
         'В календаре точка у дней, когда вы постились, и «Отметить дни» для массовой отметки прошедших дней.',
         'Избранные молитвы и «Продолжить с того места, где остановились».',
         'Новости версии в разделе «Обновления».',
+        'Праздничные молитвы: тропарь и кондак 19 праздников, открываются с экрана «Сегодня» в день праздника.',
+        'По желанию — постоянное уведомление со всей информацией виджета (Настройки > Уведомления).',
       ],
     },
   },
