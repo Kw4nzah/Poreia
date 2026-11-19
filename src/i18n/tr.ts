@@ -338,6 +338,10 @@ export const tr: Messages = {
     kindFeast: 'Bayram',
     kindFast: 'Oruç başlıyor',
     inDays: (days) => (days === 1 ? 'yarın' : `${days} gün sonra`),
+    addToCalendar: 'Takvimime ekle',
+    addToCalendarHint: 'Önümüzdeki yılın bayram ve oruçlarını takvim uygulamana gönderir.',
+    addToCalendarFailed: 'Dosyayı açabilecek bir takvim uygulaması bulunamadı.',
+    calendarName: 'Poreia: bayramlar ve oruçlar',
   },
   note: {
     totalAbstinence: 'Gücü yetenler bugün hiçbir şey yemeden oruç tutar.',

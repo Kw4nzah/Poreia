@@ -293,6 +293,12 @@ export interface Messages {
     kindFeast: string;
     kindFast: string;
     inDays: (days: number) => string;
+    /** Button that hands the next year of feasts and fasts to the phone's calendar app. */
+    addToCalendar: string;
+    addToCalendarHint: string;
+    addToCalendarFailed: string;
+    /** Name of the calendar created by the import. */
+    calendarName: string;
   };
   note: Record<NoteId, string>;
 
@@ -780,6 +786,10 @@ export const en: Messages = {
     kindFeast: 'Feast',
     kindFast: 'Fast begins',
     inDays: (days) => (days === 1 ? 'tomorrow' : `in ${days} days`),
+    addToCalendar: 'Add to my calendar',
+    addToCalendarHint: 'Sends the feasts and fasts of the coming year to your calendar app.',
+    addToCalendarFailed: 'No calendar app could open the file.',
+    calendarName: 'Poreia: feasts and fasts',
   },
   note: {
     totalAbstinence: 'Those who are able keep a complete fast today.',

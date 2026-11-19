@@ -5,3 +5,4 @@ export * from './isoDate';
 export * from './foods';
 export * from './monthGrid';
 export * from './upcoming';
+export * from './ics';

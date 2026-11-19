@@ -1,12 +1,13 @@
 // Countdown to the next feasts and fasts.
 
 import { useRouter } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, getUpcomingEvents, gregorianToJdn, weekdayOfJdn } from '../calendar';
 import { formatDate } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
-import { Card, ListRow } from '../ui/kit';
+import { Button, Card, ListRow } from '../ui/kit';
+import { exportUpcomingToCalendar } from './exportCalendar';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 
@@ -69,6 +70,19 @@ export function Upcoming() {
           })}
         </Card>
 
+        <View style={styles.export}>
+          <Button
+            label={m.upcoming.addToCalendar}
+            variant="secondary"
+            onPress={() =>
+              void exportUpcomingToCalendar(today, settings.churchId, m).then((ok) => {
+                if (!ok) Alert.alert(m.upcoming.addToCalendarFailed);
+              })
+            }
+          />
+          <Text style={styles.exportHint}>{m.upcoming.addToCalendarHint}</Text>
+        </View>
+
         <Text style={styles.disclaimer}>{m.today.disclaimer}</Text>
       </ScrollView>
     </View>
@@ -92,6 +106,8 @@ function makeStyles(t: Theme) {
       flexShrink: 1,
       maxWidth: 120,
     },
+    export: { marginTop: space.lg },
+    exportHint: { ...type.caption, color: t.muted, marginTop: space.sm },
     disclaimer: { ...type.caption, color: t.muted, marginTop: space.lg },
   });
 }
