@@ -15,5 +15,6 @@ export const LOADERS: LiturgyLoaders = {
   chrysostom: {
     cu: () => import('./chrysostom.cu'),
     en: () => import('./chrysostom.en'),
+    tr: () => import('./chrysostom.tr'),
   },
 };
