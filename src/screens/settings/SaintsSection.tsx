@@ -2,12 +2,18 @@
 
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { SaintGender, guessSaintGender } from '../../prayers/saintGender';
 import { SAINT_TOPICS, SaintTopicId } from '../../prayers/saintTopics';
-import { MAX_FAVORITE_SAINTS, MAX_SAINT_NAME, cleanSaints } from '../../settings/model';
+import {
+  FavoriteSaint,
+  MAX_FAVORITE_SAINTS,
+  MAX_SAINT_NAME,
+  cleanSaints,
+} from '../../settings/model';
 import { useSettings } from '../../settings/SettingsProvider';
 import { AppTextInput } from '../../ui/AppTextInput';
 import { Dropdown } from '../../ui/Dropdown';
-import { Button, Card } from '../../ui/kit';
+import { Button, Card, SegmentedControl } from '../../ui/kit';
 import { Theme, radius, space, type, useTheme, useThemedStyles } from '../../ui/theme';
 
 export function SaintsSection() {
@@ -17,13 +23,37 @@ export function SaintsSection() {
   const [saintName, setSaintName] = useState('');
   const [saintTopic, setSaintTopic] = useState<SaintTopicId | ''>('');
 
+  // '' = not chosen yet; Add stays disabled until it is, so a saint is never silently mislabelled.
+  const [saintGender, setSaintGender] = useState<SaintGender | ''>('');
+  // Once the user picks a gender themselves, typing no longer changes it.
+  const [genderChosen, setGenderChosen] = useState(false);
+
+  function changeName(text: string) {
+    setSaintName(text);
+    if (!genderChosen) setSaintGender(guessSaintGender(text) ?? '');
+  }
+
   function addSaint() {
-    const next = cleanSaints([...settings.saints, { name: saintName, topic: saintTopic }]);
+    if (saintGender === '') return;
+    const next = cleanSaints([
+      ...settings.saints,
+      { name: saintName, topic: saintTopic, gender: saintGender },
+    ]);
     if (next.length === settings.saints.length) return;
     update({ saints: next });
     setSaintName('');
     setSaintTopic('');
+    setSaintGender('');
+    setGenderChosen(false);
   }
+
+  function toggleGender(saint: FavoriteSaint) {
+    const gender = saint.gender === 'f' ? 'm' : 'f';
+    update({ saints: settings.saints.map((s) => (s === saint ? { ...s, gender } : s)) });
+  }
+
+  const genderName = (gender: SaintGender) =>
+    gender === 'f' ? m.saints.genderFemale : m.saints.genderMale;
 
   return (
     <Card padding="md" style={styles.card}>
@@ -32,6 +62,14 @@ export function SaintsSection() {
         <View key={saint.name} style={styles.saintRow}>
           <View style={styles.saintText}>
             <Text style={styles.cardText}>{saint.name}</Text>
+            <Pressable
+              onPress={() => toggleGender(saint)}
+              accessibilityRole="button"
+              accessibilityLabel={`${saint.name}: ${genderName(saint.gender)}. ${m.saints.genderChange}`}
+              hitSlop={8}
+            >
+              <Text style={styles.status}>{genderName(saint.gender)}</Text>
+            </Pressable>
             {saint.topic !== '' && (
               <Text style={styles.status}>{m.saints.topics[saint.topic].label}</Text>
             )}
@@ -50,7 +88,7 @@ export function SaintsSection() {
         <>
           <AppTextInput
             value={saintName}
-            onChangeText={setSaintName}
+            onChangeText={changeName}
             placeholder={m.saints.namePlaceholder}
             placeholderTextColor={theme.muted}
             maxLength={MAX_SAINT_NAME}
@@ -61,6 +99,20 @@ export function SaintsSection() {
             accessibilityLabel={m.saints.namePlaceholder}
             style={styles.input}
           />
+          <View style={styles.genderGap}>
+            <SegmentedControl<SaintGender | ''>
+              accessibilityLabel={m.saints.genderLabel}
+              value={saintGender}
+              onChange={(gender) => {
+                setSaintGender(gender);
+                setGenderChosen(true);
+              }}
+              options={[
+                { value: 'm', label: m.saints.genderMale },
+                { value: 'f', label: m.saints.genderFemale },
+              ]}
+            />
+          </View>
           <Dropdown
             value={saintTopic}
             options={SAINT_TOPICS.map((id) => ({ id, label: m.saints.topics[id].label }))}
@@ -70,7 +122,7 @@ export function SaintsSection() {
           <Button
             label={m.saints.add}
             onPress={addSaint}
-            disabled={saintName.trim() === ''}
+            disabled={saintName.trim() === '' || saintGender === ''}
             style={styles.buttonGap}
           />
         </>
@@ -88,6 +140,7 @@ function makeStyles(t: Theme) {
     cardText: { ...type.body, color: t.ink },
     status: { ...type.label, color: t.muted, marginTop: space.xs },
     buttonGap: { marginTop: space.smd },
+    genderGap: { marginTop: space.sm, marginBottom: space.sm },
     input: {
       minHeight: 48,
       marginTop: space.sm,

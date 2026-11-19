@@ -1,6 +1,7 @@
 // English is the reference dictionary: its shape defines `Messages`, so a key missing
 // from another language is a type error.
 
+import type { SaintGender } from '../prayers/saintGender';
 import type { SaintTopicId } from '../prayers/saintTopics';
 import type { ParsedService } from '../commemorations/service';
 import type {
@@ -348,6 +349,11 @@ export interface Messages {
     namePlaceholder: string;
     topicLabel: string;
     topicNone: string;
+    genderLabel: string;
+    genderMale: string;
+    genderFemale: string;
+    /** Spoken hint on a saint's row: tapping switches between saint and female saint. */
+    genderChange: string;
     /** `prayer` is written by the app's author per topic; `{name}` stands for the saint's name. Empty = only the topic is shown. */
     topics: Record<SaintTopicId, { label: string; prayer: string }>;
     add: string;
@@ -355,7 +361,7 @@ export interface Messages {
     full: string;
     heading: string;
     /** The prayer asking a saint for intercession; `name` is what the user typed. */
-    invocation: (name: string) => string;
+    invocation: (name: string, gender: SaintGender) => string;
   };
   sources: {
     title: string;
@@ -874,6 +880,10 @@ export const en: Messages = {
     heading: 'My saints',
     topicLabel: 'What do you ask for?',
     topicNone: 'No particular request',
+    genderLabel: 'Saint or female saint?',
+    genderMale: 'Saint',
+    genderFemale: 'Female saint',
+    genderChange: 'Tap to change',
     topics: {
       health: { label: 'Health and healing', prayer: 'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.\n\nO holy {name}, faithful servant of Christ and one who stands before God!\n\nI humbly ask you: pray to our Lord Jesus Christ on my behalf. Ask Him to grant me good health, healing of body, peace of soul, patience, and strength.\n\nPray that, in the trials I am facing, I may seek refuge in His mercy, never lose hope in the face of illness, and remain steadfast in faith.\n\nAsk the Lord to grant wisdom to the physicians, bless my treatment, and strengthen me on the path to recovery.\n\nO holy {name}, intercede for me before the Lord, that He may have mercy on me and watch over and protect me according to His holy will.\n\nAmen.\n\nO holy {name}, pray to God for me.' },
       family: { label: 'My family', prayer: 'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.\n\nO holy {name}, faithful servant of Christ and one who stands before God!\n\nI humbly ask you: pray to our Lord Jesus Christ for my family. Ask Him not to withhold His mercy from us, and to grant each member of my family health, peace, well-being, and strength.\n\nPray that the Lord may protect my family from all evil, dangers, illnesses, and afflictions. Ask Him to bless our home with love, understanding, patience, and unity; to remove disagreements among us and teach us to show mercy and kindness toward one another.\n\nIntercede before the Lord that every member of my family may remain steadfast in faith, find peace in their hearts, and be blessed by God\'s grace in all aspects of their lives.\n\nPray that the Lord may watch over our loved ones who are far away, strengthen those going through difficult times, and provide help to all who are in need.\n\nO holy {name}, intercede before God for my family, that the Lord may surround us with His mercy, protect us, and guide us according to His holy will.\n\nAmen.\n\nO holy {name}, pray to God for my family.' },
@@ -890,7 +900,7 @@ export const en: Messages = {
       patience: { label: 'Patience', prayer: 'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.\n\nO holy {name}, faithful servant of Christ and one who stands before God!\n\nI humbly ask you: pray to our Lord Jesus Christ for my patience. Ask Him, Who is long-suffering and abundant in mercy, to grant me a patient heart.\n\nAsk the Lord to keep me from impatience in waiting, anger in hardship, and despair in disappointment. Intercede that He may teach me to entrust to Him what I cannot change, and to work with wisdom and at the proper time for what I can change.\n\nPray that I may not lose faith in times of difficulty, that I may show mercy toward the weaknesses of others and be measured in my words. Ask Him to teach me to trust His wisdom in every circumstance.\n\nO holy {name}, intercede before God for my patience.\n\nAmen.\n\nO holy {name}, pray to God that He grant me patience.' },
       gratitude: { label: 'Thanksgiving', prayer: 'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.\n\nO holy {name}, faithful servant of Christ and one who stands before God!\n\nI humbly ask you: give thanks with me to our Lord Jesus Christ, and offer my gratitude before Him. I praise Him for my life, my health, my family, my friends, the provisions I have today, and the blessings I may not even recognize.\n\nI beg you to ask the Lord that I may never forget to thank Him in days of joy or to trust in Him in days of hardship. Ask Him to keep me from ingratitude, envy, and taking His gifts for granted.\n\nIntercede that He may teach me to share what I have received and to help those in need.\n\nO holy {name}, glorify with me the Father, the Son, and the Holy Spirit, now and ever.\n\nAmen.\n\nO holy {name}, offer my thanks to God.' },
     },
-    invocation: (name) => `Pray to God for me, holy ${name}, for with fervor I run to you, swift helper and intercessor for my soul!`,
+    invocation: (name, _gender) => `Pray to God for me, holy ${name}, for with fervor I run to you, swift helper and intercessor for my soul!`,
   },
   sources: {
     title: 'Sources and licences',

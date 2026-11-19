@@ -430,6 +430,10 @@ export const tr: Messages = {
     full: 'En fazla on aziz eklenebilir.',
     heading: 'Azizlerim',
     topicLabel: 'Ne için dua istiyorsunuz?',
+    genderLabel: 'Aziz mi, azize mi?',
+    genderMale: 'Aziz',
+    genderFemale: 'Azize',
+    genderChange: 'Değiştirmek için dokunun',
     topicNone: 'Belirli bir istek yok',
     topics: {
       health: { label: 'Sağlık ve şifa', prayer: 'Baba, Oğul ve Kutsal Ruh’un adıyla. Âmin.\n\nEy kutsal {name}, Mesih’in sadık hizmetkârı ve Allah’ın huzurunda duran aziz!\n\nSenden alçakgönüllülükle rica ediyorum: Benim için Rabbimiz İsa Mesih’e dua et. O’ndan bana sağlık, sıhhat ve bedenime şifa; ruhuma huzur, sabır ve kuvvet vermesini dile.\n\nİçinde bulunduğum sıkıntılarda Allah’ın merhametine sığınabilmem, hastalıklar karşısında umudumu kaybetmemem ve imanımda güçlü kalabilmem için benim adıma şefaat et.\n\nRabbimizden doktorlara hikmet, tedavime bereket ve iyileşme yolunda bana güç vermesini dile.\n\nEy kutsal {name}, benim için dua et ki Rabbimiz bana merhamet etsin ve beni kendi kutsal iradesine uygun şekilde gözetip korusun.\n\nÂmin.' },
@@ -447,7 +451,7 @@ export const tr: Messages = {
       patience: { label: 'Sabır', prayer: 'Baba, Oğul ve Kutsal Ruh\'un adıyla. Âmin.\n\nEy kutsal {name}, Mesih\'in sadık hizmetkârı ve Tanrı\'nın huzurunda duran aziz!\n\nSenden alçakgönüllülükle rica ediyorum: Sabrım için Rabbimiz İsa Mesih\'e dua et. Uzun süre sabreden ve merhameti sonsuz olan O\'ndan bana sabırlı bir yürek bağışlamasını dile.\n\nRabbimizden beni bekleyişlerimde acelecilikten, zorluklarımda öfkeden ve hayal kırıklıklarımda umutsuzluktan korumasını iste. Değiştiremeyeceğim şeyleri O\'na teslim etmeyi, değiştirebileceğim şeyler için ise doğru zamanda ve doğru şekilde çaba göstermeyi bana öğretmesi için şefaat et.\n\nSıkıntılar karşısında imanımı kaybetmemem, başkalarının kusurlarına karşı merhametli olmam ve sözlerimde ölçülü davranmam için dua et. Her durumda O\'nun hikmetine güvenmeyi bana öğretmesini dile.\n\nEy kutsal {name}, sabrım için Tanrı\'ya şefaat et.\n\nÂmin.\n\nEy kutsal {name}, bana sabır vermesi için Tanrı\'ya dua et.' },
       gratitude: { label: 'Şükran', prayer: 'Baba, Oğul ve Kutsal Ruh\'un adıyla. Âmin.\n\nEy kutsal {name}, Mesih\'in sadık hizmetkârı ve Tanrı\'nın huzurunda duran aziz!\n\nSenden alçakgönüllülükle rica ediyorum: Benimle birlikte Rabbimiz İsa Mesih\'e şükret ve O\'nun huzurunda benim şükrümü sun. Hayatım, sağlığım, ailem, dostlarım, bugün sahip olduğum imkânlar ve farkına varamadığım iyilikler için O\'nu överim.\n\nRabbimizden sevinçli günlerimde O\'na şükretmeyi, sıkıntılı günlerimde ise O\'na güvenmeyi unutmamamı dilemen için sana yalvarırım. Beni nankörlükten, kıskançlıktan ve sahip olduklarımı küçümsemekten korumasını iste.\n\nBana verilen nimetleri başkalarıyla paylaşmayı ve ihtiyaç sahiplerine yardım etmeyi öğretmesi için şefaat et.\n\nEy kutsal {name}, benimle birlikte Baba\'ya, Oğul\'a ve Kutsal Ruh\'a şimdi ve daima yücelik sun.\n\nÂmin.\n\nEy kutsal {name}, benim şükrümü Tanrı\'ya sun.' },
     },
-    invocation: (name) => `Benim için Allah’a dua et, kutsal ${name}; çünkü sana gayretle koşuyorum, ruhumun çabuk yardımcısı ve şefaatçisi!`,
+    invocation: (name, _gender) => `Benim için Allah’a dua et, kutsal ${name}; çünkü sana gayretle koşuyorum, ruhumun çabuk yardımcısı ve şefaatçisi!`,
   },
   sources: {
     title: 'Kaynaklar ve lisanslar',
