@@ -21,7 +21,7 @@ describe('parseSettings', () => {
       prayerTextSize: 2,
       prayerReadingMode: true,
       greekFish: 'greece',
-      saints: [{ name: 'Nicholas', topic: 'travel' }],
+      saints: [{ name: 'Nicholas', topic: 'travel', gender: 'm' }],
       favoritePrayers: ['creed'],
       lastPrayer: { id: 'morning', scroll: 120 },
     };
@@ -85,14 +85,14 @@ describe('favorite saints', () => {
       ],
     });
     expect(parseSettings(raw, 'en').saints).toEqual([
-      { name: 'Nicholas', topic: 'travel' },
-      { name: 'Seraphim', topic: '' },
+      { name: 'Nicholas', topic: 'travel', gender: 'm' },
+      { name: 'Seraphim', topic: '', gender: 'm' },
     ]);
   });
   it('ignores a name added twice', () => {
     expect(
       cleanSaints([
-        { name: 'Nicholas', topic: '' },
+        { name: 'Nicholas', topic: '', gender: 'm' },
         { name: 'nicholas', topic: 'health' },
       ]),
     ).toHaveLength(1);
@@ -133,7 +133,7 @@ describe('notification repeat', () => {
 describe('saint topic', () => {
   it('drops a topic that is not on the list', () => {
     expect(cleanSaints([{ name: 'Nicholas', topic: 'nonsense' }])).toEqual([
-      { name: 'Nicholas', topic: '' },
+      { name: 'Nicholas', topic: '', gender: 'm' },
     ]);
   });
 });
@@ -188,7 +188,7 @@ describe('settings edge cases', () => {
 
   it('does not share the default saints array between calls', () => {
     const a = defaultSettings('en');
-    a.saints.push({ name: 'X', topic: '' });
+    a.saints.push({ name: 'X', topic: '', gender: 'm' });
     expect(defaultSettings('en').saints).toEqual([]);
   });
 });
@@ -236,7 +236,7 @@ describe('hostile stored data', () => {
 
   it('cleans saint names the same way', () => {
     const out = cleanSaints([{ name: 'Nic\u0007holas\n' }, { name: '\u0001\u0002' }]);
-    expect(out).toEqual([{ name: 'Nic holas', topic: '' }]);
+    expect(out).toEqual([{ name: 'Nic holas', topic: '', gender: 'm' }]);
   });
 
   it('falls back to defaults for oversized or non-object storage', () => {

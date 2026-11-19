@@ -18,6 +18,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRAYER_TEXT_SIZES, PrayerId, PrayerTextSize } from '../prayers';
 import { cleanPrayerBookmark, toggleFavoritePrayer } from '../prayers/favorites';
+import { applyGender } from '../prayers/saintGender';
 import { useSettings } from '../settings/SettingsProvider';
 import { FavoriteStar } from '../ui/FavoriteStar';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
@@ -225,11 +226,11 @@ export function PrayerReader({ id, resume = false }: { id: PrayerId; resume?: bo
             {settings.saints.map((saint) => (
               <View key={saint.name}>
                 <Text style={[styles.paragraph, textSize, align]}>
-                  {m.saints.invocation(saint.name)}
+                  {m.saints.invocation(saint.name, saint.gender)}
                 </Text>
                 {saint.topic !== '' &&
                   (m.saints.topics[saint.topic].prayer !== '' ? (
-                    m.saints.topics[saint.topic].prayer
+                    applyGender(m.saints.topics[saint.topic].prayer, saint.gender, settings.language)
                       .split('{name}')
                       .join(saint.name)
                       .split('\n\n')

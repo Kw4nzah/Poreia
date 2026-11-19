@@ -11,6 +11,7 @@ import { Language, isLanguage } from '../i18n';
 import { DEFAULT_PRAYER_TEXT_SIZE, PrayerTextSize, isPrayerTextSize } from '../prayers';
 import { PrayerId } from '../prayers';
 import { PrayerBookmark, cleanFavoritePrayers, cleanPrayerBookmark } from '../prayers/favorites';
+import { DEFAULT_SAINT_GENDER, SaintGender, isSaintGender } from '../prayers/saintGender';
 import { SaintTopicId, isSaintTopic } from '../prayers/saintTopics';
 
 export const NOTIFICATION_HOURS = [7, 8, 9, 12] as const;
@@ -21,6 +22,8 @@ export type NotificationHour = (typeof NOTIFICATION_HOURS)[number];
 export interface FavoriteSaint {
   name: string;
   topic: SaintTopicId | '';
+  /** Grammatical gender in the prayers; saints saved before it existed are 'm'. */
+  gender: SaintGender;
 }
 
 export const MAX_FAVORITE_SAINTS = 10;
@@ -102,13 +105,14 @@ export function cleanSaints(value: unknown): FavoriteSaint[] {
   const out: FavoriteSaint[] = [];
   for (const item of value) {
     if (!item || typeof item !== 'object') continue;
-    const { name, topic } = item as Record<string, unknown>;
+    const { name, topic, gender } = item as Record<string, unknown>;
     const cleanName = cleanText(name, MAX_SAINT_NAME);
     if (!cleanName || out.some((saint) => saint.name.toLowerCase() === cleanName.toLowerCase()))
       continue;
     out.push({
       name: cleanName,
       topic: isSaintTopic(topic) ? topic : '',
+      gender: isSaintGender(gender) ? gender : DEFAULT_SAINT_GENDER,
     });
     if (out.length === MAX_FAVORITE_SAINTS) break;
   }

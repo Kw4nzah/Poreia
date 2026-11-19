@@ -19,7 +19,7 @@ const settings = {
   notifications: true,
   eveReminder: true,
   persistentNotification: true,
-  saints: [{ name: 'Nicholas', topic: 'travel' as const }],
+  saints: [{ name: 'Nicholas', topic: 'travel' as const, gender: 'm' as const }],
 };
 
 const wrap = (extra: Record<string, unknown>) =>
@@ -59,6 +59,22 @@ describe('createBackup and parseBackup', () => {
       settings,
       done: ['2026-11-15', '2026-11-17'],
     });
+  });
+
+  it('round-trips a saint’s gender and reads old backups without it as male', () => {
+    const female = {
+      ...settings,
+      saints: [{ name: 'Anna', topic: '' as const, gender: 'f' as const }],
+    };
+    const back = parseBackup(createBackup(female, []), 'en');
+    if (!back.ok) throw new Error('expected ok');
+    expect(back.settings.saints).toEqual(female.saints);
+    const old = parseBackup(
+      '{"app":"poreia","version":1,"settings":{"saints":[{"name":"Nicholas","topic":"travel"},{"name":"X","gender":"z"}]},"done":[]}',
+      'en',
+    );
+    if (!old.ok) throw new Error('expected ok');
+    expect(old.settings.saints.map((s) => s.gender)).toEqual(['m', 'm']);
   });
 
   it('carries a version and the app name', () => {
@@ -102,6 +118,7 @@ describe('createBackup and parseBackup', () => {
       saints: Array.from({ length: 10 }, (_, i) => ({
         name: `${i}`.repeat(60),
         topic: '' as const,
+        gender: 'f' as const,
       })),
     };
     const days = Array.from({ length: MAX_DONE_DAYS }, (_, i) =>
@@ -228,7 +245,7 @@ describe('parseBackup hardening', () => {
     expect(parsed.settings.notificationHour).toBe(8);
     expect(parsed.settings.name.length).toBeLessThanOrEqual(40);
     expect(parsed.settings.name).not.toMatch(/[\u0000\n]/);
-    expect(parsed.settings.saints).toEqual([{ name: 'A', topic: '' }]);
+    expect(parsed.settings.saints).toEqual([{ name: 'A', topic: '', gender: 'm' }]);
     expect(parsed.settings).not.toHaveProperty('unknown');
   });
 

@@ -104,8 +104,8 @@ describe('settings saved by older versions', () => {
       prayerTextSize: 1,
       greekFish: 'studite',
       saints: [
-        { name: 'Nicholas', topic: '' },
-        { name: 'Seraphim of Sarov', topic: '' },
+        { name: 'Nicholas', topic: '', gender: 'm' },
+        { name: 'Seraphim of Sarov', topic: '', gender: 'm' },
       ],
     });
   });

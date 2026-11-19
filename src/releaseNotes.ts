@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.8.1',
+    notes: {
+      tr: ['Azizlerim: aziz mi azize mi olduğunu seçebilirsin; dualar buna göre yazılır.'],
+      en: ['My saints: choose saint or female saint; the prayers follow your choice.'],
+      ru: ['Мои святые: можно выбрать «святой» или «святая»; молитвы изменяются соответственно.'],
+    },
+  },
+  {
     version: '0.8.0',
     notes: {
       tr: ['Yeni ince widget (4x1): bugünün oruç kuralı tek satırda.'],
