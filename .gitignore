@@ -60,3 +60,7 @@ site/
 
 # Local test-run output (it records absolute paths of the machine it ran on)
 .vitest/
+
+# Claude Code local settings and agent worktrees
+.claude/settings.local.json
+.claude/worktrees/
