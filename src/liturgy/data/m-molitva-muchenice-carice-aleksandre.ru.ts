@@ -1,0 +1,19 @@
+// Molitvoslov (m-molitva-muchenice-carice-aleksandre): Russian text. Source: azbyka.ru, "Молитва мученице Александре, царице Римской" (https://azbyka.ru/molitvoslov/molitva-muchenice-carice-aleksandre.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Отвергнув славу земного царства, ты возлюбила Единственного Христа, распятого ради нас, и Его мужественно исповедовав, увенчалась ты мученическим венцом, преблаженная царица Алесандра. Потому и сейчас, предстоя Престолу Царя славы на Небесах, молись о спасении наших душ."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Твой почитаемый всеми храм (1Кор.3:16), как лекарство для души обретя, все верующие громко станем взывать тебе, прославленная мученица Александра: «Не переставая моли Христа Бога обо всех нас»."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "* Минея. 23-е апреля."},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитва мученице Александре, царице Римской” (azbyka.ru/molitvoslov/molitva-muchenice-carice-aleksandre.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитва мученице Александре, царице Римской” (azbyka.ru/molitvoslov/molitva-muchenice-carice-aleksandre.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитва мученице Александре, царице Римской» (azbyka.ru/molitvoslov/molitva-muchenice-carice-aleksandre.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

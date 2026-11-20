@@ -1,0 +1,34 @@
+// Molitvoslov (m-molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu): Church Slavonic text. Source: azbyka.ru, "Молитвы Пророку, Предтече и Крестителю Господню Иоанну" (https://azbyka.ru/molitvoslov/molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 2"},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Память праведнаго с похвалами,/ тебе же довлеет свидетельство Господне, Предтече,/ показал бо ся еси воистинну и пророков честнейший,/ яко и в струях крестити сподобился еси Проповеданнаго./ Темже за истину пострадав радуяся,/ благовестил еси и сущим во аде Бога явльшагося плотию,/ вземлющаго грех мира/ и подающаго нам велию милость."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 6"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Плотскаго Твоего пришествия убоявся Иордан,/ страхом возвращашеся,/ пророческое же служение исполняя Иоанн,/ трепетом спряташеся,/ Ангельстии чини ужасахуся,/ зряще Тя во струях плотию крещаема,/ и вси сущии во тьме озаряхуся,// воспевающе Тя, явльшагося и просветившаго вся."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "cu-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "cu-mol-0007", "section": "service", "who": "reader", "text": "Крестителю Христов, честный Предтече, крайний пророче, первый мучениче, постников и пустынников наставниче, чистоты учителю и ближний друже Христов! Тя молю, и тебе прибегаю не отрини мене от твоего заступления, не остави мя падшего многими грехи; обнови душу мою покаянием, яко вторым крещением; очисти мя, грехи оскверненнаго, и понуди внити, аможе ничтоже скверно входит, в Царствие Небесное. Аминь."},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "Личное прошение"},
+  {"id": "cu-mol-0009", "section": "service", "who": "reader", "text": "О, святый угодниче Божий, крестителю Спасов Иоанне. Услыши мя, грешного (имя). Умоли Христа Бога, да сподобит (благодати святаго крещения, покаяния) раба Своего (имя). Да вси купно прославляем милосердие в Троице славимаго Бога, Отца и Сына и Святаго Духа, и твое усердное ходатайство во веки веков. Аминь."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "cu-mol-0011", "section": "service", "who": "rubric", "text": "Дни памяти 7/20 января, 24 февраля/9(8) марта, 25 мая/7 июня, 24 июня/7 июля, 29 августа/11 сентября, 23 сентября/6 октября, 12/25 октября"},
+  {"id": "cu-mol-0012", "section": "service", "who": "rubric", "text": "Как проповеднику покаяния и первому совершителю водного крещения, ему молятся о приобщении к Церкви некрещеных людей и даровании покаянного чувства."},
+  {"id": "cu-mol-0013", "section": "service", "who": "rubric", "text": "* Минея. 7-е января."},
+  {"id": "cu-mol-0014", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "cu-mol-0015", "section": "service", "who": "rubric", "text": "9 комментариев"},
+  {"id": "cu-mol-0016", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "cu-mol-0017", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "cu-mol-0018", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "cu-mol-0019", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "cu-mol-0020", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "cu-mol-0021", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы Пророку, Предтече и Крестителю Господню Иоанну” (azbyka.ru/molitvoslov/molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы Пророку, Предтече и Крестителю Господню Иоанну” (azbyka.ru/molitvoslov/molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы Пророку, Предтече и Крестителю Господню Иоанну» (azbyka.ru/molitvoslov/molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

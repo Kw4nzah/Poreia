@@ -1,0 +1,19 @@
+// Molitvoslov (m-molitvy-svjashhennomucheniku-vlasiju-episkopu-sevastijskomu): Church Slavonic text. Source: azbyka.ru, "Молитвы священномученику Власию, епископу Севастийскому" (https://azbyka.ru/molitvoslov/molitvy-svjashhennomucheniku-vlasiju-episkopu-sevastijskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "И нравом причастник,/ и престолом наместник апостолом быв,/ деяние обрел еси, Богодухновенне,/ в видения восход,/ сего ради, слово истины исправляя,/ и веры ради пострадал еси даже до крове,/ священномучениче Власие./ Моли Христа Бога// спастися душам нашим."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Божественное прозябение, цвет неувядаемый,/ лозы Христовы розго многострадальная, Богоносе Власие,/ верою чтущия память твою веселия твоего исполни,// моляся непрестанно о всех нас."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "О, многострадальный отче, великий угодниче Божий, священномучениче Власие. Услыши нас, грешных, к тебе прибегающих и тепле тебе молящихся. Буря многих зол, бед и скорбей обдержит нас, болезни душевныя и телесныя и всякия наваждения вражия обуревают нас. Мы же нерадим о спасении нашем, ниже достойны есмы по грехом нашим у Господа помощи просити. Но ты, добрый пастырю, велие дерзновение имеяй у Милостиваго Бога, якоже иногда ведомый на мучения твоя, вдовицы слезящия, приникшия к тебе, не отринул еси, ину бо от напасти зверя свободил еси, иныя же отроку исцеление у Господа испросил еси, такожде и ныне призри на чада твоя, в час сей к тебе притекшия, утешения и помощи просящия. Ты убо Господа умолил еси: аще кая болезнь или беда имут кому быти и той помянет имя твое – помощи всякому в прославление Его Пресвятаго Имени. Не отрини нас, молящихся тебе, но якоже обещался еси, во благо сотвори всякое прошение наше, по милости Всеблагаго Бога, Емуже честь и слава во веки веков. Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы священномученику Власию, епископу Севастийскому” (azbyka.ru/molitvoslov/molitvy-svjashhennomucheniku-vlasiju-episkopu-sevastijskomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы священномученику Власию, епископу Севастийскому” (azbyka.ru/molitvoslov/molitvy-svjashhennomucheniku-vlasiju-episkopu-sevastijskomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы священномученику Власию, епископу Севастийскому» (azbyka.ru/molitvoslov/molitvy-svjashhennomucheniku-vlasiju-episkopu-sevastijskomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -1,0 +1,20 @@
+// Molitvoslov (m-molitvy-svjatitelju-ioannu-arhiepiskopu-shanhajskomu-i-san-francisskomu): Russian text. Source: azbyka.ru, "Молитвы святителю Иоанну, архиепископу Шанхайскому и Сан-Францисскому" (https://azbyka.ru/molitvoslov/molitvy-svjatitelju-ioannu-arhiepiskopu-shanhajskomu-i-san-francisskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 5"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Попечение твое о пастве в странствии ее, вот предзнаменование и молитв твоих, за весь мир всегда возносимых. Так веруем, познав любовь твою, святитель и чудотворец Иоанн! Весь Богом освященный священнодействием пречистых Тайн, ими же и сам всегда укрепляемый, ты торопился к страдающим, целитель, облегчающий скорби. Поспеши и сейчас на помощь к нам, всем сердцем почитающим тебя."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 4"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Сердце твое обнимает всех любовью, молящихся тебе, святитель Иоанн, и вспоминающих подвиг жития твоего. Твое же преставление было легко и безболезненно, Одигитрии Пречистой верный служитель."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Творение иеромонаха Серафима Платинского"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы святителю Иоанну, архиепископу Шанхайскому и Сан-Францисскому” (azbyka.ru/molitvoslov/molitvy-svjatitelju-ioannu-arhiepiskopu-shanhajskomu-i-san-francisskomu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы святителю Иоанну, архиепископу Шанхайскому и Сан-Францисскому” (azbyka.ru/molitvoslov/molitvy-svjatitelju-ioannu-arhiepiskopu-shanhajskomu-i-san-francisskomu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы святителю Иоанну, архиепископу Шанхайскому и Сан-Францисскому» (azbyka.ru/molitvoslov/molitvy-svjatitelju-ioannu-arhiepiskopu-shanhajskomu-i-san-francisskomu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

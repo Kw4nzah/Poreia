@@ -1,0 +1,25 @@
+// Molitvoslov (m-molitvy-svyatitelyu-nikite-episkopu-novgorodskomu): Church Slavonic text. Source: azbyka.ru, "Молитвы святителю Никите, епископу Новгородскому" (https://azbyka.ru/molitvoslov/molitvy-svyatitelyu-nikite-episkopu-novgorodskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Насладився, Богомудре, воздержания/ и желание плоти твоея обуздав,/ на престоле святительства сел еси,/ и яко звезда многосветлая, просвещая верных сердца/ зарями чудес твоих,/ отче наш, святителю Никито,/ и ныне моли Христа Бога,// да спасет души наша."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 6"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Архиерейства саном почтився/ и чисте Чистейшему предстоя,/ прилежно моление за люди твоя приносил еси,/ яко и дождь молитвою свел еси,/ овогда же и града запаления угасил еси./ И ныне, святителю Никито,/ моли Христа Бога,/ спасти люди твоя молящияся,/ да вси вопием ти:// радуйся, святителю, отче предивный."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "О, архиерею Божий, святителю Никито! Услыши нас грешных, днесь во священный храм сей стекшихся, и честному образу твоему поклоняющихся, и ко священней твоей раце припадающих, и умиленно вопиющих: якоже сидя на престоле святительства в Великом Новеграде сем, и единою належащу бездождию, дождь молитвами свел еси, и паки граду сему огненным пламенем обстоиму, молитвою пламень огненный угасил еси. И ныне молим тя, о святителю Христов Никито: молися ко Господу, еже избавити Великий Новград сей и вся грады и страны христианские от труса, потопа, глада, огня, града, меча и от всех врагов видимых и невидимых, яко да изрядных ради молитв твоих спасаеми, славим Пресвятую Троицу, Отца и Сына и Святаго Духа, и твое милостивное предстательство, ныне и присно, и во веки веков. Аминь."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "Личное прошение об исцелении от болезней глаз"},
+  {"id": "cu-mol-0008", "section": "service", "who": "reader", "text": "О, святителю отче Никите, услыши мя грешнаго (имя) в час сей, в оньже тебе моление приношу, и помолися о мне грешнему ко Господу Богу об отпущении грехов моих, и болезни (слепоты) очес моих избави мя молитвами, святе, твоими. Аминь."},
+  {"id": "cu-mol-0009", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "Дни памяти 31 января/13 февраля, 30 апреля/13 мая, 14/27 мая"},
+  {"id": "cu-mol-0011", "section": "service", "who": "rubric", "text": "С юных лет поступил в Киево-Печерскую обитель. Возревновав о подвигах, впал в ослушание игумену и бесовскую прелесть, но по молитвам старцев Господь возвратил его к истине, и свт. Никита был избавлен от лукавого духа. Затем был поставлен епископом в Новгород, где пламенной проповедью и святой жизнью заслужил любовь народа и совершил немало чудес: спас город от пожара, низвел молитвой дождь с неба в засушливый год. От нетленных мощей свт. Никиты произошло много исцелений, преимущественно больных глазами и слепых."},
+  {"id": "cu-mol-0012", "section": "service", "who": "rubric", "text": "* Минея. 31-е января."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы святителю Никите, епископу Новгородскому” (azbyka.ru/molitvoslov/molitvy-svyatitelyu-nikite-episkopu-novgorodskomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы святителю Никите, епископу Новгородскому” (azbyka.ru/molitvoslov/molitvy-svyatitelyu-nikite-episkopu-novgorodskomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы святителю Никите, епископу Новгородскому» (azbyka.ru/molitvoslov/molitvy-svyatitelyu-nikite-episkopu-novgorodskomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

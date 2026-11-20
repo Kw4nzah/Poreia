@@ -1,0 +1,19 @@
+// Molitvoslov (m-molitva-svyatitelyu-innokentiyu-mitropolitu-moskovskomu): Russian text. Source: azbyka.ru, "Молитвы святителю Иннокентию, митрополиту Московскому" (https://azbyka.ru/molitvoslov/molitva-svyatitelyu-innokentiyu-mitropolitu-moskovskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 1"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: По всему Северу прошла проповедь твоя, поскольку принявших слово твоё, которым ты богодостойно раскрыл истины веры, незнающих Христа ты просветил светом Евангелия, облагородил человеческие нравы, моли Христа Бога о спасении душ наших."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 3"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Вы благочестиво прожили как святители и людей к познанию Бога направляли и хорошо послужили Богу, поэтому от Него прославились нетлением и чудотворением, наученные Божией благодатью."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы святителю Иннокентию, митрополиту Московскому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-innokentiyu-mitropolitu-moskovskomu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы святителю Иннокентию, митрополиту Московскому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-innokentiyu-mitropolitu-moskovskomu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы святителю Иннокентию, митрополиту Московскому» (azbyka.ru/molitvoslov/molitva-svyatitelyu-innokentiyu-mitropolitu-moskovskomu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

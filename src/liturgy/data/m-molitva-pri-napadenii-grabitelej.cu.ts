@@ -1,0 +1,21 @@
+// Molitvoslov (m-molitva-pri-napadenii-grabitelej): Church Slavonic text. Source: azbyka.ru, "Молитва при нападении грабителей" (https://azbyka.ru/molitvoslov/molitva-pri-napadenii-grabitelej.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Святому праведному Иосифу, Обручнику Пресвятой Богородицы"},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Тропарь, глас 2"},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Благовествуй, Иосифе,/ Давиду чудеса Богоотцу,/ Деву видел еси рождшую,/ с пастырьми славословил еси,/ с волсви поклонился еси,/ Ангелом весть прием;/ моли Христа Бога// спасти души наша."},
+  {"id": "cu-mol-0004", "section": "service", "who": "rubric", "text": "Кондак, глас 3"},
+  {"id": "cu-mol-0005", "section": "service", "who": "reader", "text": "Веселия днесь Давид исполняется Божественный,/ Иосиф же хваление со Иаковом приносит,/ венец бо сродством Христовым приемше,/ радуются и неизреченно на земли Рождшагося воспевают, и вопиют:// Щедре, спасай Тебе чтущия."},
+  {"id": "cu-mol-0006", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0007", "section": "service", "who": "reader", "text": "О, святый праведный Иосифе! Ты еще на земли сый, велие имел еси дерзновение к Сыну Божию, иже благоизволи именовати тя Отца Своего, яко обрученика Своея Матери, и послушати тя: веруем, яко ныне с лики праведных во обителех небесных водворяяся, услышан будеши во всяком твоем прошении к Богу и Спасителю нашему. Темже, ко твоему покрову и заступлению прибегающе, смиренно молим тя: якоже сам от бури сумнительных помышлений избавлен был еси, сице избави и нас, волнами смущений и страстей обуреваемых: якоже ограждал еси Всенепорочную Деву от клеветы человеческия, огради и нас такожде от всякия клеветы напрасныя: якоже хранил еси от всякаго вреда и озлобления воплотившагося Господа, сице сохраняй твоим заступлением Церковь Его православную и всех нас от всякаго озлобления и вреда. Веси, святче Божий яко и Сын Божий во днех плоти Своея в телесных потребах нужду имеяши, и ты послужил еси им: того ради молим тя, и нашим временным нуждам благопоспеши твоим ходатайством, подая нам вся благая, в житии сем потребная. Изряднее же просим тя, исходатайствуй нам оставление грехов прияти от нареченнаго ти Сына, Единороднаго же Сына Божия, Господа нашего Иисуса Христа и достойны быти наследия Царства Небеснаго нас предстательством твоим сотвори, да и мы, в горних селениих с тобою водворяющеся, прославим Единаго Триипостаснаго Бога, Отца и Сына и Святаго Духа, ныне и во веки веков. Аминь."},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "* Минея. Декабрь. В 26-й день."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва при нападении грабителей” (azbyka.ru/molitvoslov/molitva-pri-napadenii-grabitelej.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва при нападении грабителей” (azbyka.ru/molitvoslov/molitva-pri-napadenii-grabitelej.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва при нападении грабителей» (azbyka.ru/molitvoslov/molitva-pri-napadenii-grabitelej.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -1,0 +1,21 @@
+// Molitvoslov (m-molitvy-blagovernomu-knjazju-dimitriju-donskomu): Church Slavonic text. Source: azbyka.ru, "Молитвы благоверному князю Димитрию Донскому" (https://azbyka.ru/molitvoslov/molitvy-blagovernomu-knjazju-dimitriju-donskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 3"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Велика обрете в бедах тя поборника земля Русская,/ языки побеждающа./ Якоже на Дону Мамаеву низложил еси гордыню,/ на подвиг сей прияв благословение преподобнаго Сергия,/ тако, княже Димитрие,/ Христу Богу молися,// даровати нам велию милость."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Подвиги твоими, святе Димитрие,/ страну нашу Бог сохрани,/ давый тебе силу непобедимую./ И ныне, предстателю крепкий,/ соблюдай молитвами святыми/ град твой Москву невредим// от всех навет вражиих."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "О святый благоверный великий княже Димитрие! Аще и не мнози быша дние земнаго жития твоего, обаче велик жребий приял еси от Содетеля всех Господа, еже прославитися в земли Российстей и блаженство вечное на Небесех получити."},
+  {"id": "cu-mol-0007", "section": "service", "who": "reader", "text": "Услыши нас, молитвенниче теплый, предстателю наш пред Господем неусыпный! Во дни мира и в годину нестроений не остави нас попечением твоим, научи ны покорны быти Божественному Промышлению, вся в житии нашем ко благу направляющему, отечество наше молитвами твоими от нашествий вражиих, раздоров и нестроений защити и укрепи теплым твоим предстательством."},
+  {"id": "cu-mol-0008", "section": "service", "who": "reader", "text": "О святче Божий! Моли, купно со святою супружницею и сподвижницею Твоею благоверною княгинею Евдокиею, да знаменается на нас свет лица Божия и, тем наставляеми, достигнем Царства Правды Христовы, некончаемаго и вечнаго. Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы благоверному князю Димитрию Донскому” (azbyka.ru/molitvoslov/molitvy-blagovernomu-knjazju-dimitriju-donskomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы благоверному князю Димитрию Донскому” (azbyka.ru/molitvoslov/molitvy-blagovernomu-knjazju-dimitriju-donskomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы благоверному князю Димитрию Донскому» (azbyka.ru/molitvoslov/molitvy-blagovernomu-knjazju-dimitriju-donskomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -1,0 +1,19 @@
+// Molitvoslov (m-molitvy-po-puti-v-xram-i-pri-vxode-v-nego): Church Slavonic text. Source: azbyka.ru, "Молитвы по пути в храм и при входе в него" (https://azbyka.ru/molitvoslov/molitvy-po-puti-v-xram-i-pri-vxode-v-nego.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Идя в храм, лучше всего мысленно молиться, например, читать 50-й и 90-й псалмы, Иисусову молитву."},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Молитва идущего в церковь1"},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Возвеселихся о рекших мне: в дом Господень пойдем. Аз же множеством милости Твоея, Господи, вниду в дом Твой, поклонюся ко храму святому Твоему, в страсе Твоем. Господи, настави мя правдою Твоею, враг моих ради исправи пред Тобою путь мой, да без преткновения прославлю Едино Божество, Отца, и Сына, и Святаго Духа, ныне и присно, и во веки веков. Аминь."},
+  {"id": "cu-mol-0004", "section": "service", "who": "rubric", "text": "Молитва при входе в храм2"},
+  {"id": "cu-mol-0005", "section": "service", "who": "reader", "text": "Вниду в дом Твой, поклонюся ко храму святому Твоему в страсе Твоем. Господи, настави мя правдою Твоею, враг моих ради исправи пред Тобою путь мой. Яко несть во устех их истины, сердце их суетно, гроб отверст гортань их, языки своими льщаху. Суди им, Боже, да отпадут от мыслей своих: по множеству нечестия их изрини я, яко преогорчиша Тя, Господи. И да возвеселятся вси, уповающии на Тя, во век возрадуются, и вселишися в них, и похвалятся о Тебе любящии Имя Твое. Яко Ты благословиши праведника, Господи, яко оружием благоволения венчал еси нас."},
+  {"id": "cu-mol-0006", "section": "service", "who": "rubric", "text": "(Эту молитву читают священнослужители, когда входят в алтарь. Для всякого верующего хорошо эту молитву прочитать перед входом в храм)."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы по пути в храм и при входе в него” (azbyka.ru/molitvoslov/molitvy-po-puti-v-xram-i-pri-vxode-v-nego.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы по пути в храм и при входе в него” (azbyka.ru/molitvoslov/molitvy-po-puti-v-xram-i-pri-vxode-v-nego.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы по пути в храм и при входе в него» (azbyka.ru/molitvoslov/molitvy-po-puti-v-xram-i-pri-vxode-v-nego.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

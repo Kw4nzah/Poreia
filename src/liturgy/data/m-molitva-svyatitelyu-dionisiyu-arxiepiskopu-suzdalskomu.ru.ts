@@ -1,0 +1,18 @@
+// Molitvoslov (m-molitva-svyatitelyu-dionisiyu-arxiepiskopu-suzdalskomu): Russian text. Source: azbyka.ru, "Молитва святителю Дионисию, архиепископу Суздальскому" (https://azbyka.ru/molitvoslov/molitva-svyatitelyu-dionisiyu-arxiepiskopu-suzdalskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 8"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Православия ревнитель, благочестия наставник, ищущим спасения хороший руководитель, монашествующих Богодухновенное украшение, Богоносного Евфимия собеседник, святитель Дионисий, учением и добродетелями Отечество твое просветил ты, не забывай нас, почитающих тебя, но жизнью нашей мирно управляй."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 8"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Звезду Российскую в Киеве воссиявшую, через Нижний Новгород в Суздаль дошедшую и всю страну эту учением озарившую, прославим Богомудрого Дионисия, ибо он молится Господу о спасении наших душ."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитва святителю Дионисию, архиепископу Суздальскому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-dionisiyu-arxiepiskopu-suzdalskomu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитва святителю Дионисию, архиепископу Суздальскому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-dionisiyu-arxiepiskopu-suzdalskomu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитва святителю Дионисию, архиепископу Суздальскому» (azbyka.ru/molitvoslov/molitva-svyatitelyu-dionisiyu-arxiepiskopu-suzdalskomu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -1,0 +1,32 @@
+// Molitvoslov (m-molitva-v-den-novogo-goda): Church Slavonic text. Source: azbyka.ru, "Молитва в день Нового года" (https://azbyka.ru/molitvoslov/molitva-v-den-novogo-goda.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Господи Боже, всех видимых и невидимых тварей1, Творец и Зиждитель2, сотворивший времена и лета, Сам благослови начинающийся сего дня новый год, который мы считаем от воплощения Твоего для нашего спасения."},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Дозволь нам провести сей год и многие по нем в мире и согласии с ближними нашими; укрепи и распространи Святую Вселенскую Церковь, которую Ты Сам основал, и спасительной жертвой Святого Тела и Пречистой Крови освятил."},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Отечество наше возвыси, сохрани и прославь; долгоденствие3, здравие, изобилие плодов земных и благорастворение воздухов4 дай нам."},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Меня, грешнаго раба Твоего, всех родственников и ближних моих и всех благоверных христиан, как истинный наш верховный Пастырь5, упаси, огради и на пути спасения утверди, чтобы мы, следуя по нему после долговременной и благополучной жизни в мире сем, достигли Царства Твоего Небеснаго и удостоились вечного блаженства со святыми Твоими. Аминь."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "1 Тварь — творение; то, что сотворено Богом."},
+  {"id": "cu-mol-0006", "section": "service", "who": "rubric", "text": "2 Зиждитель — строитель, основатель."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "3 Долгоденствие — долголетие."},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "4 Благорастворение воздухов — благоприятная погода."},
+  {"id": "cu-mol-0009", "section": "service", "who": "rubric", "text": "5 См. (Ин.10)."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "Господи Боже, всех видимых и невидимых тварей1, Творец и Зиждитель2, сотворивший времена и лета, Сам благослови начинающийся сего дня новый год, который мы считаем от воплощения Твоего для нашего спасения."},
+  {"id": "cu-mol-0011", "section": "service", "who": "reader", "text": "Дозволь нам провести сей год и многие по нем в мире и согласии с ближними нашими; укрепи и распространи Святую Вселенскую Церковь, которую Ты Сам основал, и спасительной жертвой Святого Тела и Пречистой Крови освятил."},
+  {"id": "cu-mol-0012", "section": "service", "who": "reader", "text": "Отечество наше возвыси, сохрани и прославь; долгоденствие3, здравие, изобилие плодов земных и благорастворение воздухов4 дай нам."},
+  {"id": "cu-mol-0013", "section": "service", "who": "reader", "text": "Меня, грешную рабу Твою, всех родственников и ближних моих и всех благоверных христиан, как истинный наш верховный Пастырь5, упаси, огради и на пути спасения утверди, чтобы мы, следуя по нему после долговременной и благополучной жизни в мире сем, достигли Царства Твоего Небеснаго и удостоились вечного блаженства со святыми Твоими. Аминь."},
+  {"id": "cu-mol-0014", "section": "service", "who": "rubric", "text": "1 Тварь — творение; то, что сотворено Богом."},
+  {"id": "cu-mol-0015", "section": "service", "who": "rubric", "text": "2 Зиждитель — строитель, основатель."},
+  {"id": "cu-mol-0016", "section": "service", "who": "rubric", "text": "3 Долгоденствие — долголетие."},
+  {"id": "cu-mol-0017", "section": "service", "who": "rubric", "text": "4 Благорастворение воздухов — благоприятная погода."},
+  {"id": "cu-mol-0018", "section": "service", "who": "rubric", "text": "5 См. (Ин.10)."},
+  {"id": "cu-mol-0019", "section": "service", "who": "rubric", "text": "«Всея твари Содетелю, времена и лета во Своей власти положивый, благослови венец лета благости Твоея, Господи, сохраняя в мире люди и град Твой молитвами Богородицы и спаси ны»."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва в день Нового года” (azbyka.ru/molitvoslov/molitva-v-den-novogo-goda.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва в день Нового года” (azbyka.ru/molitvoslov/molitva-v-den-novogo-goda.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва в день Нового года» (azbyka.ru/molitvoslov/molitva-v-den-novogo-goda.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

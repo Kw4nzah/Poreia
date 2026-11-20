@@ -1,0 +1,30 @@
+// Molitvoslov (m-molitva-svyatitelyu-dimitriyu-mitropolitu-rostovskomu): Russian text. Source: azbyka.ru, "Молитвы святителю Димитрию, митрополиту Ростовскому" (https://azbyka.ru/molitvoslov/molitva-svyatitelyu-dimitriyu-mitropolitu-rostovskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 81"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Православия ревнитель и раскола искоренитель, Российский целитель и новый к Богу молитвенник, сочинениями твоими неразумных ты вразумил, лира духовная, Димитрий блаженный, моли Христа Бога о спасении душ наших."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 4"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Звезду Российскую в Киеве воссиявшую и через Новгород Северский в Ростов дошедшую, всю же страну нашу учениями и чудесами озарившую, прославим красноречивого учителя Димитрия, ибо он для всех написал все к наставлению, чтобы привести всех ко Христу, как Апостол Павел (1Кор.9:22), и спасти Православием души наши."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я2"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я3"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Личное прошение"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Дни памяти 21 сентября/4 октября и 28 октября /10 ноября"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Жил в конце XVI — начале XVII стт. Составил знаменитые «Четьи-Минеи», содержащие жития святых на каждый день года. Был известен как ревнитель чистоты Православной веры перед лицом раскольничьих сект. Прославился скромной, подвижнической жизнью, был любим народом за простоту, доступность и дела милосердия. До самой кончины подавал пример терпеливого и смиренного перенесения тяжелой грудной болезни. Свт. Димитрию молятся об успехе в христианской проповеди и просвещении, об избавлении от расколов и ересей, о помощи в бедности, о заступлении вдов и сирот, об исцелении от грудных болезней."},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0015", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0016", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0017", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы святителю Димитрию, митрополиту Ростовскому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-dimitriyu-mitropolitu-rostovskomu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы святителю Димитрию, митрополиту Ростовскому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-dimitriyu-mitropolitu-rostovskomu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы святителю Димитрию, митрополиту Ростовскому» (azbyka.ru/molitvoslov/molitva-svyatitelyu-dimitriyu-mitropolitu-rostovskomu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

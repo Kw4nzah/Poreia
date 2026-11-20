@@ -1,0 +1,34 @@
+// Molitvoslov (m-molitva-prepodobnoj-marii-egipetskoj): Russian text. Source: azbyka.ru, "Молитвы преподобной Марии Египетской" (https://azbyka.ru/molitvoslov/molitva-prepodobnoj-marii-egipetskoj.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 8"},
+  {"id": "ru-mol-0002", "section": "service", "who": "rubric", "text": "В тебе, мати, известно спасеся, еже по образу,/ приимши бо крест, последовала еси Христу/ и, деющи учила еси презирати убо плоть, преходит бо,/ прилежати же о души вещи безсмертней.// Темже и со Ангелы срадуется, преподобная Марие, дух твой."},
+  {"id": "ru-mol-0003", "section": "service", "who": "reader", "text": "Перевод: В тебе, о мать, достоверно спаслось то, что в нас по образу [Божию]: ибо, приняв крест, ты пошла за Христом и делами своими учила презирать плоть, ибо она прейдет, усердствовать же о душе, вещи бессмертной. Потому и радуется вместе с ангелами, Преподобная Мария, дух твой."},
+  {"id": "ru-mol-0004", "section": "service", "who": "rubric", "text": "Кондак, глас 3"},
+  {"id": "ru-mol-0005", "section": "service", "who": "reader", "text": "Перевод: Будучи сначала объята всяческим блудом, сейчас ты явилась невестой Христовой через покаяние, подражая ангельской жизни и уничтожая демонов оружием креста. Поэтому ты стала невестой Царствия Небесного, Мария преславная."},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0007", "section": "service", "who": "reader", "text": "Перевод: О, великая Христова угодница преподобная Мария! На Небесах Престолу Божию предстоя, на земле же духом любви с нами пребывая, имея дерзновение ко Господу, моли, спасти рабов Его, к тебе с любовью прибегающих. Испроси нам у Великого милостью Владыки и Господа веры непорочное соблюдение, городов и сёл наших утверждение, от голода и мора избавление, скорбящим – утешение, недужным – исцеление, падшим – восстание, заблудшим – укрепление, в делах добрых успех и благословение, сиротам и вдовам – защиту и отошедшим от жизни сей – вечное упокоение, всем же нам в день страшного Суда стать общниками стоящих с правой стороны и блаженный глас Судии мира услышать: «Придите, благословенные Отца Моего, наследуйте Царство, уготованное вам от сложения мира», – и пребывание там во веки получить. Аминь."},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Молитва 3-я"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Дни памяти 1/14 апреля, в Неделю 5-ю Великого поста"},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "Молодые годы провела в Александрии, утопая в разврате. Пристав к паломникам, едущим на поклонение святыням в Иерусалим, не была допущена в храм Воскресения Божественной силой. Покаявшись и горько оплакав свой грех, удалилась в пустыню, где пробыла одна в лишениях, посте и молитве почти 50 лет. Суровыми подвигами и покаянием прп. Мария совершенно искоренила в себе все греховные желания и соделала сердце свое чистым сосудом Святого Духа. Помощница в брани с блудом, наставница в целомудрии и воздержании, подательница покаянного чувства."},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "* Минея. 1-е апреля."},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0015", "section": "service", "who": "rubric", "text": "2 комментария"},
+  {"id": "ru-mol-0016", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0017", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0018", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0019", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0020", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0021", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы преподобной Марии Египетской” (azbyka.ru/molitvoslov/molitva-prepodobnoj-marii-egipetskoj.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы преподобной Марии Египетской” (azbyka.ru/molitvoslov/molitva-prepodobnoj-marii-egipetskoj.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы преподобной Марии Египетской» (azbyka.ru/molitvoslov/molitva-prepodobnoj-marii-egipetskoj.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

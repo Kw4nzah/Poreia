@@ -1,0 +1,20 @@
+// Molitvoslov (m-prizyvanie-pomoshhi-duxa-svyatago-na-vsyakoe-delo-dobroe): Russian text. Source: azbyka.ru, "Призывание помощи Духа Святаго на всякое доброе дело" (https://azbyka.ru/molitvoslov/prizyvanie-pomoshhi-duxa-svyatago-na-vsyakoe-delo-dobroe.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 21"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Боже, Творец и Создатель вселенной, Своим благословением помоги успешно окончить начатое к славе Твоей дело наших рук и сохрани нас от всяких бедствий, как один Всесильный и Человеколюбец2."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 6"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Скорый на защиту и сильный в помощи, яви ныне благодать силы Твоей и, благословив, укрепи рабов Твоих и помоги им в совершении задуманного доброго дела, ибо Ты, как Всесильный Бог, можешь творить все по Своей воле."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "1 Православный молитвослов с приложением молитв Пресвятой Богородице и святым угодникам Божиим. — М.: Изд-во Московской Патриархии Русской Православной Церкви, 2018. — 816 с."},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "2 Перевод иеромонаха Феофана (Адаменко)."},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "См.: СВЯТОЙ ДУХ"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Призывание помощи Духа Святаго на всякое доброе дело” (azbyka.ru/molitvoslov/prizyvanie-pomoshhi-duxa-svyatago-na-vsyakoe-delo-dobroe.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Призывание помощи Духа Святаго на всякое доброе дело” (azbyka.ru/molitvoslov/prizyvanie-pomoshhi-duxa-svyatago-na-vsyakoe-delo-dobroe.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Призывание помощи Духа Святаго на всякое доброе дело» (azbyka.ru/molitvoslov/prizyvanie-pomoshhi-duxa-svyatago-na-vsyakoe-delo-dobroe.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

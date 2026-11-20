@@ -1,0 +1,32 @@
+// Molitvoslov (m-molitva-velikomuchenice-varvare): Russian text. Source: azbyka.ru, "Молитвы великомученице Варваре Илиопольской" (https://azbyka.ru/molitvoslov/molitva-velikomuchenice-varvare.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 8"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Варвару святую почтим, ибо сокрушила она сети врага и, как птица, спаслась из них, с помощью оружия Креста, всесвященная!"},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 4"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: В Троице благочестиво воспеваемому Богу последовав, священная страстотерпица, ты оставила идольские святыни; и посреди судилища подвизаясь, Варвара, угроз мучителей не устрашилась, мужественная умом, непрестанно воспевая громогласно: «Троицу чту, Единое Божество!»"},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Молитва 3-я"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Молитва 4-я"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "День памяти 4/17 декабря"},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Претерпела множество пыток за Христа. Перед казнью просила Господа, чтобы каждый, кто призовет ее имя и помянет ее страдания, был избавлен от внезапной смерти, сподобился исповеди и Св. Причастия."},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "См.: Полное житие великомученицы Варвары в Православном календаре"},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0015", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0016", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0017", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0018", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0019", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы великомученице Варваре Илиопольской” (azbyka.ru/molitvoslov/molitva-velikomuchenice-varvare.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы великомученице Варваре Илиопольской” (azbyka.ru/molitvoslov/molitva-velikomuchenice-varvare.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы великомученице Варваре Илиопольской» (azbyka.ru/molitvoslov/molitva-velikomuchenice-varvare.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

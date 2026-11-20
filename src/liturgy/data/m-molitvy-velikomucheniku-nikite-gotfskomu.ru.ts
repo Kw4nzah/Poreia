@@ -1,0 +1,24 @@
+// Molitvoslov (m-molitvy-velikomucheniku-nikite-gotfskomu): Russian text. Source: azbyka.ru, "Молитвы великомученику Никите Готфскому" (https://azbyka.ru/molitvoslov/molitvy-velikomucheniku-nikite-gotfskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Крест Христов, как будто оружие смело взяв, на битву против врагов ты поспешил и за Христа пострадал, после чего и священную твою душу отдал Господу, потому и удостоился от Него получить дар исцелений, великомученик Никита. Моли Христа Бога о спасении душ наших."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Господство заблуждений ты уничтожил своим противостоянием и получил венец победы в мученичестве своем, с ангелами, прославляемый, радуешься, Никита победе одноименный (Никита от греч. νίκη — победа), с ними Христа Бога моля непрестанно обо всех нас."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Личное прошение"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "День памяти 15/28 сентября"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Великомученик Никита принял мученическую смерть за Христа в IV в. во время междоусобной войны между готами-христианами и язычниками. Тело его было брошено в костер, однако не сгорело. Друг Никиты ночью отыскал останки мученика, и те долгое время пребывали у него, а затем были перенесены в Киликию и по причине множества чудес и исцелений сделались известными всему церковному народу. Особенно молятся вмч. Никите об изгнании злых духов."},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "* Минея. 15-е сентября."},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы великомученику Никите Готфскому” (azbyka.ru/molitvoslov/molitvy-velikomucheniku-nikite-gotfskomu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы великомученику Никите Готфскому” (azbyka.ru/molitvoslov/molitvy-velikomucheniku-nikite-gotfskomu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы великомученику Никите Готфскому» (azbyka.ru/molitvoslov/molitvy-velikomucheniku-nikite-gotfskomu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

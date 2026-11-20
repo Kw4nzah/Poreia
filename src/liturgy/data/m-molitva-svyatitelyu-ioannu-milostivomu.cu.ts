@@ -1,0 +1,30 @@
+// Molitvoslov (m-molitva-svyatitelyu-ioannu-milostivomu): Church Slavonic text. Source: azbyka.ru, "Молитва святителю Иоанну Милостивому" (https://azbyka.ru/molitvoslov/molitva-svyatitelyu-ioannu-milostivomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 8"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "В терпении твоем стяжал еси мзду твою, отче преподобне,/ в молитвах непрестанно терпевый,/ нищия возлюбивый и сия удовливый,/ но молися Христу Богу, Иоанне милостиве, блаженне,// спастися душам нашим."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Богатство твое расточил еси убогим,/ и Небесное богатство ныне восприял еси,/ Иоанне всемудре:/ сего ради вси тя почитаем,/ совершающе память твою,// милостыни о тезоимените!"},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "Святителю Божий Иоанне, милостиве защитниче сирых и сущих в напастех! К тебе прибегаем и тебе молимся, раби твои (имена), яко скорому покровителю всех ищущих от Бога утешения в бедах и скорбех. Не престай моляся ко Господу о всех с верою притекающих к тебе! Ты, преисполнен сый Христовы любви и благости, явился еси яко чудный чертог добродетели милосердия и стяжал еси себе имя «Милостивый». Ты был еси яко река, непрестанно текущая щедрыми милостьми и всех жаждущих обильно напаяющая. Веруем, яко, по преселении от земли на небо, усугубися в тебе дар благодати сея и яко соделался еси неисчерпаемый сосуд всякия благостыни. Сотвори убо твоим ходатайством и заступлением пред Богом «всякия утехи», да вси, прибегающии к тебе, обретают мир и безмятежие: даруй им утешение в печалех временных и пособие в нуждах житейских, вселив в них надежду вечнаго упокоения во Царствии Небеснем. В житии твоем на земли ты был еси пристанище всем сущим во всякой беде и нужде, обидимым и недугующим; ни един от притекавших к тебе и просивших у тебе милости лишен бысть твоея благостыни. Тожде и ныне, царствуя со Христом Богом на небеси, яви всем покланяющимся пред честною твоею иконою и молящимся о помощи и заступлении. Не точию сам ты творил еси милость безпомощным, но и сердца других воздвигал еси ко утешению немощных и к призрению убогих. Подвигни убо и ныне сердца верных к заступлению сирых, утешению скорбящих и успокоению неимущих. Да не оскудевают в них дары милости, паче же да вселится в них мир и радость о Дусе Святе, — во славу Господа и Спаса нашего Иисуса Христа, во веки веков. Аминь."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "День памяти 12/25 ноября"},
+  {"id": "cu-mol-0009", "section": "service", "who": "rubric", "text": "Приобрел имя «Милостивый» за доброе, сострадательное сердце. Бесчисленны благодеяния, что оказал свт. Иоанн убогим, нищим, болящим, оказавшимся в различных житейских затруднениях."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "cu-mol-0011", "section": "service", "who": "rubric", "text": "3 комментария"},
+  {"id": "cu-mol-0012", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "cu-mol-0013", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "cu-mol-0014", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "cu-mol-0015", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "cu-mol-0016", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "cu-mol-0017", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва святителю Иоанну Милостивому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-ioannu-milostivomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва святителю Иоанну Милостивому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-ioannu-milostivomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва святителю Иоанну Милостивому» (azbyka.ru/molitvoslov/molitva-svyatitelyu-ioannu-milostivomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -1,0 +1,18 @@
+// Molitvoslov (m-molitva-missionera): Church Slavonic text. Source: azbyka.ru, "Молитва миссионера" (https://azbyka.ru/molitvoslov/molitva-missionera.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "reader", "text": "Господи, Господи! Положивый душу Свою за спасение всех человек!"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Яко Господин жатвы Твоея, изведи многих делателей на жатву Твою!"},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Изведенным же даждь дух молитвы, дух любви Твоея, дух смирения, терпения и разума. Даждь им благовествовати силою многою во исполнение Евангелия Твоего. Да укрепится и возрастет желание возжелавших вспомоществовати нам делами любви благотворящей, да умножатся подобныя пособники наши. Благодеющим нам воздаждь Твоими благословеньми: живым подаждь здравие и благоденствие, усопших со святыми твоими в вечных селениях упокой. Ненавидящих и обидящих нас прости, Владыко Человеколюбче, просвети их сердца, вразуми их умы."},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Всем же нам, кровию Твоею искупленным, ведущим и еще не ведущим Тя, даруй свет разума святаго Евангелия Твоего. Ускори призвати и соединити всех во едино стадо Твое здесь на земле и пребыти с Тобою во веки неразлучны во свете Отца Твоего и Бога нашего, Ему же с Тобою и Святым Духом слава и держава вовеки. Аминь."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "См.: МИССИОНЕРСТВО"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва миссионера” (azbyka.ru/molitvoslov/molitva-missionera.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва миссионера” (azbyka.ru/molitvoslov/molitva-missionera.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва миссионера» (azbyka.ru/molitvoslov/molitva-missionera.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

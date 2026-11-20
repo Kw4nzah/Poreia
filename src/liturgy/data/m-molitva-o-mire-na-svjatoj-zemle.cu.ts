@@ -1,0 +1,17 @@
+// Molitvoslov (m-molitva-o-mire-na-svjatoj-zemle): Church Slavonic text. Source: azbyka.ru, "Молитва о мире на Святой Земле" (https://azbyka.ru/molitvoslov/molitva-o-mire-na-svjatoj-zemle.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "reader", "text": "Господи, Иисусе Христе, Боже наш, Крест претерпевый и смерть, спасения ради рода человеческаго, во ад сошедый, тридневное погребение приемый, смерть поправый, диавола упразднивый и разрушивый вражды средостение, приими молитву смиренных раб Твоих, купно с Давидом псалмопевцем Тебе вопиющих о мире Святаго Сиона, Престола Царя Великаго, Матере Церквей, Преславнаго Иерусалима."},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Мир даровавый роду человеческому, угаси всяку распрю и раздоры во Святей Земли, умири злобу враждующих, благослови притекающих ныне ко Гробу Твоему Живоприемному, и нас, тому мысленно покланяющихся, исходящим от сего светом Лица Твоего озари."},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Пламенем любве распали к Тебе сердца наша, Христе Боже, да тою воспламеняеми, сердцем, мыслию же и душею, и всею крепостию нашею возлюбим Тя, и искренняго своего."},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Яко Ты еси мир наш, и Тебе славу возсылаем, со Безначальным Твоим Отцем, и Всесвятым, и Благим, и Животворящим Твоим Духом, ныне и присно, и во веки веков. Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва о мире на Святой Земле” (azbyka.ru/molitvoslov/molitva-o-mire-na-svjatoj-zemle.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва о мире на Святой Земле” (azbyka.ru/molitvoslov/molitva-o-mire-na-svjatoj-zemle.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва о мире на Святой Земле» (azbyka.ru/molitvoslov/molitva-o-mire-na-svjatoj-zemle.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

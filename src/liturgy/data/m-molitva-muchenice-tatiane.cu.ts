@@ -1,0 +1,26 @@
+// Molitvoslov (m-molitva-muchenice-tatiane): Church Slavonic text. Source: azbyka.ru, "Молитва мученице Татиане" (https://azbyka.ru/molitvoslov/molitva-muchenice-tatiane.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Агнцу Пречистому и Пастырю последуя,/ агнице словесная Татиано/ мысленных зверей не убоялася еси,/ но знамением крестным вооружившися,/ до конца тех низложила еси,/ и вошла еси в Небесную ограду,// идеже помяни и нас, мученице Христова многомудрая."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 4"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Светло во страдании твоем возсияла еси, страстотерпице,/ от кровей твоих преиспещрена,/ и, яко красная голубица, к Небеси возлетела еси, Татиано:// темже моли присно за чтущия тя."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "О, святая мученице Татиано, невесто Сладчайшаго Жениха твоего Христа! Агнице Агнца Божественнаго, голубице целомудрия, благоуханное тело страданьми яко одеждами царскими одеявшая, к ликом Небесным сопричтенная, ликующая ныне во славе вечной, от дней юности служительнице Церкве Божия, целомудрие соблюдшая и паче всех благ Господа возлюбившая! Тебе мы молимся и тебе мы просим: внемли прошениям нашим сердечным и не отвергай молений наших, даруй чистоту тела и души, вдохни любовь к Божественным истинам, на путь добродетельный введи нас, ангельское охранение испроси у Бога нам, наша раны и язвы уврачуй, юность огради, старость безболезненну и безбедну даруй, в смертном часе помози, поминай наши скорби и отраду даруй, посети нас, сущих в темнице греха, на покаяние настави скоро, возжжи пламень молитвы, не остави нас сирых, да славяще страдания твоя, возсылаем хвалу Господу, ныне и присно, и во веки веков. Аминь."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "cu-mol-0009", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "cu-mol-0011", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "cu-mol-0012", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "cu-mol-0013", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва мученице Татиане” (azbyka.ru/molitvoslov/molitva-muchenice-tatiane.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва мученице Татиане” (azbyka.ru/molitvoslov/molitva-muchenice-tatiane.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва мученице Татиане» (azbyka.ru/molitvoslov/molitva-muchenice-tatiane.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

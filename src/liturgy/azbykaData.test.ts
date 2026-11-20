@@ -8,14 +8,16 @@ const cases = LITURGY_IDS.flatMap((id) => (['cu', 'ru'] as const).map((language)
 
 describe.each(cases)('azbyka.ru text: %s %s', (id, language) => {
   it('has well-formed blocks with unique ids and credits azbyka.ru', async () => {
-    const { blocks, source } = await LOADERS[id]![language]!();
-    expect(blocks.length).toBeGreaterThanOrEqual(8);
+    const loader = LOADERS[id]?.[language];
+    if (!loader) return; // some prayers exist in one language only
+    const { blocks, source } = await loader();
+    expect(blocks.length).toBeGreaterThanOrEqual(2);
     expect(new Set(blocks.map((b) => b.id)).size).toBe(blocks.length);
     for (const b of blocks) {
       expect(LITURGY_SECTIONS).toContain(b.section);
       expect(LITURGY_SPEAKERS).toContain(b.who);
       expect(b.text.trim()).not.toBe('');
-      expect(b.text).not.toMatch(/<|&nbsp;|&amp;/);
+      expect(b.text).not.toMatch(/<\/?[a-z!]|&nbsp;|&amp;/);
     }
     if (LITURGY_GROUP_OF[id] === 'liturgies') {
       for (const section of ['catechumens', 'faithful', 'dismissal'] as const) {

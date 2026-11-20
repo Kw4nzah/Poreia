@@ -1,0 +1,33 @@
+// Molitvoslov (m-molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu): Russian text. Source: azbyka.ru, "Молитвы Пророку, Предтече и Крестителю Господню Иоанну" (https://azbyka.ru/molitvoslov/molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 2"},
+  {"id": "ru-mol-0002", "section": "service", "who": "rubric", "text": "Память праведнаго с похвалами,/ тебе же довлеет свидетельство Господне, Предтече,/ показал бо ся еси воистинну и пророков честнейший,/ яко и в струях крестити сподобился еси Проповеданнаго./ Темже за истину пострадав радуяся,/ благовестил еси и сущим во аде Бога явльшагося плотию,/ вземлющаго грех мира/ и подающаго нам велию милость."},
+  {"id": "ru-mol-0003", "section": "service", "who": "reader", "text": "Перевод: Память праведника чтится похвалами, тебе же довольно свидетельства Господня, Предтеча, ведь явился ты поистине из пророков славнейшим, ибо удостоился в струях крестить Проповеданного. Потому за истину пострадав с радостью, благовествовал ты и находящимся во аде Бога, явившегося во плоти, подъемлющего грех мира и подающего нам великую милость."},
+  {"id": "ru-mol-0004", "section": "service", "who": "rubric", "text": "Кондак, глас 6"},
+  {"id": "ru-mol-0005", "section": "service", "who": "reader", "text": "Перевод: Пришествия Твоего во плоти устрашившись, Иордан в трепете вспять обращался; духовное же служение исполняя, Иоанн в страхе уклонялся; ангельские полки изумлялись, увидев Тебя, в струях плотью крещаемым, и все, пребывавшие во тьме, озарялись, воспевая Тебя, явившегося и просветившего все."},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Личное прошение"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Дни памяти 7/20 января, 24 февраля/9(8) марта, 25 мая/7 июня, 24 июня/7 июля, 29 августа/11 сентября, 23 сентября/6 октября, 12/25 октября"},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Как проповеднику покаяния и первому совершителю водного крещения, ему молятся о приобщении к Церкви некрещеных людей и даровании покаянного чувства."},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "* Минея. 7-е января."},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "9 комментариев"},
+  {"id": "ru-mol-0015", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0016", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0017", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0018", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0019", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0020", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы Пророку, Предтече и Крестителю Господню Иоанну” (azbyka.ru/molitvoslov/molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы Пророку, Предтече и Крестителю Господню Иоанну” (azbyka.ru/molitvoslov/molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы Пророку, Предтече и Крестителю Господню Иоанну» (azbyka.ru/molitvoslov/molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

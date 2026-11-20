@@ -467,8 +467,9 @@ export const tr: Messages = {
       lentPascha: 'Büyük Oruç, Kutsal Hafta ve Paskalya',
       octoechos: 'Pazar Oktoih ve okumalar',
       hymns: 'Troparlar, kontakionlar ve ilahiler',
+      molitvoslov: 'Dualar (Molitvoslov)',
     },
-    azbykaCredit: 'Ayinlerin Kilise Slavcası ve Rusça metinleri azbyka.ru’dan alınmıştır ve onun yazılı izniyle kullanılmaktadır.',
+    azbykaCredit: 'Ayinlerin ve duaların (Molitvoslov) Kilise Slavcası ve Rusça metinleri azbyka.ru’dan alınmıştır ve onun yazılı izniyle kullanılmaktadır.',
     sectionsLabel: 'Bölümler',
     section: {
       proskomedia: 'Proskomidi',

@@ -1,0 +1,20 @@
+// Molitvoslov (m-kogda-zametish-za-soboj-kakoj-grex): Church Slavonic text. Source: azbyka.ru, "Когда заметишь за собой какой грех" (https://azbyka.ru/molitvoslov/kogda-zametish-za-soboj-kakoj-grex.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Молитва краткая"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Оскорбил Тебя, Спасителя моего, прости меня."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "* *"},
+  {"id": "cu-mol-0004", "section": "service", "who": "rubric", "text": "Молитва св. Иоанна Кронштадтского"},
+  {"id": "cu-mol-0005", "section": "service", "who": "reader", "text": "Господи! Грехи наши на кресте пригвоздивый, пригвозди ко кресту Твоему и настоящий мой грех и помилуй мя по велицей Твоей милости. (И наложить на себя крестное знамение.)"},
+  {"id": "cu-mol-0006", "section": "service", "who": "rubric", "text": "* Праведный Иоанн Кронштадтский. Моя жизнь во Христе. Том 2, 943."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "См. ГРЕХ"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Когда заметишь за собой какой грех” (azbyka.ru/molitvoslov/kogda-zametish-za-soboj-kakoj-grex.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Когда заметишь за собой какой грех” (azbyka.ru/molitvoslov/kogda-zametish-za-soboj-kakoj-grex.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Когда заметишь за собой какой грех» (azbyka.ru/molitvoslov/kogda-zametish-za-soboj-kakoj-grex.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

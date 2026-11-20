@@ -32,7 +32,7 @@ export const LITURGY_LANGUAGES = ['cu', 'en', 'ru', 'tr'] as const;
 export type LiturgyLanguage = (typeof LITURGY_LANGUAGES)[number];
 
 /** The readable services (generated list). */
-export { LITURGY_IDS, LITURGY_GROUPS, LITURGY_GROUP_OF } from './catalog';
+export { LITURGY_IDS, LITURGY_GROUPS, LITURGY_GROUP_OF, LITURGY_SUBGROUP_OF } from './catalog';
 export type { LiturgyId, LiturgyGroup } from './catalog';
 
 /** Where a text comes from, in the three app languages; shown on the Sources screen. */

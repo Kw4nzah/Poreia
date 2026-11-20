@@ -1,0 +1,19 @@
+// Molitvoslov (m-molitvy-prepodobnomu-serafimu-vyrickomu): Church Slavonic text. Source: azbyka.ru, "Молитвы преподобному Серафиму Вырицкому" (https://azbyka.ru/molitvoslov/molitvy-prepodobnomu-serafimu-vyrickomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Яко великаго молитвенника за землю нашу/ и утешителя теплаго притекающих к тебе,/ ублажаем тя, вторый русский отче Серафиме,/ вся бо яже в мире красная оставил еси,/ всем сердцем устремился еси к чертогам сладчайшаго Христа/ и в годину лютых гонений образ кротости и смирения всем был еси:/ не престай и ныне молитися за ны,/ да в терпении обрящем путь покаяния// и с тобою выну славим Пресвятую Троицу."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 5"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Подражая богоносному угоднику Саровскому,/ Духа Святаго благодать обильно стяжал еси:/ Александро-Невския лавры крине благоуханный,/ Вырицкия веси похвало,/ сего ради и мы тебе зовем:/ радуйся, преподобне Серафиме,// милостивый наш предстателю пред Господем."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "О, богоблаженный и премилосердый отче наш Серафиме! Ведуще тя и по смерти яко жива суща, с верою припадаем ти и вопием: не забуди убогих твоих до конца, но милостивно призри на стадо твое духовное и упаси е, добрый пастырю, благоприятными твоими к Богу молитвами. Испроси нам от Господа время на покаяние и греховныя жизни исправление, веси бо вся немощи наша душевныя: не имамы дел веры и спасения, не имамы ревности ко истинному богоугождению, пленихомся умом в погибельных страстех, растлехом сердца во гнусных похотех. Что убо чаем, и на что надеемся неключимии, разоривше храмины душ наших; Ей, святый отче, простри молитвенно руце твои ко Господу и умоли Спасителя рода человеческаго коснутися благодатию окаменелых сердец наших, омыти нас слезами покаяния, возставити в вере, укрепити во благочестии и вся полезная ко спасению даровати. Не посрами упования нашего, еже по Бозе и Богородице на тя возлагаем, но буди нам скорый помощник, утешитель в скорбех и покровитель во обстояниих, да сподобимся молитвами твоими наследовати Царствие Небесное, идеже вси святии непрестанно славят и воспевают пречестное и великолепое имя Отца, и Сына, и Святаго Духа, ныне и присно, и во веки веков. Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы преподобному Серафиму Вырицкому” (azbyka.ru/molitvoslov/molitvy-prepodobnomu-serafimu-vyrickomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы преподобному Серафиму Вырицкому” (azbyka.ru/molitvoslov/molitvy-prepodobnomu-serafimu-vyrickomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы преподобному Серафиму Вырицкому» (azbyka.ru/molitvoslov/molitvy-prepodobnomu-serafimu-vyrickomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

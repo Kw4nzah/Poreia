@@ -729,4 +729,1276 @@ export const LOADERS: LiturgyLoaders = {
     cu: () => import('./molitva-na-osvyashhenie-artosa.cu'),
     ru: () => import('./molitva-na-osvyashhenie-artosa.ru'),
   },
+  'm-carju-nebesnyj': {
+    cu: () => import('./m-carju-nebesnyj.cu'),
+  },
+  'm-iisusova-molitva': {
+    cu: () => import('./m-iisusova-molitva.cu'),
+  },
+  'm-molitva-gospodnya-otche-nash': {
+    ru: () => import('./m-molitva-gospodnya-otche-nash.ru'),
+  },
+  'm-slavoslovie': {
+    cu: () => import('./m-slavoslovie.cu'),
+    ru: () => import('./m-slavoslovie.ru'),
+  },
+  'm-bogorodichnoe-pravilo': {
+    cu: () => import('./m-bogorodichnoe-pravilo.cu'),
+    ru: () => import('./m-bogorodichnoe-pravilo.ru'),
+  },
+  'm-molitvy-ko-presvyatoj-bogorodice': {
+    cu: () => import('./m-molitvy-ko-presvyatoj-bogorodice.cu'),
+    ru: () => import('./m-molitvy-ko-presvyatoj-bogorodice.ru'),
+  },
+  'm-molitvy-pered-ikonami-bozhiej-materi': {
+    cu: () => import('./m-molitvy-pered-ikonami-bozhiej-materi.cu'),
+    ru: () => import('./m-molitvy-pered-ikonami-bozhiej-materi.ru'),
+  },
+  'm-vopl-k-bogomateri': {
+    cu: () => import('./m-vopl-k-bogomateri.cu'),
+  },
+  'm-blagodarenie-za-vsyakoe-blagodeyanie-bozhie': {
+    cu: () => import('./m-blagodarenie-za-vsyakoe-blagodeyanie-bozhie.cu'),
+    ru: () => import('./m-blagodarenie-za-vsyakoe-blagodeyanie-bozhie.ru'),
+  },
+  'm-kratkie-molitvy': {
+    cu: () => import('./m-kratkie-molitvy.cu'),
+  },
+  'm-molitva-pered-nachalom-i-po-okonchanii-vsyakogo-dela': {
+    ru: () => import('./m-molitva-pered-nachalom-i-po-okonchanii-vsyakogo-dela.ru'),
+  },
+  'm-molitva-pered-vyxodom-iz-doma': {
+    cu: () => import('./m-molitva-pered-vyxodom-iz-doma.cu'),
+    ru: () => import('./m-molitva-pered-vyxodom-iz-doma.ru'),
+  },
+  'm-molitva-pered-vyxodom-v-internet': {
+    ru: () => import('./m-molitva-pered-vyxodom-v-internet.ru'),
+  },
+  'm-molitva-poslednix-optinskix-starcev-na-nachalo-dnya': {
+    cu: () => import('./m-molitva-poslednix-optinskix-starcev-na-nachalo-dnya.cu'),
+  },
+  'm-molitva-pred-i-po-chtenii-evangeliya': {
+    cu: () => import('./m-molitva-pred-i-po-chtenii-evangeliya.cu'),
+    ru: () => import('./m-molitva-pred-i-po-chtenii-evangeliya.ru'),
+  },
+  'm-molitvennoe-pravilo-prp-serafima-sarovskogo': {
+    cu: () => import('./m-molitvennoe-pravilo-prp-serafima-sarovskogo.cu'),
+    ru: () => import('./m-molitvennoe-pravilo-prp-serafima-sarovskogo.ru'),
+  },
+  'm-molitvy-na-son-gryadushhim-bez-tolkovanij': {
+    cu: () => import('./m-molitvy-na-son-gryadushhim-bez-tolkovanij.cu'),
+    ru: () => import('./m-molitvy-na-son-gryadushhim-bez-tolkovanij.ru'),
+  },
+  'm-molitvy-pered-i-posle-vkusheniya-pishhi': {
+    cu: () => import('./m-molitvy-pered-i-posle-vkusheniya-pishhi.cu'),
+    ru: () => import('./m-molitvy-pered-i-posle-vkusheniya-pishhi.ru'),
+  },
+  'm-molitvy-po-puti-v-xram-i-pri-vxode-v-nego': {
+    cu: () => import('./m-molitvy-po-puti-v-xram-i-pri-vxode-v-nego.cu'),
+    ru: () => import('./m-molitvy-po-puti-v-xram-i-pri-vxode-v-nego.ru'),
+  },
+  'm-molitvy-utrennie-bez-tolkovanij': {
+    cu: () => import('./m-molitvy-utrennie-bez-tolkovanij.cu'),
+    ru: () => import('./m-molitvy-utrennie-bez-tolkovanij.ru'),
+  },
+  'm-pomyannik-o-zhivyx-i-usopshix': {
+    cu: () => import('./m-pomyannik-o-zhivyx-i-usopshix.cu'),
+    ru: () => import('./m-pomyannik-o-zhivyx-i-usopshix.ru'),
+  },
+  'm-prizyvanie-pomoshhi-duxa-svyatago-na-vsyakoe-delo-dobroe': {
+    cu: () => import('./m-prizyvanie-pomoshhi-duxa-svyatago-na-vsyakoe-delo-dobroe.cu'),
+    ru: () => import('./m-prizyvanie-pomoshhi-duxa-svyatago-na-vsyakoe-delo-dobroe.ru'),
+  },
+  'm-chin-peniya-dvenadcati-psalmov': {
+    cu: () => import('./m-chin-peniya-dvenadcati-psalmov.cu'),
+    ru: () => import('./m-chin-peniya-dvenadcati-psalmov.ru'),
+  },
+  'm-poryadok-chteniya-psaltiri-po-usopshim': {
+    ru: () => import('./m-poryadok-chteniya-psaltiri-po-usopshim.ru'),
+  },
+  'm-psalom-22': {
+    cu: () => import('./m-psalom-22.cu'),
+  },
+  'm-psalom-26': {
+    ru: () => import('./m-psalom-26.ru'),
+  },
+  'm-psalom-33': {
+    ru: () => import('./m-psalom-33.ru'),
+  },
+  'm-psalom-50': {
+    ru: () => import('./m-psalom-50.ru'),
+  },
+  'm-psaltir-po-kafizmam': {
+    ru: () => import('./m-psaltir-po-kafizmam.ru'),
+  },
+  'm-blagodarstvennye-molitvy-po-svyatom-prichashhenii': {
+    cu: () => import('./m-blagodarstvennye-molitvy-po-svyatom-prichashhenii.cu'),
+    ru: () => import('./m-blagodarstvennye-molitvy-po-svyatom-prichashhenii.ru'),
+  },
+  'm-kanon-angelu-xranitelyu': {
+    cu: () => import('./m-kanon-angelu-xranitelyu.cu'),
+    ru: () => import('./m-kanon-angelu-xranitelyu.ru'),
+  },
+  'm-kanon-molebnyj-ko-presvyatoj-bogorodice': {
+    ru: () => import('./m-kanon-molebnyj-ko-presvyatoj-bogorodice.ru'),
+  },
+  'm-kanon-pokayannyj-ko-gospodu-nashemu-iisusu-xristu': {
+    ru: () => import('./m-kanon-pokayannyj-ko-gospodu-nashemu-iisusu-xristu.ru'),
+  },
+  'm-molitvy-chitaemye-svyashhennikom-na-ispovedi': {
+    cu: () => import('./m-molitvy-chitaemye-svyashhennikom-na-ispovedi.cu'),
+    ru: () => import('./m-molitvy-chitaemye-svyashhennikom-na-ispovedi.ru'),
+  },
+  'm-pered-ispovedyu': {
+    cu: () => import('./m-pered-ispovedyu.cu'),
+    ru: () => import('./m-pered-ispovedyu.ru'),
+  },
+  'm-posledovanie-ko-svyatomu-prichashheniyu': {
+    ru: () => import('./m-posledovanie-ko-svyatomu-prichashheniyu.ru'),
+  },
+  'm-tri-kanona-pokajannyj-ko-gospodu-nashemu-iisusu-hristu-molebnyj-ko-presvjatej-bogorodice-i-angelu-hranitelju': {
+    cu: () => import('./m-tri-kanona-pokajannyj-ko-gospodu-nashemu-iisusu-hristu-molebnyj-ko-presvjatej-bogorodice-i-angelu-hranitelju.cu'),
+    ru: () => import('./m-tri-kanona-pokajannyj-ko-gospodu-nashemu-iisusu-hristu-molebnyj-ko-presvjatej-bogorodice-i-angelu-hranitelju.ru'),
+  },
+  'm-perevod-tekstov-postnoj-triodi': {
+    cu: () => import('./m-perevod-tekstov-postnoj-triodi.cu'),
+    ru: () => import('./m-perevod-tekstov-postnoj-triodi.ru'),
+  },
+  'm-pesnopeniya-strastnoj-sedmicy': {
+    ru: () => import('./m-pesnopeniya-strastnoj-sedmicy.ru'),
+  },
+  'm-pokajanija-otverzi-mi-dveri': {
+    ru: () => import('./m-pokajanija-otverzi-mi-dveri.ru'),
+  },
+  'm-velikij-kanon-svt-andreya-kritskogo-s-perevodom-na-russkij-yazyk': {
+    ru: () => import('./m-velikij-kanon-svt-andreya-kritskogo-s-perevodom-na-russkij-yazyk.ru'),
+  },
+  'm-o-molitvennom-pravile-v-dni-prazdnovaniya-svyatoj-pasxi': {
+    ru: () => import('./m-o-molitvennom-pravile-v-dni-prazdnovaniya-svyatoj-pasxi.ru'),
+  },
+  'm-pasxalnyj-kanon-tvorenie-ioanna-damaskina': {
+    cu: () => import('./m-pasxalnyj-kanon-tvorenie-ioanna-damaskina.cu'),
+    ru: () => import('./m-pasxalnyj-kanon-tvorenie-ioanna-damaskina.ru'),
+  },
+  'm-molitvennoe-pravilo-dlja-zauchivanija-liturgii': {
+    cu: () => import('./m-molitvennoe-pravilo-dlja-zauchivanija-liturgii.cu'),
+    ru: () => import('./m-molitvennoe-pravilo-dlja-zauchivanija-liturgii.ru'),
+  },
+  'm-molitvennoe-pravilo-dlja-zauchivanija-vsenoshhnogo-bdenija': {
+    cu: () => import('./m-molitvennoe-pravilo-dlja-zauchivanija-vsenoshhnogo-bdenija.cu'),
+    ru: () => import('./m-molitvennoe-pravilo-dlja-zauchivanija-vsenoshhnogo-bdenija.ru'),
+  },
+  'm-molitvennye-pesnopeniya-bogosluzhenij': {
+    ru: () => import('./m-molitvennye-pesnopeniya-bogosluzhenij.ru'),
+  },
+  'm-sovremennyj-perevod-oktoiha-na-cerkovnoslavjanskij-i-russkij-jazyki': {
+    ru: () => import('./m-sovremennyj-perevod-oktoiha-na-cerkovnoslavjanskij-i-russkij-jazyki.ru'),
+  },
+  'm-tebe-boga-hvalim': {
+    cu: () => import('./m-tebe-boga-hvalim.cu'),
+    ru: () => import('./m-tebe-boga-hvalim.ru'),
+  },
+  'm-molitva-bogorodice-o-seme': {
+    cu: () => import('./m-molitva-bogorodice-o-seme.cu'),
+    ru: () => import('./m-molitva-bogorodice-o-seme.ru'),
+  },
+  'm-molitva-devicy-o-zamuzhestve': {
+    cu: () => import('./m-molitva-devicy-o-zamuzhestve.cu'),
+  },
+  'm-molitva-o-darovanii-detej': {
+    cu: () => import('./m-molitva-o-darovanii-detej.cu'),
+    ru: () => import('./m-molitva-o-darovanii-detej.ru'),
+  },
+  'm-molitva-pri-semejnyx-nesoglasiyax': {
+    ru: () => import('./m-molitva-pri-semejnyx-nesoglasiyax.ru'),
+  },
+  'm-molitva-roditelej-o-detjah-nahodjashhihsja-na-voinskoj-sluzhbe': {
+    cu: () => import('./m-molitva-roditelej-o-detjah-nahodjashhihsja-na-voinskoj-sluzhbe.cu'),
+  },
+  'm-molitva-v-godovshhinu-svadby': {
+    cu: () => import('./m-molitva-v-godovshhinu-svadby.cu'),
+  },
+  'm-molitvy-o-blagopoluchii-v-brake': {
+    cu: () => import('./m-molitvy-o-blagopoluchii-v-brake.cu'),
+    ru: () => import('./m-molitvy-o-blagopoluchii-v-brake.ru'),
+  },
+  'm-molitvy-o-celomudrii-i-blagopoluchnom-zamuzhestve-docherej': {
+    cu: () => import('./m-molitvy-o-celomudrii-i-blagopoluchnom-zamuzhestve-docherej.cu'),
+    ru: () => import('./m-molitvy-o-celomudrii-i-blagopoluchnom-zamuzhestve-docherej.ru'),
+  },
+  'm-molitvy-o-detyax-i-krestnikax': {
+    cu: () => import('./m-molitvy-o-detyax-i-krestnikax.cu'),
+    ru: () => import('./m-molitvy-o-detyax-i-krestnikax.ru'),
+  },
+  'm-molitvy-o-razvitii-uma-u-detej': {
+    cu: () => import('./m-molitvy-o-razvitii-uma-u-detej.cu'),
+    ru: () => import('./m-molitvy-o-razvitii-uma-u-detej.ru'),
+  },
+  'm-molitvy-o-semejnom-blagopoluchii': {
+    ru: () => import('./m-molitvy-o-semejnom-blagopoluchii.ru'),
+  },
+  'm-molitvy-o-zdravii-rebenka': {
+    cu: () => import('./m-molitvy-o-zdravii-rebenka.cu'),
+    ru: () => import('./m-molitvy-o-zdravii-rebenka.ru'),
+  },
+  'm-molitvy-v-skorbi-o-nevernosti-supruga': {
+    ru: () => import('./m-molitvy-v-skorbi-o-nevernosti-supruga.ru'),
+  },
+  'm-molitvy-vo-vremya-beremennosti': {
+    cu: () => import('./m-molitvy-vo-vremya-beremennosti.cu'),
+    ru: () => import('./m-molitvy-vo-vremya-beremennosti.ru'),
+  },
+  'm-o-pomoshhi-v-rodax': {
+    cu: () => import('./m-o-pomoshhi-v-rodax.cu'),
+    ru: () => import('./m-o-pomoshhi-v-rodax.ru'),
+  },
+  'm-vozdyhanie-materi-o-svoih-detjah': {
+    cu: () => import('./m-vozdyhanie-materi-o-svoih-detjah.cu'),
+  },
+  'm-kogda-oklevetan-i-osuzhden-nevinno': {
+    ru: () => import('./m-kogda-oklevetan-i-osuzhden-nevinno.ru'),
+  },
+  'm-molitva-pri-napadenii-grabitelej': {
+    cu: () => import('./m-molitva-pri-napadenii-grabitelej.cu'),
+    ru: () => import('./m-molitva-pri-napadenii-grabitelej.ru'),
+  },
+  'm-molitva-pri-potere-ili-propazhe-veshhej': {
+    cu: () => import('./m-molitva-pri-potere-ili-propazhe-veshhej.cu'),
+    ru: () => import('./m-molitva-pri-potere-ili-propazhe-veshhej.ru'),
+  },
+  'm-molitvennoe-pravilo-prepodobnogo-amvrosiya-optinskogo-chitaemoe-vo-vremya-iskushenij': {
+    ru: () => import('./m-molitvennoe-pravilo-prepodobnogo-amvrosiya-optinskogo-chitaemoe-vo-vremya-iskushenij.ru'),
+  },
+  'm-molitvy-na-vsyakuyu-nemoshh': {
+    cu: () => import('./m-molitvy-na-vsyakuyu-nemoshh.cu'),
+    ru: () => import('./m-molitvy-na-vsyakuyu-nemoshh.ru'),
+  },
+  'm-molitvy-o-propavshem-bez-vesti': {
+    ru: () => import('./m-molitvy-o-propavshem-bez-vesti.ru'),
+  },
+  'm-molitvy-o-soxranenii-doma-ot-pozhara': {
+    cu: () => import('./m-molitvy-o-soxranenii-doma-ot-pozhara.cu'),
+    ru: () => import('./m-molitvy-o-soxranenii-doma-ot-pozhara.ru'),
+  },
+  'm-molitvy-o-zhitejskix-neudachax': {
+    cu: () => import('./m-molitvy-o-zhitejskix-neudachax.cu'),
+  },
+  'm-molitvy-pri-golode': {
+    cu: () => import('./m-molitvy-pri-golode.cu'),
+    ru: () => import('./m-molitvy-pri-golode.ru'),
+  },
+  'm-molitvy-uznika-zaklyuchennogo': {
+    cu: () => import('./m-molitvy-uznika-zaklyuchennogo.cu'),
+    ru: () => import('./m-molitvy-uznika-zaklyuchennogo.ru'),
+  },
+  'm-molitvy-v-bednosti-ili-potere-imushhestva': {
+    ru: () => import('./m-molitvy-v-bednosti-ili-potere-imushhestva.ru'),
+  },
+  'm-molitvy-v-opasnosti-ot-dikix-zverej': {
+    cu: () => import('./m-molitvy-v-opasnosti-ot-dikix-zverej.cu'),
+    ru: () => import('./m-molitvy-v-opasnosti-ot-dikix-zverej.ru'),
+  },
+  'm-molitvy-v-trevoge-za-budushhee': {
+    ru: () => import('./m-molitvy-v-trevoge-za-budushhee.ru'),
+  },
+  'm-molitvy-vo-vremya-stixijnyx-bedstvij': {
+    ru: () => import('./m-molitvy-vo-vremya-stixijnyx-bedstvij.ru'),
+  },
+  'm-vo-vremya-bedstviya-i-pri-napadenii-vragov': {
+    ru: () => import('./m-vo-vremya-bedstviya-i-pri-napadenii-vragov.ru'),
+  },
+  'm-vo-vremya-epidemii': {
+    cu: () => import('./m-vo-vremya-epidemii.cu'),
+    ru: () => import('./m-vo-vremya-epidemii.ru'),
+  },
+  'm-12-grecheskih-molitv-ob-iscelenii-bolnyh': {
+    cu: () => import('./m-12-grecheskih-molitv-ob-iscelenii-bolnyh.cu'),
+  },
+  'm-kanon-za-boljashhego': {
+    cu: () => import('./m-kanon-za-boljashhego.cu'),
+    ru: () => import('./m-kanon-za-boljashhego.ru'),
+  },
+  'm-molitva-ob-iscelenii-bolnogo': {
+    cu: () => import('./m-molitva-ob-iscelenii-bolnogo.cu'),
+    ru: () => import('./m-molitva-ob-iscelenii-bolnogo.ru'),
+  },
+  'm-molitva-sxiarximandrita-gavriila-zyryanova-chitaemaya-v-bolezni': {
+    cu: () => import('./m-molitva-sxiarximandrita-gavriila-zyryanova-chitaemaya-v-bolezni.cu'),
+  },
+  'm-molitvy-o-bolyashhix': {
+    cu: () => import('./m-molitvy-o-bolyashhix.cu'),
+    ru: () => import('./m-molitvy-o-bolyashhix.ru'),
+  },
+  'm-molitvy-o-tom-chtoby-s-lyubovyu-uxazhivat-za-bolyashhim': {
+    cu: () => import('./m-molitvy-o-tom-chtoby-s-lyubovyu-uxazhivat-za-bolyashhim.cu'),
+    ru: () => import('./m-molitvy-o-tom-chtoby-s-lyubovyu-uxazhivat-za-bolyashhim.ru'),
+  },
+  'm-molitvy-ob-iscelenii-pri-onkologicheskom-zabolevanii': {
+    cu: () => import('./m-molitvy-ob-iscelenii-pri-onkologicheskom-zabolevanii.cu'),
+    ru: () => import('./m-molitvy-ob-iscelenii-pri-onkologicheskom-zabolevanii.ru'),
+  },
+  'm-molitvy-ot-bessonnitsy': {
+    cu: () => import('./m-molitvy-ot-bessonnitsy.cu'),
+    ru: () => import('./m-molitvy-ot-bessonnitsy.ru'),
+  },
+  'm-molitvy-pri-raznyx-boleznyax': {
+    cu: () => import('./m-molitvy-pri-raznyx-boleznyax.cu'),
+    ru: () => import('./m-molitvy-pri-raznyx-boleznyax.ru'),
+  },
+  'm-proshenie-i-molitva-dlja-blagodarstvennogo-molebna-po-sluchaju-uspeshnogo-sovershenija-hirurgicheskoj-operacii': {
+    cu: () => import('./m-proshenie-i-molitva-dlja-blagodarstvennogo-molebna-po-sluchaju-uspeshnogo-sovershenija-hirurgicheskoj-operacii.cu'),
+    ru: () => import('./m-proshenie-i-molitva-dlja-blagodarstvennogo-molebna-po-sluchaju-uspeshnogo-sovershenija-hirurgicheskoj-operacii.ru'),
+  },
+  'm-molitva-ko-gospodu-i-nekotorym-svyatym-o-puteshestvuyushhix': {
+    cu: () => import('./m-molitva-ko-gospodu-i-nekotorym-svyatym-o-puteshestvuyushhix.cu'),
+    ru: () => import('./m-molitva-ko-gospodu-i-nekotorym-svyatym-o-puteshestvuyushhix.ru'),
+  },
+  'm-molitva-ko-presvjatoj-bogorodice-ot-cheloveka-sobirajushhegosja-v-put': {
+    ru: () => import('./m-molitva-ko-presvjatoj-bogorodice-ot-cheloveka-sobirajushhegosja-v-put.ru'),
+  },
+  'm-molitva-voditelya': {
+    cu: () => import('./m-molitva-voditelya.cu'),
+  },
+  'm-molitvy-puteshestvujushhego': {
+    cu: () => import('./m-molitvy-puteshestvujushhego.cu'),
+    ru: () => import('./m-molitvy-puteshestvujushhego.ru'),
+  },
+  'm-molitvy-o-darovanii-molitvy': {
+    cu: () => import('./m-molitvy-o-darovanii-molitvy.cu'),
+  },
+  'm-molitvy-pri-rasseyanii-nevnimanii-na-molitve': {
+    cu: () => import('./m-molitvy-pri-rasseyanii-nevnimanii-na-molitve.cu'),
+  },
+  'm-molitvy-v-xulnyx-i-inyx-pomyslax-na-molitve': {
+    cu: () => import('./m-molitvy-v-xulnyx-i-inyx-pomyslax-na-molitve.cu'),
+  },
+  'm-molitva-missionera': {
+    cu: () => import('./m-molitva-missionera.cu'),
+  },
+  'm-molitva-o-musulmanah': {
+    cu: () => import('./m-molitva-o-musulmanah.cu'),
+  },
+  'm-molitva-sv-pravednogo-ioanna-kronshtadtskogo-ob-ukreplenii-v-pravoslavnoj-vere-i-edinstve': {
+    cu: () => import('./m-molitva-sv-pravednogo-ioanna-kronshtadtskogo-ob-ukreplenii-v-pravoslavnoj-vere-i-edinstve.cu'),
+  },
+  'm-molitvy-pri-pomyslax-somneniya-v-uchenii-cerkvi-i-istinax-very': {
+    cu: () => import('./m-molitvy-pri-pomyslax-somneniya-v-uchenii-cerkvi-i-istinax-very.cu'),
+    ru: () => import('./m-molitvy-pri-pomyslax-somneniya-v-uchenii-cerkvi-i-istinax-very.ru'),
+  },
+  'm-molitvy-v-pechali-po-bogu': {
+    cu: () => import('./m-molitvy-v-pechali-po-bogu.cu'),
+    ru: () => import('./m-molitvy-v-pechali-po-bogu.ru'),
+  },
+  'm-v-goneniyax-za-veru': {
+    ru: () => import('./m-v-goneniyax-za-veru.ru'),
+  },
+  'm-za-gonitelej-i-prezritelej-very': {
+    cu: () => import('./m-za-gonitelej-i-prezritelej-very.cu'),
+    ru: () => import('./m-za-gonitelej-i-prezritelej-very.ru'),
+  },
+  'm-molitvy-o-cerkovnom-svyashhennonachalii': {
+    cu: () => import('./m-molitvy-o-cerkovnom-svyashhennonachalii.cu'),
+    ru: () => import('./m-molitvy-o-cerkovnom-svyashhennonachalii.ru'),
+  },
+  'm-molitvy-o-duxovnom-otce': {
+    ru: () => import('./m-molitvy-o-duxovnom-otce.ru'),
+  },
+  'm-molitva-v-den-novogo-goda': {
+    cu: () => import('./m-molitva-v-den-novogo-goda.cu'),
+  },
+  'm-v-godovshhinu-kreshheniya': {
+    cu: () => import('./m-v-godovshhinu-kreshheniya.cu'),
+  },
+  'm-molitvy-o-darovanii-terpeniya': {
+    cu: () => import('./m-molitvy-o-darovanii-terpeniya.cu'),
+  },
+  'm-molitvy-v-nedoumenii-kak-postupit': {
+    cu: () => import('./m-molitvy-v-nedoumenii-kak-postupit.cu'),
+  },
+  'm-kogda-zametish-za-soboj-kakoj-grex': {
+    cu: () => import('./m-kogda-zametish-za-soboj-kakoj-grex.cu'),
+  },
+  'm-molebnoe-penie-o-strazhdushhix-nedugom-vinopiyanstva-ili-narkomanii': {
+    ru: () => import('./m-molebnoe-penie-o-strazhdushhix-nedugom-vinopiyanstva-ili-narkomanii.ru'),
+  },
+  'm-molitva-manassii-carja-iudejskogo': {
+    ru: () => import('./m-molitva-manassii-carja-iudejskogo.ru'),
+  },
+  'm-molitva-o-zrenii-grexov-svoix': {
+    cu: () => import('./m-molitva-o-zrenii-grexov-svoix.cu'),
+    ru: () => import('./m-molitva-o-zrenii-grexov-svoix.ru'),
+  },
+  'm-molitva-pri-zavisti-k-blizhnemu-i-setovanii-o-svoix-neudachax': {
+    cu: () => import('./m-molitva-pri-zavisti-k-blizhnemu-i-setovanii-o-svoix-neudachax.cu'),
+  },
+  'm-molitvy-o-chrevougodnike-i-pri-chrevougodii': {
+    cu: () => import('./m-molitvy-o-chrevougodnike-i-pri-chrevougodii.cu'),
+    ru: () => import('./m-molitvy-o-chrevougodnike-i-pri-chrevougodii.ru'),
+  },
+  'm-molitvy-o-gordom-i-stroptivom': {
+    cu: () => import('./m-molitvy-o-gordom-i-stroptivom.cu'),
+  },
+  'm-molitvy-o-pomoshhi-bozhiej-v-ispravlenii-zhizni': {
+    cu: () => import('./m-molitvy-o-pomoshhi-bozhiej-v-ispravlenii-zhizni.cu'),
+    ru: () => import('./m-molitvy-o-pomoshhi-bozhiej-v-ispravlenii-zhizni.ru'),
+  },
+  'm-molitvy-o-srebrolyubivom-i-zhadnom': {
+    cu: () => import('./m-molitvy-o-srebrolyubivom-i-zhadnom.cu'),
+    ru: () => import('./m-molitvy-o-srebrolyubivom-i-zhadnom.ru'),
+  },
+  'm-molitvy-o-zavistlivom': {
+    cu: () => import('./m-molitvy-o-zavistlivom.cu'),
+    ru: () => import('./m-molitvy-o-zavistlivom.ru'),
+  },
+  'm-molitvy-o-zlobnom': {
+    cu: () => import('./m-molitvy-o-zlobnom.cu'),
+  },
+  'm-molitvy-ob-izbavlenii-ot-pyanstva': {
+    cu: () => import('./m-molitvy-ob-izbavlenii-ot-pyanstva.cu'),
+    ru: () => import('./m-molitvy-ob-izbavlenii-ot-pyanstva.ru'),
+  },
+  'm-molitvy-pri-klevete-i-nespravedlivyx-pritesneniyax': {
+    cu: () => import('./m-molitvy-pri-klevete-i-nespravedlivyx-pritesneniyax.cu'),
+  },
+  'm-molitvy-pri-nechistyx-pomyslax': {
+    cu: () => import('./m-molitvy-pri-nechistyx-pomyslax.cu'),
+    ru: () => import('./m-molitvy-pri-nechistyx-pomyslax.ru'),
+  },
+  'm-molitvy-pri-oxlazhdenii-lyubvi-k-blizhnim': {
+    cu: () => import('./m-molitvy-pri-oxlazhdenii-lyubvi-k-blizhnim.cu'),
+    ru: () => import('./m-molitvy-pri-oxlazhdenii-lyubvi-k-blizhnim.ru'),
+  },
+  'm-molitvy-pri-ponosheniyax-ot-blizhnix': {
+    cu: () => import('./m-molitvy-pri-ponosheniyax-ot-blizhnix.cu'),
+  },
+  'm-molitvy-pri-rasslablenii-duxa-i-nechuvstvii-ko-grexu': {
+    cu: () => import('./m-molitvy-pri-rasslablenii-duxa-i-nechuvstvii-ko-grexu.cu'),
+  },
+  'm-molitvy-pri-tshheslavnyx-pomyslax': {
+    cu: () => import('./m-molitvy-pri-tshheslavnyx-pomyslax.cu'),
+    ru: () => import('./m-molitvy-pri-tshheslavnyx-pomyslax.ru'),
+  },
+  'm-molitvy-protiv-koldovstva': {
+    cu: () => import('./m-molitvy-protiv-koldovstva.cu'),
+    ru: () => import('./m-molitvy-protiv-koldovstva.ru'),
+  },
+  'm-molitvy-v-besovskix-napastyax-i-iskusheniyax': {
+    cu: () => import('./m-molitvy-v-besovskix-napastyax-i-iskusheniyax.cu'),
+    ru: () => import('./m-molitvy-v-besovskix-napastyax-i-iskusheniyax.ru'),
+  },
+  'm-molitvy-v-bludnoj-brani': {
+    cu: () => import('./m-molitvy-v-bludnoj-brani.cu'),
+    ru: () => import('./m-molitvy-v-bludnoj-brani.ru'),
+  },
+  'm-molitvy-v-otchayanii': {
+    cu: () => import('./m-molitvy-v-otchayanii.cu'),
+    ru: () => import('./m-molitvy-v-otchayanii.ru'),
+  },
+  'm-molitvy-v-skorbyax-i-dushevnyx-obstoyaniyax': {
+    cu: () => import('./m-molitvy-v-skorbyax-i-dushevnyx-obstoyaniyax.cu'),
+    ru: () => import('./m-molitvy-v-skorbyax-i-dushevnyx-obstoyaniyax.ru'),
+  },
+  'm-molitvy-v-unynii': {
+    cu: () => import('./m-molitvy-v-unynii.cu'),
+    ru: () => import('./m-molitvy-v-unynii.ru'),
+  },
+  'm-o-nenavidyashhix-i-obidyashhix-nas': {
+    ru: () => import('./m-o-nenavidyashhix-i-obidyashhix-nas.ru'),
+  },
+  'm-pravilo-ot-oskvernenija': {
+    cu: () => import('./m-pravilo-ot-oskvernenija.cu'),
+    ru: () => import('./m-pravilo-ot-oskvernenija.ru'),
+  },
+  'm-pri-nemiloserdii-i-razdrazhenii-na-blizhnego': {
+    cu: () => import('./m-pri-nemiloserdii-i-razdrazhenii-na-blizhnego.cu'),
+  },
+  'm-pyatochislennye-molitvy': {
+    cu: () => import('./m-pyatochislennye-molitvy.cu'),
+    ru: () => import('./m-pyatochislennye-molitvy.ru'),
+  },
+  'm-molitva-o-mire-na-svjatoj-zemle': {
+    cu: () => import('./m-molitva-o-mire-na-svjatoj-zemle.cu'),
+  },
+  'm-molitva-o-mire-na-ukraine': {
+    cu: () => import('./m-molitva-o-mire-na-ukraine.cu'),
+    ru: () => import('./m-molitva-o-mire-na-ukraine.ru'),
+  },
+  'm-molitva-o-mire-svt-afanasija-saharova': {
+    cu: () => import('./m-molitva-o-mire-svt-afanasija-saharova.cu'),
+  },
+  'm-molitva-o-vozvrashhenii-mirnyx-vremen': {
+    cu: () => import('./m-molitva-o-vozvrashhenii-mirnyx-vremen.cu'),
+  },
+  'm-molitvy-o-mire-obshhestvennom': {
+    cu: () => import('./m-molitvy-o-mire-obshhestvennom.cu'),
+    ru: () => import('./m-molitvy-o-mire-obshhestvennom.ru'),
+  },
+  'm-molitvy-o-mire-vsego-mira-i-prosveshhenii-narodov-zemli': {
+    cu: () => import('./m-molitvy-o-mire-vsego-mira-i-prosveshhenii-narodov-zemli.cu'),
+  },
+  'm-molitvy-o-primirenii-vrazhduyushhix': {
+    cu: () => import('./m-molitvy-o-primirenii-vrazhduyushhix.cu'),
+    ru: () => import('./m-molitvy-o-primirenii-vrazhduyushhix.ru'),
+  },
+  'm-molitvy-o-rossii': {
+    cu: () => import('./m-molitvy-o-rossii.cu'),
+    ru: () => import('./m-molitvy-o-rossii.ru'),
+  },
+  'm-molitvy-o-umnozhenii-lyubvi-i-iskorenenii-nenavisti-i-vsyakoj-zloby': {
+    cu: () => import('./m-molitvy-o-umnozhenii-lyubvi-i-iskorenenii-nenavisti-i-vsyakoj-zloby.cu'),
+  },
+  'm-molebnoe-penie-po-sluchaju-poiska-raboty': {
+    cu: () => import('./m-molebnoe-penie-po-sluchaju-poiska-raboty.cu'),
+  },
+  'm-molitva-o-rabote': {
+    cu: () => import('./m-molitva-o-rabote.cu'),
+    ru: () => import('./m-molitva-o-rabote.ru'),
+  },
+  'm-molitvy-o-blagoslovenii-bozhiem-nad-domom-i-o-izobilii-v-nem-plodov-zemnyx': {
+    cu: () => import('./m-molitvy-o-blagoslovenii-bozhiem-nad-domom-i-o-izobilii-v-nem-plodov-zemnyx.cu'),
+  },
+  'm-molitvy-o-bozhestvennom-pokrove': {
+    cu: () => import('./m-molitvy-o-bozhestvennom-pokrove.cu'),
+    ru: () => import('./m-molitvy-o-bozhestvennom-pokrove.ru'),
+  },
+  'm-molitvy-o-razreshenii-zatrudnenij-s-zhilem-i-v-inyx-zhitejskix-nuzhdax': {
+    cu: () => import('./m-molitvy-o-razreshenii-zatrudnenij-s-zhilem-i-v-inyx-zhitejskix-nuzhdax.cu'),
+    ru: () => import('./m-molitvy-o-razreshenii-zatrudnenij-s-zhilem-i-v-inyx-zhitejskix-nuzhdax.ru'),
+  },
+  'm-molitvy-o-soxranenii-posevov-i-sadov': {
+    cu: () => import('./m-molitvy-o-soxranenii-posevov-i-sadov.cu'),
+  },
+  'm-molitvy-o-uspexe-v-rybnoj-lovle': {
+    cu: () => import('./m-molitvy-o-uspexe-v-rybnoj-lovle.cu'),
+  },
+  'm-molitvy-ob-uspeshnoj-torgovle': {
+    ru: () => import('./m-molitvy-ob-uspeshnoj-torgovle.ru'),
+  },
+  'm-molitvy-pri-obxozhdenii-zaseyannogo-polya': {
+    cu: () => import('./m-molitvy-pri-obxozhdenii-zaseyannogo-polya.cu'),
+  },
+  'm-molitvy-pri-posledovanii-pri-bezvedrii-prolivnyx-dozhdyax': {
+    cu: () => import('./m-molitvy-pri-posledovanii-pri-bezvedrii-prolivnyx-dozhdyax.cu'),
+  },
+  'm-molitvy-vo-vremya-silnogo-mora-padezha-skota': {
+    cu: () => import('./m-molitvy-vo-vremya-silnogo-mora-padezha-skota.cu'),
+  },
+  'm-molitvy-vo-vremya-zasuxi': {
+    cu: () => import('./m-molitvy-vo-vremya-zasuxi.cu'),
+  },
+  'm-molitvy-pered-jekzamenom': {
+    cu: () => import('./m-molitvy-pered-jekzamenom.cu'),
+    ru: () => import('./m-molitvy-pered-jekzamenom.ru'),
+  },
+  'm-molitvy-uchashhegosja': {
+    cu: () => import('./m-molitvy-uchashhegosja.cu'),
+    ru: () => import('./m-molitvy-uchashhegosja.ru'),
+  },
+  'm-inocheskoe-kelejnoe-pravilo': {
+    cu: () => import('./m-inocheskoe-kelejnoe-pravilo.cu'),
+  },
+  'm-molitvy-v-zhelanii-prinyat-monashestvo': {
+    cu: () => import('./m-molitvy-v-zhelanii-prinyat-monashestvo.cu'),
+  },
+  'm-kratkij-molitvennik-dlya-pravoslavnyx-voinov': {
+    ru: () => import('./m-kratkij-molitvennik-dlya-pravoslavnyx-voinov.ru'),
+  },
+  'm-molitvoslov-pravoslavnogo-voina': {
+    ru: () => import('./m-molitvoslov-pravoslavnogo-voina.ru'),
+  },
+  'm-molitvy-o-plennyh': {
+    cu: () => import('./m-molitvy-o-plennyh.cu'),
+    ru: () => import('./m-molitvy-o-plennyh.ru'),
+  },
+  'm-molitvy-o-voinax': {
+    cu: () => import('./m-molitvy-o-voinax.cu'),
+    ru: () => import('./m-molitvy-o-voinax.ru'),
+  },
+  'm-posledovanie-blagodarstvennago-i-molebnago-peniya-ko-gospodu-bogu-pevaemago-v-den-pobedy-v-velikoj-otechestvennoj-vojne': {
+    ru: () => import('./m-posledovanie-blagodarstvennago-i-molebnago-peniya-ko-gospodu-bogu-pevaemago-v-den-pobedy-v-velikoj-otechestvennoj-vojne.ru'),
+  },
+  'm-chin-litii-sovershaemoj-miryaninom-doma-i-na-kladbishhe': {
+    cu: () => import('./m-chin-litii-sovershaemoj-miryaninom-doma-i-na-kladbishhe.cu'),
+    ru: () => import('./m-chin-litii-sovershaemoj-miryaninom-doma-i-na-kladbishhe.ru'),
+  },
+  'm-molitva-detej-ob-usopshix-roditelyax': {
+    cu: () => import('./m-molitva-detej-ob-usopshix-roditelyax.cu'),
+    ru: () => import('./m-molitva-detej-ob-usopshix-roditelyax.ru'),
+  },
+  'm-molitva-ob-upokoenii-dushi-blizhnego': {
+    cu: () => import('./m-molitva-ob-upokoenii-dushi-blizhnego.cu'),
+    ru: () => import('./m-molitva-ob-upokoenii-dushi-blizhnego.ru'),
+  },
+  'm-molitva-vdovca': {
+    cu: () => import('./m-molitva-vdovca.cu'),
+  },
+  'm-molitva-vdovy': {
+    cu: () => import('./m-molitva-vdovy.cu'),
+  },
+  'm-molitva-za-skonchavshixsya-vnezapnoj-skoropostizhnoj-smertyu': {
+    cu: () => import('./m-molitva-za-skonchavshixsya-vnezapnoj-skoropostizhnoj-smertyu.cu'),
+    ru: () => import('./m-molitva-za-skonchavshixsya-vnezapnoj-skoropostizhnoj-smertyu.ru'),
+  },
+  'm-molitvy-o-umershix': {
+    cu: () => import('./m-molitvy-o-umershix.cu'),
+    ru: () => import('./m-molitvy-o-umershix.ru'),
+  },
+  'm-molitvy-pri-potere-kormilca': {
+    cu: () => import('./m-molitvy-pri-potere-kormilca.cu'),
+  },
+  'm-panixida-dlya-chteniya-miryanami': {
+    cu: () => import('./m-panixida-dlya-chteniya-miryanami.cu'),
+    ru: () => import('./m-panixida-dlya-chteniya-miryanami.ru'),
+  },
+  'm-posledovanie-po-isxode-dushi-ot-tela-chitaemoe-miryaninom': {
+    cu: () => import('./m-posledovanie-po-isxode-dushi-ot-tela-chitaemoe-miryaninom.cu'),
+    ru: () => import('./m-posledovanie-po-isxode-dushi-ot-tela-chitaemoe-miryaninom.ru'),
+  },
+  'm-v-ozhidanii-konchiny': {
+    cu: () => import('./m-v-ozhidanii-konchiny.cu'),
+  },
+  'm-kanon-umilitelnyj-ko-presvjatej-bogorodice-chtomyj-zhenoju-pogubivsheju-chado-vo-utrobe-svoej': {
+    cu: () => import('./m-kanon-umilitelnyj-ko-presvjatej-bogorodice-chtomyj-zhenoju-pogubivsheju-chado-vo-utrobe-svoej.cu'),
+  },
+  'm-molitva-roditelej-o-pochivshix-detyax': {
+    cu: () => import('./m-molitva-roditelej-o-pochivshix-detyax.cu'),
+  },
+  'm-molitvy-zhenshhin-sovershivshix-abort-posle-abortov': {
+    ru: () => import('./m-molitvy-zhenshhin-sovershivshix-abort-posle-abortov.ru'),
+  },
+  'm-kanon-o-samovolne-zhivot-svoj-skonchavshih': {
+    cu: () => import('./m-kanon-o-samovolne-zhivot-svoj-skonchavshih.cu'),
+    ru: () => import('./m-kanon-o-samovolne-zhivot-svoj-skonchavshih.ru'),
+  },
+  'm-kanon-molebnyj-ko-gospodu-iisusu-xristu-i-prechistoj-bogorodice-materi-gospodni-pri-razluchenii-dushi-ot-tela': {
+    cu: () => import('./m-kanon-molebnyj-ko-gospodu-iisusu-xristu-i-prechistoj-bogorodice-materi-gospodni-pri-razluchenii-dushi-ot-tela.cu'),
+    ru: () => import('./m-kanon-molebnyj-ko-gospodu-iisusu-xristu-i-prechistoj-bogorodice-materi-gospodni-pri-razluchenii-dushi-ot-tela.ru'),
+  },
+  'm-kanon-o-usopshih-mnogih': {
+    cu: () => import('./m-kanon-o-usopshih-mnogih.cu'),
+  },
+  'm-kanon-po-isxode-dushi-ot-tela': {
+    cu: () => import('./m-kanon-po-isxode-dushi-ot-tela.cu'),
+  },
+  'm-kanon-za-edinoumershego-ob-usopshem': {
+    cu: () => import('./m-kanon-za-edinoumershego-ob-usopshem.cu'),
+    ru: () => import('./m-kanon-za-edinoumershego-ob-usopshem.ru'),
+  },
+  'm-molitvennoe-posledovanie-s-kanonom-pokayannym-o-grexe-ubijstva-chad-vo-utrobe-aborte': {
+    ru: () => import('./m-molitvennoe-posledovanie-s-kanonom-pokayannym-o-grexe-ubijstva-chad-vo-utrobe-aborte.ru'),
+  },
+  'm-akafist-iisusu-sladchajshemu': {
+    cu: () => import('./m-akafist-iisusu-sladchajshemu.cu'),
+    ru: () => import('./m-akafist-iisusu-sladchajshemu.ru'),
+  },
+  'm-akafist-presvyatoj-bogorodice-s-kommentariyami': {
+    ru: () => import('./m-akafist-presvyatoj-bogorodice-s-kommentariyami.ru'),
+  },
+  'm-akafist-slava-bogu-za-vsyo': {
+    cu: () => import('./m-akafist-slava-bogu-za-vsyo.cu'),
+  },
+  'm-akafisty-v-pravoslavnom-kalendare': {
+    ru: () => import('./m-akafisty-v-pravoslavnom-kalendare.ru'),
+  },
+  'm-bolshoj-afonskij-molitvoslov': {
+    cu: () => import('./m-bolshoj-afonskij-molitvoslov.cu'),
+  },
+  'm-chin-kelejnogo-chtenija-kanonov-i-akafistov': {
+    cu: () => import('./m-chin-kelejnogo-chtenija-kanonov-i-akafistov.cu'),
+  },
+  'm-kak-gotovit-pishhu-s-molitvoj': {
+    cu: () => import('./m-kak-gotovit-pishhu-s-molitvoj.cu'),
+  },
+  'm-kanon-pokajannyj-ko-presvjatoj-bogorodice': {
+    cu: () => import('./m-kanon-pokajannyj-ko-presvjatoj-bogorodice.cu'),
+  },
+  'm-molitva-ezhednevnaya-ierosximonaxa-parfeniya-kievskogo': {
+    ru: () => import('./m-molitva-ezhednevnaya-ierosximonaxa-parfeniya-kievskogo.ru'),
+  },
+  'm-molitva-ezhednevnaya-svyatitelya-filareta-drozdova': {
+    cu: () => import('./m-molitva-ezhednevnaya-svyatitelya-filareta-drozdova.cu'),
+  },
+  'm-molitva-sv-amvrosija-mediolanskogo-presviteram-gotovjashhimsja-k-sluzheniju-liturgii': {
+    cu: () => import('./m-molitva-sv-amvrosija-mediolanskogo-presviteram-gotovjashhimsja-k-sluzheniju-liturgii.cu'),
+  },
+  'm-molitvy-chitaemye-na-molebnah': {
+    ru: () => import('./m-molitvy-chitaemye-na-molebnah.ru'),
+  },
+  'm-molitvy-i-bogomysliya-k-nim-svyatitelya-tixona-zadonskogo': {
+    cu: () => import('./m-molitvy-i-bogomysliya-k-nim-svyatitelya-tixona-zadonskogo.cu'),
+  },
+  'm-molitvy-prepodobnogo-siluana-afonskogo': {
+    cu: () => import('./m-molitvy-prepodobnogo-siluana-afonskogo.cu'),
+  },
+  'm-molitvy-serbskix-svyatyx': {
+    cu: () => import('./m-molitvy-serbskix-svyatyx.cu'),
+  },
+  'm-molitvy-sv-pravednogo-ioanna-kronshtadtskogo': {
+    cu: () => import('./m-molitvy-sv-pravednogo-ioanna-kronshtadtskogo.cu'),
+  },
+  'm-molitvy-zvonarya': {
+    cu: () => import('./m-molitvy-zvonarya.cu'),
+  },
+  'm-redkie-molitvy-velikix-russkix-svyatyx-i-podvizhnikov-blagochestiya': {
+    cu: () => import('./m-redkie-molitvy-velikix-russkix-svyatyx-i-podvizhnikov-blagochestiya.cu'),
+  },
+  'm-molitva-angelu-xranitelyu': {
+    cu: () => import('./m-molitva-angelu-xranitelyu.cu'),
+    ru: () => import('./m-molitva-angelu-xranitelyu.ru'),
+  },
+  'm-molitvy-angelam-na-kazhdyj-den-nedeli': {
+    cu: () => import('./m-molitvy-angelam-na-kazhdyj-den-nedeli.cu'),
+    ru: () => import('./m-molitvy-angelam-na-kazhdyj-den-nedeli.ru'),
+  },
+  'm-molitvy-nebesnym-silam-besplotnym': {
+    cu: () => import('./m-molitvy-nebesnym-silam-besplotnym.cu'),
+    ru: () => import('./m-molitvy-nebesnym-silam-besplotnym.ru'),
+  },
+  'm-molitva-40-muchenikam-sevastijskim': {
+    cu: () => import('./m-molitva-40-muchenikam-sevastijskim.cu'),
+    ru: () => import('./m-molitva-40-muchenikam-sevastijskim.ru'),
+  },
+  'm-molitva-apostolu-andreyu-pervozvannomu': {
+    cu: () => import('./m-molitva-apostolu-andreyu-pervozvannomu.cu'),
+    ru: () => import('./m-molitva-apostolu-andreyu-pervozvannomu.ru'),
+  },
+  'm-molitva-bessrebrenikam-i-chudotvorcam-kosme-i-damianu': {
+    cu: () => import('./m-molitva-bessrebrenikam-i-chudotvorcam-kosme-i-damianu.cu'),
+    ru: () => import('./m-molitva-bessrebrenikam-i-chudotvorcam-kosme-i-damianu.ru'),
+  },
+  'm-molitva-blagovernoj-knyagine-anne-kashinskoj': {
+    cu: () => import('./m-molitva-blagovernoj-knyagine-anne-kashinskoj.cu'),
+    ru: () => import('./m-molitva-blagovernoj-knyagine-anne-kashinskoj.ru'),
+  },
+  'm-molitva-blagovernomu-knyazyu-daniilu-moskovskomu': {
+    cu: () => import('./m-molitva-blagovernomu-knyazyu-daniilu-moskovskomu.cu'),
+    ru: () => import('./m-molitva-blagovernomu-knyazyu-daniilu-moskovskomu.ru'),
+  },
+  'm-molitva-blagovernomu-velikomu-knyazyu-aleksandru-nevskomu': {
+    cu: () => import('./m-molitva-blagovernomu-velikomu-knyazyu-aleksandru-nevskomu.cu'),
+    ru: () => import('./m-molitva-blagovernomu-velikomu-knyazyu-aleksandru-nevskomu.ru'),
+  },
+  'm-molitva-blagovernym-knyazyam-borisu-i-glebu': {
+    cu: () => import('./m-molitva-blagovernym-knyazyam-borisu-i-glebu.cu'),
+    ru: () => import('./m-molitva-blagovernym-knyazyam-borisu-i-glebu.ru'),
+  },
+  'm-molitva-blagovernym-knyazyu-petru-i-knyagine-fevronii-muromskim': {
+    cu: () => import('./m-molitva-blagovernym-knyazyu-petru-i-knyagine-fevronii-muromskim.cu'),
+    ru: () => import('./m-molitva-blagovernym-knyazyu-petru-i-knyagine-fevronii-muromskim.ru'),
+  },
+  'm-molitva-blazhennoj-ksenii-peterburgskoj': {
+    cu: () => import('./m-molitva-blazhennoj-ksenii-peterburgskoj.cu'),
+    ru: () => import('./m-molitva-blazhennoj-ksenii-peterburgskoj.ru'),
+  },
+  'm-molitva-blazhennoj-matrone-moskovskoj': {
+    ru: () => import('./m-molitva-blazhennoj-matrone-moskovskoj.ru'),
+  },
+  'm-molitva-blazhennomu-vasiliyu-xrista-radi-yurodivomu': {
+    cu: () => import('./m-molitva-blazhennomu-vasiliyu-xrista-radi-yurodivomu.cu'),
+    ru: () => import('./m-molitva-blazhennomu-vasiliyu-xrista-radi-yurodivomu.ru'),
+  },
+  'm-molitva-muchenicam-vere-nadezhde-lyubovi-i-materi-ix-sofii': {
+    cu: () => import('./m-molitva-muchenicam-vere-nadezhde-lyubovi-i-materi-ix-sofii.cu'),
+    ru: () => import('./m-molitva-muchenicam-vere-nadezhde-lyubovi-i-materi-ix-sofii.ru'),
+  },
+  'm-molitva-muchenice-carice-aleksandre': {
+    cu: () => import('./m-molitva-muchenice-carice-aleksandre.cu'),
+    ru: () => import('./m-molitva-muchenice-carice-aleksandre.ru'),
+  },
+  'm-molitva-muchenice-fomaide-egipetskoj': {
+    cu: () => import('./m-molitva-muchenice-fomaide-egipetskoj.cu'),
+  },
+  'm-molitva-muchenice-lyudmile-knyagine-cheshskoj': {
+    cu: () => import('./m-molitva-muchenice-lyudmile-knyagine-cheshskoj.cu'),
+    ru: () => import('./m-molitva-muchenice-lyudmile-knyagine-cheshskoj.ru'),
+  },
+  'm-molitva-muchenice-paraskeve-narechennoj-pyatnica': {
+    cu: () => import('./m-molitva-muchenice-paraskeve-narechennoj-pyatnica.cu'),
+    ru: () => import('./m-molitva-muchenice-paraskeve-narechennoj-pyatnica.ru'),
+  },
+  'm-molitva-muchenice-tatiane': {
+    cu: () => import('./m-molitva-muchenice-tatiane.cu'),
+    ru: () => import('./m-molitva-muchenice-tatiane.ru'),
+  },
+  'm-molitva-muchenikam-adrianu-i-natalii': {
+    cu: () => import('./m-molitva-muchenikam-adrianu-i-natalii.cu'),
+    ru: () => import('./m-molitva-muchenikam-adrianu-i-natalii.ru'),
+  },
+  'm-molitva-muchenikam-bessrebrenikam-kosme-i-damianu-rimskim': {
+    cu: () => import('./m-molitva-muchenikam-bessrebrenikam-kosme-i-damianu-rimskim.cu'),
+    ru: () => import('./m-molitva-muchenikam-bessrebrenikam-kosme-i-damianu-rimskim.ru'),
+  },
+  'm-molitva-muchenikam-i-ispovednikam-guriyu-samonu-i-avivu': {
+    cu: () => import('./m-molitva-muchenikam-i-ispovednikam-guriyu-samonu-i-avivu.cu'),
+    ru: () => import('./m-molitva-muchenikam-i-ispovednikam-guriyu-samonu-i-avivu.ru'),
+  },
+  'm-molitva-mucheniku-ioannu-voinu': {
+    cu: () => import('./m-molitva-mucheniku-ioannu-voinu.cu'),
+    ru: () => import('./m-molitva-mucheniku-ioannu-voinu.ru'),
+  },
+  'm-molitva-mucheniku-mladencu-gavriilu-belostokskomu': {
+    cu: () => import('./m-molitva-mucheniku-mladencu-gavriilu-belostokskomu.cu'),
+    ru: () => import('./m-molitva-mucheniku-mladencu-gavriilu-belostokskomu.ru'),
+  },
+  'm-molitva-mucheniku-trifonu': {
+    cu: () => import('./m-molitva-mucheniku-trifonu.cu'),
+    ru: () => import('./m-molitva-mucheniku-trifonu.ru'),
+  },
+  'm-molitva-mucheniku-vonifatiyu': {
+    cu: () => import('./m-molitva-mucheniku-vonifatiyu.cu'),
+    ru: () => import('./m-molitva-mucheniku-vonifatiyu.ru'),
+  },
+  'm-molitva-novomuchenikam-i-ispovednikam-rossijskim': {
+    cu: () => import('./m-molitva-novomuchenikam-i-ispovednikam-rossijskim.cu'),
+    ru: () => import('./m-molitva-novomuchenikam-i-ispovednikam-rossijskim.ru'),
+  },
+  'm-molitva-pervomucheniku-i-arxidiakonu-stefanu': {
+    cu: () => import('./m-molitva-pervomucheniku-i-arxidiakonu-stefanu.cu'),
+    ru: () => import('./m-molitva-pervomucheniku-i-arxidiakonu-stefanu.ru'),
+  },
+  'm-molitva-pervoverxovnym-apostolam-petru-i-pavlu': {
+    cu: () => import('./m-molitva-pervoverxovnym-apostolam-petru-i-pavlu.cu'),
+    ru: () => import('./m-molitva-pervoverxovnym-apostolam-petru-i-pavlu.ru'),
+  },
+  'm-molitva-pravednomu-ioannu-kronshtadtskomu': {
+    cu: () => import('./m-molitva-pravednomu-ioannu-kronshtadtskomu.cu'),
+    ru: () => import('./m-molitva-pravednomu-ioannu-kronshtadtskomu.ru'),
+  },
+  'm-molitva-pravednomu-ioannu-russkomu': {
+    cu: () => import('./m-molitva-pravednomu-ioannu-russkomu.cu'),
+    ru: () => import('./m-molitva-pravednomu-ioannu-russkomu.ru'),
+  },
+  'm-molitva-pravednomu-simeonu-bogopriimcu': {
+    cu: () => import('./m-molitva-pravednomu-simeonu-bogopriimcu.cu'),
+    ru: () => import('./m-molitva-pravednomu-simeonu-bogopriimcu.ru'),
+  },
+  'm-molitva-pravednym-ioakimu-i-anne': {
+    cu: () => import('./m-molitva-pravednym-ioakimu-i-anne.cu'),
+    ru: () => import('./m-molitva-pravednym-ioakimu-i-anne.ru'),
+  },
+  'm-molitva-prepodobnoj-evfrosinii-igumenii-polockoj': {
+    cu: () => import('./m-molitva-prepodobnoj-evfrosinii-igumenii-polockoj.cu'),
+    ru: () => import('./m-molitva-prepodobnoj-evfrosinii-igumenii-polockoj.ru'),
+  },
+  'm-molitva-prepodobnoj-marii-egipetskoj': {
+    cu: () => import('./m-molitva-prepodobnoj-marii-egipetskoj.cu'),
+    ru: () => import('./m-molitva-prepodobnoj-marii-egipetskoj.ru'),
+  },
+  'm-molitva-prepodobnomu-aleksandru-svirskomu': {
+    cu: () => import('./m-molitva-prepodobnomu-aleksandru-svirskomu.cu'),
+    ru: () => import('./m-molitva-prepodobnomu-aleksandru-svirskomu.ru'),
+  },
+  'm-molitva-prepodobnomu-iosifu-igumenu-volockomu': {
+    cu: () => import('./m-molitva-prepodobnomu-iosifu-igumenu-volockomu.cu'),
+    ru: () => import('./m-molitva-prepodobnomu-iosifu-igumenu-volockomu.ru'),
+  },
+  'm-molitva-prepodobnomu-iovu-igumenu-pochaevskomu': {
+    cu: () => import('./m-molitva-prepodobnomu-iovu-igumenu-pochaevskomu.cu'),
+    ru: () => import('./m-molitva-prepodobnomu-iovu-igumenu-pochaevskomu.ru'),
+  },
+  'm-molitva-prepodobnomu-nilu-sorskomu': {
+    cu: () => import('./m-molitva-prepodobnomu-nilu-sorskomu.cu'),
+    ru: () => import('./m-molitva-prepodobnomu-nilu-sorskomu.ru'),
+  },
+  'm-molitva-prepodobnomu-serafimu-sarovskomu': {
+    cu: () => import('./m-molitva-prepodobnomu-serafimu-sarovskomu.cu'),
+    ru: () => import('./m-molitva-prepodobnomu-serafimu-sarovskomu.ru'),
+  },
+  'm-molitva-prepodobnomu-sergiyu-igumenu-radonezhskomu': {
+    cu: () => import('./m-molitva-prepodobnomu-sergiyu-igumenu-radonezhskomu.cu'),
+    ru: () => import('./m-molitva-prepodobnomu-sergiyu-igumenu-radonezhskomu.ru'),
+  },
+  'm-molitva-prepodobnomu-siluanu-afonskomu': {
+    cu: () => import('./m-molitva-prepodobnomu-siluanu-afonskomu.cu'),
+    ru: () => import('./m-molitva-prepodobnomu-siluanu-afonskomu.ru'),
+  },
+  'm-molitva-prepodobnomuchenicam-velikoj-knyagine-elisavete-i-inokine-varvare': {
+    cu: () => import('./m-molitva-prepodobnomuchenicam-velikoj-knyagine-elisavete-i-inokine-varvare.cu'),
+    ru: () => import('./m-molitva-prepodobnomuchenicam-velikoj-knyagine-elisavete-i-inokine-varvare.ru'),
+  },
+  'm-molitva-prepodobnomucheniku-korniliyu-pskovo-pecherskomu': {
+    cu: () => import('./m-molitva-prepodobnomucheniku-korniliyu-pskovo-pecherskomu.cu'),
+    ru: () => import('./m-molitva-prepodobnomucheniku-korniliyu-pskovo-pecherskomu.ru'),
+  },
+  'm-molitva-prepodobnym-antoniyu-i-feodosiyu-pecherskim': {
+    cu: () => import('./m-molitva-prepodobnym-antoniyu-i-feodosiyu-pecherskim.cu'),
+    ru: () => import('./m-molitva-prepodobnym-antoniyu-i-feodosiyu-pecherskim.ru'),
+  },
+  'm-molitva-prepodobnym-sergiyu-i-germanu-valaamskim': {
+    cu: () => import('./m-molitva-prepodobnym-sergiyu-i-germanu-valaamskim.cu'),
+    ru: () => import('./m-molitva-prepodobnym-sergiyu-i-germanu-valaamskim.ru'),
+  },
+  'm-molitva-prepodobnym-zosime-i-savvatiyu-soloveckim': {
+    cu: () => import('./m-molitva-prepodobnym-zosime-i-savvatiyu-soloveckim.cu'),
+    ru: () => import('./m-molitva-prepodobnym-zosime-i-savvatiyu-soloveckim.ru'),
+  },
+  'm-molitva-proroku-ilii': {
+    cu: () => import('./m-molitva-proroku-ilii.cu'),
+    ru: () => import('./m-molitva-proroku-ilii.ru'),
+  },
+  'm-molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu': {
+    cu: () => import('./m-molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.cu'),
+    ru: () => import('./m-molitva-proroku-predteche-i-krestitelyu-gospodnyu-ioannu.ru'),
+  },
+  'm-molitva-ravnoapostolnoj-marii-magdaline': {
+    cu: () => import('./m-molitva-ravnoapostolnoj-marii-magdaline.cu'),
+    ru: () => import('./m-molitva-ravnoapostolnoj-marii-magdaline.ru'),
+  },
+  'm-molitva-ravnoapostolnoj-nine': {
+    cu: () => import('./m-molitva-ravnoapostolnoj-nine.cu'),
+    ru: () => import('./m-molitva-ravnoapostolnoj-nine.ru'),
+  },
+  'm-molitva-ravnoapostolnoj-olge-velikoj-knyagine-rossijskoj': {
+    cu: () => import('./m-molitva-ravnoapostolnoj-olge-velikoj-knyagine-rossijskoj.cu'),
+    ru: () => import('./m-molitva-ravnoapostolnoj-olge-velikoj-knyagine-rossijskoj.ru'),
+  },
+  'm-molitva-ravnoapostolnomu-caryu-konstantinu-i-materi-ego-carice-elene': {
+    cu: () => import('./m-molitva-ravnoapostolnomu-caryu-konstantinu-i-materi-ego-carice-elene.cu'),
+    ru: () => import('./m-molitva-ravnoapostolnomu-caryu-konstantinu-i-materi-ego-carice-elene.ru'),
+  },
+  'm-molitva-ravnoapostolnomu-velikomu-knyazyu-vladimiru': {
+    cu: () => import('./m-molitva-ravnoapostolnomu-velikomu-knyazyu-vladimiru.cu'),
+    ru: () => import('./m-molitva-ravnoapostolnomu-velikomu-knyazyu-vladimiru.ru'),
+  },
+  'm-molitva-ravnoapostolnym-kirillu-i-mefodiyu': {
+    cu: () => import('./m-molitva-ravnoapostolnym-kirillu-i-mefodiyu.cu'),
+    ru: () => import('./m-molitva-ravnoapostolnym-kirillu-i-mefodiyu.ru'),
+  },
+  'm-molitva-soboru-optinskix-starcev': {
+    cu: () => import('./m-molitva-soboru-optinskix-starcev.cu'),
+    ru: () => import('./m-molitva-soboru-optinskix-starcev.ru'),
+  },
+  'm-molitva-svyashhennomucheniku-antipe-episkopu-pergamskomu': {
+    cu: () => import('./m-molitva-svyashhennomucheniku-antipe-episkopu-pergamskomu.cu'),
+    ru: () => import('./m-molitva-svyashhennomucheniku-antipe-episkopu-pergamskomu.ru'),
+  },
+  'm-molitva-svyashhennomucheniku-ermogenu-patriarxu': {
+    cu: () => import('./m-molitva-svyashhennomucheniku-ermogenu-patriarxu.cu'),
+    ru: () => import('./m-molitva-svyashhennomucheniku-ermogenu-patriarxu.ru'),
+  },
+  'm-molitva-svyashhennomucheniku-kiprianu-i-muchenice-iustine': {
+    cu: () => import('./m-molitva-svyashhennomucheniku-kiprianu-i-muchenice-iustine.cu'),
+    ru: () => import('./m-molitva-svyashhennomucheniku-kiprianu-i-muchenice-iustine.ru'),
+  },
+  'm-molitva-svyatitelyam-vasiliyu-velikomu-grigoriyu-bogoslovu-i-ioannu-zlatoustomu': {
+    cu: () => import('./m-molitva-svyatitelyam-vasiliyu-velikomu-grigoriyu-bogoslovu-i-ioannu-zlatoustomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyam-vasiliyu-velikomu-grigoriyu-bogoslovu-i-ioannu-zlatoustomu.ru'),
+  },
+  'm-molitva-svyatitelyu-aleksiyu-mitropolitu-moskovskomu-i-vseya-rossii': {
+    cu: () => import('./m-molitva-svyatitelyu-aleksiyu-mitropolitu-moskovskomu-i-vseya-rossii.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-aleksiyu-mitropolitu-moskovskomu-i-vseya-rossii.ru'),
+  },
+  'm-molitva-svyatitelyu-dimitriyu-mitropolitu-rostovskomu': {
+    cu: () => import('./m-molitva-svyatitelyu-dimitriyu-mitropolitu-rostovskomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-dimitriyu-mitropolitu-rostovskomu.ru'),
+  },
+  'm-molitva-svyatitelyu-dionisiyu-arxiepiskopu-suzdalskomu': {
+    cu: () => import('./m-molitva-svyatitelyu-dionisiyu-arxiepiskopu-suzdalskomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-dionisiyu-arxiepiskopu-suzdalskomu.ru'),
+  },
+  'm-molitva-svyatitelyu-filaretu-mitropolitu-moskovskomu': {
+    cu: () => import('./m-molitva-svyatitelyu-filaretu-mitropolitu-moskovskomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-filaretu-mitropolitu-moskovskomu.ru'),
+  },
+  'm-molitva-svyatitelyu-ignatiyu-bryanchaninovu': {
+    cu: () => import('./m-molitva-svyatitelyu-ignatiyu-bryanchaninovu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-ignatiyu-bryanchaninovu.ru'),
+  },
+  'm-molitva-svyatitelyu-innokentiyu-mitropolitu-moskovskomu': {
+    cu: () => import('./m-molitva-svyatitelyu-innokentiyu-mitropolitu-moskovskomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-innokentiyu-mitropolitu-moskovskomu.ru'),
+  },
+  'm-molitva-svyatitelyu-ioannu-milostivomu': {
+    cu: () => import('./m-molitva-svyatitelyu-ioannu-milostivomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-ioannu-milostivomu.ru'),
+  },
+  'm-molitva-svyatitelyu-ioasafu-episkopu-belgorodskomu': {
+    cu: () => import('./m-molitva-svyatitelyu-ioasafu-episkopu-belgorodskomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-ioasafu-episkopu-belgorodskomu.ru'),
+  },
+  'm-molitva-svyatitelyu-mitrofanu-episkopu-voronezhskomu': {
+    cu: () => import('./m-molitva-svyatitelyu-mitrofanu-episkopu-voronezhskomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-mitrofanu-episkopu-voronezhskomu.ru'),
+  },
+  'm-molitva-svyatitelyu-nektariyu-eginskomu': {
+    cu: () => import('./m-molitva-svyatitelyu-nektariyu-eginskomu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-nektariyu-eginskomu.ru'),
+  },
+  'm-molitva-svyatitelyu-nikolayu-arxiepiskopu-mir-likijskix-chudotvorcu': {
+    cu: () => import('./m-molitva-svyatitelyu-nikolayu-arxiepiskopu-mir-likijskix-chudotvorcu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-nikolayu-arxiepiskopu-mir-likijskix-chudotvorcu.ru'),
+  },
+  'm-molitva-svyatitelyu-spiridonu-episkopu-trimifuntskomu-chudotvorcu': {
+    cu: () => import('./m-molitva-svyatitelyu-spiridonu-episkopu-trimifuntskomu-chudotvorcu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-spiridonu-episkopu-trimifuntskomu-chudotvorcu.ru'),
+  },
+  'm-molitva-svyatitelyu-tixonu-patriarxu': {
+    cu: () => import('./m-molitva-svyatitelyu-tixonu-patriarxu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-tixonu-patriarxu.ru'),
+  },
+  'm-molitva-svyatitelyu-tixonu-zadonskomu-chudotvorcu': {
+    cu: () => import('./m-molitva-svyatitelyu-tixonu-zadonskomu-chudotvorcu.cu'),
+    ru: () => import('./m-molitva-svyatitelyu-tixonu-zadonskomu-chudotvorcu.ru'),
+  },
+  'm-molitva-svyatym-zhenam-mironosicam-marfe-i-marii': {
+    cu: () => import('./m-molitva-svyatym-zhenam-mironosicam-marfe-i-marii.cu'),
+  },
+  'm-molitva-velikomuchenice-anastasii-uzoreshitelnice': {
+    cu: () => import('./m-molitva-velikomuchenice-anastasii-uzoreshitelnice.cu'),
+    ru: () => import('./m-molitva-velikomuchenice-anastasii-uzoreshitelnice.ru'),
+  },
+  'm-molitva-velikomuchenice-ekaterine': {
+    cu: () => import('./m-molitva-velikomuchenice-ekaterine.cu'),
+    ru: () => import('./m-molitva-velikomuchenice-ekaterine.ru'),
+  },
+  'm-molitva-velikomuchenice-varvare': {
+    cu: () => import('./m-molitva-velikomuchenice-varvare.cu'),
+    ru: () => import('./m-molitva-velikomuchenice-varvare.ru'),
+  },
+  'm-molitva-velikomucheniku-dimitriyu-solunskomu': {
+    cu: () => import('./m-molitva-velikomucheniku-dimitriyu-solunskomu.cu'),
+    ru: () => import('./m-molitva-velikomucheniku-dimitriyu-solunskomu.ru'),
+  },
+  'm-molitva-velikomucheniku-georgiyu-pobedonoscu': {
+    cu: () => import('./m-molitva-velikomucheniku-georgiyu-pobedonoscu.cu'),
+    ru: () => import('./m-molitva-velikomucheniku-georgiyu-pobedonoscu.ru'),
+  },
+  'm-molitva-velikomucheniku-i-celitelyu-panteleimonu': {
+    cu: () => import('./m-molitva-velikomucheniku-i-celitelyu-panteleimonu.cu'),
+    ru: () => import('./m-molitva-velikomucheniku-i-celitelyu-panteleimonu.ru'),
+  },
+  'm-molitva-vsem-svyatym-ot-veka-bogu-blagougodivshim': {
+    cu: () => import('./m-molitva-vsem-svyatym-ot-veka-bogu-blagougodivshim.cu'),
+    ru: () => import('./m-molitva-vsem-svyatym-ot-veka-bogu-blagougodivshim.ru'),
+  },
+  'm-molitva-vsem-svyatym-v-zemle-rossijskoj-prosiyavshim': {
+    cu: () => import('./m-molitva-vsem-svyatym-v-zemle-rossijskoj-prosiyavshim.cu'),
+    ru: () => import('./m-molitva-vsem-svyatym-v-zemle-rossijskoj-prosiyavshim.ru'),
+  },
+  'm-molitvy-12-apostolam': {
+    cu: () => import('./m-molitvy-12-apostolam.cu'),
+    ru: () => import('./m-molitvy-12-apostolam.ru'),
+  },
+  'm-molitvy-apostolu-fome-didimu-bliznecu': {
+    cu: () => import('./m-molitvy-apostolu-fome-didimu-bliznecu.cu'),
+    ru: () => import('./m-molitvy-apostolu-fome-didimu-bliznecu.ru'),
+  },
+  'm-molitvy-apostolu-i-evangelistu-ioannu-bogoslovu': {
+    cu: () => import('./m-molitvy-apostolu-i-evangelistu-ioannu-bogoslovu.cu'),
+    ru: () => import('./m-molitvy-apostolu-i-evangelistu-ioannu-bogoslovu.ru'),
+  },
+  'm-molitvy-blagovernomu-knjazju-dimitriju-donskomu': {
+    cu: () => import('./m-molitvy-blagovernomu-knjazju-dimitriju-donskomu.cu'),
+    ru: () => import('./m-molitvy-blagovernomu-knjazju-dimitriju-donskomu.ru'),
+  },
+  'm-molitvy-pravednomu-otroku-artemiju-verkolskomu': {
+    cu: () => import('./m-molitvy-pravednomu-otroku-artemiju-verkolskomu.cu'),
+    ru: () => import('./m-molitvy-pravednomu-otroku-artemiju-verkolskomu.ru'),
+  },
+  'm-molitvy-pravednomu-simeonu-verhoturskomu': {
+    cu: () => import('./m-molitvy-pravednomu-simeonu-verhoturskomu.cu'),
+    ru: () => import('./m-molitvy-pravednomu-simeonu-verhoturskomu.ru'),
+  },
+  'm-molitvy-prepodobnoj-evfrosinii-v-miru-evdokii-moskovskoj': {
+    cu: () => import('./m-molitvy-prepodobnoj-evfrosinii-v-miru-evdokii-moskovskoj.cu'),
+    ru: () => import('./m-molitvy-prepodobnoj-evfrosinii-v-miru-evdokii-moskovskoj.ru'),
+  },
+  'm-molitvy-prepodobnomu-aleksiyu-cheloveku-bozhiyu': {
+    cu: () => import('./m-molitvy-prepodobnomu-aleksiyu-cheloveku-bozhiyu.cu'),
+    ru: () => import('./m-molitvy-prepodobnomu-aleksiyu-cheloveku-bozhiyu.ru'),
+  },
+  'm-molitvy-prepodobnomu-amvrosiyu-optinskomu': {
+    cu: () => import('./m-molitvy-prepodobnomu-amvrosiyu-optinskomu.cu'),
+    ru: () => import('./m-molitvy-prepodobnomu-amvrosiyu-optinskomu.ru'),
+  },
+  'm-molitvy-prepodobnomu-efremu-sirinu': {
+    cu: () => import('./m-molitvy-prepodobnomu-efremu-sirinu.cu'),
+    ru: () => import('./m-molitvy-prepodobnomu-efremu-sirinu.ru'),
+  },
+  'm-molitvy-prepodobnomu-makariju-velikomu': {
+    cu: () => import('./m-molitvy-prepodobnomu-makariju-velikomu.cu'),
+  },
+  'm-molitvy-prepodobnomu-moiseyu-murinu': {
+    cu: () => import('./m-molitvy-prepodobnomu-moiseyu-murinu.cu'),
+    ru: () => import('./m-molitvy-prepodobnomu-moiseyu-murinu.ru'),
+  },
+  'm-molitvy-prepodobnomu-nestoru-letopiscu': {
+    cu: () => import('./m-molitvy-prepodobnomu-nestoru-letopiscu.cu'),
+    ru: () => import('./m-molitvy-prepodobnomu-nestoru-letopiscu.ru'),
+  },
+  'm-molitvy-prepodobnomu-pavlu-obnorskomu-komelskomu': {
+    cu: () => import('./m-molitvy-prepodobnomu-pavlu-obnorskomu-komelskomu.cu'),
+    ru: () => import('./m-molitvy-prepodobnomu-pavlu-obnorskomu-komelskomu.ru'),
+  },
+  'm-molitvy-prepodobnomu-serafimu-vyrickomu': {
+    cu: () => import('./m-molitvy-prepodobnomu-serafimu-vyrickomu.cu'),
+    ru: () => import('./m-molitvy-prepodobnomu-serafimu-vyrickomu.ru'),
+  },
+  'm-molitvy-ravnoapostolnoj-fekle-ikonijskoj-pervomuchenice': {
+    cu: () => import('./m-molitvy-ravnoapostolnoj-fekle-ikonijskoj-pervomuchenice.cu'),
+    ru: () => import('./m-molitvy-ravnoapostolnoj-fekle-ikonijskoj-pervomuchenice.ru'),
+  },
+  'm-molitvy-svjashhennomucheniku-haralampiju-episkopu-magnezijskomu': {
+    cu: () => import('./m-molitvy-svjashhennomucheniku-haralampiju-episkopu-magnezijskomu.cu'),
+    ru: () => import('./m-molitvy-svjashhennomucheniku-haralampiju-episkopu-magnezijskomu.ru'),
+  },
+  'm-molitvy-svjashhennomucheniku-vlasiju-episkopu-sevastijskomu': {
+    cu: () => import('./m-molitvy-svjashhennomucheniku-vlasiju-episkopu-sevastijskomu.cu'),
+    ru: () => import('./m-molitvy-svjashhennomucheniku-vlasiju-episkopu-sevastijskomu.ru'),
+  },
+  'm-molitvy-svjatitelju-afanasiju-saharovu-episkopu-kovrovskomu': {
+    cu: () => import('./m-molitvy-svjatitelju-afanasiju-saharovu-episkopu-kovrovskomu.cu'),
+    ru: () => import('./m-molitvy-svjatitelju-afanasiju-saharovu-episkopu-kovrovskomu.ru'),
+  },
+  'm-molitvy-svjatitelju-feofanu-zatvorniku-vyshenskomu': {
+    cu: () => import('./m-molitvy-svjatitelju-feofanu-zatvorniku-vyshenskomu.cu'),
+    ru: () => import('./m-molitvy-svjatitelju-feofanu-zatvorniku-vyshenskomu.ru'),
+  },
+  'm-molitvy-svjatitelju-ioannu-arhiepiskopu-shanhajskomu-i-san-francisskomu': {
+    cu: () => import('./m-molitvy-svjatitelju-ioannu-arhiepiskopu-shanhajskomu-i-san-francisskomu.cu'),
+    ru: () => import('./m-molitvy-svjatitelju-ioannu-arhiepiskopu-shanhajskomu-i-san-francisskomu.ru'),
+  },
+  'm-molitvy-svjatitelju-luke-vojno-jaseneckomu-arhiepiskopu-simferopolskomu-i-krymskomu': {
+    cu: () => import('./m-molitvy-svjatitelju-luke-vojno-jaseneckomu-arhiepiskopu-simferopolskomu-i-krymskomu.cu'),
+    ru: () => import('./m-molitvy-svjatitelju-luke-vojno-jaseneckomu-arhiepiskopu-simferopolskomu-i-krymskomu.ru'),
+  },
+  'm-molitvy-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj': {
+    cu: () => import('./m-molitvy-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj.cu'),
+    ru: () => import('./m-molitvy-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj.ru'),
+  },
+  'm-molitvy-svjatym-carstvennym-strastoterpcam': {
+    cu: () => import('./m-molitvy-svjatym-carstvennym-strastoterpcam.cu'),
+    ru: () => import('./m-molitvy-svjatym-carstvennym-strastoterpcam.ru'),
+  },
+  'm-molitvy-svjatym-semi-otrokam-vo-efese': {
+    cu: () => import('./m-molitvy-svjatym-semi-otrokam-vo-efese.cu'),
+    ru: () => import('./m-molitvy-svjatym-semi-otrokam-vo-efese.ru'),
+  },
+  'm-molitvy-svyatitelyu-andreyu-kritskomu': {
+    cu: () => import('./m-molitvy-svyatitelyu-andreyu-kritskomu.cu'),
+  },
+  'm-molitvy-svyatitelyu-nikite-episkopu-novgorodskomu': {
+    cu: () => import('./m-molitvy-svyatitelyu-nikite-episkopu-novgorodskomu.cu'),
+    ru: () => import('./m-molitvy-svyatitelyu-nikite-episkopu-novgorodskomu.ru'),
+  },
+  'm-molitvy-velikomucheniku-nikite-gotfskomu': {
+    cu: () => import('./m-molitvy-velikomucheniku-nikite-gotfskomu.cu'),
+    ru: () => import('./m-molitvy-velikomucheniku-nikite-gotfskomu.ru'),
+  },
+  'm-bogorodichny-otpustitelnye': {
+    cu: () => import('./m-bogorodichny-otpustitelnye.cu'),
+    ru: () => import('./m-bogorodichny-otpustitelnye.ru'),
+  },
+  'm-bogorodichny-voskresnye': {
+    cu: () => import('./m-bogorodichny-voskresnye.cu'),
+    ru: () => import('./m-bogorodichny-voskresnye.ru'),
+  },
+  'm-bogorodichny-vosmi-glasov': {
+    cu: () => import('./m-bogorodichny-vosmi-glasov.cu'),
+    ru: () => import('./m-bogorodichny-vosmi-glasov.ru'),
+  },
+  'm-tropari-apostolam': {
+    cu: () => import('./m-tropari-apostolam.cu'),
+    ru: () => import('./m-tropari-apostolam.ru'),
+  },
+  'm-tropari-bezsrebrenikam': {
+    cu: () => import('./m-tropari-bezsrebrenikam.cu'),
+    ru: () => import('./m-tropari-bezsrebrenikam.ru'),
+  },
+  'm-tropari-bogorodichnye': {
+    cu: () => import('./m-tropari-bogorodichnye.cu'),
+    ru: () => import('./m-tropari-bogorodichnye.ru'),
+  },
+  'm-tropari-i-kondaki-chudotvornym-ikonam-presvyatoj-bogorodicy': {
+    cu: () => import('./m-tropari-i-kondaki-chudotvornym-ikonam-presvyatoj-bogorodicy.cu'),
+    ru: () => import('./m-tropari-i-kondaki-chudotvornym-ikonam-presvyatoj-bogorodicy.ru'),
+  },
+  'm-tropari-i-kondaki-dnej-sedmicy': {
+    cu: () => import('./m-tropari-i-kondaki-dnej-sedmicy.cu'),
+    ru: () => import('./m-tropari-i-kondaki-dnej-sedmicy.ru'),
+  },
+  'm-tropari-i-kondaki-dvunadesyatyx-prazdnikov': {
+    ru: () => import('./m-tropari-i-kondaki-dvunadesyatyx-prazdnikov.ru'),
+  },
+  'm-tropari-i-kondaki-gospodskie': {
+    cu: () => import('./m-tropari-i-kondaki-gospodskie.cu'),
+    ru: () => import('./m-tropari-i-kondaki-gospodskie.ru'),
+  },
+  'm-tropari-i-kondaki-nebesnym-silam-bezplotnym': {
+    cu: () => import('./m-tropari-i-kondaki-nebesnym-silam-bezplotnym.cu'),
+    ru: () => import('./m-tropari-i-kondaki-nebesnym-silam-bezplotnym.ru'),
+  },
+  'm-tropari-i-kondaki-voskresnye-vosmi-glasov': {
+    ru: () => import('./m-tropari-i-kondaki-voskresnye-vosmi-glasov.ru'),
+  },
+  'm-tropari-i-velichaniya-obshhie': {
+    cu: () => import('./m-tropari-i-velichaniya-obshhie.cu'),
+    ru: () => import('./m-tropari-i-velichaniya-obshhie.ru'),
+  },
+  'm-tropari-kondaki-i-velichaniya-na-prazdniki-velikix-svyatyx': {
+    cu: () => import('./m-tropari-kondaki-i-velichaniya-na-prazdniki-velikix-svyatyx.cu'),
+    ru: () => import('./m-tropari-kondaki-i-velichaniya-na-prazdniki-velikix-svyatyx.ru'),
+  },
+  'm-tropari-pravednym-i-blazhennym': {
+    cu: () => import('./m-tropari-pravednym-i-blazhennym.cu'),
+    ru: () => import('./m-tropari-pravednym-i-blazhennym.ru'),
+  },
+  'm-tropari-prepodobnym': {
+    cu: () => import('./m-tropari-prepodobnym.cu'),
+    ru: () => import('./m-tropari-prepodobnym.ru'),
+  },
+  'm-tropari-prorokam': {
+    cu: () => import('./m-tropari-prorokam.cu'),
+    ru: () => import('./m-tropari-prorokam.ru'),
+  },
+  'm-tropari-ravnoapostolnym': {
+    cu: () => import('./m-tropari-ravnoapostolnym.cu'),
+    ru: () => import('./m-tropari-ravnoapostolnym.ru'),
+  },
+  'm-tropari-soboram-svyatyx': {
+    cu: () => import('./m-tropari-soboram-svyatyx.cu'),
+    ru: () => import('./m-tropari-soboram-svyatyx.ru'),
+  },
+  'm-tropari-svyatitelyam': {
+    cu: () => import('./m-tropari-svyatitelyam.cu'),
+    ru: () => import('./m-tropari-svyatitelyam.ru'),
+  },
+  'm-tropari-svyatym-blagovernym-knyazyam-i-caryam': {
+    cu: () => import('./m-tropari-svyatym-blagovernym-knyazyam-i-caryam.cu'),
+    ru: () => import('./m-tropari-svyatym-blagovernym-knyazyam-i-caryam.ru'),
+  },
+  'm-tropari-velikomuchenikam-svyashhennomuchenikam-prepodobnomuchenikam-muchenikam': {
+    cu: () => import('./m-tropari-velikomuchenikam-svyashhennomuchenikam-prepodobnomuchenikam-muchenikam.cu'),
+    ru: () => import('./m-tropari-velikomuchenikam-svyashhennomuchenikam-prepodobnomuchenikam-muchenikam.ru'),
+  },
+  'm-prokimny-apostoly-i-alliluarii-obshhie-svyatym': {
+    ru: () => import('./m-prokimny-apostoly-i-alliluarii-obshhie-svyatym.ru'),
+  },
+  'm-prokimny-i-alliluiarii-dnej-sedmicy': {
+    ru: () => import('./m-prokimny-i-alliluiarii-dnej-sedmicy.ru'),
+  },
+  'm-prokimny-i-alliluiarii-voskresnye': {
+    ru: () => import('./m-prokimny-i-alliluiarii-voskresnye.ru'),
+  },
+  'm-akafist-za-edinoumershego': {
+    ru: () => import('./m-akafist-za-edinoumershego.ru'),
+  },
+  'm-akafist-zhen-chad-svoih-vo-utrobe-zagubivshih': {
+    ru: () => import('./m-akafist-zhen-chad-svoih-vo-utrobe-zagubivshih.ru'),
+  },
+  'm-apokrificheskaya-molitva-arxangelu-mixailu': {
+    ru: () => import('./m-apokrificheskaya-molitva-arxangelu-mixailu.ru'),
+  },
+  'm-o-svyatom-muchenike-uare-i-cerkovnoj-molitve-za-nepravoslavnyx': {
+    ru: () => import('./m-o-svyatom-muchenike-uare-i-cerkovnoj-molitve-za-nepravoslavnyx.ru'),
+  },
+  'm-o-tak-nazyvaemoj-molitve-svjashhennomuchenika-kipriana': {
+    ru: () => import('./m-o-tak-nazyvaemoj-molitve-svjashhennomuchenika-kipriana.ru'),
+  },
+  'm-slovo-miryanina-k-miryanam-v-oproverzhenie-lozhnogo-skazaniya-izvestnogo-pod-imenem-son-bogorodicy': {
+    ru: () => import('./m-slovo-miryanina-k-miryanam-v-oproverzhenie-lozhnogo-skazaniya-izvestnogo-pod-imenem-son-bogorodicy.ru'),
+  },
+  'm-pesn-presvjatoj-bogorodice-ave-maria': {
+    ru: () => import('./m-pesn-presvjatoj-bogorodice-ave-maria.ru'),
+  },
 };

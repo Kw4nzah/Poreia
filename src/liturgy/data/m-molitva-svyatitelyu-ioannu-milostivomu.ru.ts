@@ -1,0 +1,29 @@
+// Molitvoslov (m-molitva-svyatitelyu-ioannu-milostivomu): Russian text. Source: azbyka.ru, "Молитва святителю Иоанну Милостивому" (https://azbyka.ru/molitvoslov/molitva-svyatitelyu-ioannu-milostivomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 8"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: В терпении твоем стяжал ты награду свою, отче преподобный, в молитвах непрестанно пребывавший, нищих возлюбивший и им помогавший, но молись Христу Богу, Иоанн милостивый, блаженный, о спасении душ наших."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Богатство твое раздал ты нищим и Небесное богатство сейчас получил, Иоанн всемудрый, потому все тебя почитаем, совершая память твою, одноименный с милостыней."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "День памяти 12/25 ноября"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Приобрел имя «Милостивый» за доброе, сострадательное сердце. Бесчисленны благодеяния, что оказал свт. Иоанн убогим, нищим, болящим, оказавшимся в различных житейских затруднениях."},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "3 комментария"},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0015", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0016", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитва святителю Иоанну Милостивому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-ioannu-milostivomu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитва святителю Иоанну Милостивому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-ioannu-milostivomu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитва святителю Иоанну Милостивому» (azbyka.ru/molitvoslov/molitva-svyatitelyu-ioannu-milostivomu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

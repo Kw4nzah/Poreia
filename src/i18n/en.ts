@@ -961,8 +961,9 @@ export const en: Messages = {
       lentPascha: 'Great Lent, Holy Week and Pascha',
       octoechos: 'Sunday Octoechos and readings',
       hymns: 'Troparia, kontakia and hymns',
+      molitvoslov: 'Prayers (Molitvoslov)',
     },
-    azbykaCredit: 'Church Slavonic and Russian texts of the services come from azbyka.ru and are used with its written permission.',
+    azbykaCredit: 'Church Slavonic and Russian texts of the services and prayers (Molitvoslov) come from azbyka.ru and are used with its written permission.',
     sectionsLabel: 'Sections',
     section: {
       proskomedia: 'Proskomedia',

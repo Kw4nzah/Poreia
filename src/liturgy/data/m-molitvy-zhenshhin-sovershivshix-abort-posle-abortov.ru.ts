@@ -1,0 +1,20 @@
+// Molitvoslov (m-molitvy-zhenshhin-sovershivshix-abort-posle-abortov): Russian text. Source: azbyka.ru, "Молитвы совершившим аборт" (https://azbyka.ru/molitvoslov/molitvy-zhenshhin-sovershivshix-abort-posle-abortov.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "reader", "text": "Для покаяния в грехе аборта существует Таинство Покаяния (Исповедь), на которой священник в частном порядке назначает епитимью в соответствии с духовным и телесным состоянием кающегося, возрастом, состоянием здоровья и прочими обстоятельствами. Аборт – один из самых тяжких грехов. Святая Церковь, согласно канонам (правилам), отлучала совершивших грех аборта от причастия на 10 лет, наравне с убийцами. В сложившейся церковной практике во всей строгости это правило не применяется, но священник может назначить молитвенное правило для исправления кающегося, для того, чтобы он пришел к истинному покаянию."},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "В 2016 году Священный Синод утвердил текст молитвенного последования с каноном покаянным о грехе убийства чад во утробе (аборте)."},
+  {"id": "ru-mol-0003", "section": "service", "who": "reader", "text": "В 2021 году Священным Синодом утверждён текст канона ко Пресвятой Богородице, читаемого женою, погубившей чадо во утробе своей."},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "В качестве покаянных молитвословий можно также использовать канон покаянный ко Господу нашему Иисусу Христу или Служба Вифлеемским младенцам, написанная преподобным Андреем Критским."},
+  {"id": "ru-mol-0005", "section": "service", "who": "reader", "text": "Святитель Николай Сербский в такой ситуации советует творить дела милосердия. Под делами милосердия прежде всего можно понимать деятельное покаяние по отвращению от этого греха ближних, то есть необходимо отговаривать женщин от детоубийств (абортов), помогать нуждающимся беременным женщинам, участвовать в деятельности православных защитников жизни (пролайф)."},
+  {"id": "ru-mol-0006", "section": "service", "who": "reader", "text": "Не следует самостоятельно назначать себе молитвенное правило. А также пользоваться сомнительными с точки зрения церковного вероучения текстами молитв, например, акафистом «покаянным жен, загубивших младенцев во утробе своей». Или «Правилом» схимонахини Антонии."},
+  {"id": "ru-mol-0007", "section": "service", "who": "reader", "text": "Подробнее о посмертной участи убиенных во чреве матери некрещеных младенцев рассказывается в книге архимандрита Рафаила (Карелина) «Как вернуть в семью потерянную радость»."},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы совершившим аборт” (azbyka.ru/molitvoslov/molitvy-zhenshhin-sovershivshix-abort-posle-abortov.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы совершившим аборт” (azbyka.ru/molitvoslov/molitvy-zhenshhin-sovershivshix-abort-posle-abortov.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы совершившим аборт» (azbyka.ru/molitvoslov/molitvy-zhenshhin-sovershivshix-abort-posle-abortov.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -1,0 +1,18 @@
+// Molitvoslov (m-molitva-o-vozvrashhenii-mirnyx-vremen): Church Slavonic text. Source: azbyka.ru, "Молитва о возвращении мирных времен" (https://azbyka.ru/molitvoslov/molitva-o-vozvrashhenii-mirnyx-vremen.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "reader", "text": "Куда бегу от Тебя, Господи наш? В какой стране скроюсь от лица Твоего? Небо – Престол Твой, земля – подножие Твое, в море – путь Твой, в шеоле – владычество Твое. Если близок уже конец мира, то не без щедрот Твоих да будет кончина."},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Знаешь Ты, Господи, что неправды наши велики. И мы знаем, что велики щедроты Твои. Если не умилостивят Тебя щедроты Твои, погибли мы за беззакония наши. Не оставь нас, Господи, Господи, потому что вкушали мы Плоть и Кровь Твою."},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Когда дела каждого подвергнутся испытанию пред Тобой, Господи всяческих, в это последнее время, не отврати, Господи, лица Твоего от исповедовавших святое имя Твое. Отче, Сыне и Душе Святый Утешителю! Спаси нас и сохрани души наши!"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Умоляем благость Твою, Господи, отпусти нам вины наши, презри беззакония наши, отверзи нам дверь щедрот Твоих, Господи! Да приидут к нам времена мирные, и по щедротам Твоим милостиво прими молитву нашу, потому что кающимся, Господи, Ты отверзаешь дверь."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Источник: Прп. Ефрем Сирин. Надгробные песнопения"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва о возвращении мирных времен” (azbyka.ru/molitvoslov/molitva-o-vozvrashhenii-mirnyx-vremen.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва о возвращении мирных времен” (azbyka.ru/molitvoslov/molitva-o-vozvrashhenii-mirnyx-vremen.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва о возвращении мирных времен» (azbyka.ru/molitvoslov/molitva-o-vozvrashhenii-mirnyx-vremen.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

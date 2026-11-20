@@ -1,0 +1,31 @@
+// Molitvoslov (m-molitva-ravnoapostolnym-kirillu-i-mefodiyu): Russian text. Source: azbyka.ru, "Молитвы равноапостольным Кириллу и Мефодию, учителям Словенским" (https://azbyka.ru/molitvoslov/molitva-ravnoapostolnym-kirillu-i-mefodiyu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Апостолам единомысленные и славянских стран учителя, Кирилл и Мефодий Богомудрые, Владыку всего молите все народы славянские в Православии и единомыслии утвердить, миром мир оградить и спасти души наши."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 3"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Священную двоицу просветителей наших почтим, переводом Божественных писаний источник Богопознания нам источивших, из которого даже доныне обильно черпая, прославляем вас, Кирилл и Мефодий, Престолу Всевышнего предстоящих и усердно молящихся о душах наших."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Молитва 3-я"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Молитва 4-я"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Дни памяти 14/27 февраля, 6/19 апреля Общий день памяти 11/24 мая"},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Святые Кирилл и Мефодий — первые просветители славян, создатели славянской письменности, авторы первых переводов Св. Писания на славянский язык. Святым равноапостольным Кириллу и Мефодию молятся о помощи в учении, о сохранении славянских народов в истинной вере и благочестии, об ограждении от лжеучений и иноверия."},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0015", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0016", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0017", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0018", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы равноапостольным Кириллу и Мефодию, учителям Словенским” (azbyka.ru/molitvoslov/molitva-ravnoapostolnym-kirillu-i-mefodiyu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы равноапостольным Кириллу и Мефодию, учителям Словенским” (azbyka.ru/molitvoslov/molitva-ravnoapostolnym-kirillu-i-mefodiyu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы равноапостольным Кириллу и Мефодию, учителям Словенским» (azbyka.ru/molitvoslov/molitva-ravnoapostolnym-kirillu-i-mefodiyu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

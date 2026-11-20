@@ -1,0 +1,17 @@
+// Molitvoslov (m-molitva-bogorodice-o-seme): Church Slavonic text. Source: azbyka.ru, "Молитва Богородице о семье" (https://azbyka.ru/molitvoslov/molitva-bogorodice-o-seme.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "reader", "text": "Владычице Преблагословенная, возьми под Свой покров семью мою. Всели в сердца супруга моего и чад наших мир, любовь и непрекословие всему доброму; не допусти никого из семьи моей до разлуки и тяжкаго расставания, до преждевременныя и внезапныя смерти без покаяния."},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "А дом наш и всех нас, живущих в нем, сохрани от огненнаго запаления, воровскаго нападения, всякаго злаго обстояния, разнаго страхования и диавольскаго наваждения."},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Да и мы купно и раздельно, явно и сокровенно будем прославлять имя Твое Святое всегда, ныне и присно, и во веки веков. Аминь."},
+  {"id": "cu-mol-0004", "section": "service", "who": "rubric", "text": "Источник: Молитвослов митрополита Мануила (Лемешевского) (+1968)"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва Богородице о семье” (azbyka.ru/molitvoslov/molitva-bogorodice-o-seme.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва Богородице о семье” (azbyka.ru/molitvoslov/molitva-bogorodice-o-seme.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва Богородице о семье» (azbyka.ru/molitvoslov/molitva-bogorodice-o-seme.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

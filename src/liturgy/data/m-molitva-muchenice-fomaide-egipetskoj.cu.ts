@@ -1,0 +1,18 @@
+// Molitvoslov (m-molitva-muchenice-fomaide-egipetskoj): Church Slavonic text. Source: azbyka.ru, "Молитва мученице Фомаиде Египетской" (https://azbyka.ru/molitvoslov/molitva-muchenice-fomaide-egipetskoj.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Агница Твоя, Иисусе, Фомаидо,/ зовет велиим гласом:/ Тебе, Женише мой, люблю,/ и Тебе ищущи страдальчествую,/ и сраспинаюся и спогребаюся крещению Твоему,/ и стражду Тебе ради,/ яко да царствую в Тебе, и умираю за Тя,/ да и живу с Тобою,/ но яко жертву непорочную приими мя с любовию пожершуюся Тебе./ Тоя молитвами,// яко милостив, спаси души наша."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "О, всехвальная мученице Фомаидо! За чистоту супружества даже до крове подвизавшися и целомудрия ради душу свою положивши, достойна пред Господем обрелася еси, во еже в лице преподобных дев почтенней тебе быти. Услыши нас молящихся тебе: и якоже древле боримии от плоти целительницу тя имеяху, по дарованней тебе от Бога благодати, сице и ныне прибегающим ко предстательству твоему подаждь отраду и свобождение от плотския брани, и целомудренное житие и незазорное в супружестве и девстве пребывание твоими богоприятными молитвами всем исходатайствовати потщися, яко да телеса наша храм живущаго в нас Святаго Духа будут. О, преизбранная в женах и верная рабо Христова! Помози нам, да не погибнем со страстьми и похотьми нашими, но да управимся умом нашим и укрепимся сердцем нашим во всяком благочестии и чистоте, славяще твою помощь и предстательство, благодать же и милость Триединаго Бога, Отца, и Сына, и Святаго Духа, во веки веков. Аминь."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "* Тропари и Величания общие."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва мученице Фомаиде Египетской” (azbyka.ru/molitvoslov/molitva-muchenice-fomaide-egipetskoj.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва мученице Фомаиде Египетской” (azbyka.ru/molitvoslov/molitva-muchenice-fomaide-egipetskoj.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва мученице Фомаиде Египетской» (azbyka.ru/molitvoslov/molitva-muchenice-fomaide-egipetskoj.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.8',
+    notes: {
+      tr: ['Ayinler bölümüne azbyka.ru Molitvoslov’dan dualar eklendi: azizlere, Teotokos’a, ihtiyaç anlarına, hastalara, ölülere ve daha fazlası (Kilise Slavcası ve Rusça).'],
+      en: ['The Services section now has the prayers of the azbyka.ru Molitvoslov: to the saints and the Theotokos, for every need, the sick, the departed and more (Church Slavonic and Russian).'],
+      ru: ['В разделе «Богослужения» появились молитвы из Молитвослова azbyka.ru: святым и Богородице, на разные случаи жизни, о болящих, об усопших и другие (на церковнославянском и русском).'],
+    },
+  },
+  {
     version: '0.9.7',
     notes: {
       tr: ['Ayinler bölümüne bayramlar, Büyük Oruç, Kutsal Hafta, Paskalya, Pazar Oktoih ve troparlar eklendi (Kilise Slavcası ve Rusça, azbyka.ru’nun izniyle).'],

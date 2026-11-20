@@ -1,0 +1,26 @@
+// Molitvoslov (m-molitva-soboru-optinskix-starcev): Russian text. Source: azbyka.ru, "Молитвы Собору Оптинских старцев" (https://azbyka.ru/molitvoslov/molitva-soboru-optinskix-starcev.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 6"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Православной веры светильники, монашества непоколебимые столпы, земли Российской заступники, преподобные старцы Оптинские, любовь Христову стяжавшие и жизни свои за чада отдававшие, молитесь ко Господу, да утвердит земное Отечество ваше в православии и благочестии и спасет души наши."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 4"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Воистину удивителен Бог во святых своих, пустынь Оптину как сад старчества явивший, где Богопросвещенные отцы, зная тайны сердца человеческого, народа Божиего стали доблестными защитниками, ибо направили отягощенных грехом на путь покаяния, в вере колеблющихся светом Христова учения просветили и Божией премудрости научили, сострадали больным и даровали исцеление. Сейчас же, во славе Божией пребывая, молятся непрестанно о душах наших."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы Собору Оптинских старцев” (azbyka.ru/molitvoslov/molitva-soboru-optinskix-starcev.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы Собору Оптинских старцев” (azbyka.ru/molitvoslov/molitva-soboru-optinskix-starcev.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы Собору Оптинских старцев» (azbyka.ru/molitvoslov/molitva-soboru-optinskix-starcev.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

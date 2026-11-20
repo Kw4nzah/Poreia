@@ -1,0 +1,22 @@
+// Molitvoslov (m-poryadok-chteniya-psaltiri-po-usopshim): Russian text. Source: azbyka.ru, "Порядок чтения Псалтири по усопшим" (https://azbyka.ru/molitvoslov/poryadok-chteniya-psaltiri-po-usopshim.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "reader", "text": "В Православной Церкви существует добрый обычай непрерывного чтения Псалтири над телом усопшего (кроме времени, когда совершаются при гробе панихиды или заупокойные литии) до его погребения и в память его погребения."},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Чтение Псалтири по усопшим имеет свое начало в древности. Оно приносит великое утешение усопшим и само по себе, как чтение слова Божия, и как свидетельствующее о любви к ним их живых собратий."},
+  {"id": "ru-mol-0003", "section": "service", "who": "reader", "text": "Чтение Псалтири начинается по окончании «Последования по исходе души». Псалмы должно читать с умилением и сокрушением сердечным, не торопясь, со вниманием вникая в читаемое. Наибольшую пользу приносит чтение Псалтири родственниками усопшего: оно свидетельствует о большой любви и усердии к поминаемым их ближним. Господом подвиг чтения будет принят не только как жертва за поминаемых, но и как жертвы за самих трудящихся в чтении."},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Читающему Псалтирь приличнее стоять, если состояние здоровья не заставляет его сесть."},
+  {"id": "ru-mol-0005", "section": "service", "who": "reader", "text": "В Апостольских постановлениях заповедано совершать псалмопения, чтения и молитвы по усопшим в день 3-й, 9-й и 40-й. Но преимущественно установилось обыкновение читать псалмы по усопшим 3 дня или 40 дней, включая день кончины."},
+  {"id": "ru-mol-0006", "section": "service", "who": "reader", "text": "* *"},
+  {"id": "ru-mol-0007", "section": "service", "who": "reader", "text": "Псалтирь состоит из 20 разделов — кафизм, каждый из которых делится на три «Славы». Перед чтением первой кафизмы произносятся молитвы, положенные перед началом чтения Псалтири. По окончании чтения Псалтири произносятся молитвы, положенные по прочтении нескольких кафизм или всей Псалтири."},
+  {"id": "ru-mol-0008", "section": "service", "who": "reader", "text": "* *"},
+  {"id": "ru-mol-0009", "section": "service", "who": "reader", "text": "Текст Псалтири по усопшим: проект Читаем Псалтирь (Заупокойная Псалтирь)"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Порядок чтения Псалтири по усопшим” (azbyka.ru/molitvoslov/poryadok-chteniya-psaltiri-po-usopshim.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Порядок чтения Псалтири по усопшим” (azbyka.ru/molitvoslov/poryadok-chteniya-psaltiri-po-usopshim.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Порядок чтения Псалтири по усопшим» (azbyka.ru/molitvoslov/poryadok-chteniya-psaltiri-po-usopshim.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

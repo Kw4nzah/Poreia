@@ -1,0 +1,23 @@
+// Molitvoslov (m-molitvy-svyatitelyu-andreyu-kritskomu): Church Slavonic text. Source: azbyka.ru, "Молитвы святителю Андрею Критскому" (https://azbyka.ru/molitvoslov/molitvy-svyatitelyu-andreyu-kritskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Христову Церковь цевницею языка твоего,/ песнословя умильно, возвеселил еси,/ богословием же Препетыя Троицы/ славу всем сказал еси ясно,/ тем тя, яко тайноглагольника, поем,/ Андрее, пастырю Критский,/ и величаем память твою,// Христа славяще дивнаго во святых Своих."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "О, пречестная и священная главо и благодати Святаго Духа исполненная, Спасово со Отцем обиталище, великий архиерее, теплый наш заступниче, святителю Андрее! Предстоя у Престола всех Царя и наслаждаяся света единосущныя Троицы и херувимски со Ангелы возглашая песнь трисвятую, великое же и неизследованное дерзновение имея ко всемилостивому Владыце, моли спастися паствы Христовы людем, благостояние святых церквей утверди: архиереи благолепием святительства украси, монашествующыя к подвигом добраго течения укрепи, царствующий град и вся грады и страны добре сохрани, и веру святую непорочну соблюсти умоли, мир весь предстательством твоим умири, от глада и пагубы избави ны, и от нападения иноплеменных сохрани, старыя утеши, юныя настави, безумныя умудри, вдовицы помилуй, сироты заступи, младенцы возрасти, пленных возврати, немощствующыя и молящияся тебе от всех напастей и бед ходатайством твоим свободи: моли о нас Всещедраго и Человеколюбиваго Христа Бога нашего, да и в день Страшнаго Пришествия Его от шуияго стояния избавит нас, и радости святых причастники сотворит со всеми святыми во веки веков. Аминь."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Личное прошение"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "Великий архиерее, теплый наш заступниче, святителю Андрее! Услыши смиренную молитву раба твоего (имя). Приклони милосердие Божие ко мне и помози ми в скорби моей (содержание прошения). Да избавит Всемилостивый Господь нас от бед и напастей и радости святых причастники сотворит со всеми святыми во веки веков. Аминь."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "День памяти 4/17 июля"},
+  {"id": "cu-mol-0009", "section": "service", "who": "rubric", "text": "Святитель Андрей Критский – автор Великого покаянного канона, читаемого в дни Великого поста. Будучи немым от рождения, он получил разрешение своей немоты и дар слова после молитв и приобщения Святых Тайн. Ему молятся о даровании покаянного чувства, об исцелении от немоты."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "* Минея. 4-е июля."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы святителю Андрею Критскому” (azbyka.ru/molitvoslov/molitvy-svyatitelyu-andreyu-kritskomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы святителю Андрею Критскому” (azbyka.ru/molitvoslov/molitvy-svyatitelyu-andreyu-kritskomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы святителю Андрею Критскому» (azbyka.ru/molitvoslov/molitvy-svyatitelyu-andreyu-kritskomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

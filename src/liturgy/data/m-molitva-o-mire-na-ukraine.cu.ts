@@ -1,0 +1,19 @@
+// Molitvoslov (m-molitva-o-mire-na-ukraine): Church Slavonic text. Source: azbyka.ru, "Молитвы о мире на Украине" (https://azbyka.ru/molitvoslov/molitva-o-mire-na-ukraine.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Молитва о мире на Украине"},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Всевышний Боже, Владыко и Содетелю всея твари, наполняяй вся величеством Твоим и содержаяй силою Твоею."},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "К Тебе Великодаровитому Господу нашему припадаем, сердцем сокрушенным и усердною молитвою о стране Украинстей, распрями и нестроениями раздираемей."},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Премилосердый и Всесильный, не до конца гневайся, Господи! Буди милостив нам, молит Тя Твоя Церковь, представляющи Тебе начальника и совершителя спасения нашего Иисуса Христа. Укрепи силою Твоею верныя люди в стране Украинстей, заблуждающим же просвети разумныя очи светом Твоим божественным, да уразумеют Твою истину, умягчи их ожесточение, утоли вражды и нестроения на страну и мирныя люди ея воздвизаемая, да все познают Тебе, Господа и Спасителя нашего. Не отврати лица Твоего от нас, Господи, воздаждь нам радость спасения Твоего. Помяни милости, яже показал еси отцем нашим, преложи гнев Твой на милосердие и даждь помощь Твою народу украинскому, в скорби сущему."},
+  {"id": "cu-mol-0005", "section": "service", "who": "reader", "text": "Молит Тя Церковь Русская, представляющи Тебе ходатайство всех святых в ней просиявших, изряднее же Пресвятыя Богородицы и Приснодевы Марии, от лет древних покрывающия и заступающия страны наша. Возгрей сердца наша теплотою благодати Твоея, утверди волю нашу в воли Твоей, да якоже древле, тако и ныне прославится всесвятое имя Твое, Отца и Сына и Святаго Духа, во веки веков."},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы о мире на Украине” (azbyka.ru/molitvoslov/molitva-o-mire-na-ukraine.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы о мире на Украине” (azbyka.ru/molitvoslov/molitva-o-mire-na-ukraine.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы о мире на Украине» (azbyka.ru/molitvoslov/molitva-o-mire-na-ukraine.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

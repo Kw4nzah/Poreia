@@ -1,0 +1,33 @@
+// Molitvoslov (m-molitva-svyatitelyu-mitrofanu-episkopu-voronezhskomu): Church Slavonic text. Source: azbyka.ru, "Молитвы святителю Митрофану, епископу Воронежскому" (https://azbyka.ru/molitvoslov/molitva-svyatitelyu-mitrofanu-episkopu-voronezhskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Правило веры и образ кротости,/ словом и житием, пастве твоей, отче смиренномудре Митрофане, был еси./ Темже и во светлостех святых,/ солнца светлейше возсиял еси,/ венцем нетления и славы украшаемь,/ моли Христа Бога,// стране нашей и граду твоему в мире спастися."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 8"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Воздержанием тело духу поработив,/ душу же равноангельну сотворив,/ святительскою одеялся еси одеждою, яко венец священства,/ и ныне, всех Владыце предстоя,// моли, всеблаженне Митрофане, умирити и спасти души наша."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "cu-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "cu-mol-0007", "section": "service", "who": "reader", "text": "О, всехвальный святителю Христов и чудотворче Митрофане! Приими сие малое моление от нас грешных, к тебе прибегающих, и теплым твоим предстательством умоли Господа и Бога нашего, Иисуса Христа, яко да призрев на ны милостивно, подаст нам согрешений наших вольных и невольных прощение, и по велицей Своей милости избавит нас от бед, печалей, скорби и болезней душевных и телесных, обдержащих нас; да подаст земли плодоносие, и вся на пользу настоящаго жития нашего потребная; да дарует нам скончати житие сие привременное в покаянии, и да сподобит нас, грешных и недостойных, Небеснаго Царствия Своего, во еже со всеми святыми славити Его безконечное милосердие, со Безначальным Его Отцем, и Святым и Животворящим Его Духом, во веки веков. Аминь."},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "Личное прошение"},
+  {"id": "cu-mol-0009", "section": "service", "who": "reader", "text": "О, архиерею Божий, святителю Христов Митрофане, услыши мя, грешнаго (имя), в час сей, в оньже тебе моление приношу, и помолися о мне грешнем ко Господу Богу, да отпустит грехи моя и подаст (содержание прошения) молитвами, святе, твоими."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "Дни памяти 7/20 августа, 23 ноября/6 декабря"},
+  {"id": "cu-mol-0011", "section": "service", "who": "rubric", "text": "Свт. Митрофан был известен всей России подвижнической жизнью и делами милосердия. Его архиерейский дом одновременно служил странноприимицей, приютом для неимущих, убогих, сирот, училищем для детей из бедных семей. Царь Петр очень почитал святителя и часто прибегал к его мудрым советам. Свт. Митрофану молятся о помощи в различных житейских затруднениях, о даровании христианского милосердия, о добром нраве властей и правителей."},
+  {"id": "cu-mol-0012", "section": "service", "who": "rubric", "text": "* Минея. 23-е ноября."},
+  {"id": "cu-mol-0013", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "cu-mol-0014", "section": "service", "who": "rubric", "text": "3 комментария"},
+  {"id": "cu-mol-0015", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "cu-mol-0016", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "cu-mol-0017", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "cu-mol-0018", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "cu-mol-0019", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "cu-mol-0020", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы святителю Митрофану, епископу Воронежскому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-mitrofanu-episkopu-voronezhskomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы святителю Митрофану, епископу Воронежскому” (azbyka.ru/molitvoslov/molitva-svyatitelyu-mitrofanu-episkopu-voronezhskomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы святителю Митрофану, епископу Воронежскому» (azbyka.ru/molitvoslov/molitva-svyatitelyu-mitrofanu-episkopu-voronezhskomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

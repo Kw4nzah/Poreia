@@ -1,0 +1,28 @@
+// Molitvoslov (m-molitva-pravednomu-ioannu-russkomu): Church Slavonic text. Source: azbyka.ru, "Молитва праведному Иоанну Русскому, исповеднику" (https://azbyka.ru/molitvoslov/molitva-pravednomu-ioannu-russkomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "От земли пленения твоего/ воззвавый тя к Небесным селением,/ Господь соблюдает невредимо и цельбоносно тело твое,/ праведне Иоанне,/ ты бо, в России ятый и во Асию проданный,/ посреде, агарянскаго злочестия благочестно пожил еси во мнозе терпении/ и, сеяв зде слезами,/ жнеши тамо неизглаголанною радостию.// Темже моли Христа Бога спастися душам нашим."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 8"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "В честней памяти твоей, святе,/ веселится о тебе Россия,/ во благочестии тя воспитавшая,/ и целебным мощем твоим радуется Асия,/ идеже узкий путь прошед страдальческаго плена и постнических подвигов,/ сосуд честен явился еси Божия благодати,/ еяже проси и нам, чтителем твоим, да зовем ти:// радуйся, Иоанне, благодати тезоимените."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "О, святый новоявленный угодниче Божий Иоанне Русский! Подвигом добрым подвизаяся на земли, восприял еси на Небесех венец правды, еже уготовал есть Господь всем любящим Его. Темже взирающе на святый твой образ, радуемся о преславнем скончании жительства твоего и чтим святую память твою. Ты же, предстояй Престолу Божию, приими моления наша, раб Божиих (имена), и ко Всемилостивому Богу принеси, о еже простити нам всякое прегрешение и помощи нам стати противу козней диавольских, да избавльшеся от скорбей, болезней, бед и напастей и всякаго зла, благочестно и праведно поживем в нынешнем веце и сподобимся предстательством твоим, аще и недостойни есмы, видети благая на земли живых, славяще Единаго во святых Своих славимаго Бога, Отца и Сына и Святаго Духа, ныне и во веки веков. Аминь."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "* Минея. 27-е мая."},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "cu-mol-0009", "section": "service", "who": "rubric", "text": "1 Комментарий"},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "cu-mol-0011", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "cu-mol-0012", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "cu-mol-0013", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "cu-mol-0014", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "cu-mol-0015", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва праведному Иоанну Русскому, исповеднику” (azbyka.ru/molitvoslov/molitva-pravednomu-ioannu-russkomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва праведному Иоанну Русскому, исповеднику” (azbyka.ru/molitvoslov/molitva-pravednomu-ioannu-russkomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва праведному Иоанну Русскому, исповеднику» (azbyka.ru/molitvoslov/molitva-pravednomu-ioannu-russkomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

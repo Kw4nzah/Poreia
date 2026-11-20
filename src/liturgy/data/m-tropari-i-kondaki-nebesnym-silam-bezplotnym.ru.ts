@@ -1,0 +1,30 @@
+// Molitvoslov (m-tropari-i-kondaki-nebesnym-silam-bezplotnym): Russian text. Source: azbyka.ru, "Тропари и кондаки Небесным Силам безплотным" (https://azbyka.ru/molitvoslov/tropari-i-kondaki-nebesnym-silam-bezplotnym.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Небесным Силам Бесплотным"},
+  {"id": "ru-mol-0002", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "ru-mol-0003", "section": "service", "who": "reader", "text": "Перевод: Небесных воинств Архистратиги, непрестанно молим вас мы, недостойные, чтобы вы оградили нас вашими молитвами под кровом крыл невещественной вашей славы сохраняя нас, припадающих усердно и взывающих: «От бед избавьте нас, как начальники Вышних Сил!»"},
+  {"id": "ru-mol-0004", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "ru-mol-0005", "section": "service", "who": "reader", "text": "Перевод: Архистратиги Божии, служители Божественной Славы, Ангелов начальники и людей наставники, полезное нам испросите и великую милость, как бесплотных Архистратиги."},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "* *"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Архангелу единому"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "ru-mol-0009", "section": "service", "who": "reader", "text": "Перевод: Небесных воинств Архистратиг, непрестанно молим тебя мы, недостойные, чтобы ты оградил нас твоими молитвами под кровом крыл невещественной твоей славы сохраняя нас, припадающих усердно и взывающих: «От бед избавь нас, как начальник Вышних Сил!»"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "ru-mol-0011", "section": "service", "who": "reader", "text": "Перевод: Архистратиг Божий, служитель Божественной славы Ангелов начальник и людей наставник, полезное нам испроси и великую милость, как бесплотных Архистратиг."},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "* *"},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "Ангелу-Хранителю"},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "Тропарь, глас 6"},
+  {"id": "ru-mol-0015", "section": "service", "who": "reader", "text": "Перевод: Ангел Божий, хранитель мой святой, жизнь мою соблюди в благоговении пред Христом Богом, ум мой утверди на истинном пути, и любовью к небесному воспламени душу мою, чтобы тобою направляемый, получил я от Христа Бога великую милость."},
+  {"id": "ru-mol-0016", "section": "service", "who": "rubric", "text": "Кондак, глас 4"},
+  {"id": "ru-mol-0017", "section": "service", "who": "reader", "text": "Перевод: Явись мне милосердным, святой Ангел Господень, хранитель мой, и не отлучайся от меня скверного; но просвети меня светом неприступным и соделай достойным Царства Небесного."},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Тропари и кондаки Небесным Силам безплотным” (azbyka.ru/molitvoslov/tropari-i-kondaki-nebesnym-silam-bezplotnym.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Тропари и кондаки Небесным Силам безплотным” (azbyka.ru/molitvoslov/tropari-i-kondaki-nebesnym-silam-bezplotnym.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Тропари и кондаки Небесным Силам безплотным» (azbyka.ru/molitvoslov/tropari-i-kondaki-nebesnym-silam-bezplotnym.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

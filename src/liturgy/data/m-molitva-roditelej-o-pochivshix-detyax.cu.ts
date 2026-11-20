@@ -1,0 +1,19 @@
+// Molitvoslov (m-molitva-roditelej-o-pochivshix-detyax): Church Slavonic text. Source: azbyka.ru, "Молитва родителей о почивших детях" (https://azbyka.ru/molitvoslov/molitva-roditelej-o-pochivshix-detyax.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "reader", "text": "Господи Иисусе Христе, Боже наш, Владыко живота и смерти, Утешителю скорбящих! С сокрушенным и умиленным сердцем прибегаю к Тебе и молюся Ти: помяни, Господи, во Царствии Твоем усопшаго раба Твоего (рабу твою), чадо мое (имя), и сотвори ему (ей) вечную память."},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Ты, Владыко живота и смерти, даровал еси мне чадо сие. Твоей же благой и премудрой воле изволися и отъяти е у мене. Буди благословенно имя Твое, Господи."},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Молю Тя, Судие неба и земли, безконечною любовию Твоею к нам, грешным, прости усопшему чаду моему вся согрешения его, вольная и невольная, яже словом, яже делом, яже ведением и неведением. Прости, Милостиве, и наша родительская согрешения, да не пребудут они на чадех наших: вем, яко множицею согрешихом пред Тобою, множицею не соблюдохом, не сотворихом, якоже заповедал еси нам."},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Аще же усопшее чадо наше, нашея или своея ради вины, бяше в житии сем, работая миру и плоти своея, и не паче Тебе, Господу и Богу своему: аще возлюби прелести мира сего, а не паче Слово Твое и заповеди Твоя, аще предавшеся сластем житейским, а не паче сокрушению о гресех своих, и в невоздержании бдение, пост и молитву забвению предавше – молю Тя усердно, прости, преблагий Отче, чаду моему вся таковыя прегрешения его, прости и ослаби, аще и ино злое сотвори в житии сем."},
+  {"id": "cu-mol-0005", "section": "service", "who": "reader", "text": "Христе Иисусе! Ты воскресил еси дщерь Иаира по вере и молитве отца ея. Ты исцелил еси дщерь жены-хананеянки по вере и прошению матери ея: услыши убо и молитву мою, не презри и моления моего о чаде моем. Прости, Господи, прости вся согрешения его и, простив и очистив душу его, изми муки вечныя и всели со всеми святыми Твоими, от века благоугодившими Тебе, идеже несть болезнь, ни печаль, ни воздыхание, но жизнь безконечная: яко несть человек, иже жив будет и не согрешит, но Ты Един еси кроме всякаго греха: да егда имаши судити мирови, услышит чадо мое превожделенный глас Твой: приидите, благословеннии Отца Моего, и наследуйте уготованное вам Царствие от сложения мира."},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "Яко Ты еси Отец милостей и щедрот. Ты живот и воскрешение наше, и Тебе славу возсылаем со Отцем и Святым Духом, ныне и присно и во веки веков. Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва родителей о почивших детях” (azbyka.ru/molitvoslov/molitva-roditelej-o-pochivshix-detyax.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва родителей о почивших детях” (azbyka.ru/molitvoslov/molitva-roditelej-o-pochivshix-detyax.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва родителей о почивших детях» (azbyka.ru/molitvoslov/molitva-roditelej-o-pochivshix-detyax.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -1,0 +1,20 @@
+// Molitvoslov (m-molitva-pered-vyxodom-iz-doma): Russian text. Source: azbyka.ru, "Молитва перед выходом из дома" (https://azbyka.ru/molitvoslov/molitva-pered-vyxodom-iz-doma.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Молитва святителя Иоанна Златоуста перед выходом из дома"},
+  {"id": "ru-mol-0002", "section": "service", "who": "rubric", "text": "(И осенить себя крестным знамением)."},
+  {"id": "ru-mol-0003", "section": "service", "who": "reader", "text": "Перевод: Я отрекаюсь от тебя, сатана, гордыни твоей и служения тебе, и соединяюсь с Тобой, Христос, во имя Отца, и Сына, и Святого Духа. Аминь."},
+  {"id": "ru-mol-0004", "section": "service", "who": "rubric", "text": "Иные молитвы"},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "(И осенить себя крестным знамением)."},
+  {"id": "ru-mol-0006", "section": "service", "who": "reader", "text": "Перевод: Огради мя, Господи, силою Честнаго и Животворящаго Твоего Креста и сохрани мя от всякаго зла. Господи, направи ко благу1 путь мой. Господи, благослови все мои вхождения и исхождения2."},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "* *"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитва перед выходом из дома” (azbyka.ru/molitvoslov/molitva-pered-vyxodom-iz-doma.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитва перед выходом из дома” (azbyka.ru/molitvoslov/molitva-pered-vyxodom-iz-doma.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитва перед выходом из дома» (azbyka.ru/molitvoslov/molitva-pered-vyxodom-iz-doma.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

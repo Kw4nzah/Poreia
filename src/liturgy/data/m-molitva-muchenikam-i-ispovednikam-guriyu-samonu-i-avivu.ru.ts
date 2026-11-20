@@ -1,0 +1,29 @@
+// Molitvoslov (m-molitva-muchenikam-i-ispovednikam-guriyu-samonu-i-avivu): Russian text. Source: azbyka.ru, "Молитвы мученикам и исповедникам Гурию, Самону и Авиву" (https://azbyka.ru/molitvoslov/molitva-muchenikam-i-ispovednikam-guriyu-samonu-i-avivu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 5"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Чудеса святых Твоих мучеников, как стену неприступную, Ты даровал нам, Христе Боже; по молитвам их замыслы язычников расстрой, могущество христиан укрепи, как Один Благой и Человеколюбец."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: С Небес мудрые благодать получив, находящимся в искушениях помогаете вы, всеми прославляемые. Потому отроковицу святые от тяжкой смерти избавили, ибо вы поистине слава Эдессе и радость миру."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "День памяти 15/28 ноября"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Приняли мученическую кончину за Христа в сирийском городе Едессе и по смерти своей спасли от погибели благочестивую Евфимию, которая вышла замуж за воина-варвара и много пострадала от его несправедливых притеснений. Почитаются как небесные помощники в различных семейных нуждах, особенно же когда муж несправедливо гонит и ненавидит жену."},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0015", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0016", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы мученикам и исповедникам Гурию, Самону и Авиву” (azbyka.ru/molitvoslov/molitva-muchenikam-i-ispovednikam-guriyu-samonu-i-avivu.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы мученикам и исповедникам Гурию, Самону и Авиву” (azbyka.ru/molitvoslov/molitva-muchenikam-i-ispovednikam-guriyu-samonu-i-avivu.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы мученикам и исповедникам Гурию, Самону и Авиву» (azbyka.ru/molitvoslov/molitva-muchenikam-i-ispovednikam-guriyu-samonu-i-avivu.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

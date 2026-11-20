@@ -1,0 +1,29 @@
+// Molitvoslov (m-molitva-svyashhennomucheniku-ermogenu-patriarxu): Church Slavonic text. Source: azbyka.ru, "Молитва священномученику Ермогену, патриарху Московскому и всея Руси" (https://azbyka.ru/molitvoslov/molitva-svyashhennomucheniku-ermogenu-patriarxu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Российския земли первопрестольниче/ и неусыпный о ней к Богу молитвенниче!/ За веру Христову и паству твою душу свою положив,/ страну нашу от нечестия избавил еси./ Темже вопием ти:/ спасай нас молитвами твоими,// священномучениче Ермогене, отче наш."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 6"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Темницею и гладом изнуряемь,/ даже до смерти верен пребыл еси, блаженне Ермогене,/ малодушие от сердец людей твоих отгоняя/ и на общий подвиг вся призывая./ Темже и нечестивых мятеж низложил еси и страну нашу утвердил еси,/ да вси зовем ти:// радуйся, заступниче Российския земли."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "О, великий угодниче Христов, святителю отче наш Ермогене! К тебе, молитвеннику теплому и предстателю пред Богом непостыдному, усердно притекаем, в нуждах и скорбех наших утешения и помощи просяще. В древнюю годину искушений, внегда обышедше обыдоша страну нашу нечестивии врази. Господь яви тя Церкви Своей столпа непоколебима и людем российским пастыря добра, душу свою за овцы положивша и лютыя волки далече отгнавша. Ныне убо призри и на ны, недостойная чада твоя, умиленною душею и сокрушенным сердцем тебе призывающая. Крепость бо наша в нас оскуде, и вражия ловления и сети обыдоша нас. Помози нам, заступниче наш! Утверди нас в вере святей: научи нас всегда творити заповеди Божия и вся предания церковная, от отец нам заповеданная. Пастырем нашим буди архипастырь, воином вождь духовный, болящим врач, печальным утешитель, гонимым заступник, юным наставник, всем же благосердый отец и за вся теплый молитвенник; яко да молитвами твоими ограждаеми, непрестанно воспоем и прославим всесвятое имя Живоначальныя Троицы, Отца и Сына и Святаго Духа, во веки веков. Аминь."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "cu-mol-0008", "section": "service", "who": "rubric", "text": "Дни памяти 17 февраля/2(1) марта, 12/25 мая, 5/18 октября (общий святителей Московских)"},
+  {"id": "cu-mol-0009", "section": "service", "who": "rubric", "text": "В Смутное время внутренних раздоров и польского нашествия отдал все силы служению Церкви и Отечеству. Оказавшись в заточении, не уставал призывать народ на борьбу за освобождение Москвы и защиту святой Православной веры. Ему молятся о спасении России, о заступлении Отечества от нашествия иноплеменных и власти иноверцев, о твердом стоянии в вере, о мужестве перед лицом смертельной угрозы."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "cu-mol-0011", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "cu-mol-0012", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "cu-mol-0013", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "cu-mol-0014", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "cu-mol-0015", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "cu-mol-0016", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитва священномученику Ермогену, патриарху Московскому и всея Руси” (azbyka.ru/molitvoslov/molitva-svyashhennomucheniku-ermogenu-patriarxu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитва священномученику Ермогену, патриарху Московскому и всея Руси” (azbyka.ru/molitvoslov/molitva-svyashhennomucheniku-ermogenu-patriarxu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитва священномученику Ермогену, патриарху Московскому и всея Руси» (azbyka.ru/molitvoslov/molitva-svyashhennomucheniku-ermogenu-patriarxu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

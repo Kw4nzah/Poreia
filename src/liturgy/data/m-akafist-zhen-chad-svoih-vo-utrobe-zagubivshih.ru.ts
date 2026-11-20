@@ -1,0 +1,16 @@
+// Molitvoslov (m-akafist-zhen-chad-svoih-vo-utrobe-zagubivshih): Russian text. Source: azbyka.ru, "Акафист жен, чад своих во утробе загубивших" (https://azbyka.ru/molitvoslov/akafist-zhen-chad-svoih-vo-utrobe-zagubivshih.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "reader", "text": "17 декабря 2019 года в актовом зале Издательского Совета Русской Православной Церкви состоялась традиционная встреча с представителями издательств."},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "В выступлении помощника председателя Издательского Совета иеромонаха Макария (Комогорова) были приведены примеры изданий, которые намеренно выпускаются для распространения в церковной сети без обращения за получением грифа. Это, в частности, касается акафистов, в том числе таких как «акафист о единоумершем» и «акафист жен, чад своих во утробе загубивших». Этим изданиям было отказано в предоставлении грифа, поэтому их распространение в церковной сети недопустимо."},
+  {"id": "ru-mol-0003", "section": "service", "who": "reader", "text": "Рекомендуем использовать: Молитвенное последование с каноном покаянным о грехе убийства чад во утробе (аборте)"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Акафист жен, чад своих во утробе загубивших” (azbyka.ru/molitvoslov/akafist-zhen-chad-svoih-vo-utrobe-zagubivshih.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Акафист жен, чад своих во утробе загубивших” (azbyka.ru/molitvoslov/akafist-zhen-chad-svoih-vo-utrobe-zagubivshih.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Акафист жен, чад своих во утробе загубивших» (azbyka.ru/molitvoslov/akafist-zhen-chad-svoih-vo-utrobe-zagubivshih.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

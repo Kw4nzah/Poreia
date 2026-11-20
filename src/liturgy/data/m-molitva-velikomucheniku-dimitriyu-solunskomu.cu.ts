@@ -1,0 +1,31 @@
+// Molitvoslov (m-molitva-velikomucheniku-dimitriyu-solunskomu): Church Slavonic text. Source: azbyka.ru, "Молитвы великомученику Димитрию Солунскому" (https://azbyka.ru/molitvoslov/molitva-velikomucheniku-dimitriyu-solunskomu.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 3"},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Велика обрете в бедах/ тя поборника вселенная, страстотерпче,/ языки побеждающа./ Якоже убо Лиеву низложил еси гордыню,/ и на подвиг дерзновенна сотворив Нестора,/ тако, святе Димитрие,/ Христу Богу молися// даровати нам велию милость."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 2"},
+  {"id": "cu-mol-0004", "section": "service", "who": "rubric", "text": "Кровей твоих струями, Димитрие,/ Церковь Бог обагри,/ давый тебе крепость непобедимую,/ и соблюдая град твой невредим:// того бо еси утверждение."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "Святый и славный великомучениче Христов Димитрие, скорый помощниче и теплый заступниче с верою притекающих к тебе! Предстоя со дерзновением Небесному Царю, испроси у Него прощение согрешений наших, и о еже избавитися нам от всегубительныя язвы, труса, потопа, огня, меча и вечныя казни. Моли благость Его, еже ущедрити град сей (обитель сию) и всякую страну христианскую. Исходатайствуй у Царя царствующих всей державе нашей мир, тишину, твердость в вере и преспеяние во благочестии; нам же, чтущим честную память твою, испроси благодатное укрепление на дела благая, да благоугодное Владыце нашему Христу Богу зде творяще, сподобимся молитвами твоими наследовати Царствие Небесное и тамо прославляти Его, со Отцем и Святым Духом, во веки веков. Аминь."},
+  {"id": "cu-mol-0007", "section": "service", "who": "rubric", "text": "Личное прошение"},
+  {"id": "cu-mol-0008", "section": "service", "who": "reader", "text": "О, скорый помощниче и теплый заступниче великомучениче Христов Димитрие, услыши малую молитву раба твоего (имя). Моли благость Небесного Царя, испроси (содержание прошения) и благодатное укрепление на дела благая. Аминь."},
+  {"id": "cu-mol-0009", "section": "service", "who": "rubric", "text": "Краткое житие"},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "День памяти 26 октября/8 ноября"},
+  {"id": "cu-mol-0011", "section": "service", "who": "rubric", "text": "* Минея. 26-е октября."},
+  {"id": "cu-mol-0012", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "cu-mol-0013", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "cu-mol-0014", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "cu-mol-0015", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "cu-mol-0016", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "cu-mol-0017", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "cu-mol-0018", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы великомученику Димитрию Солунскому” (azbyka.ru/molitvoslov/molitva-velikomucheniku-dimitriyu-solunskomu.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы великомученику Димитрию Солунскому” (azbyka.ru/molitvoslov/molitva-velikomucheniku-dimitriyu-solunskomu.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы великомученику Димитрию Солунскому» (azbyka.ru/molitvoslov/molitva-velikomucheniku-dimitriyu-solunskomu.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

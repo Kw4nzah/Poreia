@@ -1,0 +1,19 @@
+// Molitvoslov (m-molitvy-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj): Church Slavonic text. Source: azbyka.ru, "Молитвы праведной Иулиании Лазаревской, Муромской" (https://azbyka.ru/molitvoslov/molitvy-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "cu-mol-0002", "section": "service", "who": "reader", "text": "Просветившися Божественною благодатию,/ и по смерти светлость жития твоего явила еси:/ источаеши бо миро благовонное всем болящим на исцеление,/ с верою приходящим к мощем твоим,/ праведная мати Иулиание,/ Христа Бога моли// спастися душам нашим."},
+  {"id": "cu-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 8"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Скоропослушливую помощницу вси, сущии в бедах и болезнех,/ воспоем Иулианию святую,/ та бо в мире богоугодно поживе/ и милостыню к нищим безмерну показа,// сего ради обрете благодать чудес Божиим ведением."},
+  {"id": "cu-mol-0005", "section": "service", "who": "rubric", "text": "Молитва"},
+  {"id": "cu-mol-0006", "section": "service", "who": "reader", "text": "Утешение наше и похвала, Иулиание, голубице Богомудрая, яко финикс, преславно процветшая, криле добродетелей священне и посребренне имущая, имиже на высоту Царствия Небеснаго возлетела еси! Похвальная пения памяти твоей радостно днесь приносим, понеже Христос нетлением чудесным тя увенча и благодатию исцелений тебе прослави. Зане любовию Христовою уязвившися, от младости чистоту душевную и телесную хранила еси, пост же и воздержание возлюбила еси, имиже, помогающей ти благодати, вся страсти мира сего попрала еси, и, яко пчела, мудро цвет добродетелей изыскавши, пресладкий мед Святаго Духа в сердце свое вселила еси и, еще во плоти бывши, посещения Богоматере сподобилася еси. Прилежно убо тя молим: молися, госпоже, да подаст нам в Троице славимый Бог твоими молитвами многолетно здравие же и спасение, тишину и изобилие плодов земных и на враги победы и одоления. Сохрани предстательством твоим, преподобная мати, страну Российскую и град сей и вся грады и страны христианския неврежденны от всех навет и козней вражиих. Помяни, госпоже, убогия рабы твоя, днесь в молитве тебе предстоящия, но чрез все житие свое паче всех человек прегрешившия, обаче теплое покаяние о сих приносящия и твоими к Богу молитвами оставление грехов получити просящия, яко да, греховных страстей свободившеся, благодарственное пение тебе приносити присно потщимся и прославим всех благих Подателя Бога, Отца, и Сына, и Святаго Духа, ныне, и присно, и во веки веков. Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, Molitvoslov, “Молитвы праведной Иулиании Лазаревской, Муромской” (azbyka.ru/molitvoslov/molitvy-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj.html); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, Molitvoslov, “Молитвы праведной Иулиании Лазаревской, Муромской” (azbyka.ru/molitvoslov/molitvy-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj.html); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, Молитвослов, «Молитвы праведной Иулиании Лазаревской, Муромской» (azbyka.ru/molitvoslov/molitvy-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj.html); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

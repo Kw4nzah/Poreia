@@ -1,0 +1,27 @@
+// Molitvoslov (m-molitva-novomuchenikam-i-ispovednikam-rossijskim): Russian text. Source: azbyka.ru, "Молитвы новомученикам и исповедникам Российским" (https://azbyka.ru/molitvoslov/molitva-novomuchenikam-i-ispovednikam-rossijskim.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-mol-0001", "section": "service", "who": "rubric", "text": "Тропарь, глас 4"},
+  {"id": "ru-mol-0002", "section": "service", "who": "reader", "text": "Перевод: Сегодня радостно торжествует Церковь Русская, как матерь прославляя своих чад — новомучеников и исповедников: святителей и иереев, царственных страстотерпцев, благоверных князей и княгинь, преподобных мужей и жен и всех православных христиан, во дни гонений безбожных жизнь свою за веру во Христа отдавших и кровью истину сохранивших. Их защитой, долготерпеливый Господи, страну нашу в Православии сохрани до скончания времен."},
+  {"id": "ru-mol-0003", "section": "service", "who": "rubric", "text": "Кондак, глас 3"},
+  {"id": "ru-mol-0004", "section": "service", "who": "reader", "text": "Перевод: Сегодня новомученики Российские в белых одеждах предстоят Агнцу Божию и с ангелами воспевают победную песнь Богу: «Благословение, и слава, и премудрость, и хвала, и честь, и сила, и крепость нашему Богу во веки веков. Аминь»."},
+  {"id": "ru-mol-0005", "section": "service", "who": "rubric", "text": "Молитва 1-я"},
+  {"id": "ru-mol-0006", "section": "service", "who": "rubric", "text": "Молитва 2-я"},
+  {"id": "ru-mol-0007", "section": "service", "who": "rubric", "text": "* Минея дополнительная. Собор новомучеников и исповедников Российских."},
+  {"id": "ru-mol-0008", "section": "service", "who": "rubric", "text": "Рекомендуем молитвы"},
+  {"id": "ru-mol-0009", "section": "service", "who": "rubric", "text": "Православное радио"},
+  {"id": "ru-mol-0010", "section": "service", "who": "rubric", "text": "Сейчас в разделе 6741 чел."},
+  {"id": "ru-mol-0011", "section": "service", "who": "rubric", "text": "Просмотров 620 млн."},
+  {"id": "ru-mol-0012", "section": "service", "who": "rubric", "text": "Молитвословий 2014"},
+  {"id": "ru-mol-0013", "section": "service", "who": "rubric", "text": "Пожертвовать"},
+  {"id": "ru-mol-0014", "section": "service", "who": "rubric", "text": "©2026 Молитвослов"},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, Molitvoslov, “Молитвы новомученикам и исповедникам Российским” (azbyka.ru/molitvoslov/molitva-novomuchenikam-i-ispovednikam-rossijskim.html). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, Molitvoslov, “Молитвы новомученикам и исповедникам Российским” (azbyka.ru/molitvoslov/molitva-novomuchenikam-i-ispovednikam-rossijskim.html). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, Молитвослов, «Молитвы новомученикам и исповедникам Российским» (azbyka.ru/molitvoslov/molitva-novomuchenikam-i-ispovednikam-rossijskim.html). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};
