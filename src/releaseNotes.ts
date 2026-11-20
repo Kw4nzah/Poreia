@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.5',
+    notes: {
+      tr: ['Litürji’nin Kilise Slavcası ve Rusça metni azbyka.ru’dan alındı; Büyük Basil ve Önceden Takdis Edilmiş Armağanlar litürjileri Slavca ve Rusça olarak eklendi.'],
+      en: ['The Church Slavonic and Russian texts of the Liturgy now come from azbyka.ru; the Liturgies of St Basil and of the Presanctified Gifts were added in Church Slavonic and Russian.'],
+      ru: ['Церковнославянский и русский тексты литургии теперь взяты с azbyka.ru; добавлены литургии святителя Василия Великого и Преждеосвященных Даров на церковнославянском и русском.'],
+    },
+  },
+  {
     version: '0.9.4',
     notes: {
       tr: ['Litürji’ye Rusça metin eklendi (azbyka.ru’nun izniyle); Kaynaklar ekranında azbyka.ru’ya teşekkür.'],

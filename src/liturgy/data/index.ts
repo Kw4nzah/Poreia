@@ -18,4 +18,12 @@ export const LOADERS: LiturgyLoaders = {
     ru: () => import('./chrysostom.ru'),
     tr: () => import('./chrysostom.tr'),
   },
+  basil: {
+    cu: () => import('./basil.cu'),
+    ru: () => import('./basil.ru'),
+  },
+  presanctified: {
+    cu: () => import('./presanctified.cu'),
+    ru: () => import('./presanctified.ru'),
+  },
 };

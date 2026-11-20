@@ -468,7 +468,11 @@ export const ru: Messages = {
   },
   liturgy: {
     title: 'Божественная литургия',
-    entry: 'Литургия святого Иоанна Златоуста',
+    names: {
+      chrysostom: 'Литургия святого Иоанна Златоуста',
+      basil: 'Литургия святителя Василия Великого',
+      presanctified: 'Литургия Преждеосвященных Даров',
+    },
     sectionsLabel: 'Части',
     section: {
       proskomedia: 'Проскомидия',

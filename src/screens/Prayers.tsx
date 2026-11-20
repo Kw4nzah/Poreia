@@ -125,7 +125,7 @@ export function Prayers() {
                 key={id}
                 serif
                 divider={index > 0}
-                title={m.liturgy.entry}
+                title={m.liturgy.names[id]}
                 onPress={() => router.push({ pathname: '/liturgy/[id]', params: { id } })}
               />
             ))}

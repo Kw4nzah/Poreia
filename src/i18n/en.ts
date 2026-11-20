@@ -370,7 +370,8 @@ export interface Messages {
   liturgy: {
     title: string;
     /** Row in the prayers list. */
-    entry: string;
+    /** Name of each liturgy, as shown in the list. */
+    names: Record<'chrysostom' | 'basil' | 'presanctified', string>;
     sectionsLabel: string;
     section: Record<LiturgySection, string>;
     speaker: Record<LiturgySpeaker, string>;
@@ -945,7 +946,11 @@ export const en: Messages = {
   },
   liturgy: {
     title: 'Divine Liturgy',
-    entry: 'Divine Liturgy of St John Chrysostom',
+    names: {
+      chrysostom: 'Divine Liturgy of St John Chrysostom',
+      basil: 'Divine Liturgy of St Basil the Great',
+      presanctified: 'Liturgy of the Presanctified Gifts',
+    },
     sectionsLabel: 'Sections',
     section: {
       proskomedia: 'Proskomedia',

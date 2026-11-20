@@ -456,7 +456,11 @@ export const tr: Messages = {
   },
   liturgy: {
     title: 'Kutsal Litürji',
-    entry: 'Aziz Yuhanna Hrisostomos Litürjisi',
+    names: {
+      chrysostom: 'Aziz Yuhanna Hrisostomos Litürjisi',
+      basil: 'Büyük Aziz Basil Litürjisi',
+      presanctified: 'Önceden Takdis Edilmiş Armağanlar Litürjisi',
+    },
     sectionsLabel: 'Bölümler',
     section: {
       proskomedia: 'Proskomidi',

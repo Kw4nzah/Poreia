@@ -30,7 +30,7 @@ export const LITURGY_LANGUAGES = ['cu', 'en', 'ru', 'tr'] as const;
 export type LiturgyLanguage = (typeof LITURGY_LANGUAGES)[number];
 
 /** Liturgies that exist (more later). */
-export const LITURGY_IDS = ['chrysostom'] as const;
+export const LITURGY_IDS = ['chrysostom', 'basil', 'presanctified'] as const;
 export type LiturgyId = (typeof LITURGY_IDS)[number];
 
 /** Where a text comes from, in the three app languages; shown on the Sources screen. */
