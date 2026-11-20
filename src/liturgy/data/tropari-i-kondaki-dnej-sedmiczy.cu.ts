@@ -1,0 +1,40 @@
+// Service (tropari-i-kondaki-dnej-sedmiczy), Church Slavonic text in civil script, without accent marks.
+// Source: azbyka.ru, "Тропари и кондаки дней седмицы" (https://azbyka.ru/bogosluzhenie/tropari-i-kondaki-dnej-sedmiczy/), the Church Slavonic column of the parallel
+//   Church Slavonic / Russian text. Used with the written permission of azbyka.ru; remove on request.
+//   Generated from the page by a script (markup removed, nothing else changed). Generated 2026-11-20.
+// Block ids are not aligned with the other languages.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-tro-0001", "section": "service", "who": "rubric", "text": "В понедельник"},
+  {"id": "cu-tro-0002", "section": "service", "who": "reader", "text": "НЕБЕСНЫХ ЧИНОВ БЕЗПЛОТНЫХ"},
+  {"id": "cu-tro-0003", "section": "service", "who": "reader", "text": "Тропарь, глас 4: Небесных воинств Архистратизи, / молим вас присно мы, недостойнии, / да вашими молитвами оградите нас / кровом крил невещественныя вашея славы, / сохраняюще нас, припадающих прилежно и вопиющих: / от бед избавите нас, / яко чиноначальницы вышних Сил. Кондак, глас 2: Архистратизи Божии, / служителие Божественныя славы, / Ангелов начальницы и человеков наставницы, / полезное нам просите и велию милость, / яко Безплотных Архистратизи."},
+  {"id": "cu-tro-0004", "section": "service", "who": "rubric", "text": "Во вторник"},
+  {"id": "cu-tro-0005", "section": "service", "who": "reader", "text": "КРЕСТИТЕЛЯ И ПРЕДТЕЧИ ИОАННА"},
+  {"id": "cu-tro-0006", "section": "service", "who": "reader", "text": "Тропарь, глас 2: Память праведнаго с похвалами, / тебе же довлеет свидетельство Господне, Предтече: / показал бо ся еси воистинну и пророков честнейший, / яко и в струях крестити сподобился еси Проповеданнаго. / Темже за истину пострадав радуяся, / благовестил еси и сущим во аде Бога, явльшагося плотию, / вземлющаго грех мира / и подающаго нам велию милость."},
+  {"id": "cu-tro-0007", "section": "service", "who": "reader", "text": "Кондак, глас 2: Пророче Божий и Предтече благодати, / главу твою, яко шипок священнейший от земли обретше, / исцеления всегда приемлем, / ибо паки, якоже прежде, / в мире проповедуеши покаяние."},
+  {"id": "cu-tro-0008", "section": "service", "who": "rubric", "text": "В среду и пятницу"},
+  {"id": "cu-tro-0009", "section": "service", "who": "reader", "text": "КРЕСТА"},
+  {"id": "cu-tro-0010", "section": "service", "who": "reader", "text": "Тропарь, глас 1: Спаси, Господи, люди Твоя / и благослови достояние Твое, / победы на сопротивныя даруя / и Твое сохраняя Крестом Твоим жительство."},
+  {"id": "cu-tro-0011", "section": "service", "who": "reader", "text": "Кондак, глас 4: Вознесыйся на Крест волею, / тезоименитому Твоему новому жительству / щедроты Твоя даруй, Христе Боже, / возвесели нас силою Твоею, / победы дая нам на сопостаты, / пособие имущим Твое oружие мира, / непобедимую победу."},
+  {"id": "cu-tro-0012", "section": "service", "who": "rubric", "text": "В четверг"},
+  {"id": "cu-tro-0013", "section": "service", "who": "reader", "text": "АПОСТОЛОВ"},
+  {"id": "cu-tro-0014", "section": "service", "who": "reader", "text": "Тропарь, глас 3: Апостоли святии, / молите Милостиваго Бога, / да прегрешений оставление / подаст душам нашим."},
+  {"id": "cu-tro-0015", "section": "service", "who": "reader", "text": "Кондак, глас 2: Твердыя и боговещанныя проповедатели, / верх апостолов Твоих, Господи, / приял еси в наслаждение благих Твоих и покой: / болезни бо онех и смерть приял еси паче всякаго всеплодия, / Едине, сведый сердечная."},
+  {"id": "cu-tro-0016", "section": "service", "who": "reader", "text": "И СВЯТИТЕЛЯ НИКОЛАЯ"},
+  {"id": "cu-tro-0017", "section": "service", "who": "reader", "text": "Тропарь, глас 4: Правило веры и образ кротости, / воздержания учителя / яви тя стаду твоему / Яже вещей Истина. / Сего ради стяжал еси смирением высокая, / нищетою богатая, / отче священноначальниче Николае, / моли Христа Бога, / спастися душам нашим."},
+  {"id": "cu-tro-0018", "section": "service", "who": "reader", "text": "Кондак, глас 3: В Мирех, святе, священнодействитель показался еси, / Христово бо, преподобне, Евангелие исполнив, / положил еси душу твою о людех твоих / и спасл еси неповинныя от смерти. / Сего ради освятился еси, / яко великий таинник Божия благодати."},
+  {"id": "cu-tro-0019", "section": "service", "who": "rubric", "text": "В субботу"},
+  {"id": "cu-tro-0020", "section": "service", "who": "reader", "text": "ВСЕХ СВЯТЫХ, И ЗА УМЕРШИХ"},
+  {"id": "cu-tro-0021", "section": "service", "who": "reader", "text": "Тропари, глас 2: Апостоли, мученицы и пророцы, / святителие, преподобнии и праведнии, / добре подвиг совершившии и веру соблюдшии, / дерзновение имуще ко Спасу, / о нас Того, яко Блага, молите, / спастися, молимся, душам нашим."},
+  {"id": "cu-tro-0022", "section": "service", "who": "reader", "text": "Слава: Помяни, Господи, яко Благ, рабы Твоя, / и елика в житии согрешиша, прости: / никтоже бо безгрешен, токмо Ты, / могий и преставленным дати покой."},
+  {"id": "cu-tro-0023", "section": "service", "who": "reader", "text": "И ныне: Мати Святая неизреченнаго Света, / ангельскими Тя песньми почитающе, / благочестно величаем."},
+  {"id": "cu-tro-0024", "section": "service", "who": "reader", "text": "Кондак, глас 8: Яко начатки естества Насадителю твари, / вселенная приносит Ти, Господи, богоносныя мученики; / тех молитвами в мире глубоце / Церковь Твою, жительство Твое, / Богородицею соблюди, Многомилостиве. Глас 6:"},
+  {"id": "cu-tro-0025", "section": "service", "who": "reader", "text": "Со святыми упокой, / Христе, / души раб Твоих, / идеже несть / болезнь, ни печаль, / ни воздыхание, / но жизнь безконечная."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, “Тропари и кондаки дней седмицы” (azbyka.ru/bogosluzhenie/tropari-i-kondaki-dnej-sedmiczy/); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, “Тропари и кондаки дней седмицы” (azbyka.ru/bogosluzhenie/tropari-i-kondaki-dnej-sedmiczy/); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, «Тропари и кондаки дней седмицы» (azbyka.ru/bogosluzhenie/tropari-i-kondaki-dnej-sedmiczy/); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

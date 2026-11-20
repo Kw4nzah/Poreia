@@ -1,0 +1,29 @@
+// Service (eksapostilarii-vsej-sedmiczy), Russian text.
+// Source: azbyka.ru, "Ексапостиларии всей седмицы" (https://azbyka.ru/bogosluzhenie/eksapostilarii-vsej-sedmiczy/), the Russian column of the parallel
+//   Church Slavonic / Russian text. Translator named on the site: иером. Амвросий (Тимрот).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-20.
+// Block ids are not aligned with the other languages.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "ru-eks-0001", "section": "service", "who": "reader", "text": "В понедельник, глас 4 Небо звездами украсивший как Бог, / и Твоими Ангелами всю землю просвещающий, / Создатель всего, воспевающих Тебя спасай. Богородичен:"},
+  {"id": "ru-eks-0002", "section": "service", "who": "reader", "text": "Услада Ангелов, скорбящих радость, / христиан Заступница, Дева Матерь Господня, / защити и избавь нас от вечных мук."},
+  {"id": "ru-eks-0003", "section": "service", "who": "reader", "text": "Во вторник, глас 4 Предтечу Иоанна, Спасителя крестившего, / пророка из пророков и пустыни питомца, / дитя Елисаветы восхвалим все. Богородичен:"},
+  {"id": "ru-eks-0004", "section": "service", "who": "reader", "text": "Услада Ангелов, скорбящих радость, / христиан Заступница, Дева Матерь Господня, / защити и избавь нас от вечных мук."},
+  {"id": "ru-eks-0005", "section": "service", "who": "reader", "text": "В среду и пятницу, глас 2 Крест – хранитель всей вселенной, / Крест – красота Церкви, / Крест – царей могущество, / Крест – верных утверждение; / Крест – Ангелов слава / и демонов поражение."},
+  {"id": "ru-eks-0006", "section": "service", "who": "rubric", "text": "Крестобогородичен:"},
+  {"id": "ru-eks-0007", "section": "service", "who": "reader", "text": "Стоя у Креста, Родившая Тебя без семени, / и горько сетуя, взывала: / «Увы, сладчайшее Чадо, / как Ты скрылся от очей Моих? / Как Ты к мертвым был причислен?»"},
+  {"id": "ru-eks-0008", "section": "service", "who": "reader", "text": "В четверг глас 2"},
+  {"id": "ru-eks-0009", "section": "service", "who": "reader", "text": "Во все земли под солнцем устремившись, / вы, Апостолы Спасителя, поистине провозгласили / святое Христа от Девы воплощение, / народы от заблуждения обращая и просвещая, / и всех научая почитать / Троицу святую."},
+  {"id": "ru-eks-0010", "section": "service", "who": "reader", "text": "Великого архипастыря и иерарха, / предстоятеля Мирликийского Николая все мы восхваляем, / ибо многих людей он спас, / на смерть неправедно обреченных: / царю является и Авлавию во сне, / отменяя неправедный приговор. Богородичен:"},
+  {"id": "ru-eks-0011", "section": "service", "who": "reader", "text": "Мария чистейшая, златая кадильница, / ставшая невместимой Троицы вместилищем; / о том Отец благоволил, Сын же в Тебя вселился, / и Дух Всевятой, осенив Тебя, Отроковица, / явил Богородицею."},
+  {"id": "ru-eks-0012", "section": "service", "who": "reader", "text": "В субботу глас 4 И над мертвыми и над живыми владычествующий как Бог, / и Твоими святыми всю землю просвещающий, / Создатель всего, воспевающих Тебя спасай. Богородичен:"},
+  {"id": "ru-eks-0013", "section": "service", "who": "reader", "text": "Мы Тобою хвалимся, Богородица, / и Ты для нас пред Богом Заступница; / простри руку Твою непобедимую / и сокруши врагов наших, / пошли рабам Твоим помощь из Святилища."},
+];
+
+export const source = {
+  tr: "Rusça metin: azbyka.ru, “Ексапостиларии всей седмицы” (azbyka.ru/bogosluzhenie/eksapostilarii-vsej-sedmiczy/); çevirmen: иером. Амвросий (Тимрот). azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Russian text: azbyka.ru, “Ексапостиларии всей седмицы” (azbyka.ru/bogosluzhenie/eksapostilarii-vsej-sedmiczy/); translator: Hieromonk Ambrose (Timrot). Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Русский текст: azbyka.ru, «Ексапостиларии всей седмицы» (azbyka.ru/bogosluzhenie/eksapostilarii-vsej-sedmiczy/); перевод иером. Амвросия (Тимрота). Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};
