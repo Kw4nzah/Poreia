@@ -25,8 +25,8 @@ export interface LiturgyBlock {
   text: string;
 }
 
-/** Texts: Church Slavonic, English, Turkish. */
-export const LITURGY_LANGUAGES = ['cu', 'en', 'tr'] as const;
+/** Texts: Church Slavonic, English, Russian, Turkish. */
+export const LITURGY_LANGUAGES = ['cu', 'en', 'ru', 'tr'] as const;
 export type LiturgyLanguage = (typeof LITURGY_LANGUAGES)[number];
 
 /** Liturgies that exist (more later). */

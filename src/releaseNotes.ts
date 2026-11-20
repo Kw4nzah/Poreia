@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.4',
+    notes: {
+      tr: ['Litürji’ye Rusça metin eklendi (azbyka.ru’nun izniyle); Kaynaklar ekranında azbyka.ru’ya teşekkür.'],
+      en: ['Russian text added to the Liturgy (with the permission of azbyka.ru); azbyka.ru is credited on the Sources screen.'],
+      ru: ['В литургию добавлен русский текст (с разрешения azbyka.ru); azbyka.ru указан на экране «Источники».'],
+    },
+  },
+  {
     version: '0.9.3',
     notes: {
       tr: ['Litürji’nin Türkçe metni düzeltilmiş sürümle değiştirildi.'],

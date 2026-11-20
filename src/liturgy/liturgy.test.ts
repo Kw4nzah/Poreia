@@ -50,9 +50,9 @@ describe('registry', () => {
     expect(await loadLiturgyText('chrysostom', 'cu', loaders)).toBeNull();
   });
 
-  it('ships with the Church Slavonic, English and Turkish Chrysostom texts registered', () => {
+  it('ships with the Church Slavonic, English, Russian and Turkish Chrysostom texts registered', () => {
     expect(getAvailableLiturgies()).toEqual(['chrysostom']);
-    expect(getAvailableLanguages('chrysostom')).toEqual(['cu', 'en', 'tr']);
+    expect(getAvailableLanguages('chrysostom')).toEqual(['cu', 'en', 'ru', 'tr']);
   });
 });
 
