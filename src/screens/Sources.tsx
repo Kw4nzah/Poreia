@@ -59,6 +59,7 @@ export function Sources() {
                 {m.liturgy.language[line.language]}: {line.source}
               </Text>
             ))}
+            <Text style={styles.body}>{m.liturgy.azbykaCredit}</Text>
             <Text style={styles.body}>
               {rightsBefore}
               <Text

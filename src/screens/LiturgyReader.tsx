@@ -170,7 +170,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
 
       <View style={styles.controls}>
         <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
-          {m.liturgy.title}
+          {m.liturgy.names[id]}
         </Text>
         {available.length > 1 && main && (
           <View style={styles.control}>

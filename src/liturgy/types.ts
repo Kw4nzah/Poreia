@@ -1,8 +1,10 @@
 // Data model of the Divine Liturgy reader. The structure and helpers live here; the texts live
 // in optional data files (src/liturgy/data/<liturgy>.<language>.ts) that are loaded lazily.
 
+import type { LiturgyId } from './catalog';
+
 /** Parts of the service, in reading order. Section titles come from the i18n layer. */
-export const LITURGY_SECTIONS = ['proskomedia', 'catechumens', 'faithful', 'dismissal'] as const;
+export const LITURGY_SECTIONS = ['proskomedia', 'catechumens', 'faithful', 'dismissal', 'service'] as const;
 export type LiturgySection = (typeof LITURGY_SECTIONS)[number];
 
 /** Who speaks a block. `rubric` is a direction (shown in italics), `omitted` a part not read. */
@@ -29,9 +31,9 @@ export interface LiturgyBlock {
 export const LITURGY_LANGUAGES = ['cu', 'en', 'ru', 'tr'] as const;
 export type LiturgyLanguage = (typeof LITURGY_LANGUAGES)[number];
 
-/** Liturgies that exist (more later). */
-export const LITURGY_IDS = ['chrysostom', 'basil', 'presanctified'] as const;
-export type LiturgyId = (typeof LITURGY_IDS)[number];
+/** The readable services (generated list). */
+export { LITURGY_IDS, LITURGY_GROUPS, LITURGY_GROUP_OF } from './catalog';
+export type { LiturgyId, LiturgyGroup } from './catalog';
 
 /** Where a text comes from, in the three app languages; shown on the Sources screen. */
 export interface LiturgySource {

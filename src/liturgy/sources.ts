@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { getAvailableLanguages, getAvailableLiturgies, loadLiturgyText } from './registry';
-import { LiturgyLanguage, LiturgySource } from './types';
+import { LITURGY_GROUP_OF, LiturgyLanguage, LiturgySource } from './types';
 
 export interface LiturgySourceLine {
   language: LiturgyLanguage;
@@ -26,7 +26,8 @@ export function useLiturgySources(appLanguage: keyof LiturgySource): LiturgySour
     let cancelled = false;
     (async () => {
       const entries: { language: LiturgyLanguage; source: LiturgySource }[] = [];
-      for (const id of getAvailableLiturgies()) {
+      // The other services share one credit line (m.liturgy.azbykaCredit).
+      for (const id of getAvailableLiturgies().filter((x) => LITURGY_GROUP_OF[x] === 'liturgies')) {
         for (const language of getAvailableLanguages(id)) {
           const data = await loadLiturgyText(id, language);
           if (data) entries.push({ language, source: data.source });

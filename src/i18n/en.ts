@@ -1,7 +1,8 @@
 // English is the reference dictionary: its shape defines `Messages`, so a key missing
 // from another language is a type error.
 
-import type { LiturgyLanguage, LiturgySection, LiturgySpeaker } from '../liturgy/types';
+import { names } from '../liturgy/names/en';
+import type { LiturgyGroup, LiturgyId, LiturgyLanguage, LiturgySection, LiturgySpeaker } from '../liturgy/types';
 import type { SaintGender } from '../prayers/saintGender';
 import type { SaintTopicId } from '../prayers/saintTopics';
 import type { ParsedService } from '../commemorations/service';
@@ -371,7 +372,11 @@ export interface Messages {
     title: string;
     /** Row in the prayers list. */
     /** Name of each liturgy, as shown in the list. */
-    names: Record<'chrysostom' | 'basil' | 'presanctified', string>;
+    names: Record<LiturgyId, string>;
+    /** Headings of the groups in the services list. */
+    groups: Record<LiturgyGroup, string>;
+    /** One line on the Sources screen for all the services taken from azbyka.ru. */
+    azbykaCredit: string;
     sectionsLabel: string;
     section: Record<LiturgySection, string>;
     speaker: Record<LiturgySpeaker, string>;
@@ -945,17 +950,21 @@ export const en: Messages = {
     invocation: (name, _gender) => `Pray to God for me, holy ${name}, for with fervor I run to you, swift helper and intercessor for my soul!`,
   },
   liturgy: {
-    title: 'Divine Liturgy',
-    names: {
-      chrysostom: 'Divine Liturgy of St John Chrysostom',
-      basil: 'Divine Liturgy of St Basil the Great',
-      presanctified: 'Liturgy of the Presanctified Gifts',
+    title: 'Services',
+    names,
+    groups: {
+      liturgies: 'Divine Liturgies',
+      offices: 'Daily services and prayers',
+      occasional: 'Sacraments and occasional services',
+      canons: 'Canons and akathists',
     },
+    azbykaCredit: 'Church Slavonic and Russian texts of the services come from azbyka.ru and are used with its written permission.',
     sectionsLabel: 'Sections',
     section: {
       proskomedia: 'Proskomedia',
       catechumens: 'Liturgy of the Catechumens',
       faithful: 'Liturgy of the Faithful',
+      service: 'Service',
       dismissal: 'Dismissal',
     },
     speaker: {

@@ -3,7 +3,7 @@ import { blocks, source } from './data/chrysostom.tr';
 import { LITURGY_SECTIONS, LITURGY_SPEAKERS } from './types';
 
 // The booklet starts at the Great Litany, so this text has no 'proskomedia'.
-const SECTIONS_PRESENT = LITURGY_SECTIONS.filter((section) => section !== 'proskomedia');
+const SECTIONS_PRESENT = LITURGY_SECTIONS.filter((section) => section !== 'proskomedia' && section !== 'service');
 
 describe('Turkish text of the Chrysostom liturgy', () => {
   it('has unique, sequential ids', () => {

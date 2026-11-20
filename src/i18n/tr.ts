@@ -1,4 +1,5 @@
 import type { Messages } from './en';
+import { names } from '../liturgy/names/tr';
 import { prayerTexts } from './prayers/tr';
 import { feastPrayerTexts } from './prayers/feastsTr';
 
@@ -455,17 +456,21 @@ export const tr: Messages = {
     invocation: (name, _gender) => `Benim için Allah’a dua et, kutsal ${name}; çünkü sana gayretle koşuyorum, ruhumun çabuk yardımcısı ve şefaatçisi!`,
   },
   liturgy: {
-    title: 'Kutsal Litürji',
-    names: {
-      chrysostom: 'Aziz Yuhanna Hrisostomos Litürjisi',
-      basil: 'Büyük Aziz Basil Litürjisi',
-      presanctified: 'Önceden Takdis Edilmiş Armağanlar Litürjisi',
+    title: 'Ayinler',
+    names,
+    groups: {
+      liturgies: 'İlahi Litürjiler',
+      offices: 'Günlük ayinler ve dualar',
+      occasional: 'Ayinler ve özel hizmetler',
+      canons: 'Kanonlar ve akathistler',
     },
+    azbykaCredit: 'Ayinlerin Kilise Slavcası ve Rusça metinleri azbyka.ru’dan alınmıştır ve onun yazılı izniyle kullanılmaktadır.',
     sectionsLabel: 'Bölümler',
     section: {
       proskomedia: 'Proskomidi',
       catechumens: 'Katekümenlerin Litürjisi',
       faithful: 'İmanlıların Litürjisi',
+      service: 'Ayin',
       dismissal: 'Dağılış',
     },
     speaker: {

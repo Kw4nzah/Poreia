@@ -1,4 +1,5 @@
 import type { Messages } from './en';
+import { names } from '../liturgy/names/ru';
 import { prayerTexts } from './prayers/ru';
 import { feastPrayerTexts } from './prayers/feastsRu';
 
@@ -467,17 +468,21 @@ export const ru: Messages = {
         : `Моли Бога о мне, святый угодниче Божий ${name}, яко аз усердно к тебе прибегаю, скорому помощнику и молитвеннику о душе моей.`,
   },
   liturgy: {
-    title: 'Божественная литургия',
-    names: {
-      chrysostom: 'Литургия святого Иоанна Златоуста',
-      basil: 'Литургия святителя Василия Великого',
-      presanctified: 'Литургия Преждеосвященных Даров',
+    title: 'Богослужения',
+    names,
+    groups: {
+      liturgies: 'Божественные литургии',
+      offices: 'Ежедневные службы и молитвы',
+      occasional: 'Таинства и требы',
+      canons: 'Каноны и акафисты',
     },
+    azbykaCredit: 'Церковнославянские и русские тексты служб взяты с azbyka.ru и используются с его письменного разрешения.',
     sectionsLabel: 'Части',
     section: {
       proskomedia: 'Проскомидия',
       catechumens: 'Литургия оглашенных',
       faithful: 'Литургия верных',
+      service: 'Служба',
       dismissal: 'Отпуст',
     },
     speaker: {

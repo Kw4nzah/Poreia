@@ -120,15 +120,11 @@ export function Prayers() {
         <FadeIn index={2}>
           <SectionHeader title={m.liturgy.title} />
           <Card padding="none">
-            {liturgies.map((id, index) => (
-              <ListRow
-                key={id}
-                serif
-                divider={index > 0}
-                title={m.liturgy.names[id]}
-                onPress={() => router.push({ pathname: '/liturgy/[id]', params: { id } })}
-              />
-            ))}
+            <ListRow
+              serif
+              title={m.liturgy.title}
+              onPress={() => router.push('/liturgy')}
+            />
           </Card>
         </FadeIn>
       )}

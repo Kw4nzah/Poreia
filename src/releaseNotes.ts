@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.6',
+    notes: {
+      tr: ['Yeni “Ayinler” bölümü: Akşam, Sabah ve Gece Boyu Ayini, Saatler, Povecherie, kanonlar ve akathistler, vaftiz, evlilik, cenaze ve daha fazlası, Kilise Slavcası ve Rusça (azbyka.ru’nun izniyle).'],
+      en: ['New “Services” section: Vespers, Matins, the All-Night Vigil, the Hours, Compline, canons and akathists, baptism, wedding, funeral and more, in Church Slavonic and Russian (with the permission of azbyka.ru).'],
+      ru: ['Новый раздел «Богослужения»: вечерня, утреня, всенощное бдение, часы, повечерие, каноны и акафисты, крещение, венчание, отпевание и другое — на церковнославянском и русском (с разрешения azbyka.ru).'],
+    },
+  },
+  {
     version: '0.9.5',
     notes: {
       tr: ['Litürji’nin Kilise Slavcası ve Rusça metni azbyka.ru’dan alındı; Büyük Basil ve Önceden Takdis Edilmiş Armağanlar litürjileri Slavca ve Rusça olarak eklendi.'],
