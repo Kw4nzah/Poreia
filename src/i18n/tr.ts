@@ -512,6 +512,7 @@ export const tr: Messages = {
     loadFailed: 'Metin yüklenemedi.',
     continueTitle: 'Kaldığınız yerden devam edin',
     noResults: 'Aramanıza uyan bir ayin bulunamadı.',
+    textMatches: 'Metinde geçenler',
     backToTop: 'Başa dön',
     bookmark: 'Yer imi',
     bookmarkHere: 'Buraya yer imi koy',

@@ -410,6 +410,8 @@ export interface Messages {
     continueTitle: string;
     /** Services list: nothing matches the search. */
     noResults: string;
+    /** Services list: heading above the services whose text (not title) matches the search. */
+    textMatches: string;
     /** Reader: button that scrolls to the start. */
     backToTop: string;
     /** Reader: the one bookmark per service (header buttons, toast, list rows). */
@@ -1056,6 +1058,7 @@ export const en: Messages = {
     loadFailed: 'The text could not be loaded.',
     continueTitle: 'Continue where you left off',
     noResults: 'No service matches your search.',
+    textMatches: 'Found in the text',
     backToTop: 'Back to the beginning',
     bookmark: 'Bookmark',
     bookmarkHere: 'Bookmark here',

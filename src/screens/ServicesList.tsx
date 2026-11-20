@@ -3,13 +3,16 @@
 // read last. The list is a flat FlatList of header and service rows, so closed groups cost nothing.
 
 import { useFocusEffect, useRouter } from 'expo-router';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ListRow as Row, buildRows, toggleKey } from '../liturgy/listModel';
 import { LiturgyProgress, emptyProgress, hasProgress, percentRead } from '../liturgy/progress';
 import { readProgress } from '../liturgy/progressStore';
 import { getAvailableLiturgies } from '../liturgy/registry';
+import { loadSearchIndexes } from '../liturgy/searchIndexLoader';
+import { matchesNormalized, normalizeForSearch } from '../liturgy/search';
+import { MIN_QUERY_LENGTH, searchIndexes } from '../liturgy/textSearch';
 import {
   LITURGY_GROUPS,
   LITURGY_GROUP_OF,
@@ -25,6 +28,9 @@ import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
 /** Groups whose services are split into named sub-lists. */
 const SUBDIVIDED = ['molitvoslov'];
+
+/** A list row, or the heading above the services found only through their text. */
+type ShownRow = Row<LiturgyId> | { kind: 'label'; key: string; title: string; count: number };
 
 export function ServicesList() {
   const { messages: m } = useSettings();
@@ -49,7 +55,26 @@ export function ServicesList() {
     }, []),
   );
 
-  const rows = useMemo(
+  // Full-text matches: the index is loaded the first time a query is long enough.
+  const needle = normalizeForSearch(query);
+  const textSearch = needle.length >= MIN_QUERY_LENGTH;
+  const [textIds, setTextIds] = useState<ReadonlySet<string>>(() => new Set());
+  useEffect(() => {
+    if (!textSearch) {
+      setTextIds((s) => (s.size === 0 ? s : new Set()));
+      return;
+    }
+    let live = true;
+    loadSearchIndexes().then(
+      (indexes) => live && setTextIds(searchIndexes(indexes, needle)),
+      () => live && setTextIds(new Set()),
+    );
+    return () => {
+      live = false;
+    };
+  }, [textSearch, needle]);
+
+  const titleRows = useMemo(
     () =>
       buildRows<LiturgyId>({
         ids: available,
@@ -63,6 +88,20 @@ export function ServicesList() {
       }),
     [available, m, query, expanded],
   );
+
+  // Below the title matches: services whose text matches but whose title does not.
+  const rows = useMemo<ShownRow[]>(() => {
+    if (!textSearch || textIds.size === 0) return titleRows;
+    const found = available.filter(
+      (id) => textIds.has(id) && !matchesNormalized(normalizeForSearch(m.liturgy.names[id]), needle),
+    );
+    if (found.length === 0) return titleRows;
+    return [
+      ...titleRows,
+      { kind: 'label', key: 'text-matches', title: m.liturgy.textMatches, count: found.length },
+      ...found.map((id): ShownRow => ({ kind: 'item', key: `t:${id}`, id })),
+    ];
+  }, [titleRows, textSearch, textIds, available, m, needle]);
 
   const open = useCallback(
     (id: LiturgyId) => router.push({ pathname: '/liturgy/[id]', params: { id } }),
@@ -88,7 +127,17 @@ export function ServicesList() {
       : '',
   ].filter(Boolean);
 
-  function renderRow({ item, index }: { item: Row<LiturgyId>; index: number }) {
+  function renderRow({ item, index }: { item: ShownRow; index: number }) {
+    if (item.kind === 'label') {
+      return (
+        <View style={[styles.header, styles.subHeader, styles.textLabel]} accessibilityRole="header">
+          <Text style={styles.subTitle} numberOfLines={2} maxFontSizeMultiplier={1.4}>
+            {item.title}
+          </Text>
+          <Text style={styles.count}>{item.count}</Text>
+        </View>
+      );
+    }
     if (item.kind === 'item') {
       const prev = rows[index - 1];
       const detail = progress.details[item.id];
@@ -231,6 +280,7 @@ function makeStyles(t: Theme) {
       borderRadius: 16,
     },
     subHeader: { paddingLeft: space.lg, paddingRight: space.md },
+    textLabel: { marginTop: space.md },
     chevron: { ...type.body, color: t.accent, width: 18, textAlign: 'center' },
     groupTitle: { flex: 1, fontFamily: SERIF, ...type.headline, color: t.ink },
     subTitle: { flex: 1, ...type.label, color: t.muted },

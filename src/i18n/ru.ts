@@ -524,6 +524,7 @@ export const ru: Messages = {
     loadFailed: 'Не удалось загрузить текст.',
     continueTitle: 'Продолжить с того места, где вы остановились',
     noResults: 'Ничего не найдено.',
+    textMatches: 'Найдено в тексте',
     backToTop: 'В начало',
     bookmark: 'Закладка',
     bookmarkHere: 'Поставить закладку здесь',
