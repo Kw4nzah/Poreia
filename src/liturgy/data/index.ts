@@ -2001,4 +2001,94 @@ export const LOADERS: LiturgyLoaders = {
   'm-pesn-presvjatoj-bogorodice-ave-maria': {
     ru: () => import('./m-pesn-presvjatoj-bogorodice-ave-maria.ru'),
   },
+  'e-a-canon-to-the-divine-worshipful-all-holy-spirit-the-paraclete': {
+    en: () => import('./e-a-canon-to-the-divine-worshipful-all-holy-spirit-the-paraclete.en'),
+  },
+  'e-a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures': {
+    en: () => import('./e-a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures.en'),
+  },
+  'e-a-preparation-for-confession-by-st-john-of-kronstadt': {
+    en: () => import('./e-a-preparation-for-confession-by-st-john-of-kronstadt.en'),
+  },
+  'e-akathist-hymn-of-repentance-in-christ': {
+    en: () => import('./e-akathist-hymn-of-repentance-in-christ.en'),
+  },
+  'e-akathist-to-jesus-light-to-those-in-darkness': {
+    en: () => import('./e-akathist-to-jesus-light-to-those-in-darkness.en'),
+  },
+  'e-canon-in-honor-of-the-saints-of-britain': {
+    en: () => import('./e-canon-in-honor-of-the-saints-of-britain.en'),
+  },
+  'e-canon-of-all-the-saints-of-the-isles': {
+    en: () => import('./e-canon-of-all-the-saints-of-the-isles.en'),
+  },
+  'e-canon-of-repentance-to-our-lord-jesus-christ': {
+    en: () => import('./e-canon-of-repentance-to-our-lord-jesus-christ.en'),
+  },
+  'e-canon-of-the-venerable-martyr-winifred-wonderworker-of-holywell-in-wales': {
+    en: () => import('./e-canon-of-the-venerable-martyr-winifred-wonderworker-of-holywell-in-wales.en'),
+  },
+  'e-canon-to-all-saints-of-north-america': {
+    en: () => import('./e-canon-to-all-saints-of-north-america.en'),
+  },
+  'e-canon-to-the-holy-and-righteous-nun-martyrs-elizabeth-and-barbara': {
+    en: () => import('./e-canon-to-the-holy-and-righteous-nun-martyrs-elizabeth-and-barbara.en'),
+  },
+  'e-evening-prayers': {
+    en: () => import('./e-evening-prayers.en'),
+  },
+  'e-for-the-suffering-people-of-ukraine': {
+    en: () => import('./e-for-the-suffering-people-of-ukraine.en'),
+  },
+  'e-morning-prayers': {
+    en: () => import('./e-morning-prayers.en'),
+  },
+  'e-orthodox-prayers-for-children': {
+    en: () => import('./e-orthodox-prayers-for-children.en'),
+  },
+  'e-our-father': {
+    en: () => import('./e-our-father.en'),
+  },
+  'e-prayer-for-the-prosperity-of-the-russian-orthodox-church': {
+    en: () => import('./e-prayer-for-the-prosperity-of-the-russian-orthodox-church.en'),
+  },
+  'e-prayer-of-philaret-metropolitan-of-moscow': {
+    en: () => import('./e-prayer-of-philaret-metropolitan-of-moscow.en'),
+  },
+  'e-prayers-for-various-needs-inserted-in-the-divine-liturgy-or-moleben': {
+    en: () => import('./e-prayers-for-various-needs-inserted-in-the-divine-liturgy-or-moleben.en'),
+  },
+  'e-prayers-to-our-lord-jesus-christ-the-theotokos-and-the-guardian-angel': {
+    en: () => import('./e-prayers-to-our-lord-jesus-christ-the-theotokos-and-the-guardian-angel.en'),
+  },
+  'e-prayers-to-the-blessed-virgin-mary-for-every-day-of-the-week': {
+    en: () => import('./e-prayers-to-the-blessed-virgin-mary-for-every-day-of-the-week.en'),
+  },
+  'e-prayers-to-the-most-holy-theotokos': {
+    en: () => import('./e-prayers-to-the-most-holy-theotokos.en'),
+  },
+  'e-prayers-to-the-saint-patrick': {
+    en: () => import('./e-prayers-to-the-saint-patrick.en'),
+  },
+  'e-resurrection-troparia-and-kontakia-in-the-8-tones-from-the-octoechos': {
+    en: () => import('./e-resurrection-troparia-and-kontakia-in-the-8-tones-from-the-octoechos.en'),
+  },
+  'e-the-canon-of-supplication-to-the-most-holy-theotokos-chanted-in-every-affliction-of-soul-and-circumstance': {
+    en: () => import('./e-the-canon-of-supplication-to-the-most-holy-theotokos-chanted-in-every-affliction-of-soul-and-circumstance.en'),
+  },
+  'e-the-canon-of-the-holy-icon-of-which-the-acrostic': {
+    en: () => import('./e-the-canon-of-the-holy-icon-of-which-the-acrostic.en'),
+  },
+  'e-the-canons-and-akathists-for-holy-communion': {
+    en: () => import('./e-the-canons-and-akathists-for-holy-communion.en'),
+  },
+  'e-the-great-canon-of-st-andrew-of-crete': {
+    en: () => import('./e-the-great-canon-of-st-andrew-of-crete.en'),
+  },
+  'e-the-order-of-preparation-for-holy-communion': {
+    en: () => import('./e-the-order-of-preparation-for-holy-communion.en'),
+  },
+  'e-the-tale-of-the-five-prayers': {
+    en: () => import('./e-the-tale-of-the-five-prayers.en'),
+  },
 };

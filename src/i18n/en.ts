@@ -962,6 +962,7 @@ export const en: Messages = {
       octoechos: 'Sunday Octoechos and readings',
       hymns: 'Troparia, kontakia and hymns',
       molitvoslov: 'Prayers (Molitvoslov)',
+      prayersEn: 'Prayers in English',
     },
     azbykaCredit: 'Church Slavonic and Russian texts of the services and prayers (Molitvoslov) come from azbyka.ru and are used with its written permission.',
     sectionsLabel: 'Sections',

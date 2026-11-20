@@ -1,7 +1,7 @@
 // Generated list of the readable services (Church Slavonic + Russian from azbyka.ru, and the
 // Divine Liturgy of St John Chrysostom in more languages).
 
-export const LITURGY_GROUPS = ["liturgies", "offices", "occasional", "canons", "feasts", "lentPascha", "octoechos", "hymns", "molitvoslov"] as const;
+export const LITURGY_GROUPS = ["liturgies", "offices", "occasional", "canons", "feasts", "lentPascha", "octoechos", "hymns", "molitvoslov", "prayersEn"] as const;
 export type LiturgyGroup = (typeof LITURGY_GROUPS)[number];
 
 export const LITURGY_IDS = [
@@ -536,6 +536,36 @@ export const LITURGY_IDS = [
   'm-o-tak-nazyvaemoj-molitve-svjashhennomuchenika-kipriana',
   'm-slovo-miryanina-k-miryanam-v-oproverzhenie-lozhnogo-skazaniya-izvestnogo-pod-imenem-son-bogorodicy',
   'm-pesn-presvjatoj-bogorodice-ave-maria',
+  'e-a-canon-to-the-divine-worshipful-all-holy-spirit-the-paraclete',
+  'e-a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures',
+  'e-a-preparation-for-confession-by-st-john-of-kronstadt',
+  'e-akathist-hymn-of-repentance-in-christ',
+  'e-akathist-to-jesus-light-to-those-in-darkness',
+  'e-canon-in-honor-of-the-saints-of-britain',
+  'e-canon-of-all-the-saints-of-the-isles',
+  'e-canon-of-repentance-to-our-lord-jesus-christ',
+  'e-canon-of-the-venerable-martyr-winifred-wonderworker-of-holywell-in-wales',
+  'e-canon-to-all-saints-of-north-america',
+  'e-canon-to-the-holy-and-righteous-nun-martyrs-elizabeth-and-barbara',
+  'e-evening-prayers',
+  'e-for-the-suffering-people-of-ukraine',
+  'e-morning-prayers',
+  'e-orthodox-prayers-for-children',
+  'e-our-father',
+  'e-prayer-for-the-prosperity-of-the-russian-orthodox-church',
+  'e-prayer-of-philaret-metropolitan-of-moscow',
+  'e-prayers-for-various-needs-inserted-in-the-divine-liturgy-or-moleben',
+  'e-prayers-to-our-lord-jesus-christ-the-theotokos-and-the-guardian-angel',
+  'e-prayers-to-the-blessed-virgin-mary-for-every-day-of-the-week',
+  'e-prayers-to-the-most-holy-theotokos',
+  'e-prayers-to-the-saint-patrick',
+  'e-resurrection-troparia-and-kontakia-in-the-8-tones-from-the-octoechos',
+  'e-the-canon-of-supplication-to-the-most-holy-theotokos-chanted-in-every-affliction-of-soul-and-circumstance',
+  'e-the-canon-of-the-holy-icon-of-which-the-acrostic',
+  'e-the-canons-and-akathists-for-holy-communion',
+  'e-the-great-canon-of-st-andrew-of-crete',
+  'e-the-order-of-preparation-for-holy-communion',
+  'e-the-tale-of-the-five-prayers',
 ] as const;
 export type LiturgyId = (typeof LITURGY_IDS)[number];
 
@@ -1071,6 +1101,36 @@ export const LITURGY_GROUP_OF: Record<LiturgyId, LiturgyGroup> = {
   'm-o-tak-nazyvaemoj-molitve-svjashhennomuchenika-kipriana': 'molitvoslov',
   'm-slovo-miryanina-k-miryanam-v-oproverzhenie-lozhnogo-skazaniya-izvestnogo-pod-imenem-son-bogorodicy': 'molitvoslov',
   'm-pesn-presvjatoj-bogorodice-ave-maria': 'molitvoslov',
+  'e-a-canon-to-the-divine-worshipful-all-holy-spirit-the-paraclete': 'prayersEn',
+  'e-a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures': 'prayersEn',
+  'e-a-preparation-for-confession-by-st-john-of-kronstadt': 'prayersEn',
+  'e-akathist-hymn-of-repentance-in-christ': 'prayersEn',
+  'e-akathist-to-jesus-light-to-those-in-darkness': 'prayersEn',
+  'e-canon-in-honor-of-the-saints-of-britain': 'prayersEn',
+  'e-canon-of-all-the-saints-of-the-isles': 'prayersEn',
+  'e-canon-of-repentance-to-our-lord-jesus-christ': 'prayersEn',
+  'e-canon-of-the-venerable-martyr-winifred-wonderworker-of-holywell-in-wales': 'prayersEn',
+  'e-canon-to-all-saints-of-north-america': 'prayersEn',
+  'e-canon-to-the-holy-and-righteous-nun-martyrs-elizabeth-and-barbara': 'prayersEn',
+  'e-evening-prayers': 'prayersEn',
+  'e-for-the-suffering-people-of-ukraine': 'prayersEn',
+  'e-morning-prayers': 'prayersEn',
+  'e-orthodox-prayers-for-children': 'prayersEn',
+  'e-our-father': 'prayersEn',
+  'e-prayer-for-the-prosperity-of-the-russian-orthodox-church': 'prayersEn',
+  'e-prayer-of-philaret-metropolitan-of-moscow': 'prayersEn',
+  'e-prayers-for-various-needs-inserted-in-the-divine-liturgy-or-moleben': 'prayersEn',
+  'e-prayers-to-our-lord-jesus-christ-the-theotokos-and-the-guardian-angel': 'prayersEn',
+  'e-prayers-to-the-blessed-virgin-mary-for-every-day-of-the-week': 'prayersEn',
+  'e-prayers-to-the-most-holy-theotokos': 'prayersEn',
+  'e-prayers-to-the-saint-patrick': 'prayersEn',
+  'e-resurrection-troparia-and-kontakia-in-the-8-tones-from-the-octoechos': 'prayersEn',
+  'e-the-canon-of-supplication-to-the-most-holy-theotokos-chanted-in-every-affliction-of-soul-and-circumstance': 'prayersEn',
+  'e-the-canon-of-the-holy-icon-of-which-the-acrostic': 'prayersEn',
+  'e-the-canons-and-akathists-for-holy-communion': 'prayersEn',
+  'e-the-great-canon-of-st-andrew-of-crete': 'prayersEn',
+  'e-the-order-of-preparation-for-holy-communion': 'prayersEn',
+  'e-the-tale-of-the-five-prayers': 'prayersEn',
 };
 
 /** Heading of the sub-list a Molitvoslov prayer belongs to (Russian, as on azbyka.ru). */

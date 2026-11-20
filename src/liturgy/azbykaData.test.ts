@@ -4,7 +4,11 @@ import { LOADERS } from './data';
 import { LITURGY_GROUP_OF, LITURGY_GROUPS, LITURGY_IDS, LITURGY_SECTIONS, LITURGY_SPEAKERS } from './types';
 
 // Church Slavonic and Russian texts generated from azbyka.ru (used with its written permission).
-const cases = LITURGY_IDS.flatMap((id) => (['cu', 'ru'] as const).map((language) => [id, language] as const));
+const cases = LITURGY_IDS.flatMap((id) =>
+  (LITURGY_GROUP_OF[id] === 'prayersEn' ? (['en'] as const) : (['cu', 'ru'] as const)).map(
+    (language) => [id, language] as const,
+  ),
+);
 
 describe.each(cases)('azbyka.ru text: %s %s', (id, language) => {
   it('has well-formed blocks with unique ids and credits azbyka.ru', async () => {

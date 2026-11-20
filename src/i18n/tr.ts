@@ -468,6 +468,7 @@ export const tr: Messages = {
       octoechos: 'Pazar Oktoih ve okumalar',
       hymns: 'Troparlar, kontakionlar ve ilahiler',
       molitvoslov: 'Dualar (Molitvoslov)',
+      prayersEn: 'İngilizce dualar',
     },
     azbykaCredit: 'Ayinlerin ve duaların (Molitvoslov) Kilise Slavcası ve Rusça metinleri azbyka.ru’dan alınmıştır ve onun yazılı izniyle kullanılmaktadır.',
     sectionsLabel: 'Bölümler',

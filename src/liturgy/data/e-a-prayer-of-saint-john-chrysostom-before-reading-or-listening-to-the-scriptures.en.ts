@@ -1,0 +1,18 @@
+// Prayers in English (e-a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures). Source: azbyka.ru, "A prayer of Saint John Chrysostom before reading or listening to the scriptures" (https://azbyka.ru/molitvoslov/a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures.html).
+//   Used with the written permission of azbyka.ru; remove on request. Generated from the page by a
+//   script (markup removed, nothing else changed). Generated 2026-11-21.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "en-e-0001", "section": "service", "who": "reader", "text": "O Lord Jesus Christ, open the eyes of my heart, that I may hear Thy word and understand and do Thy will, for I am a sojourner upon the earth."},
+  {"id": "en-e-0002", "section": "service", "who": "reader", "text": "Do not hide Thy commandments from me, but open mine eyes, that I may perceive the wonders of Thy law."},
+  {"id": "en-e-0003", "section": "service", "who": "reader", "text": "Speak to me the hidden and secret things of Thy wisdom."},
+  {"id": "en-e-0004", "section": "service", "who": "reader", "text": "On Thee do I set my hope, O my God, that Thou enlighten my mind and understanding with the light of Thy knowledge, not only to cherish those things which are written, but to do them; that in reading the lives and sayings of the saints I may not sin, but that they may serve for my restoration, enlightenment and sanctification, for the salvation of my soul, and the inheritance of life everlasting."},
+  {"id": "en-e-0005", "section": "service", "who": "reader", "text": "For Thou art the enlightenment of those who lie in darkness, and from Thee comes every good deed and every gift. Amen."},
+];
+
+export const source = {
+  tr: "İngilizce metin: azbyka.ru, Molitvoslov, “A prayer of Saint John Chrysostom before reading or listening to the scriptures” (azbyka.ru/molitvoslov/a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures.html); sayfada çevirmen belirtilmemiştir. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "English text: azbyka.ru, Molitvoslov, “A prayer of Saint John Chrysostom before reading or listening to the scriptures” (azbyka.ru/molitvoslov/a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures.html); the page names no translator. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Английский текст: azbyka.ru, Молитвослов, «A prayer of Saint John Chrysostom before reading or listening to the scriptures» (azbyka.ru/molitvoslov/a-prayer-of-saint-john-chrysostom-before-reading-or-listening-to-the-scriptures.html); переводчик на странице не указан. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

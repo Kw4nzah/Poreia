@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.9',
+    notes: {
+      tr: ['Ayinler bölümüne İngilizce dualar eklendi: sabah ve akşam duaları, Büyük Kanon, Komünyona hazırlık, kanonlar ve akathistler (azbyka.ru’nun izniyle).'],
+      en: ['English prayers added to the Services section: morning and evening prayers, the Great Canon, preparation for Holy Communion, canons and akathists (with the permission of azbyka.ru).'],
+      ru: ['В раздел «Богослужения» добавлены молитвы на английском: утренние и вечерние, Великий канон, подготовка к Причастию, каноны и акафисты (с разрешения azbyka.ru).'],
+    },
+  },
+  {
     version: '0.9.8',
     notes: {
       tr: ['Ayinler bölümüne azbyka.ru Molitvoslov’dan dualar eklendi: azizlere, Teotokos’a, ihtiyaç anlarına, hastalara, ölülere ve daha fazlası (Kilise Slavcası ve Rusça).'],
