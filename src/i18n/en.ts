@@ -404,6 +404,12 @@ export interface Messages {
     missing: string;
     loading: string;
     loadFailed: string;
+    /** Services list: row that reopens the service read last. */
+    continueTitle: string;
+    /** Services list: nothing matches the search. */
+    noResults: string;
+    /** Reader: button that scrolls to the start. */
+    backToTop: string;
     /** Heading of the liturgy part of the Sources screen. */
     sourcesHeading: string;
     /** General note on the Sources screen: how to ask for a text to be removed; `url` is the issues page. */
@@ -1025,6 +1031,9 @@ export const en: Messages = {
     missing: 'No text in this language',
     loading: 'Loading…',
     loadFailed: 'The text could not be loaded.',
+    continueTitle: 'Continue where you left off',
+    noResults: 'No service matches your search.',
+    backToTop: 'Back to the beginning',
     sourcesHeading: 'Divine Liturgy',
     rightsNote: (url) =>
       `If you hold rights to a text here and want it removed, report it at ${url} and it will be removed.`,

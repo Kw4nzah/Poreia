@@ -509,6 +509,9 @@ export const tr: Messages = {
     missing: 'Bu dilde metin yok',
     loading: 'Yükleniyor…',
     loadFailed: 'Metin yüklenemedi.',
+    continueTitle: 'Kaldığınız yerden devam edin',
+    noResults: 'Aramanıza uyan bir ayin bulunamadı.',
+    backToTop: 'Başa dön',
     sourcesHeading: 'Kutsal Litürji',
     rightsNote: (url) =>
       `Burada yer alan bir metin üzerinde hak sahibiyseniz ve kaldırılmasını istiyorsanız, bunu ${url} adresinden bildirin; metin kaldırılacaktır.`,

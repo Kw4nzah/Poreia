@@ -1,9 +1,18 @@
-// The Divine Liturgy as a reading page: section jumps, speaker labels, rubrics in italics, one
-// language or two stacked per block. Texts are optional data files loaded on demand.
+// A service as a reading page: a compact header (back, name, size), language switch, section
+// chips (only for texts with several sections), the speaker as a small coloured label above each
+// block, rubrics set apart by a rule and colour. The position is remembered per service. Tapping
+// the text hides the controls (reading mode). Texts are optional data files loaded on demand.
 
 import { useRouter } from 'expo-router';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  FlatList,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   AlignedBlock,
@@ -13,13 +22,27 @@ import {
   speakerLabelKey,
 } from '../liturgy/blocks';
 import { slavonicFontFamily } from '../liturgy/font';
+import {
+  LiturgyProgress,
+  emptyProgress,
+  recordPosition,
+  restoreIndex,
+} from '../liturgy/progress';
+import { readProgress, writeProgress } from '../liturgy/progressStore';
+import {
+  readingLineHeight,
+  sectionAtIndex,
+  showBackToTop,
+  showSectionChips,
+  speakerColor,
+} from '../liturgy/reading';
 import { defaultLiturgyLanguage, getAvailableLanguages, secondLanguage } from '../liturgy/registry';
 import { LiturgyBlock, LiturgyId, LiturgyLanguage } from '../liturgy/types';
 import { useLiturgyTexts } from '../liturgy/useLiturgyTexts';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
 import { SegmentedControl } from '../ui/kit';
-import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
+import { SERIF, Theme, space, type, useTheme, useThemedStyles } from '../ui/theme';
 import { holdScreenAwake } from './keepAwake';
 
 /**
@@ -32,6 +55,15 @@ const PARALLEL_VIEW_READY = false;
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 /** Line length cap so wide screens still read as a narrow column. */
 const COLUMN_WIDTH = 600;
+/** How long after a restore the scroll position is not saved, so the jump is not overwritten. */
+const RESTORE_GRACE_MS = 1500;
+const SAVE_DELAY_MS = 700;
+const VIEWABILITY = { itemVisiblePercentThreshold: 10 } as const;
+
+/** The part of FlatList's viewability token used here (the type is not exported by react-native). */
+interface ViewToken {
+  index?: number | null;
+}
 
 function fontFor(language: LiturgyLanguage) {
   return language === 'cu' ? slavonicFontFamily() : SERIF;
@@ -41,12 +73,15 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
   const { settings, messages: m, update } = useSettings();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const theme = useTheme();
   const styles = useThemedStyles(makeStyles);
   const listRef = useRef<FlatList<AlignedBlock>>(null);
 
   const available = useMemo(() => getAvailableLanguages(id), [id]);
   const [chosen, setChosen] = useState<LiturgyLanguage | null>(null);
   const [parallel, setParallel] = useState(false);
+  const [chrome, setChrome] = useState(true);
+  const [firstIndex, setFirstIndex] = useState(0);
   const main = chosen ?? defaultLiturgyLanguage(available, settings.language);
   const second = main && parallel ? secondLanguage(available, main) : null;
   const canParallel =
@@ -69,7 +104,71 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
   // In two-language mode blocks only the second text has are shown too, so jumps use `rows`.
   const sections = useMemo(() => sectionsOf(rows), [rows]);
   const starts = useMemo(() => sectionStarts(rows), [rows]);
+  const activeSection = sectionAtIndex(starts, firstIndex);
 
+  // ---- Reading position -------------------------------------------------------------------
+  const progressRef = useRef<LiturgyProgress | null>(null);
+  const [progressLoaded, setProgressLoaded] = useState(false);
+  const restoredRef = useRef(false);
+  const graceUntil = useRef(0);
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const latestIndex = useRef(0);
+
+  useEffect(() => {
+    let live = true;
+    readProgress().then((p) => {
+      if (!live) return;
+      progressRef.current = p;
+      setProgressLoaded(true);
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
+
+  const flush = useCallback(() => {
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = null;
+    if (!restoredRef.current) return;
+    progressRef.current = recordPosition(progressRef.current ?? emptyProgress(), id, latestIndex.current);
+    void writeProgress(progressRef.current);
+  }, [id]);
+
+  // Save once more when leaving the screen.
+  useEffect(() => flush, [flush]);
+
+  // Restore the position once, when the first text has loaded. A language switch starts at the top.
+  useEffect(() => {
+    if (restoredRef.current || !progressLoaded || rows.length === 0) return;
+    restoredRef.current = true;
+    const index = restoreIndex(progressRef.current ?? emptyProgress(), id, rows.length);
+    latestIndex.current = index;
+    graceUntil.current = Date.now() + RESTORE_GRACE_MS;
+    if (index > 0) {
+      setTimeout(() => listRef.current?.scrollToIndex({ index, animated: false, viewPosition: 0 }), 60);
+    }
+    flush(); // marks this service as the last one opened
+  }, [progressLoaded, rows.length, id, flush]);
+
+  // FlatList wants a stable viewability callback, so it goes through a ref kept up to date.
+  const flushRef = useRef(flush);
+  flushRef.current = flush;
+  const onViewableItemsChanged = useRef((_info: { viewableItems: ViewToken[] }) => {});
+  onViewableItemsChanged.current = ({ viewableItems }) => {
+    const first = viewableItems.find((v) => v.index !== null)?.index;
+    if (first === undefined || first === null) return;
+    setFirstIndex(first);
+    if (!restoredRef.current || Date.now() < graceUntil.current) return;
+    latestIndex.current = first;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => flushRef.current(), SAVE_DELAY_MS);
+  };
+  const stableViewable = useCallback(
+    (info: { viewableItems: ViewToken[] }) => onViewableItemsChanged.current(info),
+    [],
+  );
+
+  // ---- Controls ---------------------------------------------------------------------------
   const size = settings.prayerTextSize;
   const base = PRAYER_TEXT_SIZES[size];
 
@@ -94,16 +193,21 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
       );
     }
     const rubric = who === 'rubric' || who === 'omitted';
+    const slavonic = language === 'cu';
     return (
       <Text
         style={[
           styles.text,
-          base,
-          { fontFamily: fontFor(language) },
+          {
+            fontSize: base.fontSize,
+            lineHeight: readingLineHeight(base.fontSize, slavonic),
+            fontFamily: fontFor(language),
+          },
           // The Slavonic font has no italic face; on Android an italic request falls back to the
-          // system font, which lacks the Slavonic letters and shows boxes. Rubrics in Slavonic
-          // are set apart by colour and size instead.
-          rubric && (language === 'cu' ? styles.rubricCu : styles.rubric),
+          // system font, which lacks the Slavonic letters and shows boxes. Rubrics are set apart
+          // by the rule beside them and by colour, and italic only outside Slavonic.
+          rubric && styles.rubricText,
+          rubric && !slavonic && styles.italic,
           who === 'omitted' && styles.omitted,
           muted && styles.secondary,
         ]}
@@ -116,108 +220,129 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
   function renderRow({ item }: { item: AlignedBlock }) {
     const labelKey = speakerLabelKey(item.who);
     const label = labelKey ? m.liturgy.speaker[labelKey] : null;
+    const color = speakerColor(item.who, theme.dark);
+    const rubric = item.who === 'rubric' || item.who === 'omitted';
     return (
-      <View style={styles.block}>
+      // The whole block toggles reading mode; it is not a separate control for screen readers,
+      // whose users keep the controls visible anyway.
+      <Pressable
+        onPress={() => setChrome((on) => !on)}
+        accessible={false}
+        style={[styles.block, rubric && styles.rubricBlock]}
+      >
         {label && (
-          <Text style={styles.speaker} accessibilityRole="text">
-            {label}
-          </Text>
+          <Text style={[styles.speaker, color ? { color } : styles.speakerPlain]}>{label}</Text>
         )}
         {main && renderBlock(item.a, main, item.who, false)}
         {second && <View style={styles.gap} />}
         {second && renderBlock(item.b, second, item.who, true)}
-      </View>
+      </Pressable>
     );
   }
 
   const loading = main !== null && mainText === undefined;
   const failed = mainText === null;
+  const topPad = chrome ? 0 : insets.top + space.md;
 
   return (
     <View style={styles.screen}>
-      <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
-        <Pressable
-          onPress={() => router.back()}
-          style={styles.back}
-          accessibilityRole="button"
-          accessibilityLabel={m.prayers.title}
-        >
-          <Text style={styles.backText}>‹ {m.prayers.title}</Text>
-        </Pressable>
-        <View style={styles.sizes}>
-          <Pressable
-            onPress={() => resize(-1)}
-            disabled={size === 0}
-            style={styles.sizeButton}
-            accessibilityRole="button"
-            accessibilityLabel={m.prayers.smaller}
-            accessibilityState={{ disabled: size === 0 }}
-          >
-            <Text style={[styles.sizeText, size === 0 && styles.sizeDisabled]}>A−</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => resize(1)}
-            disabled={size === LARGEST}
-            style={styles.sizeButton}
-            accessibilityRole="button"
-            accessibilityLabel={m.prayers.larger}
-            accessibilityState={{ disabled: size === LARGEST }}
-          >
-            <Text style={[styles.sizeText, size === LARGEST && styles.sizeDisabled]}>A+</Text>
-          </Pressable>
-        </View>
-      </View>
-
-      <View style={styles.controls}>
-        <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
-          {m.liturgy.names[id]}
-        </Text>
-        {available.length > 1 && main && (
-          <View style={styles.control}>
-            <SegmentedControl
-              accessibilityLabel={m.liturgy.languageLabel}
-              options={available.map((language) => ({
-                value: language,
-                label: m.liturgy.language[language],
-              }))}
-              value={main}
-              onChange={setChosen}
-            />
-          </View>
-        )}
-        {canParallel && (
-          <Pressable
-            onPress={() => setParallel((on) => !on)}
-            style={styles.toggle}
-            accessibilityRole="switch"
-            accessibilityLabel={m.liturgy.parallel}
-            accessibilityState={{ checked: parallel }}
-          >
-            <Text style={styles.toggleText}>
-              {parallel ? m.liturgy.parallelOff : m.liturgy.parallel}
+      {chrome && (
+        <View style={[styles.header, { paddingTop: insets.top + space.xs }]}>
+          <View style={styles.bar}>
+            <Pressable
+              onPress={() => router.back()}
+              style={styles.back}
+              accessibilityRole="button"
+              accessibilityLabel={m.prayers.title}
+            >
+              <Text style={styles.backText}>‹</Text>
+            </Pressable>
+            <Text
+              style={styles.title}
+              numberOfLines={1}
+              accessibilityRole="header"
+              maxFontSizeMultiplier={1.3}
+            >
+              {m.liturgy.names[id]}
             </Text>
-          </Pressable>
-        )}
-        {sections.length > 1 && (
-          <View
-            style={styles.sectionRow}
-            accessibilityRole="menu"
-            accessibilityLabel={m.liturgy.sectionsLabel}
-          >
-            {sections.map((section) => (
-              <Pressable
-                key={section}
-                onPress={() => jump(starts[section] ?? 0)}
-                style={styles.chip}
-                accessibilityRole="button"
-                accessibilityLabel={m.liturgy.section[section]}
-              >
-                <Text style={styles.chipText}>{m.liturgy.section[section]}</Text>
-              </Pressable>
-            ))}
+            <Pressable
+              onPress={() => resize(-1)}
+              disabled={size === 0}
+              style={styles.sizeButton}
+              accessibilityRole="button"
+              accessibilityLabel={m.prayers.smaller}
+              accessibilityState={{ disabled: size === 0 }}
+            >
+              <Text style={[styles.sizeText, size === 0 && styles.sizeDisabled]}>A−</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => resize(1)}
+              disabled={size === LARGEST}
+              style={styles.sizeButton}
+              accessibilityRole="button"
+              accessibilityLabel={m.prayers.larger}
+              accessibilityState={{ disabled: size === LARGEST }}
+            >
+              <Text style={[styles.sizeText, size === LARGEST && styles.sizeDisabled]}>A+</Text>
+            </Pressable>
           </View>
-        )}
-      </View>
+          {available.length > 1 && main && (
+            <View style={styles.control}>
+              <SegmentedControl
+                accessibilityLabel={m.liturgy.languageLabel}
+                options={available.map((language) => ({
+                  value: language,
+                  label: m.liturgy.language[language],
+                }))}
+                value={main}
+                onChange={setChosen}
+              />
+            </View>
+          )}
+          {canParallel && (
+            <Pressable
+              onPress={() => setParallel((on) => !on)}
+              style={styles.toggle}
+              accessibilityRole="switch"
+              accessibilityLabel={m.liturgy.parallel}
+              accessibilityState={{ checked: parallel }}
+            >
+              <Text style={styles.toggleText}>
+                {parallel ? m.liturgy.parallelOff : m.liturgy.parallel}
+              </Text>
+            </Pressable>
+          )}
+          {showSectionChips(sections) && (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.chipScroll}
+              contentContainerStyle={styles.sectionRow}
+              accessibilityRole="menu"
+              accessibilityLabel={m.liturgy.sectionsLabel}
+            >
+              {sections.map((section) => {
+                const active = section === activeSection;
+                return (
+                  <Pressable
+                    key={section}
+                    onPress={() => jump(starts[section] ?? 0)}
+                    style={[styles.chip, active && styles.chipActive]}
+                    accessibilityRole="button"
+                    accessibilityLabel={m.liturgy.section[section]}
+                    accessibilityState={{ selected: active }}
+                  >
+                    <Text style={[styles.chipText, active && styles.chipTextActive]}>
+                      {m.liturgy.section[section]}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
+          )}
+          <View style={styles.headerLine} />
+        </View>
+      )}
 
       {(loading || failed) && (
         <Text style={styles.status} accessibilityLiveRegion="polite">
@@ -230,16 +355,20 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
         data={rows}
         keyExtractor={(row) => row.id}
         renderItem={renderRow}
-        extraData={[size, parallel, main, second]}
-        initialNumToRender={12}
+        extraData={[size, parallel, main, second, theme.dark]}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
         windowSize={9}
+        removeClippedSubviews
+        onViewableItemsChanged={stableViewable}
+        viewabilityConfig={VIEWABILITY}
         onScrollToIndexFailed={({ index, averageItemLength }) => {
           listRef.current?.scrollToOffset({ offset: index * averageItemLength, animated: false });
           setTimeout(() => listRef.current?.scrollToIndex({ index, animated: false }), 80);
         }}
         contentContainerStyle={{
-          paddingTop: space.sm,
-          paddingBottom: insets.bottom + space.xl * 2,
+          paddingTop: space.sm + topPad,
+          paddingBottom: insets.bottom + space.xl * 3,
           paddingHorizontal: space.lg,
           width: '100%',
           maxWidth: COLUMN_WIDTH + space.lg * 2,
@@ -247,6 +376,17 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
         }}
         showsVerticalScrollIndicator={false}
       />
+
+      {showBackToTop(firstIndex) && (
+        <Pressable
+          onPress={() => listRef.current?.scrollToOffset({ offset: 0, animated: true })}
+          style={[styles.toTop, { bottom: insets.bottom + space.lg }]}
+          accessibilityRole="button"
+          accessibilityLabel={m.liturgy.backToTop}
+        >
+          <Text style={styles.toTopText}>↑</Text>
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -254,25 +394,19 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    header: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      paddingHorizontal: space.lg,
-    },
-    back: { minHeight: 44, justifyContent: 'center', flexShrink: 1 },
-    backText: { ...type.body, color: t.accent },
-    sizes: { flexDirection: 'row' },
+    header: { backgroundColor: t.background, paddingHorizontal: space.md },
+    bar: { flexDirection: 'row', alignItems: 'center' },
+    back: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
+    backText: { fontSize: 30, lineHeight: 34, color: t.accent },
+    title: { flex: 1, fontFamily: SERIF, ...type.headline, color: t.ink, marginHorizontal: space.xs },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },
     sizeDisabled: { color: t.line },
-
-    controls: { paddingHorizontal: space.lg, paddingBottom: space.sm },
-    title: { fontFamily: SERIF, ...type.title1, color: t.ink },
-    control: { marginTop: space.md },
+    control: { marginTop: space.xs, marginBottom: space.xs },
     toggle: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
     toggleText: { ...type.label, color: t.accent },
-    sectionRow: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm, marginTop: space.xs },
+    chipScroll: { flexGrow: 0, marginTop: space.xs },
+    sectionRow: { flexDirection: 'row', gap: space.sm, paddingRight: space.md },
     chip: {
       minHeight: 44,
       justifyContent: 'center',
@@ -281,17 +415,40 @@ function makeStyles(t: Theme) {
       borderWidth: 1,
       borderColor: t.outline,
     },
+    chipActive: { backgroundColor: t.accent, borderColor: t.accent },
     chipText: { ...type.label, color: t.ink },
+    chipTextActive: { color: t.onAccent },
+    headerLine: { height: StyleSheet.hairlineWidth, backgroundColor: t.line, marginTop: space.xs },
     status: { ...type.body, color: t.muted, paddingHorizontal: space.lg, marginTop: space.md },
 
-    block: { marginTop: space.lg },
-    speaker: { ...type.caption, color: t.accent, fontWeight: '600', marginBottom: space.xs },
+    block: { marginTop: space.lg + space.xs },
+    speaker: { ...type.caption, fontWeight: '700', marginBottom: space.xs, letterSpacing: 0.3 },
+    speakerPlain: { color: t.muted },
     text: { color: t.ink },
-    rubric: { fontStyle: 'italic', color: t.muted },
-    rubricCu: { color: t.muted, opacity: 0.9 },
-    omitted: { opacity: 0.7 },
+    rubricBlock: {
+      borderLeftWidth: 3,
+      borderLeftColor: t.outline,
+      paddingLeft: space.md,
+    },
+    rubricText: { color: t.muted },
+    italic: { fontStyle: 'italic' },
+    omitted: { opacity: 0.75 },
     secondary: { color: t.muted },
     gap: { height: space.sm },
     missing: { fontStyle: 'italic', color: t.muted },
+
+    toTop: {
+      position: 'absolute',
+      right: space.lg,
+      width: 48,
+      height: 48,
+      borderRadius: 24,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: t.surface,
+      borderWidth: 1,
+      borderColor: t.outline,
+    },
+    toTopText: { fontSize: 22, lineHeight: 26, color: t.accent },
   });
 }
