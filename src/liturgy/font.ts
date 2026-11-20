@@ -9,7 +9,10 @@
 import { SERIF } from '../ui/theme';
 
 /** Family name of the bundled Slavonic font. */
-export const SLAVONIC_FONT_FAMILY: string | null = 'Ponomar-Regular';
+// The azbyka.ru Church Slavonic text is civil script without accents, which the system serif
+// covers, so the font is no longer used. The file and the config plugin entry are removed at the
+// next native release (a plain update cannot drop them from an installed APK).
+export const SLAVONIC_FONT_FAMILY: string | null = null;
 
 export function slavonicFontFamily(): string {
   return SLAVONIC_FONT_FAMILY ?? SERIF;

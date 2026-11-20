@@ -59,7 +59,6 @@ export function Sources() {
                 {m.liturgy.language[line.language]}: {line.source}
               </Text>
             ))}
-            <Text style={styles.body}>{m.liturgy.fontNote}</Text>
             <Text style={styles.body}>
               {rightsBefore}
               <Text
