@@ -255,3 +255,12 @@ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 ```
+
+## azbyka.ru
+
+The Church Slavonic and Russian texts of the services in `src/liturgy/data/` (Divine
+Liturgies, daily services, sacraments, canons, feasts, Lent, Pascha, Octoechos, hymns) come from
+azbyka.ru (https://azbyka.ru/bogosluzhenie/, "Переводы богослужений"; Russian translation:
+hieromonk Ambrose (Timrot)). They are used with the written permission of azbyka.ru and are
+removed on request. The Russian prayers and feast hymns are checked against azbyka.ru with the
+same permission.

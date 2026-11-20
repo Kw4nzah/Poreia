@@ -185,7 +185,8 @@ licences*.
 | Scripture, English | Berean Standard Bible and LXX2012, public domain, from eBible.org |
 | Scripture, Russian | Synodal Translation (1876), public domain, from eBible.org |
 | Prayers, English | *Orthodox Daily Prayers* (St Tikhon's Seminary Press, 1982), with translations prepared for this app |
-| Prayers, Russian | Church Slavonic texts in the public domain, checked against azbyka.ru |
+| Prayers, Russian | Church Slavonic texts, checked against azbyka.ru; used with its written permission |
+| Services (Liturgies, Vespers, Matins, canons, feasts and more), Church Slavonic and Russian | [azbyka.ru](https://azbyka.ru/bogosluzhenie/) "Переводы богослужений" (Russian translation: hieromonk Ambrose (Timrot)); used with the written permission of azbyka.ru; removed on request |
 | Prayers, Turkish | Translated for this app |
 
 Translations that are under copyright are not stored in the app. The app links to them on
