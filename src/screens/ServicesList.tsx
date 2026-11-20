@@ -7,7 +7,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ListRow as Row, buildRows, toggleKey } from '../liturgy/listModel';
-import { LiturgyProgress, emptyProgress } from '../liturgy/progress';
+import { LiturgyProgress, emptyProgress, hasProgress, percentRead } from '../liturgy/progress';
 import { readProgress } from '../liturgy/progressStore';
 import { getAvailableLiturgies } from '../liturgy/registry';
 import {
@@ -18,6 +18,7 @@ import {
 } from '../liturgy/types';
 import { useSettings } from '../settings/SettingsProvider';
 import { AppTextInput } from '../ui/AppTextInput';
+import { BookmarkRibbon } from '../ui/BookmarkRibbon';
 import { Card, ListRow } from '../ui/kit';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
@@ -68,14 +69,42 @@ export function ServicesList() {
   const toggle = useCallback((key: string) => setExpanded((s) => toggleKey(s, key)), []);
 
   const last = progress.last && available.includes(progress.last.id) ? progress.last.id : null;
+  const lastDetail = last ? progress.details[last] : undefined;
+  const lastPercent = percentRead(lastDetail);
+  const lastLines = [
+    [lastPercent !== null ? m.liturgy.percentRead(lastPercent) : null, lastDetail?.snippet || null]
+      .filter(Boolean)
+      .join(' · '),
+    lastDetail?.bookmark
+      ? `${m.liturgy.bookmark}: ${lastDetail.bookmark.snippet}`.trimEnd()
+      : '',
+  ].filter(Boolean);
 
   function renderRow({ item, index }: { item: Row<LiturgyId>; index: number }) {
     if (item.kind === 'item') {
       const prev = rows[index - 1];
+      const detail = progress.details[item.id];
+      const marked = hasProgress(detail);
+      const pct = marked ? percentRead(detail) : null;
+      const mark = detail?.bookmark ? m.liturgy.bookmark : null;
+      const spoken = [pct !== null ? m.liturgy.percentRead(pct) : null, mark].filter(Boolean).join(', ');
       return (
         <View style={styles.item}>
           {prev?.kind === 'item' && <View style={styles.hairline} />}
-          <ListRow serif title={m.liturgy.names[item.id]} onPress={() => open(item.id)} />
+          <ListRow
+            serif
+            title={m.liturgy.names[item.id]}
+            onPress={() => open(item.id)}
+            accessibilityLabel={spoken ? `${m.liturgy.names[item.id]}, ${spoken}` : undefined}
+            trailing={
+              marked && (pct !== null || mark) ? (
+                <View style={styles.marks}>
+                  {mark && <BookmarkRibbon width={10} height={18} />}
+                  {pct !== null && <Text style={styles.pct}>{pct}%</Text>}
+                </View>
+              ) : undefined
+            }
+          />
         </View>
       );
     }
@@ -129,6 +158,7 @@ export function ServicesList() {
         data={rows}
         keyExtractor={(row) => row.key}
         renderItem={renderRow}
+        extraData={progress}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
         initialNumToRender={16}
@@ -142,12 +172,13 @@ export function ServicesList() {
               style={styles.resume}
               onPress={() => open(last)}
               accessibilityRole="button"
-              accessibilityLabel={`${m.liturgy.continueTitle}: ${m.liturgy.names[last]}`}
+              accessibilityLabel={[m.liturgy.continueTitle, m.liturgy.names[last], ...lastLines].join(': ')}
             >
               <ListRow
                 serif
                 overline={m.liturgy.continueTitle}
                 title={m.liturgy.names[last]}
+                subtitle={lastLines.length > 0 ? lastLines.join('\n') : undefined}
                 hideArrow={false}
               />
             </Card>
@@ -202,6 +233,8 @@ function makeStyles(t: Theme) {
       borderLeftWidth: 2,
       borderColor: t.line,
     },
+    marks: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
+    pct: { ...type.label, color: t.muted },
     hairline: { height: StyleSheet.hairlineWidth, backgroundColor: t.line },
     empty: { ...type.body, color: t.muted, marginTop: space.lg },
   });
