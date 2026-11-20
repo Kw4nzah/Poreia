@@ -20,6 +20,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { AppTextInput } from '../ui/AppTextInput';
 import { BookmarkRibbon } from '../ui/BookmarkRibbon';
 import { Card, ListRow } from '../ui/kit';
+import { Chevron, easeNextLayout, useReduceMotion } from '../ui/motion';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
 /** Groups whose services are split into named sub-lists. */
@@ -30,6 +31,7 @@ export function ServicesList() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const styles = useThemedStyles(makeStyles);
+  const reduceMotion = useReduceMotion();
   const [query, setQuery] = useState('');
   const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
   const [progress, setProgress] = useState<LiturgyProgress>(emptyProgress);
@@ -66,7 +68,13 @@ export function ServicesList() {
     (id: LiturgyId) => router.push({ pathname: '/liturgy/[id]', params: { id } }),
     [router],
   );
-  const toggle = useCallback((key: string) => setExpanded((s) => toggleKey(s, key)), []);
+  const toggle = useCallback(
+    (key: string) => {
+      easeNextLayout(reduceMotion);
+      setExpanded((s) => toggleKey(s, key));
+    },
+    [reduceMotion],
+  );
 
   const last = progress.last && available.includes(progress.last.id) ? progress.last.id : null;
   const lastDetail = last ? progress.details[last] : undefined;
@@ -119,7 +127,7 @@ export function ServicesList() {
         accessibilityLabel={`${title}, ${item.count}`}
         accessibilityState={{ expanded: item.open, disabled: searching }}
       >
-        <Text style={styles.chevron}>{item.open ? '▾' : '▸'}</Text>
+        <Chevron open={item.open} style={styles.chevron} />
         <Text
           style={isGroup ? styles.groupTitle : styles.subTitle}
           numberOfLines={2}

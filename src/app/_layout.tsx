@@ -6,11 +6,13 @@ import { OngoingNotification } from '../notifications/OngoingNotification';
 import { SettingsProvider } from '../settings/SettingsProvider';
 import { ErrorBoundary } from '../ui/ErrorBoundary';
 import { StatusBarBackground } from '../ui/StatusBarBackground';
+import { useReduceMotion } from '../ui/motion';
 import { useTheme } from '../ui/theme';
 import { WidgetSync } from '../widget/WidgetSync';
 
 export default function RootLayout() {
   const theme = useTheme();
+  const reduceMotion = useReduceMotion();
   return (
     // The background shows while settings load, so there is no white flash in dark mode.
     <View style={{ flex: 1, backgroundColor: theme.background }}>
@@ -23,7 +25,8 @@ export default function RootLayout() {
           <Stack
             screenOptions={{
               headerShown: false,
-              animation: 'fade_from_bottom',
+              // One transition for every screen pushed on the stack; none when motion is reduced.
+              animation: reduceMotion ? 'none' : 'fade_from_bottom',
               contentStyle: { backgroundColor: theme.background },
             }}
           />

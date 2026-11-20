@@ -328,6 +328,8 @@ export interface Messages {
     /** One line under the title on the Today card. */
     summary: string;
     smaller: string;
+    /** Button that shares the whole prayer or reading as text. */
+    share: string;
     larger: string;
     readingMode: string;
     leaveReadingMode: string;
@@ -424,6 +426,9 @@ export interface Messages {
     startOverTitle: string;
     startOverBody: string;
     startOverCancel: string;
+    /** Reader: label of the per-passage menu button, and its Share entry. */
+    passageMenu: string;
+    sharePassage: string;
     /** Heading of the liturgy part of the Sources screen. */
     sourcesHeading: string;
     /** General note on the Sources screen: how to ask for a text to be removed; `url` is the issues page. */
@@ -913,6 +918,7 @@ export const en: Messages = {
     title: 'Prayers',
     summary: 'The Lord’s Prayer, the Creed, morning and evening prayers',
     smaller: 'Smaller text',
+    share: 'Share',
     larger: 'Larger text',
     readingMode: 'Reading mode',
     leaveReadingMode: 'Leave reading mode',
@@ -1059,6 +1065,8 @@ export const en: Messages = {
     startOverTitle: 'Start this service over?',
     startOverBody: 'Your place, your progress and the bookmark in this service will be cleared.',
     startOverCancel: 'Cancel',
+    passageMenu: 'Passage options',
+    sharePassage: 'Share this passage',
     sourcesHeading: 'Divine Liturgy',
     rightsNote: (url) =>
       `If you hold rights to a text here and want it removed, report it at ${url} and it will be removed.`,

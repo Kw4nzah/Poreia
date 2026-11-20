@@ -372,6 +372,7 @@ export const tr: Messages = {
     title: 'Dualar',
     summary: 'Göklerdeki Babamız, İman İkrarı, sabah ve akşam duaları',
     smaller: 'Yazıyı küçült',
+    share: 'Paylaş',
     larger: 'Yazıyı büyüt',
     readingMode: 'Okuma kipi',
     leaveReadingMode: 'Okuma kipinden çık',
@@ -523,6 +524,8 @@ export const tr: Messages = {
     startOverTitle: 'Bu ayin baştan başlansın mı?',
     startOverBody: 'Bu ayindaki yeriniz, ilerlemeniz ve yer imi silinecek.',
     startOverCancel: 'Vazgeç',
+    passageMenu: 'Bölüm işlemleri',
+    sharePassage: 'Bu bölümü paylaş',
     sourcesHeading: 'Kutsal Litürji',
     rightsNote: (url) =>
       `Burada yer alan bir metin üzerinde hak sahibiyseniz ve kaldırılmasını istiyorsanız, bunu ${url} adresinden bildirin; metin kaldırılacaktır.`,
