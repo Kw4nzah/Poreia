@@ -1,0 +1,36 @@
+// Service (molitvy-vechernej-trapezy), Church Slavonic text in civil script, without accent marks.
+// Source: azbyka.ru, "Молитвы вечерней трапезы" (https://azbyka.ru/bogosluzhenie/molitvy-vechernej-trapezy/), the Church Slavonic column of the parallel
+//   Church Slavonic / Russian text. Used with the written permission of azbyka.ru; remove on request.
+//   Generated from the page by a script (markup removed, nothing else changed). Generated 2026-11-20.
+// Block ids are not aligned with the other languages.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "reader", "text": "Вшедше же в трапезу, глаголем:"},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Якоже пред началом коегождо молитвословия полагаем три поклона, глаголюще:"},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Боже, милостив буди мне, грешному. (Поклон.)"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Создавый мя, Господи, помилуй мя. (Поклон.)"},
+  {"id": "cu-mol-0005", "section": "service", "who": "reader", "text": "Без числа согреших, Господи, помилуй и прости мя, грешнаго. (Поклон.)"},
+  {"id": "cu-mol-0006", "section": "service", "who": "rubric", "text": "Посем молитва пред трапезой:"},
+  {"id": "cu-mol-0007", "section": "service", "who": "reader", "text": "Ядят убозии, и насытятся, и восхвалят Господа взыскающии Его, жива будут сердца их в век века."},
+  {"id": "cu-mol-0008", "section": "service", "who": "reader", "text": "Слава, и ныне: Господи, помилуй, трижды."},
+  {"id": "cu-mol-0009", "section": "service", "who": "reader", "text": "Благослови."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "И благословляет священник трапезу:"},
+  {"id": "cu-mol-0011", "section": "service", "who": "priest", "text": "Христе Боже, благослови ястие и питие рабом Твоим, яко свят еси всегда, ныне и присно, и во веки веков, аминь. И мы:"},
+  {"id": "cu-mol-0012", "section": "service", "who": "priest", "text": "Аминь."},
+  {"id": "cu-mol-0013", "section": "service", "who": "priest", "text": "По ядении же: Слава, и ныне. Бысть чрево Твое святая трапеза, имущая небеснаго Хлеба, Христа Бога нашего, от Негоже всяк ядый не умирает, якоже рече всех, Богородительнице, Питатель. Таже:"},
+  {"id": "cu-mol-0014", "section": "service", "who": "priest", "text": "Возвеселил ны еси, Господи, в творениих Твоих, и в делех руку Твоею возрадуемся."},
+  {"id": "cu-mol-0015", "section": "service", "who": "priest", "text": "Знаменася на нас свет лица Твоего, Господи, дал еси веселие в сердце моем, от плода пшеницы, вина и елеа своего умножишася. В мире вкупе усну и почию, яко Ты, Господи, единаго на уповании вселил мя еси."},
+  {"id": "cu-mol-0016", "section": "service", "who": "rubric", "text": "Посем глаголем:"},
+  {"id": "cu-mol-0017", "section": "service", "who": "priest", "text": "Достойно есть яко воистинну блажити Тя, Богородицу, Присноблаженную и Пренепорочную и Матерь Бога нашего. Честнейшую Херувим и славнейшую без сравнения Серафим, без истления Бога Слова рождшую, сущую Богородицу Тя величаем."},
+  {"id": "cu-mol-0018", "section": "service", "who": "priest", "text": "Слава, и ныне: Господи, помилуй, трижды."},
+  {"id": "cu-mol-0019", "section": "service", "who": "priest", "text": "Благослови."},
+  {"id": "cu-mol-0020", "section": "service", "who": "priest", "text": "С нами Бог, Своею благодатию и человеколюбием, всегда, ныне и присно, и во веки веков, аминь. И мы:"},
+  {"id": "cu-mol-0021", "section": "service", "who": "priest", "text": "Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, “Молитвы вечерней трапезы” (azbyka.ru/bogosluzhenie/molitvy-vechernej-trapezy/); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, “Молитвы вечерней трапезы” (azbyka.ru/bogosluzhenie/molitvy-vechernej-trapezy/); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, «Молитвы вечерней трапезы» (azbyka.ru/bogosluzhenie/molitvy-vechernej-trapezy/); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

@@ -1,0 +1,26 @@
+// Service (molitvy-posle-rozhdeniya-rebenka), Church Slavonic text in civil script, without accent marks.
+// Source: azbyka.ru, "Молитвы после рождения ребенка" (https://azbyka.ru/bogosluzhenie/molitvy-posle-rozhdeniya-rebenka/), the Church Slavonic column of the parallel
+//   Church Slavonic / Russian text. Used with the written permission of azbyka.ru; remove on request.
+//   Generated from the page by a script (markup removed, nothing else changed). Generated 2026-11-20.
+// Block ids are not aligned with the other languages.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "rubric", "text": "Молитвы в первый день после рождения женщиной ребенка"},
+  {"id": "cu-mol-0002", "section": "service", "who": "priest", "text": "Господу помолимся."},
+  {"id": "cu-mol-0003", "section": "service", "who": "priest", "text": "Владыко Господи Вседержителю, исцеляяй всякий недуг, и всякую язю, Сам и сию днесь родившую рабу Твою, имярек,"},
+  {"id": "cu-mol-0004", "section": "service", "who": "priest", "text": "исцели, и возстави ю от одра, на немже лежит: зане, по пророка Давида словеси, в беззакониих зачахомся, и сквернави вси есмы пред Тобою. Сохрани сию и сего младенца, егоже роди: покрый ю под кровом крилу Твоею, от днешняго дне, даже до последняго ея скончания, молитвами Пречистыя Богородицы и всех святых, яко благословен еси во веки веков, аминь."},
+  {"id": "cu-mol-0005", "section": "service", "who": "priest", "text": "Господу помолимся."},
+  {"id": "cu-mol-0006", "section": "service", "who": "priest", "text": "Владыко Господи Боже наш, родивыйся от Пречистыя Владычицы нашея Богородицы и Приснодевы Марии, и яко младенец во яслех возлегий, и яко детищь восприемлемь бывый: Сам и сию рабу Твою, днесь родившую сие отроча, помилуй, и прости вольная и невольная ея прегрешения, и сохрани ю от всякаго диавольскаго мучительства: и из нея рожденнаго младенца соблюди от всякаго яда, от всякия лютости, от всякия бури сопротивнаго, от духов лукавых, дневных же и нощных. Сию же соблюди под державною рукою Твоею, и даждь ей скорое востание, и от скверны очисти, и болезни исцели, и здравие и благомощие души же и телу даруй, и Ангелы светлыми и сияющими сию огради: и соблюди от всякаго наития невидимых духов, ей Господи, от недуга и слабости, от ревности и зависти, от очес призора, и помилуй ю и младенца, по велицей милости Твоей, и очисти ю от телесныя скверны, и различных ей находящих утробных стужений, и изведи ю скорою милостию Твоею во смиренном ея теле во исправление: и из нея рожденнаго младенца сподоби поклонитися земному храму, егоже уготовал еси славословитися имени Твоему святому."},
+  {"id": "cu-mol-0007", "section": "service", "who": "priest", "text": "Яко подобает Тебе всякая слава, честь и поклонение, Отцу, и Сыну, и Святому Духу, ныне и присно, и во веки веков, аминь."},
+  {"id": "cu-mol-0008", "section": "service", "who": "priest", "text": "Господу помолимся."},
+  {"id": "cu-mol-0009", "section": "service", "who": "priest", "text": "Господи Боже наш, благоволивый снити с Небес, и родитися от святыя Богородицы и Приснодевы Марии, спасения ради нас, грешных, ведый немощное человеческаго естества, прости рабе Твоей, имярек,"},
+  {"id": "cu-mol-0010", "section": "service", "who": "priest", "text": "днесь родившей, по множеству щедрот Твоих. Ты бо рекл еси Господи: раститеся, и умножитеся, и исполните землю, и обладайте ею. Сего ради и мы, раби Твои, молимся, и дерзающе незлобивым Твоим человеколюбием, со страхом вопием к Царствия Твоего святому имени: призри с Небесе и виждь немощь нас, осужденных, и прости рабе Твоей сей, имярек,"},
+  {"id": "cu-mol-0011", "section": "service", "who": "priest", "text": "и всему дому, в немже родися отроча, и прикоснувшимся ей, и зде обретающимся всем, яко благ и человеколюбец Бог прости: яко един имаши власть оставляти грехи, молитвами Пречистыя Богородицы и всех святых Твоих, аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, “Молитвы после рождения ребенка” (azbyka.ru/bogosluzhenie/molitvy-posle-rozhdeniya-rebenka/); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, “Молитвы после рождения ребенка” (azbyka.ru/bogosluzhenie/molitvy-posle-rozhdeniya-rebenka/); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, «Молитвы после рождения ребенка» (azbyka.ru/bogosluzhenie/molitvy-posle-rozhdeniya-rebenka/); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};

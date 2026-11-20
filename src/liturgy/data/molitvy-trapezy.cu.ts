@@ -1,0 +1,63 @@
+// Service (molitvy-trapezy), Church Slavonic text in civil script, without accent marks.
+// Source: azbyka.ru, "Молитвы трапезы" (https://azbyka.ru/bogosluzhenie/molitvy-trapezy/), the Church Slavonic column of the parallel
+//   Church Slavonic / Russian text. Used with the written permission of azbyka.ru; remove on request.
+//   Generated from the page by a script (markup removed, nothing else changed). Generated 2026-11-20.
+// Block ids are not aligned with the other languages.
+import type { LiturgyBlock } from '../types';
+
+export const blocks: readonly LiturgyBlock[] = [
+  {"id": "cu-mol-0001", "section": "service", "who": "reader", "text": "Молитвословия пред утренней трапезой"},
+  {"id": "cu-mol-0002", "section": "service", "who": "rubric", "text": "Якоже пред началом коегождо молитвословия полагаем три поклона, глаголюще:"},
+  {"id": "cu-mol-0003", "section": "service", "who": "reader", "text": "Боже, милостив буди мне, грешному. (Поклон.)"},
+  {"id": "cu-mol-0004", "section": "service", "who": "reader", "text": "Создавый мя, Господи, помилуй мя. (Поклон.)"},
+  {"id": "cu-mol-0005", "section": "service", "who": "reader", "text": "Без числа согреших, Господи, помилуй и прости мя, грешнаго. (Поклон.)"},
+  {"id": "cu-mol-0006", "section": "service", "who": "rubric", "text": "Посем молитва пред трапезой:"},
+  {"id": "cu-mol-0007", "section": "service", "who": "reader", "text": "Очи всех на Тя, Господи, уповают, и Ты даеши им пищу во благовремении. Отверзаеши Ты щедрую руку Твою и исполняеши всякое животно благоволения."},
+  {"id": "cu-mol-0008", "section": "service", "who": "reader", "text": "Слава, и ныне: Господи, помилуй, трижды."},
+  {"id": "cu-mol-0009", "section": "service", "who": "reader", "text": "Благослови."},
+  {"id": "cu-mol-0010", "section": "service", "who": "rubric", "text": "И благословляет священник трапезу:"},
+  {"id": "cu-mol-0011", "section": "service", "who": "priest", "text": "Христе Боже, благослови ястие и питие рабом Твоим, яко свят еси всегда, ныне и присно, и во веки веков. И мы:"},
+  {"id": "cu-mol-0012", "section": "service", "who": "priest", "text": "Аминь."},
+  {"id": "cu-mol-0013", "section": "service", "who": "priest", "text": "По окончании трапезы: Благодарим Тя, Христе Боже наш, яко насытил еси нас земных Твоих благ, не лиши нас и небеснаго Твоего Царствия: но яко посреде учеников Твоих пришел еси, Спасе, мир дая им, прииди и к нам, и спаси нас."},
+  {"id": "cu-mol-0014", "section": "service", "who": "priest", "text": "Слава, и ныне: Господи, помилуй, трижды."},
+  {"id": "cu-mol-0015", "section": "service", "who": "priest", "text": "Благослови."},
+  {"id": "cu-mol-0016", "section": "service", "who": "priest", "text": "С нами Бог, Своею благодатию и человеколюбием, всегда, ныне и присно, и во веки веков. И мы:"},
+  {"id": "cu-mol-0017", "section": "service", "who": "priest", "text": "Аминь."},
+  {"id": "cu-mol-0018", "section": "service", "who": "priest", "text": "Молитвословия пред дневной трапезой"},
+  {"id": "cu-mol-0019", "section": "service", "who": "rubric", "text": "Глаголем три вышереченныя молитвы с поклоны. Таже:"},
+  {"id": "cu-mol-0020", "section": "service", "who": "priest", "text": "Отче наш, Иже еси на Небесех, да святится имя Твое, да приидет Царствие Твое, да будет воля Твоя, яко на Небеси и на земли. Хлеб наш насущный даждь нам днесь; и остави нам долги наша, якоже и мы оставляем должником нашим; и не введи нас во искушение, но избави нас от лукаваго."},
+  {"id": "cu-mol-0021", "section": "service", "who": "priest", "text": "Слава, и ныне: Господи, помилуй, трижды."},
+  {"id": "cu-mol-0022", "section": "service", "who": "priest", "text": "Благослови."},
+  {"id": "cu-mol-0023", "section": "service", "who": "rubric", "text": "И благословляет священник трапезу:"},
+  {"id": "cu-mol-0024", "section": "service", "who": "priest", "text": "Христе Боже, благослови ястие и питие рабом Твоим, яко свят еси всегда, ныне и присно, и во веки веков. И мы:"},
+  {"id": "cu-mol-0025", "section": "service", "who": "priest", "text": "Аминь."},
+  {"id": "cu-mol-0026", "section": "service", "who": "reader", "text": "По окончании трапезы иерей творит отпуст:"},
+  {"id": "cu-mol-0027", "section": "service", "who": "reader", "text": "Молитвами святых отец наших, Господи, Иисусе Христе, Боже наш, помилуй нас. И мы:"},
+  {"id": "cu-mol-0028", "section": "service", "who": "reader", "text": "Аминь."},
+  {"id": "cu-mol-0029", "section": "service", "who": "reader", "text": "Благодарим Тя, Христе Боже наш, яко насытил еси нас земных Твоих благ, не лиши нас и небеснаго Твоего Царствия: но яко посреде учеников Твоих пришел еси, Спасе, мир дая им, прииди и к нам, и спаси нас."},
+  {"id": "cu-mol-0030", "section": "service", "who": "reader", "text": "Слава, и ныне: Господи, помилуй, трижды."},
+  {"id": "cu-mol-0031", "section": "service", "who": "reader", "text": "Благослови."},
+  {"id": "cu-mol-0032", "section": "service", "who": "rubric", "text": "Священник глаголет:"},
+  {"id": "cu-mol-0033", "section": "service", "who": "priest", "text": "Благословен Бог, милуяй и питаяй нас от Своих богатых даров, Своею благодатию и человеколюбием, всегда, ныне и присно, и во веки веков. И мы:"},
+  {"id": "cu-mol-0034", "section": "service", "who": "priest", "text": "Аминь."},
+  {"id": "cu-mol-0035", "section": "service", "who": "priest", "text": "Молитвословия пред иными трапезами"},
+  {"id": "cu-mol-0036", "section": "service", "who": "rubric", "text": "Глаголем три вышереченныя молитвы с поклоны. Таже:"},
+  {"id": "cu-mol-0037", "section": "service", "who": "priest", "text": "Пресвятая Троице, помилуй нас; Господи, очисти грехи наша; Владыко, прости беззакония наша; Святый, посети и исцели немощи наша, имене Твоего ради."},
+  {"id": "cu-mol-0038", "section": "service", "who": "priest", "text": "Слава, и ныне: Господи, помилуй, трижды."},
+  {"id": "cu-mol-0039", "section": "service", "who": "priest", "text": "Благослови."},
+  {"id": "cu-mol-0040", "section": "service", "who": "rubric", "text": "И благословляет священник трапезу:"},
+  {"id": "cu-mol-0041", "section": "service", "who": "priest", "text": "Христе Боже, благослови ястие и питие рабом Твоим, яко свят еси всегда, ныне и присно, и во веки веков. И мы:"},
+  {"id": "cu-mol-0042", "section": "service", "who": "priest", "text": "Аминь."},
+  {"id": "cu-mol-0043", "section": "service", "who": "priest", "text": "По окончании трапезы поем:"},
+  {"id": "cu-mol-0044", "section": "service", "who": "priest", "text": "Достойно есть яко воистинну блажити Тя, Богородицу, / Присноблаженную и Пренепорочную и Матерь Бога нашего. / Честнейшую Херувим / и славнейшую без сравнения Серафим, / без истления Бога Слова рождшую, / сущую Богородицу, Тя величаем."},
+  {"id": "cu-mol-0045", "section": "service", "who": "priest", "text": "Слава, и ныне: Господи, помилуй, трижды."},
+  {"id": "cu-mol-0046", "section": "service", "who": "priest", "text": "Благослови."},
+  {"id": "cu-mol-0047", "section": "service", "who": "priest", "text": "С нами Бог, Своею благодатию и человеколюбием, всегда, ныне и присно, и во веки веков. И мы:"},
+  {"id": "cu-mol-0048", "section": "service", "who": "priest", "text": "Аминь."},
+];
+
+export const source = {
+  tr: "Kilise Slavcası metni: azbyka.ru, “Молитвы трапезы” (azbyka.ru/bogosluzhenie/molitvy-trapezy/); sivil harflerle, vurgu işaretleri olmadan. azbyka.ru’nun yazılı izniyle kullanılmaktadır. Hak sahipleri isterse bu metin kaldırılır.",
+  en: "Church Slavonic text: azbyka.ru, “Молитвы трапезы” (azbyka.ru/bogosluzhenie/molitvy-trapezy/); civil script, without accent marks. Used with the written permission of azbyka.ru. It will be removed on request by the rights holders.",
+  ru: "Церковнославянский текст: azbyka.ru, «Молитвы трапезы» (azbyka.ru/bogosluzhenie/molitvy-trapezy/); гражданским шрифтом, без знаков ударения. Используется с письменного разрешения azbyka.ru. По просьбе правообладателей будет удалён.",
+};
