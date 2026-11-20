@@ -507,7 +507,9 @@ export const ru: Messages = {
     missing: 'На этом языке текста нет',
     loading: 'Загрузка…',
     loadFailed: 'Не удалось загрузить текст.',
-    sourcesHeading: 'Божественная литургия',
+    continueTitle: 'Продолжить с того места, где вы остановились',
+    noResults: 'Ничего не найдено.',
+    backToTop: 'В начало',    sourcesHeading: 'Божественная литургия',
     fontNote:
       'Церковнославянский текст набран шрифтом Ponomar Unicode, авторские права 2025 The Ponomar Project Authors, лицензия SIL Open Font License 1.1.',
     rightsNote: (url) =>

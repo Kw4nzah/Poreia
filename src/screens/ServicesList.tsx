@@ -1,16 +1,28 @@
-// The list of readable services (liturgies, daily services, sacraments, canons), grouped.
+// The list of readable services, grouped in collapsible sections. Groups start closed (the list has
+// 500+ services); searching opens every group that has a match. A "continue" row reopens the service
+// read last. The list is a flat FlatList of header and service rows, so closed groups cost nothing.
 
-import { useRouter } from 'expo-router';
-import { useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Pressable } from 'react-native';
+import { useFocusEffect, useRouter } from 'expo-router';
+import { useCallback, useMemo, useState } from 'react';
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ListRow as Row, buildRows, toggleKey } from '../liturgy/listModel';
+import { LiturgyProgress, emptyProgress } from '../liturgy/progress';
+import { readProgress } from '../liturgy/progressStore';
 import { getAvailableLiturgies } from '../liturgy/registry';
-import { LITURGY_GROUPS, LITURGY_GROUP_OF, LITURGY_SUBGROUP_OF } from '../liturgy/types';
+import {
+  LITURGY_GROUPS,
+  LITURGY_GROUP_OF,
+  LITURGY_SUBGROUP_OF,
+  LiturgyId,
+} from '../liturgy/types';
 import { useSettings } from '../settings/SettingsProvider';
 import { AppTextInput } from '../ui/AppTextInput';
-import { Card, Divider, ListRow, SectionHeader } from '../ui/kit';
+import { Card, ListRow } from '../ui/kit';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
+
+/** Groups whose services are split into named sub-lists. */
+const SUBDIVIDED = ['molitvoslov'];
 
 export function ServicesList() {
   const { messages: m } = useSettings();
@@ -18,12 +30,82 @@ export function ServicesList() {
   const router = useRouter();
   const styles = useThemedStyles(makeStyles);
   const [query, setQuery] = useState('');
+  const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
+  const [progress, setProgress] = useState<LiturgyProgress>(emptyProgress);
   const available = useMemo(() => getAvailableLiturgies(), []);
-  const needle = query.trim().toLowerCase();
+  const searching = query.trim() !== '';
+
+  // Re-read the bookmark each time the list comes back into view (after reading).
+  useFocusEffect(
+    useCallback(() => {
+      let live = true;
+      readProgress().then((p) => live && setProgress(p));
+      return () => {
+        live = false;
+      };
+    }, []),
+  );
+
+  const rows = useMemo(
+    () =>
+      buildRows<LiturgyId>({
+        ids: available,
+        groups: LITURGY_GROUPS,
+        groupOf: LITURGY_GROUP_OF,
+        subgroupOf: LITURGY_SUBGROUP_OF,
+        subdivided: SUBDIVIDED,
+        nameOf: (id) => m.liturgy.names[id],
+        query,
+        expanded,
+      }),
+    [available, m, query, expanded],
+  );
+
+  const open = useCallback(
+    (id: LiturgyId) => router.push({ pathname: '/liturgy/[id]', params: { id } }),
+    [router],
+  );
+  const toggle = useCallback((key: string) => setExpanded((s) => toggleKey(s, key)), []);
+
+  const last = progress.last && available.includes(progress.last.id) ? progress.last.id : null;
+
+  function renderRow({ item, index }: { item: Row<LiturgyId>; index: number }) {
+    if (item.kind === 'item') {
+      const prev = rows[index - 1];
+      return (
+        <View style={styles.item}>
+          {prev?.kind === 'item' && <View style={styles.hairline} />}
+          <ListRow serif title={m.liturgy.names[item.id]} onPress={() => open(item.id)} />
+        </View>
+      );
+    }
+    const isGroup = item.kind === 'group';
+    const title = isGroup ? m.liturgy.groups[item.group as keyof typeof m.liturgy.groups] : item.title;
+    return (
+      <Pressable
+        onPress={() => !searching && toggle(item.key)}
+        disabled={searching}
+        style={[styles.header, isGroup ? styles.groupHeader : styles.subHeader]}
+        accessibilityRole="button"
+        accessibilityLabel={`${title}, ${item.count}`}
+        accessibilityState={{ expanded: item.open, disabled: searching }}
+      >
+        <Text style={styles.chevron}>{item.open ? '▾' : '▸'}</Text>
+        <Text
+          style={isGroup ? styles.groupTitle : styles.subTitle}
+          numberOfLines={2}
+          maxFontSizeMultiplier={1.4}
+        >
+          {title}
+        </Text>
+        <Text style={styles.count}>{item.count}</Text>
+      </Pressable>
+    );
+  }
 
   return (
     <View style={styles.screen}>
-      <View style={[styles.header, { paddingTop: insets.top + space.lg }]}>
+      <View style={[styles.top, { paddingTop: insets.top + space.lg }]}>
         <Pressable
           onPress={() => router.back()}
           style={styles.back}
@@ -32,16 +114,6 @@ export function ServicesList() {
         >
           <Text style={styles.backText}>‹ {m.prayers.title}</Text>
         </Pressable>
-      </View>
-      <ScrollView
-        contentContainerStyle={{
-          paddingTop: space.sm,
-          paddingBottom: insets.bottom + space.xl,
-          paddingHorizontal: space.lg,
-        }}
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
-      >
         <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
           {m.liturgy.title}
         </Text>
@@ -52,44 +124,46 @@ export function ServicesList() {
           accessibilityLabel={m.prayers.searchPlaceholder}
           autoCorrect={false}
         />
-        {LITURGY_GROUPS.flatMap((group) => {
-          const ids = available.filter(
-            (id) =>
-              LITURGY_GROUP_OF[id] === group &&
-              (needle === '' || m.liturgy.names[id].toLowerCase().includes(needle)),
-          );
-          if (ids.length === 0) return [];
-          // The Molitvoslov prayers come in sub-lists named as on azbyka.ru.
-          const sections: { heading: string; ids: typeof ids }[] = [];
-          for (const id of ids) {
-            const heading = group === 'molitvoslov' ? (LITURGY_SUBGROUP_OF[id] ?? '') : '';
-            const last = sections[sections.length - 1];
-            if (last && last.heading === heading) last.ids.push(id);
-            else sections.push({ heading, ids: [id] });
-          }
-          return sections.map(({ heading, ids: rows }, index) => (
-            <View key={`${group}-${index}`}>
-              <SectionHeader
-                title={
-                  heading === '' ? m.liturgy.groups[group] : `${m.liturgy.groups[group]}: ${heading}`
-                }
+      </View>
+      <FlatList
+        data={rows}
+        keyExtractor={(row) => row.key}
+        renderItem={renderRow}
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="on-drag"
+        initialNumToRender={16}
+        windowSize={7}
+        removeClippedSubviews
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          last && !searching ? (
+            <Card
+              padding="none"
+              style={styles.resume}
+              onPress={() => open(last)}
+              accessibilityRole="button"
+              accessibilityLabel={`${m.liturgy.continueTitle}: ${m.liturgy.names[last]}`}
+            >
+              <ListRow
+                serif
+                overline={m.liturgy.continueTitle}
+                title={m.liturgy.names[last]}
+                hideArrow={false}
               />
-              <Card padding="none">
-                {rows.map((id, rowIndex) => (
-                  <View key={id}>
-                    {rowIndex > 0 && <Divider />}
-                    <ListRow
-                      serif
-                      title={m.liturgy.names[id]}
-                      onPress={() => router.push({ pathname: '/liturgy/[id]', params: { id } })}
-                    />
-                  </View>
-                ))}
-              </Card>
-            </View>
-          ));
-        })}
-      </ScrollView>
+            </Card>
+          ) : undefined
+        }
+        ListEmptyComponent={
+          <Text style={styles.empty} accessibilityLiveRegion="polite">
+            {m.liturgy.noResults}
+          </Text>
+        }
+        contentContainerStyle={{
+          paddingTop: space.sm,
+          paddingBottom: insets.bottom + space.xl,
+          paddingHorizontal: space.lg,
+        }}
+      />
     </View>
   );
 }
@@ -97,9 +171,38 @@ export function ServicesList() {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
-    header: { paddingHorizontal: space.lg },
+    top: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
     backText: { ...type.body, color: t.accent },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink, marginBottom: space.md },
+    resume: { marginTop: space.sm, marginBottom: space.xs },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      minHeight: 48,
+      paddingVertical: space.smd,
+      gap: space.sm,
+    },
+    groupHeader: {
+      marginTop: space.md,
+      paddingHorizontal: space.md,
+      backgroundColor: t.surface,
+      borderWidth: 1,
+      borderColor: t.line,
+      borderRadius: 16,
+    },
+    subHeader: { paddingLeft: space.lg, paddingRight: space.md },
+    chevron: { ...type.body, color: t.accent, width: 18, textAlign: 'center' },
+    groupTitle: { flex: 1, fontFamily: SERIF, ...type.headline, color: t.ink },
+    subTitle: { flex: 1, ...type.label, color: t.muted },
+    count: { ...type.label, color: t.muted },
+    item: {
+      marginLeft: space.md,
+      backgroundColor: t.surface,
+      borderLeftWidth: 2,
+      borderColor: t.line,
+    },
+    hairline: { height: StyleSheet.hairlineWidth, backgroundColor: t.line },
+    empty: { ...type.body, color: t.muted, marginTop: space.lg },
   });
 }

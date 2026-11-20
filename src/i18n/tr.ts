@@ -495,7 +495,9 @@ export const tr: Messages = {
     missing: 'Bu dilde metin yok',
     loading: 'Yükleniyor…',
     loadFailed: 'Metin yüklenemedi.',
-    sourcesHeading: 'Kutsal Litürji',
+    continueTitle: 'Kaldığınız yerden devam edin',
+    noResults: 'Aramanıza uyan bir ayin bulunamadı.',
+    backToTop: 'Başa dön',    sourcesHeading: 'Kutsal Litürji',
     fontNote:
       'Kilise Slavcası metin Ponomar Unicode yazı tipiyle dizilmiştir; telif hakkı 2025 The Ponomar Project Authors, lisansı SIL Open Font License 1.1.',
     rightsNote: (url) =>

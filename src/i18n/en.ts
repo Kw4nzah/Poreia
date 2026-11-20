@@ -388,6 +388,12 @@ export interface Messages {
     missing: string;
     loading: string;
     loadFailed: string;
+    /** Services list: row that reopens the service read last. */
+    continueTitle: string;
+    /** Services list: nothing matches the search. */
+    noResults: string;
+    /** Reader: button that scrolls to the start. */
+    backToTop: string;
     /** Heading of the liturgy part of the Sources screen. */
     sourcesHeading: string;
     /** Sources screen: the Church Slavonic font and its licence. */
@@ -989,7 +995,9 @@ export const en: Messages = {
     missing: 'No text in this language',
     loading: 'Loading…',
     loadFailed: 'The text could not be loaded.',
-    sourcesHeading: 'Divine Liturgy',
+    continueTitle: 'Continue where you left off',
+    noResults: 'No service matches your search.',
+    backToTop: 'Back to the beginning',    sourcesHeading: 'Divine Liturgy',
     fontNote:
       'Church Slavonic text is set in Ponomar Unicode, copyright 2025 The Ponomar Project Authors, under the SIL Open Font License 1.1.',
     rightsNote: (url) =>
