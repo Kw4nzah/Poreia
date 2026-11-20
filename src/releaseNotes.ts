@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.10.2',
+    notes: {
+      tr: ['Okurken bir dokunuşla çubuklar yumuşakça gizlenir ve geri gelir; ekran geçişlerinde ve açılır gruplarda animasyon.', 'Duada, okumada ve ayinde metni seçip WhatsApp gibi uygulamalara gönderebilirsin; ayin metinlerinde her bölümün sonundaki “⋯” düğmesiyle de paylaşabilir ve yer imi koyabilirsin (yer imi artık uzun basmayla değil bu düğmeyle konur).'],
+      en: ['While reading, one tap hides and shows the bars smoothly; animations on screen changes and on collapsible groups.', 'In prayers, readings and services you can select text and send it to apps like WhatsApp; in the services, the “⋯” button at the end of each passage also shares it and sets a bookmark (a bookmark is now set with this button, not with a long press).'],
+      ru: ['При чтении одно нажатие плавно скрывает и показывает панели; анимации при переходах и в раскрывающихся группах.', 'В молитвах, чтениях и службах можно выделить текст и отправить его в WhatsApp и другие приложения; в службах кнопка «⋯» в конце отрывка тоже делится им и ставит закладку (закладка теперь ставится этой кнопкой, а не долгим нажатием).'],
+    },
+  },
+  {
     version: '0.10.1',
     notes: {
       tr: ['Ayin okurken yer imi: bir metne uzun basarak kaldığın yeri işaretleyebilirsin. “Kaldığın yerden devam et” satırı artık yüzde kaç okuduğunu ve nerede kaldığını gösterir.'],
