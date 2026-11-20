@@ -3,12 +3,13 @@
 // untrusted and goes through the same validation as stored settings.
 
 import type { Language } from '../i18n';
+import { LiturgyProgress, cleanProgress } from '../liturgy/progress';
 import { MAX_SETTINGS_CHARS, Settings, parseSettings } from '../settings/model';
 
 export const BACKUP_APP = 'poreia';
 export const BACKUP_VERSION = 1;
 /** Upper bound on pasted text; anything larger is not one of our backups. */
-export const MAX_BACKUP_CHARS = 65_536;
+export const MAX_BACKUP_CHARS = 131_072;
 /** Most done days a backup carries (about four years). The most recent ones are kept. */
 export const MAX_DONE_DAYS = 1500;
 
@@ -53,8 +54,19 @@ export function cleanDoneDays(value: unknown): string[] {
   return days.slice(-MAX_DONE_DAYS);
 }
 
-/** The backup text for the settings and the days marked done. */
-export function createBackup(settings: Settings, doneDays: readonly string[]): string {
+/**
+ * The backup text for the settings, the days marked done and, when given, the reading progress
+ * and bookmarks of the services (re-validated on the way out like the settings).
+ */
+export function createBackup(
+  settings: Settings,
+  doneDays: readonly string[],
+  progress?: LiturgyProgress | null,
+): string {
+  const cleanedProgress = progress ? cleanProgress(progress) : null;
+  const hasProgress =
+    !!cleanedProgress &&
+    (cleanedProgress.last !== null || Object.keys(cleanedProgress.details).length > 0);
   return JSON.stringify({
     app: BACKUP_APP,
     version: BACKUP_VERSION,
@@ -66,6 +78,7 @@ export function createBackup(settings: Settings, doneDays: readonly string[]): s
       lastPrayer: null,
     },
     done: cleanDoneDays(doneDays),
+    ...(hasProgress ? { progress: cleanedProgress } : {}),
   });
 }
 
@@ -82,7 +95,8 @@ export type BackupError =
   | 'version';
 
 export type ParsedBackup =
-  { ok: true; settings: Settings; done: string[] } | { ok: false; error: BackupError };
+  | { ok: true; settings: Settings; done: string[]; progress: LiturgyProgress | null }
+  | { ok: false; error: BackupError };
 
 const fail = (error: BackupError): ParsedBackup => ({ ok: false, error });
 
@@ -118,12 +132,17 @@ export function parseBackup(raw: string, fallbackLanguage: Language): ParsedBack
     if (done.length > MAX_DONE_DAYS) return fail('tooLarge');
     if (!done.every(isValidIsoDate)) return fail('invalid');
 
+    // Older backups carry no progress: null means "leave the reading progress as it is".
+    const rawProgress = own('progress');
+    if (rawProgress !== undefined && !isPlainObject(rawProgress)) return fail('invalid');
+
     const settingsText = JSON.stringify(settings);
     if (settingsText.length > MAX_SETTINGS_CHARS) return fail('tooLarge');
     return {
       ok: true,
       settings: parseSettings(settingsText, fallbackLanguage),
       done: cleanDoneDays(done),
+      progress: rawProgress === undefined ? null : cleanProgress(rawProgress),
     };
   } catch {
     return fail('invalid');

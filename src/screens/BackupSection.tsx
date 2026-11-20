@@ -5,6 +5,8 @@ import { Alert, Share, StyleSheet, Text } from 'react-native';
 import { MAX_BACKUP_CHARS, createBackup, parseBackup } from '../backup/backup';
 import type { BackupError } from '../backup/backup';
 import { readDoneDays, writeDoneDays } from '../backup/doneStorage';
+import type { LiturgyProgress } from '../liturgy/progress';
+import { readProgress, writeProgress } from '../liturgy/progressStore';
 import { useSettings } from '../settings/SettingsProvider';
 import { AppTextInput } from '../ui/AppTextInput';
 import { Button, Card } from '../ui/kit';
@@ -25,7 +27,7 @@ export function BackupSection() {
   async function copyBackup() {
     setOutcome(null);
     try {
-      const message = createBackup(settings, await readDoneDays());
+      const message = createBackup(settings, await readDoneDays(), await readProgress());
       await Share.share(
         { message, title: m.backup.shareTitle },
         { dialogTitle: m.backup.shareTitle },
@@ -35,7 +37,11 @@ export function BackupSection() {
     }
   }
 
-  async function applyBackup(parsed: { settings: typeof settings; done: string[] }) {
+  async function applyBackup(parsed: {
+    settings: typeof settings;
+    done: string[];
+    progress: LiturgyProgress | null;
+  }) {
     setBusy(true);
     try {
       // Done days first: if storage refuses, the settings stay as they were.
@@ -43,6 +49,9 @@ export function BackupSection() {
         setOutcome({ kind: 'error', error: 'storage' });
         return;
       }
+      // Reading progress is best effort (writeProgress never throws); a backup without it keeps
+      // what this device has.
+      if (parsed.progress) await writeProgress(parsed.progress);
       update(parsed.settings);
       // Today's mark may have come with the backup; the widget shows it.
       refreshWidget(parsed.settings);
