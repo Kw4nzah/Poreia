@@ -5,6 +5,7 @@ export const names: Record<LiturgyId, string> = {
   'chrysostom': "Aziz Yuhanna Hrisostomos Litürjisi",
   'basil': "Büyük Aziz Basil Litürjisi",
   'presanctified': "Önceden Takdis Edilmiş Armağanlar Litürjisi",
+  'chrysostom-slav-eng': "Aziz Yuhanna Hrisostomos Litürjisi (İngilizce, Peder Sergey Şaşnikov)",
   'posledovanie-vecherni': "Akşam Ayini (Vecernia)",
   'posledovanie-utreni': "Sabah Ayini (Utrenya)",
   'vsenoshhnoe-bdenie': "Gece Boyu Ayin (Vsenoşnoye bdeniye)",

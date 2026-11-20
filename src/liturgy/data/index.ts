@@ -17,6 +17,9 @@ export const LOADERS: LiturgyLoaders = {
     cu: () => import('./presanctified.cu'),
     ru: () => import('./presanctified.ru'),
   },
+  'chrysostom-slav-eng': {
+    en: () => import('./chrysostom-slav-eng.en'),
+  },
   'posledovanie-vecherni': {
     cu: () => import('./posledovanie-vecherni.cu'),
     ru: () => import('./posledovanie-vecherni.ru'),

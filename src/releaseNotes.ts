@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.10',
+    notes: {
+      tr: ['Litürji’ye bir İngilizce metin daha eklendi (Slavca-İngilizce baskı, Rahip Sergey Şaşnikov); çevirmenin izni beklenmektedir.'],
+      en: ['Another English text of the Liturgy was added (the Slavonic–English edition by Priest Sergius Shashnikov); the translator’s permission is pending.'],
+      ru: ['В литургию добавлен ещё один английский текст (церковнославянско-английское издание свящ. Сергия Шашникова); разрешение переводчика ожидается.'],
+    },
+  },
+  {
     version: '0.9.9',
     notes: {
       tr: ['Ayinler bölümüne İngilizce dualar eklendi: sabah ve akşam duaları, Büyük Kanon, Komünyona hazırlık, kanonlar ve akathistler (azbyka.ru’nun izniyle).'],

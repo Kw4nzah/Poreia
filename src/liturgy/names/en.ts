@@ -5,6 +5,7 @@ export const names: Record<LiturgyId, string> = {
   'chrysostom': "Divine Liturgy of St John Chrysostom",
   'basil': "Divine Liturgy of St Basil the Great",
   'presanctified': "Liturgy of the Presanctified Gifts",
+  'chrysostom-slav-eng': "Divine Liturgy of St John Chrysostom (English, Fr. Sergius Shashnikov)",
   'posledovanie-vecherni': "Vespers",
   'posledovanie-utreni': "Matins",
   'vsenoshhnoe-bdenie': "All-Night Vigil",
