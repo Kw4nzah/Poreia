@@ -9,7 +9,7 @@ import type { LiturgyData } from './types';
 const CACHE_SIZE = 6;
 const cache = new Map<string, LiturgyData>();
 
-async function readText(moduleId: number): Promise<string> {
+export async function readAssetText(moduleId: number): Promise<string> {
   const asset = Asset.fromModule(moduleId);
   await asset.downloadAsync();
   const uri = asset.localUri ?? asset.uri;
@@ -32,7 +32,7 @@ export function assetLoader(moduleId: number, key: string): () => Promise<Liturg
       cache.set(key, hit);
       return hit;
     }
-    const data = parseLiturgyText(await readText(moduleId));
+    const data = parseLiturgyText(await readAssetText(moduleId));
     cache.set(key, data);
     if (cache.size > CACHE_SIZE) cache.delete(cache.keys().next().value as string);
     return data;

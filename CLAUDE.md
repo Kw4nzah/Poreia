@@ -24,3 +24,4 @@ for Expo conventions.
 
 - The texts live in `assets/liturgy/<id>.<lang>.ltxt` (JSON: `header`, `blocks`, `source`), not in the JS bundle, so code-only updates stay small. They were generated from azbyka.ru (cu/ru) and hand-prepared sources (en/tr); the file header and credit stay in each file.
 - `src/liturgy/data/index.ts` is generated: after adding or removing an asset run `node scripts/build-liturgy-assets.mjs`. Loading and validation: `src/liturgy/assetLoader.ts`, `parseLiturgyText.ts`. A read failure makes `loadLiturgyText` return null (the reader shows its "text not available" state).
+- Full-text search of the services uses `assets/liturgy-index/<lang>.ltxt` plus `src/liturgy/data/searchIndex.ts`, both generated: after any change to the texts run `node scripts/build-liturgy-search-index.mjs` (after build-liturgy-assets.mjs; Node 22.18+). About 1.7 MB in total; lookup is `src/liturgy/textSearch.ts`.
