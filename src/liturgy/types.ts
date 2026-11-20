@@ -1,5 +1,5 @@
 // Data model of the Divine Liturgy reader. The structure and helpers live here; the texts live
-// in optional data files (src/liturgy/data/<liturgy>.<language>.ts) that are loaded lazily.
+// in optional data files (assets/liturgy/<liturgy>.<language>.ltxt, JSON) that are loaded lazily.
 
 import type { LiturgyId } from './catalog';
 

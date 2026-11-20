@@ -19,3 +19,8 @@ for Expo conventions.
   `app.json`, then tag. Never ship a native change as a plain update.
 - `patches/expo-updates+*.patch` lets the app accept a manifest from static hosting. Keep
   it; re-create it when expo-updates is upgraded.
+
+## Liturgy texts
+
+- The texts live in `assets/liturgy/<id>.<lang>.ltxt` (JSON: `header`, `blocks`, `source`), not in the JS bundle, so code-only updates stay small. They were generated from azbyka.ru (cu/ru) and hand-prepared sources (en/tr); the file header and credit stay in each file.
+- `src/liturgy/data/index.ts` is generated: after adding or removing an asset run `node scripts/build-liturgy-assets.mjs`. Loading and validation: `src/liturgy/assetLoader.ts`, `parseLiturgyText.ts`. A read failure makes `loadLiturgyText` return null (the reader shows its "text not available" state).

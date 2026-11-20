@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { alignBlocks, sectionStarts, sectionsOf, speakerLabelKey } from './blocks';
 import {
   defaultLiturgyLanguage,
@@ -9,6 +9,19 @@ import {
 } from './registry';
 import { sourceLines } from './sources';
 import { LiturgyBlock, LiturgyData, LiturgyLoaders } from './types';
+
+// The real loader map pulls in expo-asset / react-native and Metro-only require() of assets, so
+// it is replaced by loader stubs derived from the files in assets/liturgy.
+vi.mock('./data', async () => {
+  const { LITURGY_ASSET_DIR } = await import('./assetFiles');
+  const fs = (await import('node:fs')).default;
+  const loaders: Record<string, Record<string, () => Promise<unknown>>> = {};
+  for (const file of fs.readdirSync(LITURGY_ASSET_DIR)) {
+    const m = /^(.+)\.(cu|en|ru|tr)\.ltxt$/.exec(file);
+    if (m) (loaders[m[1]] ??= {})[m[2]] = async () => null;
+  }
+  return { LOADERS: loaders };
+});
 
 const block = (id: string, section: LiturgyBlock['section'] = 'faithful'): LiturgyBlock => ({
   id,

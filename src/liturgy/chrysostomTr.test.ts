@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { blocks, source } from './data/chrysostom.tr';
+import { readLiturgyAsset } from './assetFiles';
 import { LITURGY_SECTIONS, LITURGY_SPEAKERS } from './types';
+
+const { blocks, source } = readLiturgyAsset('chrysostom', 'tr');
 
 // The booklet starts at the Great Litany, so this text has no 'proskomedia'.
 const SECTIONS_PRESENT = LITURGY_SECTIONS.filter((section) => section !== 'proskomedia' && section !== 'service');
