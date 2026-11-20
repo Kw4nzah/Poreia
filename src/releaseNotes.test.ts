@@ -26,9 +26,9 @@ describe('release notes', () => {
     }
   });
 
-  it('covers 0.4.0 to 0.9.11 and uses plain x.y.z versions', () => {
+  it('covers 0.4.0 to 0.10.0 and uses plain x.y.z versions', () => {
     const versions = RELEASE_NOTES.map((note) => note.version);
-    expect(versions[0]).toBe('0.9.11');
+    expect(versions[0]).toBe('0.10.0');
     expect(versions[versions.length - 1]).toBe('0.4.0');
     for (const version of versions) expect(version).toMatch(/^\d+\.\d+\.\d+$/);
   });

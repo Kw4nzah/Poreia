@@ -341,9 +341,22 @@ export const tr: Messages = {
     kindFeast: 'Bayram',
     kindFast: 'Oruç başlıyor',
     inDays: (days) => (days === 1 ? 'yarın' : `${days} gün sonra`),
-    addToCalendar: 'Takvimime ekle',
-    addToCalendarHint: 'Önümüzdeki yılın bayram ve oruçlarını takvim uygulamana gönderir.',
+    addToCalendar: '.ics dosyası olarak paylaş',
+    addToCalendarHint: 'Seçenek: aynı olayları herhangi bir takvim uygulamasına dosya olarak gönderir.',
     addToCalendarFailed: 'Dosyayı açabilecek bir takvim uygulaması bulunamadı.',
+    addToPhone: 'Telefon takvimime ekle',
+    removeFromPhone: 'Takvimden kaldır',
+    phoneHint:
+      'Önümüzdeki 12 ayın oruç günlerini ve bayramlarını bu telefondaki “Poreia” adlı ayrı bir takvime yazar. Yeniden eşitlediğinde eskilerin yerine geçer, çoğalmaz.',
+    phoneSyncing: 'Takvime yazılıyor…',
+    phoneSynced: (count) => `“Poreia” takvimine ${count} olay eklendi.`,
+    phoneRemoved: '“Poreia” takvimi kaldırıldı.',
+    phoneNothingToRemove: 'Kaldırılacak bir “Poreia” takvimi yok.',
+    phonePermissionDenied:
+      'Takvim erişimine izin verilmedi. Telefon ayarlarından Poreia için izin verebilirsin.',
+    phoneNoCalendar: 'Bu telefonda takvim oluşturulamadı.',
+    phoneFailed: 'Takvime yazarken bir sorun çıktı. Hiçbir şey kaybolmadı; yeniden dene.',
+    fastDayTitle: (level) => `Oruç: ${level}`,
     calendarName: 'Poreia: bayramlar ve oruçlar',
   },
   note: {
@@ -497,8 +510,6 @@ export const tr: Messages = {
     loading: 'Yükleniyor…',
     loadFailed: 'Metin yüklenemedi.',
     sourcesHeading: 'Kutsal Litürji',
-    fontNote:
-      'Kilise Slavcası metin Ponomar Unicode yazı tipiyle dizilmiştir; telif hakkı 2025 The Ponomar Project Authors, lisansı SIL Open Font License 1.1.',
     rightsNote: (url) =>
       `Burada yer alan bir metin üzerinde hak sahibiyseniz ve kaldırılmasını istiyorsanız, bunu ${url} adresinden bildirin; metin kaldırılacaktır.`,
   },

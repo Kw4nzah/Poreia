@@ -300,10 +300,24 @@ export interface Messages {
     kindFeast: string;
     kindFast: string;
     inDays: (days: number) => string;
-    /** Button that hands the next year of feasts and fasts to the phone's calendar app. */
+    /** Button that shares the next year of feasts and fasts as an .ics file (fallback). */
     addToCalendar: string;
     addToCalendarHint: string;
     addToCalendarFailed: string;
+    /** Writes the next 12 months straight into the phone's own calendar. */
+    addToPhone: string;
+    removeFromPhone: string;
+    phoneHint: string;
+    phoneSyncing: string;
+    /** `count` events were written. */
+    phoneSynced: (count: number) => string;
+    phoneRemoved: string;
+    phoneNothingToRemove: string;
+    phonePermissionDenied: string;
+    phoneNoCalendar: string;
+    phoneFailed: string;
+    /** Title of a day of fasting in the calendar; `level` is the fasting level title. */
+    fastDayTitle: (level: string) => string;
     /** Name of the calendar created by the import. */
     calendarName: string;
   };
@@ -392,8 +406,6 @@ export interface Messages {
     loadFailed: string;
     /** Heading of the liturgy part of the Sources screen. */
     sourcesHeading: string;
-    /** Sources screen: the Church Slavonic font and its licence. */
-    fontNote: string;
     /** General note on the Sources screen: how to ask for a text to be removed; `url` is the issues page. */
     rightsNote: (url: string) => string;
   };
@@ -850,9 +862,22 @@ export const en: Messages = {
     kindFeast: 'Feast',
     kindFast: 'Fast begins',
     inDays: (days) => (days === 1 ? 'tomorrow' : `in ${days} days`),
-    addToCalendar: 'Add to my calendar',
-    addToCalendarHint: 'Sends the feasts and fasts of the coming year to your calendar app.',
+    addToCalendar: 'Share as .ics file',
+    addToCalendarHint: 'Alternative: sends the same events as a file to any calendar app.',
     addToCalendarFailed: 'No calendar app could open the file.',
+    addToPhone: 'Add to my phone calendar',
+    removeFromPhone: 'Remove from calendar',
+    phoneHint:
+      'Writes the fasting days and feasts of the next 12 months into a separate calendar named “Poreia” on this phone. Syncing again replaces them, never duplicates.',
+    phoneSyncing: 'Writing to the calendar…',
+    phoneSynced: (count) => `${count} events added to the “Poreia” calendar.`,
+    phoneRemoved: 'The “Poreia” calendar was removed.',
+    phoneNothingToRemove: 'There is no “Poreia” calendar to remove.',
+    phonePermissionDenied:
+      'Calendar access was not allowed. You can allow it in the phone’s settings for Poreia.',
+    phoneNoCalendar: 'Could not create a calendar on this phone.',
+    phoneFailed: 'Something went wrong while writing to the calendar. Nothing was lost; try again.',
+    fastDayTitle: (level) => `Fast: ${level}`,
     calendarName: 'Poreia: feasts and fasts',
   },
   note: {
@@ -1001,8 +1026,6 @@ export const en: Messages = {
     loading: 'Loading…',
     loadFailed: 'The text could not be loaded.',
     sourcesHeading: 'Divine Liturgy',
-    fontNote:
-      'Church Slavonic text is set in Ponomar Unicode, copyright 2025 The Ponomar Project Authors, under the SIL Open Font License 1.1.',
     rightsNote: (url) =>
       `If you hold rights to a text here and want it removed, report it at ${url} and it will be removed.`,
   },

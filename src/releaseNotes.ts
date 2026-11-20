@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.10.0',
+    notes: {
+      tr: ['Oruç günleri ve bayramlar artık doğrudan telefonunun takviminde görünebilir (Bayramlar ve oruçlar ekranından). Uygulama da biraz küçüldü.'],
+      en: ['Fasting days and feasts can now be added straight to your phone’s calendar (from the Feasts and fasts screen). The app is also a little smaller.'],
+      ru: ['Дни поста и праздники теперь можно добавить прямо в календарь телефона (на экране «Праздники и посты»). Приложение также стало немного меньше.'],
+    },
+  },
+  {
     version: '0.9.11',
     notes: {
       tr: ['Ayarlar’daki “Cihaz kontrolü” yerini “Sorun bildir” formuna bıraktı: yazdığın sorun hazır bir GitHub bildirimi olarak açılır.', 'Güncellemeler ekranı artık içerik sürümünü gösterir; yeni uygulama indirmeden gelen sürümler “Güncelleme olarak geldi” diye işaretlenir.'],
