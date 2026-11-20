@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.10.4',
+    notes: {
+      tr: ['Ayin ve dua metinleri artık ayrı dosyalarda: sonraki güncellemeler çok daha küçük iner, uygulama daha hafif açılır. Bir metin açılmazsa “Sorun bildir”den yaz.'],
+      en: ['The texts of the services and prayers are now separate files: later updates download much smaller and the app starts lighter. If a text does not open, tell us via “Report a problem”.'],
+      ru: ['Тексты служб и молитв теперь хранятся отдельными файлами: следующие обновления будут гораздо меньше, приложение запускается легче. Если текст не открывается, сообщите через «Сообщить о проблеме».'],
+    },
+  },
+  {
     version: '0.10.3',
     notes: {
       tr: ['Güvenlik: uygulama yalnızca GitHub’ın özetini (SHA-256) bildirdiği APK’yı kurar.', 'Kararlılık: uygulama çökerse son hata telefonda saklanır; “Sorun bildir”de istersen bildirime eklersin (yalnızca hata adı ve kısa bir ileti, kişisel bilgi yok).'],
