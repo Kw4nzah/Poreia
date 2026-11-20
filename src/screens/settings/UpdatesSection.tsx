@@ -3,7 +3,12 @@
 import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
 import { StyleSheet, Text, View } from 'react-native';
-import { notesForVersion, releaseNotesFor, isInstalledVersion } from '../../releaseNotes';
+import {
+  RELEASE_NOTES,
+  notesForVersion,
+  releaseNotesFor,
+  isInstalledVersion,
+} from '../../releaseNotes';
 import { useSettings } from '../../settings/SettingsProvider';
 import { Button, Card } from '../../ui/kit';
 import { Theme, space, type, useThemedStyles } from '../../ui/theme';
@@ -31,6 +36,7 @@ export function UpdatesSection() {
       <Text style={styles.cardText}>
         {m.settings.version(Application.nativeApplicationVersion ?? '–')}
       </Text>
+      <Text style={styles.cardText}>{m.settings.contentVersion(RELEASE_NOTES[0].version)}</Text>
       <Text style={styles.cardText}>{contentLine}</Text>
       {updates.status !== 'idle' && (
         <Text

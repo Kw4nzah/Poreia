@@ -29,6 +29,9 @@ export interface ReportTexts {
   android: string;
   device: string;
   language: string;
+  /** Headings of the sections the user fills in (see `buildBugReportUrl`). */
+  steps?: string;
+  kind?: string;
 }
 
 /** Keeps letters, digits, spaces and a few version/model characters; cut to `max`. Empty becomes null. */
@@ -73,4 +76,43 @@ export function buildReportUrl(info: ReportInfo, texts: ReportTexts): string {
   if (isAllowedExternalUrl(full)) return full;
   const short = urlFor(title, details);
   return isAllowedExternalUrl(short) ? short : NEW_ISSUE_URL;
+}
+
+export interface BugReportInput {
+  /** What kind of report it is, already in the user's language ("Bug", "Idea"...). */
+  kind: string;
+  /** What happened, in the user's words. */
+  text: string;
+  /** What they did before it (optional). */
+  steps?: string;
+}
+
+/**
+ * The link of a pre-filled issue that carries the user's own words. Returns null when there is no
+ * text or when the encoded link would be longer than the app's link allowlist allows (the form tells
+ * the user to shorten it); the user's words are never cut silently.
+ */
+export function buildBugReportUrl(
+  info: ReportInfo,
+  texts: ReportTexts,
+  input: BugReportInput,
+): string | null {
+  const text = input.text.trim();
+  if (text === '') return null;
+  const firstLine = text.split('\n')[0].slice(0, 50).trim();
+  const title = [texts.title, firstLine].filter(Boolean).join(': ');
+  const steps = (input.steps ?? '').trim();
+  const body = [
+    `## ${texts.what}`,
+    text,
+    ...(steps ? ['', `## ${texts.steps ?? ''}`, steps] : []),
+    '',
+    `## ${texts.kind ?? ''}`,
+    input.kind,
+    '',
+    `## ${texts.details}`,
+    detailLines(info, texts).join('\n'),
+  ].join('\n');
+  const url = urlFor(title, body);
+  return isAllowedExternalUrl(url) ? url : null;
 }

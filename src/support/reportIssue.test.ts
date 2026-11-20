@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { LANGUAGES, MESSAGES } from '../i18n';
 import { isAllowedExternalUrl } from '../security/externalLinks';
-import { NEW_ISSUE_URL, ReportTexts, buildReportUrl, cleanValue } from './reportIssue';
+import {
+  NEW_ISSUE_URL,
+  ReportTexts,
+  buildBugReportUrl,
+  buildReportUrl,
+  cleanValue,
+} from './reportIssue';
 
 function texts(language: (typeof LANGUAGES)[number]): ReportTexts {
   const s = MESSAGES[language].support;
@@ -105,5 +111,46 @@ describe('cleanValue', () => {
     expect(cleanValue('###')).toBeNull();
     expect(cleanValue({})).toBeNull();
     expect(cleanValue(7)).toBe('7');
+  });
+});
+
+describe('buildBugReportUrl', () => {
+  const t = { ...texts('en'), steps: 'Before it', kind: 'Kind' };
+
+  it('puts the user words, the kind and the technical details in the issue', () => {
+    const url = buildBugReportUrl(INFO, t, {
+      kind: 'Problem',
+      text: 'Vespers stops halfway',
+      steps: 'Opened Services',
+    });
+    expect(url).not.toBeNull();
+    expect(isAllowedExternalUrl(url as string)).toBe(true);
+    const q = new URL(url as string).searchParams;
+    expect(q.get('title')).toContain('Vespers stops halfway');
+    const body = q.get('body') as string;
+    expect(body).toContain('Vespers stops halfway');
+    expect(body).toContain('Opened Services');
+    expect(body).toContain('Problem');
+    expect(body).toContain('0.7.0');
+  });
+
+  it('has no link without text, and none when the words are too long', () => {
+    expect(buildBugReportUrl(INFO, t, { kind: 'Problem', text: '   ' })).toBeNull();
+    expect(buildBugReportUrl(INFO, t, { kind: 'Problem', text: 'ş'.repeat(900) })).toBeNull();
+  });
+
+  it('keeps Turkish and Russian words intact', () => {
+    const url = buildBugReportUrl(INFO, t, { kind: 'Fikir', text: 'Akşam Ayını açılmıyor çö' });
+    expect(new URL(url as string).searchParams.get('body')).toContain('Akşam Ayını açılmıyor çö');
+  });
+});
+
+describe('bug report texts', () => {
+  it.each(LANGUAGES)('%s has every text of the form', (language) => {
+    const b = MESSAGES[language].bugReport;
+    for (const value of [b.title, b.intro, b.send, b.tooLong, b.needText, b.issueWhat]) {
+      expect(value.trim()).not.toBe('');
+    }
+    expect(b.kinds).toHaveLength(3);
   });
 });

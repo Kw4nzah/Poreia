@@ -3,6 +3,7 @@
 import * as Application from 'expo-application';
 import { StyleSheet, Text, View } from 'react-native';
 import { isInstalledVersion, releaseNotesFor } from '../../releaseNotes';
+import { compareVersions } from '../../updates/apkRelease';
 import { useSettings } from '../../settings/SettingsProvider';
 import { Badge, Card } from '../../ui/kit';
 import { SERIF, Theme, space, type, useThemedStyles } from '../../ui/theme';
@@ -19,6 +20,8 @@ export function WhatsNew() {
       </Text>
       {releaseNotesFor(settings.language).map(({ version, notes }) => {
         const current = isInstalledVersion(version, installed);
+        // Newer than the installed app, yet in this list: it arrived as an over-the-air update.
+        const delivered = !!installed && compareVersions(version, installed) > 0;
         return (
           <Card key={version} padding="md" tone={current ? 'feast' : 'surface'} style={styles.card}>
             <View style={styles.header}>
@@ -26,6 +29,7 @@ export function WhatsNew() {
                 {m.settings.version(version)}
               </Text>
               {current && <Badge label={m.support.whatsNewInstalled} tone="feast" />}
+              {delivered && <Badge label={m.support.whatsNewDelivered} tone="neutral" />}
             </View>
             {notes.map((note, index) => (
               <View key={index} style={styles.note}>

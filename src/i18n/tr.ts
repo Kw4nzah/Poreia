@@ -164,6 +164,7 @@ export const tr: Messages = {
     apkAvailable: (version) => `${version} sürümü yayında`,
     contentUpdated: (when) => `İçerik güncellemesi: ${when}`,
     contentShipped: 'İçerik uygulamayla gelen haliyle',
+    contentVersion: (version) => `İçerik sürümü ${version} (güncellemeler yeni uygulama indirmeden gelir)`,
     projectLink: 'GitHub’da proje',
     apkInstall: (megabytes) => `İndir ve kur (${megabytes} MB)`,
     apkDownloading: 'İndiriliyor…',
@@ -570,6 +571,7 @@ export const tr: Messages = {
     whatsNewIn: (version) => `${version} sürümündeki yenilikler`,
     whatsNewComing: (version) => `${version} sürümündeki yenilikler`,
     whatsNewInstalled: 'Yüklü',
+    whatsNewDelivered: 'Güncelleme olarak geldi',
     reportButton: 'Sorun bildir',
     reportHint:
       'Uygulama sürümü, Android sürümü, cihaz modeli ve dil doldurulmuş bir GitHub sayfası açar. Başka hiçbir şey gönderilmez. Göndermek için GitHub hesabı gerekir.',
@@ -585,59 +587,24 @@ export const tr: Messages = {
     reportLanguage: 'Dil',
   },
 
-  deviceCheck: {
-    title: 'Cihaz kontrolü',
-    summaryRow: 'Güncellemeden sonra telefonda denenecekler',
+  bugReport: {
+    title: 'Sorun bildir',
+    summaryRow: 'Ne ters gittiğini yaz ve gönder',
     intro:
-      'Bazı şeyleri yalnızca gerçek bir telefon gösterebilir. Güncellemeden sonra bunları sırayla dene, çalışanları işaretle. İşaretler bu sürüme aittir; sonraki sürümde boş başlar.',
-    summary: (done, total) => `${total} maddenin ${done} tanesi kontrol edildi`,
-    reset: 'Sıfırla',
-    tickA11y: 'Kontrol edilmedi. Kontrol edildi diye işaretlemek için dokun.',
-    untickA11y: 'Kontrol edildi. İşareti kaldırmak için dokun.',
-    items: {
-      widgets: {
-        title: 'Widget’lar',
-        steps: [
-          'Ana ekrana uzun bas, Widget’lar’ı aç; 4x1 ince widget’ı ve Poreia’nın diğer widget’larını ekle.',
-          'Her biri bugünün oruç kuralını göstermeli.',
-        ],
-      },
-      calendarExport: {
-        title: 'Takvimime ekle',
-        steps: [
-          'Yaklaşanlar ekranını aç ve “Takvimime ekle”ye dokun.',
-          'Bir takvim uygulaması etkinliklerle birlikte açılmalı.',
-        ],
-      },
-      persistentNotification: {
-        title: 'Kalıcı bildirim',
-        steps: [
-          'Ayarlar > Bildirimler’de “Kalıcı bildirim”i aç. Bildirim panelinde görünmeli.',
-          'Bildirimdeki düğmeye dokun: Bugün ekranında günün işareti değişmeli.',
-        ],
-      },
-      femaleSaint: {
-        title: 'Azize',
-        steps: [
-          'Ayarlar > Azizlerim’de bir azize ekle, örneğin Maria. “Azize” önceden seçili gelmeli.',
-          'Bir konu aç: dua kadın için yazılmış gibi olmalı.',
-        ],
-      },
-      updatesNotes: {
-        title: 'Güncellemeler ekranı',
-        steps: [
-          'Ayarlar > Güncellemeler’i aç: yüklü sürümün notları görünmeli.',
-          'Daha yeni bir APK varsa güncelleme düğmesi görünmeli.',
-        ],
-      },
-      otaReopen: {
-        title: 'Yeniden açınca güncelleme',
-        steps: [
-          'Uygulamayı tamamen kapatıp iki kez yeniden aç.',
-          'Ayarlar > Güncellemeler’deki sürüm ve not satırı son sürümle aynı olmalı.',
-        ],
-      },
-    },
+      'Ne olduğunu yaz. “Gönder” seçince senin sözlerin ve birkaç teknik bilgi (uygulama sürümü, Android sürümü, telefon modeli, dil) ile hazır bir GitHub bildirimi açılır. Başka bir şey eklenmez. GitHub’da “Submit” düğmesine sen basarsın; bunun için GitHub hesabın olmalı.',
+    kindLabel: 'Ne ile ilgili?',
+    kinds: ['Sorun', 'Yanlış ya da eksik metin', 'Fikir'],
+    whatLabel: 'Ne oldu?',
+    whatPlaceholder: 'Örneğin: Akşam Ayini metni yarıda kesiliyor.',
+    stepsLabel: 'Öncesinde ne yaptın? (isteğe bağlı)',
+    send: 'GitHub ile gönder',
+    tooLong: 'Metin bu yolla göndermek için çok uzun. Lütfen kısalt.',
+    needText: 'Önce birkaç kelime yaz.',
+    failed: 'Bağlantı açılamadı. Tekrar dene.',
+    previewTitle: 'Sözlerinle birlikte şunlar gönderilir:',
+    issueWhat: 'Ne oldu',
+    issueSteps: 'Öncesinde',
+    issueKind: 'Tür',
   },
 
   widget: {

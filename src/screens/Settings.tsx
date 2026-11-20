@@ -17,7 +17,7 @@ import { SectionId, hourLabel, sectionTitle } from './settings/sections';
 /** The hub's two groups: what the user sets about themselves, then the app itself. */
 const GROUPS: readonly (readonly SectionId[])[] = [
   ['profile', 'language', 'notifications', 'saints', 'history'],
-  ['backup', 'updates', 'deviceCheck', 'about'],
+  ['backup', 'updates', 'bugReport', 'about'],
 ];
 
 export function Settings() {
@@ -55,8 +55,8 @@ export function Settings() {
           ? `${version} · ${m.settings.apkAvailable(apk.release.version)}`
           : version;
       }
-      case 'deviceCheck':
-        return m.deviceCheck.summaryRow;
+      case 'bugReport':
+        return m.bugReport.summaryRow;
       case 'about':
         return m.settings.summaryAbout;
     }

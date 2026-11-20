@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.11',
+    notes: {
+      tr: ['Ayarlar’daki “Cihaz kontrolü” yerini “Sorun bildir” formuna bıraktı: yazdığın sorun hazır bir GitHub bildirimi olarak açılır.', 'Güncellemeler ekranı artık içerik sürümünü gösterir; yeni uygulama indirmeden gelen sürümler “Güncelleme olarak geldi” diye işaretlenir.'],
+      en: ['“Device check” in Settings is now a “Report a problem” form: what you write opens as a ready GitHub issue.', 'The Updates screen now shows the content version; versions that arrived without a new app download are marked “Received as an update”.'],
+      ru: ['«Проверка на телефоне» в настройках стала формой «Сообщить о проблеме»: написанное вами открывается как готовое обращение на GitHub.', 'Экран обновлений теперь показывает версию содержимого; версии, пришедшие без новой установки, отмечены «Получена обновлением».'],
+    },
+  },
+  {
     version: '0.9.10',
     notes: {
       tr: ['Litürji’ye bir İngilizce metin daha eklendi (Slavca-İngilizce baskı, Rahip Sergey Şaşnikov); çevirmenin izni beklenmektedir.'],

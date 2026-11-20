@@ -194,6 +194,8 @@ export interface Messages {
     contentUpdated: (when: string) => string;
     /** No downloaded update yet: the bundle that shipped inside the APK. */
     contentShipped: string;
+    /** Version of the content bundle, which moves with over-the-air updates (the app version does not). */
+    contentVersion: (version: string) => string;
     projectLink: string;
     apkInstall: (megabytes: number) => string;
     apkDownloading: string;
@@ -449,6 +451,8 @@ export interface Messages {
     whatsNewIn: (version: string) => string;
     whatsNewComing: (version: string) => string;
     whatsNewInstalled: string;
+    /** Badge on a version that arrived as an update without a new app (APK) download. */
+    whatsNewDelivered: string;
     reportButton: string;
     reportHint: string;
     reportFailed: string;
@@ -462,19 +466,25 @@ export interface Messages {
     reportDevice: string;
     reportLanguage: string;
   };
-  /** Settings > Device check: a checklist for things only a real phone can verify. */
-  deviceCheck: {
+  /** Settings > Report a problem: a form that opens a ready GitHub issue. */
+  bugReport: {
     title: string;
     summaryRow: string;
     intro: string;
-    summary: (done: number, total: number) => string;
-    reset: string;
-    tickA11y: string;
-    untickA11y: string;
-    items: Record<
-      'widgets' | 'calendarExport' | 'persistentNotification' | 'femaleSaint' | 'updatesNotes' | 'otaReopen',
-      { title: string; steps: readonly string[] }
-    >;
+    kindLabel: string;
+    /** Problem, wrong or missing text, idea (in this order). */
+    kinds: readonly [string, string, string];
+    whatLabel: string;
+    whatPlaceholder: string;
+    stepsLabel: string;
+    send: string;
+    tooLong: string;
+    needText: string;
+    failed: string;
+    previewTitle: string;
+    issueWhat: string;
+    issueSteps: string;
+    issueKind: string;
   };
   /** Home-screen widget. Short strings: they sit in small, fixed-size slots. */
   widget: {
@@ -663,6 +673,7 @@ export const en: Messages = {
     apkAvailable: (version) => `Version ${version} is available`,
     contentUpdated: (when) => `Content updated ${when}`,
     contentShipped: 'Content as shipped with the app',
+    contentVersion: (version) => `Content version ${version} (updates arrive without a new app)`,
     projectLink: 'Project on GitHub',
     apkInstall: (megabytes) => `Download and install (${megabytes} MB)`,
     apkDownloading: 'Downloading…',
@@ -1064,6 +1075,7 @@ export const en: Messages = {
     whatsNewIn: (version) => `What’s new in ${version}`,
     whatsNewComing: (version) => `What’s new in ${version}`,
     whatsNewInstalled: 'Installed',
+    whatsNewDelivered: 'Received as an update',
     reportButton: 'Report a problem',
     reportHint:
       'Opens a GitHub page with the app version, Android version, device model and language filled in. Nothing else is sent. A GitHub account is needed to submit it.',
@@ -1079,59 +1091,24 @@ export const en: Messages = {
     reportLanguage: 'Language',
   },
 
-  deviceCheck: {
-    title: 'Device check',
-    summaryRow: 'Things to try on your phone after an update',
+  bugReport: {
+    title: 'Report a problem',
+    summaryRow: 'Describe what went wrong and send it',
     intro:
-      'Some things only a real phone can show. After an update, go through these and tick each one that works. The ticks belong to this version and start empty with the next one.',
-    summary: (done, total) => `${done} of ${total} checked`,
-    reset: 'Reset',
-    tickA11y: 'Not checked. Tap to mark as checked.',
-    untickA11y: 'Checked. Tap to clear.',
-    items: {
-      widgets: {
-        title: 'Widgets',
-        steps: [
-          'Press and hold the home screen, open Widgets and add the 4x1 strip and the other Poreia widgets.',
-          'Each one should show today’s fasting rule.',
-        ],
-      },
-      calendarExport: {
-        title: 'Add to my calendar',
-        steps: [
-          'Open Upcoming and tap “Add to my calendar”.',
-          'A calendar app should open with the events.',
-        ],
-      },
-      persistentNotification: {
-        title: 'Persistent notification',
-        steps: [
-          'Turn on “Persistent notification” in Settings > Notifications. It should appear in the notification shade.',
-          'Tap its button: today’s mark should change on the Today screen.',
-        ],
-      },
-      femaleSaint: {
-        title: 'Female saint',
-        steps: [
-          'In Settings > My saints, add a female saint, for example Maria. “Female saint” should be preselected.',
-          'Open a topic: the prayer should be worded for a woman.',
-        ],
-      },
-      updatesNotes: {
-        title: 'Updates screen',
-        steps: [
-          'Open Settings > Updates: the notes of the installed version should show.',
-          'If a newer APK exists, the update button should show.',
-        ],
-      },
-      otaReopen: {
-        title: 'Update on reopening',
-        steps: [
-          'Close the app completely and open it again, twice.',
-          'The version and notes line in Settings > Updates should match the latest release.',
-        ],
-      },
-    },
+      'Write what happened. “Send” opens a ready GitHub issue with your words and a few technical details (app version, Android version, phone model, language). Nothing else is added. You press “Submit” on GitHub; you need a GitHub account for that.',
+    kindLabel: 'What is it about?',
+    kinds: ['Problem', 'Wrong or missing text', 'Idea'],
+    whatLabel: 'What happened?',
+    whatPlaceholder: 'For example: the Vespers text stops halfway.',
+    stepsLabel: 'What did you do before it? (optional)',
+    send: 'Send via GitHub',
+    tooLong: 'The text is too long to send this way. Please shorten it.',
+    needText: 'Write a few words first.',
+    failed: 'Could not open the link. Try again.',
+    previewTitle: 'This is sent with your words:',
+    issueWhat: 'What happened',
+    issueSteps: 'Before it',
+    issueKind: 'Kind',
   },
 
   widget: {
