@@ -2,7 +2,7 @@
 // adjustable text size as the prayers.
 
 import { Redirect, useRouter } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { CivilDate } from '../calendar';
 import { getCommemoration, readingReference } from '../commemorations';
@@ -10,6 +10,7 @@ import { parseService } from '../commemorations/service';
 import { readingText, translationName } from '../commemorations/text';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
+import { buildShareMessage } from '../share/message';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { ReadingLink } from '../ui/ReadingLink';
@@ -39,6 +40,14 @@ export function ReadingReader({ index, date }: { index: number; date?: CivilDate
             const service = parseService(reading.source);
             return service ? m.readings.service(service) : reading.source;
           })();
+
+  /** One Share button for the whole reading (verses run together as one block of text). */
+  function shareReading() {
+    if (!reading || !text) return;
+    const body = text.verses.map((v) => `${v.verse} ${v.text}`).join(' ');
+    const source = `${readingReference(reading, settings.language)}, ${translationName(reading, text.language)}`;
+    void Share.share({ message: buildShareMessage(body, source) }).catch(() => {});
+  }
 
   function resize(step: -1 | 1) {
     const next = size + step;
@@ -89,7 +98,7 @@ export function ReadingReader({ index, date }: { index: number; date?: CivilDate
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.kind}>{label}</Text>
-        <Text style={styles.title} accessibilityRole="header">
+        <Text selectable style={styles.title} accessibilityRole="header">
           {readingReference(reading, settings.language)}
         </Text>
         <View style={styles.rule} />
@@ -97,6 +106,14 @@ export function ReadingReader({ index, date }: { index: number; date?: CivilDate
         <VerseText verses={text.verses} size={textSize} />
 
         <Text style={styles.source}>{translationName(reading, text.language)}</Text>
+        <Pressable
+          onPress={shareReading}
+          style={styles.shareButton}
+          accessibilityRole="button"
+          accessibilityLabel={m.prayers.share}
+        >
+          <Text style={styles.shareText}>{m.prayers.share}</Text>
+        </Pressable>
         {text.fallback && <Text style={styles.note}>{m.readings.textEnglish}</Text>}
         <ReadingLink reading={reading} />
       </ScrollView>
@@ -123,6 +140,8 @@ function makeStyles(t: Theme) {
     kind: { ...type.label, color: t.muted },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink, marginTop: space.xs },
     rule: { width: 40, height: 2, borderRadius: 1, backgroundColor: t.feast, marginTop: space.md },
+    shareButton: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start', marginTop: space.sm },
+    shareText: { ...type.label, color: t.accent },
     source: { ...type.caption, color: t.muted, marginTop: space.xl },
     note: { ...type.caption, color: t.muted, marginTop: space.xs },
   });

@@ -11,6 +11,7 @@ import {
   Pressable,
   ScrollView,
   ScrollViewInstance,
+  Share,
   StyleSheet,
   Text,
   View,
@@ -20,6 +21,7 @@ import { PRAYER_TEXT_SIZES, PrayerId, PrayerTextSize } from '../prayers';
 import { cleanPrayerBookmark, toggleFavoritePrayer } from '../prayers/favorites';
 import { applyGender } from '../prayers/saintGender';
 import { useSettings } from '../settings/SettingsProvider';
+import { buildShareMessage } from '../share/message';
 import { FavoriteStar } from '../ui/FavoriteStar';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { holdScreenAwake } from './keepAwake';
@@ -119,6 +121,14 @@ export function PrayerReader({ id, resume = false }: { id: PrayerId; resume?: bo
     scrollRef.current?.scrollTo({ y: target, animated: false });
   }
 
+  /** One Share button for the whole prayer (per-paragraph actions would crowd the page). */
+  function sharePrayer() {
+    const body = prayer.sections
+      .map((s) => [s.heading, ...s.paragraphs].filter(Boolean).join('\n\n'))
+      .join('\n\n');
+    void Share.share({ message: buildShareMessage(body, prayer.title) }).catch(() => {});
+  }
+
   function resize(step: -1 | 1) {
     const next = size + step;
     if (next >= 0 && next <= LARGEST) update({ prayerTextSize: next as PrayerTextSize });
@@ -192,7 +202,12 @@ export function PrayerReader({ id, resume = false }: { id: PrayerId; resume?: bo
         ]}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={[styles.title, align]} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
+        <Text
+          selectable
+          style={[styles.title, align]}
+          accessibilityRole="header"
+          maxFontSizeMultiplier={1.4}
+        >
           {prayer.title}
         </Text>
         <View style={[styles.rule, calm && styles.ruleCentered]} />
@@ -205,7 +220,7 @@ export function PrayerReader({ id, resume = false }: { id: PrayerId; resume?: bo
               </Text>
             )}
             {section.paragraphs.map((paragraph, line) => (
-              <Text key={line} style={[styles.paragraph, textSize, align]}>
+              <Text key={line} selectable style={[styles.paragraph, textSize, align]}>
                 {paragraph}
               </Text>
             ))}
@@ -217,6 +232,15 @@ export function PrayerReader({ id, resume = false }: { id: PrayerId; resume?: bo
             {prayer.note}
           </Text>
         )}
+
+        <Pressable
+          onPress={sharePrayer}
+          style={[styles.shareButton, calm && styles.shareCentered]}
+          accessibilityRole="button"
+          accessibilityLabel={m.prayers.share}
+        >
+          <Text style={styles.modeText}>{m.prayers.share}</Text>
+        </Pressable>
 
         {(id === 'morning' || id === 'evening') && settings.saints.length > 0 && (
           <View>
@@ -288,6 +312,8 @@ function makeStyles(t: Theme) {
     sizeDisabled: { color: t.line },
     modeText: { ...type.label, color: t.accent },
 
+    shareButton: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start', marginTop: space.md },
+    shareCentered: { alignSelf: 'center' },
     centered: { textAlign: 'center' },
     calmColumn: { width: '100%', maxWidth: READING_WIDTH, alignSelf: 'center' },
     ruleCentered: { alignSelf: 'center' },

@@ -8,7 +8,7 @@ import { SERIF, useTheme } from './theme';
 export function VerseText({ verses, size }: { verses: readonly ReadingVerse[]; size: TextStyle }) {
   const theme = useTheme();
   return (
-    <Text style={[styles.text, size, { color: theme.ink }]}>
+    <Text selectable style={[styles.text, size, { color: theme.ink }]}>
       {verses.map((v, i) => (
         <Text key={`${v.chapter}:${v.verse}`}>
           {i > 0 ? ' ' : ''}
