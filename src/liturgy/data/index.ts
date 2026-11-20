@@ -349,4 +349,384 @@ export const LOADERS: LiturgyLoaders = {
     cu: () => import('./kanony-rozhdestvu-presvyatoj-vladychiczy-nashej-bogorodiczy-i-prisnodevy-marii.cu'),
     ru: () => import('./kanony-rozhdestvu-presvyatoj-vladychiczy-nashej-bogorodiczy-i-prisnodevy-marii.ru'),
   },
+  'rozhdestvo-hristovo': {
+    cu: () => import('./rozhdestvo-hristovo.cu'),
+    ru: () => import('./rozhdestvo-hristovo.ru'),
+  },
+  'predprazdnstvo-rozhdestva-hristova': {
+    cu: () => import('./predprazdnstvo-rozhdestva-hristova.cu'),
+    ru: () => import('./predprazdnstvo-rozhdestva-hristova.ru'),
+  },
+  'nedelja-posle-rozhdestva-hristova': {
+    cu: () => import('./nedelja-posle-rozhdestva-hristova.cu'),
+    ru: () => import('./nedelja-posle-rozhdestva-hristova.ru'),
+  },
+  'obrezanie-gospodne-i-svt-vasiliya-velikogo': {
+    cu: () => import('./obrezanie-gospodne-i-svt-vasiliya-velikogo.cu'),
+    ru: () => import('./obrezanie-gospodne-i-svt-vasiliya-velikogo.ru'),
+  },
+  'predprazdnstvo-bogoyavleniya': {
+    cu: () => import('./predprazdnstvo-bogoyavleniya.cu'),
+    ru: () => import('./predprazdnstvo-bogoyavleniya.ru'),
+  },
+  'svyatoe-bogoyavlenie': {
+    cu: () => import('./svyatoe-bogoyavlenie.cu'),
+    ru: () => import('./svyatoe-bogoyavlenie.ru'),
+  },
+  'sretenie-gospodne': {
+    cu: () => import('./sretenie-gospodne.cu'),
+    ru: () => import('./sretenie-gospodne.ru'),
+  },
+  'blagoveshhenie-presvyatoj-bogorodiczy': {
+    cu: () => import('./blagoveshhenie-presvyatoj-bogorodiczy.cu'),
+    ru: () => import('./blagoveshhenie-presvyatoj-bogorodiczy.ru'),
+  },
+  'preobrazhenie-gospodne': {
+    cu: () => import('./preobrazhenie-gospodne.cu'),
+    ru: () => import('./preobrazhenie-gospodne.ru'),
+  },
+  'uspenie-presvyatoj-bogorodiczy': {
+    cu: () => import('./uspenie-presvyatoj-bogorodiczy.cu'),
+    ru: () => import('./uspenie-presvyatoj-bogorodiczy.ru'),
+  },
+  'rozhdestvo-presvyatoj-bogorodiczy': {
+    cu: () => import('./rozhdestvo-presvyatoj-bogorodiczy.cu'),
+    ru: () => import('./rozhdestvo-presvyatoj-bogorodiczy.ru'),
+  },
+  'vozdvizhenie-kresta-gospodnya': {
+    cu: () => import('./vozdvizhenie-kresta-gospodnya.cu'),
+    ru: () => import('./vozdvizhenie-kresta-gospodnya.ru'),
+  },
+  'iznesenie-dreva-svyashhennogo-kresta': {
+    cu: () => import('./iznesenie-dreva-svyashhennogo-kresta.cu'),
+    ru: () => import('./iznesenie-dreva-svyashhennogo-kresta.ru'),
+  },
+  'vvedenie-vo-hram-presvyatoj-bogorodiczy': {
+    cu: () => import('./vvedenie-vo-hram-presvyatoj-bogorodiczy.cu'),
+    ru: () => import('./vvedenie-vo-hram-presvyatoj-bogorodiczy.ru'),
+  },
+  'pokrov-presvyatoj-bogorodiczy': {
+    cu: () => import('./pokrov-presvyatoj-bogorodiczy.cu'),
+    ru: () => import('./pokrov-presvyatoj-bogorodiczy.ru'),
+  },
+  'sobor-presvyatoj-bogorodiczy': {
+    cu: () => import('./sobor-presvyatoj-bogorodiczy.cu'),
+    ru: () => import('./sobor-presvyatoj-bogorodiczy.ru'),
+  },
+  'rozhdestvo-sv-ioanna-predtechi': {
+    cu: () => import('./rozhdestvo-sv-ioanna-predtechi.cu'),
+    ru: () => import('./rozhdestvo-sv-ioanna-predtechi.ru'),
+  },
+  'useknovenie-glavy-ioanna-predtechi': {
+    cu: () => import('./useknovenie-glavy-ioanna-predtechi.cu'),
+    ru: () => import('./useknovenie-glavy-ioanna-predtechi.ru'),
+  },
+  'sv-app-petra-i-pavla': {
+    cu: () => import('./sv-app-petra-i-pavla.cu'),
+    ru: () => import('./sv-app-petra-i-pavla.ru'),
+  },
+  'svt-nikolaya-arhiepiskopa-mir-likijskih': {
+    cu: () => import('./svt-nikolaya-arhiepiskopa-mir-likijskih.cu'),
+    ru: () => import('./svt-nikolaya-arhiepiskopa-mir-likijskih.ru'),
+  },
+  'velikomuchenika-dimitriya-solunskogo': {
+    cu: () => import('./velikomuchenika-dimitriya-solunskogo.cu'),
+    ru: () => import('./velikomuchenika-dimitriya-solunskogo.ru'),
+  },
+  'obretenie-moshhej-svt-dimitriya-rostovskogo': {
+    cu: () => import('./obretenie-moshhej-svt-dimitriya-rostovskogo.cu'),
+    ru: () => import('./obretenie-moshhej-svt-dimitriya-rostovskogo.ru'),
+  },
+  'prepodobnogo-amvrosiya-optinskogo': {
+    cu: () => import('./prepodobnogo-amvrosiya-optinskogo.cu'),
+    ru: () => import('./prepodobnogo-amvrosiya-optinskogo.ru'),
+  },
+  'nedelya-svyatyh-otczov': {
+    cu: () => import('./nedelya-svyatyh-otczov.cu'),
+    ru: () => import('./nedelya-svyatyh-otczov.ru'),
+  },
+  'nedelya-svyatyh-praotczev': {
+    cu: () => import('./nedelya-svyatyh-praotczev.cu'),
+    ru: () => import('./nedelya-svyatyh-praotczev.ru'),
+  },
+  'nedelya-vseh-svyatyh-v-zemle-rossijskoj-prosiyavshih': {
+    cu: () => import('./nedelya-vseh-svyatyh-v-zemle-rossijskoj-prosiyavshih.cu'),
+    ru: () => import('./nedelya-vseh-svyatyh-v-zemle-rossijskoj-prosiyavshih.ru'),
+  },
+  'nedelya-vseh-svyatyh': {
+    cu: () => import('./nedelya-vseh-svyatyh.cu'),
+    ru: () => import('./nedelya-vseh-svyatyh.ru'),
+  },
+  'svyatyh-otczov-sedmogo-vselenskogo-sobora': {
+    cu: () => import('./svyatyh-otczov-sedmogo-vselenskogo-sobora.cu'),
+    ru: () => import('./svyatyh-otczov-sedmogo-vselenskogo-sobora.ru'),
+  },
+  'svyatyh-otczov-shesti-vselenskih-soborov': {
+    cu: () => import('./svyatyh-otczov-shesti-vselenskih-soborov.cu'),
+    ru: () => import('./svyatyh-otczov-shesti-vselenskih-soborov.ru'),
+  },
+  'nedelya-o-mytare-i-farisee': {
+    cu: () => import('./nedelya-o-mytare-i-farisee.cu'),
+    ru: () => import('./nedelya-o-mytare-i-farisee.ru'),
+  },
+  'nedelya-o-bludnom-syne': {
+    cu: () => import('./nedelya-o-bludnom-syne.cu'),
+    ru: () => import('./nedelya-o-bludnom-syne.ru'),
+  },
+  'nedelya-myasopustnaya': {
+    cu: () => import('./nedelya-myasopustnaya.cu'),
+    ru: () => import('./nedelya-myasopustnaya.ru'),
+  },
+  'subbota-myasopustnaya': {
+    cu: () => import('./subbota-myasopustnaya.cu'),
+    ru: () => import('./subbota-myasopustnaya.ru'),
+  },
+  'nedelya-syropustnaya': {
+    cu: () => import('./nedelya-syropustnaya.cu'),
+    ru: () => import('./nedelya-syropustnaya.ru'),
+  },
+  'subbota-syropustnaya': {
+    cu: () => import('./subbota-syropustnaya.cu'),
+    ru: () => import('./subbota-syropustnaya.ru'),
+  },
+  'sedmicza-pervaya-velikogo-posta': {
+    cu: () => import('./sedmicza-pervaya-velikogo-posta.cu'),
+    ru: () => import('./sedmicza-pervaya-velikogo-posta.ru'),
+  },
+  'nedelya-pervaya-velikogo-posta': {
+    cu: () => import('./nedelya-pervaya-velikogo-posta.cu'),
+    ru: () => import('./nedelya-pervaya-velikogo-posta.ru'),
+  },
+  'sedmica-vtoraja-velikogo-posta': {
+    cu: () => import('./sedmica-vtoraja-velikogo-posta.cu'),
+    ru: () => import('./sedmica-vtoraja-velikogo-posta.ru'),
+  },
+  'nedelya-vtoraya-velikogo-posta': {
+    cu: () => import('./nedelya-vtoraya-velikogo-posta.cu'),
+    ru: () => import('./nedelya-vtoraya-velikogo-posta.ru'),
+  },
+  'sedmica-tretja-velikogo-posta': {
+    cu: () => import('./sedmica-tretja-velikogo-posta.cu'),
+    ru: () => import('./sedmica-tretja-velikogo-posta.ru'),
+  },
+  'nedelya-tretya-velikogo-posta': {
+    cu: () => import('./nedelya-tretya-velikogo-posta.cu'),
+    ru: () => import('./nedelya-tretya-velikogo-posta.ru'),
+  },
+  'sedmica-chetvertaja-velikogo-posta': {
+    cu: () => import('./sedmica-chetvertaja-velikogo-posta.cu'),
+    ru: () => import('./sedmica-chetvertaja-velikogo-posta.ru'),
+  },
+  'nedelya-chetvertaya-velikogo-posta': {
+    cu: () => import('./nedelya-chetvertaya-velikogo-posta.cu'),
+    ru: () => import('./nedelya-chetvertaya-velikogo-posta.ru'),
+  },
+  'sedmica-pjataja-velikogo-posta': {
+    cu: () => import('./sedmica-pjataja-velikogo-posta.cu'),
+    ru: () => import('./sedmica-pjataja-velikogo-posta.ru'),
+  },
+  'nedelya-pyataya-velikogo-posta': {
+    cu: () => import('./nedelya-pyataya-velikogo-posta.cu'),
+    ru: () => import('./nedelya-pyataya-velikogo-posta.ru'),
+  },
+  'subbota-svyatogo-i-pravednogo-lazarya': {
+    cu: () => import('./subbota-svyatogo-i-pravednogo-lazarya.cu'),
+    ru: () => import('./subbota-svyatogo-i-pravednogo-lazarya.ru'),
+  },
+  'nedelya-shestaya-velikogo-posta-nedelya-vaij-vhod-gospoden-v-ierusalim': {
+    cu: () => import('./nedelya-shestaya-velikogo-posta-nedelya-vaij-vhod-gospoden-v-ierusalim.cu'),
+    ru: () => import('./nedelya-shestaya-velikogo-posta-nedelya-vaij-vhod-gospoden-v-ierusalim.ru'),
+  },
+  'strastnaja-sedmica-velikij-ponedelnik': {
+    cu: () => import('./strastnaja-sedmica-velikij-ponedelnik.cu'),
+    ru: () => import('./strastnaja-sedmica-velikij-ponedelnik.ru'),
+  },
+  'strastnaya-sedmicza-velikij-vtornik': {
+    cu: () => import('./strastnaya-sedmicza-velikij-vtornik.cu'),
+    ru: () => import('./strastnaya-sedmicza-velikij-vtornik.ru'),
+  },
+  'strastnaya-sedmicza-velikaya-sreda': {
+    cu: () => import('./strastnaya-sedmicza-velikaya-sreda.cu'),
+    ru: () => import('./strastnaya-sedmicza-velikaya-sreda.ru'),
+  },
+  'strastnaya-sedmicza-velikij-chetverg': {
+    cu: () => import('./strastnaya-sedmicza-velikij-chetverg.cu'),
+    ru: () => import('./strastnaya-sedmicza-velikij-chetverg.ru'),
+  },
+  'strastnaya-sedmicza-velikaya-pyatnicza': {
+    cu: () => import('./strastnaya-sedmicza-velikaya-pyatnicza.cu'),
+    ru: () => import('./strastnaya-sedmicza-velikaya-pyatnicza.ru'),
+  },
+  'strastnaya-sedmicza-velikaya-subbota': {
+    cu: () => import('./strastnaya-sedmicza-velikaya-subbota.cu'),
+    ru: () => import('./strastnaya-sedmicza-velikaya-subbota.ru'),
+  },
+  'svetloe-hristovo-voskresenie-pasha': {
+    cu: () => import('./svetloe-hristovo-voskresenie-pasha.cu'),
+    ru: () => import('./svetloe-hristovo-voskresenie-pasha.ru'),
+  },
+  'ponedelnik-svetloj-sedmiczy': {
+    cu: () => import('./ponedelnik-svetloj-sedmiczy.cu'),
+    ru: () => import('./ponedelnik-svetloj-sedmiczy.ru'),
+  },
+  'vtornik-svetloj-sedmiczy': {
+    cu: () => import('./vtornik-svetloj-sedmiczy.cu'),
+    ru: () => import('./vtornik-svetloj-sedmiczy.ru'),
+  },
+  'sreda-svetloj-sedmiczy': {
+    cu: () => import('./sreda-svetloj-sedmiczy.cu'),
+    ru: () => import('./sreda-svetloj-sedmiczy.ru'),
+  },
+  'chetverg-svetloj-sedmiczy': {
+    cu: () => import('./chetverg-svetloj-sedmiczy.cu'),
+    ru: () => import('./chetverg-svetloj-sedmiczy.ru'),
+  },
+  'pyatnicza-svetloj-sedmiczy': {
+    cu: () => import('./pyatnicza-svetloj-sedmiczy.cu'),
+    ru: () => import('./pyatnicza-svetloj-sedmiczy.ru'),
+  },
+  'subbota-svetloj-sedmiczy': {
+    cu: () => import('./subbota-svetloj-sedmiczy.cu'),
+    ru: () => import('./subbota-svetloj-sedmiczy.ru'),
+  },
+  'nedelya-antipashi-apostola-fomy': {
+    cu: () => import('./nedelya-antipashi-apostola-fomy.cu'),
+    ru: () => import('./nedelya-antipashi-apostola-fomy.ru'),
+  },
+  'nedelya-3-po-pashe-sv-zhen-mironosicz-i-iosifa-pravednogo': {
+    cu: () => import('./nedelya-3-po-pashe-sv-zhen-mironosicz-i-iosifa-pravednogo.cu'),
+    ru: () => import('./nedelya-3-po-pashe-sv-zhen-mironosicz-i-iosifa-pravednogo.ru'),
+  },
+  'nedelya-4-po-pashe-o-rasslablennom': {
+    cu: () => import('./nedelya-4-po-pashe-o-rasslablennom.cu'),
+    ru: () => import('./nedelya-4-po-pashe-o-rasslablennom.ru'),
+  },
+  'prepolovenie-pyatidesyatniczy': {
+    cu: () => import('./prepolovenie-pyatidesyatniczy.cu'),
+    ru: () => import('./prepolovenie-pyatidesyatniczy.ru'),
+  },
+  'nedelya-5-po-pashe-o-samaryanke': {
+    cu: () => import('./nedelya-5-po-pashe-o-samaryanke.cu'),
+    ru: () => import('./nedelya-5-po-pashe-o-samaryanke.ru'),
+  },
+  'nedelya-6-po-pashe-o-slepom': {
+    cu: () => import('./nedelya-6-po-pashe-o-slepom.cu'),
+    ru: () => import('./nedelya-6-po-pashe-o-slepom.ru'),
+  },
+  'otdanie-prazdnika-pashi': {
+    cu: () => import('./otdanie-prazdnika-pashi.cu'),
+    ru: () => import('./otdanie-prazdnika-pashi.ru'),
+  },
+  'voznesenie-gospoda-boga-i-spasitelya-nashego-iisusa-hrista': {
+    cu: () => import('./voznesenie-gospoda-boga-i-spasitelya-nashego-iisusa-hrista.cu'),
+    ru: () => import('./voznesenie-gospoda-boga-i-spasitelya-nashego-iisusa-hrista.ru'),
+  },
+  'nedelya-7-po-pashe-svv-otczov-i-vselenskogo-sobora': {
+    cu: () => import('./nedelya-7-po-pashe-svv-otczov-i-vselenskogo-sobora.cu'),
+    ru: () => import('./nedelya-7-po-pashe-svv-otczov-i-vselenskogo-sobora.ru'),
+  },
+  'troiczkaya-roditelskaya-subbota': {
+    cu: () => import('./troiczkaya-roditelskaya-subbota.cu'),
+    ru: () => import('./troiczkaya-roditelskaya-subbota.ru'),
+  },
+  'den-svyatoj-troiczy-pyatidesyatnicza': {
+    cu: () => import('./den-svyatoj-troiczy-pyatidesyatnicza.cu'),
+    ru: () => import('./den-svyatoj-troiczy-pyatidesyatnicza.ru'),
+  },
+  'den-svyatogo-duha': {
+    cu: () => import('./den-svyatogo-duha.cu'),
+    ru: () => import('./den-svyatogo-duha.ru'),
+  },
+  'oktoih-voskresnyj-glas-1': {
+    cu: () => import('./oktoih-voskresnyj-glas-1.cu'),
+    ru: () => import('./oktoih-voskresnyj-glas-1.ru'),
+  },
+  'oktoih-voskresnyj-glas-2': {
+    cu: () => import('./oktoih-voskresnyj-glas-2.cu'),
+    ru: () => import('./oktoih-voskresnyj-glas-2.ru'),
+  },
+  'oktoih-voskresnyj-glas-3': {
+    cu: () => import('./oktoih-voskresnyj-glas-3.cu'),
+    ru: () => import('./oktoih-voskresnyj-glas-3.ru'),
+  },
+  'oktoih-voskresnyj-glas-4': {
+    cu: () => import('./oktoih-voskresnyj-glas-4.cu'),
+    ru: () => import('./oktoih-voskresnyj-glas-4.ru'),
+  },
+  'oktoih-voskresnyj-glas-5': {
+    cu: () => import('./oktoih-voskresnyj-glas-5.cu'),
+    ru: () => import('./oktoih-voskresnyj-glas-5.ru'),
+  },
+  'oktoih-voskresnyj-glas-6': {
+    cu: () => import('./oktoih-voskresnyj-glas-6.cu'),
+    ru: () => import('./oktoih-voskresnyj-glas-6.ru'),
+  },
+  'oktoih-voskresnyj-glas-7': {
+    cu: () => import('./oktoih-voskresnyj-glas-7.cu'),
+    ru: () => import('./oktoih-voskresnyj-glas-7.ru'),
+  },
+  'oktoih-voskresnyj-glas-8': {
+    cu: () => import('./oktoih-voskresnyj-glas-8.cu'),
+    ru: () => import('./oktoih-voskresnyj-glas-8.ru'),
+  },
+  'voskresnye-eksapostilarii-i-evangelskie-utrennie-stihiry': {
+    cu: () => import('./voskresnye-eksapostilarii-i-evangelskie-utrennie-stihiry.cu'),
+    ru: () => import('./voskresnye-eksapostilarii-i-evangelskie-utrennie-stihiry.ru'),
+  },
+  'eksapostilarii-vsej-sedmiczy': {
+    cu: () => import('./eksapostilarii-vsej-sedmiczy.cu'),
+    ru: () => import('./eksapostilarii-vsej-sedmiczy.ru'),
+  },
+  'svetilny': {
+    cu: () => import('./svetilny.cu'),
+    ru: () => import('./svetilny.ru'),
+  },
+  'parimijnik': {
+    cu: () => import('./parimijnik.cu'),
+    ru: () => import('./parimijnik.ru'),
+  },
+  'tropari-i-kondaki-voskresnye': {
+    cu: () => import('./tropari-i-kondaki-voskresnye.cu'),
+    ru: () => import('./tropari-i-kondaki-voskresnye.ru'),
+  },
+  'tropari-i-kondaki-dnej-sedmiczy': {
+    cu: () => import('./tropari-i-kondaki-dnej-sedmiczy.cu'),
+    ru: () => import('./tropari-i-kondaki-dnej-sedmiczy.ru'),
+  },
+  'tropari-i-kondaki-iz-triodi-postnoj': {
+    cu: () => import('./tropari-i-kondaki-iz-triodi-postnoj.cu'),
+    ru: () => import('./tropari-i-kondaki-iz-triodi-postnoj.ru'),
+  },
+  'tropari-i-kondaki-iz-triodi-czvetnoj': {
+    cu: () => import('./tropari-i-kondaki-iz-triodi-czvetnoj.cu'),
+    ru: () => import('./tropari-i-kondaki-iz-triodi-czvetnoj.ru'),
+  },
+  'tropari-i-kondaki-obshhie': {
+    cu: () => import('./tropari-i-kondaki-obshhie.cu'),
+    ru: () => import('./tropari-i-kondaki-obshhie.ru'),
+  },
+  'tropari-i-kondaki-prazdnikov': {
+    cu: () => import('./tropari-i-kondaki-prazdnikov.cu'),
+    ru: () => import('./tropari-i-kondaki-prazdnikov.ru'),
+  },
+  'bogorodichny-voskresnye-vosmi-glasov': {
+    cu: () => import('./bogorodichny-voskresnye-vosmi-glasov.cu'),
+    ru: () => import('./bogorodichny-voskresnye-vosmi-glasov.ru'),
+  },
+  'bogorodichny-vosmi-glasov-poyushhiesya-kogda-est-stihira-svyatomu': {
+    cu: () => import('./bogorodichny-vosmi-glasov-poyushhiesya-kogda-est-stihira-svyatomu.cu'),
+    ru: () => import('./bogorodichny-vosmi-glasov-poyushhiesya-kogda-est-stihira-svyatomu.ru'),
+  },
+  'bogorodichny-otpustitelnye-poyushhiesya-posle-troparej-ves-god': {
+    cu: () => import('./bogorodichny-otpustitelnye-poyushhiesya-posle-troparej-ves-god.cu'),
+    ru: () => import('./bogorodichny-otpustitelnye-poyushhiesya-posle-troparej-ves-god.ru'),
+  },
+  'troichny-vosmi-glasov': {
+    cu: () => import('./troichny-vosmi-glasov.cu'),
+    ru: () => import('./troichny-vosmi-glasov.ru'),
+  },
+  'molitva-na-osvyashhenie-artosa': {
+    cu: () => import('./molitva-na-osvyashhenie-artosa.cu'),
+    ru: () => import('./molitva-na-osvyashhenie-artosa.ru'),
+  },
 };

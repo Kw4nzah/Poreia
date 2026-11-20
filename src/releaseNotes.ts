@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.9.7',
+    notes: {
+      tr: ['Ayinler bölümüne bayramlar, Büyük Oruç, Kutsal Hafta, Paskalya, Pazar Oktoih ve troparlar eklendi (Kilise Slavcası ve Rusça, azbyka.ru’nun izniyle).'],
+      en: ['The Services section now also has the feasts, Great Lent, Holy Week, Pascha, the Sunday Octoechos and the troparia (Church Slavonic and Russian, with the permission of azbyka.ru).'],
+      ru: ['В разделе «Богослужения» появились праздники, Великий пост, Страстная седмица, Пасха, воскресный Октоих и тропари (на церковнославянском и русском, с разрешения azbyka.ru).'],
+    },
+  },
+  {
     version: '0.9.6',
     notes: {
       tr: ['Yeni “Ayinler” bölümü: Akşam, Sabah ve Gece Boyu Ayini, Saatler, Povecherie, kanonlar ve akathistler, vaftiz, evlilik, cenaze ve daha fazlası, Kilise Slavcası ve Rusça (azbyka.ru’nun izniyle).'],
