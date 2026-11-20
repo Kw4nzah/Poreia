@@ -11,6 +11,7 @@ import {
   FlatList,
   Pressable,
   ScrollView,
+  Share,
   StyleSheet,
   Text,
   View,
@@ -49,8 +50,10 @@ import { LiturgyBlock, LiturgyId, LiturgyLanguage } from '../liturgy/types';
 import { useLiturgyTexts } from '../liturgy/useLiturgyTexts';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
+import { buildShareMessage } from '../share/message';
 import { BookmarkRibbon } from '../ui/BookmarkRibbon';
 import { SegmentedControl } from '../ui/kit';
+import { FadeToggle } from '../ui/motion';
 import { SERIF, Theme, space, type, useTheme, useThemedStyles } from '../ui/theme';
 import { holdScreenAwake } from './keepAwake';
 
@@ -94,6 +97,9 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
   const [parallel, setParallel] = useState(false);
   const [chrome, setChrome] = useState(true);
   const [firstIndex, setFirstIndex] = useState(0);
+  // The header floats over the list; the list reserves its measured height so nothing reflows
+  // when the header fades away.
+  const [headerHeight, setHeaderHeight] = useState(insets.top + 120);
   const main = chosen ?? defaultLiturgyLanguage(available, settings.language);
   const second = main && parallel ? secondLanguage(available, main) : null;
   const canParallel =
@@ -130,7 +136,8 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
   rowsRef.current = rows;
   const [bookmark, setBookmarkState] = useState<number | null>(null);
   const [percent, setPercent] = useState<number | null>(null);
-  const [toast, setToast] = useState<string | null>(null);
+  const [toast, setToast] = useState('');
+  const [toastOn, setToastOn] = useState(false);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
@@ -142,8 +149,9 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
 
   function showToast(text: string) {
     setToast(text);
+    setToastOn(true);
     if (toastTimer.current) clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => setToast(null), TOAST_MS);
+    toastTimer.current = setTimeout(() => setToastOn(false), TOAST_MS);
   }
 
   useEffect(() => {
@@ -231,13 +239,32 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
     showToast(toastText);
   }
 
-  /** Long-press: bookmark this block, or remove the bookmark when it is already here. */
+  /** Bookmark this block, or remove the bookmark when it is already here. */
   function toggleBookmarkAt(index: number) {
     if (!restoredRef.current) return;
     const current = progressRef.current ?? emptyProgress();
     const next = toggleBookmark(current, id, index, rowText(rowsRef.current[index]));
     const set = next.details[id]?.bookmark?.index === index;
     commitProgress(next, set ? m.liturgy.bookmarkSetToast : m.liturgy.bookmarkRemovedToast);
+  }
+
+  function sharePassage(index: number) {
+    const text = rowText(rowsRef.current[index]);
+    if (text === '') return;
+    void Share.share({ message: buildShareMessage(text, m.liturgy.names[id]) }).catch(() => {});
+  }
+
+  /** The per-passage menu (the "more" button): share, set or remove the bookmark, cancel. */
+  function openBlockMenu(index: number) {
+    const here = bookmark === index;
+    Alert.alert(m.liturgy.passageMenu, undefined, [
+      { text: m.liturgy.sharePassage, onPress: () => sharePassage(index) },
+      {
+        text: here ? m.liturgy.bookmarkRemove : m.liturgy.bookmarkHere,
+        onPress: () => toggleBookmarkAt(index),
+      },
+      { text: m.liturgy.startOverCancel, style: 'cancel' },
+    ]);
   }
 
   function bookmarkHere() {
@@ -321,6 +348,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
     const slavonic = language === 'cu';
     return (
       <Text
+        selectable
         style={[
           styles.text,
           {
@@ -348,36 +376,53 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
     const color = speakerColor(item.who, theme.dark);
     const rubric = item.who === 'rubric' || item.who === 'omitted';
     return (
-      // The whole block toggles reading mode; it is not a separate control for screen readers,
-      // whose users keep the controls visible anyway.
+      // A tap on the block toggles reading mode; it is not a separate control for screen readers,
+      // whose users keep the controls visible anyway. The text is selectable, so a long press
+      // starts the system text selection (Copy / Share). The empty onLongPress makes Pressable
+      // skip onPress after a long press, so selecting text does not also toggle the controls.
       <Pressable
         onPress={() => setChrome((on) => !on)}
-        onLongPress={() => toggleBookmarkAt(index)}
+        onLongPress={() => {}}
+        delayLongPress={350}
         accessible={false}
         style={[styles.block, rubric && styles.rubricBlock]}
       >
-        {bookmark === index && (
-          <View style={styles.ribbon} pointerEvents="none">
+        <FadeToggle visible={bookmark === index} style={styles.ribbon}>
+          <View pointerEvents="none">
             <BookmarkRibbon />
           </View>
-        )}
+        </FadeToggle>
         {label && (
           <Text style={[styles.speaker, color ? { color } : styles.speakerPlain]}>{label}</Text>
         )}
         {main && renderBlock(item.a, main, item.who, false)}
         {second && <View style={styles.gap} />}
         {second && renderBlock(item.b, second, item.who, true)}
+        <FadeToggle visible={chrome} style={styles.more}>
+          <Pressable
+            onPress={() => openBlockMenu(index)}
+            style={styles.moreTouch}
+            accessibilityRole="button"
+            accessibilityLabel={m.liturgy.passageMenu}
+          >
+            <Text style={styles.moreText}>{'\u22EF'}</Text>
+          </Pressable>
+        </FadeToggle>
       </Pressable>
     );
   }
 
   const loading = main !== null && mainText === undefined;
   const failed = mainText === null;
-  const topPad = chrome ? 0 : insets.top + space.md;
 
   return (
     <View style={styles.screen}>
-      {chrome && (
+      <FadeToggle
+        visible={chrome}
+        offsetY={-16}
+        style={styles.headerFloat}
+        onLayout={(e) => setHeaderHeight(Math.ceil(e.nativeEvent.layout.height))}
+      >
         <View style={[styles.header, { paddingTop: insets.top + space.xs }]}>
           <View style={styles.bar}>
             <Pressable
@@ -529,10 +574,13 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
           </View>
           <View style={styles.headerLine} />
         </View>
-      )}
+      </FadeToggle>
 
       {(loading || failed) && (
-        <Text style={styles.status} accessibilityLiveRegion="polite">
+        <Text
+          style={[styles.status, { marginTop: headerHeight + space.md }]}
+          accessibilityLiveRegion="polite"
+        >
           {failed ? m.liturgy.loadFailed : m.liturgy.loading}
         </Text>
       )}
@@ -542,7 +590,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
         data={rows}
         keyExtractor={(row) => row.id}
         renderItem={renderRow}
-        extraData={[size, parallel, main, second, theme.dark, bookmark]}
+        extraData={[size, parallel, main, second, theme.dark, bookmark, chrome]}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
         windowSize={9}
@@ -554,7 +602,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
           setTimeout(() => listRef.current?.scrollToIndex({ index, animated: false }), 80);
         }}
         contentContainerStyle={{
-          paddingTop: space.sm + topPad,
+          paddingTop: space.sm + headerHeight,
           paddingBottom: insets.bottom + space.xl * 3,
           paddingHorizontal: space.lg,
           width: '100%',
@@ -564,26 +612,30 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
         showsVerticalScrollIndicator={false}
       />
 
-      {toast && (
-        <View
-          style={[styles.toast, { bottom: insets.bottom + space.lg }]}
-          pointerEvents="none"
-          accessibilityLiveRegion="polite"
-        >
+      <FadeToggle
+        visible={toastOn}
+        offsetY={8}
+        style={[styles.toast, { bottom: insets.bottom + space.lg }]}
+      >
+        <View pointerEvents="none" accessibilityLiveRegion="polite">
           <Text style={styles.toastText}>{toast}</Text>
         </View>
-      )}
+      </FadeToggle>
 
-      {showBackToTop(firstIndex) && (
+      <FadeToggle
+        visible={chrome && showBackToTop(firstIndex)}
+        offsetY={8}
+        style={[styles.toTop, { bottom: insets.bottom + space.lg }]}
+      >
         <Pressable
           onPress={() => listRef.current?.scrollToOffset({ offset: 0, animated: true })}
-          style={[styles.toTop, { bottom: insets.bottom + space.lg }]}
+          style={styles.toTopTouch}
           accessibilityRole="button"
           accessibilityLabel={m.liturgy.backToTop}
         >
           <Text style={styles.toTopText}>↑</Text>
         </Pressable>
-      )}
+      </FadeToggle>
     </View>
   );
 }
@@ -591,6 +643,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
 function makeStyles(t: Theme) {
   return StyleSheet.create({
     screen: { flex: 1, backgroundColor: t.background },
+    headerFloat: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2 },
     header: { backgroundColor: t.background, paddingHorizontal: space.md },
     bar: { flexDirection: 'row', alignItems: 'center' },
     back: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
@@ -646,6 +699,7 @@ function makeStyles(t: Theme) {
       borderWidth: 1,
       borderColor: t.outline,
     },
+    toTopTouch: { width: 46, height: 46, alignItems: 'center', justifyContent: 'center' },
     progress: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 28 },
     track: {
       flex: 1,
@@ -660,6 +714,10 @@ function makeStyles(t: Theme) {
     action: { minHeight: 44, justifyContent: 'center' },
     actionText: { ...type.label, color: t.accent },
     ribbon: { position: 'absolute', top: 0, right: -space.md },
+    // The "more" button at the lower right of a block: 44dp touch area, discreet glyph.
+    more: { position: 'absolute', right: -space.lg, bottom: -space.sm },
+    moreTouch: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+    moreText: { fontSize: 20, lineHeight: 24, color: t.muted },
     toast: {
       position: 'absolute',
       alignSelf: 'center',
