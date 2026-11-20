@@ -6,6 +6,8 @@
 import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  AccessibilityActionEvent,
+  Alert,
   FlatList,
   Pressable,
   ScrollView,
@@ -24,9 +26,15 @@ import {
 import { slavonicFontFamily } from '../liturgy/font';
 import {
   LiturgyProgress,
+  bookmarkIndex,
+  clearBookmark,
   emptyProgress,
+  percentRead,
   recordPosition,
+  resetService,
   restoreIndex,
+  setBookmark,
+  toggleBookmark,
 } from '../liturgy/progress';
 import { readProgress, writeProgress } from '../liturgy/progressStore';
 import {
@@ -41,6 +49,7 @@ import { LiturgyBlock, LiturgyId, LiturgyLanguage } from '../liturgy/types';
 import { useLiturgyTexts } from '../liturgy/useLiturgyTexts';
 import { PRAYER_TEXT_SIZES, PrayerTextSize } from '../prayers';
 import { useSettings } from '../settings/SettingsProvider';
+import { BookmarkRibbon } from '../ui/BookmarkRibbon';
 import { SegmentedControl } from '../ui/kit';
 import { SERIF, Theme, space, type, useTheme, useThemedStyles } from '../ui/theme';
 import { holdScreenAwake } from './keepAwake';
@@ -58,6 +67,9 @@ const COLUMN_WIDTH = 600;
 /** How long after a restore the scroll position is not saved, so the jump is not overwritten. */
 const RESTORE_GRACE_MS = 1500;
 const SAVE_DELAY_MS = 700;
+const TOAST_MS = 1800;
+
+const rowText = (row: AlignedBlock | undefined) => row?.a?.text ?? row?.b?.text ?? '';
 const VIEWABILITY = { itemVisiblePercentThreshold: 10 } as const;
 
 /** The part of FlatList's viewability token used here (the type is not exported by react-native). */
@@ -113,6 +125,26 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
   const graceUntil = useRef(0);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const latestIndex = useRef(0);
+  const latestReached = useRef(0);
+  const rowsRef = useRef<AlignedBlock[]>([]);
+  rowsRef.current = rows;
+  const [bookmark, setBookmarkState] = useState<number | null>(null);
+  const [percent, setPercent] = useState<number | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+    },
+    [],
+  );
+
+  function showToast(text: string) {
+    setToast(text);
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(null), TOAST_MS);
+  }
 
   useEffect(() => {
     let live = true;
@@ -130,7 +162,13 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
     if (saveTimer.current) clearTimeout(saveTimer.current);
     saveTimer.current = null;
     if (!restoredRef.current) return;
-    progressRef.current = recordPosition(progressRef.current ?? emptyProgress(), id, latestIndex.current);
+    const all = rowsRef.current;
+    progressRef.current = recordPosition(progressRef.current ?? emptyProgress(), id, latestIndex.current, {
+      reached: latestReached.current,
+      length: all.length,
+      snippet: rowText(all[latestIndex.current]),
+    });
+    setPercent(percentRead(progressRef.current.details[id]));
     void writeProgress(progressRef.current);
   }, [id]);
 
@@ -143,6 +181,8 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
     restoredRef.current = true;
     const index = restoreIndex(progressRef.current ?? emptyProgress(), id, rows.length);
     latestIndex.current = index;
+    latestReached.current = index;
+    setBookmarkState(bookmarkIndex(progressRef.current ?? emptyProgress(), id, rows.length));
     graceUntil.current = Date.now() + RESTORE_GRACE_MS;
     if (index > 0) {
       setTimeout(() => listRef.current?.scrollToIndex({ index, animated: false, viewPosition: 0 }), 60);
@@ -160,6 +200,8 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
     setFirstIndex(first);
     if (!restoredRef.current || Date.now() < graceUntil.current) return;
     latestIndex.current = first;
+    const last = viewableItems.reduce((max, v) => Math.max(max, v.index ?? 0), first);
+    latestReached.current = Math.max(latestReached.current, last);
     if (saveTimer.current) clearTimeout(saveTimer.current);
     saveTimer.current = setTimeout(() => flushRef.current(), SAVE_DELAY_MS);
   };
@@ -179,6 +221,89 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
 
   function jump(index: number) {
     listRef.current?.scrollToIndex({ index, animated: false, viewPosition: 0 });
+  }
+
+  // ---- Bookmark and progress actions --------------------------------------------------------
+  function commitProgress(next: LiturgyProgress, toastText: string) {
+    progressRef.current = next;
+    void writeProgress(next);
+    setBookmarkState(next.details[id]?.bookmark?.index ?? null);
+    showToast(toastText);
+  }
+
+  /** Long-press: bookmark this block, or remove the bookmark when it is already here. */
+  function toggleBookmarkAt(index: number) {
+    if (!restoredRef.current) return;
+    const current = progressRef.current ?? emptyProgress();
+    const next = toggleBookmark(current, id, index, rowText(rowsRef.current[index]));
+    const set = next.details[id]?.bookmark?.index === index;
+    commitProgress(next, set ? m.liturgy.bookmarkSetToast : m.liturgy.bookmarkRemovedToast);
+  }
+
+  function bookmarkHere() {
+    if (!restoredRef.current) return;
+    const next = setBookmark(
+      progressRef.current ?? emptyProgress(),
+      id,
+      firstIndex,
+      rowText(rowsRef.current[firstIndex]),
+    );
+    commitProgress(next, m.liturgy.bookmarkSetToast);
+  }
+
+  function removeBookmark() {
+    commitProgress(clearBookmark(progressRef.current ?? emptyProgress(), id), m.liturgy.bookmarkRemovedToast);
+  }
+
+  function goToBookmark() {
+    if (bookmark !== null) jump(Math.min(bookmark, rowsRef.current.length - 1));
+  }
+
+  function startOver() {
+    Alert.alert(m.liturgy.startOverTitle, m.liturgy.startOverBody, [
+      { text: m.liturgy.startOverCancel, style: 'cancel' },
+      {
+        text: m.liturgy.startOver,
+        style: 'destructive',
+        onPress: () => {
+          if (saveTimer.current) clearTimeout(saveTimer.current);
+          saveTimer.current = null;
+          const next = resetService(progressRef.current ?? emptyProgress(), id);
+          progressRef.current = next;
+          void writeProgress(next);
+          latestIndex.current = 0;
+          latestReached.current = 0;
+          graceUntil.current = Date.now() + RESTORE_GRACE_MS;
+          setBookmarkState(null);
+          setPercent(null);
+          listRef.current?.scrollToOffset({ offset: 0, animated: false });
+        },
+      },
+    ]);
+  }
+
+  const progressActions = [
+    { name: 'bookmarkHere', label: m.liturgy.bookmarkHere },
+    ...(bookmark !== null
+      ? [
+          { name: 'bookmarkGo', label: m.liturgy.bookmarkGo },
+          { name: 'bookmarkRemove', label: m.liturgy.bookmarkRemove },
+        ]
+      : []),
+    { name: 'startOver', label: m.liturgy.startOver },
+  ];
+
+  function onProgressAction(event: AccessibilityActionEvent) {
+    switch (event.nativeEvent.actionName) {
+      case 'bookmarkHere':
+        return bookmarkHere();
+      case 'bookmarkGo':
+        return goToBookmark();
+      case 'bookmarkRemove':
+        return removeBookmark();
+      case 'startOver':
+        return startOver();
+    }
   }
 
   function renderBlock(
@@ -217,7 +342,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
     );
   }
 
-  function renderRow({ item }: { item: AlignedBlock }) {
+  function renderRow({ item, index }: { item: AlignedBlock; index: number }) {
     const labelKey = speakerLabelKey(item.who);
     const label = labelKey ? m.liturgy.speaker[labelKey] : null;
     const color = speakerColor(item.who, theme.dark);
@@ -227,9 +352,15 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
       // whose users keep the controls visible anyway.
       <Pressable
         onPress={() => setChrome((on) => !on)}
+        onLongPress={() => toggleBookmarkAt(index)}
         accessible={false}
         style={[styles.block, rubric && styles.rubricBlock]}
       >
+        {bookmark === index && (
+          <View style={styles.ribbon} pointerEvents="none">
+            <BookmarkRibbon />
+          </View>
+        )}
         {label && (
           <Text style={[styles.speaker, color ? { color } : styles.speakerPlain]}>{label}</Text>
         )}
@@ -340,6 +471,62 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
               })}
             </ScrollView>
           )}
+          {percent !== null && (
+            <View
+              style={styles.progress}
+              accessible
+              accessibilityRole="progressbar"
+              accessibilityLabel={m.liturgy.percentRead(percent)}
+              accessibilityValue={{ min: 0, max: 100, now: percent }}
+              accessibilityActions={progressActions}
+              onAccessibilityAction={onProgressAction}
+            >
+              <View style={styles.track}>
+                <View style={[styles.fill, { width: `${percent}%` }]} />
+              </View>
+              <Text style={styles.percent} maxFontSizeMultiplier={1.3}>
+                {m.liturgy.percentRead(percent)}
+              </Text>
+            </View>
+          )}
+          <View style={styles.actions}>
+            <Pressable
+              onPress={bookmarkHere}
+              style={styles.action}
+              accessibilityRole="button"
+              accessibilityLabel={m.liturgy.bookmarkHere}
+            >
+              <Text style={styles.actionText}>{m.liturgy.bookmarkHere}</Text>
+            </Pressable>
+            {bookmark !== null && (
+              <Pressable
+                onPress={goToBookmark}
+                style={styles.action}
+                accessibilityRole="button"
+                accessibilityLabel={m.liturgy.bookmarkGo}
+              >
+                <Text style={styles.actionText}>{m.liturgy.bookmarkGo}</Text>
+              </Pressable>
+            )}
+            {bookmark !== null && (
+              <Pressable
+                onPress={removeBookmark}
+                style={styles.action}
+                accessibilityRole="button"
+                accessibilityLabel={m.liturgy.bookmarkRemove}
+              >
+                <Text style={styles.actionText}>{m.liturgy.bookmarkRemove}</Text>
+              </Pressable>
+            )}
+            <Pressable
+              onPress={startOver}
+              style={styles.action}
+              accessibilityRole="button"
+              accessibilityLabel={m.liturgy.startOver}
+            >
+              <Text style={styles.actionText}>{m.liturgy.startOver}</Text>
+            </Pressable>
+          </View>
           <View style={styles.headerLine} />
         </View>
       )}
@@ -355,7 +542,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
         data={rows}
         keyExtractor={(row) => row.id}
         renderItem={renderRow}
-        extraData={[size, parallel, main, second, theme.dark]}
+        extraData={[size, parallel, main, second, theme.dark, bookmark]}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
         windowSize={9}
@@ -376,6 +563,16 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
         }}
         showsVerticalScrollIndicator={false}
       />
+
+      {toast && (
+        <View
+          style={[styles.toast, { bottom: insets.bottom + space.lg }]}
+          pointerEvents="none"
+          accessibilityLiveRegion="polite"
+        >
+          <Text style={styles.toastText}>{toast}</Text>
+        </View>
+      )}
 
       {showBackToTop(firstIndex) && (
         <Pressable
@@ -449,6 +646,31 @@ function makeStyles(t: Theme) {
       borderWidth: 1,
       borderColor: t.outline,
     },
+    progress: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 28 },
+    track: {
+      flex: 1,
+      height: 3,
+      borderRadius: 2,
+      backgroundColor: t.line,
+      overflow: 'hidden',
+    },
+    fill: { height: 3, backgroundColor: t.accent },
+    percent: { ...type.caption, color: t.muted },
+    actions: { flexDirection: 'row', flexWrap: 'wrap', columnGap: space.md },
+    action: { minHeight: 44, justifyContent: 'center' },
+    actionText: { ...type.label, color: t.accent },
+    ribbon: { position: 'absolute', top: 0, right: -space.md },
+    toast: {
+      position: 'absolute',
+      alignSelf: 'center',
+      paddingHorizontal: space.md,
+      paddingVertical: space.sm,
+      borderRadius: 999,
+      backgroundColor: t.surface,
+      borderWidth: 1,
+      borderColor: t.outline,
+    },
+    toastText: { ...type.label, color: t.ink },
     toTopText: { fontSize: 22, lineHeight: 26, color: t.accent },
   });
 }

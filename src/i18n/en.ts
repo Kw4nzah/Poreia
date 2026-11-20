@@ -410,6 +410,20 @@ export interface Messages {
     noResults: string;
     /** Reader: button that scrolls to the start. */
     backToTop: string;
+    /** Reader: the one bookmark per service (header buttons, toast, list rows). */
+    bookmark: string;
+    bookmarkHere: string;
+    bookmarkGo: string;
+    bookmarkRemove: string;
+    bookmarkSetToast: string;
+    bookmarkRemovedToast: string;
+    /** Reader and list: share of the text read so far, 0 to 100. */
+    percentRead: (percent: number) => string;
+    /** Reader: reset the place, progress and bookmark after a confirmation. */
+    startOver: string;
+    startOverTitle: string;
+    startOverBody: string;
+    startOverCancel: string;
     /** Heading of the liturgy part of the Sources screen. */
     sourcesHeading: string;
     /** General note on the Sources screen: how to ask for a text to be removed; `url` is the issues page. */
@@ -1034,6 +1048,17 @@ export const en: Messages = {
     continueTitle: 'Continue where you left off',
     noResults: 'No service matches your search.',
     backToTop: 'Back to the beginning',
+    bookmark: 'Bookmark',
+    bookmarkHere: 'Bookmark here',
+    bookmarkGo: 'Go to bookmark',
+    bookmarkRemove: 'Remove bookmark',
+    bookmarkSetToast: 'Bookmark set',
+    bookmarkRemovedToast: 'Bookmark removed',
+    percentRead: (percent) => `${percent}% read`,
+    startOver: 'Finished / start over',
+    startOverTitle: 'Start this service over?',
+    startOverBody: 'Your place, your progress and the bookmark in this service will be cleared.',
+    startOverCancel: 'Cancel',
     sourcesHeading: 'Divine Liturgy',
     rightsNote: (url) =>
       `If you hold rights to a text here and want it removed, report it at ${url} and it will be removed.`,
