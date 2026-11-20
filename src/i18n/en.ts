@@ -522,6 +522,9 @@ export interface Messages {
     issueWhat: string;
     issueSteps: string;
     issueKind: string;
+    /** Switch that attaches the last crash caught on this phone. */
+    attachError: string;
+    issueError: string;
   };
   /** Home-screen widget. Short strings: they sit in small, fixed-size slots. */
   widget: {
@@ -1174,6 +1177,8 @@ export const en: Messages = {
     issueWhat: 'What happened',
     issueSteps: 'Before it',
     issueKind: 'Kind',
+    attachError: 'Attach the last error from this phone',
+    issueError: 'Last error',
   },
 
   widget: {

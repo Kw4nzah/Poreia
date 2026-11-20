@@ -49,6 +49,8 @@ export async function fetchApk(
   };
   // The listing was already filtered; checking again here keeps the download itself safe.
   if (!isAllowedApkUrl(release.url)) return failed;
+  // No hash listed, no install: the content check below is what ties the file to the release.
+  if (release.sha256 === null) return failed;
   if (signal.aborted) return cancelled;
   try {
     discard();

@@ -134,6 +134,17 @@ describe('buildBugReportUrl', () => {
     expect(body).toContain('0.7.0');
   });
 
+  it('adds the attached last error as its own section', () => {
+    const url = buildBugReportUrl(INFO, { ...t, error: 'Last error' }, {
+      kind: 'Problem',
+      text: 'It crashed',
+      error: 'TypeError: x is undefined (2026-11-20T19:14:43Z)',
+    });
+    const body = new URL(url as string).searchParams.get('body') as string;
+    expect(body).toContain('## Last error');
+    expect(body).toContain('TypeError: x is undefined');
+  });
+
   it('has no link without text, and none when the words are too long', () => {
     expect(buildBugReportUrl(INFO, t, { kind: 'Problem', text: '   ' })).toBeNull();
     expect(buildBugReportUrl(INFO, t, { kind: 'Problem', text: 'ş'.repeat(900) })).toBeNull();

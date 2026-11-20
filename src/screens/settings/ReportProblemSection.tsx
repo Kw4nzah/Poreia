@@ -4,11 +4,13 @@
 
 import * as Application from 'expo-application';
 import * as Updates from 'expo-updates';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { openExternalUrl } from '../../security/openExternal';
 import { useSettings } from '../../settings/SettingsProvider';
 import { buildBugReportUrl, ReportInfo, ReportTexts } from '../../support/reportIssue';
+import { describeLastError, loadLastError } from '../../support/lastError';
+import { AppSwitch } from '../../ui/AppSwitch';
 import { AppTextInput } from '../../ui/AppTextInput';
 import { Button, SegmentedControl } from '../../ui/kit';
 import { Theme, space, type, useTheme, useThemedStyles } from '../../ui/theme';
@@ -36,7 +38,19 @@ export function ReportProblemSection() {
   const [kind, setKind] = useState(0);
   const [text, setText] = useState('');
   const [steps, setSteps] = useState('');
+  const [lastError, setLastError] = useState<string | null>(null);
+  const [attach, setAttach] = useState(true);
   const [problem, setProblem] = useState<'needText' | 'tooLong' | 'failed' | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    void loadLastError().then((error) => {
+      if (!cancelled && error) setLastError(describeLastError(error));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const s = m.support;
   const texts: ReportTexts = {
@@ -51,9 +65,15 @@ export function ReportProblemSection() {
     language: s.reportLanguage,
     steps: b.issueSteps,
     kind: b.issueKind,
+    error: b.issueError,
   };
   const info = deviceInfo(settings.language);
-  const url = buildBugReportUrl(info, texts, { kind: b.kinds[kind], text, steps });
+  const url = buildBugReportUrl(info, texts, {
+    kind: b.kinds[kind],
+    text,
+    steps,
+    error: attach && lastError ? lastError : undefined,
+  });
   const tooLong = text.trim() !== '' && url === null;
 
   async function send() {
@@ -104,6 +124,16 @@ export function ReportProblemSection() {
         style={styles.input}
       />
 
+      {lastError && (
+        <View style={styles.attach}>
+          <View style={styles.attachText}>
+            <Text style={styles.attachLabel}>{b.attachError}</Text>
+            <Text style={styles.attachValue}>{lastError}</Text>
+          </View>
+          <AppSwitch value={attach} onValueChange={setAttach} label={b.attachError} />
+        </View>
+      )}
+
       {(problem !== null || tooLong) && (
         <Text accessibilityLiveRegion="polite" style={styles.error}>
           {problem === 'needText' ? b.needText : problem === 'failed' ? b.failed : b.tooLong}
@@ -136,5 +166,9 @@ function makeStyles(t: Theme) {
     },
     error: { ...type.body, color: t.danger, marginTop: space.md },
     send: { marginTop: space.lg },
+    attach: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginTop: space.lg },
+    attachText: { flex: 1 },
+    attachLabel: { ...type.body, color: t.ink, fontWeight: '600' },
+    attachValue: { ...type.body, color: t.muted, marginTop: space.xs },
   });
 }

@@ -59,6 +59,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npx patch-package
       - run: npm test
+      - run: npm audit --omit=dev --audit-level=high
       - run: npx expo prebuild --platform android --no-install
 
       - name: Build signed release APK (arm64 only, to keep it small)

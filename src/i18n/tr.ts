@@ -633,6 +633,8 @@ export const tr: Messages = {
     issueWhat: 'Ne oldu',
     issueSteps: 'Öncesinde',
     issueKind: 'Tür',
+    attachError: 'Bu telefondaki son hatayı ekle',
+    issueError: 'Son hata',
   },
 
   widget: {

@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.10.3',
+    notes: {
+      tr: ['Güvenlik: uygulama yalnızca GitHub’ın özetini (SHA-256) bildirdiği APK’yı kurar.', 'Kararlılık: uygulama çökerse son hata telefonda saklanır; “Sorun bildir”de istersen bildirime eklersin (yalnızca hata adı ve kısa bir ileti, kişisel bilgi yok).'],
+      en: ['Security: the app only installs an APK whose SHA-256 GitHub lists.', 'Stability: if the app crashes, the last error is kept on the phone; in “Report a problem” you can attach it (only the error name and a short message, nothing personal).'],
+      ru: ['Безопасность: приложение устанавливает только тот APK, SHA-256 которого указан на GitHub.', 'Стабильность: при сбое последняя ошибка сохраняется на телефоне; в «Сообщить о проблеме» её можно приложить (только имя ошибки и короткое сообщение, ничего личного).'],
+    },
+  },
+  {
     version: '0.10.2',
     notes: {
       tr: ['Okurken bir dokunuşla çubuklar yumuşakça gizlenir ve geri gelir; ekran geçişlerinde ve açılır gruplarda animasyon.', 'Duada, okumada ve ayinde metni seçip WhatsApp gibi uygulamalara gönderebilirsin; ayin metinlerinde her bölümün sonundaki “⋯” düğmesiyle de paylaşabilir ve yer imi koyabilirsin (yer imi artık uzun basmayla değil bu düğmeyle konur).'],

@@ -645,6 +645,8 @@ export const ru: Messages = {
     issueWhat: 'Что произошло',
     issueSteps: 'Перед этим',
     issueKind: 'Тип',
+    attachError: 'Приложить последнюю ошибку с этого телефона',
+    issueError: 'Последняя ошибка',
   },
 
   widget: {

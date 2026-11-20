@@ -2,14 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { ApkFiles, DownloadedApk, fetchApk } from './apkFetch';
 import type { ApkRelease } from './apkRelease';
 
+const GOOD = 'a'.repeat(64);
+
 const release: ApkRelease = {
   version: '0.7.0',
   url: 'https://github.com/Kw4nzah/Poreia/releases/download/v0.7.0/poreia-v0.7.0.apk',
   sizeBytes: 1000,
-  sha256: null,
+  sha256: GOOD,
 };
-
-const GOOD = 'a'.repeat(64);
 
 function fakeFiles(
   download: ApkFiles['download'],
@@ -120,6 +120,17 @@ describe('fetchApk', () => {
     expect(called).toBe(false);
   });
 
+  it('refuses a release that lists no SHA-256, without downloading', async () => {
+    let called = false;
+    const { files } = fakeFiles(() => {
+      called = true;
+      return done();
+    });
+    const result = await fetchApk({ ...release, sha256: null }, new AbortController().signal, files, () => {});
+    expect(result).toMatchObject({ ok: false, reason: 'failed' });
+    expect(called).toBe(false);
+  });
+
   describe('SHA-256 of the download', () => {
     const listed = { ...release, sha256: GOOD };
 
@@ -174,20 +185,6 @@ describe('fetchApk', () => {
       expect(log).toEqual(['discard', 'discard']);
     });
 
-    it('is not asked for when the listing carries no hash', async () => {
-      let asked = false;
-      const { files } = fakeFiles(
-        () => done(),
-        () => {
-          asked = true;
-          return Promise.resolve('c'.repeat(64));
-        },
-      );
-      expect(await fetchApk(release, new AbortController().signal, files, () => {})).toMatchObject({
-        ok: true,
-      });
-      expect(asked).toBe(false);
-    });
   });
 
   it('a file that cannot be removed does not turn a cancel into a crash', async () => {

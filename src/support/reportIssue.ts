@@ -32,6 +32,7 @@ export interface ReportTexts {
   /** Headings of the sections the user fills in (see `buildBugReportUrl`). */
   steps?: string;
   kind?: string;
+  error?: string;
 }
 
 /** Keeps letters, digits, spaces and a few version/model characters; cut to `max`. Empty becomes null. */
@@ -85,6 +86,8 @@ export interface BugReportInput {
   text: string;
   /** What they did before it (optional). */
   steps?: string;
+  /** The last crash on this phone, when the person chose to attach it. */
+  error?: string;
 }
 
 /**
@@ -109,6 +112,7 @@ export function buildBugReportUrl(
     '',
     `## ${texts.kind ?? ''}`,
     input.kind,
+    ...(input.error ? ['', `## ${texts.error ?? ''}`, input.error] : []),
     '',
     `## ${texts.details}`,
     detailLines(info, texts).join('\n'),

@@ -1,6 +1,7 @@
 import { getLocales } from 'expo-localization';
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { saveLastError } from '../support/lastError';
 import { errorTextFor } from './errorText';
 import { SERIF, radius, space, useTheme, type } from './theme';
 
@@ -42,6 +43,8 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, { failed: 
     // Release builds log nothing: an error message or component stack could carry the user's
     // name or saints, and logcat can be read by other tools. The fallback screen shows no details.
     if (__DEV__) console.error(error, info.componentStack);
+    // Kept on the phone only (name and a short cleaned message); attached to a report on request.
+    void saveLastError(error);
   }
 
   render() {
