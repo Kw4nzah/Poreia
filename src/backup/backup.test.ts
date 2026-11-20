@@ -1,4 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { emptyProgress, recordPosition, setBookmark } from '../liturgy/progress';
+import { LITURGY_IDS } from '../liturgy/types';
+import type { LiturgyId } from '../liturgy/types';
 import { defaultSettings } from '../settings/model';
 import {
   BACKUP_VERSION,
@@ -21,6 +24,8 @@ const settings = {
   persistentNotification: true,
   saints: [{ name: 'Nicholas', topic: 'travel' as const, gender: 'm' as const }],
 };
+
+const ID: LiturgyId = LITURGY_IDS[0];
 
 const wrap = (extra: Record<string, unknown>) =>
   JSON.stringify({ app: 'poreia', version: BACKUP_VERSION, settings: {}, done: [], ...extra });
@@ -58,7 +63,28 @@ describe('createBackup and parseBackup', () => {
       ok: true,
       settings,
       done: ['2026-11-15', '2026-11-17'],
+      progress: null,
     });
+  });
+
+  it('round-trips reading progress and bookmarks, and drops junk in them', () => {
+    const progress = recordPosition(
+      setBookmark(emptyProgress(), ID, 12, 'Blessed is the kingdom'),
+      ID,
+      30,
+      { reached: 40, length: 100, snippet: 'Peace be with all' },
+    );
+    const parsed = parseBackup(createBackup(settings, [], progress), 'en');
+    if (!parsed.ok) throw new Error('expected ok');
+    expect(parsed.progress).toEqual(progress);
+    const junk = JSON.stringify({
+      ...JSON.parse(createBackup(settings, [])),
+      progress: { last: { id: 'nope', index: 1 }, positions: { nope: 3 }, details: {} },
+    });
+    const cleaned = parseBackup(junk, 'en');
+    if (!cleaned.ok) throw new Error('expected ok');
+    expect(cleaned.progress).toEqual(emptyProgress());
+    expect(parseBackup(wrap({ progress: 'x' }), 'en')).toEqual({ ok: false, error: 'invalid' });
   });
 
   it('round-trips a saint’s gender and reads old backups without it as male', () => {
@@ -96,7 +122,7 @@ describe('createBackup and parseBackup', () => {
     const text = createBackup(settings, ['2026-11-17']);
     const parsed = parseBackup(text, 'en');
     if (!parsed.ok) throw new Error('expected ok');
-    expect(createBackup(parsed.settings, parsed.done)).toBe(text);
+    expect(createBackup(parsed.settings, parsed.done, parsed.progress)).toBe(text);
   });
 
   it('keeps only the most recent days when a backup is made with too many', () => {
@@ -126,6 +152,26 @@ describe('createBackup and parseBackup', () => {
     );
     expect(createBackup(big, days).length).toBeLessThan(MAX_BACKUP_CHARS);
     expect(parseBackup(createBackup(big, days), 'en').ok).toBe(true);
+  });
+});
+
+describe('backup size with full progress', () => {
+  it('stays inside the cap with 100 services, all snippets at full length and bookmarked', () => {
+    let progress = emptyProgress();
+    for (const id of LITURGY_IDS.slice(0, 100)) {
+      progress = setBookmark(progress, id, 199_999, 'ж'.repeat(80));
+      progress = recordPosition(progress, id, 199_999, {
+        reached: 199_999,
+        length: 200_000,
+        snippet: 'ж'.repeat(80),
+      });
+    }
+    const days = Array.from({ length: MAX_DONE_DAYS }, (_, i) =>
+      new Date(Date.UTC(2024, 0, 1 + i)).toISOString().slice(0, 10),
+    );
+    const text = createBackup(settings, days, progress);
+    expect(text.length).toBeLessThan(MAX_BACKUP_CHARS);
+    expect(parseBackup(text, 'en').ok).toBe(true);
   });
 });
 
