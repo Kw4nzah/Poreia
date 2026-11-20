@@ -2,13 +2,19 @@
 
 import { File, Paths } from 'expo-file-system';
 import { startActivityAsync } from 'expo-intent-launcher';
-import { CHURCHES, CivilDate, buildIcs, getUpcomingEvents } from '../calendar';
+import {
+  CHURCHES,
+  CivilDate,
+  MAX_UPCOMING_EVENTS,
+  buildIcs,
+  getUpcomingEvents,
+  upcomingEventName,
+  upcomingEventUid,
+} from '../calendar';
 import type { Messages } from '../i18n';
 import type { ChurchId } from '../calendar';
 
 const FLAG_GRANT_READ_URI_PERMISSION = 1;
-/** Enough for every feast and fast of a year with room to spare. */
-const MAX_EVENTS = 400;
 
 function pad(n: number): string {
   return String(n).padStart(2, '0');
@@ -28,11 +34,11 @@ export async function exportUpcomingToCalendar(
   m: Messages,
 ): Promise<boolean> {
   try {
-    const events = getUpcomingEvents(today, CHURCHES[churchId], { limit: MAX_EVENTS }).map(
+    const events = getUpcomingEvents(today, CHURCHES[churchId], { limit: MAX_UPCOMING_EVENTS }).map(
       (event) => ({
-        uid: `${event.kind}-${event.id}-${event.date.year}${pad(event.date.month)}${pad(event.date.day)}`,
+        uid: upcomingEventUid(event),
         date: event.date,
-        summary: event.kind === 'feast' ? m.feast[event.id] : m.majorFast[event.id],
+        summary: upcomingEventName(event, m),
       }),
     );
     const file = new File(Paths.cache, 'poreia-calendar.ics');

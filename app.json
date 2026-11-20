@@ -3,13 +3,13 @@
     "name": "Poreia",
     "slug": "poreia",
     "scheme": "poreia",
-    "version": "0.9.0",
+    "version": "0.10.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "runtimeVersion": "9",
+    "runtimeVersion": "10",
     "updates": {
-      "url": "https://kw4nzah.github.io/Poreia/updates/android/9/manifest.json",
+      "url": "https://kw4nzah.github.io/Poreia/updates/android/10/manifest.json",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0,
       "codeSigningCertificate": "./certs/certificate.pem",
@@ -17,9 +17,13 @@
     },
     "android": {
       "package": "com.kw4nzah.poreia",
-      "versionCode": 12,
+      "versionCode": 13,
       "allowBackup": false,
-      "permissions": ["android.permission.REQUEST_INSTALL_PACKAGES"],
+      "permissions": [
+        "android.permission.REQUEST_INSTALL_PACKAGES",
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR"
+      ],
       "blockedPermissions": [
         "android.permission.SYSTEM_ALERT_WINDOW",
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -102,9 +106,9 @@
         }
       ],
       [
-        "expo-font",
+        "expo-calendar",
         {
-          "android": { "fonts": ["./assets/fonts/Ponomar-Regular.ttf"] }
+          "calendarPermission": "Allow Poreia to add fasting days and feasts to a calendar on your phone."
         }
       ]
     ]

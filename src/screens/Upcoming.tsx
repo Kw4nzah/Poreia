@@ -1,6 +1,7 @@
 // Countdown to the next feasts and fasts.
 
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, getUpcomingEvents, gregorianToJdn, weekdayOfJdn } from '../calendar';
@@ -8,6 +9,7 @@ import { formatDate } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { Button, Card, ListRow } from '../ui/kit';
 import { exportUpcomingToCalendar } from './exportCalendar';
+import { removePhoneCalendar, syncPhoneCalendar } from './phoneCalendar';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 
@@ -17,6 +19,34 @@ export function Upcoming() {
   const router = useRouter();
   const styles = useThemedStyles(makeStyles);
   const today = useToday();
+
+  const [busy, setBusy] = useState(false);
+
+  const run = async (work: () => Promise<string>) => {
+    setBusy(true);
+    try {
+      Alert.alert(await work());
+    } finally {
+      setBusy(false);
+    }
+  };
+  const syncToPhone = () =>
+    run(async () => {
+      const result = await syncPhoneCalendar(today, settings.churchId, m);
+      if (result.ok) return m.upcoming.phoneSynced(result.count);
+      if (result.reason === 'permission') return m.upcoming.phonePermissionDenied;
+      return result.reason === 'noCalendar' ? m.upcoming.phoneNoCalendar : m.upcoming.phoneFailed;
+    });
+  const removeFromPhone = () =>
+    run(async () => {
+      const result = await removePhoneCalendar();
+      if (result.ok) {
+        return result.removed ? m.upcoming.phoneRemoved : m.upcoming.phoneNothingToRemove;
+      }
+      return result.reason === 'permission'
+        ? m.upcoming.phonePermissionDenied
+        : m.upcoming.phoneFailed;
+    });
 
   const events = getUpcomingEvents(today, CHURCHES[settings.churchId]);
 
@@ -72,6 +102,21 @@ export function Upcoming() {
 
         <View style={styles.export}>
           <Button
+            label={busy ? m.upcoming.phoneSyncing : m.upcoming.addToPhone}
+            variant="secondary"
+            disabled={busy}
+            onPress={() => void syncToPhone()}
+          />
+          <View style={styles.exportGap} />
+          <Button
+            label={m.upcoming.removeFromPhone}
+            variant="secondary"
+            disabled={busy}
+            onPress={() => void removeFromPhone()}
+          />
+          <Text style={styles.exportHint}>{m.upcoming.phoneHint}</Text>
+          <View style={styles.exportGap} />
+          <Button
             label={m.upcoming.addToCalendar}
             variant="secondary"
             onPress={() =>
@@ -107,6 +152,7 @@ function makeStyles(t: Theme) {
       maxWidth: 120,
     },
     export: { marginTop: space.lg },
+    exportGap: { height: space.sm },
     exportHint: { ...type.caption, color: t.muted, marginTop: space.sm },
     disclaimer: { ...type.caption, color: t.muted, marginTop: space.lg },
   });

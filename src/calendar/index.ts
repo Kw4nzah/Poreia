@@ -6,3 +6,4 @@ export * from './foods';
 export * from './monthGrid';
 export * from './upcoming';
 export * from './ics';
+export * from './events';
