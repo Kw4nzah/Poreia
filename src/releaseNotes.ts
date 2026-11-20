@@ -10,6 +10,14 @@ export interface ReleaseNote {
 
 export const RELEASE_NOTES: readonly ReleaseNote[] = [
   {
+    version: '0.10.1',
+    notes: {
+      tr: ['Ayin okurken yer imi: bir metne uzun basarak kaldığın yeri işaretleyebilirsin. “Kaldığın yerden devam et” satırı artık yüzde kaç okuduğunu ve nerede kaldığını gösterir.'],
+      en: ['Bookmarks while reading: long-press a text to mark where you stopped. “Continue where you left off” now shows how much you have read and where you stopped.'],
+      ru: ['Закладки при чтении: долгое нажатие на текст отмечает, где вы остановились. «Продолжить с того места» теперь показывает, сколько прочитано и где вы остановились.'],
+    },
+  },
+  {
     version: '0.10.0',
     notes: {
       tr: ['Oruç günleri ve bayramlar artık doğrudan telefonunun takviminde görünebilir (Bayramlar ve oruçlar ekranından). Uygulama da biraz küçüldü.'],
