@@ -8,6 +8,23 @@
 
 import type { PrayerText, RegularPrayerId } from '../../prayers';
 
+// Table prayers (mealsBreakfast, mealsLunch, mealsDinner): İbâdetnâme, Ortodokslar Topluluğu
+// (Antakya), "Öğlen ve akşam yemeklerinde vâcip olan duâlar" and the Axion Estin of the morning
+// order: www.ortodokslartoplulugu.com/ayinler-dualar/ibadetname/. That book gives lunch and supper
+// only; the breakfast order is assembled from the same book's pieces (see the note below). The
+// wording is the book's own (Peder, hamdolsun, duâ), which differs from the user's translations
+// above; it is kept as printed so the text can be compared with the source.
+const TABLE_GLORY = 'Hamdolsun Peder’e ve Oğul’a ve Aziz Ruh’a. Şimdi ve dâima ve ebetler ebedince. Âmin.';
+const TABLE_KYRIE = 'Ya Rab merhamet eyle. (3 defa)';
+const TABLE_PANAGIA =
+  'Ey tamâmen Aziz Üçleme, bize merhamet eyle. Ya Rab, günahlarımızı bağışla. Ey Efendi, suçlarımızı affeyle. Ey Aziz, nazar edip zayıflıklarımıza şifâ ver, senin ismin hürmetine.';
+const TABLE_BLESSING_CLERGY =
+  'Rûhânî varsa: Ey Mesih Allah, kullarının yiyeceğini ve içeceğini mübârek kıl, çünkü sen her zaman azizsin, şimdi ve dâima ve ebetler ebedince. Âmin.';
+const TABLE_LAY_ENDING =
+  'Rûhânî yoksa: Aziz Pederlerimizin duâlarıyla, ya Rab İsa Mesih Allah, bize merhamet eyle. Âmin.';
+const TABLE_BREAKFAST_NOTE =
+  'Kaynakta kahvaltı için ayrı duâ yoktur. Bu sıra, aynı kaynaktaki duâlardan Slav geleneğindeki kahvaltı düzenine göre derlenmiştir ve henüz gözden geçirilmemiştir.';
+
 export const prayerTexts: Record<RegularPrayerId, PrayerText> = {
   lordsPrayer: {
     title: 'Göklerdeki Babamız',
@@ -163,19 +180,75 @@ export const prayerTexts: Record<RegularPrayerId, PrayerText> = {
       },
     ],
   },
-  meals: {
-    title: 'Yemekten önce ve sonra',
+  mealsBreakfast: {
+    title: 'Kahvaltı duâları',
+    note: TABLE_BREAKFAST_NOTE,
     sections: [
       {
-        heading: 'Yemekten önce',
+        heading: 'Kahvaltıdan önce',
+        paragraphs: [TABLE_PANAGIA, TABLE_KYRIE, TABLE_GLORY, TABLE_BLESSING_CLERGY, TABLE_LAY_ENDING],
+      },
+      {
+        heading: 'Kahvaltıdan sonra',
         paragraphs: [
-          'Herkesin gözü sana umut bağlar, ya Rab, ve sen onlara yiyeceklerini zamanında verirsin. Cömert elini açar, her canlının arzusunu doyurursun.',
+          'Heruvimlerden daha îtibarlı ve Serafimlerden kıyaslanamaz ölçüde yüce olan, (bâkireliği) bozulmadan Allah’ın Kelâmı’nı doğurmuş olan, sen gerçek Vâlidetullah’ı yüceltiriz.',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          TABLE_LAY_ENDING,
+        ],
+      },
+    ],
+  },
+  mealsLunch: {
+    title: 'Öğle yemeği duâları',
+    sections: [
+      {
+        heading: 'Öğle yemeğinden önce',
+        paragraphs: [
+          'Aziz Allah, Aziz Kudretli, Aziz Ölümsüz, bize merhamet eyle. (3 defa)',
+          TABLE_GLORY,
+          TABLE_PANAGIA,
+          TABLE_KYRIE,
+          TABLE_GLORY,
+          'Ey göklerde olan Pederimiz, ismin mukaddes olsun. Melekûtun gelsin. Gökte olduğu gibi yerde de senin irâden olsun. Gündelik ekmeğimizi bize bugün ver. Ve bize borçlu olanlara bağışladığımız gibi, bizim borçlarımızı bize bağışla. Ve bizi iğvâya götürme. Fakat bizi şerirden kurtar. Çünkü melekût ve kudret ve izzet senindir, Peder’in ve Oğul’un ve Aziz Ruh’un, şimdi ve dâima ve ebetler ebedince. Âmin.',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          TABLE_BLESSING_CLERGY,
+          TABLE_LAY_ENDING,
         ],
       },
       {
-        heading: 'Yemekten sonra',
+        heading: 'Öğle yemeğinden sonra',
         paragraphs: [
-          'Sana şükrediyoruz, ey Mesih Allah’ımız, çünkü bizi yeryüzündeki nimetlerinle doyurdun. Bizi göksel Krallığından da yoksun bırakma; ama öğrencilerinin arasına gelip onlara barış verdiğin gibi, ey Kurtarıcı, aramıza gel ve bizi kurtar. Amin.',
+          'Gençliğimizden beri bizlere merhamet eden ve bizleri besleyen Allah mübârektir. Her bedene (canlı varlığa) gıdâsını bahşeden, kalplerimizi sevinç ve ferahlıkla doldur ki, dâima, her şeye kâfi ölçüde sâhip olarak Rab’bimiz İsa Mesih’in inâyetiyle her iyi işi tatbik etmekte gelişelim. O’nunla ve Aziz Ruh’la birlikte sana ebediyen izzet, kudret, hürmet ve secde vâciptir. Âmin.',
+          'Ferahlamamız için bizlere yiyecekler bahşettiğin için hamdolsun sana ya Rab, hamdolsun sana ey Aziz, hamdolsun sana ey Kral. Huzûrunda herkese amellerine göre karşılık vereceğin zaman sana hoş görünüp utanmamamız için bizi Aziz Ruh’la doldur. Tamâmen lekesiz Vâliden ve bütün Azizlerinin şefâatleriyle Rab İsa Mesih Allah’ımız, bize merhamet eyle. Âmin.',
+          'Aziz Pederlerimizin duâlarıyla, ya Rab İsa Mesih Allah, bize merhamet eyle. Âmin.',
+        ],
+      },
+    ],
+  },
+  mealsDinner: {
+    title: 'Akşam yemeği duâları',
+    sections: [
+      {
+        heading: 'Akşam yemeğinden önce',
+        paragraphs: [
+          'Fakirler yiyecek ve doyacak, Rab’bi arayanlar O’na övgüler sunacak ve yürekleri ebetler ebedince yaşayacak.',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          TABLE_BLESSING_CLERGY,
+          TABLE_LAY_ENDING,
+        ],
+      },
+      {
+        heading: 'Akşam yemeğinden sonra',
+        paragraphs: [
+          'Ya Rab, mahlûkatınla bizleri ferahlattın ve ellerinin eserleriyle sevindirdin.',
+          'Ya Rab, yüzünün nuru üzerimizde belirdi, kalbimize ferahlık verdin. Buğday, şarap ve zeytinyağı mahsulleri senin bereketinle artıp çoğaldılar. (Bunun için) Selâmetle yatıp uyuyacağız, çünkü yalnız sen ya Rab, bizleri ümitle ikamet ettirdin.',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          'Rûhânî varsa: Ey Mesih Allah, bu sofra artıklarını mübârek kıl, onları bu evde ve bütün cihânda çoğalt, çünkü sen her zaman mübâreksin, şimdi ve dâima ve ebetler ebedince. Âmin.',
+          TABLE_LAY_ENDING,
         ],
       },
     ],

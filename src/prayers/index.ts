@@ -33,7 +33,7 @@ export type FeastPrayerId = (typeof FEAST_PRAYER_IDS)[number];
 
 export const PRAYER_GROUPS = [
   { id: 'basic', prayers: ['lordsPrayer', 'creed', 'heavenlyKing', 'trisagion'] },
-  { id: 'daily', prayers: ['morning', 'evening', 'meals'] },
+  { id: 'daily', prayers: ['morning', 'evening', 'mealsBreakfast', 'mealsLunch', 'mealsDinner'] },
   { id: 'lent', prayers: ['ephrem', 'manasseh'] },
   { id: 'feasts', prayers: FEAST_PRAYER_IDS },
 ] as const;
@@ -52,6 +52,21 @@ export function isFeastPrayerId(value: unknown): value is FeastPrayerId {
 
 export function isPrayerId(value: unknown): value is PrayerId {
   return PRAYER_IDS.includes(value as PrayerId);
+}
+
+/**
+ * Ids that used to exist and may still sit in saved favourites, a bookmark or a backup. The old
+ * single "meals" page became three (breakfast, lunch, dinner); lunch is the main meal.
+ */
+export const LEGACY_PRAYER_IDS = { meals: 'mealsLunch' } as const satisfies Record<string, PrayerId>;
+
+/** The current id for a stored or linked one, or null if it is not a prayer at all. */
+export function resolvePrayerId(value: unknown): PrayerId | null {
+  if (isPrayerId(value)) return value;
+  if (typeof value === 'string' && Object.hasOwn(LEGACY_PRAYER_IDS, value)) {
+    return LEGACY_PRAYER_IDS[value as keyof typeof LEGACY_PRAYER_IDS];
+  }
+  return null;
 }
 
 export interface PrayerSection {

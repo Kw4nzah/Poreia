@@ -20,7 +20,11 @@ describe('dictionaries', () => {
   it.each(LANGUAGES)('%s has every key with non-empty text', (language) => {
     const own = leaves(MESSAGES[language], 'en', new Map());
     // A prayer's `note` exists only where its text needs one (the unreviewed Turkish feast hymns).
-    const comparable = (key: string) => !/^en\.prayers\.text\.\w+\.note$/.test(key);
+    // The table prayers follow a different published source in each language (Slavic, St Tikhon's,
+    // Antiochian Greek), so their paragraph counts differ; their sections and titles are compared.
+    const comparable = (key: string) =>
+      !/^en\.prayers\.text\.\w+\.note$/.test(key) &&
+      !/^en\.prayers\.text\.meals\w+\.sections\.\d+\.paragraphs\.\d+$/.test(key);
     expect([...own.keys()].filter(comparable).sort()).toEqual(
       [...reference.keys()].filter(comparable).sort(),
     );

@@ -18,6 +18,13 @@ describe('cleanFavoritePrayers', () => {
       'lordsPrayer',
     ]);
   });
+  it('maps the old single "meals" id to the lunch page, once', () => {
+    expect(cleanFavoritePrayers(['meals', 'creed', 'mealsLunch'])).toEqual(['mealsLunch', 'creed']);
+    expect(cleanPrayerBookmark({ id: 'meals', scroll: 40 })).toEqual({
+      id: 'mealsLunch',
+      scroll: 40,
+    });
+  });
   it('drops unknown ids and non-strings', () => {
     expect(cleanFavoritePrayers(['nope', 5, null, {}, ['creed'], 'creed', '__proto__'])).toEqual([
       'creed',
