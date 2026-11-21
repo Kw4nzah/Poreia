@@ -72,7 +72,14 @@ export function TabBar() {
               accessibilityLabel={labels[id]}
               accessibilityState={{ selected: active }}
             >
-              <View style={[styles.selection, active && { backgroundColor: theme.pill }]}>
+              <View style={styles.selection} collapsable={false}>
+                {/* The fill is its own rounded layer, clipped by the selection: a translucent
+                    background on the same view is drawn square on some Android devices. */}
+                {active && (
+                  <View
+                    style={[StyleSheet.absoluteFill, styles.fill, { backgroundColor: theme.pill }]}
+                  />
+                )}
                 <Text
                   numberOfLines={1}
                   maxFontSizeMultiplier={1.3}
@@ -117,7 +124,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // Narrow: "Настройки" has to fit a quarter of a 320dp bar.
     paddingHorizontal: 2,
+    overflow: 'hidden',
   },
+  fill: { borderRadius: TAB_BAR_RADIUS - TAB_BAR_INSET },
   label: { ...type.label, fontWeight: '500' },
   labelActive: { fontWeight: '600' },
 });
