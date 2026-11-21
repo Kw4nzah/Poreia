@@ -2,12 +2,25 @@
 // lordsPrayer, creed, heavenlyKing, trisagion and ephrem: Orthodox Daily Prayers (St Tikhon's
 // Seminary Press, 1982; Project Gutenberg #34981).
 // manasseh: King James Version Apocrypha (eBible eng-kjv, public domain), two wording fixes to match it.
-// morning, evening and meals: ortodoks_dualar_tr_ru_en.md supplied by the user (2026-11-17). Its
+// morning and evening: ortodoks_dualar_tr_ru_en.md supplied by the user (2026-11-17). Its
 // note says the short common prayers use the traditional wording of English-speaking Orthodox
 // churches, while the longer ones (troparia, Macarius, Antiochus) are faithful translations of the
 // Slavonic/Greek made for that file, not a printed prayer book.
 
 import type { PrayerText, RegularPrayerId } from '../../prayers';
+
+// Table prayers (mealsBreakfast, mealsLunch, mealsDinner): "Prayers at the Table" in Orthodox Daily
+// Prayers (St Tikhon's Seminary Press, 1982; Project Gutenberg #34981). The book gives each meal
+// its own short order, so the three differ.
+const TABLE_GLORY =
+  'Glory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.';
+const TABLE_KYRIE = 'Lord, have mercy! (3 times)';
+const TABLE_BLESSING =
+  'O Christ God, bless the food and drink of Thy servants, for Thou art holy, always, now and ever and unto ages of ages. Amen.';
+const TABLE_ENDING =
+  'God is with us, through His Grace and love for mankind, always now and ever, and unto ages of ages. Amen.';
+const TABLE_AXION =
+  'More honorable than the Cherubim, and more glorious beyond compare than the Seraphim: without defilement you gave birth to God the Word: true Theotokos, we magnify you.';
 
 export const prayerTexts: Record<RegularPrayerId, PrayerText> = {
   lordsPrayer: {
@@ -162,19 +175,69 @@ export const prayerTexts: Record<RegularPrayerId, PrayerText> = {
       },
     ],
   },
-  meals: {
-    title: 'Before and after meals',
+  mealsBreakfast: {
+    title: 'Prayers at breakfast',
     sections: [
       {
-        heading: 'Before meals',
+        heading: 'Before breakfast',
         paragraphs: [
-          'The eyes of all look to Thee with hope, O Lord, and Thou givest them their food in due season; Thou openest Thy bountiful hand and fillest every living thing with good will.',
+          'O Most Holy Trinity, have mercy on us! Lord, cleanse us from our sins! Master, pardon our transgressions! Holy One, visit and heal our infirmities for Thy name’s sake.',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          TABLE_BLESSING,
         ],
       },
       {
-        heading: 'After meals',
+        heading: 'After breakfast',
+        paragraphs: [TABLE_AXION, TABLE_GLORY, TABLE_KYRIE, TABLE_ENDING],
+      },
+    ],
+  },
+  mealsLunch: {
+    title: 'Prayers at lunch',
+    sections: [
+      {
+        heading: 'Before lunch',
         paragraphs: [
-          'We thank Thee, O Christ our God, that Thou hast satisfied us with Thine earthly gifts; deprive us not also of Thy heavenly Kingdom; but as Thou camest into the midst of Thy disciples, O Saviour, and gavest them peace, come to us and save us. Amen.',
+          'Our Father, Who art in heaven, hallowed be Thy Name. Thy Kingdom come. Thy will be done, on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil.',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          TABLE_BLESSING,
+        ],
+      },
+      {
+        heading: 'After lunch',
+        paragraphs: [
+          'We thank Thee, Christ our God, for Thou hast satisfied us with Thine earthly gifts. Deprive us not of Thy Heavenly Kingdom, but as Thou camest among Thy disciples, O Savior, giving them peace, so come to us and save us!',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          'Blessed is God, Who has had mercy on us and fed us from His rich gifts, through His Grace and love for mankind, always, now and ever and unto ages of ages. Amen.',
+        ],
+      },
+    ],
+  },
+  mealsDinner: {
+    title: 'Prayers at dinner',
+    sections: [
+      {
+        heading: 'Before dinner',
+        paragraphs: [
+          'The poor shall eat and be satisfied, and those who seek the Lord shall praise Him; their hearts shall live forever!',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          TABLE_BLESSING,
+        ],
+      },
+      {
+        heading: 'After dinner',
+        paragraphs: [
+          TABLE_GLORY,
+          'Your womb became a Heavenly Table, bearing the Heavenly Bread—Christ our God. Whoever eats of him shall not die, O Birth-giver of God, according to the word of the Nourisher of all.',
+          TABLE_AXION,
+          'Thou, O Lord, hast made us glad by Thy works; in the works of Thy hands shall we rejoice. Lift up the Light of Thy countenance upon us, O Lord! Thou hast put joy in my heart. With the fruit of wheat, wine and oil have we been satisfied. In peace I will both lie down and sleep; for Thou alone, O Lord, makest me to dwell in hope.',
+          TABLE_GLORY,
+          TABLE_KYRIE,
+          TABLE_ENDING,
         ],
       },
     ],

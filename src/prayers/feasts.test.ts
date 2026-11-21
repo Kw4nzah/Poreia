@@ -124,9 +124,10 @@ describe("English feast hymns", () => {
 });
 
 describe("unreviewed translation note", () => {
-  it("is shown on every Turkish feast prayer and on nothing else", () => {
+  it("is shown on every Turkish feast prayer and on nothing else but the assembled breakfast order", () => {
     const note = "Türkçe metin çeviridir ve gözden geçirilmektedir.";
     for (const id of PRAYER_IDS) {
+      if (id === "mealsBreakfast") continue; // has its own note, checked in meals.test.ts
       const expected = isFeastPrayerId(id) ? note : undefined;
       expect(MESSAGES.tr.prayers.text[id].note, id).toBe(expected);
       expect(MESSAGES.ru.prayers.text[id].note, id).toBeUndefined();
