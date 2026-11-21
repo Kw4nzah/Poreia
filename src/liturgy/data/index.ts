@@ -4,6 +4,1077 @@ import type { LiturgyLoaders } from '../types';
 import { assetLoader } from '../assetLoader';
 
 export const LOADERS: LiturgyLoaders = {
+  'ak-akafist-arhangelu-bozhiju-mihailu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-arhangelu-bozhiju-mihailu.cu.ltxt'), 'ak-akafist-arhangelu-bozhiju-mihailu.cu'),
+  },
+  'ak-akafist-blagodarstvennyj-po-svjatom-prichashhenii': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-blagodarstvennyj-po-svjatom-prichashhenii.cu.ltxt'), 'ak-akafist-blagodarstvennyj-po-svjatom-prichashhenii.cu'),
+  },
+  'ak-akafist-blagovernomu-knjazju-igorju-chernigovskomu-i-kievskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-blagovernomu-knjazju-igorju-chernigovskomu-i-kievskomu.cu.ltxt'), 'ak-akafist-blagovernomu-knjazju-igorju-chernigovskomu-i-kievskomu.cu'),
+  },
+  'ak-akafist-blagoveshheniju-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-blagoveshheniju-presvjatoj-bogorodicy.cu.ltxt'), 'ak-akafist-blagoveshheniju-presvjatoj-bogorodicy.cu'),
+  },
+  'ak-akafist-blazhennomu-simonu-jureveckomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-blazhennomu-simonu-jureveckomu-chudotvorcu.cu.ltxt'), 'ak-akafist-blazhennomu-simonu-jureveckomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-bogojavleniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-bogojavleniju-gospodnju.cu.ltxt'), 'ak-akafist-bogojavleniju-gospodnju.cu'),
+  },
+  'ak-akafist-bozhestvennym-strastjam-hristovym-na-cerkovnoslavjanskom-jazyke': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-bozhestvennym-strastjam-hristovym-na-cerkovnoslavjanskom-jazyke.ru.ltxt'), 'ak-akafist-bozhestvennym-strastjam-hristovym-na-cerkovnoslavjanskom-jazyke.ru'),
+  },
+  'ak-akafist-bozhestvennym-strastjam-hristovym': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-bozhestvennym-strastjam-hristovym.cu.ltxt'), 'ak-akafist-bozhestvennym-strastjam-hristovym.cu'),
+  },
+  'ak-akafist-bozhiej-materi-pered-ikonoj-abalackaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-bozhiej-materi-pered-ikonoj-abalackaja.cu.ltxt'), 'ak-akafist-bozhiej-materi-pered-ikonoj-abalackaja.cu'),
+  },
+  'ak-akafist-bozhiej-materi-pered-ikonoj-barkolabovskaya': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-bozhiej-materi-pered-ikonoj-barkolabovskaya.cu.ltxt'), 'ak-akafist-bozhiej-materi-pered-ikonoj-barkolabovskaya.cu'),
+  },
+  'ak-akafist-bozhiej-materi-pered-ikonoj-ozerjanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-bozhiej-materi-pered-ikonoj-ozerjanskaja.cu.ltxt'), 'ak-akafist-bozhiej-materi-pered-ikonoj-ozerjanskaja.cu'),
+  },
+  'ak-akafist-bozhiej-materi-pred-ikonoj-trubchevskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-bozhiej-materi-pred-ikonoj-trubchevskaja.cu.ltxt'), 'ak-akafist-bozhiej-materi-pred-ikonoj-trubchevskaja.cu'),
+  },
+  'ak-akafist-bozhiej-materi-pred-ikonoj-tuchnaja-gora': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-bozhiej-materi-pred-ikonoj-tuchnaja-gora.cu.ltxt'), 'ak-akafist-bozhiej-materi-pred-ikonoj-tuchnaja-gora.cu'),
+  },
+  'ak-akafist-chestnomu-i-slavnomu-rozhdestvu-presvjatoj-bogorodicy-pred-ikonoj-pustynno-glinskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-chestnomu-i-slavnomu-rozhdestvu-presvjatoj-bogorodicy-pred-ikonoj-pustynno-glinskaja.cu.ltxt'), 'ak-akafist-chestnomu-i-slavnomu-rozhdestvu-presvjatoj-bogorodicy-pred-ikonoj-pustynno-glinskaja.cu'),
+  },
+  'ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju-2-j.cu.ltxt'), 'ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju-2-j.cu'),
+  },
+  'ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju-3-j': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju-3-j.cu.ltxt'), 'ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju-3-j.cu'),
+  },
+  'ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju.cu.ltxt'), 'ak-akafist-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju.cu'),
+  },
+  'ak-akafist-gospodu-bogu-o-mire-i-vzaimnoj-ljubvi-sredi-ljudej': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-gospodu-bogu-o-mire-i-vzaimnoj-ljubvi-sredi-ljudej.cu.ltxt'), 'ak-akafist-gospodu-bogu-o-mire-i-vzaimnoj-ljubvi-sredi-ljudej.cu'),
+  },
+  'ak-akafist-iisusu-sladchajshemu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-iisusu-sladchajshemu.cu.ltxt'), 'ak-akafist-iisusu-sladchajshemu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-iisusu-sladchajshemu.ru.ltxt'), 'ak-akafist-iisusu-sladchajshemu.ru'),
+  },
+  'ak-akafist-ko-svjatomu-prichashheniju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-ko-svjatomu-prichashheniju.cu.ltxt'), 'ak-akafist-ko-svjatomu-prichashheniju.cu'),
+  },
+  'ak-akafist-muchenicam-vere-nadezhde-ljubovi-i-materi-ih-sofii': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-muchenicam-vere-nadezhde-ljubovi-i-materi-ih-sofii.cu.ltxt'), 'ak-akafist-muchenicam-vere-nadezhde-ljubovi-i-materi-ih-sofii.cu'),
+  },
+  'ak-akafist-muchenikam-antoniju-ioannu-i-evstafiju-vilenskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-muchenikam-antoniju-ioannu-i-evstafiju-vilenskim.cu.ltxt'), 'ak-akafist-muchenikam-antoniju-ioannu-i-evstafiju-vilenskim.cu'),
+  },
+  'ak-akafist-mucheniku-trifonu-apamejskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-mucheniku-trifonu-apamejskomu.cu.ltxt'), 'ak-akafist-mucheniku-trifonu-apamejskomu.cu'),
+  },
+  'ak-akafist-na-soshestvie-svjatogo-duha': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-na-soshestvie-svjatogo-duha.cu.ltxt'), 'ak-akafist-na-soshestvie-svjatogo-duha.cu'),
+  },
+  'ak-akafist-na-vozdvizhenie-kresta-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-na-vozdvizhenie-kresta-gospodnja.cu.ltxt'), 'ak-akafist-na-vozdvizhenie-kresta-gospodnja.cu'),
+  },
+  'ak-akafist-nerukotvornomu-obrazu-gospoda-nashego-iisusa-hrista': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-nerukotvornomu-obrazu-gospoda-nashego-iisusa-hrista.cu.ltxt'), 'ak-akafist-nerukotvornomu-obrazu-gospoda-nashego-iisusa-hrista.cu'),
+  },
+  'ak-akafist-o-upokoenii-vseh-usopshih': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-o-upokoenii-vseh-usopshih.cu.ltxt'), 'ak-akafist-o-upokoenii-vseh-usopshih.cu'),
+  },
+  'ak-akafist-pokajanija-ili-pesni-privodjashhija-cheloveka-k-soznaniju-svoej-grehovnosti': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-pokajanija-ili-pesni-privodjashhija-cheloveka-k-soznaniju-svoej-grehovnosti.cu.ltxt'), 'ak-akafist-pokajanija-ili-pesni-privodjashhija-cheloveka-k-soznaniju-svoej-grehovnosti.cu'),
+  },
+  'ak-akafist-pokrovu-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-pokrovu-presvjatoj-bogorodicy.cu.ltxt'), 'ak-akafist-pokrovu-presvjatoj-bogorodicy.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-pokrovu-presvjatoj-bogorodicy.ru.ltxt'), 'ak-akafist-pokrovu-presvjatoj-bogorodicy.ru'),
+  },
+  'ak-akafist-polozheniju-chestnoj-rizy-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-polozheniju-chestnoj-rizy-presvjatoj-bogorodicy.cu.ltxt'), 'ak-akafist-polozheniju-chestnoj-rizy-presvjatoj-bogorodicy.cu'),
+  },
+  'ak-akafist-pravednoj-iulianii-lazarevskoj-muromskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-pravednoj-iulianii-lazarevskoj-muromskoj.cu.ltxt'), 'ak-akafist-pravednoj-iulianii-lazarevskoj-muromskoj.cu'),
+  },
+  'ak-akafist-pravednomu-iakovu-borovichskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-pravednomu-iakovu-borovichskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-pravednomu-iakovu-borovichskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-pravednomu-ioannu-russkomu': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-pravednomu-ioannu-russkomu.ru.ltxt'), 'ak-akafist-pravednomu-ioannu-russkomu.ru'),
+  },
+  'ak-akafist-pravednomu-simeonu-bogopriimcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-pravednomu-simeonu-bogopriimcu.cu.ltxt'), 'ak-akafist-pravednomu-simeonu-bogopriimcu.cu'),
+  },
+  'ak-akafist-pravednomu-simeonu-verhoturskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-pravednomu-simeonu-verhoturskomu.cu.ltxt'), 'ak-akafist-pravednomu-simeonu-verhoturskomu.cu'),
+  },
+  'ak-akafist-pred-bogorodsko-ufimskoj-ikonoj-bozhej-materi': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-pred-bogorodsko-ufimskoj-ikonoj-bozhej-materi.cu.ltxt'), 'ak-akafist-pred-bogorodsko-ufimskoj-ikonoj-bozhej-materi.cu'),
+  },
+  'ak-akafist-premudrosti-slova-bozhija': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-premudrosti-slova-bozhija.cu.ltxt'), 'ak-akafist-premudrosti-slova-bozhija.cu'),
+  },
+  'ak-akafist-preobrazheniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-preobrazheniju-gospodnju.cu.ltxt'), 'ak-akafist-preobrazheniju-gospodnju.cu'),
+  },
+  'ak-akafist-prepodobnoj-evfrosinii-polockoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnoj-evfrosinii-polockoj.cu.ltxt'), 'ak-akafist-prepodobnoj-evfrosinii-polockoj.cu'),
+  },
+  'ak-akafist-prepodobnoj-evfrosinii-suzdalskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnoj-evfrosinii-suzdalskoj.cu.ltxt'), 'ak-akafist-prepodobnoj-evfrosinii-suzdalskoj.cu'),
+  },
+  'ak-akafist-prepodobnoj-evfrosinii-velikoj-knjagine-moskovskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnoj-evfrosinii-velikoj-knjagine-moskovskoj.cu.ltxt'), 'ak-akafist-prepodobnoj-evfrosinii-velikoj-knjagine-moskovskoj.cu'),
+  },
+  'ak-akafist-prepodobnoj-marii-egipetskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnoj-marii-egipetskoj.cu.ltxt'), 'ak-akafist-prepodobnoj-marii-egipetskoj.cu'),
+  },
+  'ak-akafist-prepodobnoj-sofii-suzdalskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnoj-sofii-suzdalskoj.cu.ltxt'), 'ak-akafist-prepodobnoj-sofii-suzdalskoj.cu'),
+  },
+  'ak-akafist-prepodobnoj-velikoj-knjagine-anne-kashinskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnoj-velikoj-knjagine-anne-kashinskoj.cu.ltxt'), 'ak-akafist-prepodobnoj-velikoj-knjagine-anne-kashinskoj.cu'),
+  },
+  'ak-akafist-prepodobnomu-aleksiju-cheloveku-bozhiju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-aleksiju-cheloveku-bozhiju.cu.ltxt'), 'ak-akafist-prepodobnomu-aleksiju-cheloveku-bozhiju.cu'),
+  },
+  'ak-akafist-prepodobnomu-amvrosiju-optinskomu': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-amvrosiju-optinskomu.ru.ltxt'), 'ak-akafist-prepodobnomu-amvrosiju-optinskomu.ru'),
+  },
+  'ak-akafist-prepodobnomu-antoniju-pecherskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-antoniju-pecherskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-antoniju-pecherskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-aristokliju-amvrosievu-moskovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-aristokliju-amvrosievu-moskovskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-aristokliju-amvrosievu-moskovskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-arkadiju-vjazemskomu-i-novotorzhskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-arkadiju-vjazemskomu-i-novotorzhskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-arkadiju-vjazemskomu-i-novotorzhskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-arseniju-komelskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-arseniju-komelskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-arseniju-komelskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-avraamiju-smolenskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-avraamiju-smolenskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-avraamiju-smolenskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-daniilu-stolpniku': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-daniilu-stolpniku.cu.ltxt'), 'ak-akafist-prepodobnomu-daniilu-stolpniku.cu'),
+  },
+  'ak-akafist-prepodobnomu-eleazaru-anzerskomu-soloveckomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-eleazaru-anzerskomu-soloveckomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-eleazaru-anzerskomu-soloveckomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-evfimiju-suzdalskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-evfimiju-suzdalskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-evfimiju-suzdalskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-evfimiju-velikomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-evfimiju-velikomu.cu.ltxt'), 'ak-akafist-prepodobnomu-evfimiju-velikomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-feodosiju-totemskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-feodosiju-totemskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-feodosiju-totemskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-gavriilu-samtavrijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-gavriilu-samtavrijskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-gavriilu-samtavrijskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-gerasimu-iordanskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-gerasimu-iordanskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-gerasimu-iordanskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-gerasimu-vologodskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-gerasimu-vologodskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-gerasimu-vologodskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-germanu-aljaskinskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-germanu-aljaskinskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-germanu-aljaskinskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-germanu-soloveckomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-germanu-soloveckomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-germanu-soloveckomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-i-bogonosnomu-otcu-nashemu-kirillu-igumenu-beloezerskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-i-bogonosnomu-otcu-nashemu-kirillu-igumenu-beloezerskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-i-bogonosnomu-otcu-nashemu-kirillu-igumenu-beloezerskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-iakovu-zheleznoborovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-iakovu-zheleznoborovskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-iakovu-zheleznoborovskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-ioannu-damaskinu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-ioannu-damaskinu.cu.ltxt'), 'ak-akafist-prepodobnomu-ioannu-damaskinu.cu'),
+  },
+  'ak-akafist-prepodobnomu-iovu-pochaevskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-iovu-pochaevskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-iovu-pochaevskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-makariju-zhabynskomu-belevskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-makariju-zhabynskomu-belevskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-makariju-zhabynskomu-belevskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-maksimu-greku': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-maksimu-greku.cu.ltxt'), 'ak-akafist-prepodobnomu-maksimu-greku.cu'),
+  },
+  'ak-akafist-prepodobnomu-moiseju-ugrinu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-moiseju-ugrinu.cu.ltxt'), 'ak-akafist-prepodobnomu-moiseju-ugrinu.cu'),
+  },
+  'ak-akafist-prepodobnomu-nestoru-letopiscu-pecherskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-nestoru-letopiscu-pecherskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-nestoru-letopiscu-pecherskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-nikite-stolpniku-pereslavskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-nikite-stolpniku-pereslavskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-nikite-stolpniku-pereslavskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-nikonu-radonezhskomu-i-vseja-rossii-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-nikonu-radonezhskomu-i-vseja-rossii-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-nikonu-radonezhskomu-i-vseja-rossii-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-pafnutiju-borovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-pafnutiju-borovskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-pafnutiju-borovskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-pimenu-velikomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-pimenu-velikomu.cu.ltxt'), 'ak-akafist-prepodobnomu-pimenu-velikomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-sampsonu-strannopriimcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-sampsonu-strannopriimcu.cu.ltxt'), 'ak-akafist-prepodobnomu-sampsonu-strannopriimcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-savve-storozhevskomu-zvenigorodskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-savve-storozhevskomu-zvenigorodskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-savve-storozhevskomu-zvenigorodskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-serafimu-sarovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-serafimu-sarovskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-serafimu-sarovskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-serafimu-vyrickomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-serafimu-vyrickomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-serafimu-vyrickomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-sergiju-radonezhskomu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-sergiju-radonezhskomu-2-j.cu.ltxt'), 'ak-akafist-prepodobnomu-sergiju-radonezhskomu-2-j.cu'),
+  },
+  'ak-akafist-prepodobnomu-sergiju-radonezhskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-sergiju-radonezhskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-sergiju-radonezhskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-siluanu-afonskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-siluanu-afonskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-siluanu-afonskomu.cu'),
+  },
+  'ak-akafist-prepodobnomu-simeonu-novomu-bogoslovu-tvorenie-gerasima-monaxa-mikragiannanita': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-simeonu-novomu-bogoslovu-tvorenie-gerasima-monaxa-mikragiannanita.cu.ltxt'), 'ak-akafist-prepodobnomu-simeonu-novomu-bogoslovu-tvorenie-gerasima-monaxa-mikragiannanita.cu'),
+  },
+  'ak-akafist-prepodobnomu-simeonu-stolpniku': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-simeonu-stolpniku.cu.ltxt'), 'ak-akafist-prepodobnomu-simeonu-stolpniku.cu'),
+  },
+  'ak-akafist-prepodobnomu-varlaamu-hutynskomu-novgorodskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-varlaamu-hutynskomu-novgorodskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-prepodobnomu-varlaamu-hutynskomu-novgorodskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-prepodobnomu-venediktu-nursijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomu-venediktu-nursijskomu.cu.ltxt'), 'ak-akafist-prepodobnomu-venediktu-nursijskomu.cu'),
+  },
+  'ak-akafist-prepodobnomucheniku-evfrosinu-sinozerskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnomucheniku-evfrosinu-sinozerskomu.cu.ltxt'), 'ak-akafist-prepodobnomucheniku-evfrosinu-sinozerskomu.cu'),
+  },
+  'ak-akafist-prepodobnym-antoniju-i-feodosiju-pecherskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnym-antoniju-i-feodosiju-pecherskim.cu.ltxt'), 'ak-akafist-prepodobnym-antoniju-i-feodosiju-pecherskim.cu'),
+  },
+  'ak-akafist-prepodobnym-kirillu-i-marii-radonezhskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-prepodobnym-kirillu-i-marii-radonezhskim.cu.ltxt'), 'ak-akafist-prepodobnym-kirillu-i-marii-radonezhskim.cu'),
+  },
+  'ak-akafist-presvjatej-bogorodice-ikony-eja-radi-zhivonosnyj-istochnik-imenuemyja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatej-bogorodice-ikony-eja-radi-zhivonosnyj-istochnik-imenuemyja.cu.ltxt'), 'ak-akafist-presvjatej-bogorodice-ikony-eja-radi-zhivonosnyj-istochnik-imenuemyja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-iverskoj-monrealskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-iverskoj-monrealskoj.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-iverskoj-monrealskoj.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-izbavlenie-ot-bed-strazhdushhih': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-izbavlenie-ot-bed-strazhdushhih.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-izbavlenie-ot-bed-strazhdushhih.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-kievo-pecherskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-kievo-pecherskoj.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-kievo-pecherskoj.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-ljubechskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-ljubechskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-ljubechskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-luganskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-luganskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-luganskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-milostivaja-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-milostivaja-2-j.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-milostivaja-2-j.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-milostivaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-milostivaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-milostivaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-muromskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-muromskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-muromskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-pjuhtickoj-u-istochnika': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-pjuhtickoj-u-istochnika.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-pjuhtickoj-u-istochnika.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-smolenskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-smolenskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-smolenskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-strastnaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-strastnaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-strastnaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-tolgskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-tolgskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-tolgskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-umjagchenie-zlyh-serdec': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-umjagchenie-zlyh-serdec.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-umjagchenie-zlyh-serdec.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-v-skorbeh-i-pechaleh-uteshenie': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-v-skorbeh-i-pechaleh-uteshenie.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-v-skorbeh-i-pechaleh-uteshenie.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-zhirovickaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-zhirovickaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-zhirovickaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-korchemnaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-korchemnaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-korchemnaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-kurskaja-korennaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-kurskaja-korennaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-kurskaja-korennaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-novgorodskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-novgorodskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pered-ikonoj-znamenie-novgorodskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ahtyrskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ahtyrskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ahtyrskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-akafistnaja-hilandarskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-akafistnaja-hilandarskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-akafistnaja-hilandarskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-az-esm-s-vami-i-niktozhe-na-vy': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-az-esm-s-vami-i-niktozhe-na-vy.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-az-esm-s-vami-i-niktozhe-na-vy.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-balykinskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-balykinskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-balykinskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-barskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-barskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-barskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-belynichskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-belynichskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-belynichskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-blagodatnoe-nebo': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-blagodatnoe-nebo.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-blagodatnoe-nebo.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-blagouhannyj-cvet': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-blagouhannyj-cvet.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-blagouhannyj-cvet.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-bojanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-bojanskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-bojanskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-brailovskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-brailovskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-brailovskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-celitelnica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-celitelnica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-celitelnica.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-chenstohovskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-chenstohovskoj.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-chenstohovskoj.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-chernigovskaja-gefsimanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-chernigovskaja-gefsimanskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-chernigovskaja-gefsimanskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-donskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-donskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-donskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-dostojno-est-milujushhaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-dostojno-est-milujushhaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-dostojno-est-milujushhaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-eleckaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-eleckaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-eleckaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-elisavetgradskaja-2': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-elisavetgradskaja-2.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-elisavetgradskaja-2.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-georgievskaja-2': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-georgievskaja-2.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-georgievskaja-2.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gerontissa': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gerontissa.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gerontissa.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gorbanevskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gorbanevskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gorbanevskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-grebnevskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-grebnevskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-grebnevskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gruzinskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gruzinskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-gruzinskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ierusalimskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ierusalimskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ierusalimskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-iverskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-iverskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-iverskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-jekonomissa': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-jekonomissa.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-jekonomissa.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kaluzhskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kaluzhskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kaluzhskaja.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kaluzhskaja.ru.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kaluzhskaja.ru'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kaplunovskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kaplunovskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kaplunovskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kardiotissa-2': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kardiotissa-2.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kardiotissa-2.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kasperovskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kasperovskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kasperovskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kazanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kazanskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kazanskaja.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kazanskaja.ru.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kazanskaja.ru'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kazansko-penzenskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kazansko-penzenskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kazansko-penzenskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kolochskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kolochskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kolochskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-korsunskaja-prozrennaja-shpilevskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-korsunskaja-prozrennaja-shpilevskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-korsunskaja-prozrennaja-shpilevskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-korsunskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-korsunskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-korsunskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kozelshhanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kozelshhanskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kozelshhanskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kupjatickaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kupjatickaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-kupjatickaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-lesninskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-lesninskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-lesninskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-lipeckaja-strastnaja-lipeckaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-lipeckaja-strastnaja-lipeckaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-lipeckaja-strastnaja-lipeckaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-marinogorskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-marinogorskoj.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-marinogorskoj.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mariupolskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mariupolskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mariupolskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-minskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-minskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-minskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-modenskaja-kosinskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-modenskaja-kosinskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-modenskaja-kosinskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-molchenskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-molchenskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-molchenskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-molebnica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-molebnica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-molebnica.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mozdokskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mozdokskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-mozdokskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ne-rydaj-mene-mati': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ne-rydaj-mene-mati.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ne-rydaj-mene-mati.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost.ru.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost.ru'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neopalimaja-kupina': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neopalimaja-kupina.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neopalimaja-kupina.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-nerushimaja-stena': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-nerushimaja-stena.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-nerushimaja-stena.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neupivaemaja-chasha': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neupivaemaja-chasha.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neupivaemaja-chasha.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neuvjadaemyj-cvet': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neuvjadaemyj-cvet.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-neuvjadaemyj-cvet.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-novodvorskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-novodvorskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-novodvorskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-orshanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-orshanskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-orshanskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ostrobramskaja-vilenskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ostrobramskaja-vilenskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-ostrobramskaja-vilenskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-peschanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-peschanskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-peschanskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pomoshhnica-v-rodah-2-j': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pomoshhnica-v-rodah-2-j.ru.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pomoshhnica-v-rodah-2-j.ru'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pomoshhnica-v-rodah': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pomoshhnica-v-rodah.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pomoshhnica-v-rodah.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-popskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-popskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-popskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pribavlenie-uma': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pribavlenie-uma.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-pribavlenie-uma.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-prizri-na-smirenie': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-prizri-na-smirenie.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-prizri-na-smirenie.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-smolenskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-smolenskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-smolenskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-spasitelnica-utopajushhih': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-spasitelnica-utopajushhih.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-spasitelnica-utopajushhih.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-sporitelnica-hlebov': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-sporitelnica-hlebov.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-sporitelnica-hlebov.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-sporuchnica-greshnyh': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-sporuchnica-greshnyh.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-sporuchnica-greshnyh.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-svenskaja-pecherskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-svenskaja-pecherskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-svenskaja-pecherskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-tabynskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-tabynskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-tabynskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-treh-radostej': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-treh-radostej.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-treh-radostej.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-troeruchica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-troeruchica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-troeruchica.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-umilenie-pskovo-pecherskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-umilenie-pskovo-pecherskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-umilenie-pskovo-pecherskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-umilenie-serafimo-diveevskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-umilenie-serafimo-diveevskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-umilenie-serafimo-diveevskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uslyshatelnica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uslyshatelnica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uslyshatelnica.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uspenie-ovinovskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uspenie-ovinovskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uspenie-ovinovskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uspokoitelnica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uspokoitelnica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-uspokoitelnica.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-utoli-moja-pechali': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-utoli-moja-pechali.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-utoli-moja-pechali.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-valaamskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-valaamskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-valaamskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vladimirskaja-mirotochivaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vladimirskaja-mirotochivaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vladimirskaja-mirotochivaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vladimirskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vladimirskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vladimirskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-voroninskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-voroninskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-voroninskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vospitanie': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vospitanie.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vospitanie.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vsecarica': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vsecarica.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vsecarica.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vsecarica.ru.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vsecarica.ru'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vydropusskaja-odigitrija': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vydropusskaja-odigitrija.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vydropusskaja-odigitrija.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih-2-j.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih-2-j.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-zimnenskaja-2': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoj-zimnenskaja-2.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoj-zimnenskaja-2.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-pred-ikonoju-ee-holmskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-pred-ikonoju-ee-holmskaja.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-pred-ikonoju-ee-holmskaja.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-v-chest-ikony-ee-torzhestvo-presvjatoj-bogorodicy-port-arturskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-v-chest-ikony-ee-torzhestvo-presvjatoj-bogorodicy-port-arturskoj.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-v-chest-ikony-ee-torzhestvo-presvjatoj-bogorodicy-port-arturskoj.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-v-chest-ikony-eja-otrada-uteshenie': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-v-chest-ikony-eja-otrada-uteshenie.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-v-chest-ikony-eja-otrada-uteshenie.cu'),
+  },
+  'ak-akafist-presvjatoj-bogorodice-velikij-akafist-chitaemyj-v-subbotu-akafista': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-velikij-akafist-chitaemyj-v-subbotu-akafista.cu.ltxt'), 'ak-akafist-presvjatoj-bogorodice-velikij-akafist-chitaemyj-v-subbotu-akafista.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-bogorodice-velikij-akafist-chitaemyj-v-subbotu-akafista.ru.ltxt'), 'ak-akafist-presvjatoj-bogorodice-velikij-akafist-chitaemyj-v-subbotu-akafista.ru'),
+  },
+  'ak-akafist-presvjatoj-i-zhivotvorjashhej-troice': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvjatoj-i-zhivotvorjashhej-troice.cu.ltxt'), 'ak-akafist-presvjatoj-i-zhivotvorjashhej-troice.cu'),
+  },
+  'ak-akafist-presvyatoj-bogorodice-s-kommentariyami': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-presvyatoj-bogorodice-s-kommentariyami.ru.ltxt'), 'ak-akafist-presvyatoj-bogorodice-s-kommentariyami.ru'),
+  },
+  'ak-akafist-presvyatoj-bogorodicze-pred-ikonoj-czarevokokshajskaya-mironosiczkaya': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-presvyatoj-bogorodicze-pred-ikonoj-czarevokokshajskaya-mironosiczkaya.cu.ltxt'), 'ak-akafist-presvyatoj-bogorodicze-pred-ikonoj-czarevokokshajskaya-mironosiczkaya.cu'),
+  },
+  'ak-akafist-rozhdestvu-hristovu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-rozhdestvu-hristovu.cu.ltxt'), 'ak-akafist-rozhdestvu-hristovu.cu'),
+  },
+  'ak-akafist-rozhdestvu-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-rozhdestvu-presvjatoj-bogorodicy.cu.ltxt'), 'ak-akafist-rozhdestvu-presvjatoj-bogorodicy.cu'),
+  },
+  'ak-akafist-slava-bogu-za-vsyo': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-slava-bogu-za-vsyo.cu.ltxt'), 'ak-akafist-slava-bogu-za-vsyo.cu'),
+  },
+  'ak-akafist-soboru-prepodobnyh-otcov-optinskih': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-soboru-prepodobnyh-otcov-optinskih.cu.ltxt'), 'ak-akafist-soboru-prepodobnyh-otcov-optinskih.cu'),
+  },
+  'ak-akafist-soboru-vseh-svjatyh': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-soboru-vseh-svjatyh.cu.ltxt'), 'ak-akafist-soboru-vseh-svjatyh.cu'),
+  },
+  'ak-akafist-sreteniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-sreteniju-gospodnju.cu.ltxt'), 'ak-akafist-sreteniju-gospodnju.cu'),
+  },
+  'ak-akafist-svjashhennomucheniku-antipe-pergamskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomucheniku-antipe-pergamskomu.cu.ltxt'), 'ak-akafist-svjashhennomucheniku-antipe-pergamskomu.cu'),
+  },
+  'ak-akafist-svjashhennomucheniku-ermogenu-patriarhu-moskovskomu-i-vseja-rossii-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomucheniku-ermogenu-patriarhu-moskovskomu-i-vseja-rossii-chudotvorcu.cu.ltxt'), 'ak-akafist-svjashhennomucheniku-ermogenu-patriarhu-moskovskomu-i-vseja-rossii-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjashhennomucheniku-faddeju-arhiepiskopu-tverskomu-i-kashinskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomucheniku-faddeju-arhiepiskopu-tverskomu-i-kashinskomu.cu.ltxt'), 'ak-akafist-svjashhennomucheniku-faddeju-arhiepiskopu-tverskomu-i-kashinskomu.cu'),
+  },
+  'ak-akafist-svjashhennomucheniku-haralampiju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomucheniku-haralampiju.cu.ltxt'), 'ak-akafist-svjashhennomucheniku-haralampiju.cu'),
+  },
+  'ak-akafist-svjashhennomucheniku-ilarionu-arhiepiskopu-verejskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomucheniku-ilarionu-arhiepiskopu-verejskomu.cu.ltxt'), 'ak-akafist-svjashhennomucheniku-ilarionu-arhiepiskopu-verejskomu.cu'),
+  },
+  'ak-akafist-svjashhennomucheniku-kiprianu-i-svjatoj-muchenice-iustine': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomucheniku-kiprianu-i-svjatoj-muchenice-iustine.cu.ltxt'), 'ak-akafist-svjashhennomucheniku-kiprianu-i-svjatoj-muchenice-iustine.cu'),
+  },
+  'ak-akafist-svjashhennomucheniku-veniaminu-mitropolitu-petrogradskomu-i-gdovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomucheniku-veniaminu-mitropolitu-petrogradskomu-i-gdovskomu.cu.ltxt'), 'ak-akafist-svjashhennomucheniku-veniaminu-mitropolitu-petrogradskomu-i-gdovskomu.cu'),
+  },
+  'ak-akafist-svjashhennomucheniku-vlasiju-sevastijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomucheniku-vlasiju-sevastijskomu.cu.ltxt'), 'ak-akafist-svjashhennomucheniku-vlasiju-sevastijskomu.cu'),
+  },
+  'ak-akafist-svjashhennomuchenniku-vladimiru-mitropolitu-kievskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjashhennomuchenniku-vladimiru-mitropolitu-kievskomu.cu.ltxt'), 'ak-akafist-svjashhennomuchenniku-vladimiru-mitropolitu-kievskomu.cu'),
+  },
+  'ak-akafist-svjatiteljam-gerasimu-pitirimu-i-ione-episkopam-velikopermskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatiteljam-gerasimu-pitirimu-i-ione-episkopam-velikopermskim.cu.ltxt'), 'ak-akafist-svjatiteljam-gerasimu-pitirimu-i-ione-episkopam-velikopermskim.cu'),
+  },
+  'ak-akafist-svjatitelju-afanasiju-episkopu-kovrovskomu-ispovedniku-i-pesnopiscu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-afanasiju-episkopu-kovrovskomu-ispovedniku-i-pesnopiscu.cu.ltxt'), 'ak-akafist-svjatitelju-afanasiju-episkopu-kovrovskomu-ispovedniku-i-pesnopiscu.cu'),
+  },
+  'ak-akafist-svjatitelju-afanasiju-iii-konstantinopolskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-afanasiju-iii-konstantinopolskomu.cu.ltxt'), 'ak-akafist-svjatitelju-afanasiju-iii-konstantinopolskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-arseniju-episkopu-tverskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-arseniju-episkopu-tverskomu.cu.ltxt'), 'ak-akafist-svjatitelju-arseniju-episkopu-tverskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-dimitriju-rostovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-dimitriju-rostovskomu.cu.ltxt'), 'ak-akafist-svjatitelju-dimitriju-rostovskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-feodosiju-arhiepiskopu-chernigovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-feodosiju-arhiepiskopu-chernigovskomu.cu.ltxt'), 'ak-akafist-svjatitelju-feodosiju-arhiepiskopu-chernigovskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-feofanu-zatvorniku-vyshenskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-feofanu-zatvorniku-vyshenskomu.cu.ltxt'), 'ak-akafist-svjatitelju-feofanu-zatvorniku-vyshenskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-filaretu-mitropolitu-moskovskomu-i-kolomenskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-filaretu-mitropolitu-moskovskomu-i-kolomenskomu.cu.ltxt'), 'ak-akafist-svjatitelju-filaretu-mitropolitu-moskovskomu-i-kolomenskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-filippu-mitropolitu-moskovskomu-i-vseja-rossii-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-filippu-mitropolitu-moskovskomu-i-vseja-rossii-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-filippu-mitropolitu-moskovskomu-i-vseja-rossii-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-grigoriju-episkopu-i-chudotvorcu-neokesarijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-grigoriju-episkopu-i-chudotvorcu-neokesarijskomu.cu.ltxt'), 'ak-akafist-svjatitelju-grigoriju-episkopu-i-chudotvorcu-neokesarijskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-grigoriju-palame-arhiepiskopu-solunskomu': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-grigoriju-palame-arhiepiskopu-solunskomu.ru.ltxt'), 'ak-akafist-svjatitelju-grigoriju-palame-arhiepiskopu-solunskomu.ru'),
+  },
+  'ak-akafist-svjatitelju-guriju-kazanskomu-i-svijazhskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-guriju-kazanskomu-i-svijazhskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-guriju-kazanskomu-i-svijazhskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-iakovu-episkopu-rostovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-iakovu-episkopu-rostovskomu.cu.ltxt'), 'ak-akafist-svjatitelju-iakovu-episkopu-rostovskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-ignatiju-brjanchaninovu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-ignatiju-brjanchaninovu.cu.ltxt'), 'ak-akafist-svjatitelju-ignatiju-brjanchaninovu.cu'),
+  },
+  'ak-akafist-svjatitelju-innokentiju-episkopu-irkutskomu-chudotvorcu-2-j': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-innokentiju-episkopu-irkutskomu-chudotvorcu-2-j.ru.ltxt'), 'ak-akafist-svjatitelju-innokentiju-episkopu-irkutskomu-chudotvorcu-2-j.ru'),
+  },
+  'ak-akafist-svjatitelju-innokentiju-veniaminovu-mitropolitu-moskovskomu-i-kolomenskomu-apostolu-ameriki-i-sibiri': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-innokentiju-veniaminovu-mitropolitu-moskovskomu-i-kolomenskomu-apostolu-ameriki-i-sibiri.cu.ltxt'), 'ak-akafist-svjatitelju-innokentiju-veniaminovu-mitropolitu-moskovskomu-i-kolomenskomu-apostolu-ameriki-i-sibiri.cu'),
+  },
+  'ak-akafist-svjatitelju-ioannu-milostivomu-patriarhu-aleksandrijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-ioannu-milostivomu-patriarhu-aleksandrijskomu.cu.ltxt'), 'ak-akafist-svjatitelju-ioannu-milostivomu-patriarhu-aleksandrijskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-ioasafu-episkopu-belgorodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-ioasafu-episkopu-belgorodskomu.cu.ltxt'), 'ak-akafist-svjatitelju-ioasafu-episkopu-belgorodskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-makariju-mitropolitu-moskovskomu-i-vseja-rusi-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-makariju-mitropolitu-moskovskomu-i-vseja-rusi-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-makariju-mitropolitu-moskovskomu-i-vseja-rusi-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-meletiju-arhiepiskopu-harkovskomu-i-ahtyrskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-meletiju-arhiepiskopu-harkovskomu-i-ahtyrskomu.cu.ltxt'), 'ak-akafist-svjatitelju-meletiju-arhiepiskopu-harkovskomu-i-ahtyrskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-mitrofanu-episkopu-voronezhskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-mitrofanu-episkopu-voronezhskomu.cu.ltxt'), 'ak-akafist-svjatitelju-mitrofanu-episkopu-voronezhskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-moiseju-arhiepiskopu-novogradskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-moiseju-arhiepiskopu-novogradskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-moiseju-arhiepiskopu-novogradskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-petru-mitropolitu-moskovskomu-vseja-rossii-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-petru-mitropolitu-moskovskomu-vseja-rossii-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-petru-mitropolitu-moskovskomu-vseja-rossii-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-savve-serbskomu': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-savve-serbskomu.ru.ltxt'), 'ak-akafist-svjatitelju-savve-serbskomu.ru'),
+  },
+  'ak-akafist-svjatitelju-simonu-pecherskomu-episkopu-vladimirskomu-i-suzdalskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-simonu-pecherskomu-episkopu-vladimirskomu-i-suzdalskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-simonu-pecherskomu-episkopu-vladimirskomu-i-suzdalskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-sofroniju-irkutskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-sofroniju-irkutskomu.cu.ltxt'), 'ak-akafist-svjatitelju-sofroniju-irkutskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-spiridonu-trimifuntskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-spiridonu-trimifuntskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-spiridonu-trimifuntskomu-chudotvorcu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-spiridonu-trimifuntskomu-chudotvorcu.ru.ltxt'), 'ak-akafist-svjatitelju-spiridonu-trimifuntskomu-chudotvorcu.ru'),
+  },
+  'ak-akafist-svjatitelju-stefanu-igumenu-mahrishhskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-stefanu-igumenu-mahrishhskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-stefanu-igumenu-mahrishhskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-tihonu-amafuntskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-tihonu-amafuntskomu.cu.ltxt'), 'ak-akafist-svjatitelju-tihonu-amafuntskomu.cu'),
+  },
+  'ak-akafist-svjatitelju-tihonu-patriarhu-moskovskomu-i-vseja-rossii-inoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-tihonu-patriarhu-moskovskomu-i-vseja-rossii-inoj.cu.ltxt'), 'ak-akafist-svjatitelju-tihonu-patriarhu-moskovskomu-i-vseja-rossii-inoj.cu'),
+  },
+  'ak-akafist-svjatitelju-tihonu-patriarhu-moskovskomu-i-vseja-rossii': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-tihonu-patriarhu-moskovskomu-i-vseja-rossii.cu.ltxt'), 'ak-akafist-svjatitelju-tihonu-patriarhu-moskovskomu-i-vseja-rossii.cu'),
+  },
+  'ak-akafist-svjatitelju-varsonofiju-episkopu-tverskomu-kazanskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-varsonofiju-episkopu-tverskomu-kazanskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-varsonofiju-episkopu-tverskomu-kazanskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-vasiliju-episkopu-rjazanskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-vasiliju-episkopu-rjazanskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-vasiliju-episkopu-rjazanskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitelju-vasiliju-ostrozhskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitelju-vasiliju-ostrozhskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitelju-vasiliju-ostrozhskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatitetju-pitirimu-episkopu-tambovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatitetju-pitirimu-episkopu-tambovskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatitetju-pitirimu-episkopu-tambovskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatoj-blazhennoj-ksenii-peterburgskoj-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-blazhennoj-ksenii-peterburgskoj-2-j.cu.ltxt'), 'ak-akafist-svjatoj-blazhennoj-ksenii-peterburgskoj-2-j.cu'),
+  },
+  'ak-akafist-svjatoj-blazhennoj-ksenii-peterburgskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-blazhennoj-ksenii-peterburgskoj.cu.ltxt'), 'ak-akafist-svjatoj-blazhennoj-ksenii-peterburgskoj.cu'),
+  },
+  'ak-akafist-svjatoj-muchenice-ljudmile-knjagine-cheshskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-muchenice-ljudmile-knjagine-cheshskoj.cu.ltxt'), 'ak-akafist-svjatoj-muchenice-ljudmile-knjagine-cheshskoj.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-muchenice-ljudmile-knjagine-cheshskoj.ru.ltxt'), 'ak-akafist-svjatoj-muchenice-ljudmile-knjagine-cheshskoj.ru'),
+  },
+  'ak-akafist-svjatoj-muchenice-tatiane': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-muchenice-tatiane.cu.ltxt'), 'ak-akafist-svjatoj-muchenice-tatiane.cu'),
+  },
+  'ak-akafist-svjatoj-pashe': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-pashe.cu.ltxt'), 'ak-akafist-svjatoj-pashe.cu'),
+  },
+  'ak-akafist-svjatoj-pravednoj-matrone-moskovskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-pravednoj-matrone-moskovskoj.cu.ltxt'), 'ak-akafist-svjatoj-pravednoj-matrone-moskovskoj.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-pravednoj-matrone-moskovskoj.ru.ltxt'), 'ak-akafist-svjatoj-pravednoj-matrone-moskovskoj.ru'),
+  },
+  'ak-akafist-svjatoj-prepodobnomuchenice-paraskeve-rimskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-prepodobnomuchenice-paraskeve-rimskoj.cu.ltxt'), 'ak-akafist-svjatoj-prepodobnomuchenice-paraskeve-rimskoj.cu'),
+  },
+  'ak-akafist-svjatoj-prepodobnomuchenice-velikoj-knjagine-elisavete': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-prepodobnomuchenice-velikoj-knjagine-elisavete.ru.ltxt'), 'ak-akafist-svjatoj-prepodobnomuchenice-velikoj-knjagine-elisavete.ru'),
+  },
+  'ak-akafist-svjatoj-ravnoapostolnoj-marii-magdaline': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-ravnoapostolnoj-marii-magdaline.cu.ltxt'), 'ak-akafist-svjatoj-ravnoapostolnoj-marii-magdaline.cu'),
+  },
+  'ak-akafist-svjatoj-ravnoapostolnoj-nine-prosvetitelnice-gruzii': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-ravnoapostolnoj-nine-prosvetitelnice-gruzii.cu.ltxt'), 'ak-akafist-svjatoj-ravnoapostolnoj-nine-prosvetitelnice-gruzii.cu'),
+  },
+  'ak-akafist-svjatoj-velikomuchenice-ekaterine': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-velikomuchenice-ekaterine.cu.ltxt'), 'ak-akafist-svjatoj-velikomuchenice-ekaterine.cu'),
+  },
+  'ak-akafist-svjatoj-velikomuchenice-evfimii-vsehvalnoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-velikomuchenice-evfimii-vsehvalnoj.cu.ltxt'), 'ak-akafist-svjatoj-velikomuchenice-evfimii-vsehvalnoj.cu'),
+  },
+  'ak-akafist-svjatoj-velikomuchenice-irine': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-velikomuchenice-irine.cu.ltxt'), 'ak-akafist-svjatoj-velikomuchenice-irine.cu'),
+  },
+  'ak-akafist-svjatoj-velikomuchenice-varvare': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatoj-velikomuchenice-varvare.cu.ltxt'), 'ak-akafist-svjatoj-velikomuchenice-varvare.cu'),
+  },
+  'ak-akafist-svjatomu-angelu-hranitelju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-angelu-hranitelju.cu.ltxt'), 'ak-akafist-svjatomu-angelu-hranitelju.cu'),
+  },
+  'ak-akafist-svjatomu-apostolu-andreju-pervozvannomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-apostolu-andreju-pervozvannomu.cu.ltxt'), 'ak-akafist-svjatomu-apostolu-andreju-pervozvannomu.cu'),
+  },
+  'ak-akafist-svjatomu-apostolu-i-evangelistu-ioannu-bogoslovu-inoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-apostolu-i-evangelistu-ioannu-bogoslovu-inoj.cu.ltxt'), 'ak-akafist-svjatomu-apostolu-i-evangelistu-ioannu-bogoslovu-inoj.cu'),
+  },
+  'ak-akafist-svjatomu-apostolu-i-evangelistu-ioannu-bogoslovu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-apostolu-i-evangelistu-ioannu-bogoslovu.cu.ltxt'), 'ak-akafist-svjatomu-apostolu-i-evangelistu-ioannu-bogoslovu.cu'),
+  },
+  'ak-akafist-svjatomu-apostolu-i-evangelistu-luke': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-apostolu-i-evangelistu-luke.cu.ltxt'), 'ak-akafist-svjatomu-apostolu-i-evangelistu-luke.cu'),
+  },
+  'ak-akafist-svjatomu-apostolu-i-evangelistu-marku': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-apostolu-i-evangelistu-marku.cu.ltxt'), 'ak-akafist-svjatomu-apostolu-i-evangelistu-marku.cu'),
+  },
+  'ak-akafist-svjatomu-apostolu-iakovu-bratu-gospodnju-po-ploti': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-apostolu-iakovu-bratu-gospodnju-po-ploti.cu.ltxt'), 'ak-akafist-svjatomu-apostolu-iakovu-bratu-gospodnju-po-ploti.cu'),
+  },
+  'ak-akafist-svjatomu-apostolu-simonu-zilotu-kananitu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-apostolu-simonu-zilotu-kananitu.cu.ltxt'), 'ak-akafist-svjatomu-apostolu-simonu-zilotu-kananitu.cu'),
+  },
+  'ak-akafist-svjatomu-arhangelu-gavriilu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-arhangelu-gavriilu.cu.ltxt'), 'ak-akafist-svjatomu-arhangelu-gavriilu.cu'),
+  },
+  'ak-akafist-svjatomu-arhangelu-rafailu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-arhangelu-rafailu.cu.ltxt'), 'ak-akafist-svjatomu-arhangelu-rafailu.cu'),
+  },
+  'ak-akafist-svjatomu-blagovernomu-carevichu-dimitriju-uglichskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-blagovernomu-carevichu-dimitriju-uglichskomu.cu.ltxt'), 'ak-akafist-svjatomu-blagovernomu-carevichu-dimitriju-uglichskomu.cu'),
+  },
+  'ak-akafist-svjatomu-blagovernomu-knjazju-vsevolodu-vo-svjatom-kreshhenii-gavriilu-pskovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-blagovernomu-knjazju-vsevolodu-vo-svjatom-kreshhenii-gavriilu-pskovskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-blagovernomu-knjazju-vsevolodu-vo-svjatom-kreshhenii-gavriilu-pskovskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju.cu.ltxt'), 'ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju.cu'),
+  },
+  'ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-dimitriju-donskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-dimitriju-donskomu.cu.ltxt'), 'ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-dimitriju-donskomu.cu'),
+  },
+  'ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-georgiju-vladimirskomu-chudotvorcu': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-georgiju-vladimirskomu-chudotvorcu.ru.ltxt'), 'ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-georgiju-vladimirskomu-chudotvorcu.ru'),
+  },
+  'ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-mihailu-jaroslavichu-tverskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-mihailu-jaroslavichu-tverskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-blagovernomu-velikomu-knjazju-mihailu-jaroslavichu-tverskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-blazhennomu-prokopiju-ustjuzhskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-blazhennomu-prokopiju-ustjuzhskomu.cu.ltxt'), 'ak-akafist-svjatomu-blazhennomu-prokopiju-ustjuzhskomu.cu'),
+  },
+  'ak-akafist-svjatomu-duhu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-duhu.cu.ltxt'), 'ak-akafist-svjatomu-duhu.cu'),
+  },
+  'ak-akafist-svjatomu-i-pravednomu-iosifu-obruchniku-presvjatoj-devy-marii': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-i-pravednomu-iosifu-obruchniku-presvjatoj-devy-marii.cu.ltxt'), 'ak-akafist-svjatomu-i-pravednomu-iosifu-obruchniku-presvjatoj-devy-marii.cu'),
+  },
+  'ak-akafist-svjatomu-i-pravednomu-iovu-mnogostradalnomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-i-pravednomu-iovu-mnogostradalnomu.cu.ltxt'), 'ak-akafist-svjatomu-i-pravednomu-iovu-mnogostradalnomu.cu'),
+  },
+  'ak-akafist-svjatomu-i-prechestnomu-pojasu-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-i-prechestnomu-pojasu-presvjatoj-bogorodicy.cu.ltxt'), 'ak-akafist-svjatomu-i-prechestnomu-pojasu-presvjatoj-bogorodicy.cu'),
+  },
+  'ak-akafist-svjatomu-mucheniku-ioannu-voinu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-mucheniku-ioannu-voinu.cu.ltxt'), 'ak-akafist-svjatomu-mucheniku-ioannu-voinu.cu'),
+  },
+  'ak-akafist-svjatomu-mucheniku-mladencu-gavriilu-zabludovskomu-belostokskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-mucheniku-mladencu-gavriilu-zabludovskomu-belostokskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-mucheniku-mladencu-gavriilu-zabludovskomu-belostokskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-mucheniku-vonifatiju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-mucheniku-vonifatiju.cu.ltxt'), 'ak-akafist-svjatomu-mucheniku-vonifatiju.cu'),
+  },
+  'ak-akafist-svjatomu-pervomucheniku-arhidiakonu-stefanu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-pervomucheniku-arhidiakonu-stefanu.cu.ltxt'), 'ak-akafist-svjatomu-pervomucheniku-arhidiakonu-stefanu.cu'),
+  },
+  'ak-akafist-svjatomu-pravednomu-artemiju-verkolskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-pravednomu-artemiju-verkolskomu.cu.ltxt'), 'ak-akafist-svjatomu-pravednomu-artemiju-verkolskomu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-aleksandru-oshevenskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-aleksandru-oshevenskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-aleksandru-oshevenskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-antoniju-igumenu-dymskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-antoniju-igumenu-dymskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-antoniju-igumenu-dymskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-antoniju-rimljaninu-novogradskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-antoniju-rimljaninu-novogradskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-antoniju-rimljaninu-novogradskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-avraamiju-galichskomu-chuhlomskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-avraamiju-galichskomu-chuhlomskomu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-avraamiju-galichskomu-chuhlomskomu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-daniilu-perejaslavskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-daniilu-perejaslavskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-daniilu-perejaslavskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-efremu-novotorzhskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-efremu-novotorzhskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-efremu-novotorzhskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-feodosiju-velikomu': {
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-feodosiju-velikomu.ru.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-feodosiju-velikomu.ru'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-kirillu-igumenu-novoezerskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-kirillu-igumenu-novoezerskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-kirillu-igumenu-novoezerskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-korniliju-igumenu-komelskomu-vologodskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-korniliju-igumenu-komelskomu-vologodskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-korniliju-igumenu-komelskomu-vologodskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-makariju-igumenu-kaljazinskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-makariju-igumenu-kaljazinskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-makariju-igumenu-kaljazinskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-makariju-rimljaninu-novogradskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-makariju-rimljaninu-novogradskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-makariju-rimljaninu-novogradskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-martiriju-zeleneckomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-martiriju-zeleneckomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-martiriju-zeleneckomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-mihailu-klopskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-mihailu-klopskomu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-mihailu-klopskomu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-nikandru-pskovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-nikandru-pskovskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-nikandru-pskovskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-nilu-sorskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-nilu-sorskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-nilu-sorskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-paisiju-svjatogorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-paisiju-svjatogorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-paisiju-svjatogorcu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-paisiju-svjatogorcu.ru.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-paisiju-svjatogorcu.ru'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-trifonu-vjatskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-trifonu-vjatskomu-chudotvorcu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-trifonu-vjatskomu-chudotvorcu.cu'),
+  },
+  'ak-akafist-svjatomu-prepodobnomu-varnave-gefsimanskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-prepodobnomu-varnave-gefsimanskomu.cu.ltxt'), 'ak-akafist-svjatomu-prepodobnomu-varnave-gefsimanskomu.cu'),
+  },
+  'ak-akafist-svjatomu-proroku-ilie': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-proroku-ilie.cu.ltxt'), 'ak-akafist-svjatomu-proroku-ilie.cu'),
+  },
+  'ak-akafist-svjatomu-proroku-moiseju-bogovidcu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-proroku-moiseju-bogovidcu.cu.ltxt'), 'ak-akafist-svjatomu-proroku-moiseju-bogovidcu.cu'),
+  },
+  'ak-akafist-svjatomu-ravnoapostolnomu-knjazju-vladimiru': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-ravnoapostolnomu-knjazju-vladimiru.cu.ltxt'), 'ak-akafist-svjatomu-ravnoapostolnomu-knjazju-vladimiru.cu'),
+  },
+  'ak-akafist-svjatomu-ravnoapostolnomu-nikolaju-arhiepiskopu-japonskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-ravnoapostolnomu-nikolaju-arhiepiskopu-japonskomu.cu.ltxt'), 'ak-akafist-svjatomu-ravnoapostolnomu-nikolaju-arhiepiskopu-japonskomu.cu'),
+  },
+  'ak-akafist-svjatomu-velikomucheniku-feodoru-tironu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-velikomucheniku-feodoru-tironu.cu.ltxt'), 'ak-akafist-svjatomu-velikomucheniku-feodoru-tironu.cu'),
+  },
+  'ak-akafist-svjatomu-velikomucheniku-georgiju-pobedonoscu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-velikomucheniku-georgiju-pobedonoscu.cu.ltxt'), 'ak-akafist-svjatomu-velikomucheniku-georgiju-pobedonoscu.cu'),
+  },
+  'ak-akafist-svjatomu-velikomucheniku-i-celitelju-panteleimonu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-velikomucheniku-i-celitelju-panteleimonu.cu.ltxt'), 'ak-akafist-svjatomu-velikomucheniku-i-celitelju-panteleimonu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatomu-velikomucheniku-i-celitelju-panteleimonu.ru.ltxt'), 'ak-akafist-svjatomu-velikomucheniku-i-celitelju-panteleimonu.ru'),
+  },
+  'ak-akafist-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim.cu.ltxt'), 'ak-akafist-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim.cu'),
+  },
+  'ak-akafist-svjatym-blagovernym-strastoterpcam-borisu-i-glebu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-blagovernym-strastoterpcam-borisu-i-glebu.cu.ltxt'), 'ak-akafist-svjatym-blagovernym-strastoterpcam-borisu-i-glebu.cu'),
+  },
+  'ak-akafist-svjatym-carstvennym-strastoterpcam': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-carstvennym-strastoterpcam.cu.ltxt'), 'ak-akafist-svjatym-carstvennym-strastoterpcam.cu'),
+  },
+  'ak-akafist-svjatym-devjati-muchenikam-kizicheskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-devjati-muchenikam-kizicheskim.cu.ltxt'), 'ak-akafist-svjatym-devjati-muchenikam-kizicheskim.cu'),
+  },
+  'ak-akafist-svjatym-muchenikam-14000-mladencam-ot-iroda-vo-vifleeme-izbiennym': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-muchenikam-14000-mladencam-ot-iroda-vo-vifleeme-izbiennym.cu.ltxt'), 'ak-akafist-svjatym-muchenikam-14000-mladencam-ot-iroda-vo-vifleeme-izbiennym.cu'),
+  },
+  'ak-akafist-svjatym-muchenikam-adrianu-i-natalii': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-muchenikam-adrianu-i-natalii.cu.ltxt'), 'ak-akafist-svjatym-muchenikam-adrianu-i-natalii.cu'),
+  },
+  'ak-akafist-svjatym-muchenikam-floru-i-lavru': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-muchenikam-floru-i-lavru.cu.ltxt'), 'ak-akafist-svjatym-muchenikam-floru-i-lavru.cu'),
+  },
+  'ak-akafist-svjatym-muchenikam-guriju-samonu-i-avivu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-muchenikam-guriju-samonu-i-avivu.cu.ltxt'), 'ak-akafist-svjatym-muchenikam-guriju-samonu-i-avivu.cu'),
+  },
+  'ak-akafist-svjatym-muchenikam-hrisanfu-i-darii': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-muchenikam-hrisanfu-i-darii.cu.ltxt'), 'ak-akafist-svjatym-muchenikam-hrisanfu-i-darii.cu'),
+  },
+  'ak-akafist-svjatym-pravednym-bogootcam-ioakimu-i-anne': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-pravednym-bogootcam-ioakimu-i-anne.cu.ltxt'), 'ak-akafist-svjatym-pravednym-bogootcam-ioakimu-i-anne.cu'),
+  },
+  'ak-akafist-svjatym-prepodobnym-androniku-i-savve': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-prepodobnym-androniku-i-savve.cu.ltxt'), 'ak-akafist-svjatym-prepodobnym-androniku-i-savve.cu'),
+  },
+  'ak-akafist-svjatym-prepodobnym-sergiju-i-germanu-valaamskim-chudotvorcam': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-prepodobnym-sergiju-i-germanu-valaamskim-chudotvorcam.cu.ltxt'), 'ak-akafist-svjatym-prepodobnym-sergiju-i-germanu-valaamskim-chudotvorcam.cu'),
+  },
+  'ak-akafist-svjatym-ravnoapostolnym-carjam-konstantinu-i-elene': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-ravnoapostolnym-carjam-konstantinu-i-elene.cu.ltxt'), 'ak-akafist-svjatym-ravnoapostolnym-carjam-konstantinu-i-elene.cu'),
+  },
+  'ak-akafist-svjatym-ravnoapostolnym-mefodiju-i-kirillu-uchitelem-slovenskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-ravnoapostolnym-mefodiju-i-kirillu-uchitelem-slovenskim.cu.ltxt'), 'ak-akafist-svjatym-ravnoapostolnym-mefodiju-i-kirillu-uchitelem-slovenskim.cu'),
+  },
+  'ak-akafist-svjatym-semi-otrokam-efesskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-semi-otrokam-efesskim.cu.ltxt'), 'ak-akafist-svjatym-semi-otrokam-efesskim.cu'),
+  },
+  'ak-akafist-svjatym-soroka-muchenikam-sevastijskim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-svjatym-soroka-muchenikam-sevastijskim.cu.ltxt'), 'ak-akafist-svjatym-soroka-muchenikam-sevastijskim.cu'),
+  },
+  'ak-akafist-uspeniju-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-uspeniju-presvjatoj-bogorodicy.cu.ltxt'), 'ak-akafist-uspeniju-presvjatoj-bogorodicy.cu'),
+  },
+  'ak-akafist-v-chest-sretenija-presvjatyja-vladychicy-nasheja-bogorodicy-s-pravednoju-elisavetoju-v-gornem-grade-iudove': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-v-chest-sretenija-presvjatyja-vladychicy-nasheja-bogorodicy-s-pravednoju-elisavetoju-v-gornem-grade-iudove.cu.ltxt'), 'ak-akafist-v-chest-sretenija-presvjatyja-vladychicy-nasheja-bogorodicy-s-pravednoju-elisavetoju-v-gornem-grade-iudove.cu'),
+  },
+  'ak-akafist-velikomucheniku-dimitriju-solunskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-velikomucheniku-dimitriju-solunskomu.cu.ltxt'), 'ak-akafist-velikomucheniku-dimitriju-solunskomu.cu'),
+  },
+  'ak-akafist-velikomucheniku-feodoru-stratilatu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-velikomucheniku-feodoru-stratilatu.cu.ltxt'), 'ak-akafist-velikomucheniku-feodoru-stratilatu.cu'),
+  },
+  'ak-akafist-velikomucheniku-ioannu-novomu-sochavskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-velikomucheniku-ioannu-novomu-sochavskomu.cu.ltxt'), 'ak-akafist-velikomucheniku-ioannu-novomu-sochavskomu.cu'),
+  },
+  'ak-akafist-velikomucheniku-merkuriju-kesarijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-velikomucheniku-merkuriju-kesarijskomu.cu.ltxt'), 'ak-akafist-velikomucheniku-merkuriju-kesarijskomu.cu'),
+  },
+  'ak-akafist-vhodu-gospodnju-v-ierusalim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-vhodu-gospodnju-v-ierusalim.cu.ltxt'), 'ak-akafist-vhodu-gospodnju-v-ierusalim.cu'),
+  },
+  'ak-akafist-voskreseniju-hristovu-inoj': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-voskreseniju-hristovu-inoj.cu.ltxt'), 'ak-akafist-voskreseniju-hristovu-inoj.cu'),
+  },
+  'ak-akafist-voskreseniju-hristovu': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-voskreseniju-hristovu.cu.ltxt'), 'ak-akafist-voskreseniju-hristovu.cu'),
+  },
+  'ak-akafist-vozneseniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-vozneseniju-gospodnju.cu.ltxt'), 'ak-akafist-vozneseniju-gospodnju.cu'),
+  },
+  'ak-akafist-vsem-svjatym-v-zemle-russkoj-prosijavshim': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-vsem-svjatym-v-zemle-russkoj-prosijavshim.cu.ltxt'), 'ak-akafist-vsem-svjatym-v-zemle-russkoj-prosijavshim.cu'),
+  },
+  'ak-akafist-vsemogushhemu-bogu-v-nashestvii-pechali': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-vsemogushhemu-bogu-v-nashestvii-pechali.cu.ltxt'), 'ak-akafist-vsemogushhemu-bogu-v-nashestvii-pechali.cu'),
+  },
+  'ak-akafist-vvedeniju-vo-hram-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-vvedeniju-vo-hram-presvjatoj-bogorodicy.cu.ltxt'), 'ak-akafist-vvedeniju-vo-hram-presvjatoj-bogorodicy.cu'),
+  },
+  'ak-akafist-zhivonosnomu-grobu-i-voskreseniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/ak-akafist-zhivonosnomu-grobu-i-voskreseniju-gospodnju.cu.ltxt'), 'ak-akafist-zhivonosnomu-grobu-i-voskreseniju-gospodnju.cu'),
+  },
   'basil': {
     cu: assetLoader(require('../../../assets/liturgy/basil.cu.ltxt'), 'basil.cu'),
     ru: assetLoader(require('../../../assets/liturgy/basil.ru.ltxt'), 'basil.ru'),
@@ -358,6 +1429,902 @@ export const LOADERS: LiturgyLoaders = {
   'katavasiya-vo-vse-dni-goda': {
     cu: assetLoader(require('../../../assets/liturgy/katavasiya-vo-vse-dni-goda.cu.ltxt'), 'katavasiya-vo-vse-dni-goda.cu'),
     ru: assetLoader(require('../../../assets/liturgy/katavasiya-vo-vse-dni-goda.ru.ltxt'), 'katavasiya-vo-vse-dni-goda.ru'),
+  },
+  'kn-in-kanon-prepolovenija-pjatidesjatnicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-in-kanon-prepolovenija-pjatidesjatnicy.cu.ltxt'), 'kn-in-kanon-prepolovenija-pjatidesjatnicy.cu'),
+  },
+  'kn-kanon-angelu-xranitelyu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-angelu-xranitelyu.cu.ltxt'), 'kn-kanon-angelu-xranitelyu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-angelu-xranitelyu.ru.ltxt'), 'kn-kanon-angelu-xranitelyu.ru'),
+  },
+  'kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu-2-j.cu.ltxt'), 'kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu-2-j.cu'),
+  },
+  'kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu-3': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu-3.cu.ltxt'), 'kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu-3.cu'),
+  },
+  'kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu.cu.ltxt'), 'kn-kanon-apostolu-i-evangelistu-ioannu-bogoslovu.cu'),
+  },
+  'kn-kanon-apostolu-iakovu-bratu-gospodnju-po-ploti-episkopu-ierusalimskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-apostolu-iakovu-bratu-gospodnju-po-ploti-episkopu-ierusalimskomu.cu.ltxt'), 'kn-kanon-apostolu-iakovu-bratu-gospodnju-po-ploti-episkopu-ierusalimskomu.cu'),
+  },
+  'kn-kanon-blagodarstvennyj-presvjatoj-bogorodice': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-blagodarstvennyj-presvjatoj-bogorodice.cu.ltxt'), 'kn-kanon-blagodarstvennyj-presvjatoj-bogorodice.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-blagodarstvennyj-presvjatoj-bogorodice.ru.ltxt'), 'kn-kanon-blagodarstvennyj-presvjatoj-bogorodice.ru'),
+  },
+  'kn-kanon-blagovernomu-carevichu-knjazju-dimitriju-uglichskomu-moskovskomu-3': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-blagovernomu-carevichu-knjazju-dimitriju-uglichskomu-moskovskomu-3.cu.ltxt'), 'kn-kanon-blagovernomu-carevichu-knjazju-dimitriju-uglichskomu-moskovskomu-3.cu'),
+  },
+  'kn-kanon-blagovernomu-carevichu-knjazju-dimitriju-uglichskomu-moskovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-blagovernomu-carevichu-knjazju-dimitriju-uglichskomu-moskovskomu.cu.ltxt'), 'kn-kanon-blagovernomu-carevichu-knjazju-dimitriju-uglichskomu-moskovskomu.cu'),
+  },
+  'kn-kanon-blagovernomu-knjazju-igorju-chernigovskomu-i-kievskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-blagovernomu-knjazju-igorju-chernigovskomu-i-kievskomu.cu.ltxt'), 'kn-kanon-blagovernomu-knjazju-igorju-chernigovskomu-i-kievskomu.cu'),
+  },
+  'kn-kanon-blagovernomu-velikomu-knjazju-vsevolodu-vo-svjatom-kreshhenii-gavriilu-novgorodskomu-pskovskomu-chudotvorcu-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-blagovernomu-velikomu-knjazju-vsevolodu-vo-svjatom-kreshhenii-gavriilu-novgorodskomu-pskovskomu-chudotvorcu-2.cu.ltxt'), 'kn-kanon-blagovernomu-velikomu-knjazju-vsevolodu-vo-svjatom-kreshhenii-gavriilu-novgorodskomu-pskovskomu-chudotvorcu-2.cu'),
+  },
+  'kn-kanon-blagoveshheniju-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-blagoveshheniju-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-blagoveshheniju-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-kanon-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu-2.cu.ltxt'), 'kn-kanon-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu-2.cu'),
+  },
+  'kn-kanon-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-blazhennomu-vasiliju-hrista-radi-jurodivomu-moskovskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-bozhestvennomu-i-poklonjaemomu-presvjatomu-duhu-paraklitu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-bozhestvennomu-i-poklonjaemomu-presvjatomu-duhu-paraklitu.cu.ltxt'), 'kn-kanon-bozhestvennomu-i-poklonjaemomu-presvjatomu-duhu-paraklitu.cu'),
+  },
+  'kn-kanon-bozhestvennym-strastjam-hristovym': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-bozhestvennym-strastjam-hristovym.cu.ltxt'), 'kn-kanon-bozhestvennym-strastjam-hristovym.cu'),
+  },
+  'kn-kanon-byvaemyj-na-razluchenie-dushi-ot-tela-vnegda-chelovek-dolgo-strazhdet': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-byvaemyj-na-razluchenie-dushi-ot-tela-vnegda-chelovek-dolgo-strazhdet.cu.ltxt'), 'kn-kanon-byvaemyj-na-razluchenie-dushi-ot-tela-vnegda-chelovek-dolgo-strazhdet.cu'),
+  },
+  'kn-kanon-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju.cu.ltxt'), 'kn-kanon-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju.ru.ltxt'), 'kn-kanon-chestnomu-i-zhivotvorjashhemu-krestu-gospodnju.ru'),
+  },
+  'kn-kanon-chestnym-nebesnym-silam-bezplotnym': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-chestnym-nebesnym-silam-bezplotnym.cu.ltxt'), 'kn-kanon-chestnym-nebesnym-silam-bezplotnym.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-chestnym-nebesnym-silam-bezplotnym.ru.ltxt'), 'kn-kanon-chestnym-nebesnym-silam-bezplotnym.ru'),
+  },
+  'kn-kanon-indikta': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-indikta.cu.ltxt'), 'kn-kanon-indikta.cu'),
+  },
+  'kn-kanon-izneseniju-chestny-h-drev-zhivotvorjashhego-kresta-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-izneseniju-chestny-h-drev-zhivotvorjashhego-kresta-gospodnja.cu.ltxt'), 'kn-kanon-izneseniju-chestny-h-drev-zhivotvorjashhego-kresta-gospodnja.cu'),
+  },
+  'kn-kanon-kreshheniju-gospodnju-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-kreshheniju-gospodnju-2-j.cu.ltxt'), 'kn-kanon-kreshheniju-gospodnju-2-j.cu'),
+  },
+  'kn-kanon-kreshheniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-kreshheniju-gospodnju.cu.ltxt'), 'kn-kanon-kreshheniju-gospodnju.cu'),
+  },
+  'kn-kanon-molebnyj-i-pohvaly-ko-presvjatoj-bogorodice-v-chest-ee-obraza-koren-iesseev': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-molebnyj-i-pohvaly-ko-presvjatoj-bogorodice-v-chest-ee-obraza-koren-iesseev.ru.ltxt'), 'kn-kanon-molebnyj-i-pohvaly-ko-presvjatoj-bogorodice-v-chest-ee-obraza-koren-iesseev.ru'),
+  },
+  'kn-kanon-molebnyj-ko-presvyatoj-bogorodice': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-molebnyj-ko-presvyatoj-bogorodice.ru.ltxt'), 'kn-kanon-molebnyj-ko-presvyatoj-bogorodice.ru'),
+  },
+  'kn-kanon-muchenicam-vere-nadezhde-ljubovi-i-materi-ih-sofii': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-muchenicam-vere-nadezhde-ljubovi-i-materi-ih-sofii.cu.ltxt'), 'kn-kanon-muchenicam-vere-nadezhde-ljubovi-i-materi-ih-sofii.cu'),
+  },
+  'kn-kanon-na-den-svjatoj-troicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-den-svjatoj-troicy.cu.ltxt'), 'kn-kanon-na-den-svjatoj-troicy.cu'),
+  },
+  'kn-kanon-na-perenesenie-nerukotvornogo-obraza-gospoda-iisusa-hrista': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-perenesenie-nerukotvornogo-obraza-gospoda-iisusa-hrista.cu.ltxt'), 'kn-kanon-na-perenesenie-nerukotvornogo-obraza-gospoda-iisusa-hrista.cu'),
+  },
+  'kn-kanon-na-pervoe-i-vtoroe-obretenie-glavy-predtechi-i-krestitelja-gospodnja-ioanna': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-pervoe-i-vtoroe-obretenie-glavy-predtechi-i-krestitelja-gospodnja-ioanna.cu.ltxt'), 'kn-kanon-na-pervoe-i-vtoroe-obretenie-glavy-predtechi-i-krestitelja-gospodnja-ioanna.cu'),
+  },
+  'kn-kanon-na-polozhenie-chestnoj-rizy-presvjatoj-bogorodicy-vo-vlaherne-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-polozhenie-chestnoj-rizy-presvjatoj-bogorodicy-vo-vlaherne-2-j.cu.ltxt'), 'kn-kanon-na-polozhenie-chestnoj-rizy-presvjatoj-bogorodicy-vo-vlaherne-2-j.cu'),
+  },
+  'kn-kanon-na-polozhenie-chestnoj-rizy-presvjatoj-bogorodicy-vo-vlaherne': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-polozhenie-chestnoj-rizy-presvjatoj-bogorodicy-vo-vlaherne.cu.ltxt'), 'kn-kanon-na-polozhenie-chestnoj-rizy-presvjatoj-bogorodicy-vo-vlaherne.cu'),
+  },
+  'kn-kanon-na-rozhdestvo-predtechi-i-krestitelja-gospodnja-ioanna-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-rozhdestvo-predtechi-i-krestitelja-gospodnja-ioanna-2-j.cu.ltxt'), 'kn-kanon-na-rozhdestvo-predtechi-i-krestitelja-gospodnja-ioanna-2-j.cu'),
+  },
+  'kn-kanon-na-rozhdestvo-predtechi-i-krestitelja-gospodnja-ioanna': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-rozhdestvo-predtechi-i-krestitelja-gospodnja-ioanna.cu.ltxt'), 'kn-kanon-na-rozhdestvo-predtechi-i-krestitelja-gospodnja-ioanna.cu'),
+  },
+  'kn-kanon-na-trete-obretenie-glavy-proroka-predtechi-i-krestitelja-gospodnja-ioanna': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-trete-obretenie-glavy-proroka-predtechi-i-krestitelja-gospodnja-ioanna.cu.ltxt'), 'kn-kanon-na-trete-obretenie-glavy-proroka-predtechi-i-krestitelja-gospodnja-ioanna.cu'),
+  },
+  'kn-kanon-na-vozdvizhenie-kresta-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-na-vozdvizhenie-kresta-gospodnja.cu.ltxt'), 'kn-kanon-na-vozdvizhenie-kresta-gospodnja.cu'),
+  },
+  'kn-kanon-o-raspjatii-gospodni-i-na-plach-presvjatyja-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-o-raspjatii-gospodni-i-na-plach-presvjatyja-bogorodicy.cu.ltxt'), 'kn-kanon-o-raspjatii-gospodni-i-na-plach-presvjatyja-bogorodicy.cu'),
+  },
+  'kn-kanon-o-usopshih': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-o-usopshih.cu.ltxt'), 'kn-kanon-o-usopshih.cu'),
+  },
+  'kn-kanon-obrezaniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-obrezaniju-gospodnju.cu.ltxt'), 'kn-kanon-obrezaniju-gospodnju.cu'),
+  },
+  'kn-kanon-pokajannyj-ko-gospodu-iisusu-hristu-tvorenie-ieromonaha-vasilija-rosljakova': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-pokajannyj-ko-gospodu-iisusu-hristu-tvorenie-ieromonaha-vasilija-rosljakova.cu.ltxt'), 'kn-kanon-pokajannyj-ko-gospodu-iisusu-hristu-tvorenie-ieromonaha-vasilija-rosljakova.cu'),
+  },
+  'kn-kanon-pokajannyj-ko-presvjatoj-bogorodice': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-pokajannyj-ko-presvjatoj-bogorodice.cu.ltxt'), 'kn-kanon-pokajannyj-ko-presvjatoj-bogorodice.cu'),
+  },
+  'kn-kanon-pokayannyj-ko-gospodu-nashemu-iisusu-xristu': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-pokayannyj-ko-gospodu-nashemu-iisusu-xristu.ru.ltxt'), 'kn-kanon-pokayannyj-ko-gospodu-nashemu-iisusu-xristu.ru'),
+  },
+  'kn-kanon-pokrovu-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-pokrovu-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-pokrovu-presvjatoj-bogorodicy.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-pokrovu-presvjatoj-bogorodicy.ru.ltxt'), 'kn-kanon-pokrovu-presvjatoj-bogorodicy.ru'),
+  },
+  'kn-kanon-poprazdnstvu-blagoveshhenija-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-poprazdnstvu-blagoveshhenija-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-poprazdnstvu-blagoveshhenija-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-kanon-pravednomu-ioannu-russkomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-pravednomu-ioannu-russkomu.cu.ltxt'), 'kn-kanon-pravednomu-ioannu-russkomu.cu'),
+  },
+  'kn-kanon-predprazdnstvu-blagoveshhenija-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-blagoveshhenija-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-predprazdnstvu-blagoveshhenija-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-kanon-predprazdnstvu-iznesenija-chestnyh-drev-zhivotvorjashhego-kresta-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-iznesenija-chestnyh-drev-zhivotvorjashhego-kresta-gospodnja.cu.ltxt'), 'kn-kanon-predprazdnstvu-iznesenija-chestnyh-drev-zhivotvorjashhego-kresta-gospodnja.cu'),
+  },
+  'kn-kanon-predprazdnstvu-preobrazhenija-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-preobrazhenija-gospodnja.cu.ltxt'), 'kn-kanon-predprazdnstvu-preobrazhenija-gospodnja.cu'),
+  },
+  'kn-kanon-predprazdnstvu-prosveshhenija-bogojavlenija-gospodnja-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-prosveshhenija-bogojavlenija-gospodnja-2.cu.ltxt'), 'kn-kanon-predprazdnstvu-prosveshhenija-bogojavlenija-gospodnja-2.cu'),
+  },
+  'kn-kanon-predprazdnstvu-prosveshhenija-bogojavlenija-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-prosveshhenija-bogojavlenija-gospodnja.cu.ltxt'), 'kn-kanon-predprazdnstvu-prosveshhenija-bogojavlenija-gospodnja.cu'),
+  },
+  'kn-kanon-predprazdnstvu-prosveshhenija': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-prosveshhenija.cu.ltxt'), 'kn-kanon-predprazdnstvu-prosveshhenija.cu'),
+  },
+  'kn-kanon-predprazdnstvu-rozhdestva-hristova': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-rozhdestva-hristova.cu.ltxt'), 'kn-kanon-predprazdnstvu-rozhdestva-hristova.cu'),
+  },
+  'kn-kanon-predprazdnstvu-rozhdestva-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-rozhdestva-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-predprazdnstvu-rozhdestva-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-kanon-predprazdnstvu-sretenija-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-sretenija-gospodnja.cu.ltxt'), 'kn-kanon-predprazdnstvu-sretenija-gospodnja.cu'),
+  },
+  'kn-kanon-predprazdnstvu-uspenija-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-uspenija-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-predprazdnstvu-uspenija-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-kanon-predprazdnstvu-vozdvizhenija-kresta-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-vozdvizhenija-kresta-gospodnja.cu.ltxt'), 'kn-kanon-predprazdnstvu-vozdvizhenija-kresta-gospodnja.cu'),
+  },
+  'kn-kanon-predprazdnstvu-vvedenija-vhoda-vo-hram-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-predprazdnstvu-vvedenija-vhoda-vo-hram-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-predprazdnstvu-vvedenija-vhoda-vo-hram-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-kanon-preobrazheniju-gospoda-nashego-iisusa-hrista-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-preobrazheniju-gospoda-nashego-iisusa-hrista-2.cu.ltxt'), 'kn-kanon-preobrazheniju-gospoda-nashego-iisusa-hrista-2.cu'),
+  },
+  'kn-kanon-preobrazheniju-gospoda-nashego-iisusa-hrista': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-preobrazheniju-gospoda-nashego-iisusa-hrista.cu.ltxt'), 'kn-kanon-preobrazheniju-gospoda-nashego-iisusa-hrista.cu'),
+  },
+  'kn-kanon-prepodobnoj-evfrosinii-polockoj-igumenii': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnoj-evfrosinii-polockoj-igumenii.cu.ltxt'), 'kn-kanon-prepodobnoj-evfrosinii-polockoj-igumenii.cu'),
+  },
+  'kn-kanon-prepodobnoj-evfrosinii-suzdalskoj-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnoj-evfrosinii-suzdalskoj-2-j.cu.ltxt'), 'kn-kanon-prepodobnoj-evfrosinii-suzdalskoj-2-j.cu'),
+  },
+  'kn-kanon-prepodobnoj-evfrosinii-suzdalskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnoj-evfrosinii-suzdalskoj.cu.ltxt'), 'kn-kanon-prepodobnoj-evfrosinii-suzdalskoj.cu'),
+  },
+  'kn-kanon-prepodobnoj-evfrosinii-velikoj-knjagine-moskovskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnoj-evfrosinii-velikoj-knjagine-moskovskoj.cu.ltxt'), 'kn-kanon-prepodobnoj-evfrosinii-velikoj-knjagine-moskovskoj.cu'),
+  },
+  'kn-kanon-prepodobnoj-marii-egipetskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnoj-marii-egipetskoj.cu.ltxt'), 'kn-kanon-prepodobnoj-marii-egipetskoj.cu'),
+  },
+  'kn-kanon-prepodobnoj-velikoj-knjagine-anne-kashinskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnoj-velikoj-knjagine-anne-kashinskoj.cu.ltxt'), 'kn-kanon-prepodobnoj-velikoj-knjagine-anne-kashinskoj.cu'),
+  },
+  'kn-kanon-prepodobnomu-aleksandru-oshevenskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-aleksandru-oshevenskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-aleksandru-oshevenskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-aleksiju-cheloveku-bozhiju': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-aleksiju-cheloveku-bozhiju.cu.ltxt'), 'kn-kanon-prepodobnomu-aleksiju-cheloveku-bozhiju.cu'),
+  },
+  'kn-kanon-prepodobnomu-amvrosiju-optinskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-amvrosiju-optinskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-amvrosiju-optinskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-antoniju-igumenu-dymskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-antoniju-igumenu-dymskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-antoniju-igumenu-dymskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-antoniju-pecherskomu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-antoniju-pecherskomu-2-j.cu.ltxt'), 'kn-kanon-prepodobnomu-antoniju-pecherskomu-2-j.cu'),
+  },
+  'kn-kanon-prepodobnomu-antoniju-pecherskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-antoniju-pecherskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-antoniju-pecherskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-antoniju-rimljaninu-novgorodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-antoniju-rimljaninu-novgorodskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-antoniju-rimljaninu-novgorodskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-aristokliju-amvrosievu-moskovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-aristokliju-amvrosievu-moskovskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-aristokliju-amvrosievu-moskovskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-arkadiju-vjazemskomu-novotorzhskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-arkadiju-vjazemskomu-novotorzhskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-arkadiju-vjazemskomu-novotorzhskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-arseniju-komelskomu-vologodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-arseniju-komelskomu-vologodskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-arseniju-komelskomu-vologodskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-avraamiju-galichskomu-chuhlomskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-avraamiju-galichskomu-chuhlomskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-avraamiju-galichskomu-chuhlomskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-avraamiju-smolenskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-avraamiju-smolenskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-avraamiju-smolenskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu-2-j.cu.ltxt'), 'kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu-2-j.cu'),
+  },
+  'kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu-3-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu-3-j.cu.ltxt'), 'kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu-3-j.cu'),
+  },
+  'kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-blagovernomu-velikomu-knjazju-daniilu-moskovskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-daniilu-perejaslavskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-daniilu-perejaslavskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-daniilu-perejaslavskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-daniilu-stolpniku': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-daniilu-stolpniku.cu.ltxt'), 'kn-kanon-prepodobnomu-daniilu-stolpniku.cu'),
+  },
+  'kn-kanon-prepodobnomu-efremu-novotorzhskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-efremu-novotorzhskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-efremu-novotorzhskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-eleazaru-anzerskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-eleazaru-anzerskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-eleazaru-anzerskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-evfimiju-arhimandritu-suzdalskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-evfimiju-arhimandritu-suzdalskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-evfimiju-arhimandritu-suzdalskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-evfimiju-velikomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-evfimiju-velikomu.cu.ltxt'), 'kn-kanon-prepodobnomu-evfimiju-velikomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-gavriilu-samtavrijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-gavriilu-samtavrijskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-gavriilu-samtavrijskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-gerasimu-iordanskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-gerasimu-iordanskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-gerasimu-iordanskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-gerasimu-vologodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-gerasimu-vologodskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-gerasimu-vologodskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-germanu-aljaskinskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-germanu-aljaskinskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-germanu-aljaskinskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-germanu-soloveckomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-germanu-soloveckomu.cu.ltxt'), 'kn-kanon-prepodobnomu-germanu-soloveckomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-grigoriju-chudotvorcu-pecherskomu-v-blizhnih-peshherah-pochivajushhemu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-grigoriju-chudotvorcu-pecherskomu-v-blizhnih-peshherah-pochivajushhemu.cu.ltxt'), 'kn-kanon-prepodobnomu-grigoriju-chudotvorcu-pecherskomu-v-blizhnih-peshherah-pochivajushhemu.cu'),
+  },
+  'kn-kanon-prepodobnomu-i-bogonosnomu-otcu-nashemu-maksimu-greku': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-i-bogonosnomu-otcu-nashemu-maksimu-greku.cu.ltxt'), 'kn-kanon-prepodobnomu-i-bogonosnomu-otcu-nashemu-maksimu-greku.cu'),
+  },
+  'kn-kanon-prepodobnomu-iakovu-zheleznoborovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-iakovu-zheleznoborovskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-iakovu-zheleznoborovskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-iovu-pochaevskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-iovu-pochaevskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-iovu-pochaevskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-kirillu-igumenu-chelmogorskomu-i-kargopolskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-kirillu-igumenu-chelmogorskomu-i-kargopolskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-kirillu-igumenu-chelmogorskomu-i-kargopolskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-korniliju-igumenu-komelskomu-vologodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-korniliju-igumenu-komelskomu-vologodskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-korniliju-igumenu-komelskomu-vologodskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-makariju-igumenu-kaljazinskomu-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-makariju-igumenu-kaljazinskomu-2.cu.ltxt'), 'kn-kanon-prepodobnomu-makariju-igumenu-kaljazinskomu-2.cu'),
+  },
+  'kn-kanon-prepodobnomu-makariju-rimljaninu-novgorodskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-makariju-rimljaninu-novgorodskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-makariju-rimljaninu-novgorodskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-makariju-zhabynskomu-belevskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-makariju-zhabynskomu-belevskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-prepodobnomu-makariju-zhabynskomu-belevskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-prepodobnomu-paisiju-velikomu-ob-izbavlenii-ot-muk-umershih-bez-pokajanija': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-paisiju-velikomu-ob-izbavlenii-ot-muk-umershih-bez-pokajanija.ru.ltxt'), 'kn-kanon-prepodobnomu-paisiju-velikomu-ob-izbavlenii-ot-muk-umershih-bez-pokajanija.ru'),
+  },
+  'kn-kanon-prepodobnomu-varlaamu-hutynskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-varlaamu-hutynskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-varlaamu-hutynskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-varnave-gefsimanskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-varnave-gefsimanskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-varnave-gefsimanskomu.cu'),
+  },
+  'kn-kanon-prepodobnomu-venediktu-nursijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomu-venediktu-nursijskomu.cu.ltxt'), 'kn-kanon-prepodobnomu-venediktu-nursijskomu.cu'),
+  },
+  'kn-kanon-prepodobnomuchenice-velikoj-knjagine-elisavete': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomuchenice-velikoj-knjagine-elisavete.cu.ltxt'), 'kn-kanon-prepodobnomuchenice-velikoj-knjagine-elisavete.cu'),
+  },
+  'kn-kanon-prepodobnomucheniku-evfrosinu-sinozerskomu-novgorodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomucheniku-evfrosinu-sinozerskomu-novgorodskomu.cu.ltxt'), 'kn-kanon-prepodobnomucheniku-evfrosinu-sinozerskomu-novgorodskomu.cu'),
+  },
+  'kn-kanon-prepodobnomucheniku-korniliju-igumenu-pskovo-pecherskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnomucheniku-korniliju-igumenu-pskovo-pecherskomu.cu.ltxt'), 'kn-kanon-prepodobnomucheniku-korniliju-igumenu-pskovo-pecherskomu.cu'),
+  },
+  'kn-kanon-prepodobnym-antoniju-i-feodosiju-pecherskim-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnym-antoniju-i-feodosiju-pecherskim-2-j.cu.ltxt'), 'kn-kanon-prepodobnym-antoniju-i-feodosiju-pecherskim-2-j.cu'),
+  },
+  'kn-kanon-prepodobnym-antoniju-i-feodosiju-pecherskim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnym-antoniju-i-feodosiju-pecherskim.cu.ltxt'), 'kn-kanon-prepodobnym-antoniju-i-feodosiju-pecherskim.cu'),
+  },
+  'kn-kanon-prepodobnym-kirillu-i-marii-roditeljam-prepodobnogo-sergija-radonezhskogo': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepodobnym-kirillu-i-marii-roditeljam-prepodobnogo-sergija-radonezhskogo.cu.ltxt'), 'kn-kanon-prepodobnym-kirillu-i-marii-roditeljam-prepodobnogo-sergija-radonezhskogo.cu'),
+  },
+  'kn-kanon-prepolovenija-pjatidesjatnicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-prepolovenija-pjatidesjatnicy.cu.ltxt'), 'kn-kanon-prepolovenija-pjatidesjatnicy.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica-pevaemyj-vo-svjatuju-pjatidesjatnicu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica-pevaemyj-vo-svjatuju-pjatidesjatnicu.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica-pevaemyj-vo-svjatuju-pjatidesjatnicu.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-izbavitelnica.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica-2-j.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica-2-j.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica.ru.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-skoroposlushnica.ru'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie-2-j.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie-2-j.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie-kurskaja-korennaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie-kurskaja-korennaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie-kurskaja-korennaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pered-ikonoj-znamenie.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-ahtyrskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-ahtyrskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-ahtyrskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja-2-j.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja-2-j.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-bogoljubskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja-2-j.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja-2-j.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-derzhavnaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-donskaja-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-donskaja-2-j.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-donskaja-2-j.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-donskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-donskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-donskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-dostojno-est': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-dostojno-est.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-dostojno-est.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-eleckaja-harkovskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-eleckaja-harkovskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-eleckaja-harkovskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja-2.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja-2.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja-2.ru.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja-2.ru'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja.ru.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-feodorovskaja.ru'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-gruzinskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-gruzinskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-gruzinskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-iverskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-iverskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-iverskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kazanskaja-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kazanskaja-2.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kazanskaja-2.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kazanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kazanskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kazanskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-konevskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-konevskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-konevskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kozelshhanskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kozelshhanskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-kozelshhanskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-ljubechskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-ljubechskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-ljubechskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-maksimovskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-maksimovskoj.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-maksimovskoj.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica-2.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica-2.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-mlekopitatelnica.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost-2-j.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost-2-j.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-nechajannaja-radost.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-neopalimaja-kupina': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-neopalimaja-kupina.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-neopalimaja-kupina.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-neupivaemaja-chasha': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-neupivaemaja-chasha.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-neupivaemaja-chasha.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-odigitrija': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-odigitrija.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-odigitrija.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-otrado-ili-uteshenie': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-otrado-ili-uteshenie.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-otrado-ili-uteshenie.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pecherskaja-nerukotvorennaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pecherskaja-nerukotvorennaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pecherskaja-nerukotvorennaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja-2.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja-2.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-pochaevskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sebezhskoj-nazyvaemoj-umilenie': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sebezhskoj-nazyvaemoj-umilenie.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sebezhskoj-nazyvaemoj-umilenie.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sladkoe-lobzanie': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sladkoe-lobzanie.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sladkoe-lobzanie.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sporitelnica-hlebov': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sporitelnica-hlebov.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sporitelnica-hlebov.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sporitelnica-hlebov.ru.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sporitelnica-hlebov.ru'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sporuchnica-greshnyh': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sporuchnica-greshnyh.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-sporuchnica-greshnyh.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-svenskaja-pecherskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-svenskaja-pecherskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-svenskaja-pecherskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja-2-j.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja-2-j.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tihvinskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tolgskaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tolgskaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-tolgskaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-troeruchica': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-troeruchica.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-troeruchica.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-troeruchica.ru.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-troeruchica.ru'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-umilenie-serafimo-diveevskoj-vseh-radostej-radost': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-umilenie-serafimo-diveevskoj-vseh-radostej-radost.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-umilenie-serafimo-diveevskoj-vseh-radostej-radost.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-umilenie-serafimo-diveevskoj-vseh-radostej-radost.ru.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-umilenie-serafimo-diveevskoj-vseh-radostej-radost.ru'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-umjagchenie-zlyh-serdec-simeonovo-prorechenie': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-umjagchenie-zlyh-serdec-simeonovo-prorechenie.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-umjagchenie-zlyh-serdec-simeonovo-prorechenie.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-utoli-moja-pechali': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-utoli-moja-pechali.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-utoli-moja-pechali.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-utoli-moja-pechali.ru.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-utoli-moja-pechali.ru'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vladimirskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vladimirskoj.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vladimirskoj.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseblazhennaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseblazhennaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseblazhennaja.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vsecarica': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vsecarica.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vsecarica.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vsecarica.ru.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vsecarica.ru'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost-2-j.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost-2-j.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vseh-skorbjashhih-radost.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-vzyskanie-pogibshih.cu'),
+  },
+  'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-zhirovickaja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvjatoj-bogorodice-pred-ikonoj-zhirovickaja.cu.ltxt'), 'kn-kanon-presvjatoj-bogorodice-pred-ikonoj-zhirovickaja.cu'),
+  },
+  'kn-kanon-presvyatoj-bogorodicze-pred-ikonoj-sladkoe-lobzanie-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-presvyatoj-bogorodicze-pred-ikonoj-sladkoe-lobzanie-2.cu.ltxt'), 'kn-kanon-presvyatoj-bogorodicze-pred-ikonoj-sladkoe-lobzanie-2.cu'),
+  },
+  'kn-kanon-ravnoapostolnoj-marii-magdaline': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-ravnoapostolnoj-marii-magdaline.cu.ltxt'), 'kn-kanon-ravnoapostolnoj-marii-magdaline.cu'),
+  },
+  'kn-kanon-rozhdestvu-hristovu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-hristovu-2-j.cu.ltxt'), 'kn-kanon-rozhdestvu-hristovu-2-j.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-hristovu-2-j.ru.ltxt'), 'kn-kanon-rozhdestvu-hristovu-2-j.ru'),
+  },
+  'kn-kanon-rozhdestvu-hristovu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-hristovu.cu.ltxt'), 'kn-kanon-rozhdestvu-hristovu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-hristovu.ru.ltxt'), 'kn-kanon-rozhdestvu-hristovu.ru'),
+  },
+  'kn-kanon-rozhdestvu-ioanna-predtechi': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-ioanna-predtechi.cu.ltxt'), 'kn-kanon-rozhdestvu-ioanna-predtechi.cu'),
+  },
+  'kn-kanon-rozhdestvu-presvjatoj-bogorodicy-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-presvjatoj-bogorodicy-2-j.cu.ltxt'), 'kn-kanon-rozhdestvu-presvjatoj-bogorodicy-2-j.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-presvjatoj-bogorodicy-2-j.ru.ltxt'), 'kn-kanon-rozhdestvu-presvjatoj-bogorodicy-2-j.ru'),
+  },
+  'kn-kanon-rozhdestvu-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-rozhdestvu-presvjatoj-bogorodicy.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-rozhdestvu-presvjatoj-bogorodicy.ru.ltxt'), 'kn-kanon-rozhdestvu-presvjatoj-bogorodicy.ru'),
+  },
+  'kn-kanon-soboru-svjatogo-proroka-predtechi-i-krestitelja-ioanna': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-soboru-svjatogo-proroka-predtechi-i-krestitelja-ioanna.cu.ltxt'), 'kn-kanon-soboru-svjatogo-proroka-predtechi-i-krestitelja-ioanna.cu'),
+  },
+  'kn-kanon-sreteniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-sreteniju-gospodnju.cu.ltxt'), 'kn-kanon-sreteniju-gospodnju.cu'),
+  },
+  'kn-kanon-strastoterpcam-blagovernym-knjazjam-borisu-i-glebu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-strastoterpcam-blagovernym-knjazjam-borisu-i-glebu-2-j.cu.ltxt'), 'kn-kanon-strastoterpcam-blagovernym-knjazjam-borisu-i-glebu-2-j.cu'),
+  },
+  'kn-kanon-strastoterpcam-velikim-knjazjam-borisu-i-glebu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-strastoterpcam-velikim-knjazjam-borisu-i-glebu.cu.ltxt'), 'kn-kanon-strastoterpcam-velikim-knjazjam-borisu-i-glebu.cu'),
+  },
+  'kn-kanon-svjashhennomucheniku-antipe-episkopu-pergamskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjashhennomucheniku-antipe-episkopu-pergamskomu.cu.ltxt'), 'kn-kanon-svjashhennomucheniku-antipe-episkopu-pergamskomu.cu'),
+  },
+  'kn-kanon-svjashhennomucheniku-ermogenu-patriarhu-moskovskomu-i-vseja-rusi': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjashhennomucheniku-ermogenu-patriarhu-moskovskomu-i-vseja-rusi.cu.ltxt'), 'kn-kanon-svjashhennomucheniku-ermogenu-patriarhu-moskovskomu-i-vseja-rusi.cu'),
+  },
+  'kn-kanon-svjashhennomucheniku-ilarionu-verejskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjashhennomucheniku-ilarionu-verejskomu.cu.ltxt'), 'kn-kanon-svjashhennomucheniku-ilarionu-verejskomu.cu'),
+  },
+  'kn-kanon-svjashhennomucheniku-kiprianu-i-muchenice-iustine': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjashhennomucheniku-kiprianu-i-muchenice-iustine.cu.ltxt'), 'kn-kanon-svjashhennomucheniku-kiprianu-i-muchenice-iustine.cu'),
+  },
+  'kn-kanon-svjashhennomucheniku-veniaminu-petrogradskomu-i-izhe-s-nim-postradavshim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjashhennomucheniku-veniaminu-petrogradskomu-i-izhe-s-nim-postradavshim.cu.ltxt'), 'kn-kanon-svjashhennomucheniku-veniaminu-petrogradskomu-i-izhe-s-nim-postradavshim.cu'),
+  },
+  'kn-kanon-svjashhennomucheniku-vladimiru-mitropolitu-kievskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjashhennomucheniku-vladimiru-mitropolitu-kievskomu.cu.ltxt'), 'kn-kanon-svjashhennomucheniku-vladimiru-mitropolitu-kievskomu.cu'),
+  },
+  'kn-kanon-svjashhennomucheniku-vlasiju-sevastijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjashhennomucheniku-vlasiju-sevastijskomu.cu.ltxt'), 'kn-kanon-svjashhennomucheniku-vlasiju-sevastijskomu.cu'),
+  },
+  'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-1': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-1.cu.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-1.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-1.ru.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-1.ru'),
+  },
+  'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-2': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-2.ru.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-2.ru'),
+  },
+  'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-3': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-3.ru.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-3.ru'),
+  },
+  'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-4': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-4.ru.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-4.ru'),
+  },
+  'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-5': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-5.ru.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-5.ru'),
+  },
+  'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-6': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-6.cu.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-6.cu'),
+  },
+  'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-7': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-7.cu.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-7.cu'),
+  },
+  'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-8': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-8.cu.ltxt'), 'kn-kanon-svjatej-i-zhivonachalnoj-troice-glas-8.cu'),
+  },
+  'kn-kanon-svjatiteljam-gerasimu-pitirimu-ione-episkopam-velikopermskim-chudotvorcam': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatiteljam-gerasimu-pitirimu-ione-episkopam-velikopermskim-chudotvorcam.cu.ltxt'), 'kn-kanon-svjatiteljam-gerasimu-pitirimu-ione-episkopam-velikopermskim-chudotvorcam.cu'),
+  },
+  'kn-kanon-svjatitelju-afanasiju-iii-patriarhu-konstantinopolskomu-lubenskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-afanasiju-iii-patriarhu-konstantinopolskomu-lubenskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-svjatitelju-afanasiju-iii-patriarhu-konstantinopolskomu-lubenskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-svjatitelju-afanasiju-kovrovskomu-ispovedniku': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-afanasiju-kovrovskomu-ispovedniku.cu.ltxt'), 'kn-kanon-svjatitelju-afanasiju-kovrovskomu-ispovedniku.cu'),
+  },
+  'kn-kanon-svjatitelju-arseniju-tverskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-arseniju-tverskomu.cu.ltxt'), 'kn-kanon-svjatitelju-arseniju-tverskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-dimitriju-rostovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-dimitriju-rostovskomu.cu.ltxt'), 'kn-kanon-svjatitelju-dimitriju-rostovskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-evfimiju-arhiepiskopu-novgorodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-evfimiju-arhiepiskopu-novgorodskomu.cu.ltxt'), 'kn-kanon-svjatitelju-evfimiju-arhiepiskopu-novgorodskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-grigoriju-palame-arhiepiskopu-solunskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-grigoriju-palame-arhiepiskopu-solunskomu.cu.ltxt'), 'kn-kanon-svjatitelju-grigoriju-palame-arhiepiskopu-solunskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-guriju-kazanskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-guriju-kazanskomu.cu.ltxt'), 'kn-kanon-svjatitelju-guriju-kazanskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-iakovu-episkopu-rostovskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-iakovu-episkopu-rostovskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-svjatitelju-iakovu-episkopu-rostovskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-svjatitelju-ignatiju-brjanchaninovu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-ignatiju-brjanchaninovu.cu.ltxt'), 'kn-kanon-svjatitelju-ignatiju-brjanchaninovu.cu'),
+  },
+  'kn-kanon-svjatitelju-innokentiju-episkopu-irkutskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-innokentiju-episkopu-irkutskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-svjatitelju-innokentiju-episkopu-irkutskomu-chudotvorcu.cu'),
+  },
+  'kn-kanon-svjatitelju-innokentiju-veniaminovu-mitropolitu-moskovskomu-apostolu-ameriki-i-aljaski': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-innokentiju-veniaminovu-mitropolitu-moskovskomu-apostolu-ameriki-i-aljaski.cu.ltxt'), 'kn-kanon-svjatitelju-innokentiju-veniaminovu-mitropolitu-moskovskomu-apostolu-ameriki-i-aljaski.cu'),
+  },
+  'kn-kanon-svjatitelju-ioannu-milostivomu-patriarhu-aleksandrijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-ioannu-milostivomu-patriarhu-aleksandrijskomu.cu.ltxt'), 'kn-kanon-svjatitelju-ioannu-milostivomu-patriarhu-aleksandrijskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-ioasafu-belgorodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-ioasafu-belgorodskomu.cu.ltxt'), 'kn-kanon-svjatitelju-ioasafu-belgorodskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-makariju-mitropolitu-moskovskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-makariju-mitropolitu-moskovskomu.cu.ltxt'), 'kn-kanon-svjatitelju-makariju-mitropolitu-moskovskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-meletiju-harkovskomu-i-ahtyrskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-meletiju-harkovskomu-i-ahtyrskomu.cu.ltxt'), 'kn-kanon-svjatitelju-meletiju-harkovskomu-i-ahtyrskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-spiridonu-episkopu-trimifuntskomu-chudotvorcu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-spiridonu-episkopu-trimifuntskomu-chudotvorcu.cu.ltxt'), 'kn-kanon-svjatitelju-spiridonu-episkopu-trimifuntskomu-chudotvorcu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-spiridonu-episkopu-trimifuntskomu-chudotvorcu.ru.ltxt'), 'kn-kanon-svjatitelju-spiridonu-episkopu-trimifuntskomu-chudotvorcu.ru'),
+  },
+  'kn-kanon-svjatitelju-varsonofiju-tverskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-varsonofiju-tverskomu.cu.ltxt'), 'kn-kanon-svjatitelju-varsonofiju-tverskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-vasiliju-episkopu-rjazanskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-vasiliju-episkopu-rjazanskomu.cu.ltxt'), 'kn-kanon-svjatitelju-vasiliju-episkopu-rjazanskomu.cu'),
+  },
+  'kn-kanon-svjatitelju-vasiliju-ostrozhskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatitelju-vasiliju-ostrozhskomu.cu.ltxt'), 'kn-kanon-svjatitelju-vasiliju-ostrozhskomu.cu'),
+  },
+  'kn-kanon-svjatoj-blazhennoj-ksenii-peterburgskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatoj-blazhennoj-ksenii-peterburgskoj.cu.ltxt'), 'kn-kanon-svjatoj-blazhennoj-ksenii-peterburgskoj.cu'),
+  },
+  'kn-kanon-svjatoj-muchenice-ljudmile-knjagine-cheshskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatoj-muchenice-ljudmile-knjagine-cheshskoj.cu.ltxt'), 'kn-kanon-svjatoj-muchenice-ljudmile-knjagine-cheshskoj.cu'),
+  },
+  'kn-kanon-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj.cu.ltxt'), 'kn-kanon-svjatoj-pravednoj-iulianii-lazarevskoj-muromskoj.cu'),
+  },
+  'kn-kanon-svjatoj-pravednoj-matrone-moskovskoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatoj-pravednoj-matrone-moskovskoj.cu.ltxt'), 'kn-kanon-svjatoj-pravednoj-matrone-moskovskoj.cu'),
+  },
+  'kn-kanon-svjatoj-velikomuchenice-varvare': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatoj-velikomuchenice-varvare.ru.ltxt'), 'kn-kanon-svjatoj-velikomuchenice-varvare.ru'),
+  },
+  'kn-kanon-svjatomu-apostolu-andreju-pervozvannomu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-apostolu-andreju-pervozvannomu-2-j.cu.ltxt'), 'kn-kanon-svjatomu-apostolu-andreju-pervozvannomu-2-j.cu'),
+  },
+  'kn-kanon-svjatomu-apostolu-andreju-pervozvannomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-apostolu-andreju-pervozvannomu.cu.ltxt'), 'kn-kanon-svjatomu-apostolu-andreju-pervozvannomu.cu'),
+  },
+  'kn-kanon-svjatomu-apostolu-i-evangelistu-luke': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-apostolu-i-evangelistu-luke.cu.ltxt'), 'kn-kanon-svjatomu-apostolu-i-evangelistu-luke.cu'),
+  },
+  'kn-kanon-svjatomu-apostolu-i-evangelistu-marku': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-apostolu-i-evangelistu-marku.cu.ltxt'), 'kn-kanon-svjatomu-apostolu-i-evangelistu-marku.cu'),
+  },
+  'kn-kanon-svjatomu-apostolu-pavlu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-apostolu-pavlu.cu.ltxt'), 'kn-kanon-svjatomu-apostolu-pavlu.cu'),
+  },
+  'kn-kanon-svjatomu-apostolu-petru': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-apostolu-petru.cu.ltxt'), 'kn-kanon-svjatomu-apostolu-petru.cu'),
+  },
+  'kn-kanon-svjatomu-blagovernomu-carevichu-dimitriju-uglichskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-blagovernomu-carevichu-dimitriju-uglichskomu.cu.ltxt'), 'kn-kanon-svjatomu-blagovernomu-carevichu-dimitriju-uglichskomu.cu'),
+  },
+  'kn-kanon-svjatomu-blagovernomu-knjazju-dimitriju-donskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-blagovernomu-knjazju-dimitriju-donskomu.cu.ltxt'), 'kn-kanon-svjatomu-blagovernomu-knjazju-dimitriju-donskomu.cu'),
+  },
+  'kn-kanon-svjatomu-blagovernomu-knjazju-georgiju-vladimirskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-blagovernomu-knjazju-georgiju-vladimirskomu.cu.ltxt'), 'kn-kanon-svjatomu-blagovernomu-knjazju-georgiju-vladimirskomu.cu'),
+  },
+  'kn-kanon-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju-2-j.cu.ltxt'), 'kn-kanon-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju-2-j.cu'),
+  },
+  'kn-kanon-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju.cu.ltxt'), 'kn-kanon-svjatomu-blagovernomu-velikomu-knjazju-aleksandru-nevskomu-v-shime-aleksiju.cu'),
+  },
+  'kn-kanon-svjatomu-duhu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-duhu.cu.ltxt'), 'kn-kanon-svjatomu-duhu.cu'),
+  },
+  'kn-kanon-svjatomu-mucheniku-gavriilu-belostokskomu-sluckomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-mucheniku-gavriilu-belostokskomu-sluckomu.cu.ltxt'), 'kn-kanon-svjatomu-mucheniku-gavriilu-belostokskomu-sluckomu.cu'),
+  },
+  'kn-kanon-svjatomu-mucheniku-ioannu-voinu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-mucheniku-ioannu-voinu-2-j.cu.ltxt'), 'kn-kanon-svjatomu-mucheniku-ioannu-voinu-2-j.cu'),
+  },
+  'kn-kanon-svjatomu-mucheniku-ioannu-voinu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-mucheniku-ioannu-voinu.cu.ltxt'), 'kn-kanon-svjatomu-mucheniku-ioannu-voinu.cu'),
+  },
+  'kn-kanon-svjatomu-mucheniku-vonifatiju': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-mucheniku-vonifatiju.cu.ltxt'), 'kn-kanon-svjatomu-mucheniku-vonifatiju.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-mucheniku-vonifatiju.ru.ltxt'), 'kn-kanon-svjatomu-mucheniku-vonifatiju.ru'),
+  },
+  'kn-kanon-svjatomu-pravednomu-artemiju-verkolskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-pravednomu-artemiju-verkolskomu.cu.ltxt'), 'kn-kanon-svjatomu-pravednomu-artemiju-verkolskomu.cu'),
+  },
+  'kn-kanon-svjatomu-pravednomu-iakovu-borovichskomu-novgorodskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-pravednomu-iakovu-borovichskomu-novgorodskomu.cu.ltxt'), 'kn-kanon-svjatomu-pravednomu-iakovu-borovichskomu-novgorodskomu.cu'),
+  },
+  'kn-kanon-svjatomu-pravednomu-iovu-mnogostradalnomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-pravednomu-iovu-mnogostradalnomu.cu.ltxt'), 'kn-kanon-svjatomu-pravednomu-iovu-mnogostradalnomu.cu'),
+  },
+  'kn-kanon-svjatomu-prepodobnomu-ioannu-damaskinu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-prepodobnomu-ioannu-damaskinu.cu.ltxt'), 'kn-kanon-svjatomu-prepodobnomu-ioannu-damaskinu.cu'),
+  },
+  'kn-kanon-svjatomu-prepodobnomu-martiriju-zeleneckomu': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-prepodobnomu-martiriju-zeleneckomu.ru.ltxt'), 'kn-kanon-svjatomu-prepodobnomu-martiriju-zeleneckomu.ru'),
+  },
+  'kn-kanon-svjatomu-proroku-ilie': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-proroku-ilie.cu.ltxt'), 'kn-kanon-svjatomu-proroku-ilie.cu'),
+  },
+  'kn-kanon-svjatomu-proroku-predteche-i-krestitelju-gospodnju-ioannu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-proroku-predteche-i-krestitelju-gospodnju-ioannu.cu.ltxt'), 'kn-kanon-svjatomu-proroku-predteche-i-krestitelju-gospodnju-ioannu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-proroku-predteche-i-krestitelju-gospodnju-ioannu.ru.ltxt'), 'kn-kanon-svjatomu-proroku-predteche-i-krestitelju-gospodnju-ioannu.ru'),
+  },
+  'kn-kanon-svjatomu-ravnoapostolnomu-knjazju-vladimiru': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-ravnoapostolnomu-knjazju-vladimiru.cu.ltxt'), 'kn-kanon-svjatomu-ravnoapostolnomu-knjazju-vladimiru.cu'),
+  },
+  'kn-kanon-svjatomu-velikomucheniku-feodoru-tironu-4': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-velikomucheniku-feodoru-tironu-4.ru.ltxt'), 'kn-kanon-svjatomu-velikomucheniku-feodoru-tironu-4.ru'),
+  },
+  'kn-kanon-svjatomu-velikomucheniku-i-celitelju-panteleimonu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-velikomucheniku-i-celitelju-panteleimonu-2-j.cu.ltxt'), 'kn-kanon-svjatomu-velikomucheniku-i-celitelju-panteleimonu-2-j.cu'),
+  },
+  'kn-kanon-svjatomu-velikomucheniku-merkuriju-kesarijskomu-kappadokijskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatomu-velikomucheniku-merkuriju-kesarijskomu-kappadokijskomu.cu.ltxt'), 'kn-kanon-svjatomu-velikomucheniku-merkuriju-kesarijskomu-kappadokijskomu.cu'),
+  },
+  'kn-kanon-svjatym-apostolam': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-apostolam.cu.ltxt'), 'kn-kanon-svjatym-apostolam.cu'),
+  },
+  'kn-kanon-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim-2-j.cu.ltxt'), 'kn-kanon-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim-2-j.cu'),
+  },
+  'kn-kanon-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim.cu.ltxt'), 'kn-kanon-svjatym-bezsrebrenikam-i-chudotvorcam-kosme-i-damianu-asijskim.cu'),
+  },
+  'kn-kanon-svjatym-devjati-muchenikam-kizicheskim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-devjati-muchenikam-kizicheskim.cu.ltxt'), 'kn-kanon-svjatym-devjati-muchenikam-kizicheskim.cu'),
+  },
+  'kn-kanon-svjatym-muchenikam-14000-mladencam-ot-iroda-vo-vifleeme-izbiennym': {
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-muchenikam-14000-mladencam-ot-iroda-vo-vifleeme-izbiennym.ru.ltxt'), 'kn-kanon-svjatym-muchenikam-14000-mladencam-ot-iroda-vo-vifleeme-izbiennym.ru'),
+  },
+  'kn-kanon-svjatym-muchenikam-adrianu-i-natalii': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-muchenikam-adrianu-i-natalii.cu.ltxt'), 'kn-kanon-svjatym-muchenikam-adrianu-i-natalii.cu'),
+  },
+  'kn-kanon-svjatym-muchenikam-antoniju-ioannu-i-evstafiju-vilenskim-litovskim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-muchenikam-antoniju-ioannu-i-evstafiju-vilenskim-litovskim.cu.ltxt'), 'kn-kanon-svjatym-muchenikam-antoniju-ioannu-i-evstafiju-vilenskim-litovskim.cu'),
+  },
+  'kn-kanon-svjatym-muchenikam-guriju-samonu-i-avivu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-muchenikam-guriju-samonu-i-avivu.cu.ltxt'), 'kn-kanon-svjatym-muchenikam-guriju-samonu-i-avivu.cu'),
+  },
+  'kn-kanon-svjatym-pravednym-bogootcam-ioakimu-i-anne': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-pravednym-bogootcam-ioakimu-i-anne.cu.ltxt'), 'kn-kanon-svjatym-pravednym-bogootcam-ioakimu-i-anne.cu'),
+  },
+  'kn-kanon-svjatym-pravednym-iosifu-obruchniku-davidu-carju-i-iakovu-bratu-gospodnju-po-ploti': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-pravednym-iosifu-obruchniku-davidu-carju-i-iakovu-bratu-gospodnju-po-ploti.cu.ltxt'), 'kn-kanon-svjatym-pravednym-iosifu-obruchniku-davidu-carju-i-iakovu-bratu-gospodnju-po-ploti.cu'),
+  },
+  'kn-kanon-svjatym-prepodobnym-otcam-androniku-savve-aleksandru-daniilu-i-andreju-moskovskim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-prepodobnym-otcam-androniku-savve-aleksandru-daniilu-i-andreju-moskovskim.cu.ltxt'), 'kn-kanon-svjatym-prepodobnym-otcam-androniku-savve-aleksandru-daniilu-i-andreju-moskovskim.cu'),
+  },
+  'kn-kanon-svjatym-ravnoapostolnym-carjam-konstantinu-i-elene': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-ravnoapostolnym-carjam-konstantinu-i-elene.cu.ltxt'), 'kn-kanon-svjatym-ravnoapostolnym-carjam-konstantinu-i-elene.cu'),
+  },
+  'kn-kanon-svjatym-ravnoapostolnym-mefodiju-i-kirillu-uchiteljam-slovenskim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-svjatym-ravnoapostolnym-mefodiju-i-kirillu-uchiteljam-slovenskim.cu.ltxt'), 'kn-kanon-svjatym-ravnoapostolnym-mefodiju-i-kirillu-uchiteljam-slovenskim.cu'),
+  },
+  'kn-kanon-torzhestvu-pravoslavija': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-torzhestvu-pravoslavija.cu.ltxt'), 'kn-kanon-torzhestvu-pravoslavija.cu'),
+  },
+  'kn-kanon-umilitelnyj-ko-gospodu-nashemu-iisusu-hristu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-umilitelnyj-ko-gospodu-nashemu-iisusu-hristu.cu.ltxt'), 'kn-kanon-umilitelnyj-ko-gospodu-nashemu-iisusu-hristu.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-umilitelnyj-ko-gospodu-nashemu-iisusu-hristu.ru.ltxt'), 'kn-kanon-umilitelnyj-ko-gospodu-nashemu-iisusu-hristu.ru'),
+  },
+  'kn-kanon-umilitelnyj-ko-presvjatoj-vladychice-nashej-bogorodice': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-umilitelnyj-ko-presvjatoj-vladychice-nashej-bogorodice.cu.ltxt'), 'kn-kanon-umilitelnyj-ko-presvjatoj-vladychice-nashej-bogorodice.cu'),
+  },
+  'kn-kanon-useknoveniju-glavy-proroka-predtechi-i-krestitelja-gospodnja-ioanna': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-useknoveniju-glavy-proroka-predtechi-i-krestitelja-gospodnja-ioanna.cu.ltxt'), 'kn-kanon-useknoveniju-glavy-proroka-predtechi-i-krestitelja-gospodnja-ioanna.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-useknoveniju-glavy-proroka-predtechi-i-krestitelja-gospodnja-ioanna.ru.ltxt'), 'kn-kanon-useknoveniju-glavy-proroka-predtechi-i-krestitelja-gospodnja-ioanna.ru'),
+  },
+  'kn-kanon-uspeniju-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-uspeniju-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-uspeniju-presvjatoj-bogorodicy.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-uspeniju-presvjatoj-bogorodicy.ru.ltxt'), 'kn-kanon-uspeniju-presvjatoj-bogorodicy.ru'),
+  },
+  'kn-kanon-uspeniju-svjatoj-pravednoj-anny-materi-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-uspeniju-svjatoj-pravednoj-anny-materi-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-uspeniju-svjatoj-pravednoj-anny-materi-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-kanon-v-vospominanie-na-nebe-javivshegosja-znamenija-kresta-gospodnja': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-v-vospominanie-na-nebe-javivshegosja-znamenija-kresta-gospodnja.cu.ltxt'), 'kn-kanon-v-vospominanie-na-nebe-javivshegosja-znamenija-kresta-gospodnja.cu'),
+  },
+  'kn-kanon-velikomuchenice-ekaterine': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-velikomuchenice-ekaterine.cu.ltxt'), 'kn-kanon-velikomuchenice-ekaterine.cu'),
+  },
+  'kn-kanon-velikomuchenice-evfimii-vsehvalnoj': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-velikomuchenice-evfimii-vsehvalnoj.cu.ltxt'), 'kn-kanon-velikomuchenice-evfimii-vsehvalnoj.cu'),
+  },
+  'kn-kanon-velikomuchenice-irine': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-velikomuchenice-irine.cu.ltxt'), 'kn-kanon-velikomuchenice-irine.cu'),
+  },
+  'kn-kanon-velikomucheniku-dimitriju-solunskomu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-velikomucheniku-dimitriju-solunskomu-2-j.cu.ltxt'), 'kn-kanon-velikomucheniku-dimitriju-solunskomu-2-j.cu'),
+  },
+  'kn-kanon-velikomucheniku-dimitriju-solunskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-velikomucheniku-dimitriju-solunskomu.cu.ltxt'), 'kn-kanon-velikomucheniku-dimitriju-solunskomu.cu'),
+  },
+  'kn-kanon-velikomucheniku-georgiju-pobedonoscu-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-velikomucheniku-georgiju-pobedonoscu-2-j.cu.ltxt'), 'kn-kanon-velikomucheniku-georgiju-pobedonoscu-2-j.cu'),
+  },
+  'kn-kanon-velikomucheniku-georgiju-pobedonoscu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-velikomucheniku-georgiju-pobedonoscu.cu.ltxt'), 'kn-kanon-velikomucheniku-georgiju-pobedonoscu.cu'),
+  },
+  'kn-kanon-velikomucheniku-ioannu-novomu-sochavskomu': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-velikomucheniku-ioannu-novomu-sochavskomu.cu.ltxt'), 'kn-kanon-velikomucheniku-ioannu-novomu-sochavskomu.cu'),
+  },
+  'kn-kanon-vhodu-gospodnju-v-ierusalim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-vhodu-gospodnju-v-ierusalim.cu.ltxt'), 'kn-kanon-vhodu-gospodnju-v-ierusalim.cu'),
+  },
+  'kn-kanon-voskresnyj-glas-1': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-voskresnyj-glas-1.cu.ltxt'), 'kn-kanon-voskresnyj-glas-1.cu'),
+  },
+  'kn-kanon-voskresnyj-glas-2': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-voskresnyj-glas-2.cu.ltxt'), 'kn-kanon-voskresnyj-glas-2.cu'),
+  },
+  'kn-kanon-voskresnyj-glas-3': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-voskresnyj-glas-3.cu.ltxt'), 'kn-kanon-voskresnyj-glas-3.cu'),
+  },
+  'kn-kanon-voskresnyj-glas-4': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-voskresnyj-glas-4.cu.ltxt'), 'kn-kanon-voskresnyj-glas-4.cu'),
+  },
+  'kn-kanon-voskresnyj-glas-5': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-voskresnyj-glas-5.cu.ltxt'), 'kn-kanon-voskresnyj-glas-5.cu'),
+  },
+  'kn-kanon-voskresnyj-glas-6': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-voskresnyj-glas-6.cu.ltxt'), 'kn-kanon-voskresnyj-glas-6.cu'),
+  },
+  'kn-kanon-voskresnyj-glas-7': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-voskresnyj-glas-7.cu.ltxt'), 'kn-kanon-voskresnyj-glas-7.cu'),
+  },
+  'kn-kanon-voskresnyj-glas-8': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-voskresnyj-glas-8.cu.ltxt'), 'kn-kanon-voskresnyj-glas-8.cu'),
+  },
+  'kn-kanon-vozneseniju-gospodnju': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-vozneseniju-gospodnju.cu.ltxt'), 'kn-kanon-vozneseniju-gospodnju.cu'),
+  },
+  'kn-kanon-vsem-svjatym-ot-veka-bogu-blagougodivshim': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-vsem-svjatym-ot-veka-bogu-blagougodivshim.cu.ltxt'), 'kn-kanon-vsem-svjatym-ot-veka-bogu-blagougodivshim.cu'),
+  },
+  'kn-kanon-vvedeniju-vo-hram-presvjatoj-bogorodicy-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-vvedeniju-vo-hram-presvjatoj-bogorodicy-2-j.cu.ltxt'), 'kn-kanon-vvedeniju-vo-hram-presvjatoj-bogorodicy-2-j.cu'),
+  },
+  'kn-kanon-vvedeniju-vo-hram-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-vvedeniju-vo-hram-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-vvedeniju-vo-hram-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-kanon-za-boljashhego': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-za-boljashhego.cu.ltxt'), 'kn-kanon-za-boljashhego.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-kanon-za-boljashhego.ru.ltxt'), 'kn-kanon-za-boljashhego.ru'),
+  },
+  'kn-kanon-zachatiju-proroka-predtechi-i-krestitelja-gospodnja-ioanna': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-zachatiju-proroka-predtechi-i-krestitelja-gospodnja-ioanna.cu.ltxt'), 'kn-kanon-zachatiju-proroka-predtechi-i-krestitelja-gospodnja-ioanna.cu'),
+  },
+  'kn-kanon-zachatiju-svjatoj-pravednoj-annoj-presvjatoj-bogorodicy-2-j': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-zachatiju-svjatoj-pravednoj-annoj-presvjatoj-bogorodicy-2-j.cu.ltxt'), 'kn-kanon-zachatiju-svjatoj-pravednoj-annoj-presvjatoj-bogorodicy-2-j.cu'),
+  },
+  'kn-kanon-zachatiju-svjatoj-pravednoj-annoj-presvjatoj-bogorodicy': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-kanon-zachatiju-svjatoj-pravednoj-annoj-presvjatoj-bogorodicy.cu.ltxt'), 'kn-kanon-zachatiju-svjatoj-pravednoj-annoj-presvjatoj-bogorodicy.cu'),
+  },
+  'kn-pasxalnyj-kanon-tvorenie-ioanna-damaskina': {
+    cu: assetLoader(require('../../../assets/liturgy/kn-pasxalnyj-kanon-tvorenie-ioanna-damaskina.cu.ltxt'), 'kn-pasxalnyj-kanon-tvorenie-ioanna-damaskina.cu'),
+    ru: assetLoader(require('../../../assets/liturgy/kn-pasxalnyj-kanon-tvorenie-ioanna-damaskina.ru.ltxt'), 'kn-pasxalnyj-kanon-tvorenie-ioanna-damaskina.ru'),
   },
   'kratkij-chin-svyatogo-kreshheniya-sovershaemyj-iz-opaseniya-smerti-mladencza': {
     cu: assetLoader(require('../../../assets/liturgy/kratkij-chin-svyatogo-kreshheniya-sovershaemyj-iz-opaseniya-smerti-mladencza.cu.ltxt'), 'kratkij-chin-svyatogo-kreshheniya-sovershaemyj-iz-opaseniya-smerti-mladencza.cu'),

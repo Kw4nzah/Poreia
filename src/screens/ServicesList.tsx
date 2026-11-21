@@ -27,7 +27,7 @@ import { Chevron, easeNextLayout, useReduceMotion } from '../ui/motion';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
 /** Groups whose services are split into named sub-lists. */
-const SUBDIVIDED = ['molitvoslov'];
+const SUBDIVIDED = ['molitvoslov', 'akafisty', 'kanony'];
 
 /** A list row, or the heading above the services found only through their text. */
 type ShownRow = Row<LiturgyId> | { kind: 'label'; key: string; title: string; count: number };
