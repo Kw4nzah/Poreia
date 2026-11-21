@@ -53,8 +53,9 @@ import { useSettings } from '../settings/SettingsProvider';
 import { buildShareMessage } from '../share/message';
 import { BookmarkRibbon } from '../ui/BookmarkRibbon';
 import { SegmentedControl } from '../ui/kit';
+import { segmentColors } from '../ui/kit/tokens';
 import { FadeToggle } from '../ui/motion';
-import { SERIF, Theme, space, type, useTheme, useThemedStyles } from '../ui/theme';
+import { SERIF, Theme, radius, space, type, useTheme, useThemedStyles } from '../ui/theme';
 import { holdScreenAwake } from './keepAwake';
 
 /**
@@ -80,6 +81,14 @@ interface ViewToken {
   index?: number | null;
 }
 
+/** Language switch labels: ISO 639-1 codes, identical in every interface language. */
+const LANGUAGE_CODE: Record<LiturgyLanguage, string> = {
+  cu: 'CU',
+  en: 'EN',
+  ru: 'RU',
+  tr: 'TR',
+};
+
 function fontFor(language: LiturgyLanguage) {
   return language === 'cu' ? slavonicFontFamily() : SERIF;
 }
@@ -89,6 +98,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const theme = useTheme();
+  const chipColors = (active: boolean) => segmentColors(theme, active);
   const styles = useThemedStyles(makeStyles);
   const listRef = useRef<FlatList<AlignedBlock>>(null);
 
@@ -435,12 +445,13 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
             </Pressable>
             <Text
               style={styles.title}
-              numberOfLines={1}
+              numberOfLines={2}
               accessibilityRole="header"
               maxFontSizeMultiplier={1.3}
             >
               {m.liturgy.names[id]}
             </Text>
+            <View style={styles.sizeGroup}>
             <Pressable
               onPress={() => resize(-1)}
               disabled={size === 0}
@@ -461,6 +472,7 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
             >
               <Text style={[styles.sizeText, size === LARGEST && styles.sizeDisabled]}>A+</Text>
             </Pressable>
+            </View>
           </View>
           {available.length > 1 && main && (
             <View style={styles.control}>
@@ -468,7 +480,10 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
                 accessibilityLabel={m.liturgy.languageLabel}
                 options={available.map((language) => ({
                   value: language,
-                  label: m.liturgy.language[language],
+                  // Short codes: the same in every interface language and always fit a quarter of
+                  // the bar ("Церковнославянский" did not); the full name is the spoken label.
+                  label: LANGUAGE_CODE[language],
+                  accessibilityLabel: m.liturgy.language[language],
                 }))}
                 value={main}
                 onChange={setChosen}
@@ -503,12 +518,15 @@ export function LiturgyReader({ id }: { id: LiturgyId }) {
                   <Pressable
                     key={section}
                     onPress={() => jump(starts[section] ?? 0)}
-                    style={[styles.chip, active && styles.chipActive]}
+                    style={[
+                      styles.chip,
+                      { backgroundColor: chipColors(active).background, borderColor: chipColors(active).border },
+                    ]}
                     accessibilityRole="button"
                     accessibilityLabel={m.liturgy.section[section]}
                     accessibilityState={{ selected: active }}
                   >
-                    <Text style={[styles.chipText, active && styles.chipTextActive]}>
+                    <Text style={[styles.chipText, { color: chipColors(active).text }, active && styles.chipTextActive]}>
                       {m.liturgy.section[section]}
                     </Text>
                   </Pressable>
@@ -649,25 +667,37 @@ function makeStyles(t: Theme) {
     back: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     backText: { fontSize: 30, lineHeight: 34, color: t.accent },
     title: { flex: 1, fontFamily: SERIF, ...type.headline, color: t.ink, marginHorizontal: space.xs },
+    sizeGroup: {
+      flexDirection: 'row',
+      borderWidth: 1,
+      borderColor: t.outline,
+      borderRadius: radius.field,
+      overflow: 'hidden',
+    },
     sizeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
     sizeText: { fontFamily: SERIF, ...type.headline, color: t.accent },
     sizeDisabled: { color: t.line },
     control: { marginTop: space.xs, marginBottom: space.xs },
     toggle: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
     toggleText: { ...type.label, color: t.accent },
-    chipScroll: { flexGrow: 0, marginTop: space.xs },
-    sectionRow: { flexDirection: 'row', gap: space.sm, paddingRight: space.md },
+    chipScroll: {
+      flexGrow: 0,
+      marginTop: space.xs,
+      borderWidth: 1,
+      borderColor: t.outline,
+      borderRadius: radius.field,
+    },
+    sectionRow: { flexDirection: 'row', gap: 2, padding: space.xs },
     chip: {
       minHeight: 44,
       justifyContent: 'center',
       paddingHorizontal: space.md,
-      borderRadius: 999,
+      // Same shape and colours as the language switch: one family of controls.
+      borderRadius: radius.field - space.xs,
       borderWidth: 1,
-      borderColor: t.outline,
     },
-    chipActive: { backgroundColor: t.accent, borderColor: t.accent },
-    chipText: { ...type.label, color: t.ink },
-    chipTextActive: { color: t.onAccent },
+    chipText: { ...type.label },
+    chipTextActive: { fontWeight: '500' },
     headerLine: { height: StyleSheet.hairlineWidth, backgroundColor: t.line, marginTop: space.xs },
     status: { ...type.body, color: t.muted, paddingHorizontal: space.lg, marginTop: space.md },
 
