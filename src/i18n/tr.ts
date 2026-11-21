@@ -484,6 +484,8 @@ export const tr: Messages = {
       hymns: 'Troparlar, kontakionlar ve ilahiler',
       molitvoslov: 'Dualar (Molitvoslov)',
       prayersEn: 'İngilizce dualar',
+      akafisty: 'Akathistler (Ortodoks takvimi)',
+      kanony: 'Kanonlar (Ortodoks takvimi)',
     },
     azbykaCredit: 'Ayinlerin ve duaların (Molitvoslov) Kilise Slavcası ve Rusça metinleri azbyka.ru’dan alınmıştır ve onun yazılı izniyle kullanılmaktadır.',
     sectionsLabel: 'Bölümler',
