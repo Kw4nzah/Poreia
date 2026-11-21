@@ -25,6 +25,7 @@ import { buildShareMessage } from '../share/message';
 import { FavoriteStar } from '../ui/FavoriteStar';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { holdScreenAwake } from './keepAwake';
+import { BackLabel } from '../ui/BackLabel';
 
 const LARGEST = (PRAYER_TEXT_SIZES.length - 1) as PrayerTextSize;
 
@@ -145,7 +146,7 @@ export function PrayerReader({ id, resume = false }: { id: PrayerId; resume?: bo
             accessibilityRole="button"
             accessibilityLabel={m.prayers.title}
           >
-            <Text style={styles.backText}>‹ {m.prayers.title}</Text>
+            <BackLabel label={m.prayers.title} />
           </Pressable>
           <View style={styles.sizes}>
             <FavoriteStar
@@ -298,7 +299,6 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.lg,
     },
     back: { minHeight: 44, justifyContent: 'center', flexShrink: 1 },
-    backText: { ...type.body, color: t.accent },
     sizes: { flexDirection: 'row', flexShrink: 1, justifyContent: 'flex-end' },
     // "Режим чтения" wraps instead of pushing the size buttons off a narrow screen.
     modeButton: {

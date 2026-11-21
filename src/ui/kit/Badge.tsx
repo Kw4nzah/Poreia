@@ -2,7 +2,7 @@ import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { radius, space, type, useTheme } from '../theme';
 import { BadgeTone, badgeColors } from './tokens';
 
-/** Small status pill: fast level, feast or caution. Text is ink; the tone shows in fill, edge and dot. */
+/** Small status tag (BoardUI Chip measures): fast level, feast or caution. Text is ink; the tone shows in the fill and the dot. */
 export function Badge({
   label,
   tone = 'neutral',
@@ -16,7 +16,7 @@ export function Badge({
   const c = badgeColors(t, tone);
   return (
     <View
-      style={[styles.pill, { backgroundColor: c.background, borderColor: c.border }, style]}
+      style={[styles.pill, { backgroundColor: c.background }, style]}
       accessible
       accessibilityLabel={label}
     >
@@ -31,14 +31,13 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: space.sm,
-    paddingHorizontal: space.smd,
+    gap: 6,
+    paddingHorizontal: space.sm,
     paddingVertical: space.xs,
-    borderRadius: radius.pill,
-    borderWidth: 1,
+    borderRadius: radius.tag,
     // A long label wraps inside the pill instead of running past the card.
     maxWidth: '100%',
   },
-  dot: { width: 8, height: 8, borderRadius: 4, flexShrink: 0 },
-  text: { ...type.caption, fontWeight: '600', flexShrink: 1 },
+  dot: { width: 6, height: 6, borderRadius: 3, flexShrink: 0 },
+  text: { ...type.caption, fontWeight: '500', flexShrink: 1 },
 });

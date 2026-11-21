@@ -113,10 +113,12 @@ describe.each([
     },
   );
 
-  it('selected segment is the accent fill, the others are outlined', () => {
-    expect(segmentColors(t, true)).toMatchObject({ background: t.accent, text: t.onAccent });
-    expect(segmentColors(t, false)).toMatchObject({ background: 'transparent', border: t.outline });
-    expect(contrast(segmentColors(t, true).text, t.accent)).toBeGreaterThanOrEqual(4.5);
+  it('selected segment is a raised neutral thumb, the others sit flat on the track', () => {
+    expect(segmentColors(t, true)).toMatchObject({ background: t.surface, border: t.outline, text: t.ink });
+    expect(segmentColors(t, false)).toMatchObject({ background: 'transparent', border: 'transparent' });
+    expect(contrast(segmentColors(t, true).text, t.surface)).toBeGreaterThanOrEqual(4.5);
+    // The track is the page background.
+    expect(contrast(segmentColors(t, false).text, t.background)).toBeGreaterThanOrEqual(4.5);
   });
 
   it('card style follows the radius tokens', () => {

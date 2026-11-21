@@ -2,7 +2,7 @@
 
 import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
-import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CHURCHES, FOOD_IDS, getDayInfo, getUpcomingFast, isFoodAllowed } from '../calendar';
 import { getCommemoration, readingReference } from '../commemorations';
@@ -13,7 +13,8 @@ import { periodKey } from '../report/periods';
 import { reportHeading } from '../report/text';
 import { usePendingReport } from '../report/usePendingReport';
 import { Badge, Button, Card, ListRow } from '../ui/kit';
-import { FadeIn, useGrow } from '../ui/motion';
+import { Icon } from '../ui/Icon';
+import { FadeIn } from '../ui/motion';
 import { summarizeDay } from '../today/summary';
 import { useScrollTop } from '../ui/scrollTop';
 import { useTabBarSpace } from '../ui/tabBar';
@@ -44,8 +45,6 @@ export function Today() {
   const liturgyReadings = (commemoration?.readings ?? []).filter(
     (r) => r.kind === 'epistle' || r.kind === 'gospel',
   );
-
-  const grow = useGrow(info.period ? (info.period.day / info.period.totalDays) * 100 : 0);
 
   const fasting = info.level !== 'none';
 
@@ -159,12 +158,11 @@ export function Today() {
                             : { borderColor: theme.outline },
                         ]}
                       >
-                        <Text
-                          maxFontSizeMultiplier={1.3}
-                          style={[styles.markText, { color: allowed ? theme.surface : theme.muted }]}
-                        >
-                          {allowed ? '✓' : '✕'}
-                        </Text>
+                        <Icon
+                          name={allowed ? 'check' : 'cross'}
+                          color={allowed ? theme.surface : theme.muted}
+                          size={12}
+                        />
                       </View>
                       <Text style={[styles.foodName, !allowed && styles.foodForbidden]}>
                         {m.food[food]}
@@ -178,13 +176,33 @@ export function Today() {
             {info.period && (
               <View style={styles.progress}>
                 <View
-                  style={styles.track}
+                  style={styles.road}
                   accessible
                   accessibilityRole="progressbar"
                   accessibilityLabel={m.today.dayOf(info.period.day, info.period.totalDays)}
                   accessibilityValue={{ min: 0, max: info.period.totalDays, now: info.period.day }}
                 >
-                  <Animated.View style={[styles.fill, { backgroundColor: tone, width: grow }]} />
+                  {/* The road: one mark per day of the period. Days kept, today, days ahead, and
+                      in a fast the last day before the feast in gold. */}
+                  {Array.from({ length: info.period.totalDays }, (_, index) => {
+                    const day = index + 1;
+                    const isToday = day === info.period!.day;
+                    const kept = day < info.period!.day;
+                    const last = fasting && day === info.period!.totalDays && !isToday;
+                    return (
+                      <View
+                        key={day}
+                        style={[
+                          styles.roadDay,
+                          isToday && styles.roadToday,
+                          {
+                            backgroundColor:
+                              kept || isToday ? tone : last ? theme.feast : theme.line,
+                          },
+                        ]}
+                      />
+                    );
+                  })}
                 </View>
                 <View style={styles.progressRow}>
                   <Text style={styles.progressText}>
@@ -240,13 +258,7 @@ export function Today() {
                 accessibilityRole="button"
                 accessibilityLabel={m.report.dismiss}
               >
-                <Text
-                  accessibilityElementsHidden
-                  importantForAccessibility="no"
-                  style={styles.readyDismissText}
-                >
-                  ✕
-                </Text>
+                <Icon name="cross" color={theme.muted} size={16} />
               </Pressable>
             </View>
           </Card>
@@ -321,13 +333,7 @@ export function Today() {
               ) : (
                 <View />
               )}
-              <Text
-                style={styles.chevron}
-                accessibilityElementsHidden
-                importantForAccessibility="no"
-              >
-                ›
-              </Text>
+              <Icon name="chevron-right" color={theme.muted} />
             </View>
           </Card>
         </FadeIn>
@@ -379,7 +385,6 @@ function makeStyles(t: Theme) {
       alignItems: 'center',
       justifyContent: 'center',
     },
-    markText: { fontSize: 12, lineHeight: 15, fontWeight: '700' },
     foodName: { flex: 1, ...type.body, color: t.ink },
     foodForbidden: { color: t.muted },
     search: {
@@ -418,11 +423,16 @@ function makeStyles(t: Theme) {
     readyTitle: { fontFamily: SERIF, ...type.headline, color: t.ink },
     readyHint: { ...type.label, color: t.muted, marginTop: space.xs },
     readyDismiss: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
-    readyDismissText: { fontSize: 16, lineHeight: 20, color: t.muted },
 
     progress: { marginTop: space.lg },
-    track: { height: 4, borderRadius: 2, backgroundColor: t.line, overflow: 'hidden' },
-    fill: { height: 4, borderRadius: 2 },
+    road: {
+      height: 16,
+      flexDirection: 'row',
+      alignItems: 'flex-end',
+      justifyContent: 'space-between',
+    },
+    roadDay: { width: 2, height: 8, borderRadius: 1 },
+    roadToday: { height: 16 },
     progressRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: space.sm },
     progressText: { ...type.label, color: t.muted, fontVariant: ['tabular-nums'] },
 
@@ -453,8 +463,6 @@ function makeStyles(t: Theme) {
       justifyContent: 'space-between',
       marginTop: space.sm,
     },
-
-    chevron: { ...type.title3, color: t.muted },
 
     disclaimer: { ...type.caption, color: t.muted, marginTop: space.lg },
     link: { minHeight: 44, justifyContent: 'center' },

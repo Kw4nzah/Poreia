@@ -136,8 +136,8 @@ export function ScrollTopButton() {
           styles.button,
           {
             backgroundColor: theme.surface,
-            borderColor: theme.glassEdge,
-            shadowOpacity: theme.dark ? 0.5 : 0.18,
+            borderColor: theme.line,
+            shadowOpacity: theme.dark ? 0 : 0.08,
             opacity: pressed ? 0.8 : 1,
           },
         ]}
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 4 },
-    elevation: 8,
+    elevation: 3,
   },
   // An up chevron: two borders of a square, turned 45 degrees.
   chevron: {

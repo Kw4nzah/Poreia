@@ -13,6 +13,7 @@ import {
 import { useSettings } from '../../settings/SettingsProvider';
 import { AppTextInput } from '../../ui/AppTextInput';
 import { Dropdown } from '../../ui/Dropdown';
+import { Icon } from '../../ui/Icon';
 import { Button, Card, SegmentedControl } from '../../ui/kit';
 import { Theme, radius, space, type, useTheme, useThemedStyles } from '../../ui/theme';
 
@@ -80,7 +81,7 @@ export function SaintsSection() {
             accessibilityRole="button"
             accessibilityLabel={`${m.saints.remove}: ${saint.name}`}
           >
-            <Text style={styles.removeText}>×</Text>
+            <Icon name="cross" color={theme.muted} />
           </Pressable>
         </View>
       ))}
@@ -162,6 +163,5 @@ function makeStyles(t: Theme) {
     },
     saintText: { flex: 1 },
     removeButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
-    removeText: { ...type.title2, color: t.muted },
   });
 }

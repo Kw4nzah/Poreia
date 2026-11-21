@@ -91,4 +91,7 @@ describe.each([
   it('the food mark glyph (surface on free) >= 3', () => {
     expect(contrast(t.surface, t.free)).toBeGreaterThanOrEqual(3);
   });
+  it('onAction on action >= 4.5', () => {
+    expect(contrast(t.onAction, t.action)).toBeGreaterThanOrEqual(4.5);
+  });
 });

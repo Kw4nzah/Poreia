@@ -8,6 +8,7 @@ import { openExternalUrl } from '../security/openExternal';
 import { useSettings } from '../settings/SettingsProvider';
 import { ISSUES_URL } from '../support/reportIssue';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
+import { BackLabel } from '../ui/BackLabel';
 
 export function Sources() {
   const { messages: m, settings } = useSettings();
@@ -27,7 +28,7 @@ export function Sources() {
           accessibilityRole="button"
           accessibilityLabel={m.settings.sectionAbout}
         >
-          <Text style={styles.backText}>‹ {m.settings.sectionAbout}</Text>
+          <BackLabel label={m.settings.sectionAbout} />
         </Pressable>
       </View>
       <ScrollView
@@ -83,7 +84,6 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     header: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { ...type.body, color: t.accent },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
     heading: { ...type.label, color: t.muted, marginTop: space.lg },
     body: { ...type.body, color: t.ink, marginTop: space.xs },

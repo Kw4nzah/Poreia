@@ -27,6 +27,8 @@ import { Button } from '../ui/kit';
 import { SERIF, Theme, radius, space, type, useTheme, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 import { refreshWidget } from '../widget/refresh';
+import { BackLabel } from '../ui/BackLabel';
+import { Icon } from '../ui/Icon';
 
 /** Width of the level mark under the day number, from light to strict. */
 const MARK_WIDTH: Record<FastLevel, number> = {
@@ -106,7 +108,7 @@ export function MonthCalendar() {
           accessibilityRole="button"
           accessibilityLabel={m.calendar.back}
         >
-          <Text style={styles.backText}>‹ {m.calendar.back}</Text>
+          <BackLabel label={m.calendar.back} />
         </Pressable>
         <Pressable
           onPress={() => (selecting ? endSelecting() : setSelecting(true))}
@@ -135,7 +137,7 @@ export function MonthCalendar() {
             accessibilityRole="button"
             accessibilityLabel={m.calendar.previousMonth}
           >
-            <Text style={styles.arrowText}>‹</Text>
+            <Icon name="chevron-left" color={theme.accent} size={20} />
           </Pressable>
           <Text style={styles.month} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
             {m.months[shown.month - 1]} {shown.year}
@@ -146,7 +148,7 @@ export function MonthCalendar() {
             accessibilityRole="button"
             accessibilityLabel={m.calendar.nextMonth}
           >
-            <Text style={styles.arrowText}>›</Text>
+            <Icon name="chevron-right" color={theme.accent} size={20} />
           </Pressable>
         </View>
 
@@ -304,7 +306,6 @@ function makeStyles(t: Theme) {
       justifyContent: 'space-between',
     },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { fontSize: 16, color: t.accent },
     modeButton: { minHeight: 44, minWidth: 44, justifyContent: 'center', alignItems: 'flex-end' },
     modeText: { fontSize: 16, fontWeight: '600', color: t.accent },
     help: { ...type.caption, color: t.muted, textAlign: 'center', marginBottom: space.md },
@@ -325,7 +326,6 @@ function makeStyles(t: Theme) {
       color: t.ink,
     },
     arrow: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
-    arrowText: { fontSize: 28, lineHeight: 32, color: t.accent },
 
     week: { flexDirection: 'row' },
     weekday: {
@@ -345,7 +345,7 @@ function makeStyles(t: Theme) {
       borderColor: 'transparent',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: 3,
+      gap: space.xs,
     },
     dayToday: { borderColor: t.accent },
     daySelected: { backgroundColor: t.accent, borderColor: t.accent },

@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSettings } from '../../settings/SettingsProvider';
+import { BackLabel } from '../../ui/BackLabel';
 import { SERIF, Theme, space, type, useThemedStyles } from '../../ui/theme';
 import { useKeyboardHeight } from '../../ui/useKeyboardHeight';
 
@@ -25,7 +26,7 @@ export function SectionFrame({ title, children }: { title: string; children: Rea
           accessibilityRole="button"
           accessibilityLabel={m.settings.title}
         >
-          <Text style={styles.backText}>‹ {m.settings.title}</Text>
+          <BackLabel label={m.settings.title} />
         </Pressable>
       </View>
       <ScrollView
@@ -52,7 +53,6 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     header: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { ...type.body, color: t.accent },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
   });
 }

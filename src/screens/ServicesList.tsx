@@ -24,6 +24,7 @@ import { AppTextInput } from '../ui/AppTextInput';
 import { BookmarkRibbon } from '../ui/BookmarkRibbon';
 import { Card, ListRow } from '../ui/kit';
 import { Chevron, easeNextLayout, useReduceMotion } from '../ui/motion';
+import { BackLabel } from '../ui/BackLabel';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 
 /** Groups whose services are split into named sub-lists. */
@@ -198,7 +199,7 @@ export function ServicesList() {
           accessibilityRole="button"
           accessibilityLabel={m.prayers.title}
         >
-          <Text style={styles.backText}>‹ {m.prayers.title}</Text>
+          <BackLabel label={m.prayers.title} />
         </Pressable>
         <Text style={styles.title} accessibilityRole="header" maxFontSizeMultiplier={1.4}>
           {m.liturgy.title}
@@ -261,7 +262,6 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     top: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { ...type.body, color: t.accent },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink, marginBottom: space.md },
     resume: { marginTop: space.sm, marginBottom: space.xs },
     header: {

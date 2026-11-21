@@ -278,14 +278,14 @@ export const tr: Messages = {
     beheadingOfJohn: 'Vaftizci Yahya’nın Başının Kesilmesi',
   },
   level: {
-    none: { title: 'Oruç yok', detail: 'Bugün her şey yenebilir.' },
-    noMeat: { title: 'Et yok', detail: 'Süt ürünleri, yumurta ve balık serbest.' },
-    fish: { title: 'Balık serbest', detail: 'Balık, şarap ve zeytinyağı serbest.' },
-    oil: { title: 'Şarap ve zeytinyağı serbest', detail: 'Bugün balık yok.' },
-    noOil: { title: 'Yağsız', detail: 'Yağsız pişirilmiş yemekler.' },
+    none: { title: 'Oruç yok', detail: 'Bugün her şey yenebilir' },
+    noMeat: { title: 'Et yok', detail: 'Süt ürünleri, yumurta ve balık serbest' },
+    fish: { title: 'Balık serbest', detail: 'Balık, şarap ve zeytinyağı serbest' },
+    oil: { title: 'Şarap ve zeytinyağı serbest', detail: 'Bugün balık yok' },
+    noOil: { title: 'Yağsız', detail: 'Yağsız pişirilmiş yemekler' },
     xerophagy: {
       title: 'Kuru yeme',
-      detail: 'Ekmek, meyve, sebze ve kuruyemiş; yağ yok.',
+      detail: 'Ekmek, meyve, sebze ve kuruyemiş; yağ yok',
     },
   },
   food: {

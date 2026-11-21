@@ -21,6 +21,8 @@ import { formatDate, formatDayMonth } from '../i18n';
 import { useDayMark } from '../log/useDayMark';
 import { useSettings } from '../settings/SettingsProvider';
 import { Badge, Button, Card, ListRow, SectionHeader } from '../ui/kit';
+import { BackLabel } from '../ui/BackLabel';
+import { Icon } from '../ui/Icon';
 import { SERIF, Theme, space, type, useTheme, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 
@@ -46,7 +48,7 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
         accessibilityRole="button"
         accessibilityLabel={m.calendar.title}
       >
-        <Text style={styles.backText}>‹ {m.calendar.title}</Text>
+        <BackLabel label={m.calendar.title} />
       </Pressable>
       {date && (
         <View style={styles.steps}>
@@ -58,7 +60,7 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
             accessibilityLabel={m.day.previous}
             accessibilityState={{ disabled: !previous }}
           >
-            <Text style={[styles.stepText, !previous && styles.stepDisabled]}>‹</Text>
+            <Icon name="chevron-left" color={previous ? theme.accent : theme.line} size={20} />
           </Pressable>
           <Pressable
             onPress={() => next && router.setParams({ date: formatIsoDate(next) })}
@@ -68,7 +70,7 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
             accessibilityLabel={m.day.next}
             accessibilityState={{ disabled: !next }}
           >
-            <Text style={[styles.stepText, !next && styles.stepDisabled]}>›</Text>
+            <Icon name="chevron-right" color={next ? theme.accent : theme.line} size={20} />
           </Pressable>
         </View>
       )}
@@ -132,12 +134,7 @@ export function DayDetail({ date }: { date: CivilDate | null }) {
               : { borderColor: theme.outline },
           ]}
         >
-          <Text
-            maxFontSizeMultiplier={1.3}
-            style={[styles.markText, { color: ok ? theme.surface : theme.muted }]}
-          >
-            {ok ? '✓' : '✕'}
-          </Text>
+          <Icon name={ok ? 'check' : 'cross'} color={ok ? theme.surface : theme.muted} size={12} />
         </View>
         <Text style={[styles.foodName, !ok && styles.foodForbidden]}>{m.food[food]}</Text>
       </View>
@@ -310,11 +307,8 @@ function makeStyles(t: Theme) {
       paddingHorizontal: space.lg,
     },
     back: { minHeight: 44, justifyContent: 'center' },
-    backText: { ...type.body, color: t.accent },
     steps: { flexDirection: 'row' },
     step: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
-    stepText: { fontSize: 28, lineHeight: 32, color: t.accent },
-    stepDisabled: { color: t.line },
 
     empty: { ...type.body, color: t.muted, margin: space.lg },
 
@@ -352,7 +346,6 @@ function makeStyles(t: Theme) {
       alignItems: 'center',
       justifyContent: 'center',
     },
-    markText: { fontSize: 12, lineHeight: 15, fontWeight: '700' },
     foodName: { flex: 1, ...type.body, color: t.ink },
     foodForbidden: { color: t.muted },
 

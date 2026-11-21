@@ -7,7 +7,7 @@ import { SettingsProvider } from '../settings/SettingsProvider';
 import { ErrorBoundary } from '../ui/ErrorBoundary';
 import { StatusBarBackground } from '../ui/StatusBarBackground';
 import { useReduceMotion } from '../ui/motion';
-import { useTheme } from '../ui/theme';
+import { MAX_CONTENT_WIDTH, useTheme } from '../ui/theme';
 import { WidgetSync } from '../widget/WidgetSync';
 
 export default function RootLayout() {
@@ -22,14 +22,17 @@ export default function RootLayout() {
           <DailyNotifications />
           <OngoingNotification />
           <WidgetSync />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              // One transition for every screen pushed on the stack; none when motion is reduced.
-              animation: reduceMotion ? 'none' : 'fade_from_bottom',
-              contentStyle: { backgroundColor: theme.background },
-            }}
-          />
+          {/* One phone-width column, centred on tablets and wide windows. */}
+          <View style={{ flex: 1, width: '100%', maxWidth: MAX_CONTENT_WIDTH, alignSelf: 'center' }}>
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                // One transition for every screen pushed on the stack; none when motion is reduced.
+                animation: reduceMotion ? 'none' : 'fade_from_bottom',
+                contentStyle: { backgroundColor: theme.background },
+              }}
+            />
+          </View>
         </SettingsProvider>
       </ErrorBoundary>
       <StatusBarBackground />

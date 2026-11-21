@@ -10,6 +10,7 @@ import { useSettings } from '../settings/SettingsProvider';
 import { Button, Card, ListRow } from '../ui/kit';
 import { exportUpcomingToCalendar } from './exportCalendar';
 import { removePhoneCalendar, syncPhoneCalendar } from './phoneCalendar';
+import { BackLabel } from '../ui/BackLabel';
 import { SERIF, Theme, space, type, useThemedStyles } from '../ui/theme';
 import { useToday } from '../ui/useToday';
 
@@ -59,7 +60,7 @@ export function Upcoming() {
           accessibilityRole="button"
           accessibilityLabel={m.upcoming.back}
         >
-          <Text style={styles.backText}>‹ {m.upcoming.back}</Text>
+          <BackLabel label={m.upcoming.back} />
         </Pressable>
       </View>
       <ScrollView
@@ -139,7 +140,6 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     header: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { ...type.body, color: t.accent },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
     hint: { ...type.label, color: t.muted, marginTop: space.xs },
     list: { marginTop: space.md },

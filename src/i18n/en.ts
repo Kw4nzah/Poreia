@@ -829,14 +829,14 @@ export const en: Messages = {
     beheadingOfJohn: 'Beheading of St John the Forerunner',
   },
   level: {
-    none: { title: 'No fasting', detail: 'All foods are allowed today.' },
-    noMeat: { title: 'No meat', detail: 'Dairy, eggs and fish are allowed.' },
-    fish: { title: 'Fish allowed', detail: 'Fish, wine and oil are allowed.' },
-    oil: { title: 'Wine and oil allowed', detail: 'No fish today.' },
-    noOil: { title: 'No oil', detail: 'Cooked food prepared without oil.' },
+    none: { title: 'No fasting', detail: 'All foods are allowed today' },
+    noMeat: { title: 'No meat', detail: 'Dairy, eggs and fish are allowed' },
+    fish: { title: 'Fish allowed', detail: 'Fish, wine and oil are allowed' },
+    oil: { title: 'Wine and oil allowed', detail: 'No fish today' },
+    noOil: { title: 'No oil', detail: 'Cooked food prepared without oil' },
     xerophagy: {
       title: 'Dry eating',
-      detail: 'Bread, fruit, vegetables and nuts, without oil.',
+      detail: 'Bread, fruit, vegetables and nuts, without oil',
     },
   },
   food: {

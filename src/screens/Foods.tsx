@@ -18,6 +18,7 @@ import { LANGUAGES, MESSAGES } from '../i18n';
 import { useSettings } from '../settings/SettingsProvider';
 import { AppTextInput } from '../ui/AppTextInput';
 import { Badge, type BadgeTone, Card, ListRow, SectionHeader } from '../ui/kit';
+import { BackLabel } from '../ui/BackLabel';
 import { SERIF, Theme, radius, space, type, useTheme, useThemedStyles } from '../ui/theme';
 import { useKeyboardHeight } from '../ui/useKeyboardHeight';
 import { useToday } from '../ui/useToday';
@@ -76,7 +77,7 @@ export function Foods() {
           accessibilityRole="button"
           accessibilityLabel={m.foods.back}
         >
-          <Text style={styles.backText}>‹ {m.foods.back}</Text>
+          <BackLabel label={m.foods.back} />
         </Pressable>
       </View>
       <ScrollView
@@ -164,7 +165,6 @@ function makeStyles(t: Theme) {
     screen: { flex: 1, backgroundColor: t.background },
     header: { paddingHorizontal: space.lg },
     back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
-    backText: { ...type.body, color: t.accent },
     title: { fontFamily: SERIF, ...type.title1, color: t.ink },
     today: { marginTop: space.md },
     todayLevel: { fontFamily: SERIF, ...type.headline, color: t.ink },
