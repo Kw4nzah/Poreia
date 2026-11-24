@@ -31,8 +31,8 @@
   "devDependencies": {
     "@types/react": "~19.3.0",
     "patch-package": "^8.0.1",
-    "typescript": "~6.0.3",
-    "vitest": "^5.1.0"
+    "typescript": "~7.0.2",
+    "vitest": "^5.1.1"
   },
   "scripts": {
     "start": "expo start",
